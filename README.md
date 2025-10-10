@@ -11,6 +11,9 @@
     <!-- Font Awesome for icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         /* Custom styles for typography and theme */
+        html {
+            scroll-behavior: smooth;
+        }
         body {
             font-family: 'Poppins', sans-serif;
             background-image: url('https://www.toptal.com/designers/subtlepatterns/uploads/leaves.png');
@@ -39,6 +42,13 @@
 
     <!-- Header Section --><header class="py-6 text-center shadow-sm bg-white/70 backdrop-blur-lg sticky top-0 z-20 overflow-hidden">
         <div class="relative">
+             <!-- Countdown Icon -->
+            <a href="#countdown-section" title="Geri Sayım" class="absolute top-1/2 -translate-y-1/2 right-4 text-green-600 hover:text-green-800 transition-colors z-20 text-center">
+                <i class="fas fa-hourglass-start fa-2x"></i>
+                <div id="header-countdown" class="hidden text-[10px] font-semibold tracking-tight leading-tight">
+                    <span id="header-days">0</span>g <span id="header-hours">0</span>s <span id="header-minutes">0</span>d
+               </div>
+            </a>
              <!-- Blurred background infinity -->
             <div class="absolute inset-0 flex items-center justify-center z-0" aria-hidden="true">
                 <i class="fas fa-infinity text-[10rem] text-gray-200 opacity-70 blur-sm"></i>
@@ -94,10 +104,20 @@
             <p class="text-center text-slate-500 italic">Bu sayfa, yolculuğumuzun en güzel anlarıyla zamanla daha da zenginleşecek...</p>
         </section>
 
-        <!-- Countdown Section --><section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg text-center">
+        <!-- Countdown Section --><section id="countdown-section" class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg text-center">
             <h3 class="text-3xl font-bold text-center text-green-600 mb-6">Büyük Güne Geri Sayım</h3>
-            <div class="my-4">
-                <div class="text-8xl text-green-300">
+            
+            <!-- This part will be shown when the date is set -->
+            <div id="countdown-timer" class="hidden grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                <div><div id="days" class="text-4xl font-bold text-green-500">0</div><span class="text-slate-500">Gün</span></div>
+                <div><div id="hours" class="text-4xl font-bold text-green-500">0</div><span class="text-slate-500">Saat</span></div>
+                <div><div id="minutes" class="text-4xl font-bold text-green-500">0</div><span class="text-slate-500">Dakika</span></div>
+                <div><div id="seconds" class="text-4xl font-bold text-green-500">0</div><span class="text-slate-500">Saniye</span></div>
+            </div>
+
+            <!-- This is the placeholder part -->
+            <div id="countdown-placeholder" class="my-4">
+                <div class="text-8xl text-red-500">
                     ∞
                 </div>
                 <p class="text-lg text-slate-600 mt-4 italic">
@@ -188,6 +208,58 @@
         <p class="text-slate-600">Bu hikaye devam edecek...</p>
         <p class="text-sm text-slate-400 mt-2">Arzu & Ersin</p>
     </footer>
+    
+    <script>
+        // --- GERİ SAYIM AYARLARI ---
+        // Geri sayımı başlatmak için tırnak işaretleri arasına nikah tarihinizi bu formatta yazın:
+        // Örnek: "Sep 27, 2026 15:00:00"
+        // Henüz başlatmak istemiyorsanız bu satırı boş bırakın ("").
+        const countDownDateString = ""; // <-- TARİHİ BURAYA YAZIN
+
+        if (countDownDateString) {
+            const countDownDate = new Date(countDownDateString).getTime();
+
+            // Gerekli HTML elementlerini seç
+            const countdownTimer = document.getElementById("countdown-timer");
+            const countdownPlaceholder = document.getElementById("countdown-placeholder");
+            const headerCountdown = document.getElementById("header-countdown");
+
+            // Yer tutucuyu gizle, sayacı göster
+            if (countdownTimer && countdownPlaceholder && headerCountdown) {
+                countdownPlaceholder.classList.add("hidden");
+                countdownTimer.classList.remove("hidden");
+                countdownTimer.classList.add("grid");
+                headerCountdown.classList.remove("hidden");
+            }
+
+            const countdownInterval = setInterval(function() {
+                const now = new Date().getTime();
+                const distance = countDownDate - now;
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                // Ana sayaçları güncelle
+                document.getElementById("days").innerText = days;
+                document.getElementById("hours").innerText = hours;
+                document.getElementById("minutes").innerText = minutes;
+                document.getElementById("seconds").innerText = seconds;
+
+                // Header'daki küçük sayacı güncelle
+                document.getElementById("header-days").innerText = days;
+                document.getElementById("header-hours").innerText = hours;
+                document.getElementById("header-minutes").innerText = minutes;
+
+                if (distance < 0) {
+                    clearInterval(countdownInterval);
+                    countdownTimer.innerHTML = '<p class="col-span-full text-xl text-green-600">Ve o güzel gün geldi!</p>';
+                    headerCountdown.innerHTML = '❤️';
+                }
+            }, 1000);
+        }
+    </script>
 
 </body>
 </html>
