@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <!-- Font Awesome for icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Prevents browser from generating a default favicon --><link rel="icon" href="data:,">
     <style>
         /* Custom styles for typography and theme */
         html {
@@ -36,11 +37,21 @@
             50% { transform: scale(1.1); }
             100% { transform: scale(1); }
         }
+        /* Specific rule to ensure main title is always large */
+        #main-title {
+            font-size: 5rem; /* 80px */
+            line-height: 1.1;
+        }
+        @media (min-width: 768px) { /* Corresponds to md: breakpoint */
+            #main-title {
+                font-size: 7rem; /* 112px */
+            }
+        }
     </style>
 </head>
 <body class="text-slate-700">
 
-    <!-- Header Section --><header class="py-6 text-center shadow-sm bg-white/70 backdrop-blur-lg sticky top-0 z-20 overflow-hidden">
+    <!-- Header Section --><header class="py-6 text-center bg-white/70 backdrop-blur-lg sticky top-0 z-20 overflow-hidden">
         <div class="relative">
              <!-- Countdown Icon -->
             <a href="#countdown-section" title="Geri Sayım" class="absolute top-1/2 -translate-y-1/2 right-4 text-green-600 hover:text-green-800 transition-colors z-20 text-center">
@@ -67,7 +78,7 @@
 
     <!-- Page Title Section -->
     <section class="py-16 text-center">
-        <h2 class="text-6xl md:text-8xl font-bold handwriting text-green-600">O Güzel Sonbahar</h2>
+        <h2 id="main-title" class="font-bold handwriting text-green-600">O Güzel Sonbahar</h2>
         <p class="text-xl md:text-2xl mt-2 text-slate-500">27 Eylül 2025</p>
         <p class="text-lg mt-1 text-slate-500 italic">Zamanın durduğu an</p>
     </section>
@@ -204,7 +215,7 @@
 
     </main>
 
-    <!-- Footer --><footer class="text-center py-8 mt-12 bg-white/50 border-t border-slate-200">
+    <!-- Footer --><footer class="text-center py-8 mt-12 bg-white/50">
         <p class="text-slate-600">Bu hikaye devam edecek...</p>
         <p class="text-sm text-slate-400 mt-2">Arzu & Ersin</p>
     </footer>
