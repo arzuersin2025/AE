@@ -1,4 +1,3 @@
-
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -109,6 +108,16 @@
                 <p>sonbahar…"</p>
             </blockquote>
         </section>
+        
+        <!-- Video Mesajımız Section --><section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg text-center">
+            <h3 class="text-3xl font-bold text-center text-green-600 mb-6">Video Mesajımız</h3>
+            <div class="text-6xl text-green-300 mb-4">
+                <i class="fas fa-video"></i>
+            </div>
+            <p class="text-center text-slate-600 text-lg italic mt-4">
+                Bazı duyguları kelimelerle anlatmak yetmez... Hikayemizi bir de bizden dinleyin istedik. Sevdiklerimizle ve birbirimizle paylaşmak istediğimiz samimi video mesajımızı hazırladığımızda burada bulabilirsiniz.
+            </p>
+        </section>
 
         <!-- Anılarımız Placeholder Section --><section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="text-3xl font-bold text-green-600 mb-4">Anılarımız</h3>
@@ -202,6 +211,10 @@
                     <input type="text" name="name" id="name" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="Adınız ve Soyadınız" required>
                 </div>
                 <div>
+                     <label for="contact" class="block text-sm font-medium text-slate-600">E-posta ya da Telefon (İsteğe bağlı)</label>
+                    <input type="text" name="contact" id="contact" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="size teşekkür edebilmemiz için...">
+                </div>
+                <div>
                     <label for="message" class="block text-sm font-medium text-slate-600">Dileğiniz</label>
                     <textarea id="message" name="message" rows="4" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="Bizim için güzel bir dilek..." required></textarea>
                 </div>
@@ -244,8 +257,8 @@
             }
 
             const countdownInterval = setInterval(function() {
-                const now = new date().gettime();
-                const distance = countdownDate - now;
+                const now = new Date().getTime();
+                const distance = countDownDate - now;
 
                 const days = Math.floor(distance / (1000 * 60 * 60 * 24));
                 const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
