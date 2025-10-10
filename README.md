@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -56,7 +57,7 @@
 
     <!-- Page Title Section -->
     <section class="py-16 text-center">
-        <h2 class="text-5xl md:text-7xl font-bold handwriting text-green-600">O Güzel Sonbahar</h2>
+        <h2 class="text-6xl md:text-8xl font-bold handwriting text-green-600">O Güzel Sonbahar</h2>
         <p class="text-xl md:text-2xl mt-2 text-slate-500">27 Eylül 2025</p>
         <p class="text-lg mt-1 text-slate-500 italic">Zamanın durduğu an</p>
     </section>
