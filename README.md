@@ -46,11 +46,16 @@
                 font-size: 7rem; /* 112px */
             }
         }
+        /* Forcefully remove borders/shadows causing thin lines on deployment */
+        header, #main-title-section {
+            border: none !important;
+            box-shadow: none !important;
+        }
     </style>
 </head>
 <body class="text-slate-700">
 
-    <!-- Header Section --><header class="py-6 text-center bg-white/70 backdrop-blur-lg sticky top-0 z-20 overflow-hidden border-0 shadow-none">
+    <!-- Header Section --><header class="py-6 text-center bg-white/70 backdrop-blur-lg sticky top-0 z-20 overflow-hidden">
         <div class="relative">
              <!-- Countdown Icon -->
             <a href="#countdown-section" title="Geri Sayım" class="absolute top-1/2 -translate-y-1/2 right-4 text-green-600 hover:text-green-800 transition-colors z-20 text-center">
@@ -76,7 +81,7 @@
     </header>
 
     <!-- Page Title Section -->
-    <section class="py-16 text-center">
+    <section id="main-title-section" class="py-16 text-center">
         <h2 id="main-title" class="font-bold handwriting text-green-600">O Güzel Sonbahar</h2>
         <p class="text-xl md:text-2xl mt-2 text-slate-500">27 Eylül 2025</p>
         <p class="text-lg mt-1 text-slate-500 italic">Zamanın durduğu an</p>
