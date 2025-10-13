@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -242,17 +243,11 @@
                  <!-- İletişim Bilgileri -->
                 <div class="pt-4 border-t border-slate-200">
                     <p class="text-sm text-slate-500 mb-2 text-center">Size teşekkür edebilmemiz için lütfen aşağıdaki bilgilerden en az birini doldurun.</p>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <label for="email" class="block text-sm font-medium text-slate-600">E-posta Adresiniz</label>
-                            <input type="email" name="email" id="email" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="ornek@mail.com">
-                        </div>
-                        <div>
-                            <label for="phone" class="block text-sm font-medium text-slate-600">Telefon Numaranız</label>
-                            <input type="tel" name="phone" id="phone" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="05XX XXX XX XX">
-                        </div>
+                    <div>
+                         <label for="contact" class="block text-sm font-medium text-slate-600">E-posta ya da Telefon</label>
+                         <input type="text" name="Iletisim" id="contact" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="ornek@mail.com veya 05XX XXX XX XX">
                     </div>
-                    <p id="contact-error" class="text-red-500 text-sm mt-2 text-center hidden">Lütfen e-posta veya telefon numaranızdan en az birini girin.</p>
+                    <p id="contact-error" class="text-red-500 text-sm mt-2 text-center hidden">Lütfen e-posta veya telefon numaranızdan birini girin.</p>
                 </div>
                 <div class="text-center pt-4">
                     <button type="submit" class="inline-flex justify-center py-2 px-6 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors">
@@ -442,14 +437,12 @@
             const wishForm = document.getElementById('wish-form');
             if (wishForm) {
                 wishForm.addEventListener('submit', function(event) {
-                    const emailInput = document.getElementById('email');
-                    const phoneInput = document.getElementById('phone');
+                    const contactInput = document.getElementById('contact');
                     const errorElement = document.getElementById('contact-error');
 
-                    const isEmailFilled = emailInput && emailInput.value.trim() !== '';
-                    const isPhoneFilled = phoneInput && phoneInput.value.trim() !== '';
+                    const isContactFilled = contactInput && contactInput.value.trim() !== '';
 
-                    if (!isEmailFilled && !isPhoneFilled) {
+                    if (!isContactFilled) {
                         event.preventDefault(); // Stop form submission
                         if (errorElement) {
                             errorElement.classList.remove('hidden');
