@@ -394,20 +394,29 @@
         
         // --- AUTHENTICATION ---
         onAuthStateChanged(auth, async (user) => {
-            if (!user) {
+            if (user) {
+                // User is signed in.
+                currentUserId = user.uid;
+                if (currentUserId) {
+                    listenForWishes();
+                }
+            } else {
+                // User is not signed in, let's sign them in anonymously.
                 try {
                     if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
                         await signInWithCustomToken(auth, __initial_auth_token);
                     } else {
                         await signInAnonymously(auth);
                     }
+                    // onAuthStateChanged will be called again with the new user object.
                 } catch (error) {
                     console.error("Authentication error:", error);
+                    const submitBtn = document.getElementById('submit-wish-btn');
+                    if(submitBtn) {
+                        submitBtn.disabled = true;
+                        submitBtn.textContent = 'Hata: Sayfayı Yenileyin';
+                    }
                 }
-            }
-            currentUserId = auth.currentUser?.uid;
-            if (currentUserId) {
-                listenForWishes();
             }
         });
 
@@ -739,4 +748,5 @@
 
 </body>
 </html>
+
 
