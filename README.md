@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -404,7 +405,7 @@
                 }
                 listenForWishes();
             } else {
-                // User is not signed in, let's sign them in anonymously.
+                // User is not signed in, try to sign in.
                 try {
                     if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
                         await signInWithCustomToken(auth, __initial_auth_token);
@@ -415,7 +416,6 @@
                 } catch (error) {
                     console.error("Authentication error:", error);
                     if(submitBtn) {
-                        submitBtn.disabled = true;
                         submitBtn.textContent = 'Hata: Sayfayı Yenileyin';
                     }
                 }
