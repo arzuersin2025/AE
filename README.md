@@ -89,25 +89,25 @@
         .reply-controls {
             display: block; /* Always visible */
         }
+        .photo-number {
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);
+        }
     </style>
 </head>
 <body class="text-slate-700">
 
     <!-- Header Section --><header class="py-6 text-center bg-white/70 backdrop-blur-lg sticky top-0 z-20 overflow-hidden">
         <div class="relative">
-             <!-- Countdown Icon -->
-            <a href="#countdown-section" title="Geri Sayım" class="absolute top-1/2 -translate-y-1/2 right-4 text-green-600 hover:text-green-800 transition-colors z-20 text-center">
+             <!-- Countdown Icon --><a href="#countdown-section" title="Geri Sayım" class="absolute top-1/2 -translate-y-1/2 right-4 text-green-600 hover:text-green-800 transition-colors z-20 text-center">
                 <i class="fas fa-hourglass-start fa-2x"></i>
                 <div id="header-countdown" class="hidden text-[10px] font-semibold tracking-tight leading-tight">
                     <span id="header-days">0</span>g <span id="header-hours">0</span>s <span id="header-minutes">0</span>d
                </div>
             </a>
-             <!-- Blurred background infinity -->
-            <div class="absolute inset-0 flex items-center justify-center z-0" aria-hidden="true">
+             <!-- Blurred background infinity --><div class="absolute inset-0 flex items-center justify-center z-0" aria-hidden="true">
                 <i class="fas fa-infinity text-[10rem] text-gray-200 opacity-70 blur-sm"></i>
             </div>
-            <!-- Header content -->
-            <div class="relative z-10">
+            <!-- Header content --><div class="relative z-10">
                 <h1 class="text-4xl md:text-5xl font-bold text-green-600 flex items-center justify-center space-x-4">
                     <span>Arzu</span>
                     <i class="fas fa-heart text-red-500 text-3xl heartbeat"></i>
@@ -118,8 +118,7 @@
         </div>
     </header>
 
-    <!-- Page Title Section -->
-    <section id="main-title-section" class="py-16 text-center">
+    <!-- Page Title Section --><section id="main-title-section" class="py-16 text-center">
         <h2 id="main-title" class="font-bold handwriting text-green-600">O Güzel Sonbahar</h2>
         <p class="text-xl md:text-2xl mt-2 text-slate-500">27 Eylül 2025</p>
         <p class="text-lg mt-1 text-slate-500 italic">Zamanın durduğu an</p>
@@ -151,35 +150,25 @@
                 <p>sonbahar…"</p>
             </blockquote>
         </section>
-        
-        <!-- Video Mesajımız Section --><section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg text-center">
-            <h3 class="text-3xl font-bold text-center text-green-600 mb-6">Video Mesajımız</h3>
-            <div class="text-6xl text-green-300 mb-4">
-                <i class="fas fa-video"></i>
-            </div>
-            <p class="text-center text-slate-600 text-lg italic mt-4">
-                Bazı duyguları kelimelerle anlatmak yetmez... Hikayemizi bir de bizden dinleyin istedik. Sevdiklerimizle ve birbirimizle paylaşmak istediğimiz samimi video mesajımızı hazırladığımızda burada bulabilirsiniz.
-            </p>
-        </section>
 
-        <!-- Anılarımız Placeholder Section --><section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
-            <h3 class="text-3xl font-bold text-green-600 mb-4">Anılarımız</h3>
-            <p class="text-center text-slate-500 italic">Bu sayfa, yolculuğumuzun en güzel anlarıyla zamanla daha da zenginleşecek...</p>
+        <!-- Hayal Defterimiz Section --><section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg">
+            <h3 class="text-3xl font-bold text-center text-green-600 mb-6">Hayal Defterimiz</h3>
+            <p class="text-center text-slate-600 text-lg italic mt-4 mb-8">
+                Birlikte kurduğumuz hayaller, geleceğe dair ektiğimiz tohumlar... Bu defter, yolculuğumuzda gerçekleştireceğimiz hayallerle dolacak.
+            </p>
         </section>
 
         <!-- Countdown Section --><section id="countdown-section" class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg text-center">
             <h3 class="text-3xl font-bold text-center text-green-600 mb-6">Büyük Güne Geri Sayım</h3>
             
-            <!-- This part will be shown when the date is set -->
-            <div id="countdown-timer" class="hidden grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+            <!-- This part will be shown when the date is set --><div id="countdown-timer" class="hidden grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
                 <div><div id="days" class="text-4xl font-bold text-green-500">0</div><span class="text-slate-500">Gün</span></div>
                 <div><div id="hours" class="text-4xl font-bold text-green-500">0</div><span class="text-slate-500">Saat</span></div>
                 <div><div id="minutes" class="text-4xl font-bold text-green-500">0</div><span class="text-slate-500">Dakika</span></div>
                 <div><div id="seconds" class="text-4xl font-bold text-green-500">0</div><span class="text-slate-500">Saniye</span></div>
             </div>
 
-            <!-- This is the placeholder part -->
-            <div id="countdown-placeholder" class="my-4">
+            <!-- This is the placeholder part --><div id="countdown-placeholder" class="my-4">
                 <div class="text-8xl text-red-500">
                     ∞
                 </div>
@@ -202,25 +191,65 @@
             </div>
         </section>
         
-        <!-- Photo Gallery Placeholder Section --><section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
+        <!-- Photo Gallery Section --><section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="text-3xl font-bold text-center text-green-600 mb-4">Fotoğraf Galerimiz</h3>
-            <p class="text-center text-slate-500 italic">Bu galeri, yolculuğumuzda biriktirdiğimiz anların sadece bir başlangıcı. Zamanla daha da güzelleşecek...</p>
+            <p class="text-center text-slate-500 italic">İşte yolculuğumuzda biriktirdiğimiz anlardan ilk kareler... Bu galeri, zamanla daha nice güzel anıyla dolacak.</p>
+
+            <div class="mt-8 text-center">
+                <button id="toggle-gallery-btn" class="inline-flex items-center justify-center py-2 px-6 border border-green-600 shadow-sm text-sm font-medium rounded-md text-green-600 bg-white hover:bg-green-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors">
+                    <span id="gallery-toggle-text">Fotoğraf Galerisini Gör</span>
+                    <i id="gallery-toggle-icon" class="fas fa-chevron-down ml-2 transition-transform"></i>
+                </button>
+            </div>
+
+            <!-- Collapsible Gallery Container --><div id="gallery-wrapper" class="hidden mt-8">
+                <!-- Photo Grid --><div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-0" id="gallery-grid">
+                    
+                    <!-- YENİ FOTOĞRAFLARI HEP BU ALANIN EN BAŞINA EKLEYİN -->
+                    <!-- Yeni fotoğraf eklediğinizde, numarasını toplam fotoğraf sayısına göre ayarlayın. -->
+
+                    <!-- Fotoğraf 2 (En Yeni) --><div class="relative aspect-square overflow-hidden group cursor-pointer">
+                        <img src="https://i.imgur.com/KZpZnaa.jpg" alt="Anı fotoğrafı 2" class="gallery-thumbnail w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+                        <span class="photo-number absolute bottom-1 right-2 text-white text-base font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">2</span>
+                    </div>
+                    
+                    <!-- Fotoğraf 1 --><div class="relative aspect-square overflow-hidden group cursor-pointer">
+                        <img src="https://i.imgur.com/WnEibNN.jpg" alt="Anı fotoğrafı 1" class="gallery-thumbnail w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+                        <span class="photo-number absolute bottom-1 right-2 text-white text-base font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">1</span>
+                    </div>
+                
+                </div>
+            </div>
         </section>
 
-        <!-- Our 'Bests' Section --><section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg">
-            <h3 class="text-3xl font-bold text-center text-green-600 mb-6">Bizim 'En'lerimiz</h3>
-            <p class="text-center text-slate-600 text-lg italic mt-4">
-                Bu köşe, yolculuğumuz boyunca keşfedeceğimiz 'en'lerimizle dolacak. Birlikte izleyeceğimiz en güzel filmleri, tadacağımız en lezzetli yemekleri ve biriktireceğimiz daha nice anıyı zamanla buraya ekleyeceğiz...
-            </p>
-        </section>
+        <!-- Video Galerimiz Section --><section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
+            <h3 class="text-3xl font-bold text-center text-green-600 mb-4">Video Galerimiz</h3>
+            <p class="text-center text-slate-500 italic">Bazı duyguları kelimelerle anlatmak yetmez... Hikayemizi bir de bizden dinleyin istedik. Sevdiklerimizle ve birbirimizle paylaşmak istediğimiz samimi videolarımızı hazırladığımızda burada bulabilirsiniz.</p>
 
-        <!-- Hayal Defterimiz Section --><section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg">
-            <h3 class="text-3xl font-bold text-center text-green-600 mb-6">Hayal Defterimiz</h3>
-            <p class="text-center text-slate-600 text-lg italic mt-4 mb-8">
-                Birlikte kurduğumuz hayaller, geleceğe dair ektiğimiz tohumlar... Bu defter, yolculuğumuzda gerçekleştireceğimiz hayallerle dolacak.
-            </p>
-        </section>
+            <div class="mt-8 text-center">
+                <button id="toggle-video-gallery-btn" class="inline-flex items-center justify-center py-2 px-6 border border-green-600 shadow-sm text-sm font-medium rounded-md text-green-600 bg-white hover:bg-green-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors">
+                    <span id="video-gallery-toggle-text">Video Galerisini Gör</span>
+                    <i id="video-gallery-toggle-icon" class="fas fa-chevron-down ml-2 transition-transform"></i>
+                </button>
+            </div>
 
+            <!-- Collapsible Video Gallery Container --><div id="video-gallery-wrapper" class="hidden mt-8">
+                <!-- Video Grid --><div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4" id="video-grid">
+                    
+                     <!-- YENİ VİDEOLARI HEP BU ALANIN EN BAŞINA EKLEYİN -->
+
+                    <!-- Video 1 (En Yeni) --><div class="relative aspect-video overflow-hidden rounded-lg shadow-md group cursor-pointer bg-black" data-youtube-id="J466tfX1jzk">
+                        <img src="https://img.youtube.com/vi/J466tfX1jzk/hqdefault.jpg" alt="Video thumbnail" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+                        <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
+                            <i class="far fa-play-circle text-white text-6xl opacity-80 group-hover:opacity-100 transition-opacity"></i>
+                        </div>
+                        <span class="photo-number absolute bottom-1 right-2 text-white text-base font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">1</span>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        
         <!-- Teşekkür Section --><section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg">
             <h3 class="text-3xl font-bold text-center text-green-600 mb-6">Teşekkür</h3>
             <p class="text-center text-slate-600 text-lg italic mt-4">
@@ -255,8 +284,7 @@
                     <i id="toggle-icon" class="fas fa-chevron-down ml-2 transition-transform"></i>
                 </button>
             </div>
-            <!-- Collapsible Wishes Container -->
-            <div id="wishes-wrapper" class="hidden mt-8">
+            <!-- Collapsible Wishes Container --><div id="wishes-wrapper" class="hidden mt-8">
                  <div id="wishes-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     <p class="text-center text-slate-500 italic sm:col-span-full">Dilekler yükleniyor...</p>
                  </div>
@@ -269,6 +297,20 @@
         <p class="text-sm text-slate-400 mt-2">Arzu & Ersin</p>
     </footer>
     
+    <!-- Image Modal --><div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
+        <span id="close-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">&times;</span>
+        <img id="modal-image" src="" alt="Büyütülmüş Fotoğraf" class="max-w-[90vw] max-h-[90vh] rounded-lg shadow-lg">
+        <!-- Navigation Arrows --><span id="prev-photo" class="absolute top-1/2 left-4 -translate-y-1/2 text-white text-6xl font-bold cursor-pointer hover:text-gray-300 transition-colors select-none">&lt;</span>
+        <span id="next-photo" class="absolute top-1/2 right-4 -translate-y-1/2 text-white text-6xl font-bold cursor-pointer hover:text-gray-300 transition-colors select-none">&gt;</span>
+    </div>
+    
+    <!-- Video Modal --><div id="video-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
+        <span id="close-video-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">&times;</span>
+        <div class="aspect-video w-full max-w-4xl">
+            <iframe id="modal-video-iframe" class="w-full h-full" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+    </div>
+
     <script>
         // Toggle Wishes Visibility
         const toggleBtn = document.getElementById('toggle-wishes-btn');
@@ -287,6 +329,48 @@
                 } else {
                     toggleIcon.classList.add('rotate-180');
                     toggleText.textContent = 'Dilekleri Gizle';
+                }
+            });
+        }
+
+        // Toggle Gallery Visibility
+        const toggleGalleryBtn = document.getElementById('toggle-gallery-btn');
+        const galleryWrapper = document.getElementById('gallery-wrapper');
+        const galleryToggleIcon = document.getElementById('gallery-toggle-icon');
+        const galleryToggleText = document.getElementById('gallery-toggle-text');
+
+        if (toggleGalleryBtn) {
+            toggleGalleryBtn.addEventListener('click', () => {
+                galleryWrapper.classList.toggle('hidden');
+                const isHidden = galleryWrapper.classList.contains('hidden');
+                
+                if(isHidden) {
+                    galleryToggleIcon.classList.remove('rotate-180');
+                    galleryToggleText.textContent = 'Fotoğraf Galerisini Gör';
+                } else {
+                    galleryToggleIcon.classList.add('rotate-180');
+                    galleryToggleText.textContent = 'Galeriyi Gizle';
+                }
+            });
+        }
+        
+        // Toggle Video Gallery Visibility
+        const toggleVideoGalleryBtn = document.getElementById('toggle-video-gallery-btn');
+        const videoGalleryWrapper = document.getElementById('video-gallery-wrapper');
+        const videoGalleryToggleIcon = document.getElementById('video-gallery-toggle-icon');
+        const videoGalleryToggleText = document.getElementById('video-gallery-toggle-text');
+
+        if (toggleVideoGalleryBtn) {
+            toggleVideoGalleryBtn.addEventListener('click', () => {
+                videoGalleryWrapper.classList.toggle('hidden');
+                const isHidden = videoGalleryWrapper.classList.contains('hidden');
+                
+                if(isHidden) {
+                    videoGalleryToggleIcon.classList.remove('rotate-180');
+                    videoGalleryToggleText.textContent = 'Video Galerisini Gör';
+                } else {
+                    videoGalleryToggleIcon.classList.add('rotate-180');
+                    videoGalleryToggleText.textContent = 'Galeriyi Gizle';
                 }
             });
         }
@@ -521,22 +605,136 @@
                 const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-                document.getElementById("days").innerText = days;
-                document.getElementById("hours").innerText = hours;
-                document.getElementById("minutes").innerText = minutes;
-                document.getElementById("seconds").innerText = seconds;
+                if (document.getElementById("days")) { // Check if elements exist before updating
+                    document.getElementById("days").innerText = days;
+                    document.getElementById("hours").innerText = hours;
+                    document.getElementById("minutes").innerText = minutes;
+                    document.getElementById("seconds").innerText = seconds;
 
-                document.getElementById("header-days").innerText = days;
-                document.getElementById("header-hours").innerText = hours;
-                document.getElementById("header-minutes").innerText = minutes;
+                    document.getElementById("header-days").innerText = days;
+                    document.getElementById("header-hours").innerText = hours;
+                    document.getElementById("header-minutes").innerText = minutes;
+                }
 
                 if (distance < 0) {
                     clearInterval(countdownInterval);
-                    countdownTimer.innerHTML = '<p class="col-span-full text-xl text-green-600">Ve o güzel gün geldi!</p>';
-                    headerCountdown.innerHTML = '❤️';
+                    if(countdownTimer) countdownTimer.innerHTML = '<p class="col-span-full text-xl text-green-600">Ve o güzel gün geldi!</p>';
+                    if(headerCountdown) headerCountdown.innerHTML = '❤️';
                 }
             }, 1000);
         }
+    </script>
+
+    <script>
+        // Image & Video Modal Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            // Image Modal Elements
+            const imageModal = document.getElementById('image-modal');
+            const modalImage = document.getElementById('modal-image');
+            const closeImageModalBtn = document.getElementById('close-modal');
+            const galleryGrid = document.getElementById('gallery-grid');
+            const prevBtn = document.getElementById('prev-photo');
+            const nextBtn = document.getElementById('next-photo');
+
+            let galleryImages = [];
+            let currentImageIndex = 0;
+
+            function updateModalImage() {
+                if (modalImage && galleryImages.length > 0) {
+                    modalImage.src = galleryImages[currentImageIndex];
+                }
+                if (prevBtn && nextBtn) {
+                    if (galleryImages.length > 1) {
+                        prevBtn.style.display = 'block';
+                        nextBtn.style.display = 'block';
+                    } else {
+                        prevBtn.style.display = 'none';
+                        nextBtn.style.display = 'none';
+                    }
+                }
+            }
+
+            if (galleryGrid) {
+                galleryGrid.addEventListener('click', (e) => {
+                    const thumbnail = e.target.closest('.gallery-thumbnail');
+                    if (thumbnail) {
+                        galleryImages = Array.from(galleryGrid.querySelectorAll('.gallery-thumbnail')).map(img => img.src);
+                        currentImageIndex = galleryImages.indexOf(thumbnail.src);
+                        if (imageModal && modalImage) {
+                            updateModalImage();
+                            imageModal.classList.remove('hidden');
+                            imageModal.classList.add('flex');
+                        }
+                    }
+                });
+            }
+
+            function closeImageModal() {
+                if (imageModal) {
+                    imageModal.classList.add('hidden');
+                    imageModal.classList.remove('flex');
+                    modalImage.src = "";
+                }
+            }
+
+            function showNextImage() {
+                currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+                updateModalImage();
+            }
+
+            function showPrevImage() {
+                currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+                updateModalImage();
+            }
+
+            if (closeImageModalBtn) closeImageModalBtn.addEventListener('click', closeImageModal);
+            if (nextBtn) nextBtn.addEventListener('click', showNextImage);
+            if (prevBtn) prevBtn.addEventListener('click', showPrevImage);
+            if (imageModal) imageModal.addEventListener('click', (e) => { if (e.target === imageModal) closeImageModal(); });
+
+            // Video Modal Elements
+            const videoModal = document.getElementById('video-modal');
+            const videoIframe = document.getElementById('modal-video-iframe');
+            const closeVideoModalBtn = document.getElementById('close-video-modal');
+            const videoGrid = document.getElementById('video-grid');
+
+            function openVideoModal(videoId) {
+                if (videoModal && videoIframe) {
+                    videoIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+                    videoModal.classList.remove('hidden');
+                    videoModal.classList.add('flex');
+                }
+            }
+
+            function closeVideoModal() {
+                if (videoModal && videoIframe) {
+                    videoModal.classList.add('hidden');
+                    videoModal.classList.remove('flex');
+                    videoIframe.src = ""; // Stop video playback
+                }
+            }
+
+            if (videoGrid) {
+                videoGrid.addEventListener('click', (e) => {
+                    const videoThumbnail = e.target.closest('[data-youtube-id]');
+                    if (videoThumbnail) {
+                        const videoId = videoThumbnail.dataset.youtubeId;
+                        openVideoModal(videoId);
+                    }
+                });
+            }
+
+            if (closeVideoModalBtn) closeVideoModalBtn.addEventListener('click', closeVideoModal);
+            if (videoModal) videoModal.addEventListener('click', (e) => { if (e.target === videoModal) closeVideoModal(); });
+            
+            // Close modals with Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    if (!imageModal.classList.contains('hidden')) closeImageModal();
+                    if (!videoModal.classList.contains('hidden')) closeVideoModal();
+                }
+            });
+        });
     </script>
 
 </body>
