@@ -1,4 +1,3 @@
-
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -294,7 +293,11 @@
     </main>
 
     <!-- Footer --><footer class="text-center py-8 mt-12 bg-white/50">
-        <p class="text-slate-600">Bu hikaye devam edecek...</p>
+        <p class="text-slate-600 flex items-center justify-center space-x-2">
+            <span>Bu hikaye</span>
+            <i class="fas fa-infinity text-red-500"></i>
+            <span>kadar devam edecek...</span>
+        </p>
         <p class="text-sm text-slate-400 mt-2">Arzu & Ersin</p>
     </footer>
     
