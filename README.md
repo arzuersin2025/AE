@@ -51,44 +51,6 @@
             border: none !important;
             box-shadow: none !important;
         }
-        .wish-card {
-            position: relative;
-            background-color: white;
-            border-radius: 0.5rem;
-            padding: 1rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            border-left: 4px solid #4ade80; /* green-400 */
-            text-align: left;
-            word-wrap: break-word;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        .delete-wish-btn {
-            position: absolute;
-            top: 0.5rem;
-            right: 0.5rem;
-            background: none;
-            border: none;
-            color: #9ca3af; /* gray-400 */
-            cursor: pointer;
-            transition: color 0.2s;
-        }
-        .delete-wish-btn:hover {
-            color: #ef4444; /* red-500 */
-        }
-        .public-reply {
-            margin-top: 0.75rem;
-            padding-top: 0.75rem;
-            border-top: 1px dashed #cbd5e1; /* slate-300 */
-        }
-        .public-reply p {
-            font-style: italic;
-            color: #334155; /* slate-700 */
-        }
-        .reply-controls {
-            display: block; /* Always visible */
-        }
         .photo-number {
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);
         }
@@ -263,7 +225,12 @@
 
         <!-- Wish Box Section --><section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg">
             <h3 class="text-3xl font-bold text-center text-green-600 mb-6">Bizim İçin Bir Dilek Bırakın</h3>
-            <form id="wish-form" class="space-y-4">
+             <form id="wish-form" action="https://formsubmit.co/arzuersin2025@gmail.com" method="POST" class="space-y-4">
+                <!-- FormSubmit Ayarları -->
+                <input type="hidden" name="_subject" value="Arzu & Ersin Web Sitenizden Yeni Dilek!">
+                <input type="text" name="_honey" style="display:none">
+                <input type="hidden" name="_captcha" value="false">
+
                 <div>
                     <label for="name" class="block text-sm font-medium text-slate-600">Adınız</label>
                     <input type="text" name="name" id="name" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="Adınız ve Soyadınız" required>
@@ -272,23 +239,27 @@
                     <label for="message" class="block text-sm font-medium text-slate-600">Dileğiniz</label>
                     <textarea id="message" name="message" rows="4" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="Bizim için güzel bir dilek..." required></textarea>
                 </div>
-                <div class="text-center">
-                    <button type="submit" id="submit-wish-btn" class="inline-flex justify-center py-2 px-6 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors disabled:bg-gray-400" disabled>
-                        Yükleniyor...
+                 <!-- İletişim Bilgileri -->
+                <div class="pt-4 border-t border-slate-200">
+                    <p class="text-sm text-slate-500 mb-2 text-center">Size teşekkür edebilmemiz için lütfen aşağıdaki bilgilerden en az birini doldurun.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-slate-600">E-posta Adresiniz</label>
+                            <input type="email" name="email" id="email" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="ornek@mail.com">
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-sm font-medium text-slate-600">Telefon Numaranız</label>
+                            <input type="tel" name="phone" id="phone" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="05XX XXX XX XX">
+                        </div>
+                    </div>
+                    <p id="contact-error" class="text-red-500 text-sm mt-2 text-center hidden">Lütfen e-posta veya telefon numaranızdan en az birini girin.</p>
+                </div>
+                <div class="text-center pt-4">
+                    <button type="submit" class="inline-flex justify-center py-2 px-6 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors">
+                        Dileğini Gönder
                     </button>
                 </div>
             </form>
-            <div class="mt-12 text-center">
-                <button id="toggle-wishes-btn" class="inline-flex items-center justify-center py-2 px-6 border border-green-600 shadow-sm text-sm font-medium rounded-md text-green-600 bg-white hover:bg-green-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors">
-                    <span id="toggle-text">Bırakılan Dilekleri Gör</span>
-                    <i id="toggle-icon" class="fas fa-chevron-down ml-2 transition-transform"></i>
-                </button>
-            </div>
-            <!-- Collapsible Wishes Container --><div id="wishes-wrapper" class="hidden mt-8">
-                 <div id="wishes-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <p class="text-center text-slate-500 italic sm:col-span-full">Dilekler yükleniyor...</p>
-                 </div>
-            </div>
         </section>
     </main>
 
@@ -316,27 +287,6 @@
     </div>
 
     <script>
-        // Toggle Wishes Visibility
-        const toggleBtn = document.getElementById('toggle-wishes-btn');
-        const wishesWrapper = document.getElementById('wishes-wrapper');
-        const toggleIcon = document.getElementById('toggle-icon');
-        const toggleText = document.getElementById('toggle-text');
-
-        if (toggleBtn) {
-            toggleBtn.addEventListener('click', () => {
-                wishesWrapper.classList.toggle('hidden');
-                const isHidden = wishesWrapper.classList.contains('hidden');
-                
-                if(isHidden) {
-                    toggleIcon.classList.remove('rotate-180');
-                    toggleText.textContent = 'Bırakılan Dilekleri Gör';
-                } else {
-                    toggleIcon.classList.add('rotate-180');
-                    toggleText.textContent = 'Dilekleri Gizle';
-                }
-            });
-        }
-
         // Toggle Gallery Visibility
         const toggleGalleryBtn = document.getElementById('toggle-gallery-btn');
         const galleryWrapper = document.getElementById('gallery-wrapper');
@@ -378,269 +328,8 @@
                 }
             });
         }
-    </script>
-    <script type="module">
-        // Firebase Imports
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, collection, addDoc, query, onSnapshot, doc, deleteDoc, serverTimestamp, updateDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-        
-        // --- FIREBASE CONFIG ---
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : { apiKey: "DEMO", authDomain: "DEMO", projectId: "DEMO" };
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-        
-        // --- INITIALIZE FIREBASE ---
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-        const auth = getAuth(app);
-
-        let currentUserId = null;
-        
-        // --- AUTHENTICATION ---
-        onAuthStateChanged(auth, async (user) => {
-            const submitBtn = document.getElementById('submit-wish-btn');
-            if (user) {
-                // User is signed in.
-                currentUserId = user.uid;
-                if (submitBtn) {
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = 'Dileğini Gönder';
-                }
-                listenForWishes();
-            } else {
-                // User is not signed in, try to sign in.
-                try {
-                    if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                        await signInWithCustomToken(auth, __initial_auth_token);
-                    } else {
-                        await signInAnonymously(auth);
-                    }
-                    // onAuthStateChanged will be called again with the new user object.
-                } catch (error) {
-                    console.error("Authentication error:", error);
-                    if(submitBtn) {
-                        submitBtn.textContent = 'Hata: Sayfayı Yenileyin';
-                    }
-                }
-            }
-        });
-
-        const wishesCollectionPath = `/artifacts/${appId}/public/data/wishes`;
-
-        // --- RENDER WISHES ---
-        function listenForWishes() {
-            const wishesContainer = document.getElementById('wishes-container');
-            const q = query(collection(db, wishesCollectionPath));
-
-            onSnapshot(q, (querySnapshot) => {
-                if (querySnapshot.empty) {
-                    wishesContainer.innerHTML = '<p class="text-center text-slate-500 italic sm:col-span-full">Henüz bir dilek bırakılmamış. İlk dileği sen bırak!</p>';
-                    return;
-                }
-
-                let wishes = [];
-                querySnapshot.forEach(doc => {
-                    wishes.push({ id: doc.id, ...doc.data() });
-                });
-
-                wishes.sort((a, b) => (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0));
-                wishesContainer.innerHTML = ''; 
-
-                wishes.forEach(wish => {
-                    const wishCard = document.createElement('div');
-                    wishCard.className = 'wish-card';
-                    wishCard.id = `wish-${wish.id}`;
-
-                    // Format the date
-                    const timestamp = wish.createdAt ? wish.createdAt.toDate() : null;
-                    let formattedDate = '';
-                    if (timestamp) {
-                        const day = String(timestamp.getDate()).padStart(2, '0');
-                        const month = String(timestamp.getMonth() + 1).padStart(2, '0');
-                        const year = timestamp.getFullYear();
-                        formattedDate = `${day}.${month}.${year}`;
-                    }
-
-                    let cardHTML = `
-                        <div>
-                            <div class="flex justify-between items-center">
-                                <p class="font-semibold text-green-700">${wish.name}</p>
-                                ${formattedDate ? `<p class="text-xs text-slate-400">${formattedDate}</p>` : ''}
-                            </div>
-                            <p class="text-slate-600 mt-1">"${wish.message}"</p>
-                        </div>
-                    `;
-
-                    // Reply and Controls Section (Public)
-                    let replyAndControlsHTML = '';
-                    const hasReply = !!wish.reply;
-
-                    if (hasReply) {
-                        replyAndControlsHTML += `
-                            <div class="public-reply">
-                                <p id="reply-text-${wish.id}"><strong class="text-green-600">Yorum:</strong> ${wish.reply}</p>
-                            </div>
-                        `;
-                    }
-                    
-                    const canReply = !hasReply;
-                    const canEdit = hasReply && wish.replyUserId === currentUserId;
-
-                    if (canReply || canEdit) {
-                        replyAndControlsHTML += `
-                            <div class="mt-4 reply-controls">
-                                <button class="reply-action-btn text-xs text-green-600 hover:underline">${canEdit ? 'Yorumu Düzenle' : 'Yorum Yap'}</button>
-                                <form class="reply-form hidden mt-2 space-y-2">
-                                    <textarea class="w-full text-sm border-slate-300 rounded-md" rows="2" placeholder="Yorumunuzu yazın...">${hasReply ? wish.reply : ''}</textarea>
-                                    <button type="submit" class="text-xs bg-green-600 text-white px-2 py-1 rounded-md hover:bg-green-700">Kaydet</button>
-                                    <button type="button" class="cancel-reply-btn text-xs text-gray-500 hover:underline ml-2">İptal</button>
-                                </form>
-                            </div>
-                        `;
-                    }
-                    
-                    cardHTML += replyAndControlsHTML;
-
-                    if (wish.userId === currentUserId) {
-                        cardHTML += `
-                            <button class="delete-wish-btn" title="Dileğini Sil" onclick="deleteWish('${wish.id}')">
-                                <i class="fas fa-times"></i>
-                            </button>`;
-                    }
-
-                    wishCard.innerHTML = cardHTML;
-                    wishesContainer.appendChild(wishCard);
-
-                     // Add event listeners for reply controls
-                    const actionBtn = wishCard.querySelector('.reply-action-btn');
-                    if (actionBtn) {
-                        const replyForm = wishCard.querySelector('.reply-form');
-                        const cancelBtn = wishCard.querySelector('.cancel-reply-btn');
-                        const replyTextElement = wishCard.querySelector(`#reply-text-${wish.id}`);
-
-                        actionBtn.addEventListener('click', () => {
-                            actionBtn.style.display = 'none';
-                            replyForm.style.display = 'block';
-                            if (replyTextElement) replyTextElement.style.display = 'none';
-                        });
-
-                        cancelBtn.addEventListener('click', () => {
-                            actionBtn.style.display = 'block';
-                            replyForm.style.display = 'none';
-                            if (replyTextElement) replyTextElement.style.display = 'block';
-                        });
-                        
-                        replyForm.addEventListener('submit', (e) => {
-                            e.preventDefault();
-                            const replyText = replyForm.querySelector('textarea').value.trim();
-                            addOrEditReply(wish.id, replyText);
-                        });
-                    }
-                });
-            });
-        }
-        window.listenForWishes = listenForWishes;
-
-        // --- ADD A WISH ---
-        const wishForm = document.getElementById('wish-form');
-        const submitBtn = document.getElementById('submit-wish-btn');
-
-        wishForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            if (!currentUserId) {
-                alert("Lütfen sayfanın yenilenmesini bekleyin ve tekrar deneyin."); return;
-            }
-            const name = wishForm.name.value.trim();
-            const message = wishForm.message.value.trim();
-            if (name && message) {
-                submitBtn.disabled = true; submitBtn.textContent = 'Gönderiliyor...';
-                try {
-                    await addDoc(collection(db, wishesCollectionPath), {
-                        name: name, message: message, userId: currentUserId, createdAt: serverTimestamp()
-                    });
-                    wishForm.reset();
-                } catch (error) {
-                    console.error("Error adding document: ", error);
-                    alert("Bir hata oluştu, lütfen tekrar deneyin.");
-                } finally {
-                    submitBtn.disabled = false; submitBtn.textContent = 'Dileğini Gönder';
-                }
-            }
-        });
-
-        // --- DELETE A WISH ---
-        async function deleteWish(wishId) {
-             try {
-                await deleteDoc(doc(db, wishesCollectionPath, wishId));
-            } catch (error) {
-                console.error("Error removing document: ", error);
-                alert("Dilek silinirken bir hata oluştu.");
-            }
-        }
-        window.deleteWish = deleteWish;
-
-        // --- ADD/EDIT A REPLY ---
-        async function addOrEditReply(wishId, replyText) {
-            const wishRef = doc(db, wishesCollectionPath, wishId);
-            try {
-                // Also store the ID of the user who is replying
-                await updateDoc(wishRef, {
-                    reply: replyText,
-                    replyUserId: currentUserId 
-                });
-            } catch (error) {
-                console.error("Error updating document: ", error);
-                alert("Yorum kaydedilirken bir hata oluştu.");
-            }
-        }
-        window.addOrEditReply = addOrEditReply;
-
-        // --- COUNTDOWN SCRIPT (Corrected and Re-added) ---
-        const countDownDateString = ""; 
-        if (countDownDateString) {
-            const countDownDate = new Date(countDownDateString).getTime();
-            const countdownTimer = document.getElementById("countdown-timer");
-            const countdownPlaceholder = document.getElementById("countdown-placeholder");
-            const headerCountdown = document.getElementById("header-countdown");
-
-            if (countdownTimer && countdownPlaceholder && headerCountdown) {
-                countdownPlaceholder.classList.add("hidden");
-                countdownTimer.classList.remove("hidden");
-                countdownTimer.classList.add("grid");
-                headerCountdown.classList.remove("hidden");
-            }
-
-            const countdownInterval = setInterval(function() {
-                const now = new Date().getTime(); // Corrected: new Date()
-                const distance = countDownDate - now;
-
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                if (document.getElementById("days")) { // Check if elements exist before updating
-                    document.getElementById("days").innerText = days;
-                    document.getElementById("hours").innerText = hours;
-                    document.getElementById("minutes").innerText = minutes;
-                    document.getElementById("seconds").innerText = seconds;
-
-                    document.getElementById("header-days").innerText = days;
-                    document.getElementById("header-hours").innerText = hours;
-                    document.getElementById("header-minutes").innerText = minutes;
-                }
-
-                if (distance < 0) {
-                    clearInterval(countdownInterval);
-                    if(countdownTimer) countdownTimer.innerHTML = '<p class="col-span-full text-xl text-green-600">Ve o güzel gün geldi!</p>';
-                    if(headerCountdown) headerCountdown.innerHTML = '❤️';
-                }
-            }, 1000);
-        }
-    </script>
-
-    <script>
-        // Image & Video Modal Logic
+    
+        // Image & Video Modal & Form Validation Logic
         document.addEventListener('DOMContentLoaded', () => {
             // Image Modal Elements
             const imageModal = document.getElementById('image-modal');
@@ -748,7 +437,75 @@
                     if (!videoModal.classList.contains('hidden')) closeVideoModal();
                 }
             });
+            
+            // Wish Form Validation
+            const wishForm = document.getElementById('wish-form');
+            if (wishForm) {
+                wishForm.addEventListener('submit', function(event) {
+                    const emailInput = document.getElementById('email');
+                    const phoneInput = document.getElementById('phone');
+                    const errorElement = document.getElementById('contact-error');
+
+                    const isEmailFilled = emailInput && emailInput.value.trim() !== '';
+                    const isPhoneFilled = phoneInput && phoneInput.value.trim() !== '';
+
+                    if (!isEmailFilled && !isPhoneFilled) {
+                        event.preventDefault(); // Stop form submission
+                        if (errorElement) {
+                            errorElement.classList.remove('hidden');
+                        }
+                    } else {
+                        if (errorElement) {
+                            errorElement.classList.add('hidden');
+                        }
+                    }
+                });
+            }
         });
+    </script>
+     <script>
+        // --- COUNTDOWN SCRIPT (Corrected and Re-added) ---
+        const countDownDateString = ""; 
+        if (countDownDateString) {
+            const countDownDate = new Date(countDownDateString).getTime();
+            const countdownTimer = document.getElementById("countdown-timer");
+            const countdownPlaceholder = document.getElementById("countdown-placeholder");
+            const headerCountdown = document.getElementById("header-countdown");
+
+            if (countdownTimer && countdownPlaceholder && headerCountdown) {
+                countdownPlaceholder.classList.add("hidden");
+                countdownTimer.classList.remove("hidden");
+                countdownTimer.classList.add("grid");
+                headerCountdown.classList.remove("hidden");
+            }
+
+            const countdownInterval = setInterval(function() {
+                const now = new Date().getTime(); // Corrected: new Date()
+                const distance = countDownDate - now;
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                if (document.getElementById("days")) { // Check if elements exist before updating
+                    document.getElementById("days").innerText = days;
+                    document.getElementById("hours").innerText = hours;
+                    document.getElementById("minutes").innerText = minutes;
+                    document.getElementById("seconds").innerText = seconds;
+
+                    document.getElementById("header-days").innerText = days;
+                    document.getElementById("header-hours").innerText = hours;
+                    document.getElementById("header-minutes").innerText = minutes;
+                }
+
+                if (distance < 0) {
+                    clearInterval(countdownInterval);
+                    if(countdownTimer) countdownTimer.innerHTML = '<p class="col-span-full text-xl text-green-600">Ve o güzel gün geldi!</p>';
+                    if(headerCountdown) headerCountdown.innerHTML = '❤️';
+                }
+            }, 1000);
+        }
     </script>
 
 </body>
