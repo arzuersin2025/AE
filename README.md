@@ -66,7 +66,9 @@
                     <span id="header-days">0</span>g <span id="header-hours">0</span>s <span id="header-minutes">0</span>d
                </div>
             </a>
-             <!-- Repeating hearts background --><div class="absolute inset-0 z-0" style="background-image: url(&quot;data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='rgba(239, 68, 68, 0.08)'%3E%3Cpath transform='translate(28, 28) scale(1.2)' d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/g%3E%3C/svg%3E&quot;);"></div>
+             <!-- Blurred background infinity --><div class="absolute inset-0 flex items-center justify-center z-0" aria-hidden="true">
+                <i class="fas fa-infinity text-[10rem] text-gray-200 opacity-70 blur-sm"></i>
+            </div>
             <!-- Header content --><div class="relative z-10">
                 <h1 class="text-4xl md:text-5xl font-bold text-green-600 flex items-center justify-center space-x-4">
                     <span>Arzu</span>
@@ -221,6 +223,38 @@
             </div>
         </section>
 
+        <!-- Wish Box Section --><section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg">
+            <h3 class="text-3xl font-bold text-center text-green-600 mb-6">Bizim İçin Bir Dilek Bırakın</h3>
+             <form id="wish-form" action="https://formsubmit.co/arzuersin2025@gmail.com" method="POST" class="space-y-4">
+                <!-- FormSubmit Ayarları -->
+                <input type="hidden" name="_subject" value="Arzu & Ersin Web Sitenizden Yeni Dilek!">
+                <input type="text" name="_honey" style="display:none">
+                <input type="hidden" name="_captcha" value="false">
+
+                <div>
+                    <label for="name" class="block text-sm font-medium text-slate-600">Adınız</label>
+                    <input type="text" name="name" id="name" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="Adınız ve Soyadınız" required>
+                </div>
+                <div>
+                    <label for="message" class="block text-sm font-medium text-slate-600">Dileğiniz</label>
+                    <textarea id="message" name="message" rows="4" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="Bizim için güzel bir dilek..." required></textarea>
+                </div>
+                 <!-- İletişim Bilgileri -->
+                <div class="pt-4 border-t border-slate-200">
+                    <p class="text-sm text-slate-500 mb-2 text-center">Size teşekkür edebilmemiz için lütfen aşağıdaki bilgilerden en az birini doldurun.</p>
+                    <div>
+                         <label for="contact" class="block text-sm font-medium text-slate-600">E-posta ya da Telefon</label>
+                         <input type="text" name="Iletisim" id="contact" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="ornek@mail.com veya 05XX XXX XX XX">
+                    </div>
+                    <p id="contact-error" class="text-red-500 text-sm mt-2 text-center hidden">Lütfen e-posta veya telefon numaranızdan birini girin.</p>
+                </div>
+                <div class="text-center pt-4">
+                    <button type="submit" class="inline-flex justify-center py-2 px-6 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors">
+                        Dileğini Gönder
+                    </button>
+                </div>
+            </form>
+        </section>
     </main>
 
     <!-- Footer --><footer class="text-center py-8 mt-12 bg-white/50">
@@ -397,6 +431,28 @@
                     if (!videoModal.classList.contains('hidden')) closeVideoModal();
                 }
             });
+            
+            // Wish Form Validation
+            const wishForm = document.getElementById('wish-form');
+            if (wishForm) {
+                wishForm.addEventListener('submit', function(event) {
+                    const contactInput = document.getElementById('contact');
+                    const errorElement = document.getElementById('contact-error');
+
+                    const isContactFilled = contactInput && contactInput.value.trim() !== '';
+
+                    if (!isContactFilled) {
+                        event.preventDefault(); // Stop form submission
+                        if (errorElement) {
+                            errorElement.classList.remove('hidden');
+                        }
+                    } else {
+                        if (errorElement) {
+                            errorElement.classList.add('hidden');
+                        }
+                    }
+                });
+            }
         });
     </script>
      <script>
