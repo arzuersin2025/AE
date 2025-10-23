@@ -4,11 +4,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arzu & Ersin | Bizim Hikayemiz</title>
     <!-- Tailwind CSS for styling --><script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts for elegant typography --><link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <!-- Font Awesome for icons (Corrected integrity attribute) --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- Prevents browser from generating a default favicon with a transparent pixel --><link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
+    <!-- Prevents browser from generating a default favicon with a transparent pixel --><link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANAAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
     <style>
         /* Custom styles for typography and theme */
         html {
@@ -51,8 +51,50 @@
             border: none !important;
             box-shadow: none !important;
         }
+        /* Fotoğraf Numarası ve Not Stilleri */
+        .photo-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.5rem; /* rounded-lg */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* shadow-md */
+            aspect-ratio: 1 / 1; /* Kare oranı koru */
+        }
+        .gallery-thumbnail {
+            transition: transform 0.3s ease-in-out;
+        }
+        .group:hover .gallery-thumbnail {
+            transform: scale(1.1);
+        }
+        .photo-note {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            color: white;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.75rem; /* text-xs - YAZI PUNTUSU KÜÇÜLTÜLDÜ */
+            text-align: center;
+            line-height: 1.2;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9); /* Okunabilirlik için gölge eklendi */
+        }
         .photo-number {
+            position: absolute;
+            /* top: 0.5rem; // Değiştirildi */
+            bottom: 0.5rem; /* Sağ alt köşe için eklendi */
+            right: 0.75rem;
+            /* background-color: rgba(0, 0, 0, 0.6); // Arka plan kaldırıldı */
+            color: white;
+            /* padding: 0.25rem 0.6rem; // Arka plan olmadığı için kaldırıldı */
+            /* border-radius: 9999px; // Arka plan olmadığı için kaldırıldı */
+            font-size: 1rem; /* Arka plansız daha iyi görünmesi için biraz büyütüldü */
+            font-weight: bold;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);
+            opacity: 0; /* Başlangıçta gizli */
+            transition: opacity 0.3s ease-in-out; /* Yumuşak geçiş */
+        }
+
+        .group:hover .photo-number {
+            opacity: 1; /* Fare üzerine gelince göster */
         }
     </style>
 </head>
@@ -165,19 +207,35 @@
             </div>
 
             <!-- Collapsible Gallery Container --><div id="gallery-wrapper" class="hidden mt-8">
-                <!-- Photo Grid --><div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-0" id="gallery-grid">
+                <!-- Photo Grid - Adjusted for larger photos --><div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-1" id="gallery-grid">
                     
-                    <!-- YENİ FOTOĞRAFLARI HEP BU ALANIN EN BAŞINA EKLEYİN -->
-                    <!-- Yeni fotoğraf eklediğinizde, numarasını toplam fotoğraf sayısına göre ayarlayın. -->
+                    <!-- YENİ FOTOĞRAFLARI HEP BU ALANIN EN BAŞINA EKLEYİN --><!-- Yeni fotoğraf eklediğinizde, numarasını toplam fotoğraf sayısına göre ayarlayın. --><!-- Fotoğraf 5 (En Yeni) --><div class="photo-container group cursor-pointer">
+                        <img src="https://i.imgur.com/G26zsUc.jpg" alt="Anı fotoğrafı 5" class="gallery-thumbnail w-full h-full object-cover">
+                        <span class="photo-number">5</span>
+                        <div class="photo-note">Beşiktaş</div>
+                    </div>
 
-                    <!-- Fotoğraf 2 (En Yeni) --><div class="relative aspect-square overflow-hidden group cursor-pointer">
-                        <img src="https://i.imgur.com/KZpZnaa.jpg" alt="Anı fotoğrafı 2" class="gallery-thumbnail w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
-                        <span class="photo-number absolute bottom-1 right-2 text-white text-base font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">2</span>
+                    <!-- Fotoğraf 4 --><div class="photo-container group cursor-pointer">
+                        <img src="https://i.imgur.com/PR2hWYz.jpg" alt="Anı fotoğrafı 4" class="gallery-thumbnail w-full h-full object-cover">
+                        <span class="photo-number">4</span>
+                        <div class="photo-note">Aksaray</div>
+                    </div>
+
+                    <!-- Fotoğraf 3 --><div class="photo-container group cursor-pointer">
+                        <img src="https://i.imgur.com/40oguJF.jpg" alt="Anı fotoğrafı 3" class="gallery-thumbnail w-full h-full object-cover">
+                        <span class="photo-number">3</span>
+                        <div class="photo-note">Çamlıca Kahvaltımız</div>
+                    </div>
+
+                    <!-- Fotoğraf 2 --><div class="photo-container group cursor-pointer">
+                        <img src="https://i.imgur.com/KZpZnaa.jpg" alt="Anı fotoğrafı 2" class="gallery-thumbnail w-full h-full object-cover">
+                        <span class="photo-number">2</span>
+                        <div class="photo-note">Dünya Güzelim</div>
                     </div>
                     
-                    <!-- Fotoğraf 1 --><div class="relative aspect-square overflow-hidden group cursor-pointer">
-                        <img src="https://i.imgur.com/WnEibNN.jpg" alt="Anı fotoğrafı 1" class="gallery-thumbnail w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
-                        <span class="photo-number absolute bottom-1 right-2 text-white text-base font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">1</span>
+                    <!-- Fotoğraf 1 --><div class="photo-container group cursor-pointer">
+                        <img src="https://i.imgur.com/WnEibNN.jpg" alt="Anı fotoğrafı 1" class="gallery-thumbnail w-full h-full object-cover">
+                        <span class="photo-number">1</span>
                     </div>
                 
                 </div>
@@ -196,16 +254,22 @@
             </div>
 
             <!-- Collapsible Video Gallery Container --><div id="video-gallery-wrapper" class="hidden mt-8">
-                <!-- Video Grid --><div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4" id="video-grid">
+                <!-- Video Grid - Adjusted for larger videos --><div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1" id="video-grid">
                     
-                     <!-- YENİ VİDEOLARI HEP BU ALANIN EN BAŞINA EKLEYİN -->
-
-                    <!-- Video 1 (En Yeni) --><div class="relative aspect-video overflow-hidden rounded-lg shadow-md group cursor-pointer bg-black" data-youtube-id="J466tfX1jzk">
-                        <img src="https://img.youtube.com/vi/J466tfX1jzk/hqdefault.jpg" alt="Video thumbnail" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+                    <!-- YENİ VİDEOLARI HEP BU ALANIN EN BAŞINA EKLEYİN. En yeni video en yüksek numarayı alır. --><!-- Video 2 (En Yeni) --><div class="photo-container group cursor-pointer aspect-video" data-youtube-id="19aKq8FtYP8">
+                        <img src="https://img.youtube.com/vi/19aKq8FtYP8/hqdefault.jpg" alt="Video thumbnail" class="w-full h-full object-cover">
                         <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
                             <i class="far fa-play-circle text-white text-6xl opacity-80 group-hover:opacity-100 transition-opacity"></i>
                         </div>
-                        <span class="photo-number absolute bottom-1 right-2 text-white text-base font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">1</span>
+                        <span class="photo-number">2</span>
+                    </div>
+
+                    <!-- Video 1 (En Eski) --><div class="photo-container group cursor-pointer aspect-video" data-youtube-id="J466tfX1jzk">
+                        <img src="https://img.youtube.com/vi/J466tfX1jzk/hqdefault.jpg" alt="Video thumbnail" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
+                            <i class="far fa-play-circle text-white text-6xl opacity-80 group-hover:opacity-100 transition-opacity"></i>
+                        </div>
+                        <span class="photo-number">1</span>
                     </div>
 
                 </div>
@@ -226,8 +290,7 @@
         <!-- Wish Box Section --><section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg">
             <h3 class="text-3xl font-bold text-center text-green-600 mb-6">Bizim İçin Bir Dilek Bırakın</h3>
              <form id="wish-form" action="https://formsubmit.co/arzuersin2025@gmail.com" method="POST" class="space-y-4">
-                <!-- FormSubmit Ayarları -->
-                <input type="hidden" name="_subject" value="Arzu & Ersin Web Sitenizden Yeni Dilek!">
+                <!-- FormSubmit Ayarları --><input type="hidden" name="_subject" value="Arzu & Ersin Web Sitenizden Yeni Dilek!">
                 <input type="text" name="_honey" style="display:none">
                 <input type="hidden" name="_captcha" value="false">
 
@@ -239,9 +302,8 @@
                     <label for="message" class="block text-sm font-medium text-slate-600">Dileğiniz</label>
                     <textarea id="message" name="message" rows="4" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="Bizim için güzel bir dilek..." required></textarea>
                 </div>
-                 <!-- İletişim Bilgileri -->
-                <div class="pt-4 border-t border-slate-200">
-                    <p class="text-sm text-slate-500 mb-2 text-center">Size teşekkür edebilmemiz için lütfen aşağıdaki bilgilerden en az birini doldurun.</p>
+                 <!-- İletişim Bilgileri --><div class="pt-4 border-t border-slate-200">
+                    <p class="text-sm text-slate-500 mb-2 text-center">Size teşekkür edebilmemiz için lütfen aşağıdaki bilgilerden en az birını doldurun.</p>
                     <div>
                          <label for="contact" class="block text-sm font-medium text-slate-600">E-posta ya da Telefon</label>
                          <input type="text" name="Iletisim" id="contact" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="ornek@mail.com veya 05XX XXX XX XX">
@@ -328,66 +390,55 @@
             // Image Modal Elements
             const imageModal = document.getElementById('image-modal');
             const modalImage = document.getElementById('modal-image');
-            const closeImageModalBtn = document.getElementById('close-modal');
-            const galleryGrid = document.getElementById('gallery-grid');
-            const prevBtn = document.getElementById('prev-photo');
-            const nextBtn = document.getElementById('next-photo');
+            const closeModal = document.getElementById('close-modal');
+            const prevPhoto = document.getElementById('prev-photo');
+            const nextPhoto = document.getElementById('next-photo');
+            const galleryPhotos = Array.from(document.querySelectorAll('.gallery-thumbnail')); // Tüm thumbnail'lar
+            let currentPhotoIndex = 0;
 
-            let galleryImages = [];
-            let currentImageIndex = 0;
-
-            function updateModalImage() {
-                if (modalImage && galleryImages.length > 0) {
-                    modalImage.src = galleryImages[currentImageIndex];
-                }
-                if (prevBtn && nextBtn) {
-                    if (galleryImages.length > 1) {
-                        prevBtn.style.display = 'block';
-                        nextBtn.style.display = 'block';
-                    } else {
-                        prevBtn.style.display = 'none';
-                        nextBtn.style.display = 'none';
-                    }
-                }
-            }
-
-            if (galleryGrid) {
-                galleryGrid.addEventListener('click', (e) => {
-                    const thumbnail = e.target.closest('.gallery-thumbnail');
-                    if (thumbnail) {
-                        galleryImages = Array.from(galleryGrid.querySelectorAll('.gallery-thumbnail')).map(img => img.src);
-                        currentImageIndex = galleryImages.indexOf(thumbnail.src);
-                        if (imageModal && modalImage) {
-                            updateModalImage();
-                            imageModal.classList.remove('hidden');
-                            imageModal.classList.add('flex');
-                        }
-                    }
-                });
-            }
-
+            // Düzeltme: closeImageModal fonksiyonu tanımlandı
             function closeImageModal() {
                 if (imageModal) {
                     imageModal.classList.add('hidden');
                     imageModal.classList.remove('flex');
-                    modalImage.src = "";
+                    modalImage.src = ""; // Modalı kapatırken resmi temizle
                 }
             }
 
-            function showNextImage() {
-                currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
-                updateModalImage();
+            function openModal(index) {
+                currentPhotoIndex = index;
+                modalImage.src = galleryPhotos[currentPhotoIndex].src;
+                imageModal.classList.remove('hidden');
+                imageModal.classList.add('flex');
             }
 
-            function showPrevImage() {
-                currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
-                updateModalImage();
+            function showNextPhoto() {
+                currentPhotoIndex = (currentPhotoIndex + 1) % galleryPhotos.length;
+                modalImage.src = galleryPhotos[currentPhotoIndex].src;
             }
 
-            if (closeImageModalBtn) closeImageModalBtn.addEventListener('click', closeImageModal);
-            if (nextBtn) nextBtn.addEventListener('click', showNextImage);
-            if (prevBtn) prevBtn.addEventListener('click', showPrevImage);
-            if (imageModal) imageModal.addEventListener('click', (e) => { if (e.target === imageModal) closeImageModal(); });
+            function showPrevPhoto() {
+                currentPhotoIndex = (currentPhotoIndex - 1 + galleryPhotos.length) % galleryPhotos.length;
+                modalImage.src = galleryPhotos[currentPhotoIndex].src;
+            }
+
+            // Galerideki her bir fotoğrafa tıklama olayını dinle
+            galleryPhotos.forEach((photo, index) => {
+                photo.addEventListener('click', () => openModal(index));
+            });
+
+            // Düzeltme: Tanımlanan fonksiyon kullanıldı
+            closeModal.addEventListener('click', closeImageModal);
+
+            prevPhoto.addEventListener('click', showPrevPhoto);
+            nextPhoto.addEventListener('click', showNextPhoto);
+
+            // Düzeltme: Tanımlanan fonksiyon kullanıldı
+            imageModal.addEventListener('click', (e) => {
+                if (e.target === imageModal) {
+                    closeImageModal();
+                }
+            });
 
             // Video Modal Elements
             const videoModal = document.getElementById('video-modal');
@@ -427,6 +478,7 @@
             // Close modals with Escape key
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape') {
+                    // Düzeltme: Tanımlanan fonksiyon kullanıldı
                     if (!imageModal.classList.contains('hidden')) closeImageModal();
                     if (!videoModal.classList.contains('hidden')) closeVideoModal();
                 }
@@ -457,6 +509,8 @@
     </script>
      <script>
         // --- COUNTDOWN SCRIPT (Corrected and Re-added) ---
+        // *** DİKKAT: Geri sayımı başlatmak için bu tarihi değiştirin! ***
+        // Örnek: "September 27, 2026 09:00:00"
         const countDownDateString = ""; 
         if (countDownDateString) {
             const countDownDate = new Date(countDownDateString).getTime();
