@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -95,6 +96,19 @@
 
         .group:hover .photo-number {
             opacity: 1; /* Fare üzerine gelince göster */
+        }
+        /* Seyahat Klasörü Stili */
+        .travel-folder {
+            background-color: #f0fdf4; /* Very light green */
+            border: 1px solid #a7f3d0; /* Light green border */
+            border-radius: 0.5rem;
+            padding: 1rem;
+            text-align: center;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .travel-folder:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
@@ -194,6 +208,54 @@
                 </div>
             </div>
         </section>
+
+        <!-- Seyahatlerimiz Section (YENİ YAPI) --><section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
+            <h3 class="text-3xl font-bold text-center text-green-600 mb-4">Seyahatlerimiz</h3>
+            <p class="text-center text-slate-500 italic">Birlikte keşfettiğimiz yerler, biriktirdiğimiz anılar... Yolculuğumuzun durakları burada hayat buluyor.</p>
+
+            <div class="mt-8 text-center">
+                <button id="toggle-travel-btn" class="inline-flex items-center justify-center py-2 px-6 border border-green-600 shadow-sm text-sm font-medium rounded-md text-green-600 bg-white hover:bg-green-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors">
+                    <span id="travel-toggle-text">Seyahatlerimizi Gör</span>
+                    <i id="travel-toggle-icon" class="fas fa-chevron-down ml-2 transition-transform"></i>
+                </button>
+            </div>
+
+            <!-- Collapsible Travel Container --><div id="travel-wrapper" class="hidden mt-8">
+                <!-- Travel Folders Grid --><div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                    
+                    <!-- Seyahat Klasörü 1 (Yer Tutucu) -->
+                    <div class="travel-folder">
+                        <div class="text-4xl text-green-500 mb-3">
+                            <i class="fas fa-map-marked-alt"></i> <!-- Klasör ikonu -->
+                        </div>
+                        <h4 class="font-semibold text-lg text-slate-700 mb-1">Kapadokya Gezisi</h4>
+                        <p class="text-sm text-slate-500 italic mt-2">Fotoğraflar buraya eklenecek...</p>
+                        <!-- Buraya Kapadokya fotoğrafları için bir galeri eklenebilir -->
+                    </div>
+
+                    <!-- Seyahat Klasörü 2 (Yer Tutucu) -->
+                    <div class="travel-folder">
+                        <div class="text-4xl text-green-500 mb-3">
+                            <i class="fas fa-map-marked-alt"></i>
+                        </div>
+                        <h4 class="font-semibold text-lg text-slate-700 mb-1">Ege Sahilleri</h4>
+                        <p class="text-sm text-slate-500 italic mt-2">Fotoğraflar buraya eklenecek...</p>
+                         <!-- Buraya Ege fotoğrafları için bir galeri eklenebilir -->
+                    </div>
+
+                    <!-- Seyahat Klasörü 3 (Yeni Eklendi - Yer Tutucu) -->
+                    <div class="travel-folder">
+                        <div class="text-4xl text-green-500 mb-3">
+                             <i class="fas fa-ship"></i> <!-- Akdeniz için gemi ikonu -->
+                        </div>
+                        <h4 class="font-semibold text-lg text-slate-700 mb-1">Akdeniz Turu</h4>
+                        <p class="text-sm text-slate-500 italic mt-2">Fotoğraflar buraya eklenecek...</p>
+                         <!-- Buraya Akdeniz fotoğrafları için bir galeri eklenebilir -->
+                    </div>
+
+                </div>
+            </div>
+        </section>
         
         <!-- Photo Gallery Section --><section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="text-3xl font-bold text-center text-green-600 mb-4">Fotoğraf Galerimiz</h3>
@@ -244,7 +306,8 @@
 
         <!-- Video Galerimiz Section --><section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="text-3xl font-bold text-center text-green-600 mb-4">Video Galerimiz</h3>
-            <p class="text-center text-slate-500 italic">Bazı duyguları kelimelerle anlatmak yetmez... Hikayemizi bir de bizden dinleyin istedik. Sevdiklerimizle ve birbirimizle paylaşmak istediğimiz samimi videolarımızı hazırladığımızda burada bulabilirsiniz.</p>
+            <!-- DÜZENLENEN METİN -->
+            <p class="text-center text-slate-500 italic">Bazı duyguları kelimelerle anlatmak yetmez... Hikayemizin hareketli anlarına buradan göz atabilirsiniz.</p>
 
             <div class="mt-8 text-center">
                 <button id="toggle-video-gallery-btn" class="inline-flex items-center justify-center py-2 px-6 border border-green-600 shadow-sm text-sm font-medium rounded-md text-green-600 bg-white hover:bg-green-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors">
@@ -381,6 +444,27 @@
                 } else {
                     videoGalleryToggleIcon.classList.add('rotate-180');
                     videoGalleryToggleText.textContent = 'Galeriyi Gizle';
+                }
+            });
+        }
+
+        // Toggle Travel Section Visibility (YENİ EKLENDİ)
+        const toggleTravelBtn = document.getElementById('toggle-travel-btn');
+        const travelWrapper = document.getElementById('travel-wrapper');
+        const travelToggleIcon = document.getElementById('travel-toggle-icon');
+        const travelToggleText = document.getElementById('travel-toggle-text');
+
+        if (toggleTravelBtn) {
+            toggleTravelBtn.addEventListener('click', () => {
+                travelWrapper.classList.toggle('hidden');
+                const isHidden = travelWrapper.classList.contains('hidden');
+                
+                if(isHidden) {
+                    travelToggleIcon.classList.remove('rotate-180');
+                    travelToggleText.textContent = 'Seyahatlerimizi Gör';
+                } else {
+                    travelToggleIcon.classList.add('rotate-180');
+                    travelToggleText.textContent = 'Seyahatleri Gizle';
                 }
             });
         }
