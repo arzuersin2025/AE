@@ -129,6 +129,161 @@
             transform: translateY(-5px);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
         }
+        /* Gelişmiş Romantik Timeline Styles */
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background: linear-gradient(to bottom, #10b981, #f59e0b, #ef4444); /* Romantik renk gradyanı */
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+            border-radius: 2px;
+            transform: scaleY(0);
+            transform-origin: top;
+            animation: drawLine 2s ease-out forwards;
+        }
+        @keyframes drawLine {
+            to {
+                transform: scaleY(1);
+            }
+        }
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+            opacity: 0;
+            transform: translateY(50px) scale(0.9);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .timeline-item.animate {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            right: -21px;
+            background: linear-gradient(45deg, #10b981, #f59e0b);
+            top: 10px;
+            border: 4px solid white;
+            border-radius: 50%;
+            z-index: 1;
+            box-shadow: 0 4px 8px rgba(16, 185, 129, 0.3);
+            transform: scale(0);
+            transition: transform 0.6s ease-out;
+        }
+        .timeline-item.animate::after {
+            transform: scale(1);
+        }
+        .left {
+            left: 0;
+        }
+        .right {
+            left: 50%;
+        }
+        .right::after {
+            left: -16px;
+        }
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: rgba(255, 255, 255, 0.9);
+            position: relative;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #10b981;
+            transition: all 0.4s ease;
+            overflow: hidden;
+        }
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(to right, transparent, #ef4444, transparent);
+            transform: scaleX(0);
+            transition: transform 0.6s ease;
+        }
+        .timeline-content.animate::before {
+            transform: scaleX(1);
+        }
+        .timeline-content:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 16px 32px rgba(16, 185, 129, 0.2);
+        }
+        .timeline-content h4 {
+            margin-bottom: 8px;
+            color: #dc2626; /* Kırmızı romantik */
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            position: relative;
+        }
+        .timeline-content h4::after {
+            content: '❤️';
+            position: absolute;
+            right: -20px;
+            top: 0;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .timeline-content:hover h4::after {
+            opacity: 1;
+        }
+        .timeline-content p {
+            color: #6b7280;
+            font-style: italic;
+            line-height: 1.6;
+        }
+        .timeline-icon {
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-size: 1.2rem;
+            color: #ef4444;
+            transform: rotate(0deg);
+            transition: transform 0.6s ease;
+        }
+        .timeline-item.animate .timeline-icon {
+            transform: rotate(360deg);
+        }
+        @media screen and (max-width: 600px) {
+            .timeline::after {
+                left: 31px;
+            }
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            .timeline-item::after {
+                left: 15px;
+            }
+            .right {
+                left: 0%;
+            }
+            .timeline-content {
+                padding: 15px 20px;
+            }
+        }
     </style>
 </head>
 <body class="text-slate-700">
@@ -272,6 +427,33 @@
                          <!-- Buraya Akdeniz fotoğrafları için bir galeri eklenebilir -->
                     </div>
 
+                </div>
+            </div>
+        </section>
+
+        <!-- Aşk Zaman Çizelgesi Section --><section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
+            <h3 class="text-3xl font-bold text-center text-green-600 mb-4 handwriting">Aşk Zaman Çizelgesi</h3>
+            <p class="text-center text-slate-500 italic mb-8">Yolculuğumuzun unutulmaz anlarını, kalplerin ritmiyle keşfedin... Her durak, bir sonsuzluk vaadi.</p>
+            <div class="timeline">
+                <!-- Timeline Event 1 -->
+                <div class="timeline-item left">
+                    <div class="timeline-icon">
+                        <i class="fas fa-heart heartbeat text-red-500"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h4 class="text-lg font-bold text-green-600">27 Eylül 2025</h4>
+                        <p class="text-slate-600">Yaprakların dans ettiği o sonbahar gününde, gözlerinle tanıştım seninle. Zaman durdu, kalplerimiz atışını buldu. "Seninle her an, bir ömre bedel."</p>
+                    </div>
+                </div>
+                <!-- Timeline Event 4 -->
+                <div class="timeline-item right">
+                    <div class="timeline-icon">
+                        <i class="fas fa-infinity heartbeat text-red-500"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h4 class="text-lg font-bold text-green-600">Sonsuza Dek...</h4>
+                        <p class="text-slate-600">Yemin ettik birbirimize, yıldızlar şahitliğinde. Gelecek, bizim ellerimizde çiçek açacak. "Seninle her yarın, bir masalın devamı."</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -702,6 +884,21 @@
             // fallback: just add visible
             journeyItems.forEach(it => it.classList.add('visible'));
         }
+
+        /* ---------- Timeline Animation Observer ---------- */
+        const timelineObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('animate');
+                        entry.target.querySelector('.timeline-content').classList.add('animate');
+                    }, index * 300); // Staggered delay
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        timelineItems.forEach(item => timelineObserver.observe(item));
 
         /* ---------- If you dynamically add gallery images later, call refreshGalleryEvents() ---------- */
         window.refreshGalleryEvents = refreshGalleryEvents;
