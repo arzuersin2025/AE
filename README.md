@@ -51,10 +51,25 @@
             border: none !important;
             box-shadow: none !important;
         }
-        /* Hide browser heading hover icons */
-        h2:hover::after, h3:hover::after {
-            content: none !important;
+        /* Hide browser heading hover anchor icons (Chrome hack) */
+        h1, h2, h3, h4, h5, h6 {
+            position: relative;
+        }
+        h1::before, h2::before, h3::before, h4::before, h5::before, h6::before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 0;
+            width: 2rem;
+            height: 100%;
+            z-index: 10;
+        }
+        /* Additional fallback to hide any pseudo-elements */
+        h1:hover::after, h2:hover::after, h3:hover::after, h4:hover::after, h5:hover::after, h6:hover::after,
+        h1:hover::before, h2:hover::before, h3:hover::before, h4:hover::before, h5:hover::before, h6:hover::before {
             visibility: hidden !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
         }
         /* Fotoğraf Numarası ve Not Stilleri */
         .photo-container {
