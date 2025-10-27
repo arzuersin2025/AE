@@ -404,8 +404,18 @@
         </div>
     </div>
 
+    <!-- === Tek, Tamamlanmış JS Bloğu (orijinalle uyumlu) === -->
     <script>
-        // Toggle Gallery Visibility
+    (function(){
+        'use strict';
+
+        /* =============== KULLANICI İSTEDİĞİ GÜNÜ BURADAN AYARLAYABİLİRSİN ===============
+           Tarih örneği: "June 15, 2026 19:00:00" veya ISO: "2026-06-15T19:00:00"
+           Eğer boş bırakılırsa (""), placeholder gösterilmeye devam eder.
+        */
+        const COUNTDOWN_DATE = ""; // <-- buraya tarih girersen countdown görünür
+
+        /* ---------- Toggle butonları (gallery, video gallery, travel) ---------- */
         const toggleGalleryBtn = document.getElementById('toggle-gallery-btn');
         const galleryWrapper = document.getElementById('gallery-wrapper');
         const galleryToggleIcon = document.getElementById('gallery-toggle-icon');
@@ -415,18 +425,11 @@
             toggleGalleryBtn.addEventListener('click', () => {
                 galleryWrapper.classList.toggle('hidden');
                 const isHidden = galleryWrapper.classList.contains('hidden');
-                
-                if(isHidden) {
-                    galleryToggleIcon.classList.remove('rotate-180');
-                    galleryToggleText.textContent = 'Fotoğraf Galerisini Gör';
-                } else {
-                    galleryToggleIcon.classList.add('rotate-180');
-                    galleryToggleText.textContent = 'Galeriyi Gizle';
-                }
+                galleryToggleIcon.classList.toggle('rotate-180', !isHidden);
+                galleryToggleText.textContent = isHidden ? 'Fotoğraf Galerisini Gör' : 'Galeriyi Gizle';
             });
         }
-        
-        // Toggle Video Gallery Visibility
+
         const toggleVideoGalleryBtn = document.getElementById('toggle-video-gallery-btn');
         const videoGalleryWrapper = document.getElementById('video-gallery-wrapper');
         const videoGalleryToggleIcon = document.getElementById('video-gallery-toggle-icon');
@@ -436,18 +439,11 @@
             toggleVideoGalleryBtn.addEventListener('click', () => {
                 videoGalleryWrapper.classList.toggle('hidden');
                 const isHidden = videoGalleryWrapper.classList.contains('hidden');
-                
-                if(isHidden) {
-                    videoGalleryToggleIcon.classList.remove('rotate-180');
-                    videoGalleryToggleText.textContent = 'Video Galerisini Gör';
-                } else {
-                    videoGalleryToggleIcon.classList.add('rotate-180');
-                    videoGalleryToggleText.textContent = 'Galeriyi Gizle';
-                }
+                videoGalleryToggleIcon.classList.toggle('rotate-180', !isHidden);
+                videoGalleryToggleText.textContent = isHidden ? 'Video Galerisini Gör' : 'Galeriyi Gizle';
             });
         }
 
-        // Toggle Travel Section Visibility (YENİ EKLENDİ)
         const toggleTravelBtn = document.getElementById('toggle-travel-btn');
         const travelWrapper = document.getElementById('travel-wrapper');
         const travelToggleIcon = document.getElementById('travel-toggle-icon');
@@ -457,146 +453,168 @@
             toggleTravelBtn.addEventListener('click', () => {
                 travelWrapper.classList.toggle('hidden');
                 const isHidden = travelWrapper.classList.contains('hidden');
-                
-                if(isHidden) {
-                    travelToggleIcon.classList.remove('rotate-180');
-                    travelToggleText.textContent = 'Seyahatlerimizi Gör';
-                } else {
-                    travelToggleIcon.classList.add('rotate-180');
-                    travelToggleText.textContent = 'Seyahatleri Gizle';
+                travelToggleIcon.classList.toggle('rotate-180', !isHidden);
+                travelToggleText.textContent = isHidden ? 'Seyahatlerimizi Gör' : 'Seyahatleri Gizle';
+            });
+        }
+
+        /* ---------- Fotoğraf galerisi / modal ---------- */
+        const galleryGrid = document.getElementById('gallery-grid');
+        const galleryPhotosSelector = '.gallery-thumbnail';
+        let galleryPhotos = [];
+        let currentPhotoIndex = 0;
+
+        function refreshGalleryPhotos() {
+            const photoEls = galleryGrid ? Array.from(galleryGrid.querySelectorAll(galleryPhotosSelector)) : [];
+            galleryPhotos = photoEls.map(img => img.src || img.getAttribute('data-src') || img.currentSrc);
+            return photoEls;
+        }
+
+        function openImageModalByIndex(index) {
+            const imageModal = document.getElementById('image-modal');
+            const modalImage = document.getElementById('modal-image');
+            if (!galleryPhotos.length) refreshGalleryPhotos();
+            currentPhotoIndex = (index + galleryPhotos.length) % galleryPhotos.length;
+            modalImage.src = galleryPhotos[currentPhotoIndex];
+            imageModal.classList.remove('hidden');
+            imageModal.classList.add('flex');
+        }
+
+        function closeImageModal() {
+            const imageModal = document.getElementById('image-modal');
+            const modalImage = document.getElementById('modal-image');
+            if (imageModal) {
+                imageModal.classList.add('hidden');
+                imageModal.classList.remove('flex');
+            }
+            if (modalImage) modalImage.src = "";
+        }
+
+        function showNextPhoto() {
+            if (!galleryPhotos.length) refreshGalleryPhotos();
+            currentPhotoIndex = (currentPhotoIndex + 1) % galleryPhotos.length;
+            document.getElementById('modal-image').src = galleryPhotos[currentPhotoIndex];
+        }
+        function showPrevPhoto() {
+            if (!galleryPhotos.length) refreshGalleryPhotos();
+            currentPhotoIndex = (currentPhotoIndex - 1 + galleryPhotos.length) % galleryPhotos.length;
+            document.getElementById('modal-image').src = galleryPhotos[currentPhotoIndex];
+        }
+
+        // Attach click events to thumbnails (initial load + if dynamic new imgs added later call refreshEvents())
+        function refreshGalleryEvents() {
+            const photoEls = refreshGalleryPhotos();
+            photoEls.forEach((imgEl, idx) => {
+                // Avoid adding multiple listeners
+                imgEl.removeEventListener('click', imgEl._clickHandler || (()=>{}));
+                const handler = () => openImageModalByIndex(idx);
+                imgEl.addEventListener('click', handler);
+                imgEl._clickHandler = handler;
+            });
+        }
+
+        // initialize
+        refreshGalleryEvents();
+
+        // Modal controls
+        const closeModalBtn = document.getElementById('close-modal');
+        const prevBtn = document.getElementById('prev-photo');
+        const nextBtn = document.getElementById('next-photo');
+
+        if (closeModalBtn) closeModalBtn.addEventListener('click', closeImageModal);
+        if (prevBtn) prevBtn.addEventListener('click', (e)=>{ e.stopPropagation(); showPrevPhoto(); });
+        if (nextBtn) nextBtn.addEventListener('click', (e)=>{ e.stopPropagation(); showNextPhoto(); });
+
+        // click outside to close image modal
+        const imageModalEl = document.getElementById('image-modal');
+        if (imageModalEl) {
+            imageModalEl.addEventListener('click', (e) => {
+                if (e.target === imageModalEl) closeImageModal();
+            });
+        }
+
+        /* ---------- Video modal ---------- */
+        const videoModal = document.getElementById('video-modal');
+        const videoIframe = document.getElementById('modal-video-iframe');
+        const closeVideoModalBtn = document.getElementById('close-video-modal');
+        const videoGrid = document.getElementById('video-grid');
+
+        function openVideoModal(videoId) {
+            if (!videoId) return;
+            if (videoIframe) videoIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+            if (videoModal) {
+                videoModal.classList.remove('hidden');
+                videoModal.classList.add('flex');
+            }
+        }
+        function closeVideoModal() {
+            if (videoIframe) videoIframe.src = '';
+            if (videoModal) {
+                videoModal.classList.add('hidden');
+                videoModal.classList.remove('flex');
+            }
+        }
+
+        if (videoGrid) {
+            videoGrid.addEventListener('click', (e) => {
+                const item = e.target.closest('[data-youtube-id]');
+                if (item) {
+                    const vid = item.dataset.youtubeId;
+                    openVideoModal(vid);
                 }
             });
         }
-    
-        // Image & Video Modal & Form Validation Logic
-        document.addEventListener('DOMContentLoaded', () => {
-            // Image Modal Elements
+        if (closeVideoModalBtn) closeVideoModalBtn.addEventListener('click', closeVideoModal);
+        if (videoModal) {
+            videoModal.addEventListener('click', (e) => {
+                if (e.target === videoModal) closeVideoModal();
+            });
+        }
+
+        /* ---------- Keyboard escape to close modals & arrow navigation for images ---------- */
+        document.addEventListener('keydown', (e) => {
             const imageModal = document.getElementById('image-modal');
-            const modalImage = document.getElementById('modal-image');
-            const closeModal = document.getElementById('close-modal');
-            const prevPhoto = document.getElementById('prev-photo');
-            const nextPhoto = document.getElementById('next-photo');
-            const galleryPhotos = Array.from(document.querySelectorAll('.gallery-thumbnail')); // Tüm thumbnail'lar
-            let currentPhotoIndex = 0;
-
-            // Düzeltme: closeImageModal fonksiyonu tanımlandı
-            function closeImageModal() {
-                if (imageModal) {
-                    imageModal.classList.add('hidden');
-                    imageModal.classList.remove('flex');
-                    modalImage.src = ""; // Modalı kapatırken resmi temizle
-                }
+            const videoModalLocal = document.getElementById('video-modal');
+            if (e.key === 'Escape') {
+                if (imageModal && !imageModal.classList.contains('hidden')) closeImageModal();
+                if (videoModalLocal && !videoModalLocal.classList.contains('hidden')) closeVideoModal();
             }
-
-            function openModal(index) {
-                currentPhotoIndex = index;
-                modalImage.src = galleryPhotos[currentPhotoIndex].src;
-                imageModal.classList.remove('hidden');
-                imageModal.classList.add('flex');
+            // left/right arrows for image navigation when modal is open
+            if (e.key === 'ArrowRight') {
+                if (imageModal && !imageModal.classList.contains('hidden')) showNextPhoto();
             }
-
-            function showNextPhoto() {
-                currentPhotoIndex = (currentPhotoIndex + 1) % galleryPhotos.length;
-                modalImage.src = galleryPhotos[currentPhotoIndex].src;
-            }
-
-            function showPrevPhoto() {
-                currentPhotoIndex = (currentPhotoIndex - 1 + galleryPhotos.length) % galleryPhotos.length;
-                modalImage.src = galleryPhotos[currentPhotoIndex].src;
-            }
-
-            // Galerideki her bir fotoğrafa tıklama olayını dinle
-            galleryPhotos.forEach((photo, index) => {
-                photo.addEventListener('click', () => openModal(index));
-            });
-
-            // Düzeltme: Tanımlanan fonksiyon kullanıldı
-            closeModal.addEventListener('click', closeImageModal);
-
-            prevPhoto.addEventListener('click', showPrevPhoto);
-            nextPhoto.addEventListener('click', showNextPhoto);
-
-            // Düzeltme: Tanımlanan fonksiyon kullanıldı
-            imageModal.addEventListener('click', (e) => {
-                if (e.target === imageModal) {
-                    closeImageModal();
-                }
-            });
-
-            // Video Modal Elements
-            const videoModal = document.getElementById('video-modal');
-            const videoIframe = document.getElementById('modal-video-iframe');
-            const closeVideoModalBtn = document.getElementById('close-video-modal');
-            const videoGrid = document.getElementById('video-grid');
-
-            function openVideoModal(videoId) {
-                if (videoModal && videoIframe) {
-                    videoIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-                    videoModal.classList.remove('hidden');
-                    videoModal.classList.add('flex');
-                }
-            }
-
-            function closeVideoModal() {
-                if (videoModal && videoIframe) {
-                    videoModal.classList.add('hidden');
-                    videoModal.classList.remove('flex');
-                    videoIframe.src = ""; // Stop video playback
-                }
-            }
-
-            if (videoGrid) {
-                videoGrid.addEventListener('click', (e) => {
-                    const videoThumbnail = e.target.closest('[data-youtube-id]');
-                    if (videoThumbnail) {
-                        const videoId = videoThumbnail.dataset.youtubeId;
-                        openVideoModal(videoId);
-                    }
-                });
-            }
-
-            if (closeVideoModalBtn) closeVideoModalBtn.addEventListener('click', closeVideoModal);
-            if (videoModal) videoModal.addEventListener('click', (e) => { if (e.target === videoModal) closeVideoModal(); });
-            
-            // Close modals with Escape key
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') {
-                    // Düzeltme: Tanımlanan fonksiyon kullanıldı
-                    if (!imageModal.classList.contains('hidden')) closeImageModal();
-                    if (!videoModal.classList.contains('hidden')) closeVideoModal();
-                }
-            });
-            
-            // Wish Form Validation
-            const wishForm = document.getElementById('wish-form');
-            if (wishForm) {
-                wishForm.addEventListener('submit', function(event) {
-                    const contactInput = document.getElementById('contact');
-                    const errorElement = document.getElementById('contact-error');
-
-                    const isContactFilled = contactInput && contactInput.value.trim() !== '';
-
-                    if (!isContactFilled) {
-                        event.preventDefault(); // Stop form submission
-                        if (errorElement) {
-                            errorElement.classList.remove('hidden');
-                        }
-                    } else {
-                        if (errorElement) {
-                            errorElement.classList.add('hidden');
-                        }
-                    }
-                });
+            if (e.key === 'ArrowLeft') {
+                if (imageModal && !imageModal.classList.contains('hidden')) showPrevPhoto();
             }
         });
-    </script>
-     <script>
-        // --- COUNTDOWN SCRIPT (Corrected and Re-added) ---
-        // *** DİKKAT: Geri sayımı başlatmak için bu tarihi değiştirin! ***
-        // Örnek: "September 27, 2026 09:00:00"
-        const countDownDateString = ""; 
-        if (countDownDateString) {
-            const countDownDate = new Date(countDownDateString).getTime();
+
+        /* ---------- Wish form validation (orijinal #contact-error kullanılıyor) ---------- */
+        const wishForm = document.getElementById('wish-form');
+        if (wishForm) {
+            wishForm.addEventListener('submit', function(e){
+                const contactInput = document.getElementById('contact');
+                const errorElement = document.getElementById('contact-error');
+                const isContactFilled = contactInput && contactInput.value.trim() !== '';
+                if (!isContactFilled) {
+                    e.preventDefault();
+                    if (errorElement) errorElement.classList.remove('hidden');
+                    // focus contact input for convenience
+                    if (contactInput) contactInput.focus();
+                } else {
+                    // hide error and allow submit
+                    if (errorElement) errorElement.classList.add('hidden');
+                    // form will submit to formsubmit.co as configured
+                }
+            });
+        }
+
+        /* ---------- Countdown logic: COUNTDOWN_DATE ayarlıysa göster, değilse placeholder kalsın ---------- */
+        (function setupCountdown(){
+            if (!COUNTDOWN_DATE) {
+                // keep placeholder (do nothing)
+                return;
+            }
+            const countDownDate = new Date(COUNTDOWN_DATE).getTime();
             const countdownTimer = document.getElementById("countdown-timer");
             const countdownPlaceholder = document.getElementById("countdown-placeholder");
             const headerCountdown = document.getElementById("header-countdown");
@@ -608,8 +626,8 @@
                 headerCountdown.classList.remove("hidden");
             }
 
-            const countdownInterval = setInterval(function() {
-                const now = new Date().getTime(); // Corrected: new Date()
+            const interval = setInterval(function() {
+                const now = new Date().getTime();
                 const distance = countDownDate - now;
 
                 const days = Math.floor(distance / (1000 * 60 * 60 * 24));
@@ -617,26 +635,46 @@
                 const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-                if (document.getElementById("days")) { // Check if elements exist before updating
-                    document.getElementById("days").innerText = days;
-                    document.getElementById("hours").innerText = hours;
-                    document.getElementById("minutes").innerText = minutes;
-                    document.getElementById("seconds").innerText = seconds;
-
-                    document.getElementById("header-days").innerText = days;
-                    document.getElementById("header-hours").innerText = hours;
-                    document.getElementById("header-minutes").innerText = minutes;
+                if (document.getElementById("days")) {
+                    document.getElementById("days").innerText = Math.max(days,0);
+                    document.getElementById("hours").innerText = Math.max(hours,0);
+                    document.getElementById("minutes").innerText = Math.max(minutes,0);
+                    document.getElementById("seconds").innerText = Math.max(seconds,0);
+                    document.getElementById("header-days").innerText = Math.max(days,0);
+                    document.getElementById("header-hours").innerText = Math.max(hours,0);
+                    document.getElementById("header-minutes").innerText = Math.max(minutes,0);
                 }
 
                 if (distance < 0) {
-                    clearInterval(countdownInterval);
-                    if(countdownTimer) countdownTimer.innerHTML = '<p class="col-span-full text-xl text-green-600">Ve o güzel gün geldi!</p>';
-                    if(headerCountdown) headerCountdown.innerHTML = '❤️';
+                    clearInterval(interval);
+                    if (countdownTimer) countdownTimer.innerHTML = '<p class="col-span-full text-xl text-green-600">Ve o güzel gün geldi!</p>';
+                    if (headerCountdown) headerCountdown.innerHTML = '❤️';
                 }
             }, 1000);
+        })();
+
+        /* ---------- IntersectionObserver for travel items (already styled) ---------- */
+        const journeyItems = document.querySelectorAll(".travel-folder, .journey-item");
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {threshold: 0.15});
+            journeyItems.forEach(item => observer.observe(item));
+        } else {
+            // fallback: just add visible
+            journeyItems.forEach(it => it.classList.add('visible'));
         }
+
+        /* ---------- If you dynamically add gallery images later, call refreshGalleryEvents() ---------- */
+        window.refreshGalleryEvents = refreshGalleryEvents;
+        /* örnek kullanım: yeni fotoğraf ekledikten sonra window.refreshGalleryEvents(); çağır */
+    })();
     </script>
 
+    <!-- (Orijinal sayfanda eski, kısmi/eksik script blokları kaldırıldı ve yukarıdaki tek blokla değiştirildi.) -->
 </body>
 </html>
-
