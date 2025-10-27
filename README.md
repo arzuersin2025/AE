@@ -270,7 +270,13 @@
             <!-- Collapsible Gallery Container --><div id="gallery-wrapper" class="hidden mt-8">
                 <!-- Photo Grid - Adjusted for larger photos --><div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-1" id="gallery-grid">
                     
-                    <!-- YENİ FOTOĞRAFLARI HEP BU ALANIN EN BAŞINA EKLEYİN --><!-- Yeni fotoğraf eklediğinizde, numarasını toplam fotoğraf sayısına göre ayarlayın. --><!-- Fotoğraf 5 (En Yeni) --><div class="photo-container group cursor-pointer">
+                    <!-- YENİ FOTOĞRAFLARI HEP BU ALANIN EN BAŞINA EKLEYİN --><!-- Yeni fotoğraf eklediğinizde, numarasını toplam fotoğraf sayısına göre ayarlayın. --><!-- Fotoğraf 6 (En Yeni) --><div class="photo-container group cursor-pointer">
+                        <img src="https://i.imgur.com/wf9Xhs9.jpg" alt="Anı fotoğrafı 6" class="gallery-thumbnail w-full h-full object-cover">
+                        <span class="photo-number">6</span>
+                        <div class="photo-note">Lunapark Anısı</div>
+                    </div>
+
+                    <!-- Fotoğraf 5 (En Yeni) --><div class="photo-container group cursor-pointer">
                         <img src="https://i.imgur.com/G26zsUc.jpg" alt="Anı fotoğrafı 5" class="gallery-thumbnail w-full h-full object-cover">
                         <span class="photo-number">5</span>
                         <div class="photo-note">Beşiktaş</div>
@@ -318,7 +324,15 @@
             <!-- Collapsible Video Gallery Container --><div id="video-gallery-wrapper" class="hidden mt-8">
                 <!-- Video Grid - Adjusted for larger videos --><div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1" id="video-grid">
                     
-                    <!-- YENİ VİDEOLARI HEP BU ALANIN EN BAŞINA EKLEYİN. En yeni video en yüksek numarayı alır. --><!-- Video 2 (En Yeni) --><div class="photo-container group cursor-pointer aspect-video" data-youtube-id="19aKq8FtYP8">
+                    <!-- YENİ VİDEOLARI HEP BU ALANIN EN BAŞINA EKLEYİN. En yeni video en yüksek numarayı alır. --><!-- Video 3 (En Yeni) --><div class="photo-container group cursor-pointer aspect-video" data-youtube-id="uY6ZrwkbLjc">
+                        <img src="https://img.youtube.com/vi/uY6ZrwkbLjc/hqdefault.jpg" alt="Video thumbnail" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
+                            <i class="far fa-play-circle text-white text-6xl opacity-80 group-hover:opacity-100 transition-opacity"></i>
+                        </div>
+                        <span class="photo-number">3</span>
+                    </div>
+
+                    <!-- Video 2 (En Yeni) --><div class="photo-container group cursor-pointer aspect-video" data-youtube-id="19aKq8FtYP8">
                         <img src="https://img.youtube.com/vi/19aKq8FtYP8/hqdefault.jpg" alt="Video thumbnail" class="w-full h-full object-cover">
                         <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
                             <i class="far fa-play-circle text-white text-6xl opacity-80 group-hover:opacity-100 transition-opacity"></i>
