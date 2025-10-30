@@ -373,15 +373,7 @@
             <p class="text-right text-red-600 font-semibold mt-4 pr-4">- Nazım Hikmet</p>
         </section>
 
-        <!-- Hayal Defterimiz Section (Animasyon sınıfı eklendi) -->
-        <section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg fade-in-on-scroll">
-            <h3 class="text-6xl font-bold text-center text-red-600 mb-6 handwriting">Hayal Defterimiz</h3>
-            <p class="text-center text-black text-lg italic mt-4 mb-8">
-                Birlikte kurduğumuz hayaller, geleceğe dair ektiğimiz tohumlar... Bu defter, yolculuğumuzda gerçekleştireceğimiz hayallerle dolacak.
-            </p>
-        </section>
-
-        <!-- Aşk Zaman Çizelgesi Section --><section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
+        <!-- Aşk Zaman Çizelgesi Section (YUKARI TAŞINDI) --><section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="text-6xl font-bold text-center text-red-600 mb-4 handwriting">Aşk Zaman Çizelgesi</h3>
             <p class="text-center text-black italic mb-8">Yolculuğumuzun unutulmaz anlarını, kalplerin ritmiyle keşfedin... Her durak, bir sonsuzluk vaadi.</p>
             <div class="timeline">
@@ -408,7 +400,7 @@
             </div>
         </section>
 
-        <!-- Countdown Section --><section id="countdown-section" class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg text-center">
+        <!-- Countdown Section (YENİ YERİ) --><section id="countdown-section" class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg text-center">
             <h3 class="text-6xl font-bold text-center text-red-600 mb-6 font-forte-alternative">Büyük Güne Geri Sayım</h3>
             
             <!-- This part will be shown when the date is set --><div id="countdown-timer" class="hidden grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
@@ -426,6 +418,14 @@
                     Sonsuzluğa giden yolculuğumuzun tarihi belli olduğunda, heyecanlı geri sayımımız burada başlayacak...
                 </p>
             </div>
+        </section>
+
+        <!-- Hayal Defterimiz Section (Animasyon sınıfı eklendi) -->
+        <section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg fade-in-on-scroll">
+            <h3 class="text-6xl font-bold text-center text-red-600 mb-6 handwriting">Hayal Defterimiz</h3>
+            <p class="text-center text-black text-lg italic mt-4 mb-8">
+                Birlikte kurduğumuz hayaller, geleceğe dair ektiğimiz tohumlar... Bu defter, yolculuğumuzda gerçekleştireceğimiz hayallerle dolacak.
+            </p>
         </section>
 
         <!-- Bizim Şarkımız Section --><section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg text-center">
@@ -514,7 +514,7 @@
                     </div>
 
                     <!-- Fotoğraf 4 --><div class="photo-container group cursor-pointer">
-                        <img src="https://i.imgur.com/PR2hWYz.jpg" alt="Anı fotoğrafı 4" class="gallery-thumbnail w-full h-full object-cover">
+                        <img src="https: //i.imgur.com/PR2hWYz.jpg" alt="Anı fotoğrafı 4" class="gallery-thumbnail w-full h-full object-cover">
                         <span class="photo-number">4</span>
                         <div class="photo-note no-shadow">Aksaray</div>
                     </div>
@@ -928,7 +928,7 @@
         if ('IntersectionObserver' in window) {
             const observer = new IntersectionObserver(entries => {
                 entries.forEach(entry => {
-                    if (entry.isIntersectimng) {
+                    if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
                     }
                 });
