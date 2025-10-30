@@ -116,6 +116,9 @@
         .group:hover .photo-number {
             opacity: 1; /* Fare üzerine gelince göster */
         }
+        .photo-note.no-shadow {
+            text-shadow: none;
+        }
         /* Seyahat Klasörü Stili */
         .travel-folder {
             background-color: #f0fdf4; /* Very light green */
@@ -350,6 +353,33 @@
             </p>
         </section>
 
+        <!-- Aşk Zaman Çizelgesi Section --><section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
+            <h3 class="text-3xl font-bold text-center text-green-600 mb-4 handwriting">Aşk Zaman Çizelgesi</h3>
+            <p class="text-center text-slate-500 italic mb-8">Yolculuğumuzun unutulmaz anlarını, kalplerin ritmiyle keşfedin... Her durak, bir sonsuzluk vaadi.</p>
+            <div class="timeline">
+                <!-- Timeline Event 1 -->
+                <div class="timeline-item left">
+                    <div class="timeline-icon">
+                        <i class="fas fa-heart heartbeat text-red-500"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h4 class="text-lg font-bold text-green-600">Eylül</h4>
+                        <p class="text-slate-600">Yaprakların dans ettiği o sonbahar gününde, gözlerinle tanıştım seninle. Zaman durdu, kalplerimiz atışını buldu. "Seninle her an, bir ömre bedel."</p>
+                    </div>
+                </div>
+                <!-- Timeline Event 4 -->
+                <div class="timeline-item right">
+                    <div class="timeline-icon">
+                        <i class="fas fa-infinity heartbeat text-red-500"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h4 class="text-lg font-bold text-green-600">Sonsuza Dek...</h4>
+                        <p class="text-slate-600">Yemin ettik birbirimize, yıldızlar şahitliğinde. Gelecek, bizim ellerimizde çiçek açacak. "Seninle her yarın, bir masalın devamı."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Countdown Section --><section id="countdown-section" class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg text-center">
             <h3 class="text-3xl font-bold text-center text-green-600 mb-6">Büyük Güne Geri Sayım</h3>
             
@@ -362,7 +392,7 @@
 
             <!-- This is the placeholder part --><div id="countdown-placeholder" class="my-4">
                 <div class="text-8xl text-red-500">
-                    ∞
+                    &infin;
                 </div>
                 <p class="text-lg text-slate-600 mt-4 italic">
                     Sonsuzluğa giden yolculuğumuzun tarihi belli olduğunda, heyecanlı geri sayımımız burada başlayacak...
@@ -414,7 +444,7 @@
                         </div>
                         <h4 class="font-semibold text-lg text-slate-700 mb-1">Ege Sahilleri</h4>
                         <p class="text-sm text-slate-500 italic mt-2">Fotoğraflar buraya eklenecek...</p>
-                          <!-- Buraya Ege fotoğrafları için bir galeri eklenebilir -->
+                         <!-- Buraya Ege fotoğrafları için bir galeri eklenebilir -->
                     </div>
 
                     <!-- Seyahat Klasörü 3 (Yeni Eklendi - Yer Tutucu) -->
@@ -424,40 +454,13 @@
                         </div>
                         <h4 class="font-semibold text-lg text-slate-700 mb-1">Akdeniz Turu</h4>
                         <p class="text-sm text-slate-500 italic mt-2">Fotoğraflar buraya eklenecek...</p>
-                          <!-- Buraya Akdeniz fotoğrafları için bir galeri eklenebilir -->
+                         <!-- Buraya Akdeniz fotoğrafları için bir galeri eklenebilir -->
                     </div>
 
                 </div>
             </div>
         </section>
 
-        <!-- Aşk Zaman Çizelgesi Section --><section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
-            <h3 class="text-3xl font-bold text-center text-green-600 mb-4 handwriting">Aşk Zaman Çizelgesi</h3>
-            <p class="text-center text-slate-500 italic mb-8">Yolculuğumuzun unutulmaz anlarını, kalplerin ritmiyle keşfedin... Her durak, bir sonsuzluk vaadi.</p>
-            <div class="timeline">
-                <!-- Timeline Event 1 -->
-                <div class="timeline-item left">
-                    <div class="timeline-icon">
-                        <i class="fas fa-heart heartbeat text-red-500"></i>
-                    </div>
-                    <div class="timeline-content">
-                        <h4 class="text-lg font-bold text-green-600">27 Eylül 2025</h4>
-                        <p class="text-slate-600">Yaprakların dans ettiği o sonbahar gününde, gözlerinle tanıştım seninle. Zaman durdu, kalplerimiz atışını buldu. "Seninle her an, bir ömre bedel."</p>
-                    </div>
-                </div>
-                <!-- Timeline Event 4 -->
-                <div class="timeline-item right">
-                    <div class="timeline-icon">
-                        <i class="fas fa-infinity heartbeat text-red-500"></i>
-                    </div>
-                    <div class="timeline-content">
-                        <h4 class="text-lg font-bold text-green-600">Sonsuza Dek...</h4>
-                        <p class="text-slate-600">Yemin ettik birbirimize, yıldızlar şahitliğinde. Gelecek, bizim ellerimizde çiçek açacak. "Seninle her yarın, bir masalın devamı."</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
         <!-- Photo Gallery Section --><section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="text-3xl font-bold text-center text-green-600 mb-4">Fotoğraf Galerimiz</h3>
             <p class="text-center text-slate-500 italic">İşte yolculuğumuzda biriktirdiğimiz anlardan ilk kareler... Bu galeri, zamanla daha nice güzel anıyla dolacak.</p>
@@ -487,7 +490,7 @@
                     <!-- Fotoğraf 4 --><div class="photo-container group cursor-pointer">
                         <img src="https://i.imgur.com/PR2hWYz.jpg" alt="Anı fotoğrafı 4" class="gallery-thumbnail w-full h-full object-cover">
                         <span class="photo-number">4</span>
-                        <div class="photo-note">Aksaray</div>
+                        <div class="photo-note no-shadow">Aksaray</div>
                     </div>
 
                     <!-- Fotoğraf 3 --><div class="photo-container group cursor-pointer">
@@ -932,6 +935,11 @@
     <!-- (Orijinal sayfanda eski, kısmi/eksik script blokları kaldırıldı ve yukarıdaki tek blokla değiştirildi.) -->
 </body>
 </html>
+
+
+
+
+
 
 
 
