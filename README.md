@@ -347,7 +347,7 @@
     <!-- Main Content --><main class="container mx-auto px-6 pb-12">
 
         <!-- Our Story Section --><section class="max-w-3xl mx-auto my-12 text-center bg-white/80 backdrop-blur-sm p-8 rounded-lg shadow-lg">
-            <h3 class="text-5xl font-bold text-red-600 mb-4">İlk Adım</h3>
+            <h3 class="text-6xl font-bold text-red-600 mb-4">İlk Adım</h3>
             <p class="text-lg leading-relaxed text-black">
                 Her büyük hikayenin bir başlangıç anı vardır. Bizimki, 27 Eylül 2025'te, yaprakların sarıya döndüğü, havanın tatlı bir serinliğe büründüğü o güzel sonbahar gününde başladı. O gün, sadece iki insan tanışmadı; aynı zamanda ortak bir geleceğe atılacak ilk adımın temelleri atıldı. O günden beri her anımızı, o ilk günkü heyecan ve samimiyetle doldurarak, birlikte büyüyoruz. Bu site, bir sonbahar gününde başlayan ve sonsuzluğa uzanan yolculuğumuzun en güzel anılarını saklamak için...
             </p>
@@ -375,14 +375,14 @@
 
         <!-- Hayal Defterimiz Section (Animasyon sınıfı eklendi) -->
         <section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg fade-in-on-scroll">
-            <h3 class="text-5xl font-bold text-center text-red-600 mb-6 handwriting">Hayal Defterimiz</h3>
+            <h3 class="text-6xl font-bold text-center text-red-600 mb-6 handwriting">Hayal Defterimiz</h3>
             <p class="text-center text-black text-lg italic mt-4 mb-8">
                 Birlikte kurduğumuz hayaller, geleceğe dair ektiğimiz tohumlar... Bu defter, yolculuğumuzda gerçekleştireceğimiz hayallerle dolacak.
             </p>
         </section>
 
         <!-- Aşk Zaman Çizelgesi Section --><section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
-            <h3 class="text-5xl font-bold text-center text-red-600 mb-4 handwriting">Aşk Zaman Çizelgesi</h3>
+            <h3 class="text-6xl font-bold text-center text-red-600 mb-4 handwriting">Aşk Zaman Çizelgesi</h3>
             <p class="text-center text-black italic mb-8">Yolculuğumuzun unutulmaz anlarını, kalplerin ritmiyle keşfedin... Her durak, bir sonsuzluk vaadi.</p>
             <div class="timeline">
                 <!-- Timeline Event 1 -->
@@ -409,7 +409,7 @@
         </section>
 
         <!-- Countdown Section --><section id="countdown-section" class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg text-center">
-            <h3 class="text-5xl font-bold text-center text-red-600 mb-6 font-forte-alternative">Büyük Güne Geri Sayım</h3>
+            <h3 class="text-6xl font-bold text-center text-red-600 mb-6 font-forte-alternative">Büyük Güne Geri Sayım</h3>
             
             <!-- This part will be shown when the date is set --><div id="countdown-timer" class="hidden grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
                 <div><div id="days" class="text-4xl font-bold text-green-500">0</div><span class="text-black">Gün</span></div>
@@ -429,7 +429,7 @@
         </section>
 
         <!-- Bizim Şarkımız Section --><section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg text-center">
-            <h3 class="text-5xl font-bold text-center text-red-600 mb-6 handwriting">Bizim Şarkımız</h3>
+            <h3 class="text-6xl font-bold text-center text-red-600 mb-6 handwriting">Bizim Şarkımız</h3>
             <div class="flex items-center justify-center p-6 bg-green-50 rounded-lg">
                  <div class="text-4xl text-red-600">
                     <i class="fas fa-music"></i>
@@ -438,7 +438,7 @@
         </section>
 
         <!-- Seyahatlerimiz Section (YENİ YAPI) --><section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
-            <h3 class="text-5xl font-bold text-center text-red-600 mb-4 handwriting">Seyahatlerimiz</h3>
+            <h3 class="text-6xl font-bold text-center text-red-600 mb-4 handwriting">Seyahatlerimiz</h3>
             <p class="text-center text-black italic">Birlikte keşfettiğimiz yerler, biriktirdiğimiz anılar... Yolculuğumuzun durakları burada hayat buluyor.</p>
 
             <div class="mt-8 text-center">
@@ -487,7 +487,7 @@
         </section>
 
         <!-- Photo Gallery Section --><section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
-            <h3 class="text-5xl font-bold text-center text-red-600 mb-4 handwriting">Fotoğraf Galerimiz</h3>
+            <h3 class="text-6xl font-bold text-center text-red-600 mb-4 handwriting">Fotoğraf Galerimiz</h3>
             <p class="text-center text-black italic">İşte yolculuğumuzda biriktirdiğimiz anlardan ilk kareler... Bu galeri, zamanla daha nice güzel anıyla dolacak.</p>
 
             <div class="mt-8 text-center">
@@ -541,7 +541,7 @@
         </section>
 
         <!-- Video Galerimiz Section --><section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
-            <h3 class="text-5xl font-bold text-center text-red-600 mb-4 handwriting">Video Galerimiz</h3>
+            <h3 class="text-6xl font-bold text-center text-red-600 mb-4 handwriting">Video Galerimiz</h3>
             <!-- DÜZENLENEN METİN -->
             <p class="text-center text-black italic">Bazı duyguları kelimelerle anlatmak yetmez... Hikayemizin hareketli anlarına buradan göz atabilirsiniz.</p>
 
@@ -607,7 +607,7 @@
         </section>
         
         <!-- Teşekkür Section --><section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg">
-            <h3 class="text-5xl font-bold text-center text-red-600 mb-6">Teşekkür</h3>
+            <h3 class="text-6xl font-bold text-center text-red-600 mb-6">Teşekkür</h3>
             <p class="text-center text-black text-lg italic mt-4">
                 Bu mutlu yolculuğumuzda yanımızda olan, sevgileri ve destekleriyle bize güç veren herkese sonsuz teşekkürler.
             </p>
@@ -618,7 +618,7 @@
         </section>
 
         <!-- Wish Box Section --><section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg">
-            <h3 class="text-5xl font-bold text-center text-red-600 mb-6">Bizim İçin Bir Dilek Bırakın</h3>
+            <h3 class="text-6xl font-bold text-center text-red-600 mb-6">Bizim İçin Bir Dilek Bırakın</h3>
              <form id="wish-form" action="https://formsubmit.co/arzuersin2025@gmail.com" method="POST" class="space-y-4">
                 <!-- FormSubmit Ayarları --><input type="hidden" name="_subject" value="Arzu & Ersin Web Sitenizden Yeni Dilek!">
                 <input type="hidden" name="_honey" style="display:none">
