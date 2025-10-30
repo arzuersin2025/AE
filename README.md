@@ -6,7 +6,7 @@
     <!-- Tailwind CSS for styling --><script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&family=Dancing+Script:wght@700&family=Lobster&family=Alex+Brush&family=Cormorant+Garamond&display=swap" rel="stylesheet">
     <!-- Font Awesome for icons (Corrected integrity attribute) --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Prevents browser from generating a default favicon with a transparent pixel --><link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANAAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
     <style>
@@ -16,6 +16,7 @@
         }
         body {
             font-family: 'Poppins', sans-serif;
+            font-weight: 300; /* Yazı fontunu incelt */
             background-image: url('https://www.toptal.com/designers/subtlepatterns/uploads/leaves.png');
             background-color: #fdfaf6; /* A warm background color behind the pattern */
         }
@@ -23,7 +24,15 @@
             font-family: 'Playfair Display', serif;
         }
         .handwriting {
-            font-family: 'Dancing Script', cursive;
+            font-family: 'Dancing Script', cursive; /* Eski fonta (Alex Brush'tan) geri döndürüldü */
+        }
+        /* FORTE YERİNE BENZER BİR FONT */
+        .font-forte-alternative {
+            font-family: 'Dancing Script', cursive; /* Eski fonta (Alex Brush'tan) geri döndürüldü */
+        }
+        /* Poor Richard alternatifi */
+        .font-poor-richard-alternative {
+            font-family: 'Cormorant Garamond', serif;
         }
         .text-shadow {
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
@@ -66,7 +75,7 @@
         }
         /* Additional fallback to hide any pseudo-elements */
         h1:hover::after, h2:hover::after, h3:hover::after, h4:hover::after, h5:hover::after, h6:hover::after,
-        h1:hover::before, h2:hover::before, h3:hover::before, h4:hover::before, h5:hover::before, h6:hover::before {
+        h1:hover::before, h2::hover::before, h3::hover::before, h4::hover::before, h5::hover::before, h6::hover::before {
             visibility: hidden !important;
             opacity: 0 !important;
             pointer-events: none !important;
@@ -132,6 +141,19 @@
             transform: translateY(-5px);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
         }
+
+        /* === YENİ KAYDIRMA ANİMASYONU STİLİ === */
+        .fade-in-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .fade-in-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* === BİTTİ === */
+
         /* Gelişmiş Romantik Timeline Styles */
         .timeline {
             position: relative;
@@ -308,21 +330,21 @@
                     <i class="fas fa-heart text-red-500 text-3xl heartbeat"></i>
                     <span>Ersin</span>
                 </h1>
-                <p class="text-lg text-slate-500 mt-1">Bizim Yolculuğumuz</p>
+                <p class="text-lg text-red-600 mt-1">Bizim Yolculuğumuz</p>
             </div>
         </div>
     </header>
 
     <!-- Page Title Section --><section id="main-title-section" class="py-16 text-center">
         <h2 id="main-title" class="font-bold handwriting text-green-600">O Güzel Sonbahar</h2>
-        <p class="text-xl md:text-2xl mt-2 text-slate-500">27 Eylül 2025</p>
-        <p class="text-lg mt-1 text-slate-500 italic">Zamanın durduğu an</p>
+        <p class="text-xl md:text-2xl mt-2 text-red-600">27 Eylül 2025</p>
+        <p class="text-lg mt-1 text-red-600 italic">Zamanın durduğu an</p>
     </section>
 
     <!-- Main Content --><main class="container mx-auto px-6 pb-12">
 
         <!-- Our Story Section --><section class="max-w-3xl mx-auto my-12 text-center bg-white/80 backdrop-blur-sm p-8 rounded-lg shadow-lg">
-            <h3 class="text-3xl font-bold text-green-600 mb-4">İlk Adım</h3>
+            <h3 class="text-3xl font-bold text-red-600 mb-4">İlk Adım</h3>
             <p class="text-lg leading-relaxed text-slate-600">
                 Her büyük hikayenin bir başlangıç anı vardır. Bizimki, 27 Eylül 2025'te, yaprakların sarıya döndüğü, havanın tatlı bir serinliğe büründüğü o güzel sonbahar gününde başladı. O gün, sadece iki insan tanışmadı; aynı zamanda ortak bir geleceğe atılacak ilk adımın temelleri atıldı. O günden beri her anımızı, o ilk günkü heyecan ve samimiyetle doldurarak, birlikte büyüyoruz. Bu site, bir sonbahar gününde başlayan ve sonsuzluğa uzanan yolculuğumuzun en güzel anılarını saklamak için...
             </p>
@@ -344,17 +366,20 @@
                 <p>mevsim</p>
                 <p>sonbahar…"</p>
             </blockquote>
+            <!-- YAZAR ADI EKLENDİ VE RENGİ DEĞİŞTİRİLDİ -->
+            <p class="text-right text-red-600 font-semibold mt-4 pr-4">- Nazım Hikmet</p>
         </section>
 
-        <!-- Hayal Defterimiz Section --><section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg">
-            <h3 class="text-3xl font-bold text-center text-green-600 mb-6">Hayal Defterimiz</h3>
+        <!-- Hayal Defterimiz Section (Animasyon sınıfı eklendi) -->
+        <section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg fade-in-on-scroll">
+            <h3 class="text-3xl font-bold text-center text-red-600 mb-6 handwriting">Hayal Defterimiz</h3>
             <p class="text-center text-slate-600 text-lg italic mt-4 mb-8">
                 Birlikte kurduğumuz hayaller, geleceğe dair ektiğimiz tohumlar... Bu defter, yolculuğumuzda gerçekleştireceğimiz hayallerle dolacak.
             </p>
         </section>
 
         <!-- Aşk Zaman Çizelgesi Section --><section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
-            <h3 class="text-3xl font-bold text-center text-green-600 mb-4 handwriting">Aşk Zaman Çizelgesi</h3>
+            <h3 class="text-3xl font-bold text-center text-red-600 mb-4 handwriting">Aşk Zaman Çizelgesi</h3>
             <p class="text-center text-slate-500 italic mb-8">Yolculuğumuzun unutulmaz anlarını, kalplerin ritmiyle keşfedin... Her durak, bir sonsuzluk vaadi.</p>
             <div class="timeline">
                 <!-- Timeline Event 1 -->
@@ -381,7 +406,7 @@
         </section>
 
         <!-- Countdown Section --><section id="countdown-section" class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg text-center">
-            <h3 class="text-3xl font-bold text-center text-green-600 mb-6">Büyük Güne Geri Sayım</h3>
+            <h3 class="text-3xl font-bold text-center text-red-600 mb-6 font-forte-alternative">Büyük Güne Geri Sayım</h3>
             
             <!-- This part will be shown when the date is set --><div id="countdown-timer" class="hidden grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
                 <div><div id="days" class="text-4xl font-bold text-green-500">0</div><span class="text-slate-500">Gün</span></div>
@@ -401,24 +426,21 @@
         </section>
 
         <!-- Bizim Şarkımız Section --><section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg text-center">
-            <h3 class="text-3xl font-bold text-center text-green-600 mb-6">Bizim Şarkımız</h3>
+            <h3 class="text-3xl font-bold text-center text-red-600 mb-6 handwriting">Bizim Şarkımız</h3>
             <div class="flex items-center justify-center p-6 bg-green-50 rounded-lg">
-                 <div class="text-4xl text-green-500 mr-4">
+                 <div class="text-4xl text-red-600">
                     <i class="fas fa-music"></i>
-                </div>
-                <div>
-                    <p class="font-semibold text-lg text-slate-700">Şarkı Adı</p>
-                    <p class="text-slate-500">Sanatçı Adı</p>
                 </div>
             </div>
         </section>
 
         <!-- Seyahatlerimiz Section (YENİ YAPI) --><section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
-            <h3 class="text-3xl font-bold text-center text-green-600 mb-4">Seyahatlerimiz</h3>
+            <h3 class="text-3xl font-bold text-center text-red-600 mb-4 handwriting">Seyahatlerimiz</h3>
             <p class="text-center text-slate-500 italic">Birlikte keşfettiğimiz yerler, biriktirdiğimiz anılar... Yolculuğumuzun durakları burada hayat buluyor.</p>
 
             <div class="mt-8 text-center">
-                <button id="toggle-travel-btn" class="inline-flex items-center justify-center py-2 px-6 border border-green-600 shadow-sm text-sm font-medium rounded-md text-green-600 bg-white hover:bg-green-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors">
+                <!-- DÜĞME RENKLERİ KIRMIZI OLARAK GÜNCELLENDİ -->
+                <button id="toggle-travel-btn" class="inline-flex items-center justify-center py-2 px-6 border border-red-600 shadow-sm text-sm font-medium rounded-md text-red-600 bg-white hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors">
                     <span id="travel-toggle-text">Seyahatlerimizi Gör</span>
                     <i id="travel-toggle-icon" class="fas fa-chevron-down ml-2 transition-transform"></i>
                 </button>
@@ -462,11 +484,12 @@
         </section>
 
         <!-- Photo Gallery Section --><section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
-            <h3 class="text-3xl font-bold text-center text-green-600 mb-4">Fotoğraf Galerimiz</h3>
-            <p class="text-center text-slate-500 italic">İşte yolculuğumuzda biriktirdiğimiz anlardan ilk kareler... Bu galeri, zamanla daha nice güzel anıyla dolacak.</p>
+            <h3 class="text-3xl font-bold text-center text-red-600 mb-4 handwriting">Fotoğraf Galerimiz</h3>
+            <p class="text-center text-slate-500 italic">İşte yolculuğumuzda biriktirdiğimiz anlardan ilk kareler... Bu galeri, zamanla daha nice güzel anıyla dolacak.</a:p>
 
             <div class="mt-8 text-center">
-                <button id="toggle-gallery-btn" class="inline-flex items-center justify-center py-2 px-6 border border-green-600 shadow-sm text-sm font-medium rounded-md text-green-600 bg-white hover:bg-green-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors">
+                <!-- DÜĞME RENKLERİ KIRMIZI OLARAK GÜNCELLENDİ -->
+                <button id="toggle-gallery-btn" class="inline-flex items-center justify-center py-2 px-6 border border-red-600 shadow-sm text-sm font-medium rounded-md text-red-600 bg-white hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors">
                     <span id="gallery-toggle-text">Fotoğraf Galerisini Gör</span>
                     <i id="gallery-toggle-icon" class="fas fa-chevron-down ml-2 transition-transform"></i>
                 </button>
@@ -515,12 +538,13 @@
         </section>
 
         <!-- Video Galerimiz Section --><section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
-            <h3 class="text-3xl font-bold text-center text-green-600 mb-4">Video Galerimiz</h3>
+            <h3 class="text-3xl font-bold text-center text-red-600 mb-4 handwriting">Video Galerimiz</h3>
             <!-- DÜZENLENEN METİN -->
             <p class="text-center text-slate-500 italic">Bazı duyguları kelimelerle anlatmak yetmez... Hikayemizin hareketli anlarına buradan göz atabilirsiniz.</p>
 
             <div class="mt-8 text-center">
-                <button id="toggle-video-gallery-btn" class="inline-flex items-center justify-center py-2 px-6 border border-green-600 shadow-sm text-sm font-medium rounded-md text-green-600 bg-white hover:bg-green-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors">
+                <!-- DÜĞME RENKLERİ KIRMIZI OLARAK GÜNCELLENDİ -->
+                <button id="toggle-video-gallery-btn" class="inline-flex items-center justify-center py-2 px-6 border border-red-600 shadow-sm text-sm font-medium rounded-md text-red-600 bg-white hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors">
                     <span id="video-gallery-toggle-text">Video Galerisini Gör</span>
                     <i id="video-gallery-toggle-icon" class="fas fa-chevron-down ml-2 transition-transform"></i>
                 </button>
@@ -580,7 +604,7 @@
         </section>
         
         <!-- Teşekkür Section --><section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg">
-            <h3 class="text-3xl font-bold text-center text-green-600 mb-6">Teşekkür</h3>
+            <h3 class="text-3xl font-bold text-center text-red-600 mb-6">Teşekkür</h3>
             <p class="text-center text-slate-600 text-lg italic mt-4">
                 Bu mutlu yolculuğumuzda yanımızda olan, sevgileri ve destekleriyle bize güç veren herkese sonsuz teşekkürler.
             </p>
@@ -591,24 +615,24 @@
         </section>
 
         <!-- Wish Box Section --><section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg">
-            <h3 class="text-3xl font-bold text-center text-green-600 mb-6">Bizim İçin Bir Dilek Bırakın</h3>
+            <h3 class="text-3xl font-bold text-center text-red-600 mb-6">Bizim İçin Bir Dilek Bırakın</h3>
              <form id="wish-form" action="https://formsubmit.co/arzuersin2025@gmail.com" method="POST" class="space-y-4">
                 <!-- FormSubmit Ayarları --><input type="hidden" name="_subject" value="Arzu & Ersin Web Sitenizden Yeni Dilek!">
-                <input type="text" name="_honey" style="display:none">
+                <input type="hidden" name="_honey" style="display:none">
                 <input type="hidden" name="_captcha" value="false">
 
                 <div>
-                    <label for="name" class="block text-sm font-medium text-slate-600">Adınız</label>
+                    <label for="name" class="block text-sm font-medium text-red-600">Adınız</label>
                     <input type="text" name="name" id="name" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="Adınız ve Soyadınız" required>
                 </div>
                 <div>
-                    <label for="message" class="block text-sm font-medium text-slate-600">Dileğiniz</label>
+                    <label for="message" class="block text-sm font-medium text-red-600">Dileğiniz</label>
                     <textarea id="message" name="message" rows="4" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="Bizim için güzel bir dilek..." required></textarea>
                 </div>
                  <!-- İletişim Bilgileri --><div class="pt-4 border-t border-slate-200">
                     <p class="text-sm text-slate-500 mb-2 text-center">Size teşekkür edebilmemiz için lütfen aşağıdaki bilgilerden en az birını doldurun.</p>
                     <div>
-                         <label for="contact" class="block text-sm font-medium text-slate-600">E-posta ya da Telefon</label>
+                         <label for="contact" class="block text-sm font-medium text-red-600">E-posta ya da Telefon</label>
                          <input type="text" name="Iletisim" id="contact" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="ornek@mail.com veya 05XX XXX XX XX">
                     </div>
                     <p id="contact-error" class="text-red-500 text-sm mt-2 text-center hidden">Lütfen e-posta veya telefon numaranızdan birini girin.</p>
@@ -896,7 +920,8 @@
         })();
 
         /* ---------- IntersectionObserver for travel items (already styled) ---------- */
-        const journeyItems = document.querySelectorAll(".travel-folder, .journey-item");
+        /* .fade-in-on-scroll sınıfı buraya eklendi */
+        const journeyItems = document.querySelectorAll(".travel-folder, .journey-item, .fade-in-on-scroll");
         if ('IntersectionObserver' in window) {
             const observer = new IntersectionObserver(entries => {
                 entries.forEach(entry => {
@@ -935,14 +960,3 @@
     <!-- (Orijinal sayfanda eski, kısmi/eksik script blokları kaldırıldı ve yukarıdaki tek blokla değiştirildi.) -->
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
