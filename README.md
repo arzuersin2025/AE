@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&family=Dancing+Script:wght@700&family=Lobster&family=Alex+Brush&family=Cormorant+Garamond&display=swap" rel="stylesheet">
-    <!-- Font Awesome for icons (Corrected integrity attribute) --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Font Awesome for icons (CRITICAL FIX: xintegrity corrected to integrity) --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Prevents browser from generating a default favicon with a transparent pixel --><link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANAAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
     <style>
         /* Custom styles for typography and theme */
@@ -75,7 +75,7 @@
         }
         /* Additional fallback to hide any pseudo-elements */
         h1:hover::after, h2:hover::after, h3:hover::after, h4:hover::after, h5:hover::after, h6:hover::after,
-        h1:hover::before, h2::hover::before, h3::hover::before, h4:hover::before, h5::hover::before, h6:hover::before {
+        h1:hover::before, h2:hover::before, h3:hover::before, h4:hover::before, h5:hover::before, h6:hover::before {
             visibility: hidden !important;
             opacity: 0 !important;
             pointer-events: none !important;
@@ -314,7 +314,7 @@
         }
     </style>
 </head>
-<body class="text-slate-700">
+<body class="text-black">
 
     <!-- Header Section --><header class="py-6 text-center bg-white/70 backdrop-blur-lg sticky top-0 z-20 overflow-hidden">
         <div class="relative">
@@ -348,7 +348,7 @@
 
         <!-- Our Story Section --><section class="max-w-3xl mx-auto my-12 text-center bg-white/80 backdrop-blur-sm p-8 rounded-lg shadow-lg">
             <h3 class="text-5xl font-bold text-red-600 mb-4">İlk Adım</h3>
-            <p class="text-lg leading-relaxed text-slate-600">
+            <p class="text-lg leading-relaxed text-black">
                 Her büyük hikayenin bir başlangıç anı vardır. Bizimki, 27 Eylül 2025'te, yaprakların sarıya döndüğü, havanın tatlı bir serinliğe büründüğü o güzel sonbahar gününde başladı. O gün, sadece iki insan tanışmadı; aynı zamanda ortak bir geleceğe atılacak ilk adımın temelleri atıldı. O günden beri her anımızı, o ilk günkü heyecan ve samimiyetle doldurarak, birlikte büyüyoruz. Bu site, bir sonbahar gününde başlayan ve sonsuzluğa uzanan yolculuğumuzun en güzel anılarını saklamak için...
             </p>
             <div class="text-4xl text-green-500 mt-8 heartbeat">
@@ -357,7 +357,7 @@
         </section>
 
         <!-- Poem Section --><section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg text-center">
-            <blockquote class="text-lg italic text-slate-600 leading-loose">
+            <blockquote class="text-lg italic text-black leading-loose">
                 <p>"Çiçekli badem ağaçlarını unut.</p>
                 <p>değmez,</p>
                 <p>bu bahiste</p>
@@ -376,14 +376,14 @@
         <!-- Hayal Defterimiz Section (Animasyon sınıfı eklendi) -->
         <section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg fade-in-on-scroll">
             <h3 class="text-5xl font-bold text-center text-red-600 mb-6 handwriting">Hayal Defterimiz</h3>
-            <p class="text-center text-slate-600 text-lg italic mt-4 mb-8">
+            <p class="text-center text-black text-lg italic mt-4 mb-8">
                 Birlikte kurduğumuz hayaller, geleceğe dair ektiğimiz tohumlar... Bu defter, yolculuğumuzda gerçekleştireceğimiz hayallerle dolacak.
             </p>
         </section>
 
         <!-- Aşk Zaman Çizelgesi Section --><section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="text-5xl font-bold text-center text-red-600 mb-4 handwriting">Aşk Zaman Çizelgesi</h3>
-            <p class="text-center text-slate-500 italic mb-8">Yolculuğumuzun unutulmaz anlarını, kalplerin ritmiyle keşfedin... Her durak, bir sonsuzluk vaadi.</p>
+            <p class="text-center text-black italic mb-8">Yolculuğumuzun unutulmaz anlarını, kalplerin ritmiyle keşfedin... Her durak, bir sonsuzluk vaadi.</p>
             <div class="timeline">
                 <!-- Timeline Event 1 -->
                 <div class="timeline-item left">
@@ -392,7 +392,7 @@
                     </div>
                     <div class="timeline-content">
                         <h4 class="text-lg font-bold text-green-600">Eylül</h4>
-                        <p class="text-slate-600">Yaprakların dans ettiği o sonbahar gününde, gözlerinle tanıştım seninle. Zaman durdu, kalplerimiz atışını buldu. "Seninle her an, bir ömre bedel."</p>
+                        <p class="text-black">Yaprakların dans ettiği o sonbahar gününde, gözlerinle tanıştım seninle. Zaman durdu, kalplerimiz atışını buldu. "Seninle her an, bir ömre bedel."</p>
                     </div>
                 </div>
                 <!-- Timeline Event 4 -->
@@ -402,7 +402,7 @@
                     </div>
                     <div class="timeline-content">
                         <h4 class="text-lg font-bold text-green-600">Sonsuza Dek...</h4>
-                        <p class="text-slate-600">Yemin ettik birbirimize, yıldızlar şahitliğinde. Gelecek, bizim ellerimizde çiçek açacak. "Seninle her yarın, bir masalın devamı."</p>
+                        <p class="text-black">Yemin ettik birbirimize, yıldızlar şahitliğinde. Gelecek, bizim ellerimizde çiçek açacak. "Seninle her yarın, bir masalın devamı."</p>
                     </div>
                 </div>
             </div>
@@ -412,17 +412,17 @@
             <h3 class="text-5xl font-bold text-center text-red-600 mb-6 font-forte-alternative">Büyük Güne Geri Sayım</h3>
             
             <!-- This part will be shown when the date is set --><div id="countdown-timer" class="hidden grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-                <div><div id="days" class="text-4xl font-bold text-green-500">0</div><span class="text-slate-500">Gün</span></div>
-                <div><div id="hours" class="text-4xl font-bold text-green-500">0</div><span class="text-slate-500">Saat</span></div>
-                <div><div id="minutes" class="text-4xl font-bold text-green-500">0</div><span class="text-slate-500">Dakika</span></div>
-                <div><div id="seconds" class="text-4xl font-bold text-green-500">0</div><span class="text-slate-500">Saniye</span></div>
+                <div><div id="days" class="text-4xl font-bold text-green-500">0</div><span class="text-black">Gün</span></div>
+                <div><div id="hours" class="text-4xl font-bold text-green-500">0</div><span class="text-black">Saat</span></div>
+                <div><div id="minutes" class="text-4xl font-bold text-green-500">0</div><span class="text-black">Dakika</span></div>
+                <div><div id="seconds" class="text-4xl font-bold text-green-500">0</div><span class="text-black">Saniye</span></div>
             </div>
 
             <!-- This is the placeholder part --><div id="countdown-placeholder" class="my-4">
                 <div class="text-8xl text-red-500">
                     &infin;
                 </div>
-                <p class="text-lg text-slate-600 mt-4 italic">
+                <p class="text-lg text-black mt-4 italic">
                     Sonsuzluğa giden yolculuğumuzun tarihi belli olduğunda, heyecanlı geri sayımımız burada başlayacak...
                 </p>
             </div>
@@ -439,7 +439,7 @@
 
         <!-- Seyahatlerimiz Section (YENİ YAPI) --><section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="text-5xl font-bold text-center text-red-600 mb-4 handwriting">Seyahatlerimiz</h3>
-            <p class="text-center text-slate-500 italic">Birlikte keşfettiğimiz yerler, biriktirdiğimiz anılar... Yolculuğumuzun durakları burada hayat buluyor.</p>
+            <p class="text-center text-black italic">Birlikte keşfettiğimiz yerler, biriktirdiğimiz anılar... Yolculuğumuzun durakları burada hayat buluyor.</p>
 
             <div class="mt-8 text-center">
                 <!-- DÜĞME RENKLERİ KIRMIZI OLARAK GÜNCELLENDİ -->
@@ -457,8 +457,8 @@
                         <div class="text-4xl text-green-500 mb-3">
                             <i class="fas fa-map-marked-alt"></i> <!-- Klasör ikonu -->
                         </div>
-                        <h4 class="font-semibold text-lg text-slate-700 mb-1">Kapadokya Gezisi</h4>
-                        <p class="text-sm text-slate-500 italic mt-2">Fotoğraflar buraya eklenecek...</p>
+                        <h4 class="font-semibold text-lg text-black mb-1">Kapadokya Gezisi</h4>
+                        <p class="text-sm text-black italic mt-2">Fotoğraflar buraya eklenecek...</p>
                         <!-- Buraya Kapadokya fotoğrafları için bir galeri eklenebilir -->
                     </div>
 
@@ -467,8 +467,8 @@
                         <div class="text-4xl text-green-500 mb-3">
                             <i class="fas fa-map-marked-alt"></i>
                         </div>
-                        <h4 class="font-semibold text-lg text-slate-700 mb-1">Ege Sahilleri</h4>
-                        <p class="text-sm text-slate-500 italic mt-2">Fotoğraflar buraya eklenecek...</p>
+                        <h4 class="font-semibold text-lg text-black mb-1">Ege Sahilleri</h4>
+                        <p class="text-sm text-black italic mt-2">Fotoğraflar buraya eklenecek...</p>
                          <!-- Buraya Ege fotoğrafları için bir galeri eklenebilir -->
                     </div>
 
@@ -477,8 +477,8 @@
                         <div class="text-4xl text-green-500 mb-3">
                              <i class="fas fa-ship"></i> <!-- Akdeniz için gemi ikonu -->
                         </div>
-                        <h4 class="font-semibold text-lg text-slate-700 mb-1">Akdeniz Turu</h4>
-                        <p class="text-sm text-slate-500 italic mt-2">Fotoğraflar buraya eklenecek...</p>
+                        <h4 class="font-semibold text-lg text-black mb-1">Akdeniz Turu</h4>
+                        <p class="text-sm text-black italic mt-2">Fotoğraflar buraya eklenecek...</p>
                          <!-- Buraya Akdeniz fotoğrafları için bir galeri eklenebilir -->
                     </div>
 
@@ -488,7 +488,7 @@
 
         <!-- Photo Gallery Section --><section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="text-5xl font-bold text-center text-red-600 mb-4 handwriting">Fotoğraf Galerimiz</h3>
-            <p class="text-center text-slate-500 italic">İşte yolculuğumuzda biriktirdiğimiz anlardan ilk kareler... Bu galeri, zamanla daha nice güzel anıyla dolacak.</p>
+            <p class="text-center text-black italic">İşte yolculuğumuzda biriktirdiğimiz anlardan ilk kareler... Bu galeri, zamanla daha nice güzel anıyla dolacak.</p>
 
             <div class="mt-8 text-center">
                 <!-- DÜĞME RENKLERİ KIRMIZI OLARAK GÜNCELLENDİ -->
@@ -543,7 +543,7 @@
         <!-- Video Galerimiz Section --><section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="text-5xl font-bold text-center text-red-600 mb-4 handwriting">Video Galerimiz</h3>
             <!-- DÜZENLENEN METİN -->
-            <p class="text-center text-slate-500 italic">Bazı duyguları kelimelerle anlatmak yetmez... Hikayemizin hareketli anlarına buradan göz atabilirsiniz.</p>
+            <p class="text-center text-black italic">Bazı duyguları kelimelerle anlatmak yetmez... Hikayemizin hareketli anlarına buradan göz atabilirsiniz.</p>
 
             <div class="mt-8 text-center">
                 <!-- DÜĞME RENKLERİ KIRMIZI OLARAK GÜNCELLENDİ -->
@@ -608,12 +608,12 @@
         
         <!-- Teşekkür Section --><section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg">
             <h3 class="text-5xl font-bold text-center text-red-600 mb-6">Teşekkür</h3>
-            <p class="text-center text-slate-600 text-lg italic mt-4">
+            <p class="text-center text-black text-lg italic mt-4">
                 Bu mutlu yolculuğumuzda yanımızda olan, sevgileri ve destekleriyle bize güç veren herkese sonsuz teşekkürler.
             </p>
             <div class="mt-8 space-y-4">
-                <p class="text-center text-slate-700 font-semibold">Bizi biz yapan, sevgileriyle her zaman en büyük destekçimiz olan canımız ailelerimize...</p>
-                <p class="text-center text-slate-700 font-semibold">İyi günde, kötü günde her anımızda yanımızda olan, kahkahalarımızı ve hayallerimizi paylaştığımız değerli dostlarımıza...</p>
+                <p class="text-center text-black font-semibold">Bizi biz yapan, sevgileriyle her zaman en büyük destekçimiz olan canımız ailelerimize...</p>
+                <p class="text-center text-black font-semibold">İyi günde, kötü günde her anımızda yanımızda olan, kahkahalarımızı ve hayallerimizi paylaştığımız değerli dostlarımıza...</p>
             </div>
         </section>
 
@@ -633,7 +633,7 @@
                     <textarea id="message" name="message" rows="4" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="Bizim için güzel bir dilek..." required></textarea>
                 </div>
                  <!-- İletişim Bilgileri --><div class="pt-4 border-t border-slate-200">
-                    <p class="text-sm text-slate-500 mb-2 text-center">Size teşekkür edebilmemiz için lütfen aşağıdaki bilgilerden en az birını doldurun.</p>
+                    <p class="text-sm text-black mb-2 text-center">Size teşekkür edebilmemiz için lütfen aşağıdaki bilgilerden en az birını doldurun.</p>
                     <div>
                          <label for="contact" class="block text-sm font-medium text-red-600">E-posta ya da Telefon</label>
                          <input type="text" name="Iletisim" id="contact" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="ornek@mail.com veya 05XX XXX XX XX">
@@ -650,12 +650,12 @@
     </main>
 
     <!-- Footer --><footer class="text-center py-8 mt-12 bg-white/50">
-        <p class="text-slate-600 flex items-center justify-center space-x-2">
+        <p class="text-black flex items-center justify-center space-x-2">
             <span>Bu hikaye</span>
             <i class="fas fa-infinity text-red-500"></i>
             <span>kadar devam edecek...</span>
         </p>
-        <p class="text-sm text-slate-400 mt-2">Arzu & Ersin</p>
+        <p class="text-sm text-black mt-2">Arzu & Ersin</p>
     </footer>
     
     <!-- Image Modal --><div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
@@ -928,7 +928,7 @@
         if ('IntersectionObserver' in window) {
             const observer = new IntersectionObserver(entries => {
                 entries.forEach(entry => {
-                    if (entry.isIntersecting) {
+                    if (entry.isIntersectimng) {
                         entry.target.classList.add('visible');
                     }
                 });
@@ -963,7 +963,4 @@
     <!-- (Orijinal sayfanda eski, kısmi/eksik script blokları kaldırıldı ve yukarıdaki tek blokla değiştirildi.) -->
 </body>
 </html>
-
-
-
 
