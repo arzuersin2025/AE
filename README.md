@@ -961,5 +961,7 @@
     </script>
 
     <!-- (Orijinal sayfanda eski, kısmi/eksik script blokları kaldırıldı ve yukarıdaki tek blokla değiştirildi.) -->
+</body>
+</html>
 
 
