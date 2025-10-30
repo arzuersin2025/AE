@@ -513,8 +513,8 @@
                         <div class="photo-note">Beşiktaş</div>
                     </div>
 
-                    <!-- Fotoğraf 4 --><div class="photo-container group cursor-pointer">
-                        <img src="https: //i.imgur.com/PR2hWYz.jpg" alt="Anı fotoğrafı 4" class="gallery-thumbnail w-full h-full object-cover">
+                    <!-- Fotoğraf 4 (URL DÜZELTİLDİ) --><div class="photo-container group cursor-pointer">
+                        <img src="https://i.imgur.com/PR2hWYz.jpg" alt="Anı fotoğrafı 4" class="gallery-thumbnail w-full h-full object-cover">
                         <span class="photo-number">4</span>
                         <div class="photo-note no-shadow">Aksaray</div>
                     </div>
