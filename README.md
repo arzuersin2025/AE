@@ -488,7 +488,7 @@
 
         <!-- Photo Gallery Section --><section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="text-5xl font-bold text-center text-red-600 mb-4 handwriting">Fotoğraf Galerimiz</h3>
-            <p class="text-center text-slate-500 italic">İşte yolculuğumuzda biriktirdiğimiz anlardan ilk kareler... Bu galeri, zamanla daha nice güzel anıyla dolacak.</a:p>
+            <p class="text-center text-slate-500 italic">İşte yolculuğumuzda biriktirdiğimiz anlardan ilk kareler... Bu galeri, zamanla daha nice güzel anıyla dolacak.</p>
 
             <div class="mt-8 text-center">
                 <!-- DÜĞME RENKLERİ KIRMIZI OLARAK GÜNCELLENDİ -->
