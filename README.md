@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
-    <!-- Font Awesome for icons (Corrected integrity attribute) --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Font Awesome for icons (Corrected integrity attribute) --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Prevents browser from generating a default favicon with a transparent pixel --><link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANAAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
     <style>
         /* Custom styles for typography and theme */
@@ -414,7 +414,7 @@
                         </div>
                         <h4 class="font-semibold text-lg text-slate-700 mb-1">Ege Sahilleri</h4>
                         <p class="text-sm text-slate-500 italic mt-2">Fotoğraflar buraya eklenecek...</p>
-                         <!-- Buraya Ege fotoğrafları için bir galeri eklenebilir -->
+                          <!-- Buraya Ege fotoğrafları için bir galeri eklenebilir -->
                     </div>
 
                     <!-- Seyahat Klasörü 3 (Yeni Eklendi - Yer Tutucu) -->
@@ -424,7 +424,7 @@
                         </div>
                         <h4 class="font-semibold text-lg text-slate-700 mb-1">Akdeniz Turu</h4>
                         <p class="text-sm text-slate-500 italic mt-2">Fotoğraflar buraya eklenecek...</p>
-                         <!-- Buraya Akdeniz fotoğrafları için bir galeri eklenebilir -->
+                          <!-- Buraya Akdeniz fotoğrafları için bir galeri eklenebilir -->
                     </div>
 
                 </div>
@@ -526,12 +526,32 @@
             <!-- Collapsible Video Gallery Container --><div id="video-gallery-wrapper" class="hidden mt-8">
                 <!-- Video Grid - Adjusted for larger videos --><div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1" id="video-grid">
                     
-                    <!-- YENİ VİDEOLARI HEP BU ALANIN EN BAŞINA EKLEYİN. En yeni video en yüksek numarayı alır. --><!-- Video 3 (En Yeni) --><div class="photo-container group cursor-pointer aspect-video" data-youtube-id="uY6ZrwkbLjc">
+                    <!-- YENİ VİDEOLARI HEP BU ALANIN EN BAŞINA EKLEYİN. En yeni video en yüksek numarayı alır. -->
+                    <!-- Video 5 (En Yeni) --><div class="photo-container group cursor-pointer aspect-video" data-youtube-id="ChFa2GJ4e4U">
+                        <img src="https://img.youtube.com/vi/ChFa2GJ4e4U/hqdefault.jpg" alt="Video thumbnail" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
+                            <i class="far fa-play-circle text-white text-6xl opacity-80 group-hover:opacity-100 transition-opacity"></i>
+                        </div>
+                        <span class="photo-number">5</span>
+                        <div class="photo-note">Beşiktaş</div>
+                    </div>
+                    
+                    <!-- Video 4 (En Yeni) --><div class="photo-container group cursor-pointer aspect-video" data-youtube-id="aim5II5vYpU">
+                        <img src="https://img.youtube.com/vi/aim5II5vYpU/hqdefault.jpg" alt="Video thumbnail" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
+                            <i class="far fa-play-circle text-white text-6xl opacity-80 group-hover:opacity-100 transition-opacity"></i>
+                        </div>
+                        <span class="photo-number">4</span>
+                        <div class="photo-note">Üsküdar</div>
+                    </div>
+                    
+                    <!-- Video 3 (En Yeni) --><div class="photo-container group cursor-pointer aspect-video" data-youtube-id="uY6ZrwkbLjc">
                         <img src="https://img.youtube.com/vi/uY6ZrwkbLjc/hqdefault.jpg" alt="Video thumbnail" class="w-full h-full object-cover">
                         <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
                             <i class="far fa-play-circle text-white text-6xl opacity-80 group-hover:opacity-100 transition-opacity"></i>
                         </div>
                         <span class="photo-number">3</span>
+                        <div class="photo-note">Lunapark</div>
                     </div>
 
                     <!-- Video 2 (En Yeni) --><div class="photo-container group cursor-pointer aspect-video" data-youtube-id="19aKq8FtYP8">
@@ -540,6 +560,7 @@
                             <i class="far fa-play-circle text-white text-6xl opacity-80 group-hover:opacity-100 transition-opacity"></i>
                         </div>
                         <span class="photo-number">2</span>
+                        <div class="photo-note">Beşiktaş</div>
                     </div>
 
                     <!-- Video 1 (En Eski) --><div class="photo-container group cursor-pointer aspect-video" data-youtube-id="J466tfX1jzk">
@@ -548,6 +569,7 @@
                             <i class="far fa-play-circle text-white text-6xl opacity-80 group-hover:opacity-100 transition-opacity"></i>
                         </div>
                         <span class="photo-number">1</span>
+                        <div class="photo-note">Ev</div>
                     </div>
 
                 </div>
@@ -628,7 +650,7 @@
         /* =============== KULLANICI İSTEDİĞİ GÜNÜ BURADAN AYARLAYABİLİRSİN ===============
            Tarih örneği: "June 15, 2026 19:00:00" veya ISO: "2026-06-15T19:00:00"
            Eğer boş bırakılırsa (""), placeholder gösterilmeye devam eder.
-        */
+         */
         const COUNTDOWN_DATE = ""; // <-- buraya tarih girersen countdown görünür
 
         /* ---------- Toggle butonları (gallery, video gallery, travel) ---------- */
@@ -757,7 +779,8 @@
 
         function openVideoModal(videoId) {
             if (!videoId) return;
-            if (videoIframe) videoIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+            // YouTube embed linkini -nocookie olarak değiştirdim. Bu, kısıtlama sorunlarına yardımcı olabilir.
+            if (videoIframe) videoIframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0`;
             if (videoModal) {
                 videoModal.classList.remove('hidden');
                 videoModal.classList.add('flex');
@@ -909,3 +932,9 @@
     <!-- (Orijinal sayfanda eski, kısmi/eksik script blokları kaldırıldı ve yukarıdaki tek blokla değiştirildi.) -->
 </body>
 </html>
+
+
+
+
+
+
