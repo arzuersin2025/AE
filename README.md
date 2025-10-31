@@ -12,6 +12,11 @@
           integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
     <style>
         html { scroll-behavior: smooth; }
         body {
@@ -35,130 +40,51 @@
         .heartbeat { animation: heartbeat 1.5s infinite; }
 
         /* "O GÜZEL SONBAHAR" */
-        #main-title {
-            font-size: 3rem !important;
-            line-height: 1.2 !important;
-        }
-        @media (min-width: 768px) {
-            #main-title {
-                font-size: 4rem !important;
-            }
-        }
+        #main-title { font-size: 3rem !important; line-height: 1.2 !important; }
+        @media (min-width: 768px) { #main-title { font-size: 4rem !important; } }
 
         /* ANA BAŞLIKLAR */
-        main h3:not(#ilk-adim-baslik) {
-            font-size: 1.5rem !important;
-            line-height: 1.3 !important;
-        }
-        @media (min-width: 768px) {
-            main h3:not(#ilk-adim-baslik) {
-                font-size: 2rem !important;
-            }
-        }
+        main h3:not(#ilk-adim-baslik) { font-size: 1.5rem !important; line-height: 1.3 !important; }
+        @media (min-width: 768px) { main h3:not(#ilk-adim-baslik) { font-size: 2rem !important; } }
 
         /* İLK ADIM */
-        #ilk-adim-baslik {
-            font-size: 1.5rem !important;
-            line-height: 1.4 !important;
-        }
-        @media (min-width: 768px) {
-            #ilk-adim-baslik {
-                font-size: 1.75rem !important;
-            }
-        }
+        #ilk-adim-baslik { font-size: 1.5rem !important; line-height: 1.4 !important; }
+        @media (min-width: 768px) { #ilk-adim-baslik { font-size: 1.75rem !important; } }
 
         header, #main-title-section { border:none!important; box-shadow:none!important; }
 
         /* TIMELINE */
-        .timeline-container {
-            position: relative;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem 0;
-        }
+        .timeline-container { position: relative; max-width: 1200px; margin: 0 auto; padding: 2rem 0; }
         .timeline-container::after {
-            content: '';
-            position: absolute;
-            width: 4px;
-            background: linear-gradient(to bottom, #10b981, #f59e0b, #ef4444);
-            top: 0; bottom: 0; left: 50%; margin-left: -2px;
-            border-radius: 2px;
-            z-index: 1;
-            transform: scaleY(0);
-            transform-origin: top;
-            animation: drawLine 2s ease-out forwards;
+            content: ''; position: absolute; width: 4px; background: linear-gradient(to bottom, #10b981, #f59e0b, #ef4444);
+            top: 0; bottom: 0; left: 50%; margin-left: -2px; border-radius: 2px; z-index: 1;
+            transform: scaleY(0); transform-origin: top; animation: drawLine 2s ease-out forwards;
         }
         @keyframes drawLine { to { transform: scaleY(1); } }
 
-        .timeline-item {
-            padding: 10px 40px;
-            position: relative;
-            width: 50%;
-            opacity: 0;
-            transform: translateY(50px) scale(0.9);
-            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            z-index: 2;
-        }
-        .timeline-item.animate {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
+        .timeline-item { padding: 10px 40px; position: relative; width: 50%; opacity: 0; transform: translateY(50px) scale(0.9); transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); z-index: 2; }
+        .timeline-item.animate { opacity: 1; transform: translateY(0) scale(1); }
         .timeline-item.left { left: 0; }
         .timeline-item.right { left: 50%; }
 
         .timeline-content {
-            padding: 20px 30px;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 12px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            border-left: 4px solid #10b981;
-            position: relative;
-            overflow: hidden;
+            padding: 20px 30px; background: rgba(255, 255, 255, 0.95); border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); border-left: 4px solid #10b981; position: relative; overflow: hidden;
             transition: all 0.4s ease;
         }
         .timeline-content::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; height: 4px;
-            background: linear-gradient(to right, transparent, #ef4444, transparent);
-            transform: scaleX(0);
-            transition: transform 0.6s ease;
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+            background: linear-gradient(to right, transparent, #ef4444, transparent); transform: scaleX(0); transition: transform 0.6s ease;
         }
         .timeline-content.animate::before { transform: scaleX(1); }
-        .timeline-content:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 16px 32px rgba(16, 185, 129, 0.2);
-        }
-        .timeline-content h4 {
-            margin-bottom: 8px;
-            color: #dc2626;
-            font-family: 'Dancing Script', cursive;
-            font-size: 1.5rem;
-            position: relative;
-        }
-        .timeline-content p {
-            color: #6b7280;
-            font-style: italic;
-            line-height: 1.6;
-        }
+        .timeline-content:hover { transform: translateY(-5px) scale(1.02); box-shadow: 0 16px 32px rgba(16, 185, 129, 0.2); }
+        .timeline-content h4 { margin-bottom: 8px; color: #dc2626; font-family: 'Dancing Script', cursive; font-size: 1.5rem; }
+        .timeline-content p { color: #6b7280; font-style: italic; line-height: 1.6; }
 
         .timeline-icon {
-            position: absolute;
-            top: -15px;
-            left: 20px;
-            background: white;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            font-size: 1.2rem;
-            color: #ef4444;
-            z-index: 3;
-            transform: rotate(0deg);
-            transition: transform 0.6s ease;
+            position: absolute; top: -15px; left: 20px; background: white; border-radius: 50%; width: 40px; height: 40px;
+            display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-size: 1.2rem; color: #ef4444; z-index: 3; transform: rotate(0deg); transition: transform 0.6s ease;
         }
         .timeline-item.animate .timeline-icon { transform: rotate(360deg); }
 
@@ -174,10 +100,7 @@
         .gallery-thumbnail { transition:transform .3s ease-in-out; }
         .group:hover .gallery-thumbnail { transform:scale(1.1); }
         .photo-note { position:absolute; bottom:0; left:0; right:0; color:white; padding:0.5rem 0.75rem; font-size:0.75rem; text-align:center; line-height:1.2; text-shadow:1px 1px 3px rgba(0,0,0,0.9); }
-        .photo-number { 
-            position:absolute; bottom:0.5rem; right:0.75rem; color:white; font-size:1rem; font-weight:bold; 
-            text-shadow:1px 1px 3px rgba(0,0,0,0.9); opacity:0; transition:opacity .3s ease-in-out; 
-        }
+        .photo-number { position:absolute; bottom:0.5rem; right:0.75rem; color:white; font-size:1rem; font-weight:bold; text-shadow:1px 1px 3px rgba(0,0,0,0.9); opacity:0; transition:opacity .3s ease-in-out; }
         .group:hover .photo-number { opacity:1; }
         .photo-container.no-note .photo-note { display:none; }
 
@@ -189,83 +112,32 @@
 
         /* ŞİİR ANIMASYONU */
         .poem-container {
-            max-width: 90%;
-            margin: 0 auto;
-            padding: 2rem 0;
-            line-height: 2.3;
-            font-size: 1.15rem;
-            font-style: italic;
-            color: #1f2937;
-            text-align: center;
-            position: relative;
-            background: linear-gradient(135deg, rgba(253, 250, 246, 0.9) 0%, rgba(255, 255, 255, 0.95) 100%);
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
+            max-width: 90%; margin: 0 auto; padding: 2rem 0; line-height: 2.3; font-size: 1.15rem; font-style: italic;
+            color: #1f2937; text-align: center; position: relative; background: linear-gradient(135deg, rgba(253, 250, 246, 0.9) 0%, rgba(255, 255, 255, 0.95) 100%);
+            border-radius: 12px; padding: 2rem; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); overflow: hidden;
         }
-
         .poem-line {
-            opacity: 0;
-            transform: translateY(-30px) scale(0.95);
-            display: block;
-            position: relative;
-            margin: 0.2rem 0;
-            padding: 0.5rem;
-            border-radius: 8px;
-            font-family: 'Cormorant Garamond', serif;
+            opacity: 0; transform: translateY(-30px) scale(0.95); display: block; position: relative; margin: 0.2rem 0;
+            padding: 0.5rem; border-radius: 8px; font-family: 'Cormorant Garamond', serif;
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
+        .poem-line.visible { opacity: 1; transform: translateY(0) scale(1); animation: fadeInDown 0.8s ease-out forwards; }
+        @keyframes fadeInDown { to { opacity: 1; transform: translateY(0) scale(1); } }
 
-        .poem-line.visible {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-            animation: fadeInDown 0.8s ease-out forwards;
-        }
-
-        @keyframes fadeInDown {
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        /* Hover efekti */
-        .poem-container:hover .poem-line {
-            color: #6b7280;
-            font-weight: 300;
-            font-size: 1.05rem;
-        }
-
+        .poem-container:hover .poem-line { color: #6b7280; font-weight: 300; font-size: 1.05rem; }
         .poem-container .poem-line:hover {
-            color: #dc2626 !important;
-            font-weight: 600 !important;
-            font-size: 1.25rem !important;
-            transform: translateY(-5px) scale(1.08) !important;
-            text-shadow: 0 4px 8px rgba(220, 38, 38, 0.3);
-            background: rgba(220, 38, 38, 0.05);
-            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.15);
-            z-index: 10;
+            color: #dc2626 !important; font-weight: 600 !important; font-size: 1.25rem !important;
+            transform: translateY(-5px) scale(1.08) !important; text-shadow: 0 4px 8px rgba(220, 38, 38, 0.3);
+            background: rgba(220, 38, 38, 0.05); box-shadow: 0 4px 12px rgba(220, 38, 38, 0.15); z-index: 10;
         }
-
-        .poem-container:hover .poem-line:not(:hover) {
-            opacity: 0.7;
-            filter: blur(0.3px);
-            transform: translateY(2px) scale(0.98);
-        }
-
-        /* Özel satırlar */
+        .poem-container:hover .poem-line:not(:hover) { opacity: 0.7; filter: blur(0.3px); transform: translateY(2px) scale(0.98); }
         .poem-line:nth-child(8) { font-weight: 500; color: #b91c1c; }
         .poem-line:nth-child(9) { font-style: italic; color: #92400e; }
         .poem-line:nth-child(10) { color: #dc2626; font-weight: 700; font-size: 1.2em; text-shadow: 1px 1px 2px rgba(220, 38, 38, 0.2); }
 
         .poem-container::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; height: 3px;
-            background: linear-gradient(90deg, transparent, #dc2626, transparent);
-            transform: scaleX(0);
-            transition: transform 0.6s ease;
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, transparent, #dc2626, transparent); transform: scaleX(0); transition: transform 0.6s ease;
         }
         .poem-container:hover::before { transform: scaleX(1); }
 
@@ -274,35 +146,55 @@
             .poem-line:hover { font-size: 1.15rem !important; transform: translateY(-3px) scale(1.05) !important; }
         }
 
-        /* DİLEK KUTUSU */
-        #wish-modal .bg-white {
+        /* DİLEK PENCERESİ */
+        .wish-card {
+            background: white; border-radius: 1rem; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: all 0.3s ease; overflow: hidden;
+        }
+        .wish-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,0.15); }
+        .wish-toggle {
+            cursor: pointer; padding: 1rem; border-bottom: 1px solid #f0f0f0;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .wish-content { padding: 1rem; border-bottom: 1px solid #f0f0f0; }
+        .comments-section {
+            max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease;
+        }
+        .comments-section.open { max-height: 600px; padding: 1rem; }
+        .comment-item {
+            background: #f9f9f9; padding: 0.75rem; border-radius: 0.75rem; margin-bottom: 0.75rem; font-size: 0.9rem;
+            display: flex; justify-content: space-between; align-items: flex-start;
+        }
+        .comment-form {
+            margin-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem;
+        }
+
+        /* SİLME BUTONLARI */
+        .delete-btn {
+            opacity: 0; transition: opacity 0.3s ease;
+        }
+        .wish-card:hover .delete-btn,
+        .comment-item:hover .delete-btn {
+            opacity: 1;
+        }
+        @media (max-width: 640px) {
+            .delete-btn { opacity: 1; }
+        }
+
+        /* MODAL */
+        #wish-modal .bg-white, #delete-modal .bg-white {
             transition: transform 0.3s ease, opacity 0.3s ease;
         }
-
-        #wishes-list::-webkit-scrollbar { width: 6px; }
-        #wishes-list::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
-        #wishes-list::-webkit-scrollbar-thumb { background: #fca5a5; border-radius: 10px; }
-        #wishes-list::-webkit-scrollbar-thumb:hover { background: #f87171; }
-
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .wish-item { animation: slideIn 0.5s ease-out forwards; }
     </style>
 </head>
 <body class="text-black">
 
 <header class="py-6 text-center bg-white/70 backdrop-blur-lg sticky top-0 z-20 overflow-hidden">
     <div class="relative">
-        <a href="#countdown-section" title="Geri Sayım"
-           class="absolute top-1/2 -translate-y-1/2 right-4 text-green-600 hover:text-green-800 transition-colors z-20 text-center">
+        <a href="#countdown-section" class="absolute top-1/2 -translate-y-1/2 right-4 text-green-600 hover:text-green-800">
             <i class="fas fa-hourglass-start fa-2x"></i>
-            <div id="header-countdown" class="hidden text-[10px] font-semibold tracking-tight leading-tight mt-1">
-                <span id="header-days">0</span>g <span id="header-hours">0</span>s <span id="header-minutes">0</span>d
-            </div>
         </a>
-        <div class="absolute inset-0 flex items-center justify-center z-0" aria-hidden="true">
+        <div class="absolute inset-0 flex items-center justify-center z-0">
             <i class="fas fa-infinity text-[10rem] text-gray-200 opacity-70 blur-sm"></i>
         </div>
         <div class="relative z-10">
@@ -491,18 +383,20 @@
         </div>
     </section>
 
-    <!-- DİLEK KUTUSU -->
-    <section class="my-16 max-w-3xl mx-auto text-center">
-        <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Bizim İçin Bir Dilek Bırakın</h3>
-        <p class="text-center text-black italic mb-6">Kalpten kalbe bir dilek bırakın... Herkes görebilir!</p>
+    <!-- DİLEK PENCERESİ -->
+    <section class="my-16 max-w-4xl mx-auto">
+        <h3 class="font-bold text-center text-red-600 mb-6 handwriting text-2xl md:text-3xl">Dilek Penceresi</h3>
+        <p class="text-center text-black italic mb-6">Bir dilek bırakın, herkes görsün ve yorum yapsın!</p>
 
-        <button id="open-wish-modal"
-                class="inline-flex items-center justify-center py-3 px-8 border border-transparent shadow-lg text-lg font-medium rounded-full text-white bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-all transform hover:scale-105">
-            <i class="fas fa-gift mr-2"></i> Dilek & Yorum Bırak
-        </button>
+        <div class="text-center mb-8">
+            <button id="open-wish-modal"
+                    class="inline-flex items-center justify-center py-3 px-8 border border-transparent shadow-lg text-lg font-medium rounded-full text-white bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 transition-all transform hover:scale-105">
+                <i class="fas fa-gift mr-2"></i> Yeni Dilek
+            </button>
+        </div>
 
-        <div id="wishes-list" class="mt-10 space-y-4 max-h-96 overflow-y-auto px-2">
-            <p class="text-gray-500 italic">Henüz dilek bırakılmadı. İlk siz olun!</p>
+        <div id="wishes-container" class="space-y-4">
+            <p class="text-center text-gray-500 italic">Yükleniyor...</p>
         </div>
     </section>
 
@@ -515,39 +409,35 @@
     <p class="text-sm text-black mt-2">Arzu & Ersin</p>
 </footer>
 
-<!-- DİLEK MODAL -->
+<!-- DİLEK MODALI -->
 <div id="wish-modal" class="fixed inset-0 bg-black bg-opacity-60 hidden items-center justify-center z-50 p-4">
     <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full p-8 relative transform scale-95 opacity-0">
         <button id="close-wish-modal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-2xl">
             <i class="fas fa-times"></i>
         </button>
-        <h3 class="text-2xl font-bold text-center text-red-600 mb-6 handwriting">Dilek & Yorum Bırak</h3>
-        <form id="wish-form-modal" class="space-y-5">
-            <div>
-                <label for="wish-name" class="block text-sm font-medium text-red-600 mb-1">Adınız</label>
-                <input type="text" id="wish-name" required
-                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
-                       placeholder="Adınız Soyadınız">
-            </div>
-            <div>
-                <label for="wish-text" class="block text-sm font-medium text-red-600 mb-1">Dileğiniz</label>
-                <textarea id="wish-text" rows="3" required
-                          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
-                          placeholder="Bizim için güzel bir dilek..."></textarea>
-            </div>
-            <div>
-                <label for="wish-comment" class="block text-sm font-medium text-red-600 mb-1">Yorumunuz (isteğe bağlı)</label>
-                <textarea id="wish-comment" rows="2"
-                          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
-                          placeholder="Eklemek istediğiniz bir not..."></textarea>
-            </div>
-            <div class="text-center">
-                <button type="submit"
-                        class="inline-flex items-center justify-center py-3 px-8 border border-transparent shadow-md text-lg font-medium rounded-full text-white bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-all">
-                    <i class="fas fa-paper-plane mr-2"></i> Gönder
-                </button>
-            </div>
+        <h3 class="text-2xl font-bold text-center text-red-600 mb-6 handwriting">Yeni Dilek</h3>
+        <form id="wish-form" class="space-y-5">
+            <input type="text" id="wish-name" placeholder="Adınız" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-red-500">
+            <textarea id="wish-text" rows="3" placeholder="Dileğiniz..." required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-red-500"></textarea>
+            <button type="submit" class="w-full py-3 bg-green-600 text-white rounded-lg hover:bg-green-700">
+                <i class="fas fa-paper-plane mr-2"></i> Gönder
+            </button>
         </form>
+    </div>
+</div>
+
+<!-- SİLME MODALI -->
+<div id="delete-modal" class="fixed inset-0 bg-black bg-opacity-60 hidden items-center justify-center z-50 p-4">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-sm w-full p-6 relative transform scale-95 opacity-0">
+        <button id="close-delete-modal" class="absolute top-3 right-3 text-gray-400 hover:text-gray-600 text-xl">
+            <i class="fas fa-times"></i>
+        </button>
+        <h3 class="text-xl font-bold text-center text-red-600 mb-4 handwriting">Sil</h3>
+        <input type="password" id="admin-password" placeholder="Şifre" class="w-full px-4 py-2 border rounded-lg mb-4 focus:ring-2 focus:ring-red-500">
+        <div class="flex justify-center space-x-3">
+            <button id="confirm-delete" class="px-5 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">Sil</button>
+            <button id="cancel-delete" class="px-5 py-2 bg-gray-300 text-gray-800 rounded-lg hover:bg-gray-400">İptal</button>
+        </div>
     </div>
 </div>
 
@@ -555,101 +445,179 @@
 (() => {
     'use strict';
 
-    // === DİLEK SİSTEMİ - %100 ÇALIŞIYOR ===
+    // === FIREBASE ===
+    const firebaseConfig = {
+        apiKey: "AIzaSyB0T9tY0wZ1kX2v3Lm4n5Op6Qr7s8Tu9vA",
+        authDomain: "arzu-ersin-wishes.firebaseapp.com",
+        databaseURL: "https://arzu-ersin-wishes-default-rtdb.firebaseio.com",
+        projectId: "arzu-ersin-wishes",
+        storageBucket: "arzu-ersin-wishes.appspot.com",
+        messagingSenderId: "1234567890",
+        appId: "1:1234567890:web:abcdef123456"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+    const wishesRef = db.ref('wishes');
+
+    const ADMIN_PASSWORD = "arzuersin2025";
+
+    // === ELEMANLAR ===
     const wishModal = document.getElementById('wish-modal');
     const openWishBtn = document.getElementById('open-wish-modal');
     const closeWishBtn = document.getElementById('close-wish-modal');
-    const wishForm = document.getElementById('wish-form-modal');
-    const wishesList = document.getElementById('wishes-list');
-    const WISHES_KEY = 'arzu_ersin_wishes';
+    const wishForm = document.getElementById('wish-form');
+    const wishesContainer = document.getElementById('wishes-container');
 
-    // Modal aç
-    openWishBtn.addEventListener('click', () => {
-        wishModal.classList.remove('hidden');
+    const deleteModal = document.getElementById('delete-modal');
+    const adminPasswordInput = document.getElementById('admin-password');
+    const confirmDeleteBtn = document.getElementById('confirm-delete');
+    const cancelDeleteBtn = document.getElementById('cancel-delete');
+    const closeDeleteModalBtn = document.getElementById('close-delete-modal');
+
+    let deleteTarget = null;
+    let deleteType = null;
+
+    // === MODAL KONTROL ===
+    const openModal = (modal) => {
+        modal.classList.remove('hidden');
         setTimeout(() => {
-            const card = wishModal.querySelector('.bg-white');
+            const card = modal.querySelector('.bg-white');
             card.classList.replace('scale-95', 'scale-100');
             card.style.opacity = '1';
         }, 10);
-    });
-
-    // Modal kapat
-    const closeWishModal = () => {
-        const card = wishModal.querySelector('.bg-white');
+    };
+    const closeModal = (modal) => {
+        const card = modal.querySelector('.bg-white');
         card.classList.replace('scale-100', 'scale-95');
         card.style.opacity = '0';
-        setTimeout(() => wishModal.classList.add('hidden'), 300);
+        setTimeout(() => modal.classList.add('hidden'), 300);
     };
 
-    closeWishBtn.addEventListener('click', closeWishModal);
-    wishModal.addEventListener('click', (e) => {
-        if (e.target === wishModal) closeWishModal();
-    });
+    openWishBtn.addEventListener('click', () => openModal(wishModal));
+    closeWishBtn.addEventListener('click', () => closeModal(wishModal));
+    wishModal.addEventListener('click', e => e.target === wishModal && closeModal(wishModal));
 
-    // Dilek ekle
-    wishForm.addEventListener('submit', (e) => {
+    // === DİLEK GÖNDER ===
+    wishForm.addEventListener('submit', e => {
         e.preventDefault();
-
         const name = document.getElementById('wish-name').value.trim();
-        const wish = document.getElementById('wish-text').value.trim();
-        const comment = document.getElementById('wish-comment').value.trim();
-
-        if (!name || !wish) return;
+        const text = document.getElementById('wish-text').value.trim();
+        if (!name || !text) return;
 
         const newWish = {
-            id: Date.now(),
-            name,
-            wish,
-            comment,
-            date: new Date().toLocaleDateString('tr-TR', {
-                day: 'numeric', month: 'long', year: 'numeric',
-                hour: '2-digit', minute: '2-digit'
-            })
+            name: escapeHtml(name),
+            text: escapeHtml(text),
+            timestamp: Date.now(),
+            date: new Date().toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' }),
+            comments: {}
         };
 
-        const wishes = JSON.parse(localStorage.getItem(WISHES_KEY) || '[]');
-        wishes.unshift(newWish);
-        localStorage.setItem(WISHES_KEY, JSON.stringify(wishes));
-
-        wishForm.reset();
-        closeWishModal();
-        renderWishes();
+        wishesRef.push(newWish).then(() => {
+            wishForm.reset();
+            closeModal(wishModal);
+        }).catch(err => alert('Hata: ' + err.message));
     });
 
-    // Render
-    const renderWishes = () => {
-        const wishes = JSON.parse(localStorage.getItem(WISHES_KEY) || '[]');
+    // === YORUM EKLE ===
+    const addComment = (wishId, name, text) => {
+        const commentRef = wishesRef.child(wishId).child('comments').push();
+        commentRef.set({
+            name: escapeHtml(name),
+            text: escapeHtml(text),
+            timestamp: Date.now(),
+            date: new Date().toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' })
+        });
+    };
+
+    // === SİLME MODALI ===
+    window.openDelete = (id, type) => {
+        deleteTarget = id;
+        deleteType = type;
+        openModal(deleteModal);
+        adminPasswordInput.value = '';
+        adminPasswordInput.focus();
+    };
+
+    confirmDeleteBtn.onclick = () => {
+        if (adminPasswordInput.value !== ADMIN_PASSWORD) {
+            alert('Yanlış şifre!');
+            return;
+        }
+        if (deleteType === 'wish') {
+            wishesRef.child(deleteTarget).remove();
+        } else {
+            const [wishId, commentId] = deleteTarget.split('|');
+            wishesRef.child(wishId).child('comments').child(commentId).remove();
+        }
+        closeModal(deleteModal);
+    };
+
+    [closeDeleteModalBtn, cancelDeleteBtn].forEach(btn => btn.onclick = () => closeModal(deleteModal));
+    deleteModal.onclick = e => e.target === deleteModal && closeModal(deleteModal);
+
+    // === DİLEKLERİ GÖSTER ===
+    wishesRef.orderByChild('timestamp').on('value', snapshot => {
+        const wishes = [];
+        snapshot.forEach(child => {
+            const data = child.val();
+            data.id = child.key;
+            wishes.unshift(data);
+        });
+
         if (wishes.length === 0) {
-            wishesList.innerHTML = `<p class="text-gray-500 italic">Henüz dilek bırakılmadı. İlk siz olun!</p>`;
+            wishesContainer.innerHTML = `<p class="text-center text-gray-500 italic">Henüz dilek yok. İlk siz bırakın!</p>`;
             return;
         }
 
-        wishesList.innerHTML = wishes.map(w => `
-            <div class="wish-item bg-gradient-to-r from-pink-50 to-red-50 p-5 rounded-xl shadow-md border border-pink-100 transition-all hover:scale-[1.02] hover:shadow-lg">
-                <div class="flex items-start justify-between mb-2">
-                    <h4 class="font-semibold text-red-700">${escapeHtml(w.name)}</h4>
-                    <span class="text-xs text-gray-500">${w.date}</span>
+        wishesContainer.innerHTML = wishes.map(wish => {
+            const comments = Object.entries(wish.comments || {}).map(([id, c]) => `
+                <div class="comment-item">
+                    <div>
+                        <strong class="text-red-700 text-sm">${c.name}</strong>
+                        <p class="text-gray-700 text-sm">${c.text}</p>
+                        <span class="text-xs text-gray-500">${c.date}</span>
+                    </div>
+                    <button onclick="openDelete('${wish.id}|${id}', 'comment')" class="delete-btn text-red-500 text-xs">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
                 </div>
-                <p class="text-gray-800 font-medium mb-2 leading-relaxed">"${escapeHtml(w.wish)}"</p>
-                ${w.comment ? `<p class="text-sm text-gray-600 italic mt-2">— ${escapeHtml(w.comment)}</p>` : ''}
-                <div class="flex justify-end mt-3">
-                    <i class="fas fa-heart text-red-500 text-lg heartbeat"></i>
-                </div>
-            </div>
-        `).join('');
-    };
+            `).join('');
 
-    const escapeHtml = (text) => {
+            return `
+                <div class="wish-card">
+                    <div class="wish-toggle" onclick="this.parentElement.querySelector('.comments-section').classList.toggle('open')">
+                        <div>
+                            <h4 class="font-semibold text-red-700">${wish.name}</h4>
+                            <p class="text-gray-800">"${wish.text}"</p>
+                            <span class="text-xs text-gray-500">${wish.date}</span>
+                        </div>
+                        <i class="fas fa-chevron-down transition-transform duration-300 ${wish.comments ? 'rotate-180' : ''}"></i>
+                    </div>
+                    <div class="wish-content">
+                        <button onclick="openDelete('${wish.id}', 'wish')" class="delete-btn float-right text-red-500 text-sm">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
+                    <div class="comments-section">
+                        <div class="space-y-2">${comments}</div>
+                        <form class="comment-form mt-4" onsubmit="event.preventDefault(); addComment('${wish.id}', this.name.value, this.text.value); this.reset();">
+                            <input type="text" name="name" placeholder="Adınız" required class="w-full px-3 py-1 border rounded text-sm">
+                            <textarea name="text" rows="1" placeholder="Yorumunuz..." required class="w-full px-3 py-1 border rounded text-sm"></textarea>
+                            <button type="submit" class="w-full py-1 bg-green-600 text-white rounded text-sm hover:bg-green-700">Gönder</button>
+                        </form>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    });
+
+    const escapeHtml = text => {
         const div = document.createElement('div');
         div.textContent = text;
         return div.innerHTML;
     };
 
-    // Sayfa yüklendiğinde dilekleri göster
-    document.addEventListener('DOMContentLoaded', renderWishes);
-
-    // === DİĞER ÖZELLİKLER (TOGGLE, TIMELINE, VS.) ===
-    // Toggle butonları
+    // === DİĞER ÖZELLİKLER ===
     const toggleBtn = (btnId, wrapperId, iconId, textId, openTxt, closeTxt) => {
         const btn = document.getElementById(btnId);
         const wrapper = document.getElementById(wrapperId);
@@ -665,7 +633,6 @@
     toggleBtn('toggle-gallery-btn','gallery-wrapper','gallery-toggle-icon','gallery-toggle-text','Fotoğraf Galerisini Gör','Galeriyi Gizle');
     toggleBtn('toggle-travel-btn','travel-wrapper','travel-toggle-icon','travel-toggle-text','Seyahatlerimizi Gör','Seyahatleri Gizle');
 
-    // Timeline animasyonu
     const timelineObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry, index) => {
             if (entry.isIntersecting) {
@@ -679,7 +646,6 @@
     }, { threshold: 0.3 });
     document.querySelectorAll('.timeline-item').forEach(item => timelineObserver.observe(item));
 
-    // Şiir animasyonu
     const poemObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -691,11 +657,14 @@
     }, { threshold: 0.6 });
     document.querySelectorAll('.poem-line').forEach(line => poemObserver.observe(line));
 
-    // Genel fade-in
     const obs = new IntersectionObserver(entries => {
         entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
     }, {threshold:0.15});
     document.querySelectorAll('.fade-in-on-scroll').forEach(el => obs.observe(el));
+
+    document.addEventListener('DOMContentLoaded', () => {
+        wishesContainer.innerHTML = `<p class="text-center text-gray-500 italic">Yükleniyor...</p>`;
+    });
 
 })();
 </script>
