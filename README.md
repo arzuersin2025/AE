@@ -21,43 +21,8 @@
             background-color: #fdfaf6; /* A warm background color behind the pattern */
         }
         h1, h2, h3 {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Playfair+Display', serif;
         }
-
-        /* === GITHUB FALLBACK DÜZELTMESİ === */
-        /* Tailwind (JS CDN) yüklenmezse diye başlıklar için temel boyutları ayarla. */
-        /* Tailwind yüklendiğinde, utility class'lar (text-6xl vb.) bunların üzerine yazacaktır. */
-        
-        /* Header'daki h1 (text-4xl / md:text-5xl) için Fallback */
-        header h1 {
-            font-size: 2.25rem; /* 36px */
-            line-height: 2.5rem;
-        }
-        @media (min-width: 768px) { /* md: breakpoint */
-            header h1 {
-                font-size: 3rem; /* 48px */
-                line-height: 1;
-            }
-        }
-
-        /* === KULLANICI İSTEĞİ GÜNCELLEMESİ === */
-        /* Sayfadaki h3'ler (text-6xl) için Fallback */
-        /* İSTEK: Diğer başlıklar da 'O Güzel Sonbahar' (id=main-title) kadar büyük olsun */
-        main h3 {
-            font-size: 5rem; /* 80px (mobil fallback) */
-            line-height: 1.1;
-        }
-        @media (min-width: 768px) { /* md: breakpoint */
-            main h3 {
-                font-size: 7rem; /* 112px (desktop fallback) */
-            }
-        }
-        /* === GÜNCELLEME BİTTİ === */
-        
-        /* #main-title zaten bir ID ile stillendirildiği için fallback'e ihtiyacı yok. */
-        /* === DÜZELTME BİTTİ === */
-
-
         .handwriting {
             font-family: 'Dancing Script', cursive; /* Eski fonta (Alex Brush'tan) geri döndürüldü */
         }
@@ -80,7 +45,9 @@
             50% { transform: scale(1.1); }
             100% { transform: scale(1); }
         }
-        /* Specific rule to ensure main title is always large */
+        
+        /* === YENİ STİL MANTIĞI (BAŞLIK DÜZELTMESİ) === */
+        /* "O Güzel Sonbahar" başlığı için ID bazlı stil */
         #main-title {
             font-size: 5rem; /* 80px */
             line-height: 1.1;
@@ -90,6 +57,18 @@
                 font-size: 7rem; /* 112px */
             }
         }
+        /* Diğer tüm h3 başlıkları için de AYNI boyutu zorla */
+        main h3 {
+            font-size: 5rem; /* 80px (mobil) */
+            line-height: 1.1;
+        }
+        @media (min-width: 768px) { /* md: breakpoint */
+            main h3 {
+                font-size: 7rem; /* 112px (desktop) */
+            }
+        }
+        /* === DÜZELTME BİTTİ === */
+
         /* Forcefully remove borders/shadows causing thin lines on deployment */
         header, #main-title-section {
             border: none !important;
@@ -110,7 +89,7 @@
         }
         /* Additional fallback to hide any pseudo-elements */
         h1:hover::after, h2:hover::after, h3:hover::after, h4:hover::after, h5:hover::after, h6:hover::after,
-        h1:hover::before, h2:hover::before, h3:hover::before, h4:hover::before, h5:hover::before, h6:hover::before {
+        h1:hover::before, h2::hover::before, h3:hover::before, h4:hover::before, h5:hover::before, h6:hover::before {
             visibility: hidden !important;
             opacity: 0 !important;
             pointer-events: none !important;
@@ -161,14 +140,13 @@
             opacity: 1; /* Fare üzerine gelince göster */
         }
         
-        /* === YENİ EKLEME: Not olmayan fotoğraflar için numara hep görünsün === */
+        /* Not olmayan fotoğraflar için numara hep görünsün */
         .photo-container.no-note .photo-note {
             display: none; /* Notu tamamen gizle */
         }
         .photo-container.no-note .photo-number {
             opacity: 1; /* Numarayı her zaman göster */
         }
-        /* === BİTTİ === */
 
         .photo-note.no-shadow {
             text-shadow: none;
@@ -392,7 +370,8 @@
     <!-- Main Content --><main class="container mx-auto px-6 pb-12">
 
         <!-- Our Story Section --><section class="max-w-3xl mx-auto my-12 text-center bg-white/80 backdrop-blur-sm p-8 rounded-lg shadow-lg">
-            <h3 class="text-6xl font-bold text-red-600 mb-4">İlk Adım</h3>
+            <!-- text-6xl SINIFI KALDIRILDI -->
+            <h3 class="font-bold text-red-600 mb-4">İlk Adım</h3>
             <p class="text-lg leading-relaxed text-black">
                 Her büyük hikayenin bir başlangıç anı vardır. Bizimki, 27 Eylül 2025'te, yaprakların sarıya döndüğü, havanın tatlı bir serinliğe büründüğü o güzel sonbahar gününde başladı. O gün, sadece iki insan tanışmadı; aynı zamanda ortak bir geleceğe atılacak ilk adımın temelleri atıldı. O günden beri her anımızı, o ilk günkü heyecan ve samimiyetle doldurarak, birlikte büyüyoruz. Bu site, bir sonbahar gününde başlayan ve sonsuzluğa uzanan yolculuğumuzun en güzel anılarını saklamak için...
             </p>
@@ -419,7 +398,8 @@
         </section>
 
         <!-- Aşk Zaman Çizelgesi Section (YUKARI TAŞINDI) --><section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
-            <h3 class="text-6xl font-bold text-center text-red-600 mb-4 handwriting">Aşk Zaman Çizelgesi</h3>
+            <!-- text-6xl SINIFI KALDIRILDI -->
+            <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Aşk Zaman Çizelgesi</h3>
             <p class="text-center text-black italic mb-8">Yolculuğumuzun unutulmaz anlarını, kalplerin ritmiyle keşfedin... Her durak, bir sonsuzluk vaadi.</p>
             <div class="timeline">
                 <!-- Timeline Event 1 -->
@@ -446,7 +426,8 @@
         </section>
 
         <!-- Countdown Section (YENİ YERİ) --><section id="countdown-section" class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg text-center">
-            <h3 class="text-6xl font-bold text-center text-red-600 mb-6 font-forte-alternative">Büyük Güne Geri Sayım</h3>
+            <!-- text-6xl SINIFI KALDIRILDI -->
+            <h3 class="font-bold text-center text-red-600 mb-6 font-forte-alternative">Büyük Güne Geri Sayım</h3>
             
             <!-- This part will be shown when the date is set --><div id="countdown-timer" class="hidden grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
                 <div><div id="days" class="text-4xl font-bold text-green-500">0</div><span class="text-black">Gün</span></div>
@@ -467,14 +448,16 @@
 
         <!-- Hayal Defterimiz Section (Animasyon sınıfı eklendi) -->
         <section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg fade-in-on-scroll">
-            <h3 class="text-6xl font-bold text-center text-red-600 mb-6 handwriting">Hayal Defterimiz</h3>
+            <!-- text-6xl SINIFI KALDIRILDI -->
+            <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Hayal Defterimiz</h3>
             <p class="text-center text-black text-lg italic mt-4 mb-8">
                 Birlikte kurduğumuz hayaller, geleceğe dair ektiğimiz tohumlar... Bu defter, yolculuğumuzda gerçekleştireceğimiz hayallerle dolacak.
             </p>
         </section>
 
         <!-- Bizim Şarkımız Section --><section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg text-center">
-            <h3 class="text-6xl font-bold text-center text-red-600 mb-6 handwriting">Bizim Şarkımız</h3>
+            <!-- text-6xl SINIFI KALDIRILDI -->
+            <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Bizim Şarkımız</h3>
             <div class="flex items-center justify-center p-6 bg-green-50 rounded-lg">
                  <div class="text-4xl text-red-600">
                     <i class="fas fa-music"></i>
@@ -483,7 +466,8 @@
         </section>
 
         <!-- Seyahatlerimiz Section (YENİ YAPI) --><section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
-            <h3 class="text-6xl font-bold text-center text-red-600 mb-4 handwriting">Seyahatlerimiz</h3>
+            <!-- text-6xl SINIFI KALDIRILDI -->
+            <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Seyahatlerimiz</h3>
             <p class="text-center text-black italic">Birlikte keşfettiğimiz yerler, biriktirdiğimiz anılar... Yolculuğumuzun durakları burada hayat buluyor.</p>
 
             <div class="mt-8 text-center">
@@ -532,7 +516,8 @@
         </section>
 
         <!-- Photo Gallery Section --><section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
-            <h3 class="text-6xl font-bold text-center text-red-600 mb-4 handwriting">Fotoğraf Galerimiz</h3>
+            <!-- text-6xl SINIFI KALDIRILDI -->
+            <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Fotoğraf Galerimiz</h3>
             <p class="text-center text-black italic">İşte yolculuğumuzda biriktirdiğimiz anlardan ilk kareler... Bu galeri, zamanla daha nice güzel anıyla dolacak.</p>
 
             <div class="mt-8 text-center">
@@ -586,7 +571,8 @@
         </section>
 
         <!-- Video Galerimiz Section --><section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
-            <h3 class="text-6xl font-bold text-center text-red-600 mb-4 handwriting">Video Galerimiz</h3>
+            <!-- text-6xl SINIFI KALDIRILDI -->
+            <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Video Galerimiz</h3>
             <!-- DÜZENLENEN METİN -->
             <p class="text-center text-black italic">Bazı duyguları kelimelerle anlatmak yetmez... Hikayemizin hareketli anlarına buradan göz atabilirsiniz.</p>
 
@@ -652,7 +638,8 @@
         </section>
         
         <!-- Teşekkür Section --><section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg">
-            <h3 class="text-6xl font-bold text-center text-red-600 mb-6">Teşekkür</h3>
+            <!-- text-6xl SINIFI KALDIRILDI -->
+            <h3 class="font-bold text-center text-red-600 mb-6">Teşekkür</h3>
             <p class="text-center text-black text-lg italic mt-4">
                 Bu mutlu yolculuğumuzda yanımızda olan, sevgileri ve destekleriyle bize güç veren herkese sonsuz teşekkürler.
             </p>
@@ -663,7 +650,8 @@
         </section>
 
         <!-- Wish Box Section --><section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg">
-            <h3 class="text-6xl font-bold text-center text-red-600 mb-6">Bizim İçin Bir Dilek Bırakın</h3>
+            <!-- text-6xl SINIFI KALDIRILDI -->
+            <h3 class="font-bold text-center text-red-600 mb-6">Bizim İçin Bir Dilek Bırakın</h3>
              <form id="wish-form" action="https://formsubmit.co/arzuersin2025@gmail.com" method="POST" class="space-y-4">
                 <!-- FormSubmit Ayarları --><input type="hidden" name="_subject" value="Arzu & Ersin Web Sitenizden Yeni Dilek!">
                 <input type="hidden" name="_honey" style="display:none">
@@ -999,7 +987,7 @@
         const timelineItems = document.querySelectorAll('.timeline-item');
         timelineItems.forEach(item => timelineObserver.observe(item));
 
-        /* ---------- If you dynamically add gallery images later, call refreshGalleryEvents() ---------- */
+        /* ---------- If you dynamically add gallery images later, call refreshEvents() ---------- */
         window.refreshGalleryEvents = refreshGalleryEvents;
         /* örnek kullanım: yeni fotoğraf ekledikten sonra window.refreshGalleryEvents(); çağır */
     })();
@@ -1008,5 +996,4 @@
     <!-- (Orijinal sayfanda eski, kısmi/eksik script blokları kaldırıldı ve yukarıdaki tek blokla değiştirildi.) -->
 </body>
 </html>
-
 
