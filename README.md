@@ -32,18 +32,18 @@
         }
         .heartbeat { animation: heartbeat 1.5s infinite; }
 
-        /* === "O GÜZEL SONBAHAR" - ORİJİNAL BÜYÜK BOYUT (%200) === */
+        /* "O GÜZEL SONBAHAR" - ORİJİNAL BÜYÜK BOYUT */
         #main-title {
-            font-size: 3rem !important;     /* 48px */
+            font-size: 3rem !important;
             line-height: 1.2 !important;
         }
         @media (min-width: 768px) {
             #main-title {
-                font-size: 4rem !important; /* 64px */
+                font-size: 4rem !important;
             }
         }
 
-        /* === ANA BAŞLIKLAR - "İLK ADIM" HARİÇ === */
+        /* ANA BAŞLIKLAR - "İLK ADIM" HARİÇ */
         main h3:not(#ilk-adim-baslik) {
             font-size: 1.5rem !important;
             line-height: 1.3 !important;
@@ -54,14 +54,14 @@
             }
         }
 
-        /* === SADECE "İLK ADIM" - %200 BÜYÜTÜLDÜ === */
+        /* SADECE "İLK ADIM" - %200 BÜYÜTÜLDÜ */
         #ilk-adim-baslik {
-            font-size: 1.5rem !important;   /* 24px */
+            font-size: 1.5rem !important;
             line-height: 1.4 !important;
         }
         @media (min-width: 768px) {
             #ilk-adim-baslik {
-                font-size: 1.75rem !important;  /* 28px */
+                font-size: 1.75rem !important;
             }
         }
 
@@ -72,7 +72,7 @@
             visibility:hidden!important; opacity:0!important; pointer-events:none!important;
         }
 
-        /* === TIMELINE === */
+        /* TIMELINE */
         .timeline-container {
             position: relative;
             max-width: 1200px;
@@ -140,7 +140,7 @@
             position: relative;
         }
         .timeline-content h4::after {
-            content: '❤️';
+            content: 'heart';
             position: absolute;
             right: -20px;
             top: 0;
@@ -181,7 +181,7 @@
             .timeline-content { padding: 15px 20px; }
         }
 
-        /* === DİĞER STİLLER === */
+        /* DİĞER STİLLER */
         .photo-container { position:relative; overflow:hidden; border-radius:0.5rem; box-shadow:0 4px 6px rgba(0,0,0,0.1); aspect-ratio:1/1; }
         .gallery-thumbnail { transition:transform .3s ease-in-out; }
         .group:hover .gallery-thumbnail { transform:scale(1.1); }
@@ -229,7 +229,7 @@
 
 <main class="container mx-auto px-6 pb-12">
 
-    <!-- İLK ADIM (ORİJİNAL AÇIKLAMALAR + %200 BÜYÜK BAŞLIK) -->
+    <!-- İLK ADIM -->
     <section class="max-w-3xl mx-auto my-12 text-center bg-white/80 backdrop-blur-sm p-8 rounded-lg shadow-lg">
         <h3 id="ilk-adim-baslik" class="font-bold text-red-600 mb-4">İlk Adım</h3>
         <p class="text-lg leading-relaxed text-black">
@@ -243,7 +243,7 @@
             O gün, sadece iki kişi tanışmadı; iki ruh, birbirini buldu. 
             Ve o andan itibaren, her adımımız birlikte atılmak üzereydi.
         </p>
-        <div class="text-4xl text-green-500 mt-8 heartbeat">❤️</div>
+        <div class="text-4xl text-red-500 mt-8 heartbeat"><i class="fas fa-heart"></i></div>
     </section>
 
     <!-- Şiir -->
@@ -257,21 +257,21 @@
         <p class="text-right text-red-600 font-semibold mt-4 pr-4">- Nazım Hikmet</p>
     </section>
 
-    <!-- AŞK ZAMAN ÇİZELGESİ -->
+    <!-- AŞK ZAMAN ÇİZELGESİ - ORİJİNAL HALİNE GETİRİLDİ -->
     <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
         <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Aşk Zaman Çizelgesi</h3>
         <p class="text-center text-black italic mb-8">Yolculuğumuzun unutulmaz anlarını, kalplerin ritmiyle keşfedin...</p>
         
         <div class="timeline-container">
             <div class="timeline-item left">
-                <div class="timeline-icon"><i class="fas fa-heart heartbeat text-red-500"></i></div>
+                <div class="timeline-icon"><i class="fas fa-heart heartbeat"></i></div>
                 <div class="timeline-content">
                     <h4>Eylül</h4>
                     <p>Yaprakların dans ettiği o sonbahar gününde, gözlerinle tanıştım seninle...</p>
                 </div>
             </div>
             <div class="timeline-item right">
-                <div class="timeline-icon"><i class="fas fa-infinity heartbeat text-red-500"></i></div>
+                <div class="timeline-icon"><i class="fas fa-infinity heartbeat"></i></div>
                 <div class="timeline-content">
                     <h4>Sonsuza Dek...</h4>
                     <p>Yemin ettik birbirimize, yıldızlar şahitliğinde...</p>
@@ -280,7 +280,7 @@
         </div>
     </section>
 
-    <!-- Geri Sayım -->
+    <!-- GERİ SAYIM -->
     <section id="countdown-section" class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg text-center">
         <h3 class="font-bold text-center text-red-600 mb-6 font-forte-alternative">Büyük Güne Geri Sayım</h3>
         <div id="countdown-timer" class="hidden grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
@@ -290,7 +290,7 @@
             <div><div id="seconds" class="text-4xl font-bold text-green-500">0</div><span class="text-black">Saniye</span></div>
         </div>
         <div id="countdown-placeholder" class="my-4">
-            <div class="text-8xl text-red-500">∞</div>
+            <div class="text-8xl text-red-500"><i class="fas fa-infinity"></i></div>
             <p class="text-lg text-black mt-4 italic">Sonsuzluğa giden yolculuğumuzun tarihi belli olduğunda...</p>
         </div>
     </section>
@@ -343,10 +343,13 @@
         </div>
     </section>
 
-    <!-- Fotoğraf Galerisi -->
+    <!-- FOTOĞRAF GALERİSİ -->
     <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
         <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Fotoğraf Galerimiz</h3>
-        <p class="text-center text-black italic">İşte yolculuğumuzda biriktirdiğimiz anlardan ilk kareler...</p>
+        <p class="text-center text-black italic">
+          İşte yolculuğumuzda biriktirdiğimiz anlardan ilk kareler... 
+          Bu galeri, zamanla daha nice güzel anıyla dolacak.
+        </p>
         <div class="mt-8 text-center">
             <button id="toggle-gallery-btn"
                     class="inline-flex items-center justify-center py-2 px-6 border border-red-600 shadow-sm text-sm font-medium rounded-md text-red-600 bg-white hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors">
@@ -594,7 +597,7 @@
             if (diff <= 0) {
                 clearInterval(intv);
                 timer.innerHTML = '<p class="col-span-full text-xl text-green-600">Ve o güzel gün geldi!</p>';
-                header.innerHTML = '❤️';
+                header.innerHTML = 'heart';
                 return;
             }
             const d = Math.floor(diff/(1000*60*60*24));
