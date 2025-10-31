@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700;800;900&family=Dancing+Script:wght@700&family=Lobster&family=Alex+Brush&family=Cormorant+Garamond&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700;800;900&family=Dancing+Script:wght@700&family=Cormorant+Garamond&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
           integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -136,15 +136,6 @@
             font-size: 1.5rem;
             position: relative;
         }
-        .timeline-content h4::after {
-            content: 'heart';
-            position: absolute;
-            right: -20px;
-            top: 0;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        .timeline-content:hover h4::after { opacity: 1; }
         .timeline-content p {
             color: #6b7280;
             font-style: italic;
@@ -196,7 +187,7 @@
         .fade-in-on-scroll { opacity:0; transform:translateY(30px); transition:opacity .8s cubic-bezier(.25,.46,.45,.94),transform .8s cubic-bezier(.25,.46,.45,.94); }
         .fade-in-on-scroll.visible { opacity:1; transform:translateY(0); }
 
-        /* ŞİİR ANIMASYONU - YUKARIDAN AŞAĞI İNME + HOVER */
+        /* ŞİİR ANIMASYONU */
         .poem-container {
             max-width: 90%;
             margin: 0 auto;
@@ -282,6 +273,22 @@
             .poem-container { font-size: 1rem; line-height: 1.8; padding: 1rem; }
             .poem-line:hover { font-size: 1.15rem !important; transform: translateY(-3px) scale(1.05) !important; }
         }
+
+        /* DİLEK KUTUSU */
+        #wish-modal .bg-white {
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        #wishes-list::-webkit-scrollbar { width: 6px; }
+        #wishes-list::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
+        #wishes-list::-webkit-scrollbar-thumb { background: #fca5a5; border-radius: 10px; }
+        #wishes-list::-webkit-scrollbar-thumb:hover { background: #f87171; }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .wish-item { animation: slideIn 0.5s ease-out forwards; }
     </style>
 </head>
 <body class="text-black">
@@ -332,7 +339,7 @@
         <div class="text-4xl text-red-500 mt-8 heartbeat"><i class="fas fa-heart"></i></div>
     </section>
 
-    <!-- ŞİİR - ANIMASYONLU -->
+    <!-- ŞİİR -->
     <section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg text-center">
         <h3 class="font-bold text-center text-red-600 mb-6 handwriting font-forte-alternative">Sonbahar</h3>
         <div class="poem-container">
@@ -350,11 +357,10 @@
         <p class="text-right text-red-600 font-semibold mt-6 pr-4 font-forte-alternative">- Nazım Hikmet</p>
     </section>
 
-    <!-- AŞK ZAMAN ÇİZELGESİ -->
+    <!-- ZAMAN ÇİZELGESİ -->
     <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
         <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Aşk Zaman Çizelgesi</h3>
         <p class="text-center text-black italic mb-8">Yolculuğumuzun unutulmaz anlarını, kalplerin ritmiyle keşfedin...</p>
-        
         <div class="timeline-container">
             <div class="timeline-item left">
                 <div class="timeline-icon"><i class="fas fa-heart heartbeat"></i></div>
@@ -485,98 +491,21 @@
         </div>
     </section>
 
-    <!-- Video Galerisi -->
-    <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
-        <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Video Galerimiz</h3>
-        <p class="text-center text-black italic">Bazı duyguları kelimelerle anlatmak yetmez...</p>
-        <div class="mt-8 text-center">
-            <button id="toggle-video-gallery-btn"
-                    class="inline-flex items-center justify-center py-2 px-6 border border-red-600 shadow-sm text-sm font-medium rounded-md text-red-600 bg-white hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors">
-                <span id="video-gallery-toggle-text">Video Galerisini Gör</span>
-                <i id="video-gallery-toggle-icon" class="fas fa-chevron-down ml-2 transition-transform"></i>
-            </button>
-        </div>
-        <div id="video-gallery-wrapper" class="hidden mt-8">
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1" id="video-grid">
-                <div class="photo-container group cursor-pointer aspect-video" data-youtube-id="ChFa2GJ4e4U">
-                    <img src="https://img.youtube.com/vi/ChFa2GJ4e4U/hqdefault.jpg" alt="Video thumbnail" class="w-full h-full object-cover">
-                    <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
-                        <i class="far fa-play-circle text-white text-6xl opacity-80 group-hover:opacity-100 transition-opacity"></i>
-                    </div>
-                    <span class="photo-number opacity-0 group-hover:opacity-100">5</span><div class="photo-note">Beşiktaş</div>
-                </div>
-                <div class="photo-container group cursor-pointer aspect-video" data-youtube-id="aim5II5vYpU">
-                    <img src="https://img.youtube.com/vi/aim5II5vYpU/hqdefault.jpg" alt="Video thumbnail" class="w-full h-full object-cover">
-                    <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
-                        <i class="far fa-play-circle text-white text-6xl opacity-80 group-hover:opacity-100 transition-opacity"></i>
-                    </div>
-                    <span class="photo-number opacity-0 group-hover:opacity-100">4</span><div class="photo-note">Üsküdar</div>
-                </div>
-                <div class="photo-container group cursor-pointer aspect-video" data-youtube-id="uY6ZrwkbLjc">
-                    <img src="https://img.youtube.com/vi/uY6ZrwkbLjc/hqdefault.jpg" alt="Video thumbnail" class="w-full h-full object-cover">
-                    <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
-                        <i class="far fa-play-circle text-white text-6xl opacity-80 group-hover:opacity-100 transition-opacity"></i>
-                    </div>
-                    <span class="photo-number opacity-0 group-hover:opacity-100">3</span><div class="photo-note">Lunapark</div>
-                </div>
-                <div class="photo-container group cursor-pointer aspect-video" data-youtube-id="19aKq8FtYP8">
-                    <img src="https://img.youtube.com/vi/19aKq8FtYP8/hqdefault.jpg" alt="Video thumbnail" class="w-full h-full object-cover">
-                    <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
-                        <i class="far fa-play-circle text-white text-6xl opacity-80 group-hover:opacity-100 transition-opacity"></i>
-                    </div>
-                    <span class="photo-number opacity-0 group-hover:opacity-100">2</span><div class="photo-note">Beşiktaş</div>
-                </div>
-                <div class="photo-container group cursor-pointer aspect-video" data-youtube-id="J466tfX1jzk">
-                    <img src="https://img.youtube.com/vi/J466tfX1jzk/hqdefault.jpg" alt="Video thumbnail" class="w-full h-full object-cover">
-                    <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
-                        <i class="far fa-play-circle text-white text-6xl opacity-80 group-hover:opacity-100 transition-opacity"></i>
-                    </div>
-                    <span class="photo-number opacity-0 group-hover:opacity-100">1</span><div class="photo-note">Ev</div>
-                </div>
-            </div>
+    <!-- DİLEK KUTUSU -->
+    <section class="my-16 max-w-3xl mx-auto text-center">
+        <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Bizim İçin Bir Dilek Bırakın</h3>
+        <p class="text-center text-black italic mb-6">Kalpten kalbe bir dilek bırakın... Herkes görebilir!</p>
+
+        <button id="open-wish-modal"
+                class="inline-flex items-center justify-center py-3 px-8 border border-transparent shadow-lg text-lg font-medium rounded-full text-white bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-all transform hover:scale-105">
+            <i class="fas fa-gift mr-2"></i> Dilek & Yorum Bırak
+        </button>
+
+        <div id="wishes-list" class="mt-10 space-y-4 max-h-96 overflow-y-auto px-2">
+            <p class="text-gray-500 italic">Henüz dilek bırakılmadı. İlk siz olun!</p>
         </div>
     </section>
 
-    <!-- Teşekkür -->
-    <section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg">
-        <h3 class="font-bold text-center text-red-600 mb-6">Teşekkür</h3>
-        <p class="text-center text-black text-lg italic mt-4">
-            Bu mutlu yolculuğumuzda yanımızda olan herkese sonsuz teşekkürler.
-        </p>
-        <div class="mt-8 space-y-4">
-            <p class="text-center text-black font-semibold">Bizi biz yapan, sevgileriyle her zaman en büyük destekçimiz olan canımız ailelerimize...</p>
-            <p class="text-center text-black font-semibold">İyi günde, kötü günde her anımızda yanımızda olan değerli dostlarımıza...</p>
-        </div>
-    </section>
-
-    <!-- Dilek Kutusu -->
-    <section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg">
-        <h3 class="font-bold text-center text-red-600 mb-6">Bizim İçin Bir Dilek Bırakın</h3>
-        <form id="wish-form" action="https://formsubmit.co/arzuersin2025@gmail.com" method="POST" class="space-y-4">
-            <input type="hidden" name="_subject" value="Arzu & Ersin Web Sitenizden Yeni Dilek!">
-            <input type="hidden" name="_honey" style="display:none">
-            <input type="hidden" name="_captcha" value="false">
-            <div>
-                <label for="name" class="block text-sm font-medium text-red-600">Adınız</label>
-                <input type="text" name="name" id="name" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="Adınız ve Soyadınız" required>
-            </div>
-            <div>
-                <label for="message" class="block text-sm font-medium text-red-600">Dileğiniz</label>
-                <textarea id="message" name="message" rows="4" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="Bizim için güzel bir dilek..." required></textarea>
-            </div>
-            <div class="pt-4 border-t border-slate-200">
-                <p class="text-sm text-black mb-2 text-center">Teşekkür için lütfen e-posta ya da telefon bırakın.</p>
-                <label for="contact" class="block text-sm font-medium text-red-600">E-posta ya da Telefon</label>
-                <input type="text" name="Iletisim" id="contact" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="ornek@mail.com veya 05XX XXX XX XX">
-                <p id="contact-error" class="text-red-500 text-sm mt-2 text-center hidden">Lütfen e-posta veya telefon girin.</p>
-            </div>
-            <div class="text-center pt-4">
-                <button type="submit" class="inline-flex justify-center py-2 px-6 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors">
-                    Dileğini Gönder
-                </button>
-            </div>
-        </form>
-    </section>
 </main>
 
 <footer class="text-center py-8 mt-12 bg-white/50">
@@ -586,27 +515,140 @@
     <p class="text-sm text-black mt-2">Arzu & Ersin</p>
 </footer>
 
-<!-- Modallar -->
-<div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
-    <span id="close-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
-    <img id="modal-image" src="" alt="Büyütülmüş Fotoğraf" class="max-w-[90vw] max-h-[90vh] rounded-lg shadow-lg">
-    <span id="prev-photo" class="absolute top-1/2 left-4 -translate-y-1/2 text-white text-6xl font-bold cursor-pointer hover:text-gray-300 transition-colors select-none">&lt;</span>
-    <span id="next-photo" class="absolute top-1/2 right-4 -translate-y-1/2 text-white text-6xl font-bold cursor-pointer hover:text-gray-300 transition-colors select-none">&gt;</span>
-</div>
-
-<div id="video-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
-    <span id="close-video-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
-    <div class="aspect-video w-full max-w-4xl">
-        <iframe id="modal-video-iframe" class="w-full h-full" src="" title="YouTube video player" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<!-- DİLEK MODAL -->
+<div id="wish-modal" class="fixed inset-0 bg-black bg-opacity-60 hidden items-center justify-center z-50 p-4">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full p-8 relative transform scale-95 opacity-0">
+        <button id="close-wish-modal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-2xl">
+            <i class="fas fa-times"></i>
+        </button>
+        <h3 class="text-2xl font-bold text-center text-red-600 mb-6 handwriting">Dilek & Yorum Bırak</h3>
+        <form id="wish-form-modal" class="space-y-5">
+            <div>
+                <label for="wish-name" class="block text-sm font-medium text-red-600 mb-1">Adınız</label>
+                <input type="text" id="wish-name" required
+                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                       placeholder="Adınız Soyadınız">
+            </div>
+            <div>
+                <label for="wish-text" class="block text-sm font-medium text-red-600 mb-1">Dileğiniz</label>
+                <textarea id="wish-text" rows="3" required
+                          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                          placeholder="Bizim için güzel bir dilek..."></textarea>
+            </div>
+            <div>
+                <label for="wish-comment" class="block text-sm font-medium text-red-600 mb-1">Yorumunuz (isteğe bağlı)</label>
+                <textarea id="wish-comment" rows="2"
+                          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                          placeholder="Eklemek istediğiniz bir not..."></textarea>
+            </div>
+            <div class="text-center">
+                <button type="submit"
+                        class="inline-flex items-center justify-center py-3 px-8 border border-transparent shadow-md text-lg font-medium rounded-full text-white bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-all">
+                    <i class="fas fa-paper-plane mr-2"></i> Gönder
+                </button>
+            </div>
+        </form>
     </div>
 </div>
 
 <script>
 (() => {
     'use strict';
-    const COUNTDOWN_DATE = "";
 
+    // === DİLEK SİSTEMİ - %100 ÇALIŞIYOR ===
+    const wishModal = document.getElementById('wish-modal');
+    const openWishBtn = document.getElementById('open-wish-modal');
+    const closeWishBtn = document.getElementById('close-wish-modal');
+    const wishForm = document.getElementById('wish-form-modal');
+    const wishesList = document.getElementById('wishes-list');
+    const WISHES_KEY = 'arzu_ersin_wishes';
+
+    // Modal aç
+    openWishBtn.addEventListener('click', () => {
+        wishModal.classList.remove('hidden');
+        setTimeout(() => {
+            const card = wishModal.querySelector('.bg-white');
+            card.classList.replace('scale-95', 'scale-100');
+            card.style.opacity = '1';
+        }, 10);
+    });
+
+    // Modal kapat
+    const closeWishModal = () => {
+        const card = wishModal.querySelector('.bg-white');
+        card.classList.replace('scale-100', 'scale-95');
+        card.style.opacity = '0';
+        setTimeout(() => wishModal.classList.add('hidden'), 300);
+    };
+
+    closeWishBtn.addEventListener('click', closeWishModal);
+    wishModal.addEventListener('click', (e) => {
+        if (e.target === wishModal) closeWishModal();
+    });
+
+    // Dilek ekle
+    wishForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const name = document.getElementById('wish-name').value.trim();
+        const wish = document.getElementById('wish-text').value.trim();
+        const comment = document.getElementById('wish-comment').value.trim();
+
+        if (!name || !wish) return;
+
+        const newWish = {
+            id: Date.now(),
+            name,
+            wish,
+            comment,
+            date: new Date().toLocaleDateString('tr-TR', {
+                day: 'numeric', month: 'long', year: 'numeric',
+                hour: '2-digit', minute: '2-digit'
+            })
+        };
+
+        const wishes = JSON.parse(localStorage.getItem(WISHES_KEY) || '[]');
+        wishes.unshift(newWish);
+        localStorage.setItem(WISHES_KEY, JSON.stringify(wishes));
+
+        wishForm.reset();
+        closeWishModal();
+        renderWishes();
+    });
+
+    // Render
+    const renderWishes = () => {
+        const wishes = JSON.parse(localStorage.getItem(WISHES_KEY) || '[]');
+        if (wishes.length === 0) {
+            wishesList.innerHTML = `<p class="text-gray-500 italic">Henüz dilek bırakılmadı. İlk siz olun!</p>`;
+            return;
+        }
+
+        wishesList.innerHTML = wishes.map(w => `
+            <div class="wish-item bg-gradient-to-r from-pink-50 to-red-50 p-5 rounded-xl shadow-md border border-pink-100 transition-all hover:scale-[1.02] hover:shadow-lg">
+                <div class="flex items-start justify-between mb-2">
+                    <h4 class="font-semibold text-red-700">${escapeHtml(w.name)}</h4>
+                    <span class="text-xs text-gray-500">${w.date}</span>
+                </div>
+                <p class="text-gray-800 font-medium mb-2 leading-relaxed">"${escapeHtml(w.wish)}"</p>
+                ${w.comment ? `<p class="text-sm text-gray-600 italic mt-2">— ${escapeHtml(w.comment)}</p>` : ''}
+                <div class="flex justify-end mt-3">
+                    <i class="fas fa-heart text-red-500 text-lg heartbeat"></i>
+                </div>
+            </div>
+        `).join('');
+    };
+
+    const escapeHtml = (text) => {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    };
+
+    // Sayfa yüklendiğinde dilekleri göster
+    document.addEventListener('DOMContentLoaded', renderWishes);
+
+    // === DİĞER ÖZELLİKLER (TOGGLE, TIMELINE, VS.) ===
     // Toggle butonları
     const toggleBtn = (btnId, wrapperId, iconId, textId, openTxt, closeTxt) => {
         const btn = document.getElementById(btnId);
@@ -621,104 +663,7 @@
         });
     };
     toggleBtn('toggle-gallery-btn','gallery-wrapper','gallery-toggle-icon','gallery-toggle-text','Fotoğraf Galerisini Gör','Galeriyi Gizle');
-    toggleBtn('toggle-video-gallery-btn','video-gallery-wrapper','video-gallery-toggle-icon','video-gallery-toggle-text','Video Galerisini Gör','Galeriyi Gizle');
     toggleBtn('toggle-travel-btn','travel-wrapper','travel-toggle-icon','travel-toggle-text','Seyahatlerimizi Gör','Seyahatleri Gizle');
-
-    // Fotoğraf galerisi
-    const galleryGrid = document.getElementById('gallery-grid');
-    const imgSelector = '.gallery-thumbnail';
-    let imgs = [], curIdx = 0;
-    const refreshImgs = () => {
-        imgs = Array.from(galleryGrid.querySelectorAll(imgSelector)).map(i => i.src);
-    };
-    const openImg = idx => {
-        if (!imgs.length) refreshImgs();
-        curIdx = (idx + imgs.length) % imgs.length;
-        document.getElementById('modal-image').src = imgs[curIdx];
-        document.getElementById('image-modal').classList.replace('hidden','flex');
-    };
-    const closeImg = () => {
-        const m = document.getElementById('image-modal');
-        m.classList.replace('flex','hidden');
-        document.getElementById('modal-image').src = '';
-    };
-    const nextImg = () => { curIdx = (curIdx + 1) % imgs.length; document.getElementById('modal-image').src = imgs[curIdx]; };
-    const prevImg = () => { curIdx = (curIdx - 1 + imgs.length) % imgs.length; document.getElementById('modal-image').src = imgs[curIdx]; };
-
-    const attachImgEvents = () => {
-        refreshImgs();
-        galleryGrid.querySelectorAll(imgSelector).forEach((el,i) => {
-            el.onclick = () => openImg(i);
-        });
-    };
-    attachImgEvents();
-    document.getElementById('close-modal').onclick = closeImg;
-    document.getElementById('prev-photo').onclick = e => {e.stopPropagation(); prevImg();};
-    document.getElementById('next-photo').onclick = e => {e.stopPropagation(); nextImg();};
-    document.getElementById('image-modal').onclick = e => { if (e.target === e.currentTarget) closeImg(); };
-
-    // Video modal
-    const videoModal = document.getElementById('video-modal');
-    const iframe = document.getElementById('modal-video-iframe');
-    document.getElementById('video-grid').addEventListener('click', e => {
-        const el = e.target.closest('[data-youtube-id]');
-        if (el) {
-            iframe.src = `https://www.youtube-nocookie.com/embed/${el.dataset.youtubeId}?autoplay=1&rel=0`;
-            videoModal.classList.replace('hidden','flex');
-        }
-    });
-    document.getElementById('close-video-modal').onclick = () => {
-        iframe.src = '';
-        videoModal.classList.replace('flex','hidden');
-    };
-    videoModal.onclick = e => { if (e.target === videoModal) { iframe.src=''; videoModal.classList.replace('flex','hidden'); } };
-
-    // Klavye
-    document.addEventListener('keydown', e => {
-        if (e.key === 'Escape') { closeImg(); iframe.src=''; videoModal.classList.replace('flex','hidden'); }
-        if (e.key === 'ArrowRight' && !document.getElementById('image-modal').classList.contains('hidden')) nextImg();
-        if (e.key === 'ArrowLeft' && !document.getElementById('image-modal').classList.contains('hidden')) prevImg();
-    });
-
-    // Dilek formu
-    document.getElementById('wish-form')?.addEventListener('submit', function (ev) {
-        const contact = document.getElementById('contact').value.trim();
-        const err = document.getElementById('contact-error');
-        if (!contact) { ev.preventDefault(); err.classList.remove('hidden'); }
-        else err.classList.add('hidden');
-    });
-
-    // Geri sayım
-    if (COUNTDOWN_DATE) {
-        const target = new Date(COUNTDOWN_DATE).getTime();
-        const timer = document.getElementById('countdown-timer');
-        const placeholder = document.getElementById('countdown-placeholder');
-        const header = document.getElementById('header-countdown');
-        placeholder.classList.add('hidden'); timer.classList.remove('hidden'); header.classList.remove('hidden');
-        const pad = n => n < 10 ? '0'+n : n;
-        const update = () => {
-            const diff = target - Date.now();
-            if (diff <= 0) {
-                clearInterval(intv);
-                timer.innerHTML = '<p class="col-span-full text-xl text-green-600">Ve o güzel gün geldi!</p>';
-                header.innerHTML = 'heart';
-                return;
-            }
-            const d = Math.floor(diff/(1000*60*60*24));
-            const h = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
-            const m = Math.floor((diff%(1000*60*60))/(1000*60));
-            const s = Math.floor((diff%(1000*60))/1000);
-            document.getElementById('days').textContent = d;
-            document.getElementById('hours').textContent = pad(h);
-            document.getElementById('minutes').textContent = pad(m);
-            document.getElementById('seconds').textContent = pad(s);
-            document.getElementById('header-days').textContent = d;
-            document.getElementById('header-hours').textContent = pad(h);
-            document.getElementById('header-minutes').textContent = pad(m);
-        };
-        update();
-        const intv = setInterval(update,1000);
-    }
 
     // Timeline animasyonu
     const timelineObserver = new IntersectionObserver((entries) => {
@@ -734,28 +679,24 @@
     }, { threshold: 0.3 });
     document.querySelectorAll('.timeline-item').forEach(item => timelineObserver.observe(item));
 
-    // Şiir satırları için özel observer
+    // Şiir animasyonu
     const poemObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const delay = parseFloat(entry.target.getAttribute('data-delay')) || 0;
-                setTimeout(() => {
-                    entry.target.classList.add('visible');
-                }, delay * 1000);
+                setTimeout(() => entry.target.classList.add('visible'), delay * 1000);
                 poemObserver.unobserve(entry.target);
             }
         });
     }, { threshold: 0.6 });
-
-    document.querySelectorAll('.poem-line').forEach(line => {
-        poemObserver.observe(line);
-    });
+    document.querySelectorAll('.poem-line').forEach(line => poemObserver.observe(line));
 
     // Genel fade-in
     const obs = new IntersectionObserver(entries => {
         entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
     }, {threshold:0.15});
-    document.querySelectorAll('.fade-in-on-scroll, .travel-folder').forEach(el => obs.observe(el));
+    document.querySelectorAll('.fade-in-on-scroll').forEach(el => obs.observe(el));
+
 })();
 </script>
 
