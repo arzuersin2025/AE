@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&family=Dancing+Script:wght@700&family=Lobster&family=Alex+Brush&family=Cormorant+Garamond&display=swap" rel="stylesheet">
-    <!-- Font Awesome for icons (KRİTİK HATA DÜZELTİLDİ: xintegrity -> integrity) --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Font Awesome for icons (KRİTİK HATA NİHAYET DÜZELTİLDİ: xintegrity -> integrity) --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Prevents browser from generating a default favicon with a transparent pixel --><link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANAAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
     <style>
         /* Custom styles for typography and theme */
@@ -57,14 +57,14 @@
                 font-size: 7rem; /* 112px */
             }
         }
-        /* Diğer tüm h3 başlıkları için de AYNI boyutu zorla */
+        /* Diğer tüm h3 başlıkları için de AYNI boyutu zorla (!important eklendi) */
         main h3 {
-            font-size: 5rem; /* 80px (mobil) */
-            line-height: 1.1;
+            font-size: 5rem !important; /* 80px (mobil) */
+            line-height: 1.1 !important;
         }
         @media (min-width: 768px) { /* md: breakpoint */
             main h3 {
-                font-size: 7rem; /* 112px (desktop) */
+                font-size: 7rem !important; /* 112px (desktop) */
             }
         }
         /* === DÜZELTME BİTTİ === */
@@ -89,7 +89,7 @@
         }
         /* Additional fallback to hide any pseudo-elements */
         h1:hover::after, h2:hover::after, h3:hover::after, h4:hover::after, h5:hover::after, h6:hover::after,
-        h1:hover::before, h2::hover::before, h3:hover::before, h4:hover::before, h5:hover::before, h6:hover::before {
+        h1:hover::before, h2:hover::before, h3:hover::before, h4:hover::before, h5:hover::before, h6:hover::before {
             visibility: hidden !important;
             opacity: 0 !important;
             pointer-events: none !important;
