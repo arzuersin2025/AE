@@ -25,6 +25,8 @@
         .font-forte-alternative { font-family: 'Dancing Script', cursive; }
         .font-poor-richard-alternative { font-family: 'Cormorant Garamond', serif; }
         .text-shadow { text-shadow: 2px 2px 4px rgba(0,0,0,0.6); }
+
+        /* KALP ATIŞI */
         @keyframes heartbeat {
             0% { transform: scale(1); }
             50% { transform: scale(1.1); }
@@ -32,7 +34,7 @@
         }
         .heartbeat { animation: heartbeat 1.5s infinite; }
 
-        /* "O GÜZEL SONBAHAR" - ORİJİNAL BÜYÜK BOYUT */
+        /* "O GÜZEL SONBAHAR" */
         #main-title {
             font-size: 3rem !important;
             line-height: 1.2 !important;
@@ -43,7 +45,7 @@
             }
         }
 
-        /* ANA BAŞLIKLAR - "İLK ADIM" HARİÇ */
+        /* ANA BAŞLIKLAR */
         main h3:not(#ilk-adim-baslik) {
             font-size: 1.5rem !important;
             line-height: 1.3 !important;
@@ -54,7 +56,7 @@
             }
         }
 
-        /* SADECE "İLK ADIM" - %200 BÜYÜTÜLDÜ */
+        /* İLK ADIM */
         #ilk-adim-baslik {
             font-size: 1.5rem !important;
             line-height: 1.4 !important;
@@ -66,11 +68,6 @@
         }
 
         header, #main-title-section { border:none!important; box-shadow:none!important; }
-        h1::before, h2::before, h3::before, h4::before, h5::before, h6::before { content:''; position:absolute; left:-2rem; top:0; width:2rem; height:100%; z-index:10; }
-        h1:hover::after, h2:hover::after, h3:hover::after, h4:hover::after, h5:hover::after, h6:hover::after,
-        h1:hover::before, h2:hover::before, h3:hover::before, h4:hover::before, h5:hover::before, h6:hover::before {
-            visibility:hidden!important; opacity:0!important; pointer-events:none!important;
-        }
 
         /* TIMELINE */
         .timeline-container {
@@ -181,21 +178,110 @@
             .timeline-content { padding: 15px 20px; }
         }
 
-        /* DİĞER STİLLER */
+        /* FOTOĞRAF GALERİSİ */
         .photo-container { position:relative; overflow:hidden; border-radius:0.5rem; box-shadow:0 4px 6px rgba(0,0,0,0.1); aspect-ratio:1/1; }
         .gallery-thumbnail { transition:transform .3s ease-in-out; }
         .group:hover .gallery-thumbnail { transform:scale(1.1); }
         .photo-note { position:absolute; bottom:0; left:0; right:0; color:white; padding:0.5rem 0.75rem; font-size:0.75rem; text-align:center; line-height:1.2; text-shadow:1px 1px 3px rgba(0,0,0,0.9); }
-        .photo-number { position:absolute; bottom:0.5rem; right:0.75rem; color:white; font-size:1rem; font-weight:bold; text-shadow:1px 1px 3px rgba(0,0,0,0.9); opacity:0; transition:opacity .3s ease-in-out; }
+        .photo-number { 
+            position:absolute; bottom:0.5rem; right:0.75rem; color:white; font-size:1rem; font-weight:bold; 
+            text-shadow:1px 1px 3px rgba(0,0,0,0.9); opacity:0; transition:opacity .3s ease-in-out; 
+        }
         .group:hover .photo-number { opacity:1; }
         .photo-container.no-note .photo-note { display:none; }
-        .photo-container.no-note .photo-number { opacity:1; }
 
         .travel-folder { background:#f0fdf4; border:1px solid #a7f3d0; border-radius:0.5rem; padding:1rem; text-align:center; transition:transform .2s ease-in-out,box-shadow .2s ease-in-out; }
         .travel-folder:hover { transform:translateY(-5px); box-shadow:0 6px 12px rgba(0,0,0,0.1); }
 
         .fade-in-on-scroll { opacity:0; transform:translateY(30px); transition:opacity .8s cubic-bezier(.25,.46,.45,.94),transform .8s cubic-bezier(.25,.46,.45,.94); }
         .fade-in-on-scroll.visible { opacity:1; transform:translateY(0); }
+
+        /* ŞİİR ANIMASYONU - YUKARIDAN AŞAĞI İNME + HOVER */
+        .poem-container {
+            max-width: 90%;
+            margin: 0 auto;
+            padding: 2rem 0;
+            line-height: 2.3;
+            font-size: 1.15rem;
+            font-style: italic;
+            color: #1f2937;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(135deg, rgba(253, 250, 246, 0.9) 0%, rgba(255, 255, 255, 0.95) 100%);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .poem-line {
+            opacity: 0;
+            transform: translateY(-30px) scale(0.95);
+            display: block;
+            position: relative;
+            margin: 0.2rem 0;
+            padding: 0.5rem;
+            border-radius: 8px;
+            font-family: 'Cormorant Garamond', serif;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .poem-line.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            animation: fadeInDown 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeInDown {
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Hover efekti */
+        .poem-container:hover .poem-line {
+            color: #6b7280;
+            font-weight: 300;
+            font-size: 1.05rem;
+        }
+
+        .poem-container .poem-line:hover {
+            color: #dc2626 !important;
+            font-weight: 600 !important;
+            font-size: 1.25rem !important;
+            transform: translateY(-5px) scale(1.08) !important;
+            text-shadow: 0 4px 8px rgba(220, 38, 38, 0.3);
+            background: rgba(220, 38, 38, 0.05);
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.15);
+            z-index: 10;
+        }
+
+        .poem-container:hover .poem-line:not(:hover) {
+            opacity: 0.7;
+            filter: blur(0.3px);
+            transform: translateY(2px) scale(0.98);
+        }
+
+        /* Özel satırlar */
+        .poem-line:nth-child(8) { font-weight: 500; color: #b91c1c; }
+        .poem-line:nth-child(9) { font-style: italic; color: #92400e; }
+        .poem-line:nth-child(10) { color: #dc2626; font-weight: 700; font-size: 1.2em; text-shadow: 1px 1px 2px rgba(220, 38, 38, 0.2); }
+
+        .poem-container::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, transparent, #dc2626, transparent);
+            transform: scaleX(0);
+            transition: transform 0.6s ease;
+        }
+        .poem-container:hover::before { transform: scaleX(1); }
+
+        @media (max-width: 768px) {
+            .poem-container { font-size: 1rem; line-height: 1.8; padding: 1rem; }
+            .poem-line:hover { font-size: 1.15rem !important; transform: translateY(-3px) scale(1.05) !important; }
+        }
     </style>
 </head>
 <body class="text-black">
@@ -205,7 +291,7 @@
         <a href="#countdown-section" title="Geri Sayım"
            class="absolute top-1/2 -translate-y-1/2 right-4 text-green-600 hover:text-green-800 transition-colors z-20 text-center">
             <i class="fas fa-hourglass-start fa-2x"></i>
-            <div id="header-countdown" class="hidden text-[10px] font-semibold tracking-tight leading-tight">
+            <div id="header-countdown" class="hidden text-[10px] font-semibold tracking-tight leading-tight mt-1">
                 <span id="header-days">0</span>g <span id="header-hours">0</span>s <span id="header-minutes">0</span>d
             </div>
         </a>
@@ -246,15 +332,22 @@
         <div class="text-4xl text-red-500 mt-8 heartbeat"><i class="fas fa-heart"></i></div>
     </section>
 
-    <!-- Şiir - AYNI KALINLIK -->
+    <!-- ŞİİR - ANIMASYONLU -->
     <section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg text-center">
-        <blockquote class="text-lg italic text-black leading-loose font-medium font-[550]">
-            <p>"Çiçekli badem ağaçlarını unut.</p><p>değmez,</p><p>bu bahiste</p>
-            <p>geri gelmesi mümkün olmayan hatırlanmamalı.</p><p>ıslak saçlarını güneşte kurut</p>
-            <p>olgun meyvelerin baygınlığıyla parıldasın</p><p>nemli, ağır kızıltılar…</p>
-            <p>sevgilim, sevgilim,</p><p>mevsim</p><p>sonbahar…"</p>
-        </blockquote>
-        <p class="text-right text-red-600 font-semibold mt-4 pr-4">- Nazım Hikmet</p>
+        <h3 class="font-bold text-center text-red-600 mb-6 handwriting font-forte-alternative">Sonbahar</h3>
+        <div class="poem-container">
+            <div class="poem-line" data-delay="0.2">Çiçekli badem ağaçlarını unut.</div>
+            <div class="poem-line" data-delay="0.4">değmez,</div>
+            <div class="poem-line" data-delay="0.6">bu bahiste</div>
+            <div class="poem-line" data-delay="0.8">geri gelmesi mümkün olmayan hatırlanmamalı.</div>
+            <div class="poem-line" data-delay="1.0">ıslak saçlarını güneşte kurut</div>
+            <div class="poem-line" data-delay="1.2">olgun meyvelerin baygınlığıyla parıldasın</div>
+            <div class="poem-line" data-delay="1.4">nemli, ağır kızıltılar…</div>
+            <div class="poem-line" data-delay="1.7">sevgilim, sevgilim,</div>
+            <div class="poem-line" data-delay="2.0">mevsim</div>
+            <div class="poem-line" data-delay="2.3">sonbahar…</div>
+        </div>
+        <p class="text-right text-red-600 font-semibold mt-6 pr-4 font-forte-alternative">- Nazım Hikmet</p>
     </section>
 
     <!-- AŞK ZAMAN ÇİZELGESİ -->
@@ -290,7 +383,7 @@
             <div><div id="seconds" class="text-4xl font-bold text-green-500">0</div><span class="text-black">Saniye</span></div>
         </div>
         <div id="countdown-placeholder" class="my-4">
-            <div class="text-8xl text-red-500"><i class="fas fa-infinity"></i></div>
+            <div class="text-8xl text-red-500 heartbeat"><i class="fas fa-infinity"></i></div>
             <p class="text-lg text-black mt-4 italic">Sonsuzluğa giden yolculuğumuzun tarihi belli olduğunda...</p>
         </div>
     </section>
@@ -361,27 +454,32 @@
             <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-1" id="gallery-grid">
                 <div class="photo-container group cursor-pointer">
                     <img src="https://i.imgur.com/wf9Xhs9.jpg" alt="Anı fotoğrafı 6" class="gallery-thumbnail w-full h-full object-cover">
-                    <span class="photo-number">6</span><div class="photo-note">Lunapark Anısı</div>
+                    <span class="photo-number opacity-0 group-hover:opacity-100">6</span>
+                    <div class="photo-note">Lunapark Anısı</div>
                 </div>
                 <div class="photo-container group cursor-pointer">
                     <img src="https://i.imgur.com/G26zsUc.jpg" alt="Anı fotoğrafı 5" class="gallery-thumbnail w-full h-full object-cover">
-                    <span class="photo-number">5</span><div class="photo-note">Beşiktaş</div>
+                    <span class="photo-number opacity-0 group-hover:opacity-100">5</span>
+                    <div class="photo-note">Beşiktaş</div>
                 </div>
-                <div class="photo-container group cursor-pointer no-note">
+                <div class="photo-container group cursor-pointer">
                     <img src="https://i.imgur.com/PR2hWYz.jpg" alt="Anı fotoğrafı 4" class="gallery-thumbnail w-full h-full object-cover">
-                    <span class="photo-number">4</span>
+                    <span class="photo-number opacity-0 group-hover:opacity-100">4</span>
+                    <div class="photo-note">Çamlıca Kahvaltımız</div>
                 </div>
                 <div class="photo-container group cursor-pointer">
                     <img src="https://i.imgur.com/40oguJF.jpg" alt="Anı fotoğrafı 3" class="gallery-thumbnail w-full h-full object-cover">
-                    <span class="photo-number">3</span><div class="photo-note">Çamlıca Kahvaltımız</div>
+                    <span class="photo-number opacity-0 group-hover:opacity-100">3</span>
+                    <div class="photo-note">Çamlıca Kahvaltımız</div>
                 </div>
                 <div class="photo-container group cursor-pointer">
                     <img src="https://i.imgur.com/KZpZnaa.jpg" alt="Anı fotoğrafı 2" class="gallery-thumbnail w-full h-full object-cover">
-                    <span class="photo-number">2</span><div class="photo-note">Dünya Güzelim</div>
+                    <span class="photo-number opacity-0 group-hover:opacity-100">2</span>
+                    <div class="photo-note">Dünya Güzelim</div>
                 </div>
                 <div class="photo-container group cursor-pointer no-note">
                     <img src="https://i.imgur.com/WnEibNN.jpg" alt="Anı fotoğrafı 1" class="gallery-thumbnail w-full h-full object-cover">
-                    <span class="photo-number">1</span>
+                    <span class="photo-number opacity-0 group-hover:opacity-100">1</span>
                 </div>
             </div>
         </div>
@@ -405,35 +503,35 @@
                     <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
                         <i class="far fa-play-circle text-white text-6xl opacity-80 group-hover:opacity-100 transition-opacity"></i>
                     </div>
-                    <span class="photo-number">5</span><div class="photo-note">Beşiktaş</div>
+                    <span class="photo-number opacity-0 group-hover:opacity-100">5</span><div class="photo-note">Beşiktaş</div>
                 </div>
                 <div class="photo-container group cursor-pointer aspect-video" data-youtube-id="aim5II5vYpU">
                     <img src="https://img.youtube.com/vi/aim5II5vYpU/hqdefault.jpg" alt="Video thumbnail" class="w-full h-full object-cover">
                     <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
                         <i class="far fa-play-circle text-white text-6xl opacity-80 group-hover:opacity-100 transition-opacity"></i>
                     </div>
-                    <span class="photo-number">4</span><div class="photo-note">Üsküdar</div>
+                    <span class="photo-number opacity-0 group-hover:opacity-100">4</span><div class="photo-note">Üsküdar</div>
                 </div>
                 <div class="photo-container group cursor-pointer aspect-video" data-youtube-id="uY6ZrwkbLjc">
                     <img src="https://img.youtube.com/vi/uY6ZrwkbLjc/hqdefault.jpg" alt="Video thumbnail" class="w-full h-full object-cover">
                     <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
                         <i class="far fa-play-circle text-white text-6xl opacity-80 group-hover:opacity-100 transition-opacity"></i>
                     </div>
-                    <span class="photo-number">3</span><div class="photo-note">Lunapark</div>
+                    <span class="photo-number opacity-0 group-hover:opacity-100">3</span><div class="photo-note">Lunapark</div>
                 </div>
                 <div class="photo-container group cursor-pointer aspect-video" data-youtube-id="19aKq8FtYP8">
                     <img src="https://img.youtube.com/vi/19aKq8FtYP8/hqdefault.jpg" alt="Video thumbnail" class="w-full h-full object-cover">
                     <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
                         <i class="far fa-play-circle text-white text-6xl opacity-80 group-hover:opacity-100 transition-opacity"></i>
                     </div>
-                    <span class="photo-number">2</span><div class="photo-note">Beşiktaş</div>
+                    <span class="photo-number opacity-0 group-hover:opacity-100">2</span><div class="photo-note">Beşiktaş</div>
                 </div>
                 <div class="photo-container group cursor-pointer aspect-video" data-youtube-id="J466tfX1jzk">
                     <img src="https://img.youtube.com/vi/J466tfX1jzk/hqdefault.jpg" alt="Video thumbnail" class="w-full h-full object-cover">
                     <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
                         <i class="far fa-play-circle text-white text-6xl opacity-80 group-hover:opacity-100 transition-opacity"></i>
                     </div>
-                    <span class="photo-number">1</span><div class="photo-note">Ev</div>
+                    <span class="photo-number opacity-0 group-hover:opacity-100">1</span><div class="photo-note">Ev</div>
                 </div>
             </div>
         </div>
@@ -509,6 +607,7 @@
     'use strict';
     const COUNTDOWN_DATE = "";
 
+    // Toggle butonları
     const toggleBtn = (btnId, wrapperId, iconId, textId, openTxt, closeTxt) => {
         const btn = document.getElementById(btnId);
         const wrapper = document.getElementById(wrapperId);
@@ -525,6 +624,7 @@
     toggleBtn('toggle-video-gallery-btn','video-gallery-wrapper','video-gallery-toggle-icon','video-gallery-toggle-text','Video Galerisini Gör','Galeriyi Gizle');
     toggleBtn('toggle-travel-btn','travel-wrapper','travel-toggle-icon','travel-toggle-text','Seyahatlerimizi Gör','Seyahatleri Gizle');
 
+    // Fotoğraf galerisi
     const galleryGrid = document.getElementById('gallery-grid');
     const imgSelector = '.gallery-thumbnail';
     let imgs = [], curIdx = 0;
@@ -557,6 +657,7 @@
     document.getElementById('next-photo').onclick = e => {e.stopPropagation(); nextImg();};
     document.getElementById('image-modal').onclick = e => { if (e.target === e.currentTarget) closeImg(); };
 
+    // Video modal
     const videoModal = document.getElementById('video-modal');
     const iframe = document.getElementById('modal-video-iframe');
     document.getElementById('video-grid').addEventListener('click', e => {
@@ -572,12 +673,14 @@
     };
     videoModal.onclick = e => { if (e.target === videoModal) { iframe.src=''; videoModal.classList.replace('flex','hidden'); } };
 
+    // Klavye
     document.addEventListener('keydown', e => {
         if (e.key === 'Escape') { closeImg(); iframe.src=''; videoModal.classList.replace('flex','hidden'); }
         if (e.key === 'ArrowRight' && !document.getElementById('image-modal').classList.contains('hidden')) nextImg();
         if (e.key === 'ArrowLeft' && !document.getElementById('image-modal').classList.contains('hidden')) prevImg();
     });
 
+    // Dilek formu
     document.getElementById('wish-form')?.addEventListener('submit', function (ev) {
         const contact = document.getElementById('contact').value.trim();
         const err = document.getElementById('contact-error');
@@ -585,6 +688,7 @@
         else err.classList.add('hidden');
     });
 
+    // Geri sayım
     if (COUNTDOWN_DATE) {
         const target = new Date(COUNTDOWN_DATE).getTime();
         const timer = document.getElementById('countdown-timer');
@@ -616,6 +720,7 @@
         const intv = setInterval(update,1000);
     }
 
+    // Timeline animasyonu
     const timelineObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry, index) => {
             if (entry.isIntersecting) {
@@ -629,6 +734,24 @@
     }, { threshold: 0.3 });
     document.querySelectorAll('.timeline-item').forEach(item => timelineObserver.observe(item));
 
+    // Şiir satırları için özel observer
+    const poemObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const delay = parseFloat(entry.target.getAttribute('data-delay')) || 0;
+                setTimeout(() => {
+                    entry.target.classList.add('visible');
+                }, delay * 1000);
+                poemObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.6 });
+
+    document.querySelectorAll('.poem-line').forEach(line => {
+        poemObserver.observe(line);
+    });
+
+    // Genel fade-in
     const obs = new IntersectionObserver(entries => {
         entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
     }, {threshold:0.15});
