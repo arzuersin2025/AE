@@ -125,6 +125,16 @@
         .group:hover .photo-number {
             opacity: 1; /* Fare üzerine gelince göster */
         }
+        
+        /* === YENİ EKLEME: Not olmayan fotoğraflar için numara hep görünsün === */
+        .photo-container.no-note .photo-note {
+            display: none; /* Notu tamamen gizle */
+        }
+        .photo-container.no-note .photo-number {
+            opacity: 1; /* Numarayı her zaman göster */
+        }
+        /* === BİTTİ === */
+
         .photo-note.no-shadow {
             text-shadow: none;
         }
@@ -513,10 +523,10 @@
                         <div class="photo-note">Beşiktaş</div>
                     </div>
 
-                    <!-- Fotoğraf 4 (URL DÜZELTİLDİ) --><div class="photo-container group cursor-pointer">
+                    <!-- Fotoğraf 4 (URL DÜZELTİLDİ VE NOT KALDIRILDI) --><div class="photo-container group cursor-pointer no-note">
                         <img src="https://i.imgur.com/PR2hWYz.jpg" alt="Anı fotoğrafı 4" class="gallery-thumbnail w-full h-full object-cover">
                         <span class="photo-number">4</span>
-                        <div class="photo-note no-shadow">Aksaray</div>
+                        <!-- <div class="photo-note no-shadow">Aksaray</div> --> <!-- BU SATIR KALDIRILDI -->
                     </div>
 
                     <!-- Fotoğraf 3 --><div class="photo-container group cursor-pointer">
@@ -531,7 +541,7 @@
                         <div class="photo-note">Dünya Güzelim</div>
                     </div>
                     
-                    <!-- Fotoğraf 1 --><div class="photo-container group cursor-pointer">
+                    <!-- Fotoğraf 1 (NOT OLMADIĞI İÇİN no-note SINIFI EKLENDİ) --><div class="photo-container group cursor-pointer no-note">
                         <img src="https://i.imgur.com/WnEibNN.jpg" alt="Anı fotoğrafı 1" class="gallery-thumbnail w-full h-full object-cover">
                         <span class="photo-number">1</span>
                     </div>
@@ -963,4 +973,3 @@
     <!-- (Orijinal sayfanda eski, kısmi/eksik script blokları kaldırıldı ve yukarıdaki tek blokla değiştirildi.) -->
 </body>
 </html>
-
