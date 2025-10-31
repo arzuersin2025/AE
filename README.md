@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&family=Dancing+Script:wght@700&family=Lobster&family=Alex+Brush&family=Cormorant+Garamond&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700;800;900&family=Dancing+Script:wght@700&family=Lobster&family=Alex+Brush&family=Cormorant+Garamond&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
           integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -232,13 +232,13 @@
     <!-- İLK ADIM -->
     <section class="max-w-3xl mx-auto my-12 text-center bg-white/80 backdrop-blur-sm p-8 rounded-lg shadow-lg">
         <h3 id="ilk-adim-baslik" class="font-bold text-red-600 mb-4">İlk Adım</h3>
-        <p class="text-lg leading-relaxed text-black">
+        <p class="text-lg leading-relaxed font-medium font-[550] text-black">
             Her büyük hikayenin bir başlangıç anı vardır. Bizimki, 27 Eylül 2025'te, yaprakların sarıya döndüğü,
             havanın tatlı bir serinliğe büründüğü o güzel sonbahar gününde başladı. Gözlerimiz kesiştiğinde, 
             sanki zaman durdu. Kalbim ilk kez o kadar hızlı attı ki, sesini duyabiliyordum. 
             O an, "Bu kişi hayatımın geri kalanını değiştirecek" dedim içimden.
         </p>
-        <p class="text-lg leading-relaxed text-black mt-4">
+        <p class="text-lg leading-relaxed font-medium font-[550] text-black mt-4">
             İlk konuşmamız, ilk gülüşün, ilk dokunuşun... Her biri birer inci gibi dizildi hafızamıza. 
             O gün, sadece iki kişi tanışmadı; iki ruh, birbirini buldu. 
             Ve o andan itibaren, her adımımız birlikte atılmak üzereydi.
@@ -246,9 +246,9 @@
         <div class="text-4xl text-red-500 mt-8 heartbeat"><i class="fas fa-heart"></i></div>
     </section>
 
-    <!-- Şiir -->
+    <!-- Şiir - AYNI KALINLIK -->
     <section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg text-center">
-        <blockquote class="text-lg italic text-black leading-loose">
+        <blockquote class="text-lg italic text-black leading-loose font-medium font-[550]">
             <p>"Çiçekli badem ağaçlarını unut.</p><p>değmez,</p><p>bu bahiste</p>
             <p>geri gelmesi mümkün olmayan hatırlanmamalı.</p><p>ıslak saçlarını güneşte kurut</p>
             <p>olgun meyvelerin baygınlığıyla parıldasın</p><p>nemli, ağır kızıltılar…</p>
@@ -257,7 +257,7 @@
         <p class="text-right text-red-600 font-semibold mt-4 pr-4">- Nazım Hikmet</p>
     </section>
 
-    <!-- AŞK ZAMAN ÇİZELGESİ - ORİJİNAL HALİNE GETİRİLDİ -->
+    <!-- AŞK ZAMAN ÇİZELGESİ -->
     <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
         <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Aşk Zaman Çizelgesi</h3>
         <p class="text-center text-black italic mb-8">Yolculuğumuzun unutulmaz anlarını, kalplerin ritmiyle keşfedin...</p>
