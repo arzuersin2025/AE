@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -144,6 +145,7 @@
             transition: opacity 0.3s ease;
         }
         .timeline-content:hover h4::after { opacity: 1; }
+
         .timeline-content p {
             color: #6b7280;
             font-style: italic;
@@ -195,7 +197,7 @@
         .fade-in-on-scroll { opacity:0; transform:translateY(30px); transition:opacity .8s cubic-bezier(.25,.46,.45,.94),transform .8s cubic-bezier(.25,.46,.45,.94); }
         .fade-in-on-scroll.visible { opacity:1; transform:translateY(0); }
 
-        /* ŞİİR ANIMASYONU - YUKARIDAN AŞAĞI İNME + HOVER */
+        /* ŞİİR ANIMASYONU */
         .poem-container {
             max-width: 90%;
             margin: 0 auto;
@@ -238,7 +240,6 @@
             }
         }
 
-        /* Hover efekti */
         .poem-container:hover .poem-line {
             color: #6b7280;
             font-weight: 300;
@@ -262,7 +263,6 @@
             transform: translateY(2px) scale(0.98);
         }
 
-        /* Özel satırlar */
         .poem-line:nth-child(8) { font-weight: 500; color: #b91c1c; }
         .poem-line:nth-child(9) { font-style: italic; color: #92400e; }
         .poem-line:nth-child(10) { color: #dc2626; font-weight: 700; font-size: 1.2em; text-shadow: 1px 1px 2px rgba(220, 38, 38, 0.2); }
@@ -352,21 +352,27 @@
     <!-- AŞK ZAMAN ÇİZELGESİ -->
     <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
         <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Aşk Zaman Çizelgesi</h3>
-        <p class="text-center text-black italic mb-8">Yolculuğumuzun unutulmaz anlarını, kalplerin ritmiyle keşfedin...</p>
+        <p class="text-center text-black font-semibold italic mb-8">
+            Yolculuğumuzun unutulmaz anlarını, kalplerin ritmiyle keşfedin...
+        </p>
         
         <div class="timeline-container">
             <div class="timeline-item left">
                 <div class="timeline-icon"><i class="fas fa-heart heartbeat"></i></div>
                 <div class="timeline-content">
                     <h4>Eylül</h4>
-                    <p>Yaprakların dans ettiği o sonbahar gününde, gözlerinle tanıştım seninle...</p>
+                    <p class="font-semibold italic text-black">
+                        Yaprakların dans ettiği o sonbahar gününde, gözlerinle tanıştım seninle...
+                    </p>
                 </div>
             </div>
             <div class="timeline-item right">
                 <div class="timeline-icon"><i class="fas fa-infinity heartbeat"></i></div>
                 <div class="timeline-content">
                     <h4>Sonsuza Dek...</h4>
-                    <p>Yemin ettik birbirimize, yıldızlar şahitliğinde...</p>
+                    <p class="font-semibold italic text-black">
+                        Yemin ettik birbirimize, yıldızlar şahitliğinde...
+                    </p>
                 </div>
             </div>
         </div>
@@ -383,14 +389,16 @@
         </div>
         <div id="countdown-placeholder" class="my-4">
             <div class="text-8xl text-red-500 heartbeat"><i class="fas fa-infinity"></i></div>
-            <p class="text-lg text-black mt-4 italic">Sonsuzluğa giden yolculuğumuzun tarihi belli olduğunda...</p>
+            <p class="text-center text-black font-semibold italic text-lg mt-4">
+                Sonsuzluğa giden yolculuğumuzun tarihi belli olduğunda...
+            </p>
         </div>
     </section>
 
     <!-- Hayal Defterimiz -->
     <section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg fade-in-on-scroll">
         <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Hayal Defterimiz</h3>
-        <p class="text-center text-black text-lg italic mt-4 mb-8">
+        <p class="text-center text-black font-semibold italic text-lg mt-4 mb-8">
             Birlikte kurduğumuz hayaller, geleceğe dair ektiğimiz tohumlar...
         </p>
     </section>
@@ -406,7 +414,9 @@
     <!-- Seyahatlerimiz -->
     <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
         <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Seyahatlerimiz</h3>
-        <p class="text-center text-black italic">Birlikte keşfettiğimiz yerler...</p>
+        <p class="text-center text-black font-semibold italic">
+            Birlikte keşfettiğimiz yerler...
+        </p>
         <div class="mt-8 text-center">
             <button id="toggle-travel-btn"
                     class="inline-flex items-center justify-center py-2 px-6 border border-red-600 shadow-sm text-sm font-medium rounded-md text-red-600 bg-white hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors">
@@ -438,7 +448,7 @@
     <!-- FOTOĞRAF GALERİSİ -->
     <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
         <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Fotoğraf Galerimiz</h3>
-        <p class="text-center text-black italic">
+        <p class="text-center text-black font-semibold italic">
           İşte yolculuğumuzda biriktirdiğimiz anlardan ilk kareler... 
           Bu galeri, zamanla daha nice güzel anıyla dolacak.
         </p>
@@ -487,7 +497,9 @@
     <!-- Video Galerisi -->
     <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
         <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Video Galerimiz</h3>
-        <p class="text-center text-black italic">Bazı duyguları kelimelerle anlatmak yetmez...</p>
+        <p class="text-center text-black font-semibold">
+            Bazı duyguları kelimelerle anlatmak yetmez...
+        </p>
         <div class="mt-8 text-center">
             <button id="toggle-video-gallery-btn"
                     class="inline-flex items-center justify-center py-2 px-6 border border-red-600 shadow-sm text-sm font-medium rounded-md text-red-600 bg-white hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors">
