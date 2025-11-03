@@ -263,9 +263,12 @@
             transform: translateY(2px) scale(0.98);
         }
 
-        .poem-line:nth-child(8) { font-weight: 500; color: #b91c1c; }
-        .poem-line:nth-child(9) { font-style: italic; color: #92400e; }
-        .poem-line:nth-child(10) { color: #dc2626; font-weight: 700; font-size: 1.2em; text-shadow: 1px 1px 2px rgba(220, 38, 38, 0.2); }
+        .poem-line:nth-child(8),
+        .poem-line:nth-child(9),
+        .poem-line:nth-child(10) {
+            font-weight: 600 !important;
+            color: #dc2626 !important;
+        }
 
         .poem-container::before {
             content: '';
@@ -306,10 +309,11 @@
     </div>
 </header>
 
+<!-- KALINLAŞTIRILMIŞ TARİH VE ALT YAZI -->
 <section id="main-title-section" class="py-16 text-center">
     <h2 id="main-title" class="font-bold handwriting text-green-600">O Güzel Sonbahar</h2>
-    <p class="text-xl md:text-2xl mt-2 text-red-600">27 Eylül 2025</p>
-    <p class="text-lg mt-1 text-red-600 italic">Zamanın durduğu an</p>
+    <p class="text-xl md:text-2xl mt-2 text-red-600 font-bold">27 Eylül 2025</p>
+    <p class="text-lg mt-1 text-red-600 italic font-bold">Zamanın durduğu an</p>
 </section>
 
 <main class="container mx-auto px-6 pb-12">
@@ -331,20 +335,20 @@
         <div class="text-4xl text-red-500 mt-8 heartbeat"><i class="fas fa-heart"></i></div>
     </section>
 
-    <!-- ŞİİR - ANIMASYONLU -->
+    <!-- ŞİİR -->
     <section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg text-center">
         <h3 class="font-bold text-center text-red-600 mb-6 handwriting font-forte-alternative">Sonbahar</h3>
         <div class="poem-container">
-            <div class="poem-line" data-delay="0.2">Çiçekli badem ağaçlarını unut.</div>
-            <div class="poem-line" data-delay="0.4">değmez,</div>
-            <div class="poem-line" data-delay="0.6">bu bahiste</div>
-            <div class="poem-line" data-delay="0.8">geri gelmesi mümkün olmayan hatırlanmamalı.</div>
-            <div class="poem-line" data-delay="1.0">ıslak saçlarını güneşte kurut</div>
-            <div class="poem-line" data-delay="1.2">olgun meyvelerin baygınlığıyla parıldasın</div>
-            <div class="poem-line" data-delay="1.4">nemli, ağır kızıltılar…</div>
-            <div class="poem-line" data-delay="1.7">sevgilim, sevgilim,</div>
-            <div class="poem-line" data-delay="2.0">mevsim</div>
-            <div class="poem-line" data-delay="2.3">sonbahar…</div>
+            <div class="poem-line font-semibold italic text-black" data-delay="0.2">Çiçekli badem ağaçlarını unut.</div>
+            <div class="poem-line font-semibold italic text-black" data-delay="0.4">değmez,</div>
+            <div class="poem-line font-semibold italic text-black" data-delay="0.6">bu bahiste</div>
+            <div class="poem-line font-semibold italic text-black" data-delay="0.8">geri gelmesi mümkün olmayan hatırlanmamalı.</div>
+            <div class="poem-line font-semibold italic text-black" data-delay="1.0">ıslak saçlarını güneşte kurut</div>
+            <div class="poem-line font-semibold italic text-black" data-delay="1.2">olgun meyvelerin baygınlığıyla parıldasın</div>
+            <div class="poem-line font-semibold italic text-black" data-delay="1.4">nemli, ağır kızıltılar…</div>
+            <div class="poem-line font-semibold italic text-black" data-delay="1.7">sevgilim, sevgilim,</div>
+            <div class="poem-line font-semibold italic text-black" data-delay="2.0">mevsim</div>
+            <div class="poem-line font-semibold italic text-black" data-delay="2.3">sonbahar…</div>
         </div>
         <p class="text-right text-red-600 font-semibold mt-6 pr-4 font-forte-alternative">- Nazım Hikmet</p>
     </section>
