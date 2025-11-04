@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -24,7 +25,6 @@
         .font-forte-alternative { font-family: 'Dancing Script', cursive; }
         .font-poor-richard-alternative { font-family: 'Cormorant Garamond', serif; }
         .text-shadow { text-shadow: 2px 2px 4px rgba(0,0,0,0.6); }
-
         /* KALP ATIŞI */
         @keyframes heartbeat {
             0% { transform: scale(1); }
@@ -32,7 +32,6 @@
             100% { transform: scale(1); }
         }
         .heartbeat { animation: heartbeat 1.5s infinite; }
-
         /* "O GÜZEL SONBAHAR" */
         #main-title {
             font-size: 3rem !important;
@@ -43,7 +42,6 @@
                 font-size: 4rem !important;
             }
         }
-
         /* ANA BAŞLIKLAR */
         main h3:not(#ilk-adim-baslik) {
             font-size: 1.5rem !important;
@@ -54,7 +52,6 @@
                 font-size: 2rem !important;
             }
         }
-
         /* İLK ADIM */
         #ilk-adim-baslik {
             font-size: 1.5rem !important;
@@ -65,9 +62,7 @@
                 font-size: 1.75rem !important;
             }
         }
-
         header, #main-title-section { border:none!important; box-shadow:none!important; }
-
         /* TIMELINE */
         .timeline-container {
             position: relative;
@@ -88,7 +83,6 @@
             animation: drawLine 2s ease-out forwards;
         }
         @keyframes drawLine { to { transform: scaleY(1); } }
-
         .timeline-item {
             padding: 10px 40px;
             position: relative;
@@ -104,7 +98,6 @@
         }
         .timeline-item.left { left: 0; }
         .timeline-item.right { left: 50%; }
-
         .timeline-content {
             padding: 20px 30px;
             background: rgba(255, 255, 255, 0.95);
@@ -144,13 +137,11 @@
             transition: opacity 0.3s ease;
         }
         .timeline-content:hover h4::after { opacity: 1; }
-
         .timeline-content p {
             color: #6b7280;
             font-style: italic;
             line-height: 1.6;
         }
-
         .timeline-icon {
             position: absolute;
             top: -15px;
@@ -170,32 +161,27 @@
             transition: transform 0.6s ease;
         }
         .timeline-item.animate .timeline-icon { transform: rotate(360deg); }
-
         @media (max-width: 600px) {
             .timeline-container::after { left: 31px; }
             .timeline-item { width: 100%; padding-left: 70px; padding-right: 25px; }
             .timeline-item.right { left: 0 !important; }
             .timeline-content { padding: 15px 20px; }
         }
-
         /* FOTOĞRAF GALERİSİ */
         .photo-container { position:relative; overflow:hidden; border-radius:0.5rem; box-shadow:0 4px 6px rgba(0,0,0,0.1); aspect-ratio:1/1; }
         .gallery-thumbnail { transition:transform .3s ease-in-out; }
         .group:hover .gallery-thumbnail { transform:scale(1.1); }
         .photo-note { position:absolute; bottom:0; left:0; right:0; color:white; padding:0.5rem 0.75rem; font-size:0.75rem; text-align:center; line-height:1.2; text-shadow:1px 1px 3px rgba(0,0,0,0.9); }
-        .photo-number { 
-            position:absolute; bottom:0.5rem; right:0.75rem; color:white; font-size:1rem; font-weight:bold; 
-            text-shadow:1px 1px 3px rgba(0,0,0,0.9); opacity:0; transition:opacity .3s ease-in-out; 
+        .photo-number {
+            position:absolute; bottom:0.5rem; right:0.75rem; color:white; font-size:1rem; font-weight:bold;
+            text-shadow:1px 1px 3px rgba(0,0,0,0.9); opacity:0; transition:opacity .3s ease-in-out;
         }
         .group:hover .photo-number { opacity:1; }
         .photo-container.no-note .photo-note { display:none; }
-
         .travel-folder { background:#f0fdf4; border:1px solid #a7f3d0; border-radius:0.5rem; padding:1rem; text-align:center; transition:transform .2s ease-in-out,box-shadow .2s ease-in-out; }
         .travel-folder:hover { transform:translateY(-5px); box-shadow:0 6px 12px rgba(0,0,0,0.1); }
-
         .fade-in-on-scroll { opacity:0; transform:translateY(30px); transition:opacity .8s cubic-bezier(.25,.46,.45,.94),transform .8s cubic-bezier(.25,.46,.45,.94); }
         .fade-in-on-scroll.visible { opacity:1; transform:translateY(0); }
-
         /* ŞİİR ANIMASYONU */
         .poem-container {
             max-width: 90%;
@@ -213,7 +199,6 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
             overflow: hidden;
         }
-
         .poem-line {
             opacity: 0;
             transform: translateY(-30px) scale(0.95);
@@ -225,26 +210,22 @@
             font-family: 'Cormorant Garamond', serif;
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
-
         .poem-line.visible {
             opacity: 1;
             transform: translateY(0) scale(1);
             animation: fadeInDown 0.8s ease-out forwards;
         }
-
         @keyframes fadeInDown {
             to {
                 opacity: 1;
                 transform: translateY(0) scale(1);
             }
         }
-
         .poem-container:hover .poem-line {
             color: #6b7280;
             font-weight: 300;
             font-size: 1.05rem;
         }
-
         .poem-container .poem-line:hover {
             color: #dc2626 !important;
             font-weight: 600 !important;
@@ -255,20 +236,18 @@
             box-shadow: 0 4px 12px rgba(220, 38, 38, 0.15);
             z-index: 10;
         }
-
         .poem-container:hover .poem-line:not(:hover) {
             opacity: 0.7;
             filter: blur(0.3px);
+
             transform: translateY(2px) scale(0.98);
         }
-
         .poem-line:nth-child(8),
         .poem-line:nth-child(9),
         .poem-line:nth-child(10) {
             font-weight: 600 !important;
             color: #dc2626 !important;
         }
-
         .poem-container::before {
             content: '';
             position: absolute;
@@ -278,7 +257,6 @@
             transition: transform 0.6s ease;
         }
         .poem-container:hover::before { transform: scaleX(1); }
-
         @media (max-width: 768px) {
             .poem-container { font-size: 1rem; line-height: 1.8; padding: 1rem; }
             .poem-line:hover { font-size: 1.15rem !important; transform: translateY(-3px) scale(1.05) !important; }
@@ -286,7 +264,6 @@
     </style>
 </head>
 <body class="text-black">
-
 <header class="py-6 text-center bg-white/70 backdrop-blur-lg sticky top-0 z-20 overflow-hidden">
     <div class="relative">
         <a href="#countdown-section" title="Geri Sayım"
@@ -307,33 +284,29 @@
         </div>
     </div>
 </header>
-
 <!-- KALINLAŞTIRILMIŞ TARİH VE ALT YAZI -->
 <section id="main-title-section" class="py-16 text-center">
     <h2 id="main-title" class="font-bold handwriting text-green-600">O Güzel Sonbahar</h2>
     <p class="text-xl md:text-2xl mt-2 text-red-600 font-bold">27 Eylül 2025</p>
     <p class="text-lg mt-1 text-red-600 italic font-bold">Zamanın durduğu an</p>
 </section>
-
 <main class="container mx-auto px-6 pb-12">
-
     <!-- İLK ADIM -->
     <section class="max-w-3xl mx-auto my-12 text-center bg-white/80 backdrop-blur-sm p-8 rounded-lg shadow-lg">
         <h3 id="ilk-adim-baslik" class="font-bold text-red-600 mb-4">İlk Adım</h3>
         <p class="text-lg leading-relaxed font-medium font-[550] text-black">
             Her büyük hikayenin bir başlangıç anı vardır. Bizimki, 27 Eylül 2025'te, yaprakların sarıya döndüğü,
-            havanın tatlı bir serinliğe büründüğü o güzel sonbahar gününde başladı. Gözlerimiz kesiştiğinde, 
-            sanki zaman durdu. Kalbim ilk kez o kadar hızlı attı ki, sesini duyabiliyordum. 
+            havanın tatlı bir serinliğe büründüğü o güzel sonbahar gününde başladı. Gözlerimiz kesiştiğinde,
+            sanki zaman durdu. Kalbim ilk kez o kadar hızlı attı ki, sesini duyabiliyordum.
             O an, "Bu kişi hayatımın geri kalanını değiştirecek" dedim içimden.
         </p>
         <p class="text-lg leading-relaxed font-medium font-[550] text-black mt-4">
-            İlk konuşmamız, ilk gülüşün, ilk dokunuşun... Her biri birer inci gibi dizildi hafızamıza. 
-            O gün, sadece iki kişi tanışmadı; iki ruh, birbirini buldu. 
+            İlk konuşmamız, ilk gülüşün, ilk dokunuşun... Her biri birer inci gibi dizildi hafızamıza.
+            O gün, sadece iki kişi tanışmadı; iki ruh, birbirini buldu.
             Ve o andan itibaren, her adımımız birlikte atılmak üzereydi.
         </p>
         <div class="text-4xl text-red-500 mt-8 heartbeat"><i class="fas fa-heart"></i></div>
     </section>
-
     <!-- ŞİİR -->
     <section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg text-center">
         <h3 class="font-bold text-center text-red-600 mb-6 handwriting font-forte-alternative">Sonbahar</h3>
@@ -351,14 +324,13 @@
         </div>
         <p class="text-right text-red-600 font-semibold mt-6 pr-4 font-forte-alternative">- Nazım Hikmet</p>
     </section>
-
     <!-- AŞK ZAMAN ÇİZELGESİ -->
     <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
         <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Aşk Zaman Çizelgesi</h3>
         <p class="text-center text-black font-semibold italic mb-8">
             Yolculuğumuzun unutulmaz anlarını, kalplerin ritmiyle keşfedin...
         </p>
-        
+       
         <div class="timeline-container">
             <div class="timeline-item left">
                 <div class="timeline-icon"><i class="fas fa-heart heartbeat"></i></div>
@@ -380,7 +352,6 @@
             </div>
         </div>
     </section>
-
     <!-- GERİ SAYIM -->
     <section id="countdown-section" class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg text-center">
         <h3 class="font-bold text-center text-red-600 mb-6 font-forte-alternative">Büyük Güne Geri Sayım</h3>
@@ -397,7 +368,6 @@
             </p>
         </div>
     </section>
-
     <!-- Hayal Defterimiz -->
     <section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg fade-in-on-scroll">
         <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Hayal Defterimiz</h3>
@@ -405,7 +375,6 @@
             Birlikte kurduğumuz hayaller, geleceğe dair ektiğimiz tohumlar...
         </p>
     </section>
-
     <!-- Bizim Şarkımız -->
     <section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg text-center">
         <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Bizim Şarkımız</h3>
@@ -413,7 +382,6 @@
             <div class="text-4xl text-red-600"><i class="fas fa-music"></i></div>
         </div>
     </section>
-
     <!-- Seyahatlerimiz -->
     <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
         <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Seyahatlerimiz</h3>
@@ -447,12 +415,11 @@
             </div>
         </div>
     </section>
-
     <!-- FOTOĞRAF GALERİSİ -->
     <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
         <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Fotoğraf Galerimiz</h3>
         <p class="text-center text-black font-semibold italic">
-          İşte yolculuğumuzda biriktirdiğimiz anlardan ilk kareler... 
+          İşte yolculuğumuzda biriktirdiğimiz anlardan ilk kareler...
           Bu galeri, zamanla daha nice güzel anıyla dolacak.
         </p>
         <div class="mt-8 text-center">
@@ -496,7 +463,6 @@
             </div>
         </div>
     </section>
-
     <!-- Video Galerisi -->
     <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
         <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Video Galerimiz</h3>
@@ -550,7 +516,6 @@
             </div>
         </div>
     </section>
-
     <!-- Teşekkür -->
     <section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg">
         <h3 class="font-bold text-center text-red-600 mb-6">Teşekkür</h3>
@@ -562,7 +527,6 @@
             <p class="text-center text-black font-semibold">İyi günde, kötü günde her anımızda yanımızda olan değerli dostlarımıza...</p>
         </div>
     </section>
-
     <!-- Dilek Kutusu -->
     <section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg">
         <h3 class="font-bold text-center text-red-600 mb-6">Bizim İçin Bir Dilek Bırakın</h3>
@@ -585,21 +549,19 @@
                 <p id="contact-error" class="text-red-500 text-sm mt-2 text-center hidden">Lütfen e-posta veya telefon girin.</p>
             </div>
             <div class="text-center pt-4">
-                <button type="submit" class="inline-flex justify-center py-2 px-6 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors">
-                    Dileğini Gönder
+                <button type="submit" class="inline-flex justify-center items-center py-2 px-6 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors">
+                    <i class="fas fa-heart mr-2 heartbeat"></i> Dileğini Gönder
                 </button>
             </div>
         </form>
     </section>
 </main>
-
 <footer class="text-center py-8 mt-12 bg-white/50">
     <p class="text-black flex items-center justify-center space-x-2">
         <span>Bu hikaye</span><i class="fas fa-infinity text-red-500"></i><span>kadar devam edecek...</span>
     </p>
     <p class="text-sm text-black mt-2">Arzu & Ersin</p>
 </footer>
-
 <!-- Modallar -->
 <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
     <span id="close-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
@@ -607,7 +569,6 @@
     <span id="prev-photo" class="absolute top-1/2 left-4 -translate-y-1/2 text-white text-6xl font-bold cursor-pointer hover:text-gray-300 transition-colors select-none">&lt;</span>
     <span id="next-photo" class="absolute top-1/2 right-4 -translate-y-1/2 text-white text-6xl font-bold cursor-pointer hover:text-gray-300 transition-colors select-none">&gt;</span>
 </div>
-
 <div id="video-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
     <span id="close-video-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
     <div class="aspect-video w-full max-w-4xl">
@@ -615,12 +576,10 @@
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     </div>
 </div>
-
 <script>
 (() => {
     'use strict';
     const COUNTDOWN_DATE = "";
-
     // Toggle butonları
     const toggleBtn = (btnId, wrapperId, iconId, textId, openTxt, closeTxt) => {
         const btn = document.getElementById(btnId);
@@ -637,7 +596,6 @@
     toggleBtn('toggle-gallery-btn','gallery-wrapper','gallery-toggle-icon','gallery-toggle-text','Fotoğraf Galerisini Gör','Galeriyi Gizle');
     toggleBtn('toggle-video-gallery-btn','video-gallery-wrapper','video-gallery-toggle-icon','video-gallery-toggle-text','Video Galerisini Gör','Galeriyi Gizle');
     toggleBtn('toggle-travel-btn','travel-wrapper','travel-toggle-icon','travel-toggle-text','Seyahatlerimizi Gör','Seyahatleri Gizle');
-
     // Fotoğraf galerisi
     const galleryGrid = document.getElementById('gallery-grid');
     const imgSelector = '.gallery-thumbnail';
@@ -658,7 +616,6 @@
     };
     const nextImg = () => { curIdx = (curIdx + 1) % imgs.length; document.getElementById('modal-image').src = imgs[curIdx]; };
     const prevImg = () => { curIdx = (curIdx - 1 + imgs.length) % imgs.length; document.getElementById('modal-image').src = imgs[curIdx]; };
-
     const attachImgEvents = () => {
         refreshImgs();
         galleryGrid.querySelectorAll(imgSelector).forEach((el,i) => {
@@ -670,7 +627,6 @@
     document.getElementById('prev-photo').onclick = e => {e.stopPropagation(); prevImg();};
     document.getElementById('next-photo').onclick = e => {e.stopPropagation(); nextImg();};
     document.getElementById('image-modal').onclick = e => { if (e.target === e.currentTarget) closeImg(); };
-
     // Video modal
     const videoModal = document.getElementById('video-modal');
     const iframe = document.getElementById('modal-video-iframe');
@@ -686,14 +642,12 @@
         videoModal.classList.replace('flex','hidden');
     };
     videoModal.onclick = e => { if (e.target === videoModal) { iframe.src=''; videoModal.classList.replace('flex','hidden'); } };
-
     // Klavye
     document.addEventListener('keydown', e => {
         if (e.key === 'Escape') { closeImg(); iframe.src=''; videoModal.classList.replace('flex','hidden'); }
         if (e.key === 'ArrowRight' && !document.getElementById('image-modal').classList.contains('hidden')) nextImg();
         if (e.key === 'ArrowLeft' && !document.getElementById('image-modal').classList.contains('hidden')) prevImg();
     });
-
     // Dilek formu
     document.getElementById('wish-form')?.addEventListener('submit', function (ev) {
         const contact = document.getElementById('contact').value.trim();
@@ -701,7 +655,6 @@
         if (!contact) { ev.preventDefault(); err.classList.remove('hidden'); }
         else err.classList.add('hidden');
     });
-
     // Geri sayım
     if (COUNTDOWN_DATE) {
         const target = new Date(COUNTDOWN_DATE).getTime();
@@ -733,7 +686,6 @@
         update();
         const intv = setInterval(update,1000);
     }
-
     // Timeline animasyonu
     const timelineObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry, index) => {
@@ -747,7 +699,6 @@
         });
     }, { threshold: 0.3 });
     document.querySelectorAll('.timeline-item').forEach(item => timelineObserver.observe(item));
-
     // Şiir satırları için özel observer
     const poemObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -760,11 +711,9 @@
             }
         });
     }, { threshold: 0.6 });
-
     document.querySelectorAll('.poem-line').forEach(line => {
         poemObserver.observe(line);
     });
-
     // Genel fade-in
     const obs = new IntersectionObserver(entries => {
         entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
@@ -772,6 +721,5 @@
     document.querySelectorAll('.fade-in-on-scroll, .travel-folder').forEach(el => obs.observe(el));
 })();
 </script>
-
 </body>
 </html>
