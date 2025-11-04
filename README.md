@@ -17,16 +17,41 @@
         body {
             font-family: 'Poppins', sans-serif;
             font-weight: 300;
-            background-image: url('https://www.toptal.com/designers/subtlepatterns/uploads/leaves.png');
-            background-color: #fdfaf6;
+            background: transparent !important; /* Arka plan deseni ayrı katmanda */
             position: relative;
             overflow-x: hidden;
+            min-height: 100vh;
         }
+
+        /* ARKA PLAN YAPRAK DESENİ - HER ZAMAN GÖRÜNÜR (ÖZELLİKLE MOBİL) */
+        #background-leaves-pattern {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url('https://www.toptal.com/designers/subtlepatterns/uploads/leaves.png');
+            background-repeat: repeat;
+            background-color: #fdfaf6;
+            z-index: -2;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+        @media (max-width: 768px) {
+            #background-leaves-pattern {
+                opacity: 0.9 !important; /* MOBİLDE DAHA BELİRGİN */
+            }
+        }
+
+        /* DÜŞEN YAPRAKLAR - ÜST KATMAN */
+        #falling-leaves-container {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            pointer-events: none; z-index: -1; overflow: hidden;
+        }
+
         h1, h2, h3 { font-family: 'Playfair Display', serif; }
         .handwriting { font-family: 'Dancing Script', cursive; }
         .font-forte-alternative { font-family: 'Dancing Script', cursive; }
         .font-poor-richard-alternative { font-family: 'Cormorant Garamond', serif; }
         .text-shadow { text-shadow: 2px 2px 4px rgba(0,0,0,0.6); }
+
         /* KALP ATIŞI */
         @keyframes heartbeat {
             0% { transform: scale(1); }
@@ -34,6 +59,7 @@
             100% { transform: scale(1); }
         }
         .heartbeat { animation: heartbeat 1.5s infinite; }
+
         /* ANA BAŞLIKLAR */
         #main-title { font-size: 3rem !important; line-height: 1.2 !important; }
         @media (min-width: 768px) { #main-title { font-size: 4rem !important; } }
@@ -42,6 +68,7 @@
         #ilk-adim-baslik { font-size: 1.5rem !important; line-height: 1.4 !important; }
         @media (min-width: 768px) { #ilk-adim-baslik { font-size: 1.75rem !important; } }
         header, #main-title-section { border:none!important; box-shadow:none!important; }
+
         /* TIMELINE */
         .timeline-container { position: relative; max-width: 1200px; margin: 0 auto; padding: 2rem 0; }
         .timeline-container::after {
@@ -72,6 +99,7 @@
             .timeline-item.right { left: 0 !important; }
             .timeline-content { padding: 15px 20px; }
         }
+
         /* FOTOĞRAF GALERİSİ */
         .photo-container { position:relative; overflow:hidden; border-radius:0.5rem; box-shadow:0 4px 6px rgba(0,0,0,0.1); aspect-ratio:1/1; }
         .gallery-thumbnail { transition:transform .3s ease-in-out; }
@@ -84,6 +112,7 @@
         .travel-folder:hover { transform:translateY(-5px); box-shadow:0 6px 12px rgba(0,0,0,0.1); }
         .fade-in-on-scroll { opacity:0; transform:translateY(30px); transition:opacity .8s cubic-bezier(.25,.46,.45,.94),transform .8s cubic-bezier(.25,.46,.45,.94); }
         .fade-in-on-scroll.visible { opacity:1; transform:translateY(0); }
+
         /* ŞİİR ANIMASYONU */
         .poem-container { max-width: 90%; margin: 0 auto; padding: 2rem 0; line-height: 2.3; font-size: 1.15rem; font-style: italic; color: #1f2937; text-align: center; position: relative; background: linear-gradient(135deg, rgba(253, 250, 246, 0.9) 0%, rgba(255, 255, 255, 0.95) 100%); border-radius: 12px; padding: 2rem; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); overflow: hidden; }
         .poem-line { opacity: 0; transform: translateY(-30px) scale(0.95); display: block; position: relative; margin: 0.2rem 0; padding: 0.5rem; border-radius: 8px; font-family: 'Cormorant Garamond', serif; transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
@@ -96,11 +125,8 @@
         .poem-container::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, #dc2626, transparent); transform: scaleX(0); transition: transform 0.6s ease; }
         .poem-container:hover::before { transform: scaleX(1); }
         @media (max-width: 768px) { .poem-container { font-size: 1rem; line-height: 1.8; padding: 1rem; } .poem-line:hover { font-size: 1.15rem !important; transform: translateY(-3px) scale(1.05) !important; } }
-        /* GERÇEKÇİ SONBAHAR YAPRAKLARI – SADECE 7 ADET, RENK SADECE İÇİNDE, YEŞİL EKLENDİ */
-        #falling-leaves-container {
-            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-            pointer-events: none; z-index: -1; overflow: hidden;
-        }
+
+        /* GERÇEKÇİ SONBAHAR YAPRAKLARI – SADECE 7 ADET */
         .leaf-svg {
             position: absolute; width: 32px; height: 44px; opacity: 0.9;
             animation: fall linear infinite; transform-origin: center;
@@ -115,25 +141,27 @@
             92% { opacity: 0.9; }
             100% { transform: translateY(110vh) translateX(-15px) rotate(1080deg) scale(0.6); opacity: 0; }
         }
-        /* RENK SADECE İÇ YAPRAKTA – DIŞ HAT BEYAZ, TAŞMA YOK */
         .leaf-svg .leaf-inner { fill: currentColor; }
         .leaf-svg .leaf-outer { fill: white; opacity: 0.95; }
-        /* RENK SINIFLARI – YEŞİL EKLENDİ */
-        .leaf-svg.autumn-1 { color: #f59e0b; }   /* Amber */
-        .leaf-svg.autumn-2 { color: #ef4444; }   /* Kırmızı */
-        .leaf-svg.autumn-3 { color: #facc15; }   /* Sarı */
-        .leaf-svg.autumn-4 { color: #92400e; }   /* Kahverengi */
-        .leaf-svg.autumn-5 { color: #84cc16; }   /* Açık Yeşil */
-        .leaf-svg.autumn-6 { color: #fb923c; }   /* Turuncu */
-        .leaf-svg.autumn-7 { color: #dc2626; }   /* Koyu Kırmızı */
-        .leaf-svg.autumn-8 { color: #f97316; }   /* Koyu Turuncu */
-        .leaf-svg.autumn-9 { color: #22c55e; }   /* Canlı Yeşil */
-        .leaf-svg.autumn-10 { color: #16a34a; }  /* Koyu Yeşil */
+        .leaf-svg.autumn-1 { color: #f59e0b; }
+        .leaf-svg.autumn-2 { color: #ef4444; }
+        .leaf-svg.autumn-3 { color: #facc15; }
+        .leaf-svg.autumn-4 { color: #92400e; }
+        .leaf-svg.autumn-5 { color: #84cc16; }
+        .leaf-svg.autumn-6 { color: #fb923c; }
+        .leaf-svg.autumn-7 { color: #dc2626; }
+        .leaf-svg.autumn-8 { color: #f97316; }
+        .leaf-svg.autumn-9 { color: #22c55e; }
+        .leaf-svg.autumn-10 { color: #16a34a; }
     </style>
 </head>
 <body class="text-black">
-    <!-- SADECE 7 YAPRAK -->
+    <!-- ARKA PLAN YAPRAK DESENİ - HER ZAMAN GÖRÜNÜR -->
+    <div id="background-leaves-pattern"></div>
+
+    <!-- DÜŞEN YAPRAKLAR -->
     <div id="falling-leaves-container"></div>
+
     <header class="py-6 text-center bg-white/70 backdrop-blur-lg sticky top-0 z-20 overflow-hidden">
         <div class="relative">
             <a href="#countdown-section" title="Geri Sayım"
@@ -154,12 +182,14 @@
             </div>
         </div>
     </header>
+
     <!-- KALINLAŞTIRILMIŞ TARİH VE ALT YAZI -->
     <section id="main-title-section" class="py-16 text-center">
         <h2 id="main-title" class="font-bold handwriting text-green-600">O Güzel Sonbahar</h2>
         <p class="text-xl md:text-2xl mt-2 text-red-600 font-bold">27 Eylül 2025</p>
         <p class="text-lg mt-1 text-red-600 italic font-bold">Zamanın durduğu an</p>
     </section>
+
     <main class="container mx-auto px-6 pb-12">
         <!-- İLK ADIM -->
         <section class="max-w-3xl mx-auto my-12 text-center bg-white/80 backdrop-blur-sm p-8 rounded-lg shadow-lg">
@@ -177,6 +207,7 @@
             </p>
             <div class="text-4xl text-red-500 mt-8 heartbeat"><i class="fas fa-heart"></i></div>
         </section>
+
         <!-- ŞİİR -->
         <section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg text-center">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting font-forte-alternative">Sonbahar</h3>
@@ -194,6 +225,7 @@
             </div>
             <p class="text-right text-red-600 font-semibold mt-6 pr-4 font-forte-alternative">- Nazım Hikmet</p>
         </section>
+
         <!-- AŞK ZAMAN ÇİZELGESİ -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Aşk Zaman Çizelgesi</h3>
@@ -221,6 +253,7 @@
                 </div>
             </div>
         </section>
+
         <!-- GERİ SAYIM -->
         <section id="countdown-section" class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg text-center">
             <h3 class="font-bold text-center text-red-600 mb-6 font-forte-alternative">Büyük Güne Geri Sayım</h3>
@@ -237,6 +270,7 @@
                 </p>
             </div>
         </section>
+
         <!-- Hayal Defterimiz -->
         <section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg fade-in-on-scroll">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Hayal Defterimiz</h3>
@@ -244,6 +278,7 @@
                 Birlikte kurduğumuz hayaller, geleceğe dair ektiğimiz tohumlar...
             </p>
         </section>
+
         <!-- Bizim Şarkımız -->
         <section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg text-center">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Bizim Şarkımız</h3>
@@ -251,6 +286,7 @@
                 <div class="text-4xl text-red-600"><i class="fas fa-music"></i></div>
             </div>
         </section>
+
         <!-- Seyahatlerimiz -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Seyahatlerimiz</h3>
@@ -284,6 +320,7 @@
                 </div>
             </div>
         </section>
+
         <!-- FOTOĞRAF GALERİSİ -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Fotoğraf Galerimiz</h3>
@@ -332,6 +369,7 @@
                 </div>
             </div>
         </section>
+
         <!-- Video Galerisi -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Video Galerimiz</h3>
@@ -385,6 +423,7 @@
                 </div>
             </div>
         </section>
+
         <!-- Teşekkür -->
         <section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg">
             <h3 class="font-bold text-center text-red-600 mb-6">Teşekkür</h3>
@@ -396,6 +435,7 @@
                 <p class="text-center text-black font-semibold">İyi günde, kötü günde her anımızda yanımızda olan değerli dostlarımıza...</p>
             </div>
         </section>
+
         <!-- Dilek Kutusu -->
         <section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg">
             <h3 class="font-bold text-center text-red-600 mb-6">Bizim İçin Bir Dilek Bırakın</h3>
@@ -425,12 +465,14 @@
             </form>
         </section>
     </main>
+
     <footer class="text-center py-8 mt-12 bg-white/50">
         <p class="text-black flex items-center justify-center space-x-2">
             <span>Bu hikaye</span><i class="fas fa-infinity text-red-500"></i><span>kadar devam edecek...</span>
         </p>
         <p class="text-sm text-black mt-2">Arzu & Ersin</p>
     </footer>
+
     <!-- Modallar -->
     <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
         <span id="close-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
@@ -445,74 +487,38 @@
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
     </div>
+
     <script>
     (() => {
         'use strict';
         const COUNTDOWN_DATE = ""; // "2025-09-27T00:00:00"
 
-        // GERÇEKÇİ YAPRAK SVG – DIŞ HAT BEYAZ, İÇ RENKLİ
         const leafSVG = `
         <svg viewBox="0 0 100 140" class="w-full h-full" preserveAspectRatio="xMidYMid meet">
-          <!-- DIŞ YAPRAK (beyaz) -->
-          <path class="leaf-outer" d="M50 10 
-                   C30 15, 20 35, 18 55 
-                   C16 75, 25 95, 35 115 
-                   C45 130, 48 135, 50 138 
-                   C52 135, 55 130, 65 115 
-                   C75 95, 84 75, 82 55 
-                   C80 35, 70 15, 50 10 
-                   Z" />
-          <!-- İÇ YAPRAK (renk burada) -->
-          <path class="leaf-inner" d="M50 15 
-                   C33 20, 25 38, 23 55 
-                   C21 72, 28 88, 36 108 
-                   C44 125, 48 132, 50 135 
-                   C52 132, 56 125, 64 108 
-                   C72 88, 79 72, 77 55 
-                   C75 38, 67 20, 50 15 
-                   Z" />
-          <!-- Orta damar -->
+          <path class="leaf-outer" d="M50 10 C30 15, 20 35, 18 55 C16 75, 25 95, 35 115 C45 130, 48 135, 50 138 C52 135, 55 130, 65 115 C75 95, 84 75, 82 55 C80 35, 70 15, 50 10 Z" />
+          <path class="leaf-inner" d="M50 15 C33 20, 25 38, 23 55 C21 72, 28 88, 36 108 C44 125, 48 132, 50 135 C52 132, 56 125, 64 108 C72 88, 79 72, 77 55 C75 38, 67 20, 50 15 Z" />
           <path d="M50 15 Q50 70 48 135" stroke="#fff" stroke-width="2.5" opacity="0.5" fill="none"/>
-          <!-- Yan damarlar (sol) -->
-          <path d="M50 30 Q35 40 28 48 M50 55 Q32 65 25 75 M50 80 Q30 90 23 105" 
-                stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/>
-          <!-- Yan damarlar (sağ) -->
-          <path d="M50 30 Q65 40 72 48 M50 55 Q68 65 75 75 M50 80 Q70 90 77 105" 
-                stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/>
-          <!-- Küçük çentikler -->
-          <path d="M25 50 Q23 48 25 46 M30 70 Q28 68 30 66 M35 90 Q33 88 35 86 
-                   M75 50 Q77 48 75 46 M70 70 Q72 68 70 66 M65 90 Q67 88 65 86"
-                stroke="#fff" stroke-width="1" opacity="0.3" fill="none"/>
+          <path d="M50 30 Q35 40 28 48 M50 55 Q32 65 25 75 M50 80 Q30 90 23 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/>
+          <path d="M50 30 Q65 40 72 48 M50 55 Q68 65 75 75 M50 80 Q70 90 77 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/>
+          <path d="M25 50 Q23 48 25 46 M30 70 Q28 68 30 66 M35 90 Q33 88 35 86 M75 50 Q77 48 75 46 M70 70 Q72 68 70 66 M65 90 Q67 88 65 86" stroke="#fff" stroke-width="1" opacity="0.3" fill="none"/>
         </svg>`;
-
-        // RENKLER – YEŞİL EKLENDİ
-        const leafColors = [
-            'autumn-1','autumn-2','autumn-3','autumn-4','autumn-5',
-            'autumn-6','autumn-7','autumn-8','autumn-9','autumn-10'
-        ];
+        const leafColors = ['autumn-1','autumn-2','autumn-3','autumn-4','autumn-5','autumn-6','autumn-7','autumn-8','autumn-9','autumn-10'];
         const leafContainer = document.getElementById('falling-leaves-container');
-        const leafCount = 7; // SADECE 7 YAPRAK
-
+        const leafCount = 7;
         for (let i = 0; i < leafCount; i++) {
             const leaf = document.createElement('div');
             const colorClass = leafColors[Math.floor(Math.random() * leafColors.length)];
             leaf.className = `leaf-svg ${colorClass}`;
             leaf.style.left = Math.random() * 100 + 'vw';
-
-            // Farklı boyutlar
             const scale = 0.5 + Math.random() * 0.9;
             leaf.style.transform = `scale(${scale}) rotate(${Math.random() * 360}deg)`;
-
-            // Yavaş düşme: 18–30 saniye
             const duration = 18 + Math.random() * 12;
             leaf.style.animationDuration = duration + 's';
             leaf.style.animationDelay = Math.random() * 10 + 's';
-
             leaf.innerHTML = leafSVG;
             leafContainer.appendChild(leaf);
         }
 
-        // Toggle butonları
         const toggleBtn = (btnId, wrapperId, iconId, textId, openTxt, closeTxt) => {
             const btn = document.getElementById(btnId);
             const wrapper = document.getElementById(wrapperId);
@@ -529,7 +535,6 @@
         toggleBtn('toggle-video-gallery-btn','video-gallery-wrapper','video-gallery-toggle-icon','video-gallery-toggle-text','Video Galerisini Gör','Galeriyi Gizle');
         toggleBtn('toggle-travel-btn','travel-wrapper','travel-toggle-icon','travel-toggle-text','Seyahatlerimizi Gör','Seyahatleri Gizle');
 
-        // Fotoğraf galerisi
         const galleryGrid = document.getElementById('gallery-grid');
         const imgSelector = '.gallery-thumbnail';
         let imgs = [], curIdx = 0;
@@ -557,7 +562,6 @@
         document.getElementById('next-photo').onclick = e => { e.stopPropagation(); nextImg(); };
         document.getElementById('image-modal').onclick = e => { if (e.target === e.currentTarget) closeImg(); };
 
-        // Video modal
         const videoModal = document.getElementById('video-modal');
         const iframe = document.getElementById('modal-video-iframe');
         document.getElementById('video-grid').addEventListener('click', e => {
@@ -570,14 +574,12 @@
         document.getElementById('close-video-modal').onclick = () => { iframe.src = ''; videoModal.classList.replace('flex','hidden'); };
         videoModal.onclick = e => { if (e.target === videoModal) { iframe.src=''; videoModal.classList.replace('flex','hidden'); } };
 
-        // Klavye
         document.addEventListener('keydown', e => {
             if (e.key === 'Escape') { closeImg(); iframe.src=''; videoModal.classList.replace('flex','hidden'); }
             if (e.key === 'ArrowRight' && !document.getElementById('image-modal').classList.contains('hidden')) nextImg();
             if (e.key === 'ArrowLeft' && !document.getElementById('image-modal').classList.contains('hidden')) prevImg();
         });
 
-        // Dilek formu
         document.getElementById('wish-form')?.addEventListener('submit', function (ev) {
             const contact = document.getElementById('contact').value.trim();
             const err = document.getElementById('contact-error');
@@ -585,7 +587,6 @@
             else err.classList.add('hidden');
         });
 
-        // Geri sayım
         if (COUNTDOWN_DATE) {
             const target = new Date(COUNTDOWN_DATE).getTime();
             const timer = document.getElementById('countdown-timer');
@@ -617,7 +618,6 @@
             const intv = setInterval(update,1000);
         }
 
-        // Timeline animasyonu
         const timelineObserver = new IntersectionObserver((entries) => {
             entries.forEach((entry, index) => {
                 if (entry.isIntersecting) {
@@ -631,7 +631,6 @@
         }, { threshold: 0.3 });
         document.querySelectorAll('.timeline-item').forEach(item => timelineObserver.observe(item));
 
-        // Şiir satırları
         const poemObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -643,7 +642,6 @@
         }, { threshold: 0.6 });
         document.querySelectorAll('.poem-line').forEach(line => poemObserver.observe(line));
 
-        // Genel fade-in
         const obs = new IntersectionObserver(entries => {
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
         }, {threshold:0.15});
