@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -362,7 +363,7 @@
             </div>
         </section>
 
-        <!-- VİDEO GALERİSİ - MOBİLDE FOTOĞRAF GALERİSİ GİBİ KÜÇÜK KARELER -->
+        <!-- VİDEO GALERİSİ - LAZY LOADING EKLENDİ -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Video Galerimiz</h3>
             <p class="text-center text-black font-semibold">
@@ -376,10 +377,9 @@
                 </button>
             </div>
             <div id="video-gallery-wrapper" class="hidden mt-8">
-                <!-- FOTOĞRAF GALERİSİYLE AYNI GRID VE BOYUT -->
                 <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-1" id="video-grid">
                     <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="ChFa2GJ4e4U">
-                        <img src="https://img.youtube.com/vi/ChFa2GJ4e4U/maxresdefault.jpg" alt="Video thumbnail" class="w-full h-full object-cover gallery-thumbnail">
+                        <img loading="lazy" src="https://img.youtube.com/vi/ChFa2GJ4e4U/maxresdefault.jpg" alt="Video thumbnail" class="w-full h-full object-cover gallery-thumbnail">
                         <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
                             <i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i>
                         </div>
@@ -387,7 +387,7 @@
                         <div class="photo-note">Beşiktaş</div>
                     </div>
                     <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="aim5II5vYpU">
-                        <img src="https://img.youtube.com/vi/aim5II5vYpU/maxresdefault.jpg" alt="Video thumbnail" class="w-full h-full object-cover gallery-thumbnail">
+                        <img loading="lazy" src="https://img.youtube.com/vi/aim5II5vYpU/maxresdefault.jpg" alt="Video thumbnail" class="w-full h-full object-cover gallery-thumbnail">
                         <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
                             <i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i>
                         </div>
@@ -395,7 +395,7 @@
                         <div class="photo-note">Üsküdar</div>
                     </div>
                     <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="uY6ZrwkbLjc">
-                        <img src="https://img.youtube.com/vi/uY6ZrwkbLjc/maxresdefault.jpg" alt="Video thumbnail" class="w-full h-full object-cover gallery-thumbnail">
+                        <img loading="lazy" src="https://img.youtube.com/vi/uY6ZrwkbLjc/maxresdefault.jpg" alt="Video thumbnail" class="w-full h-full object-cover gallery-thumbnail">
                         <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
                             <i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i>
                         </div>
@@ -403,7 +403,7 @@
                         <div class="photo-note">Lunapark</div>
                     </div>
                     <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="19aKq8FtYP8">
-                        <img src="https://img.youtube.com/vi/19aKq8FtYP8/maxresdefault.jpg" alt="Video thumbnail" class="w-full h-full object-cover gallery-thumbnail">
+                        <img loading="lazy" src="https://img.youtube.com/vi/19aKq8FtYP8/maxresdefault.jpg" alt="Video thumbnail" class="w-full h-full object-cover gallery-thumbnail">
                         <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
                             <i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i>
                         </div>
@@ -411,7 +411,7 @@
                         <div class="photo-note">Beşiktaş</div>
                     </div>
                     <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="J466tfX1jzk">
-                        <img src="https://img.youtube.com/vi/J466tfX1jzk/maxresdefault.jpg" alt="Video thumbnail" class="w-full h-full object-cover gallery-thumbnail">
+                        <img loading="lazy" src="https://img.youtube.com/vi/J466tfX1jzk/maxresdefault.jpg" alt="Video thumbnail" class="w-full h-full object-cover gallery-thumbnail">
                         <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
                             <i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i>
                         </div>
