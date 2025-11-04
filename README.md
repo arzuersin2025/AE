@@ -1,3 +1,4 @@
+
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -21,7 +22,6 @@
             overflow-x: hidden;
             min-height: 100vh;
         }
-
         /* ARKA PLAN YAPRAK DESENİ */
         #background-leaves-pattern {
             position: fixed;
@@ -36,25 +36,21 @@
         @media (max-width: 768px) {
             #background-leaves-pattern { opacity: 0.9 !important; }
         }
-
         #falling-leaves-container {
             position: fixed; top: 0; left: 0; right: 0; bottom: 0;
             pointer-events: none; z-index: -1; overflow: hidden;
         }
-
         h1, h2, h3 { font-family: 'Playfair Display', serif; }
         .handwriting { font-family: 'Dancing Script', cursive; }
         .font-forte-alternative { font-family: 'Dancing Script', cursive; }
         .font-poor-richard-alternative { font-family: 'Cormorant Garamond', serif; }
         .text-shadow { text-shadow: 2px 2px 4px rgba(0,0,0,0.6); }
-
         @keyframes heartbeat {
             0% { transform: scale(1); }
             50% { transform: scale(1.1); }
             100% { transform: scale(1); }
         }
         .heartbeat { animation: heartbeat 1.5s infinite; }
-
         #main-title { font-size: 3rem !important; line-height: 1.2 !important; }
         @media (min-width: 768px) { #main-title { font-size: 4rem !important; } }
         main h3:not(#ilk-adim-baslik) { font-size: 1.5rem !important; line-height: 1.3 !important; }
@@ -62,7 +58,6 @@
         #ilk-adim-baslik { font-size: 1.5rem !important; line-height: 1.4 !important; }
         @media (min-width: 768px) { #ilk-adim-baslik { font-size: 1.75rem !important; } }
         header, #main-title-section { border:none!important; box-shadow:none!important; }
-
         .timeline-container { position: relative; max-width: 1200px; margin: 0 auto; padding: 2rem 0; }
         .timeline-container::after {
             content: ''; position: absolute; width: 4px; background: linear-gradient(to bottom, #10b981, #f59e0b, #ef4444);
@@ -92,13 +87,12 @@
             .timeline-item.right { left: 0 !important; }
             .timeline-content { padding: 15px 20px; }
         }
-
         /* FOTOĞRAF GALERİSİ - LAZY + INTERSECTION OBSERVER */
-        .photo-container { 
-            position: relative; overflow: hidden; border-radius: 0.5rem; 
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1); aspect-ratio: 1/1; 
+        .photo-container {
+            position: relative; overflow: hidden; border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1); aspect-ratio: 1/1;
         }
-        .gallery-thumbnail { 
+        .gallery-thumbnail {
             transition: transform .3s ease-in-out;
             background-color: #f3f4f6;
             background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23f3f4f6"/><text x="50" y="55" font-family="Arial" font-size="14" fill="%239ca3af" text-anchor="middle">Yükleniyor...</text></svg>');
@@ -111,17 +105,15 @@
         .photo-number { position: absolute; bottom: 0.5rem; right: 0.75rem; color: white; font-size: 1rem; font-weight: bold; text-shadow: 1px 1px 3px rgba(0,0,0,0.9); opacity: 0; transition: opacity .3s ease-in-out; }
         .group:hover .photo-number { opacity: 1; }
         .photo-container.no-note .photo-note { display: none; }
-
         /* SEYAHATLER - FOTOĞRAF GALERİSİYLE AYNI BOYUT VE GRID + MOBİL DÜZELTME */
-        .travel-folder { 
-            position: relative; overflow: hidden; border-radius: 0.5rem; 
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1); aspect-ratio: 1/1; 
+        .travel-folder {
+            position: relative; overflow: hidden; border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1); aspect-ratio: 1/1;
             background: #f0fdf4; border: 1px solid #a7f3d0;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             padding: 0.75rem; text-align: center; transition: transform .2s ease-in-out, box-shadow .2s ease-in-out;
         }
         .travel-folder:hover { transform: translateY(-5px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
-
         /* MOBİLDE KÜÇÜK YAZI VE İKON */
         @media (max-width: 640px) {
             .travel-folder {
@@ -145,10 +137,8 @@
             .travel-folder h4 { @apply text-sm font-semibold; line-height: 1.2; margin-bottom: 0.25rem; }
             .travel-folder p { @apply text-xs; }
         }
-
         .fade-in-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity .8s cubic-bezier(.25,.46,.45,.94), transform .8s cubic-bezier(.25,.46,.45,.94); }
         .fade-in-on-scroll.visible { opacity: 1; transform: translateY(0); }
-
         /* ŞİİR ANIMASYONU */
         .poem-container { max-width: 90%; margin: 0 auto; padding: 2rem 0; line-height: 2.3; font-size: 1.15rem; font-style: italic; color: #1f2937; text-align: center; position: relative; background: linear-gradient(135deg, rgba(253, 250, 246, 0.9) 0%, rgba(255, 255, 255, 0.95) 100%); border-radius: 12px; padding: 2rem; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); overflow: hidden; }
         .poem-line { opacity: 0; transform: translateY(-30px) scale(0.95); display: block; position: relative; margin: 0.2rem 0; padding: 0.5rem; border-radius: 8px; font-family: 'Cormorant Garamond', serif; transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
@@ -161,7 +151,6 @@
         .poem-container::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, #dc2626, transparent); transform: scaleX(0); transition: transform 0.6s ease; }
         .poem-container:hover::before { transform: scaleX(1); }
         @media (max-width: 768px) { .poem-container { font-size: 1rem; line-height: 1.8; padding: 1rem; } .poem-line:hover { font-size: 1.15rem !important; transform: translateY(-3px) scale(1.05) !important; } }
-
         /* YAPRAKLAR */
         .leaf-svg {
             position: absolute; width: 32px; height: 44px; opacity: 0.9;
@@ -194,10 +183,8 @@
 <body class="text-black">
     <!-- ARKA PLAN YAPRAK DESENİ -->
     <div id="background-leaves-pattern"></div>
-
     <!-- DÜŞEN YAPRAKLAR -->
     <div id="falling-leaves-container"></div>
-
     <header class="py-6 text-center bg-white/70 backdrop-blur-lg sticky top-0 z-20 overflow-hidden">
         <div class="relative">
             <a href="#countdown-section" title="Geri Sayım"
@@ -218,13 +205,11 @@
             </div>
         </div>
     </header>
-
     <section id="main-title-section" class="py-16 text-center">
         <h2 id="main-title" class="font-bold handwriting text-green-600">O Güzel Sonbahar</h2>
         <p class="text-xl md:text-2xl mt-2 text-red-600 font-bold">27 Eylül 2025</p>
         <p class="text-lg mt-1 text-red-600 italic font-bold">Zamanın durduğu an</p>
     </section>
-
     <main class="container mx-auto px-6 pb-12">
         <!-- İLK ADIM -->
         <section class="max-w-3xl mx-auto my-12 text-center bg-white/80 backdrop-blur-sm p-8 rounded-lg shadow-lg">
@@ -242,7 +227,6 @@
             </p>
             <div class="text-4xl text-red-500 mt-8 heartbeat"><i class="fas fa-heart"></i></div>
         </section>
-
         <!-- ŞİİR -->
         <section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg text-center">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting font-forte-alternative">Sonbahar</h3>
@@ -260,7 +244,6 @@
             </div>
             <p class="text-right text-red-600 font-semibold mt-6 pr-4 font-forte-alternative">- Nazım Hikmet</p>
         </section>
-
         <!-- AŞK ZAMAN ÇİZELGESİ -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Aşk Zaman Çizelgesi</h3>
@@ -288,7 +271,6 @@
                 </div>
             </div>
         </section>
-
         <!-- GERİ SAYIM -->
         <section id="countdown-section" class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg text-center">
             <h3 class="font-bold text-center text-red-600 mb-6 font-forte-alternative">Büyük Güne Geri Sayım</h3>
@@ -305,7 +287,6 @@
                 </p>
             </div>
         </section>
-
         <!-- Hayal Defterimiz -->
         <section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg fade-in-on-scroll">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Hayal Defterimiz</h3>
@@ -313,7 +294,6 @@
                 Birlikte kurduğumuz hayaller, geleceğe dair ektiğimiz tohumlar...
             </p>
         </section>
-
         <!-- Bizim Şarkımız -->
         <section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg text-center">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Bizim Şarkımız</h3>
@@ -321,7 +301,6 @@
                 <div class="text-4xl text-red-600"><i class="fas fa-music"></i></div>
             </div>
         </section>
-
         <!-- SEYAHATLERİMİZ - MOBİL DÜZELTME -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Seyahatlerimiz</h3>
@@ -355,7 +334,6 @@
                 </div>
             </div>
         </section>
-
         <!-- FOTOĞRAF GALERİSİ -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Fotoğraf Galerimiz</h3>
@@ -404,7 +382,6 @@
                 </div>
             </div>
         </section>
-
         <!-- VİDEO GALERİSİ -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Video Galerimiz</h3>
@@ -463,7 +440,6 @@
                 </div>
             </div>
         </section>
-
         <!-- Teşekkür -->
         <section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg">
             <h3 class="font-bold text-center text-red-600 mb-6">Teşekkür</h3>
@@ -475,7 +451,6 @@
                 <p class="text-center text-black font-semibold">İyi günde, kötü günde her anımızda yanımızda olan değerli dostlarımıza...</p>
             </div>
         </section>
-
         <!-- Dilek Kutusu -->
         <section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg">
             <h3 class="font-bold text-center text-red-600 mb-6">Bizim İçin Bir Dilek Bırakın</h3>
@@ -505,14 +480,12 @@
             </form>
         </section>
     </main>
-
     <footer class="text-center py-8 mt-12 bg-white/50">
         <p class="text-black flex items-center justify-center space-x-2">
             <span>Bu hikaye</span><i class="fas fa-infinity text-red-500"></i><span>kadar devam edecek...</span>
         </p>
         <p class="text-sm text-black mt-2">Arzu & Ersin</p>
     </footer>
-
     <!-- Modallar -->
     <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
         <span id="close-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
@@ -527,7 +500,6 @@
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
     </div>
-
     <script>
     (() => {
         'use strict';
@@ -560,7 +532,7 @@
             leafContainer.appendChild(leaf);
         }
 
-        // === INTERSECTION OBSERVER - LAZY LOADING ===
+        // === LAZY LOADING + TIKLAMA OLAYI YENİDEN BAĞLAMA ===
         const lazyLoadObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -568,7 +540,10 @@
                     const src = img.dataset.src;
                     if (src) {
                         img.src = src;
-                        img.onload = () => img.classList.add('loaded');
+                        img.onload = () => {
+                            img.classList.add('loaded');
+                            attachGalleryEvents(); // Resim yüklendikten sonra tıklama olayını bağla
+                        };
                         img.onerror = () => img.src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect width="100" height="100" fill="%23e5e7eb"/><text x="50" y="55" font-size="14" fill="%239ca3af" text-anchor="middle">Hata</text></svg>';
                     }
                     observer.unobserve(img);
@@ -581,7 +556,37 @@
             lazyLoadObserver.observe(img);
         });
 
-        // === GALERİ VE VİDEO MODALLARI ===
+        // === FOTOĞRAF GALERİSİ - TIKLAMA OLAYLARI ===
+        const galleryGrid = document.getElementById('gallery-grid');
+        let imgs = [], curIdx = 0;
+
+        const refreshImgs = () => {
+            imgs = Array.from(galleryGrid.querySelectorAll('.gallery-thumbnail')).map(i => i.src).filter(src => src && !src.includes('svg'));
+        };
+
+        const openImg = idx => {
+            if (!imgs.length) refreshImgs();
+            curIdx = (idx + imgs.length) % imgs.length;
+            document.getElementById('modal-image').src = imgs[curIdx];
+            document.getElementById('image-modal').classList.replace('hidden','flex');
+        };
+
+        const closeImg = () => {
+            document.getElementById('image-modal').classList.replace('flex','hidden');
+            document.getElementById('modal-image').src = '';
+        };
+
+        const nextImg = () => { curIdx = (curIdx + 1) % imgs.length; document.getElementById('modal-image').src = imgs[curIdx]; };
+        const prevImg = () => { curIdx = (curIdx - 1 + imgs.length) % imgs.length; document.getElementById('modal-image').src = imgs[curIdx]; };
+
+        const attachGalleryEvents = () => {
+            refreshImgs();
+            galleryGrid.querySelectorAll('.photo-container').forEach((container, i) => {
+                container.onclick = () => openImg(i);
+            });
+        };
+
+        // Galeriyi aç/kapat
         const toggleBtn = (btnId, wrapperId, iconId, textId, openTxt, closeTxt) => {
             const btn = document.getElementById(btnId);
             const wrapper = document.getElementById(wrapperId);
@@ -592,50 +597,35 @@
                 const hidden = wrapper.classList.toggle('hidden');
                 icon.classList.toggle('rotate-180', !hidden);
                 txt.textContent = hidden ? openTxt : closeTxt;
+                if (!hidden) setTimeout(attachGalleryEvents, 100); // Açıldığında tıklama olaylarını bağla
             });
         };
+
         toggleBtn('toggle-gallery-btn','gallery-wrapper','gallery-toggle-icon','gallery-toggle-text','Fotoğraf Galerisini Gör','Galeriyi Gizle');
         toggleBtn('toggle-video-gallery-btn','video-gallery-wrapper','video-gallery-toggle-icon','video-gallery-toggle-text','Video Galerisini Gör','Galeriyi Gizle');
         toggleBtn('toggle-travel-btn','travel-wrapper','travel-toggle-icon','travel-toggle-text','Seyahatlerimizi Gör','Seyahatleri Gizle');
 
-        const galleryGrid = document.getElementById('gallery-grid');
-        const imgSelector = '.gallery-thumbnail';
-        let imgs = [], curIdx = 0;
-        const refreshImgs = () => { imgs = Array.from(galleryGrid.querySelectorAll(imgSelector)).map(i => i.src); };
-        const openImg = idx => {
-            if (!imgs.length) refreshImgs();
-            curIdx = (idx + imgs.length) % imgs.length;
-            document.getElementById('modal-image').src = imgs[curIdx];
-            document.getElementById('image-modal').classList.replace('hidden','flex');
-        };
-        const closeImg = () => {
-            const m = document.getElementById('image-modal');
-            m.classList.replace('flex','hidden');
-            document.getElementById('modal-image').src = '';
-        };
-        const nextImg = () => { curIdx = (curIdx + 1) % imgs.length; document.getElementById('modal-image').src = imgs[curIdx]; };
-        const prevImg = () => { curIdx = (curIdx - 1 + imgs.length) % imgs.length; document.getElementById('modal-image').src = imgs[curIdx]; };
-        const attachImgEvents = () => {
-            refreshImgs();
-            galleryGrid.querySelectorAll(imgSelector).forEach((el,i) => { el.onclick = () => openImg(i); });
-        };
-        attachImgEvents();
+        // === VİDEO GALERİSİ ===
+        const videoModal = document.getElementById('video-modal');
+        const iframe = document.getElementById('modal-video-iframe');
+
+        document.getElementById('video-grid').addEventListener('click', e => {
+            const container = e.target.closest('[data-youtube-id]');
+            if (container) {
+                const videoId = container.dataset.youtubeId;
+                iframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0`;
+                videoModal.classList.replace('hidden','flex');
+            }
+        });
+
+        document.getElementById('close-video-modal').onclick = () => { iframe.src = ''; videoModal.classList.replace('flex','hidden'); };
+        videoModal.onclick = e => { if (e.target === videoModal) { iframe.src=''; videoModal.classList.replace('flex','hidden'); } };
+
+        // Modal kontrolleri
         document.getElementById('close-modal').onclick = closeImg;
         document.getElementById('prev-photo').onclick = e => { e.stopPropagation(); prevImg(); };
         document.getElementById('next-photo').onclick = e => { e.stopPropagation(); nextImg(); };
         document.getElementById('image-modal').onclick = e => { if (e.target === e.currentTarget) closeImg(); };
-
-        const videoModal = document.getElementById('video-modal');
-        const iframe = document.getElementById('modal-video-iframe');
-        document.getElementById('video-grid').addEventListener('click', e => {
-            const el = e.target.closest('[data-youtube-id]');
-            if (el) {
-                iframe.src = `https://www.youtube-nocookie.com/embed/${el.dataset.youtubeId}?autoplay=1&rel=0`;
-                videoModal.classList.replace('hidden','flex');
-            }
-        });
-        document.getElementById('close-video-modal').onclick = () => { iframe.src = ''; videoModal.classList.replace('flex','hidden'); };
-        videoModal.onclick = e => { if (e.target === videoModal) { iframe.src=''; videoModal.classList.replace('flex','hidden'); } };
 
         document.addEventListener('keydown', e => {
             if (e.key === 'Escape') { closeImg(); iframe.src=''; videoModal.classList.replace('flex','hidden'); }
@@ -643,7 +633,7 @@
             if (e.key === 'ArrowLeft' && !document.getElementById('image-modal').classList.contains('hidden')) prevImg();
         });
 
-        // === FORM, COUNTDOWN, ANIMASYONLAR ===
+        // === DİĞER ANIMASYONLAR VE FORM ===
         document.getElementById('wish-form')?.addEventListener('submit', function (ev) {
             const contact = document.getElementById('contact').value.trim();
             const err = document.getElementById('contact-error');
