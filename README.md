@@ -113,7 +113,7 @@
         .group:hover .photo-number { opacity: 1; }
         .photo-container.no-note .photo-note { display: none; }
 
-        /* SEYAHATLER - FOTOĞRAF GALERİSİYLE AYNI BOYUT VE GRID */
+        /* SEYAHATLER - FOTOĞRAF GALERİSİYLE AYNI BOYUT VE GRID + MOBİL DÜZELTME */
         .travel-folder { 
             position: relative; overflow: hidden; border-radius: 0.5rem; 
             box-shadow: 0 4px 6px rgba(0,0,0,0.1); aspect-ratio: 1/1; 
@@ -122,9 +122,30 @@
             padding: 0.75rem; text-align: center; transition: transform .2s ease-in-out, box-shadow .2s ease-in-out;
         }
         .travel-folder:hover { transform: translateY(-5px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
-        .travel-folder .text-4xl { margin-bottom: 0.5rem; }
-        .travel-folder h4 { font-weight: 600; font-size: 0.875rem; line-height: 1.2; margin-bottom: 0.25rem; color: #1f2937; }
-        .travel-folder p { font-size: 0.75rem; font-style: italic; color: #374151; margin: 0; }
+
+        /* MOBİLDE KÜÇÜK YAZI VE İKON */
+        @media (max-width: 640px) {
+            .travel-folder {
+                padding: 0.5rem;
+            }
+            .travel-folder .text-4xl {
+                @apply text-2xl;
+                margin-bottom: 0.25rem;
+            }
+            .travel-folder h4 {
+                @apply text-xs font-bold line-clamp-2;
+                margin-bottom: 0.125rem;
+            }
+            .travel-folder p {
+                @apply text-xs;
+                line-height: 1.1;
+            }
+        }
+        @media (min-width: 641px) {
+            .travel-folder .text-4xl { @apply text-4xl; margin-bottom: 0.5rem; }
+            .travel-folder h4 { @apply text-sm font-semibold; line-height: 1.2; margin-bottom: 0.25rem; }
+            .travel-folder p { @apply text-xs; }
+        }
 
         .fade-in-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity .8s cubic-bezier(.25,.46,.45,.94), transform .8s cubic-bezier(.25,.46,.45,.94); }
         .fade-in-on-scroll.visible { opacity: 1; transform: translateY(0); }
@@ -302,7 +323,7 @@
             </div>
         </section>
 
-        <!-- SEYAHATLERİMİZ - FOTOĞRAF GALERİSİYLE AYNI BOYUT VE GRID -->
+        <!-- SEYAHATLERİMİZ - MOBİL DÜZELTME -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Seyahatlerimiz</h3>
             <p class="text-center text-black font-semibold italic">
@@ -316,20 +337,20 @@
                 </button>
             </div>
             <div id="travel-wrapper" class="hidden mt-8">
-                <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-1">
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 md:gap-1">
                     <div class="travel-folder group">
-                        <div class="text-4xl text-green-500 mb-1"><i class="fas fa-map-marked-alt"></i></div>
-                        <h4 class="font-semibold text-black">Kapadokya Gezisi</h4>
+                        <div class="text-4xl text-green-500"><i class="fas fa-map-marked-alt"></i></div>
+                        <h4 class="font-semibold text-black line-clamp-2">Kapadokya Gezisi</h4>
                         <p class="italic text-xs">Balonlar arasında...</p>
                     </div>
                     <div class="travel-folder group">
-                        <div class="text-4xl text-green-500 mb-1"><i class="fas fa-umbrella-beach"></i></div>
-                        <h4 class="font-semibold text-black">Ege Sahilleri</h4>
+                        <div class="text-4xl text-green-500"><i class="fas fa-umbrella-beach"></i></div>
+                        <h4 class="font-semibold text-black line-clamp-2">Ege Sahilleri</h4>
                         <p class="italic text-xs">Deniz, kum, güneş...</p>
                     </div>
                     <div class="travel-folder group">
-                        <div class="text-4xl text-green-500 mb-1"><i class="fas fa-ship"></i></div>
-                        <h4 class="font-semibold text-black">Akdeniz Turu</h4>
+                        <div class="text-4xl text-green-500"><i class="fas fa-ship"></i></div>
+                        <h4 class="font-semibold text-black line-clamp-2">Akdeniz Turu</h4>
                         <p class="italic text-xs">Mavi yolculuk...</p>
                     </div>
                 </div>
