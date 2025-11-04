@@ -17,13 +17,13 @@
         body {
             font-family: 'Poppins', sans-serif;
             font-weight: 300;
-            background: transparent !important; /* Arka plan deseni ayrı katmanda */
+            background: transparent !important;
             position: relative;
             overflow-x: hidden;
             min-height: 100vh;
         }
 
-        /* ARKA PLAN YAPRAK DESENİ - HER ZAMAN GÖRÜNÜR (ÖZELLİKLE MOBİL) */
+        /* ARKA PLAN YAPRAK DESENİ - HER ZAMAN GÖRÜNÜR (MOBİL DAHİL) */
         #background-leaves-pattern {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -35,12 +35,9 @@
             opacity: 0.6;
         }
         @media (max-width: 768px) {
-            #background-leaves-pattern {
-                opacity: 0.9 !important; /* MOBİLDE DAHA BELİRGİN */
-            }
+            #background-leaves-pattern { opacity: 0.9 !important; }
         }
 
-        /* DÜŞEN YAPRAKLAR - ÜST KATMAN */
         #falling-leaves-container {
             position: fixed; top: 0; left: 0; right: 0; bottom: 0;
             pointer-events: none; z-index: -1; overflow: hidden;
@@ -52,7 +49,6 @@
         .font-poor-richard-alternative { font-family: 'Cormorant Garamond', serif; }
         .text-shadow { text-shadow: 2px 2px 4px rgba(0,0,0,0.6); }
 
-        /* KALP ATIŞI */
         @keyframes heartbeat {
             0% { transform: scale(1); }
             50% { transform: scale(1.1); }
@@ -60,7 +56,6 @@
         }
         .heartbeat { animation: heartbeat 1.5s infinite; }
 
-        /* ANA BAŞLIKLAR */
         #main-title { font-size: 3rem !important; line-height: 1.2 !important; }
         @media (min-width: 768px) { #main-title { font-size: 4rem !important; } }
         main h3:not(#ilk-adim-baslik) { font-size: 1.5rem !important; line-height: 1.3 !important; }
@@ -69,7 +64,6 @@
         @media (min-width: 768px) { #ilk-adim-baslik { font-size: 1.75rem !important; } }
         header, #main-title-section { border:none!important; box-shadow:none!important; }
 
-        /* TIMELINE */
         .timeline-container { position: relative; max-width: 1200px; margin: 0 auto; padding: 2rem 0; }
         .timeline-container::after {
             content: ''; position: absolute; width: 4px; background: linear-gradient(to bottom, #10b981, #f59e0b, #ef4444);
@@ -126,7 +120,7 @@
         .poem-container:hover::before { transform: scaleX(1); }
         @media (max-width: 768px) { .poem-container { font-size: 1rem; line-height: 1.8; padding: 1rem; } .poem-line:hover { font-size: 1.15rem !important; transform: translateY(-3px) scale(1.05) !important; } }
 
-        /* GERÇEKÇİ SONBAHAR YAPRAKLARI – SADECE 7 ADET */
+        /* YAPRAKLAR */
         .leaf-svg {
             position: absolute; width: 32px; height: 44px; opacity: 0.9;
             animation: fall linear infinite; transform-origin: center;
@@ -156,7 +150,7 @@
     </style>
 </head>
 <body class="text-black">
-    <!-- ARKA PLAN YAPRAK DESENİ - HER ZAMAN GÖRÜNÜR -->
+    <!-- ARKA PLAN YAPRAK DESENİ -->
     <div id="background-leaves-pattern"></div>
 
     <!-- DÜŞEN YAPRAKLAR -->
@@ -183,7 +177,6 @@
         </div>
     </header>
 
-    <!-- KALINLAŞTIRILMIŞ TARİH VE ALT YAZI -->
     <section id="main-title-section" class="py-16 text-center">
         <h2 id="main-title" class="font-bold handwriting text-green-600">O Güzel Sonbahar</h2>
         <p class="text-xl md:text-2xl mt-2 text-red-600 font-bold">27 Eylül 2025</p>
@@ -370,7 +363,7 @@
             </div>
         </section>
 
-        <!-- Video Galerisi -->
+        <!-- VİDEO GALERİSİ - MOBİLDE FOTOĞRAF GALERİSİ GİBİ KÜÇÜK KARELER -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Video Galerimiz</h3>
             <p class="text-center text-black font-semibold">
@@ -384,41 +377,47 @@
                 </button>
             </div>
             <div id="video-gallery-wrapper" class="hidden mt-8">
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1" id="video-grid">
-                    <div class="photo-container group cursor-pointer aspect-video" data-youtube-id="ChFa2GJ4e4U">
-                        <img src="https://img.youtube.com/vi/ChFa2GJ4e4U/hqdefault.jpg" alt="Video thumbnail" class="w-full h-full object-cover">
+                <!-- FOTOĞRAF GALERİSİYLE AYNI GRID VE BOYUT -->
+                <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-1" id="video-grid">
+                    <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="ChFa2GJ4e4U">
+                        <img src="https://img.youtube.com/vi/ChFa2GJ4e4U/maxresdefault.jpg" alt="Video thumbnail" class="w-full h-full object-cover gallery-thumbnail">
                         <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
-                            <i class="far fa-play-circle text-white text-6xl opacity-80 group-hover:opacity-100 transition-opacity"></i>
+                            <i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i>
                         </div>
-                        <span class="photo-number opacity-0 group-hover:opacity-100">5</span><div class="photo-note">Beşiktaş</div>
+                        <span class="photo-number opacity-0 group-hover:opacity-100">5</span>
+                        <div class="photo-note">Beşiktaş</div>
                     </div>
-                    <div class="photo-container group cursor-pointer aspect-video" data-youtube-id="aim5II5vYpU">
-                        <img src="https://img.youtube.com/vi/aim5II5vYpU/hqdefault.jpg" alt="Video thumbnail" class="w-full h-full object-cover">
+                    <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="aim5II5vYpU">
+                        <img src="https://img.youtube.com/vi/aim5II5vYpU/maxresdefault.jpg" alt="Video thumbnail" class="w-full h-full object-cover gallery-thumbnail">
                         <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
-                            <i class="far fa-play-circle text-white text-6xl opacity-80 group-hover:opacity-100 transition-opacity"></i>
+                            <i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i>
                         </div>
-                        <span class="photo-number opacity-0 group-hover:opacity-100">4</span><div class="photo-note">Üsküdar</div>
+                        <span class="photo-number opacity-0 group-hover:opacity-100">4</span>
+                        <div class="photo-note">Üsküdar</div>
                     </div>
-                    <div class="photo-container group cursor-pointer aspect-video" data-youtube-id="uY6ZrwkbLjc">
-                        <img src="https://img.youtube.com/vi/uY6ZrwkbLjc/hqdefault.jpg" alt="Video thumbnail" class="w-full h-full object-cover">
+                    <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="uY6ZrwkbLjc">
+                        <img src="https://img.youtube.com/vi/uY6ZrwkbLjc/maxresdefault.jpg" alt="Video thumbnail" class="w-full h-full object-cover gallery-thumbnail">
                         <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
-                            <i class="far fa-play-circle text-white text-6xl opacity-80 group-hover:opacity-100 transition-opacity"></i>
+                            <i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i>
                         </div>
-                        <span class="photo-number opacity-0 group-hover:opacity-100">3</span><div class="photo-note">Lunapark</div>
+                        <span class="photo-number opacity-0 group-hover:opacity-100">3</span>
+                        <div class="photo-note">Lunapark</div>
                     </div>
-                    <div class="photo-container group cursor-pointer aspect-video" data-youtube-id="19aKq8FtYP8">
-                        <img src="https://img.youtube.com/vi/19aKq8FtYP8/hqdefault.jpg" alt="Video thumbnail" class="w-full h-full object-cover">
+                    <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="19aKq8FtYP8">
+                        <img src="https://img.youtube.com/vi/19aKq8FtYP8/maxresdefault.jpg" alt="Video thumbnail" class="w-full h-full object-cover gallery-thumbnail">
                         <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
-                            <i class="far fa-play-circle text-white text-6xl opacity-80 group-hover:opacity-100 transition-opacity"></i>
+                            <i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i>
                         </div>
-                        <span class="photo-number opacity-0 group-hover:opacity-100">2</span><div class="photo-note">Beşiktaş</div>
+                        <span class="photo-number opacity-0 group-hover:opacity-100">2</span>
+                        <div class="photo-note">Beşiktaş</div>
                     </div>
-                    <div class="photo-container group cursor-pointer aspect-video" data-youtube-id="J466tfX1jzk">
-                        <img src="https://img.youtube.com/vi/J466tfX1jzk/hqdefault.jpg" alt="Video thumbnail" class="w-full h-full object-cover">
+                    <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="J466tfX1jzk">
+                        <img src="https://img.youtube.com/vi/J466tfX1jzk/maxresdefault.jpg" alt="Video thumbnail" class="w-full h-full object-cover gallery-thumbnail">
                         <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
-                            <i class="far fa-play-circle text-white text-6xl opacity-80 group-hover:opacity-100 transition-opacity"></i>
+                            <i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i>
                         </div>
-                        <span class="photo-number opacity-0 group-hover:opacity-100">1</span><div class="photo-note">Ev</div>
+                        <span class="photo-number opacity-0 group-hover:opacity-100">1</span>
+                        <div class="photo-note">Ev</div>
                     </div>
                 </div>
             </div>
@@ -491,7 +490,7 @@
     <script>
     (() => {
         'use strict';
-        const COUNTDOWN_DATE = ""; // "2025-09-27T00:00:00"
+        const COUNTDOWN_DATE = "";
 
         const leafSVG = `
         <svg viewBox="0 0 100 140" class="w-full h-full" preserveAspectRatio="xMidYMid meet">
