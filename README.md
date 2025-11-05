@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -69,7 +70,7 @@
         .timeline-item.left { left: 0; } .timeline-item.right { left: 50%; }
         .timeline-content {
             padding: 20px 30px; background: rgba(255, 255, 255, 0.95); border-radius: 12px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); border-left: 3px solid #10b981; position: relative; overflow: hidden; transition: all 0.4s ease;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); border-left: 4px solid #10b981; position: relative; overflow: hidden; transition: all 0.4s ease;
         }
         .timeline-content::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(to right, transparent, #ef4444, transparent); transform: scaleX(0); transition: transform 0.6s ease; }
         .timeline-content.animate::before { transform: scaleX(1); }
@@ -139,19 +140,19 @@
         .fade-in-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity .8s cubic-bezier(.25,.46,.45,.94), transform .8s cubic-bezier(.25,.46,.45,.94); }
         .fade-in-on-scroll.visible { opacity: 1; transform: translateY(0); }
         /* ŞİİR ANIMASYONU - İLK VERSİYON (TYPEWRITER EFEKTİ) */
-        .poem-container { 
-            max-width: 90%; margin: 0 auto; padding: 2rem 0; line-height: 2.3; font-size: 1.15rem; 
-            font-style: italic; color: #1f2937; text-align: center; position: relative; 
-            background: linear-gradient(135deg, rgba(253, 250, 246, 0.9) 0%, rgba(255, 255, 255, 0.95) 100%); 
-            border-radius: 12px; padding: 2rem; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); overflow: hidden; 
+        .poem-container {
+            max-width: 90%; margin: 0 auto; padding: 2rem 0; line-height: 2.3; font-size: 1.15rem;
+            font-style: italic; color: #1f2937; text-align: center; position: relative;
+            background: linear-gradient(135deg, rgba(253, 250, 246, 0.9) 0%, rgba(255, 255, 255, 0.95) 100%);
+            border-radius: 12px; padding: 2rem; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); overflow: hidden;
         }
-        .poem-line { 
-            opacity: 0; transform: translateX(-60px) scale(0.8); display: block; position: relative; 
-            margin: 0.2rem 0; padding: 0.5rem; border-radius: 8px; font-family: 'Cormorant Garamond', serif; 
+        .poem-line {
+            opacity: 0; transform: translateX(-60px) scale(0.8); display: block; position: relative;
+            margin: 0.2rem 0; padding: 0.5rem; border-radius: 8px; font-family: 'Cormorant Garamond', serif;
             transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
-        .poem-line.visible { 
-            opacity: 1; transform: translateX(0) scale(1); 
+        .poem-line.visible {
+            opacity: 1; transform: translateX(0) scale(1);
             animation: typewriter 0.8s steps(30) forwards, blink 0.7s infinite;
         }
         @keyframes typewriter {
@@ -166,27 +167,27 @@
         }
         .poem-line.visible::after { display: none; }
         .poem-container:hover .poem-line { color: #6b7280; font-weight: 300; font-size: 1.05rem; }
-        .poem-container .poem-line:hover { 
-            color: #dc2626 !important; font-weight: 600 !important; font-size: 1.25rem !important; 
-            transform: translateY(-5px) scale(1.08) !important; 
-            text-shadow: 0 4px 8px rgba(220, 38, 38, 0.3); background: rgba(220, 38, 38, 0.05); 
-            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.15); z-index: 10; 
+        .poem-container .poem-line:hover {
+            color: #dc2626 !important; font-weight: 600 !important; font-size: 1.25rem !important;
+            transform: translateY(-5px) scale(1.08) !important;
+            text-shadow: 0 4px 8px rgba(220, 38, 38, 0.3); background: rgba(220, 38, 38, 0.05);
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.15); z-index: 10;
         }
-        .poem-container:hover .poem-line:not(:hover) { 
-            opacity: 0.7; filter: blur(0.3px); transform: translateY(2px) scale(0.98); 
+        .poem-container:hover .poem-line:not(:hover) {
+            opacity: 0.7; filter: blur(0.3px); transform: translateY(2px) scale(0.98);
         }
-        .poem-line:nth-child(8), .poem-line:nth-child(9), .poem-line:nth-child(10) { 
-            font-weight: 600 !important; color: #dc2626 !important; 
+        .poem-line:nth-child(8), .poem-line:nth-child(9), .poem-line:nth-child(10) {
+            font-weight: 600 !important; color: #dc2626 !important;
         }
-        .poem-container::before { 
-            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; 
-            background: linear-gradient(90deg, transparent, #dc2626, transparent); 
-            transform: scaleX(0); transition: transform 0.6s ease; 
+        .poem-container::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, transparent, #dc2626, transparent);
+            transform: scaleX(0); transition: transform 0.6s ease;
         }
         .poem-container:hover::before { transform: scaleX(1); }
-        @media (max-width: 768px) { 
-            .poem-container { font-size: 1rem; line-height: 1.8; padding: 1rem; } 
-            .poem-line:hover { font-size: 1.15rem !important; transform: translateY(-3px) scale(1.05) !important; } 
+        @media (max-width: 768px) {
+            .poem-container { font-size: 1rem; line-height: 1.8; padding: 1rem; }
+            .poem-line:hover { font-size: 1.15rem !important; transform: translateY(-3px) scale(1.05) !important; }
         }
         /* YAPRAKLAR */
         .leaf-svg {
@@ -215,6 +216,31 @@
         .leaf-svg.autumn-8 { color: #f97316; }
         .leaf-svg.autumn-9 { color: #22c55e; }
         .leaf-svg.autumn-10 { color: #16a34a; }
+
+        /* HAYAL DEFTERİ - SADECE RENKLİ KALP */
+        .dream-heart {
+            display: inline-block;
+            opacity: 0;
+            transform: scale(0);
+            transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            background: linear-gradient(135deg, #ef4444, #f97316, #fbbf24, #f59e0b, #f43f5e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 12px rgba(239, 68, 68, 0.7));
+            text-shadow: 0 0 10px rgba(239, 68, 68, 0.4);
+        }
+        .dream-heart.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        @keyframes pulse-gentle {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.18); }
+        }
+        .dream-heart.pulse {
+            animation: pulse-gentle 1.8s infinite;
+        }
     </style>
 </head>
 <body class="text-black">
@@ -324,13 +350,18 @@
                 </p>
             </div>
         </section>
-        <!-- Hayal Defterimiz -->
-        <section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg fade-in-on-scroll">
+
+        <!-- HAYAL DEFTERİMİZ - SADECE RENKLİ KALP -->
+        <section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg fade-in-on-scroll relative overflow-hidden">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Hayal Defterimiz</h3>
             <p class="text-center text-black font-semibold italic text-lg mt-4 mb-8">
                 Birlikte kurduğumuz hayaller, geleceğe dair ektiğimiz tohumlar...
             </p>
+            <div class="relative text-center">
+                <span class="dream-heart text-6xl"><i class="fas fa-heart"></i></span>
+            </div>
         </section>
+
         <!-- Bizim Şarkımız -->
         <section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg text-center">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Bizim Şarkımız</h3>
@@ -488,14 +519,14 @@
                 <p class="text-center text-black font-semibold">İyi günde, kötü günde her anımızda yanımızda olan değerli dostlarımıza...</p>
             </div>
         </section>
-        <!-- DİLEK KUTUSU - _next DÜZELTİLDİ (REPO KÖKÜNE YÖNLENDİRME) -->
+        <!-- DİLEK KUTUSU - _next EKLENDİ -->
         <section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg">
             <h3 class="font-bold text-center text-red-600 mb-6">Bizim İçin Bir Dilek Bırakın</h3>
             <form id="wish-form" action="https://formsubmit.co/arzuersin2025@gmail.com" method="POST" class="space-y-4">
                 <input type="hidden" name="_subject" value="Arzu & Ersin Web Sitenizden Yeni Dilek!">
                 <input type="hidden" name="_honey" style="display:none">
                 <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_next" value="https://arzuersin2025.github.io/">
+                <input type="hidden" name="_next" value="https://arzuersin2025.github.io/AE/">
                 <div>
                     <label for="name" class="block text-sm font-medium text-red-600">Adınız</label>
                     <input type="text" name="name" id="name" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="Adınız ve Soyadınız" required>
@@ -708,8 +739,8 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const delay = parseFloat(entry.target.getAttribute('data-delay')) || 0;
-                    setTimeout(() => { 
-                        entry.target.classList.add('visible'); 
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
                         const text = entry.target.textContent;
                         entry.target.textContent = '';
                         let i = 0;
@@ -728,8 +759,20 @@
         }, { threshold: 0.6 });
         document.querySelectorAll('.poem-line').forEach(line => poemObserver.observe(line));
         const obs = new IntersectionObserver(entries => {
-            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-        }, {threshold:0.15});
+            entries.forEach(entry => { 
+                if (entry.isIntersecting) { 
+                    entry.target.classList.add('visible');
+                    // Sadece kalp animasyonu
+                    const heart = entry.target.querySelector('.dream-heart');
+                    if (heart) {
+                        setTimeout(() => {
+                            heart.classList.add('visible');
+                            setTimeout(() => heart.classList.add('pulse'), 300);
+                        }, 400);
+                    }
+                }
+            });
+        }, {threshold:0.3});
         document.querySelectorAll('.fade-in-on-scroll, .travel-folder').forEach(el => obs.observe(el));
     })();
     </script>
