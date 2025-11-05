@@ -104,10 +104,11 @@
         @keyframes glow { from { filter: drop-shadow(0 0 15px rgba(239, 68, 68, 0.6)); } to { filter: drop-shadow(0 0 25px rgba(239, 68, 68, 0.9)); } }
         .heart-particle { position: absolute; font-size: 1.2rem; color: #ff1493; pointer-events: none; animation: floatHeart linear forwards; left: 50%; top: 50%; transform: translate(-50%, -50%); }
         @keyframes floatHeart { 0% { transform: translate(-50%, -50%) scale(0) rotate(0deg); opacity: 1; } 100% { transform: translate(calc(-50% + var(--drift)), -180px) scale(1) rotate(360deg); opacity: 0; } }
+        /* YENİ: İkon halkaların dışında, aynı hizada, daha da sağda */
         .song-control {
             position: absolute;
             bottom: 1rem;
-            right: -3.5rem;
+            right: -3.5rem; /* daha da sağa kaydırıldı */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -151,6 +152,9 @@
             .song-control { right: -2.8rem; }
             .song-label { font-size: 0.6rem; margin-bottom: 0.4rem; }
         }
+        /* YouTube Player için ekstra stil */
+        #youtube-player { display: none; width: 100%; height: 100%; border-radius: 50%; }
+        #youtube-player.show { display: block; }
     </style>
 </head>
 <body class="text-black">
@@ -267,18 +271,22 @@
                 <span class="dream-heart text-6xl"><i class="fas fa-heart"></i></span>
             </div>
         </section>
-        <!-- BİZİM ŞARKIMIZ -->
+        <!-- BİZİM ŞARKIMIZ (TARKAN BENİ ÇOK SEV ENTEGRASYONU) -->
         <section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg text-center relative overflow-hidden">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Bizim Şarkımız</h3>
+            <p class="text-center text-black font-semibold italic mt-2 mb-6">Tarkan - Beni Çok Sev</p>
             <div class="relative mx-auto w-64 h-64 md:w-80 md:h-80">
                 <div class="absolute inset-0 rounded-full border-4 border-pink-200 opacity-30 animate-spin-slow"></div>
                 <div class="sound-wave wave-1"></div>
                 <div class="sound-wave wave-2"></div>
                 <div class="sound-wave wave-3"></div>
+                <!-- YouTube Player (gizli, play'de göster) -->
+                <iframe id="youtube-player" src="https://www.youtube.com/embed/IYnu4-69fTA?autoplay=0&rel=0&modestbranding=1&playsinline=1" title="Tarkan - Beni Çok Sev" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 <div id="main-heart" class="absolute inset-0 flex items-center justify-center cursor-pointer group">
                     <i class="fas fa-heart text-6xl md:text-8xl text-red-500 heartbeat-glow group-hover:scale-110 transition-transform duration-300"></i>
                 </div>
                 <div id="heart-particles" class="absolute inset-0 pointer-events-none"></div>
+                <!-- Play Butonu -->
                 <div class="song-control">
                     <div class="song-label">Şarkımızı Dinleyin</div>
                     <button id="play-song-btn" title="Şarkıyı Çal">
@@ -286,10 +294,6 @@
                     </button>
                 </div>
             </div>
-            <audio id="our-song" preload="auto">
-                <source src="audio/sarkimiz.mp3" type="audio/mpeg">
-                Tarayıcınız ses çalmayı desteklemiyor.
-            </audio>
         </section>
         <!-- SEYAHATLER -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
@@ -483,26 +487,48 @@
         document.querySelectorAll('.poem-line').forEach(line => poemObserver.observe(line));
         const obs = new IntersectionObserver(entries => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); const heart = entry.target.querySelector('.dream-heart'); if (heart) { setTimeout(() => { heart.classList.add('visible'); setTimeout(() => heart.classList.add('pulse'), 300); }, 400); } } }); }, {threshold:0.3});
         document.querySelectorAll('.fade-in-on-scroll, .travel-folder').forEach(el => obs.observe(el));
-        const audio = document.getElementById('our-song'); const playBtn = document.getElementById('play-song-btn'); const waves = document.querySelectorAll('.sound-wave'); const heartContainer = document.getElementById('heart-particles');
+        
+        // TARKAN ŞARKI ENTEGRASYONU (YouTube ile)
+        const player = document.getElementById('youtube-player');
+        const playBtn = document.getElementById('play-song-btn');
+        const waves = document.querySelectorAll('.sound-wave');
+        const heartContainer = document.getElementById('heart-particles');
+        let ytPlayer;
+        
+        // YouTube API yükle
+        const tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        const firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        
+        window.onYouTubeIframeAPIReady = function() {
+            ytPlayer = new YT.Player('youtube-player', {
+                events: {
+                    'onReady': onPlayerReady
+                }
+            });
+        };
+        
+        function onPlayerReady(event) {
+            // Player hazır
+        }
+        
         playBtn.addEventListener('click', () => {
-            if (audio.paused) {
-                audio.play().catch(() => alert('Şarkı çalınamadı. "audio/sarkimiz.mp3" dosyasını ekleyin.'));
+            if (ytPlayer && ytPlayer.getPlayerState() !== YT.PlayerState.PLAYING) {
+                ytPlayer.playVideo();
                 playBtn.innerHTML = '<i class="fas fa-pause"></i>';
                 playBtn.classList.add('playing');
+                player.classList.add('show');
                 waves.forEach(w => w.classList.add('playing'));
-            }
-            else {
-                audio.pause();
+            } else {
+                ytPlayer.pauseVideo();
                 playBtn.innerHTML = '<i class="fas fa-play"></i>';
                 playBtn.classList.remove('playing');
+                player.classList.remove('show');
                 waves.forEach(w => w.classList.remove('playing'));
             }
         });
-        audio.addEventListener('ended', () => {
-            playBtn.innerHTML = '<i class="fas fa-play"></i>';
-            playBtn.classList.remove('playing');
-            waves.forEach(w => w.classList.remove('playing'));
-        });
+        
         function createHeartParticles() {
             const count = 8;
             for (let i = 0; i < count; i++) {
