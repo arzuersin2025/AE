@@ -87,7 +87,7 @@
             .timeline-item.right { left: 0 !important; }
             .timeline-content { padding: 15px 20px; }
         }
-        /* FOTOĞRAF GALERİSİ - LAZY + INTERSECTION OBSERVER */
+        /* FOTOĞRAF GALERİSİ */
         .photo-container {
             position: relative; overflow: hidden; border-radius: 0.5rem;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1); aspect-ratio: 1/1;
@@ -105,7 +105,7 @@
         .photo-number { position: absolute; bottom: 0.5rem; right: 0.75rem; color: white; font-size: 1rem; font-weight: bold; text-shadow: 1px 1px 3px rgba(0,0,0,0.9); opacity: 0; transition: opacity .3s ease-in-out; }
         .group:hover .photo-number { opacity: 1; }
         .photo-container.no-note .photo-note { display: none; }
-        /* SEYAHATLER - FOTOĞRAF GALERİSİYLE AYNI BOYUT VE GRID + MOBİL DÜZELTME */
+        /* SEYAHATLER */
         .travel-folder {
             position: relative; overflow: hidden; border-radius: 0.5rem;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1); aspect-ratio: 1/1;
@@ -114,23 +114,11 @@
             padding: 0.75rem; text-align: center; transition: transform .2s ease-in-out, box-shadow .2s ease-in-out;
         }
         .travel-folder:hover { transform: translateY(-5px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
-        /* MOBİLDE KÜÇÜK YAZI VE İKON */
         @media (max-width: 640px) {
-            .travel-folder {
-                padding: 0.5rem;
-            }
-            .travel-folder .text-4xl {
-                @apply text-2xl;
-                margin-bottom: 0.25rem;
-            }
-            .travel-folder h4 {
-                @apply text-xs font-bold line-clamp-2;
-                margin-bottom: 0.125rem;
-            }
-            .travel-folder p {
-                @apply text-xs;
-                line-height: 1.1;
-            }
+            .travel-folder { padding: 0.5rem; }
+            .travel-folder .text-4xl { @apply text-2xl; margin-bottom: 0.25rem; }
+            .travel-folder h4 { @apply text-xs font-bold line-clamp-2; margin-bottom: 0.125rem; }
+            .travel-folder p { @apply text-xs; line-height: 1.1; }
         }
         @media (min-width: 641px) {
             .travel-folder .text-4xl { @apply text-4xl; margin-bottom: 0.5rem; }
@@ -139,7 +127,7 @@
         }
         .fade-in-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity .8s cubic-bezier(.25,.46,.45,.94), transform .8s cubic-bezier(.25,.46,.45,.94); }
         .fade-in-on-scroll.visible { opacity: 1; transform: translateY(0); }
-        /* ŞİİR ANIMASYONU - İLK VERSİYON (TYPEWRITER EFEKTİ) */
+        /* ŞİİR */
         .poem-container {
             max-width: 90%; margin: 0 auto; padding: 2rem 0; line-height: 2.3; font-size: 1.15rem;
             font-style: italic; color: #1f2937; text-align: center; position: relative;
@@ -155,16 +143,9 @@
             opacity: 1; transform: translateX(0) scale(1);
             animation: typewriter 0.8s steps(30) forwards, blink 0.7s infinite;
         }
-        @keyframes typewriter {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-        @keyframes blink {
-            50% { border-color: transparent; }
-        }
-        .poem-line::after {
-            content: '|'; color: #dc2626; margin-left: 2px; animation: blink 0.7s infinite;
-        }
+        @keyframes typewriter { from { width: 0; } to { width: 100%; } }
+        @keyframes blink { 50% { border-color: transparent; } }
+        .poem-line::after { content: '|'; color: #dc2626; margin-left: 2px; animation: blink 0.7s infinite; }
         .poem-line.visible::after { display: none; }
         .poem-container:hover .poem-line { color: #6b7280; font-weight: 300; font-size: 1.05rem; }
         .poem-container .poem-line:hover {
@@ -216,8 +197,7 @@
         .leaf-svg.autumn-8 { color: #f97316; }
         .leaf-svg.autumn-9 { color: #22c55e; }
         .leaf-svg.autumn-10 { color: #16a34a; }
-
-        /* HAYAL DEFTERİ - SADECE RENKLİ KALP */
+        /* HAYAL DEFTERİ */
         .dream-heart {
             display: inline-block;
             opacity: 0;
@@ -230,17 +210,9 @@
             filter: drop-shadow(0 0 12px rgba(239, 68, 68, 0.7));
             text-shadow: 0 0 10px rgba(239, 68, 68, 0.4);
         }
-        .dream-heart.visible {
-            opacity: 1;
-            transform: scale(1);
-        }
-        @keyframes pulse-gentle {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.18); }
-        }
-        .dream-heart.pulse {
-            animation: pulse-gentle 1.8s infinite;
-        }
+        .dream-heart.visible { opacity: 1; transform: scale(1); }
+        @keyframes pulse-gentle { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.18); } }
+        .dream-heart.pulse { animation: pulse-gentle 1.8s infinite; }
     </style>
 </head>
 <body class="text-black">
@@ -290,7 +262,7 @@
             </p>
             <div class="text-4xl text-red-500 mt-8 heartbeat"><i class="fas fa-heart"></i></div>
         </section>
-        <!-- ŞİİR - İLK VERSİYON (TYPEWRITER) -->
+        <!-- ŞİİR -->
         <section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg text-center">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting font-forte-alternative">Sonbahar</h3>
             <div class="poem-container">
@@ -350,8 +322,7 @@
                 </p>
             </div>
         </section>
-
-        <!-- HAYAL DEFTERİMİZ - SADECE RENKLİ KALP -->
+        <!-- HAYAL DEFTERİMİZ -->
         <section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg fade-in-on-scroll relative overflow-hidden">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Hayal Defterimiz</h3>
             <p class="text-center text-black font-semibold italic text-lg mt-4 mb-8">
@@ -361,7 +332,6 @@
                 <span class="dream-heart text-6xl"><i class="fas fa-heart"></i></span>
             </div>
         </section>
-
         <!-- Bizim Şarkımız -->
         <section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg text-center">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Bizim Şarkımız</h3>
@@ -369,7 +339,7 @@
                 <div class="text-4xl text-red-600"><i class="fas fa-music"></i></div>
             </div>
         </section>
-        <!-- SEYAHATLERİMİZ - MOBİL DÜZELTME -->
+        <!-- SEYAHATLERİMİZ -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Seyahatlerimiz</h3>
             <p class="text-center text-black font-semibold italic">
@@ -406,7 +376,7 @@
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Fotoğraf Galerimiz</h3>
             <p class="text-center text-black font-semibold italic">
-              İşte yolculuğumuzda biriktirdiğimiz anlardan 6 kare...
+              İşte yolculuğumuzda biriktirdiğimiz anlardan 8 kare...
               Bu galeri, zamanla daha nice güzel anıyla dolacak.
             </p>
             <div class="mt-8 text-center">
@@ -418,33 +388,51 @@
             </div>
             <div id="gallery-wrapper" class="hidden mt-8">
                 <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-1" id="gallery-grid">
+                    <!-- 1. FOTOĞRAF - EN YENİ -->
                     <div class="photo-container group cursor-pointer">
-                        <img data-src="https://i.imgur.com/wf9Xhs9.jpg" alt="Anı fotoğrafı 6" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
+                        <img data-src="https://i.imgur.com/jlmfKQ6.jpg" alt="Nev Mekan" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
+                        <span class="photo-number opacity-0 group-hover:opacity-100">8</span>
+                        <div class="photo-note">Nev Mekan</div>
+                    </div>
+                    <!-- 2. FOTOĞRAF -->
+                    <div class="photo-container group cursor-pointer">
+                        <img data-src="https://i.imgur.com/EI3PjiL.jpg" alt="Nev Mekan" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
+                        <span class="photo-number opacity-0 group-hover:opacity-100">7</span>
+                        <div class="photo-note">Nev Mekan</div>
+                    </div>
+                    <!-- 3. FOTOĞRAF -->
+                    <div class="photo-container group cursor-pointer">
+                        <img data-src="https://i.imgur.com/wf9Xhs9.jpg" alt="Anı 1" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">6</span>
                         <div class="photo-note">Lunapark Anısı</div>
                     </div>
+                    <!-- 4. FOTOĞRAF -->
                     <div class="photo-container group cursor-pointer">
-                        <img data-src="https://i.imgur.com/G26zsUc.jpg" alt="Anı fotoğrafı 5" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
+                        <img data-src="https://i.imgur.com/G26zsUc.jpg" alt="Anı 2" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">5</span>
                         <div class="photo-note">Beşiktaş</div>
                     </div>
+                    <!-- 5. FOTOĞRAF -->
                     <div class="photo-container group cursor-pointer">
-                        <img data-src="https://i.imgur.com/PR2hWYz.jpg" alt="Anı fotoğrafı 4" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
+                        <img data-src="https://i.imgur.com/PR2hWYz.jpg" alt="Anı 3" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">4</span>
                         <div class="photo-note">Çamlıca Kahvaltımız</div>
                     </div>
+                    <!-- 6. FOTOĞRAF -->
                     <div class="photo-container group cursor-pointer">
-                        <img data-src="https://i.imgur.com/40oguJF.jpg" alt="Anı fotoğrafı 3" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
+                        <img data-src="https://i.imgur.com/40oguJF.jpg" alt="Anı 4" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">3</span>
                         <div class="photo-note">Çamlıca Kahvaltımız</div>
                     </div>
+                    <!-- 7. FOTOĞRAF -->
                     <div class="photo-container group cursor-pointer">
-                        <img data-src="https://i.imgur.com/KZpZnaa.jpg" alt="Anı fotoğrafı 2" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
+                        <img data-src="https://i.imgur.com/KZpZnaa.jpg" alt="Anı 5" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">2</span>
                         <div class="photo-note">Dünya Güzelim</div>
                     </div>
+                    <!-- 8. FOTOĞRAF -->
                     <div class="photo-container group cursor-pointer no-note">
-                        <img data-src="https://i.imgur.com/WnEibNN.jpg" alt="Anı fotoğrafı 1" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
+                        <img data-src="https://i.imgur.com/WnEibNN.jpg" alt="Anı 6" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">1</span>
                     </div>
                 </div>
@@ -466,7 +454,7 @@
             <div id="video-gallery-wrapper" class="hidden mt-8">
                 <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-1" id="video-grid">
                     <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="ChFa2GJ4e4U">
-                        <img data-src="https://img.youtube.com/vi/ChFa2GJ4e4U/maxresdefault.jpg" alt="Video thumbnail" class="w-full h-full object-cover gallery-thumbnail" loading="lazy">
+                        <img data-src="https://img.youtube.com/vi/ChFa2GJ4e4U/maxresdefault.jpg" alt="Video 1" class="w-full h-full object-cover gallery-thumbnail" loading="lazy">
                         <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
                             <i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i>
                         </div>
@@ -474,7 +462,7 @@
                         <div class="photo-note">Beşiktaş</div>
                     </div>
                     <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="aim5II5vYpU">
-                        <img data-src="https://img.youtube.com/vi/aim5II5vYpU/maxresdefault.jpg" alt="Video thumbnail" class="w-full h-full object-cover gallery-thumbnail" loading="lazy">
+                        <img data-src="https://img.youtube.com/vi/aim5II5vYpU/maxresdefault.jpg" alt="Video 2" class="w-full h-full object-cover gallery-thumbnail" loading="lazy">
                         <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
                             <i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i>
                         </div>
@@ -482,7 +470,7 @@
                         <div class="photo-note">Üsküdar</div>
                     </div>
                     <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="uY6ZrwkbLjc">
-                        <img data-src="https://img.youtube.com/vi/uY6ZrwkbLjc/maxresdefault.jpg" alt="Video thumbnail" class="w-full h-full object-cover gallery-thumbnail" loading="lazy">
+                        <img data-src="https://img.youtube.com/vi/uY6ZrwkbLjc/maxresdefault.jpg" alt="Video 3" class="w-full h-full object-cover gallery-thumbnail" loading="lazy">
                         <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
                             <i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i>
                         </div>
@@ -490,7 +478,7 @@
                         <div class="photo-note">Lunapark</div>
                     </div>
                     <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="19aKq8FtYP8">
-                        <img data-src="https://img.youtube.com/vi/19aKq8FtYP8/maxresdefault.jpg" alt="Video thumbnail" class="w-full h-full object-cover gallery-thumbnail" loading="lazy">
+                        <img data-src="https://img.youtube.com/vi/19aKq8FtYP8/maxresdefault.jpg" alt="Video 4" class="w-full h-full object-cover gallery-thumbnail" loading="lazy">
                         <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
                             <i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i>
                         </div>
@@ -498,7 +486,7 @@
                         <div class="photo-note">Beşiktaş</div>
                     </div>
                     <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="J466tfX1jzk">
-                        <img data-src="https://img.youtube.com/vi/J466tfX1jzk/maxresdefault.jpg" alt="Video thumbnail" class="w-full h-full object-cover gallery-thumbnail" loading="lazy">
+                        <img data-src="https://img.youtube.com/vi/J466tfX1jzk/maxresdefault.jpg" alt="Video 5" class="w-full h-full object-cover gallery-thumbnail" loading="lazy">
                         <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
                             <i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i>
                         </div>
@@ -519,7 +507,7 @@
                 <p class="text-center text-black font-semibold">İyi günde, kötü günde her anımızda yanımızda olan değerli dostlarımıza...</p>
             </div>
         </section>
-        <!-- DİLEK KUTUSU - _next EKLENDİ -->
+        <!-- DİLEK KUTUSU -->
         <section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg">
             <h3 class="font-bold text-center text-red-600 mb-6">Bizim İçin Bir Dilek Bırakın</h3>
             <form id="wish-form" action="https://formsubmit.co/arzuersin2025@gmail.com" method="POST" class="space-y-4">
@@ -599,7 +587,7 @@
             leaf.innerHTML = leafSVG;
             leafContainer.appendChild(leaf);
         }
-        // === LAZY LOADING + TIKLAMA OLAYI ===
+        // === LAZY LOADING ===
         const lazyLoadObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -621,7 +609,7 @@
             img.src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect width="100" height="100" fill="%23f3f4f6"/><text x="50" y="55" font-family="Arial" font-size="14" fill="%239ca3af" text-anchor="middle">Yükleniyor...</text></svg>';
             lazyLoadObserver.observe(img);
         });
-        // === FOTOĞRAF GALERİSİ - TIKLAMA OLAYLARI ===
+        // === FOTOĞRAF GALERİSİ - TIKLAMA ===
         const galleryGrid = document.getElementById('gallery-grid');
         let imgs = [], curIdx = 0;
         const refreshImgs = () => {
@@ -685,7 +673,7 @@
             if (e.key === 'ArrowRight' && !document.getElementById('image-modal').classList.contains('hidden')) nextImg();
             if (e.key === 'ArrowLeft' && !document.getElementById('image-modal').classList.contains('hidden')) prevImg();
         });
-        // === DİĞER ANIMASYONLAR VE FORM ===
+        // === DİĞERLERİ ===
         document.getElementById('wish-form')?.addEventListener('submit', function (ev) {
             const contact = document.getElementById('contact').value.trim();
             const err = document.getElementById('contact-error');
@@ -734,7 +722,6 @@
             });
         }, { threshold: 0.3 });
         document.querySelectorAll('.timeline-item').forEach(item => timelineObserver.observe(item));
-        // ŞİİR ANIMASYONU - TYPEWRITER EFEKTİ
         const poemObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -759,10 +746,9 @@
         }, { threshold: 0.6 });
         document.querySelectorAll('.poem-line').forEach(line => poemObserver.observe(line));
         const obs = new IntersectionObserver(entries => {
-            entries.forEach(entry => { 
-                if (entry.isIntersecting) { 
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
-                    // Sadece kalp animasyonu
                     const heart = entry.target.querySelector('.dream-heart');
                     if (heart) {
                         setTimeout(() => {
