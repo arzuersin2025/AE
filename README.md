@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -138,7 +139,7 @@
         }
         .fade-in-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity .8s cubic-bezier(.25,.46,.45,.94), transform .8s cubic-bezier(.25,.46,.45,.94); }
         .fade-in-on-scroll.visible { opacity: 1; transform: translateY(0); }
-        /* ŞİİR ANIMASYONU - YENİ YAZI TİPİ EFEKTİ */
+        /* ŞİİR ANIMASYONU - İLK VERSİYON (TYPEWRITER EFEKTİ) */
         .poem-container { 
             max-width: 90%; margin: 0 auto; padding: 2rem 0; line-height: 2.3; font-size: 1.15rem; 
             font-style: italic; color: #1f2937; text-align: center; position: relative; 
@@ -148,7 +149,7 @@
         .poem-line { 
             opacity: 0; transform: translateX(-60px) scale(0.8); display: block; position: relative; 
             margin: 0.2rem 0; padding: 0.5rem; border-radius: 8px; font-family: 'Cormorant Garamond', serif; 
-            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); /* Elastik giriş */
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
         .poem-line.visible { 
             opacity: 1; transform: translateX(0) scale(1); 
@@ -264,7 +265,7 @@
             </p>
             <div class="text-4xl text-red-500 mt-8 heartbeat"><i class="fas fa-heart"></i></div>
         </section>
-        <!-- ŞİİR - YENİ ANIMASYON -->
+        <!-- ŞİİR - İLK VERSİYON (TYPEWRITER) -->
         <section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg text-center">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting font-forte-alternative">Sonbahar</h3>
             <div class="poem-container">
@@ -488,13 +489,14 @@
                 <p class="text-center text-black font-semibold">İyi günde, kötü günde her anımızda yanımızda olan değerli dostlarımıza...</p>
             </div>
         </section>
-        <!-- Dilek Kutusu -->
+        <!-- DİLEK KUTUSU - _next EKLENDİ -->
         <section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg">
             <h3 class="font-bold text-center text-red-600 mb-6">Bizim İçin Bir Dilek Bırakın</h3>
             <form id="wish-form" action="https://formsubmit.co/arzuersin2025@gmail.com" method="POST" class="space-y-4">
                 <input type="hidden" name="_subject" value="Arzu & Ersin Web Sitenizden Yeni Dilek!">
                 <input type="hidden" name="_honey" style="display:none">
                 <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_next" value="https://arzuersin2025.github.io/AE/">
                 <div>
                     <label for="name" class="block text-sm font-medium text-red-600">Adınız</label>
                     <input type="text" name="name" id="name" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="Adınız ve Soyadınız" required>
@@ -540,15 +542,15 @@
     <script>
     (() => {
         'use strict';
-        const COUNTDOWN_DATE = ""; // Gerekirse buraya tarih ekleyin
+        const COUNTDOWN_DATE = "";
         // === YAPRAKLAR ===
         const leafSVG = `
         <svg viewBox="0 0 100 140" class="w-full h-full" preserveAspectRatio="xMidYMid meet">
           <path class="leaf-outer" d="M50 10 C30 15, 20 35, 18 55 C16 75, 25 95, 35 115 C45 130, 48 135, 50 138 C52 135, 55 130, 65 115 C75 95, 84 75, 82 55 C80 35, 70 15, 50 10 Z" />
           <path class="leaf-inner" d="M50 15 C33 20, 25 38, 23 55 C21 72, 28 88, 36 108 C44 125, 48 132, 50 135 C52 132, 56 125, 64 108 C72 88, 79 72, 77 55 C75 38, 67 20, 50 15 Z" />
           <path d="M50 15 Q50 70 48 135" stroke="#fff" stroke-width="2.5" opacity="0.5" fill="none"/>
-          <path d="M50 30 Q35 40 28 48 M50 55 Q32 65 25 75 M50 80 Q30 90 23 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/>
-          <path d="M50 30 Q65 40 72 48 M50 55 Q68 65 75 75 M50 80 Q70 90 77 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/>
+          <path d="M50 15 Q35 40 28 48 M50 55 Q32 65 25 75 M50 80 Q30 90 23 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/>
+          <path d="M50 15 Q65 40 72 48 M50 55 Q68 65 75 75 M50 80 Q70 90 77 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/>
           <path d="M25 50 Q23 48 25 46 M30 70 Q28 68 30 66 M35 90 Q33 88 35 86 M75 50 Q77 48 75 46 M70 70 Q72 68 70 66 M65 90 Q67 88 65 86" stroke="#fff" stroke-width="1" opacity="0.3" fill="none"/>
         </svg>`;
         const leafColors = ['autumn-1','autumn-2','autumn-3','autumn-4','autumn-5','autumn-6','autumn-7','autumn-8','autumn-9','autumn-10'];
@@ -702,14 +704,13 @@
             });
         }, { threshold: 0.3 });
         document.querySelectorAll('.timeline-item').forEach(item => timelineObserver.observe(item));
-        // YENİ ŞİİR ANIMASYONU - TYPEWRITER EFEKTİ
+        // ŞİİR ANIMASYONU - TYPEWRITER EFEKTİ
         const poemObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const delay = parseFloat(entry.target.getAttribute('data-delay')) || 0;
                     setTimeout(() => { 
                         entry.target.classList.add('visible'); 
-                        // Her satır için ayrı typewriter efekti
                         const text = entry.target.textContent;
                         entry.target.textContent = '';
                         let i = 0;
