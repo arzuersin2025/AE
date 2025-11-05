@@ -213,6 +213,94 @@
         .dream-heart.visible { opacity: 1; transform: scale(1); }
         @keyframes pulse-gentle { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.18); } }
         .dream-heart.pulse { animation: pulse-gentle 1.8s infinite; }
+
+        /* BİZİM ŞARKIMIZ - YAVAŞ DALGA + PLAY BUTONU */
+        @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .animate-spin-slow {
+            animation: spin-slow 20s linear infinite;
+        }
+
+        .sound-wave {
+            position: absolute;
+            inset: 0;
+            margin: auto;
+            width: 100%;
+            height: 100%;
+            border: 3px solid;
+            border-radius: 50%;
+            opacity: 0;
+            transform: scale(0.3);
+            animation: wavePulse 5s infinite ease-out;
+        }
+        .sound-wave.playing {
+            animation-duration: 3s; /* Şarkı çalarken daha hızlı */
+        }
+        .wave-1 { border-color: #fca5a5; animation-delay: 0s; }
+        .wave-2 { border-color: #f87171; animation-delay: 1.2s; }
+        .wave-3 { border-color: #ef4444; animation-delay: 2.4s; }
+
+        @keyframes wavePulse {
+            0% { transform: scale(0.3); opacity: 0.8; }
+            100% { transform: scale(1.8); opacity: 0; }
+        }
+
+        .heartbeat-glow {
+            animation: heartbeat 1.5s infinite, glow 2s infinite alternate;
+            filter: drop-shadow(0 0 15px rgba(239, 68, 68, 0.6));
+        }
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 15px rgba(239, 68, 68, 0.6)); }
+            to { filter: drop-shadow(0 0 25px rgba(239, 68, 68, 0.9)); }
+        }
+
+        .heart-particle {
+            position: absolute;
+            font-size: 1.2rem;
+            color: #ff1493;
+            pointer-events: none;
+            animation: floatHeart linear forwards;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+        @keyframes floatHeart {
+            0% { transform: translate(-50%, -50%) scale(0) rotate(0deg); opacity: 1; }
+            100% { 
+                transform: translate(calc(-50% + var(--drift)), -180px) scale(1) rotate(360deg); 
+                opacity: 0; 
+            }
+        }
+
+        /* PLAY BUTONU */
+        #play-song-btn {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            width: 40px;
+            height: 40px;
+            background: rgba(239, 68, 68, 0.9);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+        #play-song-btn:hover {
+            background: #dc2626;
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(220, 38, 38, 0.4);
+        }
+        #play-song-btn.playing {
+            background: #16a34a;
+        }
     </style>
 </head>
 <body class="text-black">
@@ -332,13 +420,41 @@
                 <span class="dream-heart text-6xl"><i class="fas fa-heart"></i></span>
             </div>
         </section>
-        <!-- Bizim Şarkımız -->
-        <section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg text-center">
+
+        <!-- BİZİM ŞARKIMIZ - PLAY BUTONLU -->
+        <section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg text-center relative overflow-hidden">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Bizim Şarkımız</h3>
-            <div class="flex items-center justify-center p-6 bg-green-50 rounded-lg">
-                <div class="text-4xl text-red-600"><i class="fas fa-music"></i></div>
+            
+            <div class="relative mx-auto w-64 h-64 md:w-80 md:h-80">
+                <!-- Arka plan dönen halka -->
+                <div class="absolute inset-0 rounded-full border-4 border-pink-200 opacity-30 animate-spin-slow"></div>
+                
+                <!-- Dalga animasyonları -->
+                <div class="sound-wave wave-1"></div>
+                <div class="sound-wave wave-2"></div>
+                <div class="sound-wave wave-3"></div>
+
+                <!-- Ana kalp -->
+                <div id="main-heart" class="absolute inset-0 flex items-center justify-center cursor-pointer group">
+                    <i class="fas fa-heart text-6xl md:text-8xl text-red-500 heartbeat-glow group-hover:scale-110 transition-transform duration-300"></i>
+                </div>
+
+                <!-- Parçacık kalpler -->
+                <div id="heart-particles" class="absolute inset-0 pointer-events-none"></div>
+
+                <!-- PLAY BUTONU -->
+                <button id="play-song-btn" title="Şarkıyı Çal">
+                    <i class="fas fa-play"></i>
+                </button>
             </div>
+
+            <!-- Ses dosyası -->
+            <audio id="our-song" preload="auto">
+                <source src="audio/sarkimiz.mp3" type="audio/mpeg">
+                Tarayıcınız ses çalmayı desteklemiyor.
+            </audio>
         </section>
+
         <!-- SEYAHATLERİMİZ -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Seyahatlerimiz</h3>
@@ -388,49 +504,41 @@
             </div>
             <div id="gallery-wrapper" class="hidden mt-8">
                 <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-1" id="gallery-grid">
-                    <!-- 1. FOTOĞRAF - EN YENİ -->
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/jlmfKQ6.jpg" alt="Nev Mekan" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">8</span>
                         <div class="photo-note">Nev Mekan</div>
                     </div>
-                    <!-- 2. FOTOĞRAF -->
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/EI3PjiL.jpg" alt="Nev Mekan" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">7</span>
                         <div class="photo-note">Nev Mekan</div>
                     </div>
-                    <!-- 3. FOTOĞRAF -->
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/wf9Xhs9.jpg" alt="Anı 1" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">6</span>
                         <div class="photo-note">Lunapark Anısı</div>
                     </div>
-                    <!-- 4. FOTOĞRAF -->
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/G26zsUc.jpg" alt="Anı 2" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">5</span>
                         <div class="photo-note">Beşiktaş</div>
                     </div>
-                    <!-- 5. FOTOĞRAF -->
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/PR2hWYz.jpg" alt="Anı 3" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">4</span>
                         <div class="photo-note">Çamlıca Kahvaltımız</div>
                     </div>
-                    <!-- 6. FOTOĞRAF -->
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/40oguJF.jpg" alt="Anı 4" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">3</span>
                         <div class="photo-note">Çamlıca Kahvaltımız</div>
                     </div>
-                    <!-- 7. FOTOĞRAF -->
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/KZpZnaa.jpg" alt="Anı 5" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">2</span>
                         <div class="photo-note">Dünya Güzelim</div>
                     </div>
-                    <!-- 8. FOTOĞRAF -->
                     <div class="photo-container group cursor-pointer no-note">
                         <img data-src="https://i.imgur.com/WnEibNN.jpg" alt="Anı 6" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">1</span>
@@ -760,6 +868,54 @@
             });
         }, {threshold:0.3});
         document.querySelectorAll('.fade-in-on-scroll, .travel-folder').forEach(el => obs.observe(el));
+
+        // === BİZİM ŞARKIMIZ - ŞARKI KONTROLÜ + KALP FIRLATMA ===
+        const audio = document.getElementById('our-song');
+        const playBtn = document.getElementById('play-song-btn');
+        const waves = document.querySelectorAll('.sound-wave');
+        const heartContainer = document.getElementById('heart-particles');
+
+        // Şarkı Kontrolü
+        playBtn.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play().catch(err => {
+                    console.error('Şarkı çalınamadı:', err);
+                    alert('Şarkı çalınamadı. Lütfen "audio/sarkimiz.mp3" dosyasını kontrol edin.');
+                });
+                playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                playBtn.classList.add('playing');
+                waves.forEach(w => w.classList.add('playing'));
+            } else {
+                audio.pause();
+                playBtn.innerHTML = '<i class="fas fa-play"></i>';
+                playBtn.classList.remove('playing');
+                waves.forEach(w => w.classList.remove('playing'));
+            }
+        });
+
+        audio.addEventListener('ended', () => {
+            playBtn.innerHTML = '<i class="fas fa-play"></i>';
+            playBtn.classList.remove('playing');
+            waves.forEach(w => w.classList.remove('playing'));
+        });
+
+        // Kalp Fırlatma
+        function createHeartParticles() {
+            const count = 8;
+            for (let i = 0; i < count; i++) {
+                const heart = document.createElement('i');
+                heart.className = 'fas fa-heart heart-particle';
+                heart.style.setProperty('--drift', (Math.random() - 0.5) * 200 + 'px');
+                heart.style.animationDuration = (0.8 + Math.random() * 0.8) + 's';
+                heart.style.animationDelay = Math.random() * 0.3 + 's';
+                heartContainer.appendChild(heart);
+                setTimeout(() => heart.remove(), 2500);
+            }
+        }
+
+        setInterval(createHeartParticles, 3000);
+        document.addEventListener('DOMContentLoaded', () => setTimeout(createHeartParticles, 1000));
+        document.getElementById('main-heart')?.addEventListener('click', createHeartParticles);
     })();
     </script>
 </body>
