@@ -272,7 +272,7 @@
                 Birlikte kurduğumuz hayaller, geleceğe dair ektiğimiz tohumlar...
             </p>
         </section>
-        <!-- BİZİM ŞARKIMIZ - TAM ÇALIŞIR HALE GETİRİLDİ -->
+        <!-- BİZİM ŞARKIMIZ -->
         <section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg text-center relative overflow-hidden">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Bizim Şarkımız</h3>
             <p class="text-center text-black font-semibold italic mt-2 mb-6">Tarkan - Beni Çok Sev</p>
@@ -293,7 +293,7 @@
                 </div>
                 <div id="heart-particles" class="absolute inset-0 pointer-events-none"></div>
                 <div class="song-control">
-                    <div class="song-label">Şarkımızı Dinleyin</div>
+                    <div class="song-label">Dinle</div>
                     <button id="play-song-btn" title="Şarkıyı Çal">
                         <i class="fas fa-play"></i>
                     </button>
