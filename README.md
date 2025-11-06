@@ -68,7 +68,7 @@
             .timeline-item.right { left: 0 !important; }
             .timeline-content { padding: 15px 20px; }
         }
-        .photo-container { position: relative; overflow: hidden; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); aspect-ratio: 1/1; }
+        .photo-container { position: relative; overflow: hidden; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); aspect-square: 1/1; }
         .gallery-thumbnail { transition: transform .3s ease-in-out; background-color: #f3f4f6; background-size: 40px; background-position: center; background-repeat: no-repeat; }
         .group:hover .gallery-thumbnail { transform: scale(1.1); }
         .photo-note { position: absolute; bottom: 0; left: 0; right: 0; color: white; padding: 0.5rem 0.75rem; font-size: 0.75rem; text-align: center; line-height: 1.2; text-shadow: 1px 1px 3px rgba(0,0,0,0.9); }
@@ -143,7 +143,7 @@
         }
         @media (max-width: 768px) {
             .song-control { 
-                right: -2.2rem !important; /* Mobilde sola kaydırıldı */
+                right: -1.4rem !important; /* Önceki -2.2rem'den 0.8rem daha sola kaydırıldı */
             }
             .song-label { 
                 font-size: 0.6rem; 
