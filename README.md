@@ -69,7 +69,7 @@
             .timeline-content { padding: 15px 20px; }
         }
         .photo-container { position: relative; overflow: hidden; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); aspect-ratio: 1/1; }
-        .gallery-thumbnail { transition: transform .3s ease-in-out; background-color: #f3f4f6; background-size: 40px; background-position: center; background-repeat: no-repeat; }
+        .gallery-thumbnail { transition: transform .3s ease-in-out; background-color: #f3f4f6; background-size: 40px; background-position: center; background-repeat: no-repeat, repeat; }
         .group:hover .gallery-thumbnail { transform: scale(1.1); }
         .photo-note { position: absolute; bottom: 0; left: 0; right: 0; color: white; padding: 0.5rem 0.75rem; font-size: 0.75rem; text-align: center; line-height: 1.2; text-shadow: 1px 1px 3px rgba(0,0,0,0.9); }
         .photo-number { position: absolute; bottom: 0.5rem; right: 0.75rem; color: white; font-size: 1rem; font-weight: bold; text-shadow: 1px 1px 3px rgba(0,0,0,0.9); opacity: 0; transition: opacity .3s ease-in-out; }
@@ -90,10 +90,6 @@
         @keyframes fall { 0% { transform: translateY(-120px) rotate(0deg) scale(1); opacity: 0; } 8% { opacity: 0.9; } 30% { transform: translateY(30vh) translateX(15px) rotate(180deg) scale(0.95); } 50% { transform: translateY(50vh) translateX(-20px) rotate(540deg) scale(0.9); } 70% { transform: translateY(70vh) translateX(25px) rotate(800deg) scale(0.85); } 92% { opacity: 0.9; } 100% { transform: translateY(110vh) translateX(-15px) rotate(1080deg) scale(0.6); opacity: 0; } }
         .leaf-svg .leaf-inner { fill: currentColor; } .leaf-svg .leaf-outer { fill: white; opacity: 0.95; }
         .leaf-svg.autumn-1 { color: #f59e0b; } .leaf-svg.autumn-2 { color: #ef4444; } .leaf-svg.autumn-3 { color: #facc15; } .leaf-svg.autumn-4 { color: #92400e; } .leaf-svg.autumn-5 { color: #84cc16; } .leaf-svg.autumn-6 { color: #fb923c; } .leaf-svg.autumn-7 { color: #dc2626; } .leaf-svg.autumn-8 { color: #f97316; } .leaf-svg.autumn-9 { color: #22c55e; } .leaf-svg.autumn-10 { color: #16a34a; }
-        .sound-wave { position: absolute; inset: 0; margin: auto; width: 100%; height: 100%; border: 3px solid; border-radius: 50%; opacity: 0; transform: scale(0.3); animation: wavePulse 5s infinite ease-out; }
-        .sound-wave.playing { animation-duration: 3s; }
-        .wave-1 { border-color: #fca5a5; animation-delay: 0s; } .wave-2 { border-color: #f87171; animation-delay: 1.2s; } .wave-3 { border-color: #ef4444; animation-delay: 2.4s; }
-        @keyframes wavePulse { 0% { transform: scale(0.3); opacity: 0.8; } 100% { transform: scale(1.8); opacity: 0; } }
         .song-control {
             position: absolute;
             bottom: 1rem;
@@ -159,6 +155,51 @@
         #youtube-player.show {
             opacity: 1;
             pointer-events: auto;
+        }
+        /* Minimal Ekolayzer */
+        .equalizer {
+            position: absolute;
+            bottom: -3.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: flex-end;
+            gap: 3px;
+            height: 30px;
+            z-index: 15;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .equalizer.active {
+            opacity: 1;
+        }
+        .eq-bar {
+            width: 3px;
+            background: #ef4444;
+            border-radius: 2px;
+            transform-origin: bottom;
+            animation: eqPulse 1.2s infinite ease-in-out;
+        }
+        .eq-bar:nth-child(1) { animation-delay: 0s; height: 6px; }
+        .eq-bar:nth-child(2) { animation-delay: 0.1s; height: 12px; }
+        .eq-bar:nth-child(3) { animation-delay: 0.2s; height: 18px; }
+        .eq-bar:nth-child(4) { animation-delay: 0.3s; height: 12px; }
+        .eq-bar:nth-child(5) { animation-delay: 0.4s; height: 6px; }
+        @keyframes eqPulse {
+            0%, 100% { transform: scaleY(1); }
+            50% { transform: scaleY(0.3); }
+        }
+        @media (max-width: 768px) {
+            .equalizer {
+                bottom: -2.8rem;
+                gap: 2px;
+            }
+            .eq-bar { width: 2px; }
+            .eq-bar:nth-child(1) { height: 4px; }
+            .eq-bar:nth-child(2) { height: 8px; }
+            .eq-bar:nth-child(3) { height: 12px; }
+            .eq-bar:nth-child(4) { height: 8px; }
+            .eq-bar:nth-child(5) { height: 4px; }
         }
     </style>
 </head>
@@ -279,9 +320,6 @@
             <p class="text-center text-black font-semibold italic mt-2 mb-6">Tarkan - Beni Çok Sev</p>
             <div class="relative mx-auto w-64 h-64 md:w-80 md:h-80">
                 <div class="absolute inset-0 rounded-full border-4 border-pink-200 opacity-30 animate-spin-slow"></div>
-                <div class="sound-wave wave-1"></div>
-                <div class="sound-wave wave-2"></div>
-                <div class="sound-wave wave-3"></div>
                 <iframe id="youtube-player"
                         src="https://www.youtube.com/embed/IYnu4-69fTA?autoplay=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1"
                         title="Tarkan - Beni Çok Sev"
@@ -289,7 +327,14 @@
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen>
                 </iframe>
-                <!-- ANA KIRMIZI KALP TAMAMEN KALDIRILDI -->
+                <!-- Minimal Ekolayzer -->
+                <div id="equalizer" class="equalizer">
+                    <div class="eq-bar"></div>
+                    <div class="eq-bar"></div>
+                    <div class="eq-bar"></div>
+                    <div class="eq-bar"></div>
+                    <div class="eq-bar"></div>
+                </div>
                 <div class="song-control">
                     <div class="song-label">Dinle</div>
                     <button id="play-song-btn" title="Şarkıyı Çal">
@@ -351,7 +396,7 @@
             </div>
             <div id="video-gallery-wrapper" class="hidden mt-8">
                 <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-1" id="video-grid">
-                    <div class="photo-container group cursor-pointer aspect-square" data Y="ChFa2GJ4e4U"><img data-src="https://img.youtube.com/vi/ChFa2GJ4e4U/maxresdefault.jpg" alt="Video 1" class="w-full h-full object-cover gallery-thumbnail" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">5</span><div class="photo-note">Beşiktaş</div></div>
+                    <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="ChFa2GJ4e4U"><img data-src="https://img.youtube.com/vi/ChFa2GJ4e4U/maxresdefault.jpg" alt="Video 1" class="w-full h-full object-cover gallery-thumbnail" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">5</span><div class="photo-note">Beşiktaş</div></div>
                     <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="aim5II5vYpU"><img data-src="https://img.youtube.com/vi/aim5II5vYpU/maxresdefault.jpg" alt="Video 2" class="w-full h-full object-cover gallery-thumbnail" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">4</span><div class="photo-note">Üsküdar</div></div>
                     <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="uY6ZrwkbLjc"><img data-src="https://img.youtube.com/vi/uY6ZrwkbLjc/maxresdefault.jpg" alt="Video 3" class="w-full h-full object-cover gallery-thumbnail" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">3</span><div class="photo-note">Lunapark</div></div>
                     <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="19aKq8FtYP8"><img data-src="https://img.youtube.com/vi/19aKq8FtYP8/maxresdefault.jpg" alt="Video 4" class="w-full h-full object-cover gallery-thumbnail" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">2</span><div class="photo-note">Beşiktaş</div></div>
@@ -490,13 +535,13 @@
         document.querySelectorAll('.poem-line').forEach(line => poemObserver.observe(line));
         const obs = new IntersectionObserver(entries => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); } }); }, {threshold:0.3});
         document.querySelectorAll('.fade-in-on-scroll, .travel-folder').forEach(el => obs.observe(el));
-        // YOUTUBE API İLE KESİNTİSİZ ÇALIŞAN SİSTEM
+        // YOUTUBE API İLE KESİNTİSİZ ÇALIŞAN SİSTEM + EKOLAYZER
         let player;
         let isPlaying = false;
         let userInteracted = false;
         const playBtn = document.getElementById('play-song-btn');
-        const waves = document.querySelectorAll('.sound-wave');
         const playerElement = document.getElementById('youtube-player');
+        const equalizer = document.getElementById('equalizer');
         // YouTube API yükleme
         const tag = document.createElement('script');
         tag.src = 'https://www.youtube.com/iframe_api';
@@ -527,13 +572,13 @@
                 playBtn.innerHTML = '<i class="fas fa-pause"></i>';
                 playBtn.classList.add('playing');
                 playerElement.classList.add('show');
-                waves.forEach(w => w.classList.add('playing'));
+                equalizer.classList.add('active');
             } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
                 isPlaying = false;
                 playBtn.innerHTML = '<i class="fas fa-play"></i>';
                 playBtn.classList.remove('playing');
                 playerElement.classList.remove('show');
-                waves.forEach(w => w.classList.remove('playing'));
+                equalizer.classList.remove('active');
             }
         }
         function togglePlay() {
@@ -548,7 +593,6 @@
             e.stopPropagation();
             togglePlay();
         });
-        // ANA KIRMIZI KALP TIKLAMA OLAYI KALDIRILDI
     })();
     </script>
 </body>
