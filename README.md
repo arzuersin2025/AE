@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -6,7 +6,7 @@
     <title>Arzu & Ersin | Bizim Hikayemiz</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700;800;900&family=Dancing+Script:wght@700&family=Cormorant+Garamond&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
           integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
@@ -79,23 +79,39 @@
         .travel-folder:hover { transform: translateY(-5px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
         .fade-in-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity .8s cubic-bezier(.25,.46,.45,.94), transform .8s cubic-bezier(.25,.46,.45,.94); }
         .fade-in-on-scroll.visible { opacity: 1; transform: translateY(0); }
-        .poem-container { max-width: 90%; margin: 0 auto; padding: 2rem 0; line-height: 2.3; font-size: 1.15rem; font-style: italic; color: #1f2937; text-align: center; position: relative; background: linear-gradient(135deg, rgba(253, 250, 246, 0.9) 0%, rgba(255, 255, 255, 0.95) 100%); border-radius: 12px; padding: 2rem; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); overflow: hidden; }
-        .poem-line { opacity: 0; transform: translateX(-60px) scale(0.8); display: block; position: relative; margin: 0.2rem 0; padding: 0.5rem; border-radius: 8px; font-family: 'Cormorant Garamond', serif; transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
-        .poem-line.visible { opacity: 1; transform: translateX(0) scale(1); animation: typewriter 0.8s steps(30) forwards, blink 0.7s infinite; }
-        @keyframes typewriter { from { width: 0; } to { width: 100%; } }
-        @keyframes blink { 50% { border-color: transparent; } }
-        .poem-line::after { content: '|'; color: #dc2626; margin-left: 2px; animation: blink 0.7s infinite; }
-        .poem-line.visible::after { display: none; }
+        /* ŞİİR - ANİMASYON KALDIRILDI */
+        .poem-container {
+            max-width: 90%; margin: 0 auto; padding: 2rem 0; line-height: 2.3; font-size: 1.15rem;
+            font-style: italic; color: #1f2937; text-align: center; position: relative;
+            background: linear-gradient(135deg, rgba(253, 250, 246, 0.9) 0%, rgba(255, 255, 255, 0.95) 100%);
+            border-radius: 12px; padding: 2rem; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); overflow: hidden;
+        }
+        .poem-line {
+            display: block; margin: 0.2rem 0; padding: 0.5rem; border-radius: 8px;
+            font-family: 'Cormorant Garamond', serif; opacity: 1; transform: none;
+        }
+        /* MOBİLDE YAZI KARAKTERLERİ DAHA GENİŞ */
+        @media (max-width: 768px) {
+            .poem-line {
+                font-size: 1.35rem !important;
+                line-height: 2.6 !important;
+                letter-spacing: 0.5px;
+            }
+            .poem-container {
+                padding: 1.5rem 1rem;
+                font-size: 1.3rem;
+            }
+        }
         .leaf-svg { position: absolute; width: 32px; height: 44px; opacity: 0.9; animation: fall linear infinite; transform-origin: center; filter: drop-shadow(0 3px 6px rgba(0,0,0,0.3)); }
         @keyframes fall { 0% { transform: translateY(-120px) rotate(0deg) scale(1); opacity: 0; } 8% { opacity: 0.9; } 30% { transform: translateY(30vh) translateX(15px) rotate(180deg) scale(0.95); } 50% { transform: translateY(50vh) translateX(-20px) rotate(540deg) scale(0.9); } 70% { transform: translateY(70vh) translateX(25px) rotate(800deg) scale(0.85); } 92% { opacity: 0.9; } 100% { transform: translateY(110vh) translateX(-15px) rotate(1080deg) scale(0.6); opacity: 0; } }
         .leaf-svg .leaf-inner { fill: currentColor; } .leaf-svg .leaf-outer { fill: white; opacity: 0.95; }
         .leaf-svg.autumn-1 { color: #f59e0b; } .leaf-svg.autumn-2 { color: #ef4444; } .leaf-svg.autumn-3 { color: #facc15; } .leaf-svg.autumn-4 { color: #92400e; } .leaf-svg.autumn-5 { color: #84cc16; } .leaf-svg.autumn-6 { color: #fb923c; } .leaf-svg.autumn-7 { color: #dc2626; } .leaf-svg.autumn-8 { color: #f97316; } .leaf-svg.autumn-9 { color: #22c55e; } .leaf-svg.autumn-10 { color: #16a34a; }
-        /* KIRMIZI HALKALAR GERİ GETİRİLDİ */
+        /* KIRMIZI HALKALAR */
         .sound-wave { position: absolute; inset: 0; margin: auto; width: 100%; height: 100%; border: 3px solid; border-radius: 50%; opacity: 0; transform: scale(0.3); animation: wavePulse 5s infinite ease-out; }
         .sound-wave.playing { animation-duration: 3s; }
         .wave-1 { border-color: #fca5a5; animation-delay: 0s; } .wave-2 { border-color: #f87171; animation-delay: 1.2s; } .wave-3 { border-color: #ef4444; animation-delay: 2.4s; }
         @keyframes wavePulse { 0% { transform: scale(0.3); opacity: 0.8; } 100% { transform: scale(1.8); opacity: 0; } }
-        /* EKOLAYZER GÖRÜNÜR VE ÖZELLEŞTİRİLDİ */
+        /* EKOLAYZER */
         .equalizer {
             position: absolute;
             bottom: -3.5rem;
@@ -256,16 +272,16 @@
         <section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg text-center">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting font-forte-alternative">Sonbahar</h3>
             <div class="poem-container">
-                <div class="poem-line font-semibold italic text-black" data-delay="0.2">Çiçekli badem ağaçlarını unut.</div>
-                <div class="poem-line font-semibold italic text-black" data-delay="0.5">değmez,</div>
-                <div class="poem-line font-semibold italic text-black" data-delay="0.8">bu bahiste</div>
-                <div class="poem-line font-semibold italic text-black" data-delay="1.1">geri gelmesi mümkün olmayan hatırlanmamalı.</div>
-                <div class="poem-line font-semibold italic text-black" data-delay="1.4">ıslak saçlarını güneşte kurut</div>
-                <div class="poem-line font-semibold italic text-black" data-delay="1.7">olgun meyvelerin baygınlığıyla parıldasın</div>
-                <div class="poem-line font-semibold italic text-black" data-delay="2.0">nemli, ağır kızıltılar…</div>
-                <div class="poem-line font-semibold italic text-black" data-delay="2.4">sevgilim, sevgilim,</div>
-                <div class="poem-line font-semibold italic text-black" data-delay="2.8">mevsim</div>
-                <div class="poem-line font-semibold italic text-black" data-delay="3.2">sonbahar…</div>
+                <div class="poem-line font-semibold italic text-black">Çiçekli badem ağaçlarını unut.</div>
+                <div class="poem-line font-semibold italic text-black">değmez,</div>
+                <div class="poem-line font-semibold italic text-black">bu bahiste</div>
+                <div class="poem-line font-semibold italic text-black">geri gelmesi mümkün olmayan hatırlanmamalı.</div>
+                <div class="poem-line font-semibold italic text-black">ıslak saçlarını güneşte kurut</div>
+                <div class="poem-line font-semibold italic text-black">olgun meyvelerin baygınlığıyla parıldasın</div>
+                <div class="poem-line font-semibold italic text-black">nemli, ağır kızıltılar…</div>
+                <div class="poem-line font-semibold italic text-black">sevgilim, sevgilim,</div>
+                <div class="poem-line font-semibold italic text-black">mevsim</div>
+                <div class="poem-line font-semibold italic text-black">sonbahar…</div>
             </div>
             <p class="text-right text-red-600 font-semibold-bold mt-6 pr-4 font-forte-alternative">- Nazım Hikmet</p>
         </section>
@@ -542,8 +558,7 @@
         }
         const timelineObserver = new IntersectionObserver((entries) => { entries.forEach((e,i) => { if (e.isIntersecting) { setTimeout(() => { e.target.classList.add('animate'); const c = e.target.querySelector('.timeline-content'); if (c) c.classList.add('animate'); }, i * 300); } }); }, { threshold: 0.3 });
         document.querySelectorAll('.timeline-item').forEach(item => timelineObserver.observe(item));
-        const poemObserver = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { const delay = parseFloat(entry.target.getAttribute('data-delay')) || 0; setTimeout(() => { entry.target.classList.add('visible'); const text = entry.target.textContent; entry.target.textContent = ''; let i = 0; const type = () => { if (i < text.length) { entry.target.textContent += text.charAt(i); i++; setTimeout(type, 30 + Math.random() * 20); } }; type(); }, delay * 1000); poemObserver.unobserve(entry.target); } }); }, { threshold: 0.6 });
-        document.querySelectorAll('.poem-line').forEach(line => poemObserver.observe(line));
+        // ŞİİR ANİMASYONU KALDIRILDI
         const obs = new IntersectionObserver(entries => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); } }); }, {threshold:0.3});
         document.querySelectorAll('.fade-in-on-scroll, .travel-folder').forEach(el => obs.observe(el));
         // YOUTUBE API + KIRMIZI HALKALAR + EKOLAYZER
@@ -558,6 +573,7 @@
         const tag = document.createElement('script');
         tag.src = 'https://www.youtube.com/iframe_api';
         const firstScript = document.getElementsByTagName('script')[0];
+
         firstScript.parentNode.insertBefore(tag, firstScript);
         window.onYouTubeIframeAPIReady = function() {
             player = new YT.Player('youtube-player', {
