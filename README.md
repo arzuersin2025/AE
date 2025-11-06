@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -145,18 +145,19 @@
             .song-control { right: -2.8rem; }
             .song-label { font-size: 0.6rem; margin-bottom: 0.4rem; }
         }
-        #youtube-player { display: none; width: 100%; height: 100%; border-radius: 50%; }
-        #youtube-player.show { display: block; }
-        /* MOBİL AUTOPLAY İÇİN YARDIMCI KATMAN */
-        #mobile-play-overlay {
-            position: absolute;
-            inset: 0;
-            background: transparent;
-            z-index: 10;
-            cursor: pointer;
+        #youtube-player { 
+            position: absolute; 
+            inset: 0; 
+            width: 100%; 
+            height: 100%; 
+            border-radius: 50%; 
+            opacity: 0; 
+            pointer-events: none;
+            transition: opacity 0.3s ease;
         }
-        #mobile-play-overlay.active {
-            display: none;
+        #youtube-player.show { 
+            opacity: 1; 
+            pointer-events: auto;
         }
     </style>
 </head>
@@ -271,7 +272,7 @@
                 Birlikte kurduğumuz hayaller, geleceğe dair ektiğimiz tohumlar...
             </p>
         </section>
-        <!-- BİZİM ŞARKIMIZ - MOBİL AUTOPLAY DÜZELTME -->
+        <!-- BİZİM ŞARKIMIZ - MOBİL + MASAÜSTÜ TAM UYUMLU -->
         <section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg text-center relative overflow-hidden">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Bizim Şarkımız</h3>
             <p class="text-center text-black font-semibold italic mt-2 mb-6">Tarkan - Beni Çok Sev</p>
@@ -280,16 +281,14 @@
                 <div class="sound-wave wave-1"></div>
                 <div class="sound-wave wave-2"></div>
                 <div class="sound-wave wave-3"></div>
-                <!-- MOBİL İÇİN KULLANICI ETKİLEŞİMİ KATMANI -->
-                <div id="mobile-play-overlay"></div>
                 <iframe id="youtube-player" 
-                        src="https://www.youtube.com/embed/IYnu4-69fTA?autoplay=0&rel=0&modestbranding=1&playsinline=1&mute=0" 
+                        src="https://www.youtube.com/embed/IYnu4-69fTA?autoplay=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1" 
                         title="Tarkan - Beni Çok Sev" 
                         frameborder="0" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                         allowfullscreen>
                 </iframe>
-                <div id="main-heart" class="absolute inset-0 flex items-center justify-center cursor-pointer group">
+                <div id="main-heart" class="absolute inset-0 flex items-center justify-center cursor-pointer group z-10">
                     <i class="fas fa-heart text-6xl md:text-8xl text-red-500 heartbeat-glow group-hover:scale-110 transition-transform duration-300"></i>
                 </div>
                 <div id="heart-particles" class="absolute inset-0 pointer-events-none"></div>
@@ -494,62 +493,91 @@
         const obs = new IntersectionObserver(entries => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); } }); }, {threshold:0.3});
         document.querySelectorAll('.fade-in-on-scroll, .travel-folder').forEach(el => obs.observe(el));
 
-        // MOBİL AUTOPLAY SORUNU ÇÖZÜLDÜ
-        const player = document.getElementById('youtube-player');
+        // YOUTUBE API İLE TAM UYUMLU MOBİL + MASAÜSTÜ ÇÖZÜM
+        let player;
+        let isPlaying = false;
+        let userInteracted = false;
         const playBtn = document.getElementById('play-song-btn');
         const waves = document.querySelectorAll('.sound-wave');
         const heartContainer = document.getElementById('heart-particles');
-        const mobileOverlay = document.getElementById('mobile-play-overlay');
-        let isPlaying = false;
-        let userInteracted = false;
+        const mainHeart = document.getElementById('main-heart');
 
-        // Mobil olup olmadığını kontrol et
-        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        // YouTube API yükle
+        const tag = document.createElement('script');
+        tag.src = 'https://www.youtube.com/iframe_api';
+        const firstScript = document.getElementsByTagName('script')[0];
+        firstScript.parentNode.insertBefore(tag, firstScript);
 
-        // İlk etkileşim (dokunma) ile autoplay kilidini aç
-        const unlockAudio = () => {
-            if (!userInteracted) {
-                userInteracted = true;
-                document.removeEventListener('touchstart', unlockAudio);
-                document.removeEventListener('click', unlockAudio);
-            }
-        };
-        if (isMobile) {
-            document.addEventListener('touchstart', unlockAudio, { once: true });
-            document.addEventListener('click', unlockAudio, { once: true });
-        } else {
-            userInteracted = true; // Masaüstü zaten serbest
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('youtube-player', {
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            // İlk etkileşim için hazır
+            const unlock = () => {
+                if (!userInteracted) {
+                    userInteracted = true;
+                    document.removeEventListener('touchstart', unlock);
+                    document.removeEventListener('click', unlock);
+                }
+            };
+            document.addEventListener('touchstart', unlock, { once: true });
+            document.addEventListener('click', unlock, { once: true });
+        }
+
+        function onPlayerStateChange(event) {
+            // Durum değişiklikleri
         }
 
         const togglePlay = () => {
-            if (!userInteracted && isMobile) {
-                // İlk dokunuşta sadece kilidi aç
+            if (!player || !player.playVideo) return;
+
+            if (!userInteracted) {
                 userInteracted = true;
-                mobileOverlay.classList.add('active');
-                return;
             }
 
-            const src = player.src;
-            if (src.includes('autoplay=0')) {
-                player.src = src.replace('autoplay=0', 'autoplay=1');
-                isPlaying = true;
+            if (isPlaying) {
+                player.pauseVideo();
             } else {
-                player.src = src.replace('autoplay=1', 'autoplay=0');
-                isPlaying = false;
+                player.playVideo();
             }
-
-            playBtn.innerHTML = isPlaying ? '<i class="fas fa-pause"></i>' : '<i class="fas fa-play"></i>';
-            playBtn.classList.toggle('playing', isPlaying);
-            player.classList.toggle('show', isPlaying);
-            waves.forEach(w => w.classList.toggle('playing', isPlaying));
-            if (isMobile) mobileOverlay.classList.add('active');
         };
 
-        playBtn.addEventListener('click', togglePlay);
-        if (isMobile) {
-            mobileOverlay.addEventListener('click', togglePlay);
-        }
+        // Buton ve kalp tıklamaları
+        playBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            togglePlay();
+        });
+        mainHeart.addEventListener('click', (e) => {
+            e.stopPropagation();
+            togglePlay();
+        });
 
+        // Oynat/Duraklat durumunu takip et
+        const originalOnStateChange = onPlayerStateChange;
+        window.onPlayerStateChange = function(event) {
+            if (event.data === YT.PlayerState.PLAYING) {
+                isPlaying = true;
+                playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                playBtn.classList.add('playing');
+                document.getElementById('youtube-player').classList.add('show');
+                waves.forEach(w => w.classList.add('playing'));
+            } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
+                isPlaying = false;
+                playBtn.innerHTML = '<i class="fas fa-play"></i>';
+                playBtn.classList.remove('playing');
+                document.getElementById('youtube-player').classList.remove('show');
+                waves.forEach(w => w.classList.remove('playing'));
+            }
+            if (originalOnStateChange) originalOnStateChange(event);
+        };
+
+        // Kalp efektleri
         function createHeartParticles() {
             const count = 8;
             for (let i = 0; i < count; i++) {
@@ -564,7 +592,10 @@
         }
         setInterval(createHeartParticles, 3000);
         document.addEventListener('DOMContentLoaded', () => setTimeout(createHeartParticles, 1000));
-        document.getElementById('main-heart')?.addEventListener('click', createHeartParticles);
+        mainHeart.addEventListener('click', createHeartParticles);
+
+        // Global fonksiyon
+        window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
     })();
     </script>
 </body>
