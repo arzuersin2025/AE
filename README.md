@@ -68,7 +68,7 @@
             .timeline-item.right { left: 0 !important; }
             .timeline-content { padding: 15px 20px; }
         }
-        .photo-container { position: relative; overflow: hidden; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); aspect-square: 1/1; }
+        .photo-container { position: relative; overflow: hidden; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); aspect-ratio: 1/1; }
         .gallery-thumbnail { transition: transform .3s ease-in-out; background-color: #f3f4f6; background-size: 40px; background-position: center; background-repeat: no-repeat; }
         .group:hover .gallery-thumbnail { transform: scale(1.1); }
         .photo-note { position: absolute; bottom: 0; left: 0; right: 0; color: white; padding: 0.5rem 0.75rem; font-size: 0.75rem; text-align: center; line-height: 1.2; text-shadow: 1px 1px 3px rgba(0,0,0,0.9); }
@@ -142,26 +142,26 @@
             background: #16a34a;
         }
         @media (max-width: 768px) {
-            .song-control { 
-                right: -1.4rem !important; /* Önceki -2.2rem'den 0.8rem daha sola kaydırıldı */
+            .song-control {
+                right: -1.4rem !important;
             }
-            .song-label { 
-                font-size: 0.6rem; 
+            .song-label {
+                font-size: 0.6rem;
                 margin-bottom: 0.4rem;
             }
         }
-        #youtube-player { 
-            position: absolute; 
-            inset: 0; 
-            width: 100%; 
-            height: 100%; 
-            border-radius: 50%; 
-            opacity: 0; 
+        #youtube-player {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            opacity: 0;
             pointer-events: none;
             transition: opacity 0.3s ease;
         }
-        #youtube-player.show { 
-            opacity: 1; 
+        #youtube-player.show {
+            opacity: 1;
             pointer-events: auto;
         }
     </style>
@@ -225,7 +225,7 @@
                 <div class="poem-line font-semibold italic text-black" data-delay="2.8">mevsim</div>
                 <div class="poem-line font-semibold italic text-black" data-delay="3.2">sonbahar…</div>
             </div>
-            <p class="text-right text-red-600 font-semibold mt-6 pr-4 font-forte-alternative">- Nazım Hikmet</p>
+            <p class="text-right text-red-600 font-semibold-bold mt-6 pr-4 font-forte-alternative">- Nazım Hikmet</p>
         </section>
         <!-- AŞK ZAMAN ÇİZELGESİ -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
@@ -286,11 +286,11 @@
                 <div class="sound-wave wave-1"></div>
                 <div class="sound-wave wave-2"></div>
                 <div class="sound-wave wave-3"></div>
-                <iframe id="youtube-player" 
-                        src="https://www.youtube.com/embed/IYnu4-69fTA?autoplay=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1" 
-                        title="Tarkan - Beni Çok Sev" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                <iframe id="youtube-player"
+                        src="https://www.youtube.com/embed/IYnu4-69fTA?autoplay=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1"
+                        title="Tarkan - Beni Çok Sev"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen>
                 </iframe>
                 <div id="main-heart" class="absolute inset-0 flex items-center justify-center cursor-pointer group z-10">
@@ -392,7 +392,7 @@
                     <p id="contact-error" class="text-red-500 text-sm mt-2 text-center hidden">Lütfen e-posta veya telefon girin.</p>
                 </div>
                 <div class="text-center pt-4">
-                    <button type="submit" class="inline-flex justify-center items-center py-2 px-6 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors">
+                    <button type="submit" class="inline-flex justify-center items-center py-2 px-6 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none represented focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors">
                         <i class="fas fa-heart mr-2 heartbeat"></i> Dileğini Gönder
                     </button>
                 </div>
@@ -497,7 +497,6 @@
         document.querySelectorAll('.poem-line').forEach(line => poemObserver.observe(line));
         const obs = new IntersectionObserver(entries => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); } }); }, {threshold:0.3});
         document.querySelectorAll('.fade-in-on-scroll, .travel-folder').forEach(el => obs.observe(el));
-
         // YOUTUBE API İLE KESİNTİSİZ ÇALIŞAN SİSTEM
         let player;
         let isPlaying = false;
@@ -507,13 +506,11 @@
         const heartContainer = document.getElementById('heart-particles');
         const mainHeart = document.getElementById('main-heart');
         const playerElement = document.getElementById('youtube-player');
-
         // YouTube API yükleme
         const tag = document.createElement('script');
         tag.src = 'https://www.youtube.com/iframe_api';
         const firstScript = document.getElementsByTagName('script')[0];
         firstScript.parentNode.insertBefore(tag, firstScript);
-
         window.onYouTubeIframeAPIReady = function() {
             player = new YT.Player('youtube-player', {
                 events: {
@@ -522,7 +519,6 @@
                 }
             });
         };
-
         function onPlayerReady(event) {
             const unlock = () => {
                 if (!userInteracted) {
@@ -534,7 +530,6 @@
             document.addEventListener('touchstart', unlock, { once: true });
             document.addEventListener('click', unlock, { once: true });
         }
-
         function onPlayerStateChange(event) {
             if (event.data === YT.PlayerState.PLAYING) {
                 isPlaying = true;
@@ -550,17 +545,14 @@
                 waves.forEach(w => w.classList.remove('playing'));
             }
         }
-
         function togglePlay() {
             if (!player || !player.playVideo) return;
-
             if (isPlaying) {
                 player.pauseVideo();
             } else {
                 player.playVideo();
             }
         }
-
         playBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             togglePlay();
@@ -569,7 +561,6 @@
             e.stopPropagation();
             togglePlay();
         });
-
         function createHeartParticles() {
             const count = 8;
             for (let i = 0; i < count; i++) {
