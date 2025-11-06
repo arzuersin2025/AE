@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -89,12 +90,6 @@
         @keyframes fall { 0% { transform: translateY(-120px) rotate(0deg) scale(1); opacity: 0; } 8% { opacity: 0.9; } 30% { transform: translateY(30vh) translateX(15px) rotate(180deg) scale(0.95); } 50% { transform: translateY(50vh) translateX(-20px) rotate(540deg) scale(0.9); } 70% { transform: translateY(70vh) translateX(25px) rotate(800deg) scale(0.85); } 92% { opacity: 0.9; } 100% { transform: translateY(110vh) translateX(-15px) rotate(1080deg) scale(0.6); opacity: 0; } }
         .leaf-svg .leaf-inner { fill: currentColor; } .leaf-svg .leaf-outer { fill: white; opacity: 0.95; }
         .leaf-svg.autumn-1 { color: #f59e0b; } .leaf-svg.autumn-2 { color: #ef4444; } .leaf-svg.autumn-3 { color: #facc15; } .leaf-svg.autumn-4 { color: #92400e; } .leaf-svg.autumn-5 { color: #84cc16; } .leaf-svg.autumn-6 { color: #fb923c; } .leaf-svg.autumn-7 { color: #dc2626; } .leaf-svg.autumn-8 { color: #f97316; } .leaf-svg.autumn-9 { color: #22c55e; } .leaf-svg.autumn-10 { color: #16a34a; }
-        .dream-heart { display: inline-block; opacity: 0; transform: scale(0); transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); background: linear-gradient(135deg, #ef4444, #f97316, #fbbf24, #f59e0b, #f43f5e); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; filter: drop-shadow(0 0 12px rgba(239, 68, 68, 0.7)); text-shadow: 0 0 10px rgba(239, 68, 68, 0.4); }
-        .dream-heart.visible { opacity: 1; transform: scale(1); }
-        @keyframes pulse-gentle { 0%,100%{transform:scale(1)} 50%{transform:scale(1.18)} }
-        .dream-heart.pulse { animation: pulse-gentle 1.8s infinite; }
-        @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        .animate-spin-slow { animation: spin-slow 20s linear infinite; }
         .sound-wave { position: absolute; inset: 0; margin: auto; width: 100%; height: 100%; border: 3px solid; border-radius: 50%; opacity: 0; transform: scale(0.3); animation: wavePulse 5s infinite ease-out; }
         .sound-wave.playing { animation-duration: 3s; }
         .wave-1 { border-color: #fca5a5; animation-delay: 0s; } .wave-2 { border-color: #f87171; animation-delay: 1.2s; } .wave-3 { border-color: #ef4444; animation-delay: 2.4s; }
@@ -103,11 +98,10 @@
         @keyframes glow { from { filter: drop-shadow(0 0 15px rgba(239, 68, 68, 0.6)); } to { filter: drop-shadow(0 0 25px rgba(239, 68, 68, 0.9)); } }
         .heart-particle { position: absolute; font-size: 1.2rem; color: #ff1493; pointer-events: none; animation: floatHeart linear forwards; left: 50%; top: 50%; transform: translate(-50%, -50%); }
         @keyframes floatHeart { 0% { transform: translate(-50%, -50%) scale(0) rotate(0deg); opacity: 1; } 100% { transform: translate(calc(-50% + var(--drift)), -180px) scale(1) rotate(360deg); opacity: 0; } }
-        /* YENİ: İkon halkaların dışında, aynı hizada, daha da sağda */
         .song-control {
             position: absolute;
             bottom: 1rem;
-            right: -3.5rem; /* daha da sağa kaydırıldı */
+            right: -3.5rem;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -151,7 +145,6 @@
             .song-control { right: -2.8rem; }
             .song-label { font-size: 0.6rem; margin-bottom: 0.4rem; }
         }
-        /* YouTube Player için ekstra stil */
         #youtube-player { display: none; width: 100%; height: 100%; border-radius: 50%; }
         #youtube-player.show { display: block; }
     </style>
@@ -266,11 +259,8 @@
             <p class="text-center text-black font-semibold italic text-lg mt-4 mb-8">
                 Birlikte kurduğumuz hayaller, geleceğe dair ektiğimiz tohumlar...
             </p>
-            <div class="relative text-center">
-                <span class="dream-heart text-6xl"><i class="fas fa-heart"></i></span>
-            </div>
         </section>
-        <!-- BİZİM ŞARKIMIZ (TARKAN BENİ ÇOK SEV ENTEGRASYONU) -->
+        <!-- BİZİM ŞARKIMIZ - YENİ ENTGRASYON (YouTube + Autoplay Kontrolü) -->
         <section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg text-center relative overflow-hidden">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Bizim Şarkımız</h3>
             <p class="text-center text-black font-semibold italic mt-2 mb-6">Tarkan - Beni Çok Sev</p>
@@ -279,13 +269,17 @@
                 <div class="sound-wave wave-1"></div>
                 <div class="sound-wave wave-2"></div>
                 <div class="sound-wave wave-3"></div>
-                <!-- YouTube Player (gizli, play'de göster) -->
-                <iframe id="youtube-player" src="https://www.youtube.com/embed/IYnu4-69fTA?autoplay=0&rel=0&modestbranding=1&playsinline=1" title="Tarkan - Beni Çok Sev" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe id="youtube-player" 
+                        src="https://www.youtube.com/embed/IYnu4-69fTA?autoplay=0&rel=0&modestbranding=1&playsinline=1" 
+                        title="Tarkan - Beni Çok Sev" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                </iframe>
                 <div id="main-heart" class="absolute inset-0 flex items-center justify-center cursor-pointer group">
                     <i class="fas fa-heart text-6xl md:text-8xl text-red-500 heartbeat-glow group-hover:scale-110 transition-transform duration-300"></i>
                 </div>
                 <div id="heart-particles" class="absolute inset-0 pointer-events-none"></div>
-                <!-- Play Butonu -->
                 <div class="song-control">
                     <div class="song-label">Şarkımızı Dinleyin</div>
                     <button id="play-song-btn" title="Şarkıyı Çal">
@@ -484,50 +478,32 @@
         document.querySelectorAll('.timeline-item').forEach(item => timelineObserver.observe(item));
         const poemObserver = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { const delay = parseFloat(entry.target.getAttribute('data-delay')) || 0; setTimeout(() => { entry.target.classList.add('visible'); const text = entry.target.textContent; entry.target.textContent = ''; let i = 0; const type = () => { if (i < text.length) { entry.target.textContent += text.charAt(i); i++; setTimeout(type, 30 + Math.random() * 20); } }; type(); }, delay * 1000); poemObserver.unobserve(entry.target); } }); }, { threshold: 0.6 });
         document.querySelectorAll('.poem-line').forEach(line => poemObserver.observe(line));
-        const obs = new IntersectionObserver(entries => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); const heart = entry.target.querySelector('.dream-heart'); if (heart) { setTimeout(() => { heart.classList.add('visible'); setTimeout(() => heart.classList.add('pulse'), 300); }, 400); } } }); }, {threshold:0.3});
+        const obs = new IntersectionObserver(entries => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); } }); }, {threshold:0.3});
         document.querySelectorAll('.fade-in-on-scroll, .travel-folder').forEach(el => obs.observe(el));
-        
-        // TARKAN ŞARKI ENTEGRASYONU (YouTube ile)
+
+        // YENİ ŞARKI KONTROLÜ - YouTube URL ile Autoplay Kontrolü
         const player = document.getElementById('youtube-player');
         const playBtn = document.getElementById('play-song-btn');
         const waves = document.querySelectorAll('.sound-wave');
         const heartContainer = document.getElementById('heart-particles');
-        let ytPlayer;
-        
-        // YouTube API yükle
-        const tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        const firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-        
-        window.onYouTubeIframeAPIReady = function() {
-            ytPlayer = new YT.Player('youtube-player', {
-                events: {
-                    'onReady': onPlayerReady
-                }
-            });
-        };
-        
-        function onPlayerReady(event) {
-            // Player hazır
-        }
-        
+
         playBtn.addEventListener('click', () => {
-            if (ytPlayer && ytPlayer.getPlayerState() !== YT.PlayerState.PLAYING) {
-                ytPlayer.playVideo();
+            const src = player.src;
+            if (src.includes('autoplay=0')) {
+                player.src = src.replace('autoplay=0', 'autoplay=1');
                 playBtn.innerHTML = '<i class="fas fa-pause"></i>';
                 playBtn.classList.add('playing');
                 player.classList.add('show');
                 waves.forEach(w => w.classList.add('playing'));
             } else {
-                ytPlayer.pauseVideo();
+                player.src = src.replace('autoplay=1', 'autoplay=0');
                 playBtn.innerHTML = '<i class="fas fa-play"></i>';
                 playBtn.classList.remove('playing');
                 player.classList.remove('show');
                 waves.forEach(w => w.classList.remove('playing'));
             }
         });
-        
+
         function createHeartParticles() {
             const count = 8;
             for (let i = 0; i < count; i++) {
