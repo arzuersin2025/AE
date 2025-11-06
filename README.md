@@ -142,8 +142,13 @@
             background: #16a34a;
         }
         @media (max-width: 768px) {
-            .song-control { right: -2.8rem; }
-            .song-label { font-size: 0.6rem; margin-bottom: 0.4rem; }
+            .song-control { 
+                right: -2.2rem !important; /* Mobilde sola kaydırıldı */
+            }
+            .song-label { 
+                font-size: 0.6rem; 
+                margin-bottom: 0.4rem;
+            }
         }
         #youtube-player { 
             position: absolute; 
@@ -519,7 +524,6 @@
         };
 
         function onPlayerReady(event) {
-            // Kullanıcı etkileşimi bekleniyor
             const unlock = () => {
                 if (!userInteracted) {
                     userInteracted = true;
@@ -557,7 +561,6 @@
             }
         }
 
-        // Buton ve kalp tıklama
         playBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             togglePlay();
@@ -567,7 +570,6 @@
             togglePlay();
         });
 
-        // Kalp efektleri
         function createHeartParticles() {
             const count = 8;
             for (let i = 0; i < count; i++) {
