@@ -272,7 +272,7 @@
                 Birlikte kurduğumuz hayaller, geleceğe dair ektiğimiz tohumlar...
             </p>
         </section>
-        <!-- BİZİM ŞARKIMIZ - MOBİL + MASAÜSTÜ TAM UYUMLU -->
+        <!-- BİZİM ŞARKIMIZ - TAM ÇALIŞIR HALE GETİRİLDİ -->
         <section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg text-center relative overflow-hidden">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Bizim Şarkımız</h3>
             <p class="text-center text-black font-semibold italic mt-2 mb-6">Tarkan - Beni Çok Sev</p>
@@ -493,7 +493,7 @@
         const obs = new IntersectionObserver(entries => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); } }); }, {threshold:0.3});
         document.querySelectorAll('.fade-in-on-scroll, .travel-folder').forEach(el => obs.observe(el));
 
-        // YOUTUBE API İLE TAM UYUMLU MOBİL + MASAÜSTÜ ÇÖZÜM
+        // YOUTUBE API İLE KESİNTİSİZ ÇALIŞAN SİSTEM
         let player;
         let isPlaying = false;
         let userInteracted = false;
@@ -501,24 +501,25 @@
         const waves = document.querySelectorAll('.sound-wave');
         const heartContainer = document.getElementById('heart-particles');
         const mainHeart = document.getElementById('main-heart');
+        const playerElement = document.getElementById('youtube-player');
 
-        // YouTube API yükle
+        // YouTube API yükleme
         const tag = document.createElement('script');
         tag.src = 'https://www.youtube.com/iframe_api';
         const firstScript = document.getElementsByTagName('script')[0];
         firstScript.parentNode.insertBefore(tag, firstScript);
 
-        function onYouTubeIframeAPIReady() {
+        window.onYouTubeIframeAPIReady = function() {
             player = new YT.Player('youtube-player', {
                 events: {
                     'onReady': onPlayerReady,
                     'onStateChange': onPlayerStateChange
                 }
             });
-        }
+        };
 
         function onPlayerReady(event) {
-            // İlk etkileşim için hazır
+            // Kullanıcı etkileşimi bekleniyor
             const unlock = () => {
                 if (!userInteracted) {
                     userInteracted = true;
@@ -531,24 +532,32 @@
         }
 
         function onPlayerStateChange(event) {
-            // Durum değişiklikleri
+            if (event.data === YT.PlayerState.PLAYING) {
+                isPlaying = true;
+                playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                playBtn.classList.add('playing');
+                playerElement.classList.add('show');
+                waves.forEach(w => w.classList.add('playing'));
+            } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
+                isPlaying = false;
+                playBtn.innerHTML = '<i class="fas fa-play"></i>';
+                playBtn.classList.remove('playing');
+                playerElement.classList.remove('show');
+                waves.forEach(w => w.classList.remove('playing'));
+            }
         }
 
-        const togglePlay = () => {
+        function togglePlay() {
             if (!player || !player.playVideo) return;
-
-            if (!userInteracted) {
-                userInteracted = true;
-            }
 
             if (isPlaying) {
                 player.pauseVideo();
             } else {
                 player.playVideo();
             }
-        };
+        }
 
-        // Buton ve kalp tıklamaları
+        // Buton ve kalp tıklama
         playBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             togglePlay();
@@ -557,25 +566,6 @@
             e.stopPropagation();
             togglePlay();
         });
-
-        // Oynat/Duraklat durumunu takip et
-        const originalOnStateChange = onPlayerStateChange;
-        window.onPlayerStateChange = function(event) {
-            if (event.data === YT.PlayerState.PLAYING) {
-                isPlaying = true;
-                playBtn.innerHTML = '<i class="fas fa-pause"></i>';
-                playBtn.classList.add('playing');
-                document.getElementById('youtube-player').classList.add('show');
-                waves.forEach(w => w.classList.add('playing'));
-            } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
-                isPlaying = false;
-                playBtn.innerHTML = '<i class="fas fa-play"></i>';
-                playBtn.classList.remove('playing');
-                document.getElementById('youtube-player').classList.remove('show');
-                waves.forEach(w => w.classList.remove('playing'));
-            }
-            if (originalOnStateChange) originalOnStateChange(event);
-        };
 
         // Kalp efektleri
         function createHeartParticles() {
@@ -593,9 +583,6 @@
         setInterval(createHeartParticles, 3000);
         document.addEventListener('DOMContentLoaded', () => setTimeout(createHeartParticles, 1000));
         mainHeart.addEventListener('click', createHeartParticles);
-
-        // Global fonksiyon
-        window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
     })();
     </script>
 </body>
