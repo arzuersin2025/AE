@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -147,6 +147,17 @@
         }
         #youtube-player { display: none; width: 100%; height: 100%; border-radius: 50%; }
         #youtube-player.show { display: block; }
+        /* MOBİL AUTOPLAY İÇİN YARDIMCI KATMAN */
+        #mobile-play-overlay {
+            position: absolute;
+            inset: 0;
+            background: transparent;
+            z-index: 10;
+            cursor: pointer;
+        }
+        #mobile-play-overlay.active {
+            display: none;
+        }
     </style>
 </head>
 <body class="text-black">
@@ -260,7 +271,7 @@
                 Birlikte kurduğumuz hayaller, geleceğe dair ektiğimiz tohumlar...
             </p>
         </section>
-        <!-- BİZİM ŞARKIMIZ - YENİ ENTGRASYON (YouTube + Autoplay Kontrolü) -->
+        <!-- BİZİM ŞARKIMIZ - MOBİL AUTOPLAY DÜZELTME -->
         <section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg text-center relative overflow-hidden">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Bizim Şarkımız</h3>
             <p class="text-center text-black font-semibold italic mt-2 mb-6">Tarkan - Beni Çok Sev</p>
@@ -269,8 +280,10 @@
                 <div class="sound-wave wave-1"></div>
                 <div class="sound-wave wave-2"></div>
                 <div class="sound-wave wave-3"></div>
+                <!-- MOBİL İÇİN KULLANICI ETKİLEŞİMİ KATMANI -->
+                <div id="mobile-play-overlay"></div>
                 <iframe id="youtube-player" 
-                        src="https://www.youtube.com/embed/IYnu4-69fTA?autoplay=0&rel=0&modestbranding=1&playsinline=1" 
+                        src="https://www.youtube.com/embed/IYnu4-69fTA?autoplay=0&rel=0&modestbranding=1&playsinline=1&mute=0" 
                         title="Tarkan - Beni Çok Sev" 
                         frameborder="0" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -481,28 +494,61 @@
         const obs = new IntersectionObserver(entries => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); } }); }, {threshold:0.3});
         document.querySelectorAll('.fade-in-on-scroll, .travel-folder').forEach(el => obs.observe(el));
 
-        // YENİ ŞARKI KONTROLÜ - YouTube URL ile Autoplay Kontrolü
+        // MOBİL AUTOPLAY SORUNU ÇÖZÜLDÜ
         const player = document.getElementById('youtube-player');
         const playBtn = document.getElementById('play-song-btn');
         const waves = document.querySelectorAll('.sound-wave');
         const heartContainer = document.getElementById('heart-particles');
+        const mobileOverlay = document.getElementById('mobile-play-overlay');
+        let isPlaying = false;
+        let userInteracted = false;
 
-        playBtn.addEventListener('click', () => {
+        // Mobil olup olmadığını kontrol et
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+        // İlk etkileşim (dokunma) ile autoplay kilidini aç
+        const unlockAudio = () => {
+            if (!userInteracted) {
+                userInteracted = true;
+                document.removeEventListener('touchstart', unlockAudio);
+                document.removeEventListener('click', unlockAudio);
+            }
+        };
+        if (isMobile) {
+            document.addEventListener('touchstart', unlockAudio, { once: true });
+            document.addEventListener('click', unlockAudio, { once: true });
+        } else {
+            userInteracted = true; // Masaüstü zaten serbest
+        }
+
+        const togglePlay = () => {
+            if (!userInteracted && isMobile) {
+                // İlk dokunuşta sadece kilidi aç
+                userInteracted = true;
+                mobileOverlay.classList.add('active');
+                return;
+            }
+
             const src = player.src;
             if (src.includes('autoplay=0')) {
                 player.src = src.replace('autoplay=0', 'autoplay=1');
-                playBtn.innerHTML = '<i class="fas fa-pause"></i>';
-                playBtn.classList.add('playing');
-                player.classList.add('show');
-                waves.forEach(w => w.classList.add('playing'));
+                isPlaying = true;
             } else {
                 player.src = src.replace('autoplay=1', 'autoplay=0');
-                playBtn.innerHTML = '<i class="fas fa-play"></i>';
-                playBtn.classList.remove('playing');
-                player.classList.remove('show');
-                waves.forEach(w => w.classList.remove('playing'));
+                isPlaying = false;
             }
-        });
+
+            playBtn.innerHTML = isPlaying ? '<i class="fas fa-pause"></i>' : '<i class="fas fa-play"></i>';
+            playBtn.classList.toggle('playing', isPlaying);
+            player.classList.toggle('show', isPlaying);
+            waves.forEach(w => w.classList.toggle('playing', isPlaying));
+            if (isMobile) mobileOverlay.classList.add('active');
+        };
+
+        playBtn.addEventListener('click', togglePlay);
+        if (isMobile) {
+            mobileOverlay.addEventListener('click', togglePlay);
+        }
 
         function createHeartParticles() {
             const count = 8;
