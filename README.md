@@ -94,10 +94,6 @@
         .sound-wave.playing { animation-duration: 3s; }
         .wave-1 { border-color: #fca5a5; animation-delay: 0s; } .wave-2 { border-color: #f87171; animation-delay: 1.2s; } .wave-3 { border-color: #ef4444; animation-delay: 2.4s; }
         @keyframes wavePulse { 0% { transform: scale(0.3); opacity: 0.8; } 100% { transform: scale(1.8); opacity: 0; } }
-        .heartbeat-glow { animation: heartbeat 1.5s infinite, glow 2s infinite alternate; filter: drop-shadow(0 0 15px rgba(239, 68, 68, 0.6)); }
-        @keyframes glow { from { filter: drop-shadow(0 0 15px rgba(239, 68, 68, 0.6)); } to { filter: drop-shadow(0 0 25px rgba(239, 68, 68, 0.9)); } }
-        .heart-particle { position: absolute; font-size: 1.2rem; color: #ff1493; pointer-events: none; animation: floatHeart linear forwards; left: 50%; top: 50%; transform: translate(-50%, -50%); }
-        @keyframes floatHeart { 0% { transform: translate(-50%, -50%) scale(0) rotate(0deg); opacity: 1; } 100% { transform: translate(calc(-50% + var(--drift)), -180px) scale(1) rotate(360deg); opacity: 0; } }
         .song-control {
             position: absolute;
             bottom: 1rem;
@@ -293,10 +289,7 @@
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen>
                 </iframe>
-                <div id="main-heart" class="absolute inset-0 flex items-center justify-center cursor-pointer group z-10">
-                    <i class="fas fa-heart text-6xl md:text-8xl text-red-500 heartbeat-glow group-hover:scale-110 transition-transform duration-300"></i>
-                </div>
-                <div id="heart-particles" class="absolute inset-0 pointer-events-none"></div>
+                <!-- ANA KIRMIZI KALP TAMAMEN KALDIRILDI -->
                 <div class="song-control">
                     <div class="song-label">Dinle</div>
                     <button id="play-song-btn" title="Şarkıyı Çal">
@@ -358,7 +351,7 @@
             </div>
             <div id="video-gallery-wrapper" class="hidden mt-8">
                 <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-1" id="video-grid">
-                    <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="ChFa2GJ4e4U"><img data-src="https://img.youtube.com/vi/ChFa2GJ4e4U/maxresdefault.jpg" alt="Video 1" class="w-full h-full object-cover gallery-thumbnail" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">5</span><div class="photo-note">Beşiktaş</div></div>
+                    <div class="photo-container group cursor-pointer aspect-square" data Y="ChFa2GJ4e4U"><img data-src="https://img.youtube.com/vi/ChFa2GJ4e4U/maxresdefault.jpg" alt="Video 1" class="w-full h-full object-cover gallery-thumbnail" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">5</span><div class="photo-note">Beşiktaş</div></div>
                     <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="aim5II5vYpU"><img data-src="https://img.youtube.com/vi/aim5II5vYpU/maxresdefault.jpg" alt="Video 2" class="w-full h-full object-cover gallery-thumbnail" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">4</span><div class="photo-note">Üsküdar</div></div>
                     <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="uY6ZrwkbLjc"><img data-src="https://img.youtube.com/vi/uY6ZrwkbLjc/maxresdefault.jpg" alt="Video 3" class="w-full h-full object-cover gallery-thumbnail" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">3</span><div class="photo-note">Lunapark</div></div>
                     <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="19aKq8FtYP8"><img data-src="https://img.youtube.com/vi/19aKq8FtYP8/maxresdefault.jpg" alt="Video 4" class="w-full h-full object-cover gallery-thumbnail" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">2</span><div class="photo-note">Beşiktaş</div></div>
@@ -392,7 +385,7 @@
                     <p id="contact-error" class="text-red-500 text-sm mt-2 text-center hidden">Lütfen e-posta veya telefon girin.</p>
                 </div>
                 <div class="text-center pt-4">
-                    <button type="submit" class="inline-flex justify-center items-center py-2 px-6 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none represented focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors">
+                    <button type="submit" class="inline-flex justify-center items-center py-2 px-6 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors">
                         <i class="fas fa-heart mr-2 heartbeat"></i> Dileğini Gönder
                     </button>
                 </div>
@@ -503,8 +496,6 @@
         let userInteracted = false;
         const playBtn = document.getElementById('play-song-btn');
         const waves = document.querySelectorAll('.sound-wave');
-        const heartContainer = document.getElementById('heart-particles');
-        const mainHeart = document.getElementById('main-heart');
         const playerElement = document.getElementById('youtube-player');
         // YouTube API yükleme
         const tag = document.createElement('script');
@@ -557,25 +548,7 @@
             e.stopPropagation();
             togglePlay();
         });
-        mainHeart.addEventListener('click', (e) => {
-            e.stopPropagation();
-            togglePlay();
-        });
-        function createHeartParticles() {
-            const count = 8;
-            for (let i = 0; i < count; i++) {
-                const heart = document.createElement('i');
-                heart.className = 'fas fa-heart heart-particle';
-                heart.style.setProperty('--drift', (Math.random() - 0.5) * 200 + 'px');
-                heart.style.animationDuration = (0.8 + Math.random() * 0.8) + 's';
-                heart.style.animationDelay = Math.random() * 0.3 + 's';
-                heartContainer.appendChild(heart);
-                setTimeout(() => heart.remove(), 2500);
-            }
-        }
-        setInterval(createHeartParticles, 3000);
-        document.addEventListener('DOMContentLoaded', () => setTimeout(createHeartParticles, 1000));
-        mainHeart.addEventListener('click', createHeartParticles);
+        // ANA KIRMIZI KALP TIKLAMA OLAYI KALDIRILDI
     })();
     </script>
 </body>
