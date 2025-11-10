@@ -281,7 +281,7 @@
                 <div class="poem-line font-semibold italic text-black">geri gelmesi mümkün olmayan hatırlanmamalı.</div>
                 <div class="poem-line font-semibold italic text-black">ıslak saçlarını güneşte kurut</div>
                 <div class="poem-line font-semibold italic text-black">olgun meyvelerin baygınlığıyla parıldasın</div>
-                <div class="poem-line font-semibold italic text-black">nemli, ağır kırmızıltılar…</div>
+                <div class="poem-line font-semibold italic text-black">nemli, ağır kızıltılar…</div>
                 <div class="poem-line font-semibold italic text-black">sevgilim, sevgilim,</div>
                 <div class="poem-line font-semibold italic text-black">mevsim</div>
                 <div class="poem-line font-semibold italic text-black">sonbahar…</div>
@@ -469,7 +469,7 @@
                 <div><label for="name" class="block text-sm font-medium text-red-600">Adınız</label><input type="text" name="name" id="name" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="Adınız ve Soyadınız" required></div>
                 <div><label for="message" class="block text-sm font-medium text-red-600">Dileğiniz</label><textarea id="message" name="message" rows="4" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="Bizim için güzel bir dilek..." required></textarea></div>
                 <div class="pt-4 border-t border-slate-200">
-                    <p class="text-sm text-black mb-2 text-center">Teşekkür için lütfen e-posta ya da telefon bırakın.</p>
+                    <p class="text-sm text-black mb-2 text-center">Size geri dönüş yapabilmemiz için lütfen e-posta ya da telefon bırakın.</p>
                     <label for="contact" class="block text-sm font-medium text-red-600">E-posta ya da Telefon</label>
                     <input type="text" name="Iletisim" id="contact" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="ornek@mail.com veya 05XX XXX XX XX">
                     <p id="contact-error" class="text-red-500 text-sm mt-2 text-center hidden">Lütfen e-posta veya telefon girin.</p>
@@ -547,7 +547,7 @@
             const btn = document.getElementById(btnId); const wrapper = document.getElementById(wrapperId); const icon = document.getElementById(iconId); const txt = document.getElementById(textId);
             btn.addEventListener('click', () => { const h = wrapper.classList.toggle('hidden'); icon.classList.toggle('rotate-180', !h); txt.textContent = h ? openTxt : closeTxt; if (!h) setTimeout(attachGalleryEvents, 100); });
         };
-        toggleBtn('toggle-gallery-btn','gallery-wrapper','gallery-toggle-icon','gallery-toggle-text663','Fotoğraf Galerisini Gör','Galeriyi Gizle');
+        toggleBtn('toggle-gallery-btn','gallery-wrapper','gallery-toggle-icon','gallery-toggle-text','Fotoğraf Galerisini Gör','Galeriyi Gizle');
         toggleBtn('toggle-video-gallery-btn','video-gallery-wrapper','video-gallery-toggle-icon','video-gallery-toggle-text','Video Galerisini Gör','Galeriyi Gizle');
         toggleBtn('toggle-travel-btn','travel-wrapper','travel-toggle-icon','travel-toggle-text','Seyahatlerimizi Gör','Seyahatleri Gizle');
         const videoModal = document.getElementById('video-modal'); const iframe = document.getElementById('modal-video-iframe');
@@ -617,7 +617,7 @@
                 musicVisualizer.classList.add('hidden');
             } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
                 isPlaying = false;
-                playBtn.innerHTML = '<i class="fas fa-play"></i>';
+                playBtn.innerHTML = '<i class="fas fa-play"></i' +
                 playBtn.classList.remove('playing');
                 playerElement.classList.remove('show');
                 musicVisualizer.classList.remove('hidden');
@@ -627,7 +627,7 @@
             if (!player || !player.playVideo) return;
             if (isPlaying) {
                 player.pauseVideo();
-            } else {
+             } else {
                 player.playVideo();
             }
         }
