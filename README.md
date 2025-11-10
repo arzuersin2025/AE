@@ -87,7 +87,7 @@
             font-size: 0.875rem !important;
             line-height: 1.3 !important;
             margin: 0.5rem 0 0.25rem 0 !important;
-            color: #1f2937 !ol;
+            color: #1f2937 !important;
             text-align: center;
             overflow: hidden;
             display: -webkit-box;
@@ -109,7 +109,7 @@
         .poem-container {
             max-width: 90%; margin: 0 auto; padding: 2rem 0; line-height: 2.3; font-size: 1.15rem;
             font-style: italic; color: #1f2937; text-align: center; position: relative;
-            background: transparent !important; /* Ön ve arka sayfa tamamen kaldırıldı */
+            background: transparent !important;
             border-radius: 0 !important; padding: 2rem 0 !important; box-shadow: none !important; overflow: visible;
         }
         .poem-line {
@@ -275,8 +275,8 @@
         <p class="text-lg mt-1 text-red-600 italic font-bold">Zamanın durduğu an</p>
     </section>
     <main class="container mx-auto px-6 pb-12">
-        <!-- İLK ADIM -->
-        <section class="max-w-3xl mx-auto my-12 text-center bg-white/80 backdrop-blur-sm p-8 rounded-lg shadow-lg">
+        <!-- İLK ADIM - ARKA PLAN KALDIRILDI -->
+        <section class="max-w-3xl mx-auto my-12 text-center">
             <h3 id="ilk-adim-baslik" class="font-bold text-red-600 mb-4">İlk Adım</h3>
             <p class="text-lg leading-relaxed font-medium font-[550] text-black">
                 Her büyük hikayenin bir başlangıç anı vardır. Bizimki, 27 Eylül 2025'te, yaprakların sarıya döndüğü,
