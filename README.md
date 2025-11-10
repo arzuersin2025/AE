@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -106,65 +106,61 @@
         .leaf-svg .leaf-inner { fill: currentColor; } .leaf-svg .leaf-outer { fill: white; opacity: 0.95; }
         .leaf-svg.autumn-1 { color: #f59e0b; } .leaf-svg.autumn-2 { color: #ef4444; } .leaf-svg.autumn-3 { color: #facc15; } .leaf-svg.autumn-4 { color: #92400e; } .leaf-svg.autumn-5 { color: #84cc16; } .leaf-svg.autumn-6 { color: #fb923c; } .leaf-svg.autumn-7 { color: #dc2626; } .leaf-svg.autumn-8 { color: #f97316; } .leaf-svg.autumn-9 { color: #22c55e; } .leaf-svg.autumn-10 { color: #16a34a; }
 
-        /* EKOLAYZER: GÖRÜNÜR VE KESİN ÇALIŞIR */
-        .bar-equalizer {
+        /* YENİ MÜZİK NOTASI ANİMASYONU - TAM ORTALI */
+        .music-visualizer {
             position: absolute;
-            bottom: -3.5rem; /* iframe'in hemen altında */
+            top: 50%;
             left: 50%;
-            transform: translateX(-50%);
+            transform: translate(-50%, -50%);
             display: flex;
-            align-items: flex-end;
+            align-items: center;
             justify-content: center;
-            gap: 4px;
-            height: 40px;
+            gap: 6px;
             z-index: 15;
-            opacity: 0;
+            opacity: 1;
             transition: opacity 0.3s ease;
-            width: 180px;
+            width: 200px;
+            pointer-events: none;
         }
-        .bar-equalizer.active {
-            opacity: 1 !important; /* Kesin görünür */
+        .music-visualizer.hidden {
+            opacity: 0 !important;
+            pointer-events: none;
         }
-        .eq-bar {
-            width: 5px;
-            background: linear-gradient(to top, #ef4444, #f87171, #fca5a5);
-            border-radius: 3px;
+        .note {
+            font-size: 1.8rem;
+            color: #ef4444;
+            animation: floatNote 1.8s infinite ease-in-out;
             transform-origin: bottom;
-            animation: eqPulse 1.4s infinite ease-in-out;
         }
-        /* 10 çubuk, farklı yükseklikler */
-        .eq-bar:nth-child(1) { animation-delay: 0s; height: 8px; }
-        .eq-bar:nth-child(2) { animation-delay: 0.1s; height: 16px; }
-        .eq-bar:nth-child(3) { animation-delay: 0.2s; height: 24px; }
-        .eq-bar:nth-child(4) { animation-delay: 0.3s; height: 16px; }
-        .eq-bar:nth-child(5) { animation-delay: 0.4s; height: 8px; }
-        .eq-bar:nth-child(6) { animation-delay: 0.5s; height: 12px; }
-        .eq-bar:nth-child(7) { animation-delay: 0.6s; height: 20px; }
-        .eq-bar:nth-child(8) { animation-delay: 0.7s; height: 28px; }
-        .eq-bar:nth-child(9) { animation-delay: 0.8s; height: 20px; }
-        .eq-bar:nth-child(10) { animation-delay: 0.9s; height: 12px; }
-        @keyframes eqPulse {
-            0%, 100% { transform: scaleY(1); }
-            50% { transform: scaleY(0.3); }
+        .note:nth-child(1) { animation-delay: 0s; }
+        .note:nth-child(2) { animation-delay: 0.2s; }
+        .note:nth-child(3) { animation-delay: 0.4s; }
+        .note:nth-child(4) { animation-delay: 0.6s; }
+        .note:nth-child(5) { animation-delay: 0.8s; }
+        .note:nth-child(6) { animation-delay: 1s; }
+        .note:nth-child(7) { animation-delay: 1.2s; }
+        .note:nth-child(8) { animation-delay: 1.4s; }
+
+        @keyframes floatNote {
+            0%, 100% { transform: translateY(0) scale(1); opacity: 0.7; }
+            50% { transform: translateY(-12px) scale(1.3); opacity: 1; }
         }
+
         @media (max-width: 768px) {
-            .bar-equalizer {
-                bottom: -3rem;
-                gap: 3px;
-                width: 140px;
+            .music-visualizer {
+                gap: 4px;
+                width: 160px;
             }
-            .eq-bar { width: 4px; }
-            .eq-bar:nth-child(1) { height: 6px; }
-            .eq-bar:nth-child(2) { height: 12px; }
-            .eq-bar:nth-child(3) { height: 18px; }
-            .eq-bar:nth-child(4) { height: 12px; }
-            .eq-bar:nth-child(5) { height: 6px; }
+            .note {
+                font-size: 1.5rem;
+            }
         }
 
         .song-control {
             position: absolute;
             bottom: 1rem;
-            right: -3.5rem;
+            left: 50%;
+            transform: translateX(-50%);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -206,7 +202,7 @@
         }
         @media (max-width: 768px) {
             .song-control {
-                right: -1.4rem !important;
+                bottom: 0.5rem;
             }
             .song-label {
                 font-size: 0.6rem;
@@ -311,7 +307,7 @@
                     <div class="timeline-content">
                         <h4>Sonsuza Dek...</h4>
                         <p class="font-semibold italic text-black">
-                            Yemin ettik birbirimize, yıldızlar şahitliğinde...
+                            Yemin ettik birbirimize, yıldızlar şilinde...
                         </p>
                     </div>
                 </div>
@@ -353,20 +349,18 @@
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen>
                 </iframe>
-                <!-- EKOLAYZER -->
-                <div id="bar-equalizer" class="bar-equalizer">
-                    <div class="eq-bar"></div>
-                    <div class="eq-bar"></div>
-                    <div class="eq-bar"></div>
-                    <div class="eq-bar"></div>
-                    <div class="eq-bar"></div>
-                    <div class="eq-bar"></div>
-                    <div class="eq-bar"></div>
-                    <div class="eq-bar"></div>
-                    <div class="eq-bar"></div>
-                    <div class="eq-bar"></div>
+                <!-- MÜZİK NOTALARI - TAM ORTALI -->
+                <div id="music-visualizer" class="music-visualizer">
+                    <div class="note">♪</div>
+                    <div class="note">♫</div>
+                    <div class="note">♪</div>
+                    <div class="note">♬</div>
+                    <div class="note">♪</div>
+                    <div class="note">♫</div>
+                    <div class="note">♪</div>
+                    <div class="note">♬</div>
                 </div>
-                <!-- DİNLE BUTONU -->
+                <!-- DİNLE BUTONU - ALTA ORTALI -->
                 <div class="song-control">
                     <div class="song-label">Dinle</div>
                     <button id="play-song-btn" title="Şarkıyı Çal">
@@ -565,13 +559,13 @@
         document.querySelectorAll('.timeline-item').forEach(item => timelineObserver.observe(item));
         const obs = new IntersectionObserver(entries => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); } }); }, {threshold:0.3});
         document.querySelectorAll('.fade-in-on-scroll, .travel-folder').forEach(el => obs.observe(el));
-        // YOUTUBE + EKOLAYZER (KESİN GÖRÜNÜR)
+        // MÜZİK NOTALARI + YOUTUBE - TAM ORTALI
         let player;
         let isPlaying = false;
         let userInteracted = false;
         const playBtn = document.getElementById('play-song-btn');
         const playerElement = document.getElementById('youtube-player');
-        const barEqualizer = document.getElementById('bar-equalizer');
+        const musicVisualizer = document.getElementById('music-visualizer');
         const tag = document.createElement('script');
         tag.src = 'https://www.youtube.com/iframe_api';
         const firstScript = document.getElementsByTagName('script')[0];
@@ -601,13 +595,13 @@
                 playBtn.innerHTML = '<i class="fas fa-pause"></i>';
                 playBtn.classList.add('playing');
                 playerElement.classList.add('show');
-                barEqualizer.classList.add('active');
+                musicVisualizer.classList.add('hidden');
             } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
                 isPlaying = false;
                 playBtn.innerHTML = '<i class="fas fa-play"></i>';
                 playBtn.classList.remove('playing');
                 playerElement.classList.remove('show');
-                barEqualizer.classList.remove('active');
+                musicVisualizer.classList.remove('hidden');
             }
         }
         function togglePlay() {
