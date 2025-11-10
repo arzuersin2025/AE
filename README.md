@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -77,9 +77,15 @@
         .photo-container.no-note .photo-note { display: none; }
         .travel-folder { position: relative; overflow: hidden; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); aspect-ratio: 1/1; background: #f0fdf4; border: 1px solid #a7f3d0; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 0.75rem; text-align: center; transition: transform .2s ease-in-out, box-shadow .2s ease-in-out; }
         .travel-folder:hover { transform: translateY(-5px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
+        /* DÜZELTME: Sadece alt açıklamalar kalın */
+        .travel-folder p {
+            font-weight: 700 !important;
+            font-style: italic;
+            font-size: 0.75rem;
+        }
         .fade-in-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity .8s cubic-bezier(.25,.46,.45,.94), transform .8s cubic-bezier(.25,.46,.45,.94); }
         .fade-in-on-scroll.visible { opacity: 1; transform: translateY(0); }
-        /* ŞİİR - ANİMASYON YOK */
+        /* ŞİİR - MOBİLDE GENİŞLETME */
         .poem-container {
             max-width: 90%; margin: 0 auto; padding: 2rem 0; line-height: 2.3; font-size: 1.15rem;
             font-style: italic; color: #1f2937; text-align: center; position: relative;
@@ -99,14 +105,20 @@
             .poem-container {
                 padding: 1.5rem 1rem;
                 font-size: 1.3rem;
+                /* MOBİLDE YANLARA DOĞRU GENİŞLETME */
+                max-width: 100% !important;
+                margin-left: -1.5rem !important;
+                margin-right: -1.5rem !important;
+                padding-left: 2rem !important;
+                padding-right: 2rem !important;
+                border-radius: 0 !important;
             }
         }
         .leaf-svg { position: absolute; width: 32px; height: 44px; opacity: 0.9; animation: fall linear infinite; transform-origin: center; filter: drop-shadow(0 3px 6px rgba(0,0,0,0.3)); }
         @keyframes fall { 0% { transform: translateY(-120px) rotate(0deg) scale(1); opacity: 0; } 8% { opacity: 0.9; } 30% { transform: translateY(30vh) translateX(15px) rotate(180deg) scale(0.95); } 50% { transform: translateY(50vh) translateX(-20px) rotate(540deg) scale(0.9); } 70% { transform: translateY(70vh) translateX(25px) rotate(800deg) scale(0.85); } 92% { opacity: 0.9; } 100% { transform: translateY(110vh) translateX(-15px) rotate(1080deg) scale(0.6); opacity: 0; } }
         .leaf-svg .leaf-inner { fill: currentColor; } .leaf-svg .leaf-outer { fill: white; opacity: 0.95; }
         .leaf-svg.autumn-1 { color: #f59e0b; } .leaf-svg.autumn-2 { color: #ef4444; } .leaf-svg.autumn-3 { color: #facc15; } .leaf-svg.autumn-4 { color: #92400e; } .leaf-svg.autumn-5 { color: #84cc16; } .leaf-svg.autumn-6 { color: #fb923c; } .leaf-svg.autumn-7 { color: #dc2626; } .leaf-svg.autumn-8 { color: #f97316; } .leaf-svg.autumn-9 { color: #22c55e; } .leaf-svg.autumn-10 { color: #16a34a; }
-
-        /* YENİ MÜZİK NOTASI ANİMASYONU - TAM ORTALI */
+        /* MÜZİK NOTASI ANİMASYONU - TAM ORTALI */
         .music-visualizer {
             position: absolute;
             top: 50%;
@@ -140,12 +152,10 @@
         .note:nth-child(6) { animation-delay: 1s; }
         .note:nth-child(7) { animation-delay: 1.2s; }
         .note:nth-child(8) { animation-delay: 1.4s; }
-
         @keyframes floatNote {
             0%, 100% { transform: translateY(0) scale(1); opacity: 0.7; }
             50% { transform: translateY(-12px) scale(1.3); opacity: 1; }
         }
-
         @media (max-width: 768px) {
             .music-visualizer {
                 gap: 4px;
@@ -155,7 +165,6 @@
                 font-size: 1.5rem;
             }
         }
-
         .song-control {
             position: absolute;
             bottom: 1rem;
@@ -349,7 +358,7 @@
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen>
                 </iframe>
-                <!-- MÜZİK NOTALARI - TAM ORTALI -->
+                <!-- MÜZİK NOTALARI -->
                 <div id="music-visualizer" class="music-visualizer">
                     <div class="note">♪</div>
                     <div class="note">♫</div>
@@ -360,7 +369,7 @@
                     <div class="note">♪</div>
                     <div class="note">♬</div>
                 </div>
-                <!-- DİNLE BUTONU - ALTA ORTALI -->
+                <!-- DİNLE BUTONU -->
                 <div class="song-control">
                     <div class="song-label">Dinle</div>
                     <button id="play-song-btn" title="Şarkıyı Çal">
@@ -390,7 +399,7 @@
         <!-- FOTOĞRAF GALERİSİ -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Fotoğraf Galerimiz</h3>
-            <p class="text-center text-black font-semibold italic">İşte yolculuğumuzda biriktirdiğimiz anlardan 8 kare...</p>
+            <p class="text-center text-black font-semibold italic">İşte yolculuğumuzda biriktirdiğimiz Anılar..</p>
             <div class="mt-8 text-center">
                 <button id="toggle-gallery-btn" class="inline-flex items-center justify-center py-2 px-6 border border-red-600 shadow-sm text-sm font-medium rounded-md text-red-600 bg-white hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors">
                     <span id="gallery-toggle-text">Fotoğraf Galerisini Gör</span>
@@ -399,6 +408,13 @@
             </div>
             <div id="gallery-wrapper" class="hidden mt-8">
                 <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-1" id="gallery-grid">
+                    <!-- YENİ FOTOĞRAF: Güldür Güldür (9) -->
+                    <div class="photo-container group cursor-pointer">
+                        <img data-src="https://i.imgur.com/cDWfV6z.jpg" alt="Güldür Güldür" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
+                        <span class="photo-number opacity-0 group-hover:opacity-100">9</span>
+                        <div class="photo-note">Güldür Güldür</div>
+                    </div>
+                    <!-- ESKİ FOTOĞRAFLAR -->
                     <div class="photo-container group cursor-pointer"><img data-src="https://i.imgur.com/jlmfKQ6.jpg" alt="Nev Mekan" class="gallery-thumbnail w-full h-full object-cover" loading="lazy"><span class="photo-number opacity-0 group-hover:opacity-100">8</span><div class="photo-note">Nev Mekan</div></div>
                     <div class="photo-container group cursor-pointer"><img data-src="https://i.imgur.com/EI3PjiL.jpg" alt="Nev Mekan" class="gallery-thumbnail w-full h-full object-cover" loading="lazy"><span class="photo-number opacity-0 group-hover:opacity-100">7</span><div class="photo-note">Nev Mekan</div></div>
                     <div class="photo-container group cursor-pointer"><img data-src="https://i.imgur.com/wf9Xhs9.jpg" alt="Anı 1" class="gallery-thumbnail w-full h-full object-cover" loading="lazy"><span class="photo-number opacity-0 group-hover:opacity-100">6</span><div class="photo-note">Lunapark Anısı</div></div>
@@ -422,6 +438,16 @@
             </div>
             <div id="video-gallery-wrapper" class="hidden mt-8">
                 <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-1" id="video-grid">
+                    <!-- YENİ VİDEO: Güldür Güldür (6. sıra) -->
+                    <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="wcZOC94zAYw">
+                        <img data-src="https://img.youtube.com/vi/wcZOC94zAYw/maxresdefault.jpg" alt="Güldür Güldür" class="w-full h-full object-cover gallery-thumbnail" loading="lazy">
+                        <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
+                            <i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i>
+                        </div>
+                        <span class="photo-number opacity-0 group-hover:opacity-100">6</span>
+                        <div class="photo-note">Güldür Güldür</div>
+                    </div>
+                    <!-- ESKİ VİDEOLAR (5 → 1 olarak kaydırıldı) -->
                     <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="ChFa2GJ4e4U"><img data-src="https://img.youtube.com/vi/ChFa2GJ4e4U/maxresdefault.jpg" alt="Video 1" class="w-full h-full object-cover gallery-thumbnail" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">5</span><div class="photo-note">Beşiktaş</div></div>
                     <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="aim5II5vYpU"><img data-src="https://img.youtube.com/vi/aim5II5vYpU/maxresdefault.jpg" alt="Video 2" class="w-full h-full object-cover gallery-thumbnail" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">4</span><div class="photo-note">Üsküdar</div></div>
                     <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="uY6ZrwkbLjc"><img data-src="https://img.youtube.com/vi/uY6ZrwkbLjc/maxresdefault.jpg" alt="Video 3" class="w-full h-full object-cover gallery-thumbnail" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">3</span><div class="photo-note">Lunapark</div></div>
@@ -559,7 +585,7 @@
         document.querySelectorAll('.timeline-item').forEach(item => timelineObserver.observe(item));
         const obs = new IntersectionObserver(entries => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); } }); }, {threshold:0.3});
         document.querySelectorAll('.fade-in-on-scroll, .travel-folder').forEach(el => obs.observe(el));
-        // MÜZİK NOTALARI + YOUTUBE - TAM ORTALI
+        // MÜZİK NOTALARI + YOUTUBE
         let player;
         let isPlaying = false;
         let userInteracted = false;
