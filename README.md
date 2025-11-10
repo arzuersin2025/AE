@@ -85,7 +85,7 @@
         }
         .fade-in-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity .8s cubic-bezier(.25,.46,.45,.94), transform .8s cubic-bezier(.25,.46,.45,.94); }
         .fade-in-on-scroll.visible { opacity: 1; transform: translateY(0); }
-        /* ŞİİR - MOBİLDE GENİŞLETME */
+        /* ŞİİR - ANİMASYON YOK (ÖNCEKİ VERSİYON) */
         .poem-container {
             max-width: 90%; margin: 0 auto; padding: 2rem 0; line-height: 2.3; font-size: 1.15rem;
             font-style: italic; color: #1f2937; text-align: center; position: relative;
@@ -105,13 +105,6 @@
             .poem-container {
                 padding: 1.5rem 1rem;
                 font-size: 1.3rem;
-                /* MOBİLDE YANLARA DOĞRU GENİŞLETME */
-                max-width: 100% !important;
-                margin-left: -1.5rem !important;
-                margin-right: -1.5rem !important;
-                padding-left: 2rem !important;
-                padding-right: 2rem !important;
-                border-radius: 0 !important;
             }
         }
         .leaf-svg { position: absolute; width: 32px; height: 44px; opacity: 0.9; animation: fall linear infinite; transform-origin: center; filter: drop-shadow(0 3px 6px rgba(0,0,0,0.3)); }
@@ -288,7 +281,7 @@
                 <div class="poem-line font-semibold italic text-black">geri gelmesi mümkün olmayan hatırlanmamalı.</div>
                 <div class="poem-line font-semibold italic text-black">ıslak saçlarını güneşte kurut</div>
                 <div class="poem-line font-semibold italic text-black">olgun meyvelerin baygınlığıyla parıldasın</div>
-                <div class="poem-line font-semibold italic text-black">nemli, ağır kızıltılar…</div>
+                <div class="poem-line font-semibold italic text-black">nemli, ağır kırmızıltılar…</div>
                 <div class="poem-line font-semibold italic text-black">sevgilim, sevgilim,</div>
                 <div class="poem-line font-semibold italic text-black">mevsim</div>
                 <div class="poem-line font-semibold italic text-black">sonbahar…</div>
@@ -554,7 +547,7 @@
             const btn = document.getElementById(btnId); const wrapper = document.getElementById(wrapperId); const icon = document.getElementById(iconId); const txt = document.getElementById(textId);
             btn.addEventListener('click', () => { const h = wrapper.classList.toggle('hidden'); icon.classList.toggle('rotate-180', !h); txt.textContent = h ? openTxt : closeTxt; if (!h) setTimeout(attachGalleryEvents, 100); });
         };
-        toggleBtn('toggle-gallery-btn','gallery-wrapper','gallery-toggle-icon','gallery-toggle-text','Fotoğraf Galerisini Gör','Galeriyi Gizle');
+        toggleBtn('toggle-gallery-btn','gallery-wrapper','gallery-toggle-icon','gallery-toggle-text663','Fotoğraf Galerisini Gör','Galeriyi Gizle');
         toggleBtn('toggle-video-gallery-btn','video-gallery-wrapper','video-gallery-toggle-icon','video-gallery-toggle-text','Video Galerisini Gör','Galeriyi Gizle');
         toggleBtn('toggle-travel-btn','travel-wrapper','travel-toggle-icon','travel-toggle-text','Seyahatlerimizi Gör','Seyahatleri Gizle');
         const videoModal = document.getElementById('video-modal'); const iframe = document.getElementById('modal-video-iframe');
