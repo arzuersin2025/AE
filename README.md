@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -52,15 +52,14 @@
         .timeline-item.animate { opacity: 1; transform: translateY(0) scale(1); }
         .timeline-item.left { left: 0; } .timeline-item.right { left: 50%; }
         .timeline-content {
-            padding: 20px 30px; background: rgba(255, 255, 255, 0.95); border-radius: 12px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); border-left: 4px solid #10b981; position: relative; overflow: hidden; transition: all 0.4s ease;
+            padding: 20px 30px; background: transparent; border-radius: 0;
+            box-shadow: none; border: none; position: relative; overflow: hidden; transition: all 0.4s ease;
         }
-        .timeline-content::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(to right, transparent, #ef4444, transparent); transform: scaleX(0); transition: transform 0.6s ease; }
-        .timeline-content.animate::before { transform: scaleX(1); }
-        .timeline-content:hover { transform: translateY(-5px) scale(1.02); box-shadow: 0 16px 32px rgba(16, 185, 129, 0.2); }
+        .timeline-content::before { display: none; }
+        .timeline-content:hover { transform: none; box-shadow: none; }
         .timeline-content h4 { margin-bottom: 8px; color: #dc2626; font-family: 'Dancing Script', cursive; font-size: 1.5rem; position: relative; }
         .timeline-content p { color: #6b7280; font-style: italic; line-height: 1.6; }
-        .timeline-icon { position: absolute; top: -15px; left: 20px; background: white; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); font-size: 1.2rem; color: #ef4444; z-index: 3; transform: rotate(0deg); transition: transform 0.6s ease; }
+  .timeline-icon { position: absolute; top: -15px; left: 20px; background: white; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); font-size: 1.2rem; color: #ef4444; z-index: 3; transform: rotate(0deg); transition: transform 0.6s ease; }
         .timeline-item.animate .timeline-icon { transform: rotate(360deg); }
         @media (max-width: 600px) {
             .timeline-container::after { left: 31px; }
@@ -245,6 +244,36 @@
             opacity: 1;
             pointer-events: auto;
         }
+        /* ARKA PLAN KALDIRILAN BÖLÜMLER */
+        .transparent-section {
+            background: transparent !important;
+            backdrop-filter: none !important;
+            box-shadow: none !important;
+            border-radius: 0 !important;
+            padding: 2rem 1rem !important;
+        }
+        .transparent-section h3 {
+            margin-bottom: 1.5rem;
+        }
+        .transparent-section p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #1f2937;
+        }
+        .song-container {
+            position: relative;
+            width: 16rem;
+            height: 16rem;
+            margin: 0 auto;
+        }
+        @media (min-width: 768px) {
+            .song-container { width: 20rem; height: 20rem; }
+        }
+        .wish-form-input {
+            background: rgba(255, 255, 255, 0.85) !important;
+            border: 1px solid #d1d5db !important;
+            backdrop-filter: blur(4px);
+        }
     </style>
 </head>
 <body class="text-black">
@@ -308,7 +337,7 @@
             </div>
             <p class="text-right text-red-600 font-semibold-bold mt-6 pr-4 font-forte-alternative">- Nazım Hikmet</p>
         </section>
-        <!-- AŞK ZAMAN ÇİZELGESİ -->
+        <!-- AŞK ZAMAN ÇİZELGESİ - ARKA PLAN KALDIRILDI -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Aşk Zaman Çizelgesi</h3>
             <p class="text-center text-black font-semibold italic mb-8">
@@ -329,21 +358,16 @@
                     <div class="timeline-content">
                         <h4>Sonsuza Dek...</h4>
                         <p class="font-semibold italic text-black">
-                            Yemin ettik birbirimize, yıldızlar şilinde...
+                            Yemin ettik birbirimize, eşliğinde...
                         </p>
                     </div>
                 </div>
             </div>
         </section>
-        <!-- GERİ SAYIM -->
-        <section id="countdown-section" class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg text-center">
-            <h3 class="font-bold text-center text-red-600 mb-6 font-forte-alternative">Büyük Güne Geri Sayım</h3>
-            <div id="countdown-timer" class="hidden grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-                <div><div id="days" class="text-4xl font-bold text-green-500">0</div><span class="text-black">Gün</span></div>
-                <div><div id="hours" class="text-4xl font-bold text-green-500">0</div><span class="text-black">Saat</span></div>
-                <div><div id="minutes" class="text-4xl font-bold text-green-500">0</div><span class="text-black">Dakika</span></div>
-                <div><div id="seconds" class="text-4xl font-bold text-green-500">0</div><span class="text-black">Saniye</span></div>
-            </div>
+
+        <!-- BÜYÜK GÜNE GERİ SAYIM - ARKA PLAN KALDIRILDI (ŞEFFAF) -->
+        <section id="countdown-section" class="my-16 max-w-3xl mx-auto transparent-section text-center">
+            <h3 class="font-bold text-red-600 mb-6 font-forte-alternative">Büyük Güne Geri Sayım</h3>
             <div id="countdown-placeholder" class="my-4">
                 <div class="text-8xl text-red-500 heartbeat"><i class="fas fa-infinity"></i></div>
                 <p class="text-center text-black font-semibold italic text-lg mt-4">
@@ -351,19 +375,20 @@
                 </p>
             </div>
         </section>
-        <!-- HAYAL DEFTERİMİZ -->
-        <section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg fade-in-on-scroll relative overflow-hidden">
-            <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Hayal Defterimiz</h3>
+
+        <!-- HAYAL DEFTERİMİZ - ARKA PLAN KALDIRILDI -->
+        <section class="my-16 max-w-3xl mx-auto transparent-section text-center fade-in-on-scroll">
+            <h3 class="font-bold text-red-600 mb-6 handwriting">Hayal Defterimiz</h3>
             <p class="text-center text-black font-semibold italic text-lg mt-4 mb-8">
                 Birlikte kurduğumuz hayaller, geleceğe dair ektiğimiz tohumlar...
             </p>
         </section>
-        <!-- BİZİM ŞARKIMIZ -->
-        <section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg text-center relative overflow-hidden">
-            <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Bizim Şarkımız</h3>
+
+        <!-- BİZİM ŞARKIMIZ - ARKA PLAN KALDIRILDI -->
+        <section class="my-16 max-w-3xl mx-auto transparent-section text-center relative overflow-hidden">
+            <h3 class="font-bold text-red-600 mb-6 handwriting">Bizim Şarkımız</h3>
             <p class="text-center text-black font-semibold italic mt-2 mb-6">Tarkan - Beni Çok Sev</p>
-            <div class="relative mx-auto w-64 h-64 md:w-80 md:h-80">
-                <!-- YOUTUBE PLAYER -->
+            <div class="song-container">
                 <iframe id="youtube-player"
                         src="https://www.youtube.com/embed/IYnu4-69fTA?autoplay=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1"
                         title="Tarkan - Beni Çok Sev"
@@ -371,7 +396,6 @@
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen>
                 </iframe>
-                <!-- MÜZİK NOTALARI -->
                 <div id="music-visualizer" class="music-visualizer">
                     <div class="note">♪</div>
                     <div class="note">♫</div>
@@ -382,7 +406,6 @@
                     <div class="note">♪</div>
                     <div class="note">♬</div>
                 </div>
-                <!-- DİNLE BUTONU -->
                 <div class="song-control">
                     <div class="song-label">Dinle</div>
                     <button id="play-song-btn" title="Şarkıyı Çal">
@@ -391,6 +414,7 @@
                 </div>
             </div>
         </section>
+
         <!-- SEYAHATLER -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Seyahatlerimiz</h3>
@@ -421,6 +445,7 @@
                 </div>
             </div>
         </section>
+
         <!-- FOTOĞRAF GALERİSİ -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Fotoğraf Galerimiz</h3>
@@ -451,6 +476,7 @@
                 </div>
             </div>
         </section>
+
         <!-- VİDEO GALERİSİ -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Video Galerimiz</h3>
@@ -481,29 +507,31 @@
                 </div>
             </div>
         </section>
-        <!-- TEŞEKKÜR -->
-        <section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg">
-            <h3 class="font-bold text-center text-red-600 mb-6">Teşekkür</h3>
+
+        <!-- TEŞEKKÜR - EL YAZISI -->
+        <section class="my-16 max-w-3xl mx-auto transparent-section">
+            <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Teşekkür</h3>
             <p class="text-center text-black text-lg italic mt-4">Bu mutlu yolculuğumuzda yanımızda olan herkese sonsuz teşekkürler.</p>
             <div class="mt-8 space-y-4">
                 <p class="text-center text-black font-semibold">Bizi biz yapan, sevgileriyle her zaman en büyük destekçimiz olan canımız ailelerimize...</p>
                 <p class="text-center text-black font-semibold">İyi günde, kötü günde her anımızda yanımızda olan değerli dostlarımıza...</p>
             </div>
         </section>
-        <!-- DİLEK KUTUSU -->
-        <section class="my-16 max-w-3xl mx-auto p-8 bg-white/80 backdrop-blur-sm rounded-lg shadow-lg">
-            <h3 class="font-bold text-center text-red-600 mb-6">Bizim İçin Bir Dilek Bırakın</h3>
+
+        <!-- DİLEK KUTUSU - EL YAZISI -->
+        <section class="my-16 max-w-3xl mx-auto transparent-section">
+            <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Bizim İçin Bir Dilek Bırakın</h3>
             <form id="wish-form" action="https://formsubmit.co/arzuersin2025@gmail.com" method="POST" class="space-y-4">
                 <input type="hidden" name="_subject" value="Arzu & Ersin Web Sitenizden Yeni Dilek!">
                 <input type="hidden" name="_honey" style="display:none">
                 <input type="hidden" name="_captcha" value="false">
                 <input type="hidden" name="_next" value="https://arzuersin2025.github.io/AE/">
-                <div><label for="name" class="block text-sm font-medium text-red-600">Adınız</label><input type="text" name="name" id="name" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="Adınız ve Soyadınız" required></div>
-                <div><label for="message" class="block text-sm font-medium text-red-600">Dileğiniz</label><textarea id="message" name="message" rows="4" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="Bizim için güzel bir dilek..." required></textarea></div>
+                <div><label for="name" class="block text-sm font-medium text-red-600">Adınız</label><input type="text" name="name" id="name" class="mt-1 block w-full px-3 py-2 wish-form-input rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="Adınız ve Soyadınız" required></div>
+                <div><label for="message" class="block text-sm font-medium text-red-600">Dileğiniz</label><textarea id="message" name="message" rows="4" class="mt-1 block w-full px-3 py-2 wish-form-input rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="Bizim için güzel bir dilek..." required></textarea></div>
                 <div class="pt-4 border-t border-slate-200">
                     <p class="text-sm text-black mb-2 text-center">Size geri dönüş yapabilmemiz için lütfen e-posta ya da telefon bırakın.</p>
                     <label for="contact" class="block text-sm font-medium text-red-600">E-posta ya da Telefon</label>
-                    <input type="text" name="Iletisim" id="contact" class="mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="ornek@mail.com veya 05XX XXX XX XX">
+                    <input type="text" name="Iletisim" id="contact" class="mt-1 block w-full px-3 py-2 wish-form-input rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="ornek@mail.com veya 05XX XXX XX XX">
                     <p id="contact-error" class="text-red-500 text-sm mt-2 text-center hidden">Lütfen e-posta veya telefon girin.</p>
                 </div>
                 <div class="text-center pt-4">
@@ -518,6 +546,7 @@
         <p class="text-black flex items-center justify-center space-x-2"><span>Bu hikaye</span><i class="fas fa-infinity text-red-500"></i><span>kadar devam edecek...</span></p>
         <p class="text-sm text-black mt-2">Arzu & Ersin</p>
     </footer>
+
     <!-- MODALLAR -->
     <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
         <span id="close-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
@@ -529,9 +558,11 @@
         <span id="close-video-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
         <div class="aspect-video w-full max-w-4xl"><iframe id="modal-video-iframe" class="w-full h-full" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
     </div>
+
     <script>
     (() => {
         'use strict';
+        // COUNTDOWN_DATE BOŞ → SADECE PLACEHOLDER GÖSTERİLİR
         const COUNTDOWN_DATE = "";
         const leafSVG = `<svg viewBox="0 0 100 140" class="w-full h-full" preserveAspectRatio="xMidYMid meet"><path class="leaf-outer" d="M50 10 C30 15, 20 35, 18 55 C16 75, 25 95, 35 115 C45 130, 48 135, 50 138 C52 135, 55 130, 65 115 C75 95, 84 75, 82 55 C80 35, 70 15, 50 10 Z" /><path class="leaf-inner" d="M50 15 C33 20, 25 38, 23 55 C21 72, 28 88, 36 108 C44 125, 48 132, 50 135 C52 132, 56 125, 64 108 C72 88, 79 72, 77 55 C75 38, 67 20, 50 15 Z" /><path d="M50 15 Q50 70 48 135" stroke="#fff" stroke-width="2.5" opacity="0.5" fill="none"/><path d="M50 15 Q35 40 28 48 M50 55 Q32 65 25 75 M50 80 Q30 90 23 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/><path d="M50 15 Q65 40 72 48 M50 55 Q68 65 75 75 M50 80 Q70 90 77 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/><path d="M25 50 Q23 48 25 46 M30 70 Q28 68 30 66 M35 90 Q33 88 35 86 M75 50 Q77 48 75 46 M70 70 Q72 68 70 66 M65 90 Q67 88 65 86" stroke="#fff" stroke-width="1" opacity="0.3" fill="none"/></svg>`;
         const leafColors = ['autumn-1','autumn-2','autumn-3','autumn-4','autumn-5','autumn-6','autumn-7','autumn-8','autumn-9','autumn-10'];
@@ -592,6 +623,8 @@
         document.getElementById('image-modal').onclick = e => { if (e.target === e.currentTarget) closeImg(); };
         document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeImg(); iframe.src=''; videoModal.classList.replace('flex','hidden'); } if (e.key === 'ArrowRight' && !document.getElementById('image-modal').classList.contains('hidden')) nextImg(); if (e.key === 'ArrowLeft' && !document.getElementById('image-modal').classList.contains('hidden')) prevImg(); });
         document.getElementById('wish-form')?.addEventListener('submit', ev => { const c = document.getElementById('contact').value.trim(); const err = document.getElementById('contact-error'); if (!c) { ev.preventDefault(); err.classList.remove('hidden'); } else err.classList.add('hidden'); });
+        
+        // GERİ SAYIM: TARİH BOŞ → SADECE PLACEHOLDER GÖSTERİLİR
         if (COUNTDOWN_DATE) {
             const target = new Date(COUNTDOWN_DATE).getTime();
             const timer = document.getElementById('countdown-timer'); const placeholder = document.getElementById('countdown-placeholder'); const header = document.getElementById('header-countdown');
@@ -606,6 +639,7 @@
             };
             update(); const intv = setInterval(update,1000);
         }
+
         const timelineObserver = new IntersectionObserver((entries) => { entries.forEach((e,i) => { if (e.isIntersecting) { setTimeout(() => { e.target.classList.add('animate'); const c = e.target.querySelector('.timeline-content'); if (c) c.classList.add('animate'); }, i * 300); } }); }, { threshold: 0.3 });
         document.querySelectorAll('.timeline-item').forEach(item => timelineObserver.observe(item));
         const obs = new IntersectionObserver(entries => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); } }); }, {threshold:0.3});
