@@ -75,13 +75,33 @@
         .photo-number { position: absolute; bottom: 0.5rem; right: 0.75rem; color: white; font-size: 1rem; font-weight: bold; text-shadow: 1px 1px 3px rgba(0,0,0,0.9); opacity: 0; transition: opacity .3s ease-in-out; }
         .group:hover .photo-number { opacity: 1; }
         .photo-container.no-note .photo-note { display: none; }
-        .travel-folder { position: relative; overflow: hidden; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); aspect-ratio: 1/1; background: #f0fdf4; border: 1px solid #a7f3d0; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 0.75rem; text-align: center; transition: transform .2s ease-in-out, box-shadow .2s ease-in-out; }
+        .travel-folder { 
+            position: relative; overflow: hidden; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+            aspect-ratio: 1/1; background: #f0fdf4; border: 1px solid #a7f3d0; 
+            display: flex; flex-direction: column; justify-content: center; align-items: center; 
+            padding: 0.75rem; text-align: center; transition: transform .2s ease-in-out, box-shadow .2s ease-in-out; 
+        }
         .travel-folder:hover { transform: translateY(-5px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
-        /* DÜZELTME: Sadece alt açıklamalar kalın */
+        .travel-folder h4 {
+            font-weight: 700 !important;
+            font-size: 0.875rem !important;
+            line-height: 1.3 !important;
+            margin: 0.5rem 0 0.25rem 0 !important;
+            color: #1f2937 !important;
+            text-align: center;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            word-break: break-word;
+        }
         .travel-folder p {
             font-weight: 700 !important;
             font-style: italic;
-            font-size: 0.75rem;
+            font-size: 0.75rem !important;
+            color: #6b7280 !important;
+            margin: 0 !important;
+            line-height: 1.2 !important;
         }
         .fade-in-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity .8s cubic-bezier(.25,.46,.45,.94), transform .8s cubic-bezier(.25,.46,.45,.94); }
         .fade-in-on-scroll.visible { opacity: 1; transform: translateY(0); }
@@ -383,9 +403,21 @@
             </div>
             <div id="travel-wrapper" class="hidden mt-8">
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 md:gap-1">
-                    <div class="travel-folder group"><div class="text-4xl text-green-500"><i class="fas fa-map-marked-alt"></i></div><h4 class="font-semibold text-black line-clamp-2">Kapadokya Gezisi</h4><p class="italic text-xs">Balonlar arasında...</p></div>
-                    <div class="travel-folder group"><div class="text-4xl text-green-500"><i class="fas fa-umbrella-beach"></i></div><h4 class="font-semibold text-black line-clamp-2">Ege Sahilleri</h4><p class="italic text-xs">Deniz, kum, güneş...</p></div>
-                    <div class="travel-folder group"><div class="text-4xl text-green-500"><i class="fas fa-ship"></i></div><h4 class="font-semibold text-black line-clamp-2">Akdeniz Turu</h4><p class="italic text-xs">Mavi yolculuk...</p></div>
+                    <div class="travel-folder group">
+                        <div class="text-4xl text-green-500"><i class="fas fa-map-marked-alt"></i></div>
+                        <h4>Kapadokya Gezisi</h4>
+                        <p>Balonlar arasında...</p>
+                    </div>
+                    <div class="travel-folder group">
+                        <div class="text-4xl text-green-500"><i class="fas fa-umbrella-beach"></i></div>
+                        <h4>Ege Sahilleri</h4>
+                        <p>Deniz, kum, güneş...</p>
+                    </div>
+                    <div class="travel-folder group">
+                        <div class="text-4xl text-green-500"><i class="fas fa-ship"></i></div>
+                        <h4>Akdeniz Turu</h4>
+                        <p>Mavi yolculuk...</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -617,7 +649,7 @@
                 musicVisualizer.classList.add('hidden');
             } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
                 isPlaying = false;
-                playBtn.innerHTML = '<i class="fas fa-play"></i' +
+                playBtn.innerHTML = '<i class="fas fa-play"></i>';
                 playBtn.classList.remove('playing');
                 playerElement.classList.remove('show');
                 musicVisualizer.classList.remove('hidden');
@@ -627,7 +659,7 @@
             if (!player || !player.playVideo) return;
             if (isPlaying) {
                 player.pauseVideo();
-             } else {
+            } else {
                 player.playVideo();
             }
         }
