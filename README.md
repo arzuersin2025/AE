@@ -604,13 +604,18 @@
         <section class="my-16 max-w-3xl mx-auto transparent-section">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Bizim İçin Bir Dilek Bırakın</h3>
             <form id="wish-form" class="space-y-4">
-                <!-- FormSubmit.co kullanıyoruz - anahtar gerekmez, e-posta ile çalışır -->
-                <input type="hidden" name="subject" value="Arzu & Ersin Web Sitenizden Yeni Dilek!">
-                <input type="hidden" name="_next" value=""> <!-- Yönlendirme kapalı -->
+                <!-- FormSubmit.co ile çalışacak -->
                 <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_next" value="">
 
-                <div><label for="name" class="block text-sm font-medium text-red-600">Adınız</label><input type="text" name="name" id="name" class="mt-1 block w-full px-3 py-2 wish-form-input rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="Adınız ve Soyadınız" required></div>
-                <div><label for="message" class="block text-sm font-medium text-red-600">Dileğiniz</label><textarea id="message" name="message" rows="4" class="mt-1 block w-full px-3 py-2 wish-form-input rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="Bizim için güzel bir dilek..." required></textarea></div>
+                <div>
+                    <label for="name" class="block text-sm font-medium text-red-600">Adınız</label>
+                    <input type="text" name="name" id="name" class="mt-1 block w-full px-3 py-2 wish-form-input rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="Adınız ve Soyadınız" required>
+                </div>
+                <div>
+                    <label for="message" class="block text-sm font-medium text-red-600">Dileğiniz</label>
+                    <textarea id="message" name="message" rows="4" class="mt-1 block w-full px-3 py-2 wish-form-input rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="Bizim için güzel bir dilek..." required></textarea>
+                </div>
                 <div class="pt-4 border-t border-slate-200">
                     <p class="text-sm text-black mb-2 text-center">Size geri dönüş yapabilmemiz için lütfen e-posta ya da telefon bırakın.</p>
                     <label for="contact" class="block text-sm font-medium text-red-600">E-posta ya da Telefon</label>
@@ -717,10 +722,12 @@
         document.getElementById('image-modal').onclick = e => { if (e.target === e.currentTarget) closeImg(); };
         document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeImg(); iframe.src=''; videoModal.classList.replace('flex','hidden'); } if (e.key === 'ArrowRight' && !document.getElementById('image-modal').classList.contains('hidden')) nextImg(); if (e.key === 'ArrowLeft' && !document.getElementById('image-modal').classList.contains('hidden')) prevImg(); });
 
-        // DİLEK FORMU - FormSubmit.co + 10 SANİYE UYARI + YÖNLENDİRME YOK
+        // DİLEK FORMU - FormSubmit.co ile, e-posta ekli
         const wishForm = document.getElementById('wish-form');
         const successAlert = document.getElementById('wish-success-alert');
-        wishForm.action = 'https://formsubmit.co/YOUR_EMAIL_HERE'; // BURAYA E-POSTANI YAZ
+
+        // E-POSTA BURAYA EKLENDİ
+        wishForm.action = 'https://formsubmit.co/arzuersin2025@gmail.com';
 
         wishForm.addEventListener('submit', async function(e) {
             e.preventDefault();
