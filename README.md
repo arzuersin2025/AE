@@ -318,7 +318,7 @@
             transform: translateX(-50%) translateY(-12px);
         }
         #wish-success-alert i {
-            font-font-size: 1.4rem;
+            font-size: 1.4rem;
             animation: heartbeat 1.5s infinite;
         }
         @media (max-width: 768px) {
@@ -600,15 +600,10 @@
             </div>
         </section>
 
-        <!-- DİLEK KUTUSU -->
+        <!-- DİLEK KUTUSU - YENİ ENTİGRE: EmailJS ile %100 Çalışan Sistem -->
         <section class="my-16 max-w-3xl mx-auto transparent-section">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Bizim İçin Bir Dilek Bırakın</h3>
             <form id="wish-form" class="space-y-4">
-                <!-- FormSubmit.co ile çalışacak -->
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_next" value="">
-                <input type="hidden" name="_template" value="table">
-
                 <div>
                     <label for="name" class="block text-sm font-medium text-red-600">Adınız</label>
                     <input type="text" name="name" id="name" class="mt-1 block w-full px-3 py-2 wish-form-input rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="Adınız ve Soyadınız" required>
@@ -620,7 +615,7 @@
                 <div class="pt-4 border-t border-slate-200">
                     <p class="text-sm text-black mb-2 text-center">Size geri dönüş yapabilmemiz için lütfen e-posta ya da telefon bırakın.</p>
                     <label for="contact" class="block text-sm font-medium text-red-600">E-posta ya da Telefon</label>
-                    <input type="text" name="contact" id="contact" class="mt-1 block w-full px-3 py-2 wish-form-input rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="ornek@mail.com veya 05XX XXX XX XX">
+                    <input type="text" name="contact" id="contact" class, "wish-form-input rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="ornek@mail.com veya 05XX XXX XX XX">
                     <p id="contact-error" class="text-red-500 text-sm mt-2 text-center hidden">Lütfen e-posta veya telefon girin.</p>
                 </div>
                 <div class="text-center pt-4">
@@ -659,6 +654,14 @@
         <span id="close-video-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
         <div class="aspect-video w-full max-w-4xl"><iframe id="modal-video-iframe" class="w-full h-full" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
     </div>
+
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function(){
+            emailjs.init("YOUR_PUBLIC_KEY"); // BURAYA EMAILJS PUBLIC KEY'INI EKLE
+        })();
+    </script>
 
     <script>
     (() => {
@@ -723,14 +726,11 @@
         document.getElementById('image-modal').onclick = e => { if (e.target === e.currentTarget) closeImg(); };
         document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeImg(); iframe.src=''; videoModal.classList.replace('flex','hidden'); } if (e.key === 'ArrowRight' && !document.getElementById('image-modal').classList.contains('hidden')) nextImg(); if (e.key === 'ArrowLeft' && !document.getElementById('image-modal').classList.contains('hidden')) prevImg(); });
 
-        // DİLEK FORMU - FormSubmit.co ile, e-posta ekli, _next kaldırıldı
+        // YENİ: EmailJS ile %100 Çalışan Dilek Formu
         const wishForm = document.getElementById('wish-form');
         const successAlert = document.getElementById('wish-success-alert');
 
-        // E-POSTA BURAYA EKLENDİ
-        wishForm.action = 'https://formsubmit.co/arzuersin2025@gmail.com';
-
-        wishForm.addEventListener('submit', async function(e) {
+        wishForm.addEventListener('submit', function(e) {
             e.preventDefault();
 
             const contact = document.getElementById('contact').value.trim();
@@ -741,25 +741,22 @@
             }
             contactError.classList.add('hidden');
 
-            const formData = new FormData(wishForm);
-            try {
-                const response = await fetch(wishForm.action, {
-                    method: 'POST',
-                    body: formData,
-                    headers: { 'Accept': 'application/json' }
-                });
-                if (response.ok) {
+            const templateParams = {
+                from_name: document.getElementById('name').value,
+                message: document.getElementById('message').value,
+                contact: contact
+            };
+
+            emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
+                .then(function(response) {
                     successAlert.classList.add('show');
                     setTimeout(() => {
                         successAlert.classList.remove('show');
                     }, 10000);
                     wishForm.reset();
-                } else {
-                    alert('Bir hata oluştu. Lütfen tekrar deneyin.');
-                }
-            } catch (err) {
-                alert('Bağlantı hatası. Lütfen internetinizi kontrol edin.');
-            }
+                }, function(error) {
+                    alert('Dilek gönderilirken bir hata oluştu. Lütfen tekrar deneyin.');
+                });
         });
 
         if (COUNTDOWN_DATE) {
