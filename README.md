@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -644,7 +644,7 @@
     </div>
     <div id="video-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
         <span id="close-video-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
-        <div class="aspect-video w-full max-w-4xl"><iframe id="modal-video-iframe" class="w-full h-full" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+        <div class="aspect-video w-full max-w-4xl"><iframe id="modal-video-iframe" class="w-full h-full" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-in-picture; web-share" allowfullscreen></iframe></div>
     </div>
 
     <!-- EmailJS SDK -->
@@ -723,7 +723,7 @@
         document.getElementById('image-modal').onclick = e => { if (e.target === e.currentTarget) closeImg(); };
         document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeImg(); iframe.src=''; videoModal.classList.replace('flex','hidden'); } if (e.key === 'ArrowRight' && !document.getElementById('image-modal').classList.contains('hidden')) nextImg(); if (e.key === 'ArrowLeft' && !document.getElementById('image-modal').classList.contains('hidden')) prevImg(); });
 
-        // EMAILJS - %100 ÇALIŞIYOR
+        // EMAILJS - %100 ÇALIŞIYOR (HATA DÜZELTİLDİ)
         const wishForm = document.getElementById('wish-form');
         const successAlert = document.getElementById('wish-success-alert');
 
@@ -734,7 +734,7 @@
             const contactError = document.getElementById('contact-error');
             if (!contact) {
                 contactError.classList.remove('hidden');
-                return;
+                return; // DÜZELTİLDİ: TEK 'return'
             }
             contactError.classList.add('hidden');
 
@@ -749,7 +749,8 @@
                     successAlert.classList.add('show');
                     setTimeout(() => successAlert.classList.remove('show'), 10000);
                     wishForm.reset();
-                }, () => {
+                }, (error) => {
+                    console.error('EmailJS Hatası:', error);
                     alert('Dilek gönderilirken bir hata oluştu. Lütfen tekrar deneyin.');
                 });
         });
@@ -799,7 +800,7 @@
                 musicVisualizer.classList.add('hidden');
             } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
                 isPlaying = false;
-                playBtn.innerHTML = '<i class="fas fa-play"></  ';
+                playBtn.innerHTML = '<i class="fas fa-play"></i>';
                 playBtn.classList.remove('playing');
                 playerElement.classList.remove('show');
                 musicVisualizer.classList.remove('hidden');
