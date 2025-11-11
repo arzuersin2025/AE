@@ -105,14 +105,14 @@
         }
         .fade-in-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity .8s cubic-bezier(.25,.46,.45,.94), transform .8s cubic-bezier(.25,.46,.45,.94); }
         .fade-in-on-scroll.visible { opacity: 1; transform: translateY(0); }
-        /* ŞİİR - SONBAHAR BAŞLIĞI YARI YARIYA BÜYÜTÜLDÜ */
+        /* ŞİİR - SONBAHAR BAŞLIĞI %100 BÜYÜTÜLDÜ (2x) */
         #sonbahar-baslik {
-            font-size: 1.5rem !important;
+            font-size: 2rem !important; /* 1rem → 2rem */
             line-height: 1.3 !important;
         }
         @media (min-width: 768px) {
             #sonbahar-baslik {
-                font-size: 2.25rem !important;
+                font-size: 3rem !important; /* 1.5rem → 3rem */
             }
         }
         .poem-container {
