@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -333,7 +333,7 @@
             }
         }
 
-        /* YENİ: FOOTER - & İKONU NORMAL, RENGİ YEŞİL */
+        /* FOOTER - & İKONU NORMAL, RENGİ YEŞİL */
         footer {
             background: transparent !important;
             padding-top: 2rem;
@@ -603,17 +603,19 @@
         <!-- DİLEK KUTUSU -->
         <section class="my-16 max-w-3xl mx-auto transparent-section">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Bizim İçin Bir Dilek Bırakın</h3>
-            <form id="wish-form" action="https://formsubmit.co/arzuersin2025@gmail.com" method="POST" class="space-y-4">
-                <input type="hidden" name="_subject" value="Arzu & Ersin Web Sitenizden Yeni Dilek!">
-                <input type="hidden" name="_honey" style="display:none">
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_next" value="https://arzuersin2025.github.io/AE/">
-                <div><label for="name" class="block text-sm font-medium text-red-600">Adınız</label><input type="text" name="name" id="name" class="mt-1 block w-full px-3 py-2 wish-form-input rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="Adınız ve Soyadınız" required></div>
+            <form id="wish-form" action="https://web3forms.com/f/YOUR_ACCESS_KEY_HERE" method="POST" class="space-y-4">
+                <!-- web3forms.com için gerekli alanlar -->
+                <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+                <input type="hidden" name="subject" value="Arzu & Ersin Web Sitenizden Yeni Dilek!">
+                <input type="hidden" name="from_name" value="Dilek Kutusu">
+                <input type="hidden" name="redirect" value="false"> <!-- Yönlendirme kapalı -->
+
+                <div><label for="name" class="block text-sm font-medium text-red-600">Adınız</label><input type="text" name="name" id="name" class="mt-1 block w-full px-3 py- 2 wish-form-input rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="Adınız ve Soyadınız" required></div>
                 <div><label for="message" class="block text-sm font-medium text-red-600">Dileğiniz</label><textarea id="message" name="message" rows="4" class="mt-1 block w-full px-3 py-2 wish-form-input rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="Bizim için güzel bir dilek..." required></textarea></div>
                 <div class="pt-4 border-t border-slate-200">
                     <p class="text-sm text-black mb-2 text-center">Size geri dönüş yapabilmemiz için lütfen e-posta ya da telefon bırakın.</p>
                     <label for="contact" class="block text-sm font-medium text-red-600">E-posta ya da Telefon</label>
-                    <input type="text" name="Iletisim" id="contact" class="mt-1 block w-full px-3 py-2 wish-form-input rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="ornek@mail.com veya 05XX XXX XX XX">
+                    <input type="text" name="contact" id="contact" class="mt-1 block w-full px-3 py-2 wish-form-input rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="ornek@mail.com veya 05XX XXX XX XX">
                     <p id="contact-error" class="text-red-500 text-sm mt-2 text-center hidden">Lütfen e-posta veya telefon girin.</p>
                 </div>
                 <div class="text-center pt-4">
@@ -716,23 +718,39 @@
         document.getElementById('image-modal').onclick = e => { if (e.target === e.currentTarget) closeImg(); };
         document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeImg(); iframe.src=''; videoModal.classList.replace('flex','hidden'); } if (e.key === 'ArrowRight' && !document.getElementById('image-modal').classList.contains('hidden')) nextImg(); if (e.key === 'ArrowLeft' && !document.getElementById('image-modal').classList.contains('hidden')) prevImg(); });
 
+        // DİLEK FORMU - AJAX + 10 SANİYE UYARI + YÖNLENDİRME YOK
         const wishForm = document.getElementById('wish-form');
         const successAlert = document.getElementById('wish-success-alert');
-        wishForm.addEventListener('submit', function(e) {
+        wishForm.addEventListener('submit', async function(e) {
+            e.preventDefault(); // Varsayılan yönlendirmeyi engelle
+
             const contact = document.getElementById('contact').value.trim();
             const contactError = document.getElementById('contact-error');
             if (!contact) {
-                e.preventDefault();
                 contactError.classList.remove('hidden');
                 return;
             }
             contactError.classList.add('hidden');
-            setTimeout(() => {
-                successAlert.classList.add('show');
-                setTimeout(() => {
-                    successAlert.classList.remove('show');
-                }, 3000);
-            }, 500);
+
+            const formData = new FormData(wishForm);
+            try {
+                const response = await fetch(wishForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                });
+                if (response.ok) {
+                    successAlert.classList.add('show');
+                    setTimeout(() => {
+                        successAlert.classList.remove('show');
+                    }, 10000); // 10 saniye
+                    wishForm.reset();
+                } else {
+                    alert('Bir hata oluştu. Lütfen tekrar deneyin.');
+                }
+            } catch (err) {
+                alert('Bağlantı hatası. Lütfen internetinizi kontrol edin.');
+            }
         });
 
         if (COUNTDOWN_DATE) {
