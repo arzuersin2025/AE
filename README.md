@@ -318,7 +318,7 @@
             transform: translateX(-50%) translateY(-12px);
         }
         #wish-success-alert i {
-            font-size: 1.4rem;
+            font-font-size: 1.4rem;
             animation: heartbeat 1.5s infinite;
         }
         @media (max-width: 768px) {
@@ -607,6 +607,7 @@
                 <!-- FormSubmit.co ile çalışacak -->
                 <input type="hidden" name="_captcha" value="false">
                 <input type="hidden" name="_next" value="">
+                <input type="hidden" name="_template" value="table">
 
                 <div>
                     <label for="name" class="block text-sm font-medium text-red-600">Adınız</label>
@@ -722,7 +723,7 @@
         document.getElementById('image-modal').onclick = e => { if (e.target === e.currentTarget) closeImg(); };
         document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeImg(); iframe.src=''; videoModal.classList.replace('flex','hidden'); } if (e.key === 'ArrowRight' && !document.getElementById('image-modal').classList.contains('hidden')) nextImg(); if (e.key === 'ArrowLeft' && !document.getElementById('image-modal').classList.contains('hidden')) prevImg(); });
 
-        // DİLEK FORMU - FormSubmit.co ile, e-posta ekli
+        // DİLEK FORMU - FormSubmit.co ile, e-posta ekli, _next kaldırıldı
         const wishForm = document.getElementById('wish-form');
         const successAlert = document.getElementById('wish-success-alert');
 
