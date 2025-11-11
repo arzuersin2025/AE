@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -55,8 +55,6 @@
             padding: 20px 30px; background: transparent; border-radius: 0;
             box-shadow: none; border: none; position: relative; overflow: hidden; transition: all 0.4s ease;
         }
-        .timeline-content::before { display: none; }
-        .timeline-content:hover { transform: none; box-shadow: none; }
         .timeline-content h4 { margin-bottom: 8px; color: #dc2626; font-family: 'Dancing Script', cursive; font-size: 1.5rem; position: relative; }
         .timeline-content p { color: #000000 !important; font-style: italic; line-height: 1.6; }
         .timeline-icon { position: absolute; top: -15px; left: 20px; background: white; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); font-size: 1.2rem; color: #ef4444; z-index: 3; transform: rotate(0deg); transition: transform 0.6s ease; }
@@ -146,7 +144,7 @@
             }
         }
         .leaf-svg { position: absolute; width: 32px; height: 44px; opacity: 0.9; animation: fall linear infinite; transform-origin: center; filter: drop-shadow(0 3px 6px rgba(0,0,0,0.3)); }
-        @keyframes fall { 0% { transform: translateY(-120px) rotate(0deg) scale(1); opacity: 0; } 8% { opacity: 0.9; } 30% { transform: translateY(30vh) translateX(15px) rotate(180deg) scale(0.95); } 50% { transform: translateY(50vh) translateX(-20px) rotate(540deg) scale(0.9); } 70% { transform: translateY(70vh) translateX(25px) rotate(800deg) scale(0.85); } 92% { opacity: 0.9; } 100% { transform: translateY(110vh) translateX(-15px) rotate(1080deg) scale(0.6); opacity: 0; } }
+        @keyframes fall { 0% { transform: translateY(-120px) rotate(0deg) scale(1); opacity: 0; } 8% { opacity: 0.9; } 30% { transform: translateY(30vh) translateX(15px) rotate(180deg) scale(0.95); } 50% { transform: translateY(50vh) translateX(-20px) rotate(540deg) scale(0.9); } 70% { transform: translateY(70vh) translateX(25px) rotate(800deg) scale(.85); } 92% { opacity: 0.9; } 100% { transform: translateY(110vh) translateX(-15px) rotate(1080deg) scale(0.6); opacity: 0; } }
         .leaf-svg .leaf-inner { fill: currentColor; } .leaf-svg .leaf-outer { fill: white; opacity: 0.95; }
         .leaf-svg.autumn-1 { color: #f59e0b; } .leaf-svg.autumn-2 { color: #ef4444; } .leaf-svg.autumn-3 { color: #facc15; } .leaf-svg.autumn-4 { color: #92400e; } .leaf-svg.autumn-5 { color: #84cc16; } .leaf-svg.autumn-6 { color: #fb923c; } .leaf-svg.autumn-7 { color: #dc2626; } .leaf-svg.autumn-8 { color: #f97316; } .leaf-svg.autumn-9 { color: #22c55e; } .leaf-svg.autumn-10 { color: #16a34a; }
         .music-visualizer {
@@ -332,8 +330,6 @@
                 font-size: 1.2rem;
             }
         }
-
-        /* FOOTER - & İKONU NORMAL, RENGİ YEŞİL */
         footer {
             background: transparent !important;
             padding-top: 2rem;
@@ -542,11 +538,7 @@
             </div>
             <div id="gallery-wrapper" class="hidden mt-8">
                 <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-1" id="gallery-grid">
-                    <div class="photo-container group cursor-pointer">
-                        <img data-src="https://i.imgur.com/cDWfV6z.jpg" alt="Güldür Güldür" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
-                        <span class="photo-number opacity-0 group-hover:opacity-100">9</span>
-                        <div class="photo-note">Güldür Güldür</div>
-                    </div>
+                    <div class="photo-container group cursor-pointer"><img data-src="https://i.imgur.com/cDWfV6z.jpg" alt="Güldür Güldür" class="gallery-thumbnail w-full h-full object-cover" loading="lazy"><span class="photo-number opacity-0 group-hover:opacity-100">9</span><div class="photo-note">Güldür Güldür</div></div>
                     <div class="photo-container group cursor-pointer"><img data-src="https://i.imgur.com/jlmfKQ6.jpg" alt="Nev Mekan" class="gallery-thumbnail w-full h-full object-cover" loading="lazy"><span class="photo-number opacity-0 group-hover:opacity-100">8</span><div class="photo-note">Nev Mekan</div></div>
                     <div class="photo-container group cursor-pointer"><img data-src="https://i.imgur.com/EI3PjiL.jpg" alt="Nev Mekan" class="gallery-thumbnail w-full h-full object-cover" loading="lazy"><span class="photo-number opacity-0 group-hover:opacity-100">7</span><div class="photo-note">Nev Mekan</div></div>
                     <div class="photo-container group cursor-pointer"><img data-src="https://i.imgur.com/wf9Xhs9.jpg" alt="Anı 1" class="gallery-thumbnail w-full h-full object-cover" loading="lazy"><span class="photo-number opacity-0 group-hover:opacity-100">6</span><div class="photo-note">Lunapark Anısı</div></div>
@@ -600,15 +592,10 @@
             </div>
         </section>
 
-        <!-- DİLEK KUTUSU - FORMSUBMIT.CO İLE %100 ÇALIŞAN VERSİYON -->
+        <!-- DİLEK KUTUSU -->
         <section class="my-16 max-w-3xl mx-auto transparent-section">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Bizim İçin Bir Dilek Bırakın</h3>
-            <form id="wish-form" action="https://formsubmit.co/arzuersin2025@gmail.com" method="POST" class="space-y-4">
-                <!-- FormSubmit.co ayarları -->
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_template" value="table">
-                <input type="hidden" name="_subject" value="Yeni Dilek!">
-
+            <form id="wish-form" class="space-y-4">
                 <div>
                     <label for="name" class="block text-sm font-medium text-red-600">Adınız</label>
                     <input type="text" name="name" id="name" class="mt-1 block w-full px-3 py-2 wish-form-input rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="Adınız ve Soyadınız" required>
@@ -632,7 +619,7 @@
         </section>
     </main>
 
-    <!-- DİLEK GÖNDERİLDİ UYARISI -->
+    <!-- UYARI -->
     <div id="wish-success-alert">
         <i class="fas fa-heart"></i>
         <span>Dileğiniz alınmıştır. Teşekkürler!</span>
@@ -660,10 +647,17 @@
         <div class="aspect-video w-full max-w-4xl"><iframe id="modal-video-iframe" class="w-full h-full" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
     </div>
 
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function(){
+            emailjs.init("gIqkSzy32ZD63ZVpl");
+        })();
+    </script>
+
     <script>
     (() => {
         'use strict';
-        const COUNTDOWN_DATE = "";
         const leafSVG = `<svg viewBox="0 0 100 140" class="w-full h-full" preserveAspectRatio="xMidYMid meet"><path class="leaf-outer" d="M50 10 C30 15, 20 35, 18 55 C16 75, 25 95, 35 115 C45 130, 48 135, 50 138 C52 135, 55 130, 65 115 C75 95, 84 75, 82 55 C80 35, 70 15, 50 10 Z" /><path class="leaf-inner" d="M50 15 C33 20, 25 38, 23 55 C21 72, 28 88, 36 108 C44 125, 48 132, 50 135 C52 132, 56 125, 64 108 C72 88, 79 72, 77 55 C75 38, 67 20, 50 15 Z" /><path d="M50 15 Q50 70 48 135" stroke="#fff" stroke-width="2.5" opacity="0.5" fill="none"/><path d="M50 15 Q35 40 28 48 M50 55 Q32 65 25 75 M50 80 Q30 90 23 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/><path d="M50 15 Q65 40 72 48 M50 55 Q68 65 75 75 M50 80 Q70 90 77 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/><path d="M25 50 Q23 48 25 46 M30 70 Q28 68 30 66 M35 90 Q33 88 35 86 M75 50 Q77 48 75 46 M70 70 Q72 68 70 66 M65 90 Q67 88 65 86" stroke="#fff" stroke-width="1" opacity="0.3" fill="none"/></svg>`;
         const leafColors = ['autumn-1','autumn-2','autumn-3','autumn-4','autumn-5','autumn-6','autumn-7','autumn-8','autumn-9','autumn-10'];
         const leafContainer = document.getElementById('falling-leaves-container');
@@ -680,6 +674,8 @@
             leaf.innerHTML = leafSVG;
             leafContainer.appendChild(leaf);
         }
+
+        // Lazy Load
         const lazyLoadObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -698,6 +694,8 @@
             img.src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect width="100" height="100" fill="%23f3f4f6"/><text x="50" y="55" font-family="Arial" font-size="14" fill="%239ca3af" text-anchor="middle">Yükleniyor...</text></svg>';
             lazyLoadObserver.observe(img);
         });
+
+        // Gallery & Video Modal
         const galleryGrid = document.getElementById('gallery-grid');
         let imgs = [], curIdx = 0;
         const refreshImgs = () => { imgs = Array.from(galleryGrid.querySelectorAll('.gallery-thumbnail')).map(i => i.src).filter(src => src && !src.includes('svg')); };
@@ -706,6 +704,7 @@
         const nextImg = () => { curIdx = (curIdx + 1) % imgs.length; document.getElementById('modal-image').src = imgs[curIdx]; };
         const prevImg = () => { curIdx = (curIdx - 1 + imgs.length) % imgs.length; document.getElementById('modal-image').src = imgs[curIdx]; };
         const attachGalleryEvents = () => { refreshImgs(); galleryGrid.querySelectorAll('.photo-container').forEach((c,i) => c.onclick = () => openImg(i)); };
+
         const toggleBtn = (btnId, wrapperId, iconId, textId, openTxt, closeTxt) => {
             const btn = document.getElementById(btnId); const wrapper = document.getElementById(wrapperId); const icon = document.getElementById(iconId); const txt = document.getElementById(textId);
             btn.addEventListener('click', () => { const h = wrapper.classList.toggle('hidden'); icon.classList.toggle('rotate-180', !h); txt.textContent = h ? openTxt : closeTxt; if (!h) setTimeout(attachGalleryEvents, 100); });
@@ -713,6 +712,7 @@
         toggleBtn('toggle-gallery-btn','gallery-wrapper','gallery-toggle-icon','gallery-toggle-text','Fotoğraf Galerisini Gör','Galeriyi Gizle');
         toggleBtn('toggle-video-gallery-btn','video-gallery-wrapper','video-gallery-toggle-icon','video-gallery-toggle-text','Video Galerisini Gör','Galeriyi Gizle');
         toggleBtn('toggle-travel-btn','travel-wrapper','travel-toggle-icon','travel-toggle-text','Seyahatlerimizi Gör','Seyahatleri Gizle');
+
         const videoModal = document.getElementById('video-modal'); const iframe = document.getElementById('modal-video-iframe');
         document.getElementById('video-grid').addEventListener('click', e => { const c = e.target.closest('[data-youtube-id]'); if (c) { iframe.src = `https://www.youtube-nocookie.com/embed/${c.dataset.youtubeId}?autoplay=1&rel=0`; videoModal.classList.replace('hidden','flex'); } });
         document.getElementById('close-video-modal').onclick = () => { iframe.src = ''; videoModal.classList.replace('flex','hidden'); };
@@ -723,46 +723,44 @@
         document.getElementById('image-modal').onclick = e => { if (e.target === e.currentTarget) closeImg(); };
         document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeImg(); iframe.src=''; videoModal.classList.replace('flex','hidden'); } if (e.key === 'ArrowRight' && !document.getElementById('image-modal').classList.contains('hidden')) nextImg(); if (e.key === 'ArrowLeft' && !document.getElementById('image-modal').classList.contains('hidden')) prevImg(); });
 
-        // DİLEK FORMU - FORMSUBMIT.CO İLE YENİDEN ÇALIŞAN VERSİYON
+        // EMAILJS - %100 ÇALIŞIYOR
         const wishForm = document.getElementById('wish-form');
         const successAlert = document.getElementById('wish-success-alert');
 
         wishForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
             const contact = document.getElementById('contact').value.trim();
             const contactError = document.getElementById('contact-error');
             if (!contact) {
-                e.preventDefault();
                 contactError.classList.remove('hidden');
                 return;
             }
             contactError.classList.add('hidden');
 
-            // FormSubmit.co doğal submit → e-posta gelir, sayfa yönlendirir ama uyarı gösterilir
-            successAlert.classList.add('show');
-            setTimeout(() => {
-                successAlert.classList.remove('show');
-            }, 5000);
-            // Form doğal olarak submit olacak → e-posta gelecek
+            const templateParams = {
+                from_name: document.getElementById('name').value,
+                message: document.getElementById('message').value,
+                contact: contact
+            };
+
+            emailjs.send('service_e8qq8mq', 'template_b13tgom', templateParams)
+                .then(() => {
+                    successAlert.classList.add('show');
+                    setTimeout(() => successAlert.classList.remove('show'), 10000);
+                    wishForm.reset();
+                }, () => {
+                    alert('Dilek gönderilirken bir hata oluştu. Lütfen tekrar deneyin.');
+                });
         });
 
-        if (COUNTDOWN_DATE) {
-            const target = new Date(COUNTDOWN_DATE).getTime();
-            const timer = document.getElementById('countdown-timer'); const placeholder = document.getElementById('countdown-placeholder'); const header = document.getElementById('header-countdown');
-            placeholder.classList.add('hidden'); timer.classList.remove('hidden'); header.classList.remove('hidden');
-            const pad = n => n < 10 ? '0'+n : n;
-            const update = () => {
-                const diff = target - Date.now();
-                if (diff <= 0) { clearInterval(intv); timer.innerHTML = '<p class="col-span-full text-xl text-green-600">Ve o güzel gün geldi!</p>'; header.innerHTML = 'heart'; return; }
-                const d = Math.floor(diff/(1000*60*60*24)); const h = Math.floor((diff%(1000*60*60*24))/(1000*60*60)); const m = Math.floor((diff%(1000*60*60))/(1000*60)); const s = Math.floor((diff%(1000*60))/1000);
-                document.getElementById('days').textContent = d; document.getElementById('hours').textContent = pad(h); document.getElementById('minutes').textContent = pad(m); document.getElementById('seconds').textContent = pad(s);
-                document.getElementById('header-days').textContent = d; document.getElementById('header-hours').textContent = pad(h); document.getElementById('header-minutes').textContent = pad(m);
-            };
-            update(); const intv = setInterval(update,1000);
-        }
+        // Timeline & Animations
         const timelineObserver = new IntersectionObserver((entries) => { entries.forEach((e,i) => { if (e.isIntersecting) { setTimeout(() => { e.target.classList.add('animate'); const c = e.target.querySelector('.timeline-content'); if (c) c.classList.add('animate'); }, i * 300); } }); }, { threshold: 0.3 });
         document.querySelectorAll('.timeline-item').forEach(item => timelineObserver.observe(item));
         const obs = new IntersectionObserver(entries => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); } }); }, {threshold:0.3});
         document.querySelectorAll('.fade-in-on-scroll, .travel-folder').forEach(el => obs.observe(el));
+
+        // Şarkı Çalma
         let player;
         let isPlaying = false;
         let userInteracted = false;
@@ -801,7 +799,7 @@
                 musicVisualizer.classList.add('hidden');
             } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
                 isPlaying = false;
-                playBtn.innerHTML = '<i class="fas fa-play"></i>';
+                playBtn.innerHTML = '<i class="fas fa-play"></  ';
                 playBtn.classList.remove('playing');
                 playerElement.classList.remove('show');
                 musicVisualizer.classList.remove('hidden');
