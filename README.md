@@ -58,8 +58,9 @@
         .timeline-content::before { display: none; }
         .timeline-content:hover { transform: none; box-shadow: none; }
         .timeline-content h4 { margin-bottom: 8px; color: #dc2626; font-family: 'Dancing Script', cursive; font-size: 1.5rem; position: relative; }
-        .timeline-content p { color: #6b7280; font-style: italic; line-height: 1.6; }
-  .timeline-icon { position: absolute; top: -15px; left: 20px; background: white; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); font-size: 1.2rem; color: #ef4444; z-index: 3; transform: rotate(0deg); transition: transform 0.6s ease; }
+        /* ZAMAN ÇİZGİSİ METİNLERİ DAHA SİYAH */
+        .timeline-content p { color: #000000 !important; font-style: italic; line-height: 1.6; }
+        .timeline-icon { position: absolute; top: -15px; left: 20px; background: white; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); font-size: 1.2rem; color: #ef4444; z-index: 3; transform: rotate(0deg); transition: transform 0.6s ease; }
         .timeline-item.animate .timeline-icon { transform: rotate(360deg); }
         @media (max-width: 600px) {
             .timeline-container::after { left: 31px; }
@@ -74,11 +75,11 @@
         .photo-number { position: absolute; bottom: 0.5rem; right: 0.75rem; color: white; font-size: 1rem; font-weight: bold; text-shadow: 1px 1px 3px rgba(0,0,0,0.9); opacity: 0; transition: opacity .3s ease-in-out; }
         .group:hover .photo-number { opacity: 1; }
         .photo-container.no-note .photo-note { display: none; }
-        .travel-folder { 
-            position: relative; overflow: hidden; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
-            aspect-ratio: 1/1; background: #f0fdf4; border: 1px solid #a7f3d0; 
-            display: flex; flex-direction: column; justify-content: center; align-items: center; 
-            padding: 0.75rem; text-align: center; transition: transform .2s ease-in-out, box-shadow .2s ease-in-out; 
+        .travel-folder {
+            position: relative; overflow: hidden; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            aspect-ratio: 1/1; background: #f0fdf4; border: 1px solid #a7f3d0;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            padding: 0.75rem; text-align: center; transition: transform .2s ease-in-out, box-shadow .2s ease-in-out;
         }
         .travel-folder:hover { transform: translateY(-5px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
         .travel-folder h4 {
@@ -104,9 +105,10 @@
         }
         .fade-in-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity .8s cubic-bezier(.25,.46,.45,.94), transform .8s cubic-bezier(.25,.46,.45,.94); }
         .fade-in-on-scroll.visible { opacity: 1; transform: translateY(0); }
-        /* ŞİİR - TÜM SAYFALAR KALDIRILDI */
+        /* ŞİİR - NAZIM HİKMET İMZASI YARI YARIYA BÜYÜTÜLDÜ */
         .poem-container {
-            max-width: 90%; margin: 0 auto; padding: 2rem 0; line-height: 2.3; font-size: 1.15rem;
+            max-width: 90%; margin: 0 auto; padding: 2rem 0; line-height: 2.3; 
+            font-size: 1.725rem;
             font-style: italic; color: #1f2937; text-align: center; position: relative;
             background: transparent !important;
             border-radius: 0 !important; padding: 2rem 0 !important; box-shadow: none !important; overflow: visible;
@@ -117,20 +119,30 @@
         }
         @media (max-width: 768px) {
             .poem-line {
-                font-size: 1.35rem !important;
+                font-size: 2.025rem !important;
                 line-height: 2.6 !important;
                 letter-spacing: 0.5px;
             }
             .poem-container {
                 padding: 1.5rem 0 !important;
-                font-size: 1.3rem;
+                font-size: 1.95rem;
+            }
+        }
+        /* NAZIM HİKMET İMZASI - YARI YARIYA BÜYÜTÜLDÜ */
+        .poem-signature {
+            font-size: 1.5rem !important;
+            line-height: 1.4 !important;
+        }
+        @media (max-width: 768px) {
+            .poem-signature {
+                font-size: 1.875rem !important;
             }
         }
         .leaf-svg { position: absolute; width: 32px; height: 44px; opacity: 0.9; animation: fall linear infinite; transform-origin: center; filter: drop-shadow(0 3px 6px rgba(0,0,0,0.3)); }
         @keyframes fall { 0% { transform: translateY(-120px) rotate(0deg) scale(1); opacity: 0; } 8% { opacity: 0.9; } 30% { transform: translateY(30vh) translateX(15px) rotate(180deg) scale(0.95); } 50% { transform: translateY(50vh) translateX(-20px) rotate(540deg) scale(0.9); } 70% { transform: translateY(70vh) translateX(25px) rotate(800deg) scale(0.85); } 92% { opacity: 0.9; } 100% { transform: translateY(110vh) translateX(-15px) rotate(1080deg) scale(0.6); opacity: 0; } }
         .leaf-svg .leaf-inner { fill: currentColor; } .leaf-svg .leaf-outer { fill: white; opacity: 0.95; }
         .leaf-svg.autumn-1 { color: #f59e0b; } .leaf-svg.autumn-2 { color: #ef4444; } .leaf-svg.autumn-3 { color: #facc15; } .leaf-svg.autumn-4 { color: #92400e; } .leaf-svg.autumn-5 { color: #84cc16; } .leaf-svg.autumn-6 { color: #fb923c; } .leaf-svg.autumn-7 { color: #dc2626; } .leaf-svg.autumn-8 { color: #f97316; } .leaf-svg.autumn-9 { color: #22c55e; } .leaf-svg.autumn-10 { color: #16a34a; }
-        /* MÜZİK NOTASI ANİMASYONU - TAM ORTALI */
+        /* MÜZİK NOTASI ANİMASYONU */
         .music-visualizer {
             position: absolute;
             top: 50%;
@@ -304,7 +316,7 @@
         <p class="text-lg mt-1 text-red-600 italic font-bold">Zamanın durduğu an</p>
     </section>
     <main class="container mx-auto px-6 pb-12">
-        <!-- İLK ADIM - ARKA PLAN KALDIRILDI -->
+        <!-- İLK ADIM -->
         <section class="max-w-3xl mx-auto my-12 text-center">
             <h3 id="ilk-adim-baslik" class="font-bold text-red-600 mb-4">İlk Adım</h3>
             <p class="text-lg leading-relaxed font-medium font-[550] text-black">
@@ -320,7 +332,8 @@
             </p>
             <div class="text-4xl text-red-500 mt-8 heartbeat"><i class="fas fa-heart"></i></div>
         </section>
-        <!-- ŞİİR - ARKA PLAN TAMAMEN KALDIRILDI -->
+
+        <!-- ŞİİR -->
         <section class="my-16 max-w-3xl mx-auto text-center">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting font-forte-alternative">Sonbahar</h3>
             <div class="poem-container">
@@ -335,9 +348,10 @@
                 <div class="poem-line font-semibold italic text-black">mevsim</div>
                 <div class="poem-line font-semibold italic text-black">sonbahar…</div>
             </div>
-            <p class="text-right text-red-600 font-semibold-bold mt-6 pr-4 font-forte-alternative">- Nazım Hikmet</p>
+            <p class="text-right text-red-600 font-semibold-bold mt-6 pr-4 font-forte-alternative poem-signature">- Nazım Hikmet</p>
         </section>
-        <!-- AŞK ZAMAN ÇİZELGESİ - ARKA PLAN KALDIRILDI -->
+
+        <!-- AŞK ZAMAN ÇİZELGESİ -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Aşk Zaman Çizelgesi</h3>
             <p class="text-center text-black font-semibold italic mb-8">
@@ -348,7 +362,7 @@
                     <div class="timeline-icon"><i class="fas fa-heart heartbeat"></i></div>
                     <div class="timeline-content">
                         <h4>Eylül</h4>
-                        <p class="font-semibold italic text-black">
+                        <p class="font-semibold italic">
                             Yaprakların dans ettiği o sonbahar gününde, gözlerinle tanıştım seninle...
                         </p>
                     </div>
@@ -357,15 +371,15 @@
                     <div class="timeline-icon"><i class="fas fa-infinity heartbeat"></i></div>
                     <div class="timeline-content">
                         <h4>Sonsuza Dek...</h4>
-                        <p class="font-semibold italic text-black">
-                            Yemin ettik birbirimize, eşliğinde...
+                        <p class="font-semibold italic">
+                            Yemin ettik birbirimize, Yıldızlar eşliğinde...
                         </p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- BÜYÜK GÜNE GERİ SAYIM - ARKA PLAN KALDIRILDI (ŞEFFAF) -->
+        <!-- BÜYÜK GÜNE GERİ SAYIM -->
         <section id="countdown-section" class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 font-forte-alternative">Büyük Güne Geri Sayım</h3>
             <div id="countdown-placeholder" class="my-4">
@@ -376,7 +390,7 @@
             </div>
         </section>
 
-        <!-- HAYAL DEFTERİMİZ - ARKA PLAN KALDIRILDI -->
+        <!-- HAYAL DEFTERİMİZ -->
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center fade-in-on-scroll">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Hayal Defterimiz</h3>
             <p class="text-center text-black font-semibold italic text-lg mt-4 mb-8">
@@ -384,7 +398,7 @@
             </p>
         </section>
 
-        <!-- BİZİM ŞARKIMIZ - ARKA PLAN KALDIRILDI -->
+        <!-- BİZİM ŞARKIMIZ -->
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center relative overflow-hidden">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Bizim Şarkımız</h3>
             <p class="text-center text-black font-semibold italic mt-2 mb-6">Tarkan - Beni Çok Sev</p>
@@ -508,17 +522,19 @@
             </div>
         </section>
 
-        <!-- TEŞEKKÜR - EL YAZISI -->
+        <!-- TEŞEKKÜR -->
         <section class="my-16 max-w-3xl mx-auto transparent-section">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Teşekkür</h3>
-            <p class="text-center text-black text-lg italic mt-4">Bu mutlu yolculuğumuzda yanımızda olan herkese sonsuz teşekkürler.</p>
+            <p class="text-center text-black text-lg italic mt-4 font-bold">
+                Bu mutlu yolculuğumuzda yanımızda olan herkese sonsuz teşekkürler.
+            </p>
             <div class="mt-8 space-y-4">
                 <p class="text-center text-black font-semibold">Bizi biz yapan, sevgileriyle her zaman en büyük destekçimiz olan canımız ailelerimize...</p>
                 <p class="text-center text-black font-semibold">İyi günde, kötü günde her anımızda yanımızda olan değerli dostlarımıza...</p>
             </div>
         </section>
 
-        <!-- DİLEK KUTUSU - EL YAZISI -->
+        <!-- DİLEK KUTUSU -->
         <section class="my-16 max-w-3xl mx-auto transparent-section">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Bizim İçin Bir Dilek Bırakın</h3>
             <form id="wish-form" action="https://formsubmit.co/arzuersin2025@gmail.com" method="POST" class="space-y-4">
@@ -542,6 +558,7 @@
             </form>
         </section>
     </main>
+
     <footer class="text-center py-8 mt-12 bg-white/50">
         <p class="text-black flex items-center justify-center space-x-2"><span>Bu hikaye</span><i class="fas fa-infinity text-red-500"></i><span>kadar devam edecek...</span></p>
         <p class="text-sm text-black mt-2">Arzu & Ersin</p>
@@ -562,7 +579,6 @@
     <script>
     (() => {
         'use strict';
-        // COUNTDOWN_DATE BOŞ → SADECE PLACEHOLDER GÖSTERİLİR
         const COUNTDOWN_DATE = "";
         const leafSVG = `<svg viewBox="0 0 100 140" class="w-full h-full" preserveAspectRatio="xMidYMid meet"><path class="leaf-outer" d="M50 10 C30 15, 20 35, 18 55 C16 75, 25 95, 35 115 C45 130, 48 135, 50 138 C52 135, 55 130, 65 115 C75 95, 84 75, 82 55 C80 35, 70 15, 50 10 Z" /><path class="leaf-inner" d="M50 15 C33 20, 25 38, 23 55 C21 72, 28 88, 36 108 C44 125, 48 132, 50 135 C52 132, 56 125, 64 108 C72 88, 79 72, 77 55 C75 38, 67 20, 50 15 Z" /><path d="M50 15 Q50 70 48 135" stroke="#fff" stroke-width="2.5" opacity="0.5" fill="none"/><path d="M50 15 Q35 40 28 48 M50 55 Q32 65 25 75 M50 80 Q30 90 23 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/><path d="M50 15 Q65 40 72 48 M50 55 Q68 65 75 75 M50 80 Q70 90 77 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/><path d="M25 50 Q23 48 25 46 M30 70 Q28 68 30 66 M35 90 Q33 88 35 86 M75 50 Q77 48 75 46 M70 70 Q72 68 70 66 M65 90 Q67 88 65 86" stroke="#fff" stroke-width="1" opacity="0.3" fill="none"/></svg>`;
         const leafColors = ['autumn-1','autumn-2','autumn-3','autumn-4','autumn-5','autumn-6','autumn-7','autumn-8','autumn-9','autumn-10'];
@@ -623,8 +639,7 @@
         document.getElementById('image-modal').onclick = e => { if (e.target === e.currentTarget) closeImg(); };
         document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeImg(); iframe.src=''; videoModal.classList.replace('flex','hidden'); } if (e.key === 'ArrowRight' && !document.getElementById('image-modal').classList.contains('hidden')) nextImg(); if (e.key === 'ArrowLeft' && !document.getElementById('image-modal').classList.contains('hidden')) prevImg(); });
         document.getElementById('wish-form')?.addEventListener('submit', ev => { const c = document.getElementById('contact').value.trim(); const err = document.getElementById('contact-error'); if (!c) { ev.preventDefault(); err.classList.remove('hidden'); } else err.classList.add('hidden'); });
-        
-        // GERİ SAYIM: TARİH BOŞ → SADECE PLACEHOLDER GÖSTERİLİR
+       
         if (COUNTDOWN_DATE) {
             const target = new Date(COUNTDOWN_DATE).getTime();
             const timer = document.getElementById('countdown-timer'); const placeholder = document.getElementById('countdown-placeholder'); const header = document.getElementById('header-countdown');
@@ -639,12 +654,10 @@
             };
             update(); const intv = setInterval(update,1000);
         }
-
         const timelineObserver = new IntersectionObserver((entries) => { entries.forEach((e,i) => { if (e.isIntersecting) { setTimeout(() => { e.target.classList.add('animate'); const c = e.target.querySelector('.timeline-content'); if (c) c.classList.add('animate'); }, i * 300); } }); }, { threshold: 0.3 });
         document.querySelectorAll('.timeline-item').forEach(item => timelineObserver.observe(item));
         const obs = new IntersectionObserver(entries => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); } }); }, {threshold:0.3});
         document.querySelectorAll('.fade-in-on-scroll, .travel-folder').forEach(el => obs.observe(el));
-        // MÜZİK NOTALARI + YOUTUBE
         let player;
         let isPlaying = false;
         let userInteracted = false;
@@ -677,7 +690,7 @@
         function onPlayerStateChange(event) {
             if (event.data === YT.PlayerState.PLAYING) {
                 isPlaying = true;
-                playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+               プレイBtn.innerHTML = '<i class="fas fa-pause"></i>';
                 playBtn.classList.add('playing');
                 playerElement.classList.add('show');
                 musicVisualizer.classList.add('hidden');
