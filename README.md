@@ -105,7 +105,16 @@
         }
         .fade-in-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity .8s cubic-bezier(.25,.46,.45,.94), transform .8s cubic-bezier(.25,.46,.45,.94); }
         .fade-in-on-scroll.visible { opacity: 1; transform: translateY(0); }
-        /* ŞİİR - NAZIM HİKMET İMZASI YARI YARIYA BÜYÜTÜLDÜ */
+        /* ŞİİR - SONBAHAR BAŞLIĞI YARI YARIYA BÜYÜTÜLDÜ */
+        #sonbahar-baslik {
+            font-size: 1.5rem !important;
+            line-height: 1.3 !important;
+        }
+        @media (min-width: 768px) {
+            #sonbahar-baslik {
+                font-size: 2.25rem !important;
+            }
+        }
         .poem-container {
             max-width: 90%; margin: 0 auto; padding: 2rem 0; line-height: 2.3; 
             font-size: 1.725rem;
@@ -335,7 +344,7 @@
 
         <!-- ŞİİR -->
         <section class="my-16 max-w-3xl mx-auto text-center">
-            <h3 class="font-bold text-center text-red-600 mb-6 handwriting font-forte-alternative">Sonbahar</h3>
+            <h3 id="sonbahar-baslik" class="font-bold text-center text-red-600 mb-6 handwriting font-forte-alternative">Sonbahar</h3>
             <div class="poem-container">
                 <div class="poem-line font-semibold italic text-black">Çiçekli badem ağaçlarını unut.</div>
                 <div class="poem-line font-semibold italic text-black">değmez,</div>
@@ -690,7 +699,7 @@
         function onPlayerStateChange(event) {
             if (event.data === YT.PlayerState.PLAYING) {
                 isPlaying = true;
-               プレイBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                playBtn.innerHTML = '<i class="fas fa-pause"></i>';
                 playBtn.classList.add('playing');
                 playerElement.classList.add('show');
                 musicVisualizer.classList.add('hidden');
