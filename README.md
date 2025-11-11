@@ -344,14 +344,14 @@
             font-weight: 500;
         }
         footer .text-sm {
-            color: #dc2626 !important;                    /* Arzu & Ersin kırmızı */
-            font-family: 'Dancing Script', cursive !important; /* El yazısı */
+            color: #dc2626 !important;
+            font-family: 'Dancing Script', cursive !important;
             font-size: 1.25rem !important;
             font-weight: 600;
         }
         footer .footer-ampersand {
-            color: #10b981 !important;                    /* & ikonu yeşil */
-            font-family: 'Poppins', sans-serif !important; /* Normal font */
+            color: #10b981 !important;
+            font-family: 'Poppins', sans-serif !important;
             font-weight: 600;
             font-size: 1.25rem !important;
             margin: 0 0.25rem;
@@ -603,14 +603,13 @@
         <!-- DİLEK KUTUSU -->
         <section class="my-16 max-w-3xl mx-auto transparent-section">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Bizim İçin Bir Dilek Bırakın</h3>
-            <form id="wish-form" action="https://web3forms.com/f/YOUR_ACCESS_KEY_HERE" method="POST" class="space-y-4">
-                <!-- web3forms.com için gerekli alanlar -->
-                <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+            <form id="wish-form" class="space-y-4">
+                <!-- FormSubmit.co kullanıyoruz - anahtar gerekmez, e-posta ile çalışır -->
                 <input type="hidden" name="subject" value="Arzu & Ersin Web Sitenizden Yeni Dilek!">
-                <input type="hidden" name="from_name" value="Dilek Kutusu">
-                <input type="hidden" name="redirect" value="false"> <!-- Yönlendirme kapalı -->
+                <input type="hidden" name="_next" value=""> <!-- Yönlendirme kapalı -->
+                <input type="hidden" name="_captcha" value="false">
 
-                <div><label for="name" class="block text-sm font-medium text-red-600">Adınız</label><input type="text" name="name" id="name" class="mt-1 block w-full px-3 py- 2 wish-form-input rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="Adınız ve Soyadınız" required></div>
+                <div><label for="name" class="block text-sm font-medium text-red-600">Adınız</label><input type="text" name="name" id="name" class="mt-1 block w-full px-3 py-2 wish-form-input rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="Adınız ve Soyadınız" required></div>
                 <div><label for="message" class="block text-sm font-medium text-red-600">Dileğiniz</label><textarea id="message" name="message" rows="4" class="mt-1 block w-full px-3 py-2 wish-form-input rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="Bizim için güzel bir dilek..." required></textarea></div>
                 <div class="pt-4 border-t border-slate-200">
                     <p class="text-sm text-black mb-2 text-center">Size geri dönüş yapabilmemiz için lütfen e-posta ya da telefon bırakın.</p>
@@ -718,11 +717,13 @@
         document.getElementById('image-modal').onclick = e => { if (e.target === e.currentTarget) closeImg(); };
         document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeImg(); iframe.src=''; videoModal.classList.replace('flex','hidden'); } if (e.key === 'ArrowRight' && !document.getElementById('image-modal').classList.contains('hidden')) nextImg(); if (e.key === 'ArrowLeft' && !document.getElementById('image-modal').classList.contains('hidden')) prevImg(); });
 
-        // DİLEK FORMU - AJAX + 10 SANİYE UYARI + YÖNLENDİRME YOK
+        // DİLEK FORMU - FormSubmit.co + 10 SANİYE UYARI + YÖNLENDİRME YOK
         const wishForm = document.getElementById('wish-form');
         const successAlert = document.getElementById('wish-success-alert');
+        wishForm.action = 'https://formsubmit.co/YOUR_EMAIL_HERE'; // BURAYA E-POSTANI YAZ
+
         wishForm.addEventListener('submit', async function(e) {
-            e.preventDefault(); // Varsayılan yönlendirmeyi engelle
+            e.preventDefault();
 
             const contact = document.getElementById('contact').value.trim();
             const contactError = document.getElementById('contact-error');
@@ -743,7 +744,7 @@
                     successAlert.classList.add('show');
                     setTimeout(() => {
                         successAlert.classList.remove('show');
-                    }, 10000); // 10 saniye
+                    }, 10000);
                     wishForm.reset();
                 } else {
                     alert('Bir hata oluştu. Lütfen tekrar deneyin.');
