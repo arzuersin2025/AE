@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700;800;900&family=Dancing+Script:wght@700&family=Cormorant+Garamond&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700;8 00;900&family=Dancing+Script:wght@700&family=Cormorant+Garamond&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
     <style>
@@ -599,20 +599,20 @@
             <form id="wish-form" class="space-y-4">
                 <div>
                     <label for="name" class="block text-sm font-medium text-red-600">Adınız</label>
-                    <input type="text" name="name" id="name" class="mt-1 block w-full px-3 py-2 wish-form-input rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="Adınız ve Soyadınız" required>
+                    <input type="text" id="name" class="mt-1 block w-full px-3 py-2 wish-form-input rounded-md" placeholder="Adınız ve Soyadınız" required>
                 </div>
                 <div>
                     <label for="message" class="block text-sm font-medium text-red-600">Dileğiniz</label>
-                    <textarea id="message" name="message" rows="4" class="mt-1 block w-full px-3 py-2 wish-form-input rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="Bizim için güzel bir dilek..." required></textarea>
+                    <textarea id="message" rows="4" class="mt-1 block w-full px-3 py-2 wish-form-input rounded-md" placeholder="Bizim için güzel bir dilek..." required></textarea>
                 </div>
                 <div class="pt-4 border-t border-slate-200">
                     <p class="text-sm text-black mb-2 text-center">Size geri dönüş yapabilmemiz için lütfen e-posta ya da telefon bırakın.</p>
                     <label for="contact" class="block text-sm font-medium text-red-600">E-posta ya da Telefon</label>
-                    <input type="text" name="contact" id="contact" class="mt-1 block w-full px-3 py-2 wish-form-input rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="ornek@mail.com veya 05XX XXX XX XX">
+                    <input type="text" id="contact" class="mt-1 block w-full px-3 py-2 wish-form-input rounded-md" placeholder="ornek@mail.com veya 05XX XXX XX XX">
                     <p id="contact-error" class="text-red-500 text-sm mt-2 text-center hidden">Lütfen e-posta veya telefon girin.</p>
                 </div>
                 <div class="text-center pt-4">
-                    <button type="submit" class="inline-flex justify-center items-center py-2 px-6 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors">
+                    <button type="submit" class="inline-flex items-center py-2 px-6 bg-green-600 text-white rounded-md hover:bg-green-700">
                         <i class="fas fa-heart mr-2 heartbeat"></i> Dileğini Gönder
                     </button>
                 </div>
@@ -638,21 +638,20 @@
 
     <!-- MODALLAR -->
     <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
-        <span id="close-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
-        <img id="modal-image" src="" alt="Büyütülmüş Fotoğraf" class="max-w-[90vw] max-h-[90vh] rounded-lg shadow-lg">
-        <span id="prev-photo" class="absolute top-1/2 left-4 -translate-y-1/2 text-white text-6xl font-bold cursor-pointer hover:text-gray-300 transition-colors select-none">&lt;</span>
-        <span id="next-photo" class="absolute top-1/2 right-4 -translate-y-1/2 text-white text-6xl font-bold cursor-pointer hover:text-gray-300 transition-colors select-none">&gt;</span>
+        <span id="close-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300">×</span>
+        <img id="modal-image" src="" alt="" class="max-w-[90vw] max-h-[90vh] rounded-lg shadow-lg">
+        <span id="prev-photo" class="absolute top-1/2 left-4 -translate-y-1/2 text-white text-6xl font-bold cursor-pointer hover:text-gray-300">&lt;</span>
+        <span id="next-photo" class="absolute top-1/2 right-4 -translate-y-1/2 text-white text-6xl font-bold cursor-pointer hover:text-gray-300">&gt;</span>
     </div>
     <div id="video-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
-        <span id="close-video-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
-        <div class="aspect-video w-full max-w-4xl"><iframe id="modal-video-iframe" class="w-full h-full" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+        <span id="close-video-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300">×</span>
+        <div class="aspect-video w-full max-w-4xl"><iframe id="modal-video-iframe" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
     </div>
 
     <!-- EmailJS SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
     <script>
-    // SDK yüklendikten sonra init
     document.addEventListener('DOMContentLoaded', () => {
         emailjs.init("gIqkSzy32ZD63ZVpl");
 
@@ -673,22 +672,28 @@
             }
             contactError.classList.add('hidden');
 
-            const templateParams = { from_name: name, message: message, contact: contact };
+            const templateParams = {
+                from_name: name,
+                message: message,
+                contact: contact
+            };
+
+            console.log('Gönderiliyor:', templateParams);
 
             emailjs.send('service_e8qq8mq', 'template_b13tgom', templateParams)
                 .then(() => {
+                    console.log('BAŞARILI!');
                     successAlert.classList.add('show');
                     setTimeout(() => successAlert.classList.remove('show'), 8000);
                     wishForm.reset();
                 })
-                .catch((err) => {
-                    console.error('EmailJS Hata:', err);
-                    alert('Gönderim hatası. Lütfen tekrar deneyin.');
+                .catch((error) => {
+                    console.error('HATA:', error);
+                    alert('Gönderim hatası. Lütfen F12 → Console → Hatayı kopyalayın.');
                 });
         });
     });
 
-    // TÜM DİĞER JS
     (() => {
         'use strict';
         const leafSVG = `<svg viewBox="0 0 100 140" class="w-full h-full" preserveAspectRatio="xMidYMid meet"><path class="leaf-outer" d="M50 10 C30 15, 20 35, 18 55 C16 75, 25 95, 35 115 C45 130, 48 135, 50 138 C52 135, 55 130, 65 115 C75 95, 84 75, 82 55 C80 35, 70 15, 50 10 Z" /><path class="leaf-inner" d="M50 15 C33 20, 25 38, 23 55 C21 72, 28 88, 36 108 C44 125, 48 132, 50 135 C52 132, 56 125, 64 108 C72 88, 79 72, 77 55 C75 38, 67 20, 50 15 Z" /><path d="M50 15 Q50 70 48 135" stroke="#fff" stroke-width="2.5" opacity="0.5" fill="none"/><path d="M50 15 Q35 40 28 48 M50 55 Q32 65 25 75 M50 80 Q30 90 23 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/><path d="M50 15 Q65 40 72 48 M50 55 Q68 65 75 75 M50 80 Q70 90 77 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/><path d="M25 50 Q23 48 25 46 M30 70 Q28 68 30 66 M35 90 Q33 88 35 86 M75 50 Q77 48 75 46 M70 70 Q72 68 70 66 M65 90 Q67 88 65 86" stroke="#fff" stroke-width="1" opacity="0.3" fill="none"/></svg>`;
@@ -708,7 +713,6 @@
             leafContainer.appendChild(leaf);
         }
 
-        // Lazy Load
         const lazyLoadObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -728,7 +732,6 @@
             lazyLoadObserver.observe(img);
         });
 
-        // Gallery & Video Modal
         const galleryGrid = document.getElementById('gallery-grid');
         let imgs = [], curIdx = 0;
         const refreshImgs = () => { imgs = Array.from(galleryGrid.querySelectorAll('.gallery-thumbnail')).map(i => i.src).filter(src => src && !src.includes('svg')); };
@@ -756,13 +759,11 @@
         document.getElementById('image-modal').onclick = e => { if (e.target === e.currentTarget) closeImg(); };
         document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeImg(); iframe.src=''; videoModal.classList.replace('flex','hidden'); } if (e.key === 'ArrowRight' && !document.getElementById('image-modal').classList.contains('hidden')) nextImg(); if (e.key === 'ArrowLeft' && !document.getElementById('image-modal').classList.contains('hidden')) prevImg(); });
 
-        // Timeline & Animations
         const timelineObserver = new IntersectionObserver((entries) => { entries.forEach((e,i) => { if (e.isIntersecting) { setTimeout(() => { e.target.classList.add('animate'); const c = e.target.querySelector('.timeline-content'); if (c) c.classList.add('animate'); }, i * 300); } }); }, { threshold: 0.3 });
         document.querySelectorAll('.timeline-item').forEach(item => timelineObserver.observe(item));
         const obs = new IntersectionObserver(entries => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); } }); }, {threshold:0.3});
         document.querySelectorAll('.fade-in-on-scroll, .travel-folder').forEach(el => obs.observe(el));
 
-        // Şarkı Çalma
         let player;
         let isPlaying = false;
         let userInteracted = false;
