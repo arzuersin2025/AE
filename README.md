@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -307,13 +307,15 @@
                 <i class="fas fa-infinity text-[10rem] text-gray-200 opacity-70 blur-sm"></i>
             </div>
             <div class="relative z-10">
-                <h1 class="text-4xl md:text-5xl font-bold text-green-600 flex items-center justify-center space-x-4">
-                    <span>Arzu</span><i class="fas fa-heart text-red-500 text-3xl heartbeat"></i><span>Ersin</span>
+                <!-- BÜYÜTÜLDÜ VE EL YAZISI YAPILDI -->
+                <h1 class="text-7xl md:text-8xl handwriting text-green-600 flex items-center justify-center space-x-4">
+                    <span>Arzu</span><i class="fas fa-heart text-red-500 text-4xl md:text-5xl heartbeat"></i><span>Ersin</span>
                 </h1>
                 <p class="text-lg text-red-600 mt-1">Bizim Yolculuğumuz</p>
             </div>
         </div>
     </header>
+    <!-- GERİ KALAN TÜM KISIMLAR DEĞİŞMEDİ (AŞAĞIDA TAM KOD DEVAM EDİYOR) -->
     <section id="main-title-section" class="py-16 text-center">
         <h2 id="main-title" class="font-bold handwriting text-green-600">O Güzel Sonbahar</h2>
         <p class="text-xl md:text-2xl mt-2 text-red-600 font-bold">27 Eylül 2025</p>
@@ -587,7 +589,7 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const img = entry.target;
-                    const src = img.dataset.src;
+                    const src = img.datasource;
                     if (src) {
                         img.src = src;
                         img.onload = () => img.classList.add('loaded');
