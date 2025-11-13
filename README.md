@@ -5,20 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arzu & Ersin | Bizim Hikayemiz</title>
 
-    <!-- TAILWIND CDN + SAFELIST (GITHUB'DA ÇALIŞMASI İÇİN) -->
+    <!-- TAILWIND CDN + SAFELIST -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
         content: ["./*.html"],
         safelist: [
-          'text-7xl',
-          'md:text-8xl',
-          'text-4xl',
-          'md:text-5xl',
-          'handwriting'
-        ],
-        theme: { extend: {} },
-        plugins: []
+          'text-7xl', 'md:text-8xl', 'text-8xl', 'md:text-9xl',
+          'text-4xl', 'md:text-5xl', 'text-5xl', 'md:text-6xl',
+          'handwriting', 'group', 'group-hover:opacity-100'
+        ]
       }
     </script>
 
@@ -30,6 +26,7 @@
           integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
+
     <style>
         html { scroll-behavior: smooth; }
         body {
@@ -89,7 +86,7 @@
         .gallery-thumbnail { transition: transform .3s ease-in-out; background-color: #f3f4f6; background-size: 40px; background-position: center; background-repeat: no-repeat, repeat; }
         .group:hover .gallery-thumbnail { transform: scale(1.1); }
         .photo-note { position: absolute; bottom: 0; left: 0; right: 0; color: white; padding: 0.5rem 0.75rem; font-size: 0.75rem; text-align: center; line-height: 1.2; text-shadow: 1px 1px 3px rgba(0,0,0,0.9); }
-        .photo-number { position: absolute; bottom: 0.5rem; right: 0.75rem; color: white; font-size: 1rem; font-weight: bold; text-shadow: 1px 1px 3px rgba(0,0,0,0.9); opacity: 0; transition: opacity .3s ease-in-out; }
+        .photo-number { position: absolute; bottom: 0.5rem; right: 0.75rem; color: white; font-size: 1rem; font-weight: bold; text-shadow: 1px 1px 3px rgba(0,0,0,0.9); opacity:  0; transition: opacity .3s ease-in-out; }
         .group:hover .photo-number { opacity: 1; }
         .photo-container.no-note .photo-note { display: none; }
         .travel-folder {
@@ -313,6 +310,8 @@
 <body class="text-black">
     <div id="background-leaves-pattern"></div>
     <div id="falling-leaves-container"></div>
+
+    <!-- HEADER: BÜYÜK + EL YAZISI -->
     <header class="py-6 text-center bg-white/70 backdrop-blur-lg sticky top-0 z-20 overflow-hidden">
         <div class="relative">
             <a href="#countdown-section" title="Geri Sayım" class="absolute top-1/2 -translate-y-1/2 right-4 text-green-600 hover:text-green-800 transition-colors z-20 text-center">
@@ -325,20 +324,21 @@
                 <i class="fas fa-infinity text-[10rem] text-gray-200 opacity-70 blur-sm"></i>
             </div>
             <div class="relative z-10">
-                <!-- BÜYÜTÜLDÜ VE EL YAZISI YAPILDI + GITHUB'DA ÇALIŞIYOR -->
-                <h1 class="text-7xl md:text-8xl handwriting text-green-600 flex items-center justify-center space-x-4">
-                    <span>Arzu</span><i class="fas fa-heart text-red-500 text-4xl md:text-5xl heartbeat"></i><span>Ersin</span>
+                <h1 class="text-8xl md:text-9xl handwriting text-green-600 flex items-center justify-center space-x-4">
+                    <span>Arzu</span><i class="fas fa-heart text-red-500 text-5xl md:text-6xl heartbeat"></i><span>Ersin</span>
                 </h1>
                 <p class="text-lg text-red-600 mt-1">Bizim Yolculuğumuz</p>
             </div>
         </div>
     </header>
-    <!-- GERİ KALAN TÜM KISIMLAR DEĞİŞMEDİ -->
+
+    <!-- ANA BAŞLIK -->
     <section id="main-title-section" class="py-16 text-center">
         <h2 id="main-title" class="font-bold handwriting text-green-600">O Güzel Sonbahar</h2>
         <p class="text-xl md:text-2xl mt-2 text-red-600 font-bold">27 Eylül 2025</p>
         <p class="text-lg mt-1 text-red-600 italic font-bold">Zamanın durduğu an</p>
     </section>
+
     <main class="container mx-auto px-6 pb-12">
         <!-- İLK ADIM -->
         <section class="max-w-3xl mx-auto my-12 text-center">
@@ -356,6 +356,7 @@
             </p>
             <div class="text-4xl text-red-500 mt-8 heartbeat"><i class="fas fa-heart"></i></div>
         </section>
+
         <!-- ŞİİR -->
         <section class="my-16 max-w-3xl mx-auto text-center">
             <h3 id="sonbahar-baslik" class="font-bold text-center text-red-600 mb-6 handwriting font-forte-alternative">Sonbahar</h3>
@@ -373,7 +374,8 @@
             </div>
             <p class="text-right text-red-600 font-semibold-bold mt-6 pr-4 font-forte-alternative poem-signature">- Nazım Hikmet</p>
         </section>
-        <!-- AŞK ZAMAN ÇİZELGESİ -->
+
+        <!-- ZAMAN ÇİZELGESİ -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Aşk Zaman Çizelgesi</h3>
             <p class="text-center text-black font-semibold italic mb-8">
@@ -400,7 +402,8 @@
                 </div>
             </div>
         </section>
-        <!-- BÜYÜK GÜNE GERİ SAYIM -->
+
+        <!-- GERİ SAYIM -->
         <section id="countdown-section" class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 font-forte-alternative">Büyük Güne Geri Sayım</h3>
             <div id="countdown-placeholder" class="my-4">
@@ -410,14 +413,16 @@
                 </p>
             </div>
         </section>
-        <!-- HAYAL DEFTERİMİZ -->
+
+        <!-- HAYAL DEFTERİ -->
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center fade-in-on-scroll">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Hayal Defterimiz</h3>
             <p class="text-center text-black font-semibold italic text-lg mt-4 mb-8">
                 Birlikte kurduğumuz hayaller, geleceğe dair ektiğimiz tohumlar...
             </p>
         </section>
-        <!-- BİZİM ŞARKIMIZ -->
+
+        <!-- ŞARKI -->
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center relative overflow-hidden">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Bizim Şarkımız</h3>
             <p class="text-center text-black font-semibold italic mt-2 mb-6">Tarkan - Beni Çok Sev</p>
@@ -447,6 +452,7 @@
                 </div>
             </div>
         </section>
+
         <!-- SEYAHATLER -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Seyahatlerimiz</h3>
@@ -477,6 +483,7 @@
                 </div>
             </div>
         </section>
+
         <!-- FOTOĞRAF GALERİSİ -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Fotoğraf Galerimiz</h3>
@@ -505,7 +512,8 @@
                 </div>
             </div>
         </section>
-        <!-- VİDEO GALERİSİ -->
+
+        <!-- VİDEO GALERİSİ – TÜM VİDEOLAR GERİ YÜKLENDİ -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Video Galerimiz</h3>
             <p class="text-center text-black font-semibold">Bazı duyguları kelimelerle anlatmak yetmez...</p>
@@ -517,6 +525,7 @@
             </div>
             <div id="video-gallery-wrapper" class="hidden mt-8">
                 <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-1" id="video-grid">
+                    <!-- 6. GÜLDÜR GÜLDÜR -->
                     <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="wcZOC94zAYw">
                         <img data-src="https://img.youtube.com/vi/wcZOC94zAYw/maxresdefault.jpg" alt="Güldür Güldür" class="w-full h-full object-cover gallery-thumbnail" loading="lazy">
                         <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
@@ -525,14 +534,55 @@
                         <span class="photo-number opacity-0 group-hover:opacity-100">6</span>
                         <div class="photo-note">Güldür Güldür</div>
                     </div>
-                    <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="ChFa2GJ4e4U"><img data-src="https://img.youtube.com/vi/ChFa2GJ4e4U/maxresdefault.jpg" alt="Video 1" class="w-full h-full object-cover gallery-thumbnail" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">5</span><div class="photo-note">Beşiktaş</div></div>
-                    <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="aim5II5vYpU"><img data-src="https://img.youtube.com/vi/aim5II5vYpU/maxresdefault.jpg" alt="Video 2" class="w-full h-full object-cover gallery-thumbnail" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">4</span><div class="photo-note">Üsküdar</div></div>
-                    <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="uY6ZrwkbLjc"><img data-src="https://img.youtube.com/vi/uY6ZrwkbLjc/maxresdefault.jpg" alt="Video 3" class="w-full h-full object-cover gallery-thumbnail" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">3</span><div class="photo-note">Lunapark</div></div>
-                    <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="19aKq8FtYP8"><img data-src="https://img.youtube.com/vi/19aKq8FtYP8/maxresdefault.jpg" alt="Video 4" class="w-full h-full object-cover gallery-thumbnail" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">2</span><div class="photo-note">Beşiktaş</div></div>
-                    <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="J466tfX1jzk"><img data-src="https://img.youtube.com/vi/J466tfX1jzk/maxresdefault.jpg" alt="Video 5" class="gallery-thumbnail w-full h-full object-cover" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">1</span><div class="photo-note">Ev</div></div>
+                    <!-- 5. BEŞİKTAŞ -->
+                    <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="ChFa2GJ4e4U">
+                        <img data-src="https://img.youtube.com/vi/ChFa2GJ4e4U/maxresdefault.jpg" alt="Beşiktaş" class="w-full h-full object-cover gallery-thumbnail" loading="lazy">
+                        <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
+                            <i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i>
+                        </div>
+                        <span class="photo-number opacity-0 group-hover:opacity-100">5</span>
+                        <div class="photo-note">Beşiktaş</div>
+                    </div>
+                    <!-- 4. ÜSKÜDAR -->
+                    <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="aim5II5vYpU">
+                        <img data-src="https://img.youtube.com/vi/aim5II5vYpU/maxresdefault.jpg" alt="Üsküdar" class="w-full h-full object-cover gallery-thumbnail" loading="lazy">
+                        <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
+                            <i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i>
+                        </div>
+                        <span class="photo-number opacity-0 group-hover:opacity-100">4</span>
+                        <div class="photo-note">Üsküdar</div>
+                    </div>
+                    <!-- 3. LUNAPARK -->
+                    <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="uY6ZrwkbLjc">
+                        <img data-src="https://img.youtube.com/vi/uY6ZrwkbLjc/maxresdefault.jpg" alt="Lunapark" class="w-full h-full object-cover gallery-thumbnail" loading="lazy">
+                        <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
+                            <i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i>
+                        </div>
+                        <span class="photo-number opacity-0 group-hover:opacity-100">3</span>
+                        <div class="photo-note">Lunapark</div>
+                    </div>
+                    <!-- 2. BEŞİKTAŞ -->
+                    <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="19aKq8FtYP8">
+                        <img data-src="https://img.youtube.com/vi/19aKq8FtYP8/maxresdefault.jpg" alt="Beşiktaş" class="w-full h-full object-cover gallery-thumbnail" loading="lazy">
+                        <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
+                            <i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i>
+                        </div>
+                        <span class="photo-number opacity-0 group-hover:opacity-100">2</span>
+                        <div class="photo-note">Beşiktaş</div>
+                    </div>
+                    <!-- 1. EV -->
+                    <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="J466tfX1jzk">
+                        <img data-src="https://img.youtube.com/vi/J466tfX1jzk/maxresdefault.jpg" alt="Ev" class="w-full h-full object-cover gallery-thumbnail" loading="lazy">
+                        <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
+                            <i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i>
+                        </div>
+                        <span class="photo-number opacity-0 group-hover:opacity-100">1</span>
+                        <div class="photo-note">Ev</div>
+                    </div>
                 </div>
             </div>
         </section>
+
         <!-- TEŞEKKÜR -->
         <section class="my-16 max-w-3xl mx-auto transparent-section">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Teşekkür</h3>
@@ -544,6 +594,7 @@
                 <p class="text-center text-black font-semibold">İyi günde, kötü günde her anımızda yanımızda olan değerli dostlarımıza...</p>
             </div>
         </section>
+
         <!-- DİLEK KUTUSU -->
         <section class="my-16 max-w-3xl mx-auto transparent-section">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Bizim İçin Bir Dilek Bırakın</h3>
@@ -568,10 +619,12 @@
             </form>
         </section>
     </main>
+
     <footer class="text-center py-8 mt-12">
         <p class="text-black flex items-center justify-center space-x-2"><span>Bu hikaye</span><i class="fas fa-infinity text-red-500"></i><span>kadar devam edecek...</span></p>
         <p class="text-sm text-black mt-2">Arzu & Ersin</p>
     </footer>
+
     <!-- MODALLAR -->
     <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
         <span id="close-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
@@ -583,10 +636,12 @@
         <span id="close-video-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
         <div class="aspect-video w-full max-w-4xl"><iframe id="modal-video-iframe" class="w-full h-full" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
     </div>
+
+    <!-- SCRIPT -->
     <script>
     (() => {
         'use strict';
-        const COUNTDOWN_DATE = ""; // Geri sayım kapalı
+        const COUNTDOWN_DATE = "";
         const leafSVG = `<svg viewBox="0 0 100 140" class="w-full h-full" preserveAspectRatio="xMidYMid meet"><path class="leaf-outer" d="M50 10 C30 15, 20 35, 18 55 C16 75, 25 95, 35 115 C45 130, 48 135, 50 138 C52 135, 55 130, 65 115 C75 95, 84 75, 82 55 C80 35, 70 15, 50 10 Z" /><path class="leaf-inner" d="M50 15 C33 20, 25 38, 23 55 C21 72, 28 88, 36 108 C44 125, 48 132, 50 135 C52 132, 56 125, 64 108 C72 88, 79 72, 77 55 C75 38, 67 20, 50 15 Z" /><path d="M50 15 Q50 70 48 135" stroke="#fff" stroke-width="2.5" opacity="0.5" fill="none"/><path d="M50 15 Q35 40 28 48 M50 55 Q32 65 25 75 M50 80 Q30 90 23 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/><path d="M50 15 Q65 40 72 48 M50 55 Q68 65 75 75 M50 80 Q70 90 77 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/><path d="M25 50 Q23 48 25 46 M30 70 Q28 68 30 66 M35 90 Q33 88 35 86 M75 50 Q77 48 75 46 M70 70 Q72 68 70 66 M65 90 Q67 88 65 86" stroke="#fff" stroke-width="1" opacity="0.3" fill="none"/></svg>`;
         const leafColors = ['autumn-1','autumn-2','autumn-3','autumn-4','autumn-5','autumn-6','autumn-7','autumn-8','autumn-9','autumn-10'];
         const leafContainer = document.getElementById('falling-leaves-container');
@@ -654,7 +709,7 @@
             if (e.key === 'ArrowLeft' && !document.getElementById('image-modal').classList.contains('hidden')) prevImg();
         });
         document.getElementById('wish-form')?.addEventListener('submit', ev => { const c = document.getElementById('contact').value.trim(); const err = document.getElementById('contact-error'); if (!c) { ev.preventDefault(); err.classList.remove('hidden'); } else err.classList.add('hidden'); });
-     
+    
         if (COUNTDOWN_DATE) {
             const target = new Date(COUNTDOWN_DATE).getTime();
             const timer = document.getElementById('countdown-timer'); const placeholder = document.getElementById('countdown-placeholder'); const header = document.getElementById('header-countdown');
