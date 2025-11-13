@@ -1,10 +1,28 @@
-
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arzu & Ersin | Bizim Hikayemiz</title>
+
+    <!-- TAILWIND CDN + SAFELIST (GITHUB'DA ÇALIŞMASI İÇİN) -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        content: ["./*.html"],
+        safelist: [
+          'text-7xl',
+          'md:text-8xl',
+          'text-4xl',
+          'md:text-5xl',
+          'handwriting'
+        ],
+        theme: { extend: {} },
+        plugins: []
+      }
+    </script>
+
+    <!-- FONTLAR -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700;800;900&family=Dancing+Script:wght@700&family=Cormorant+Garamond&display=swap" rel="stylesheet">
@@ -30,7 +48,7 @@
         @media (max-width: 768px) { #background-leaves-pattern { opacity: 0.9 !important; } }
         #falling-leaves-container { position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: -1; overflow: hidden; }
         h1, h2, h3 { font-family: 'Playfair Display', serif; }
-        .handwriting { font-family: 'Dancing Script', cursive; }
+        .handwriting { font-family: 'Dancing Script', cursive !important; }
         .font-forte-alternative { font-family: 'Dancing Script', cursive; }
         .font-poor-richard-alternative { font-family: 'Cormorant Garamond', serif; }
         @keyframes heartbeat { 0%,100%{transform:scale(1)} 50%{transform:scale(1.1)} }
@@ -307,7 +325,7 @@
                 <i class="fas fa-infinity text-[10rem] text-gray-200 opacity-70 blur-sm"></i>
             </div>
             <div class="relative z-10">
-                <!-- BÜYÜTÜLDÜ VE EL YAZISI YAPILDI -->
+                <!-- BÜYÜTÜLDÜ VE EL YAZISI YAPILDI + GITHUB'DA ÇALIŞIYOR -->
                 <h1 class="text-7xl md:text-8xl handwriting text-green-600 flex items-center justify-center space-x-4">
                     <span>Arzu</span><i class="fas fa-heart text-red-500 text-4xl md:text-5xl heartbeat"></i><span>Ersin</span>
                 </h1>
@@ -315,7 +333,7 @@
             </div>
         </div>
     </header>
-    <!-- GERİ KALAN TÜM KISIMLAR DEĞİŞMEDİ (AŞAĞIDA TAM KOD DEVAM EDİYOR) -->
+    <!-- GERİ KALAN TÜM KISIMLAR DEĞİŞMEDİ -->
     <section id="main-title-section" class="py-16 text-center">
         <h2 id="main-title" class="font-bold handwriting text-green-600">O Güzel Sonbahar</h2>
         <p class="text-xl md:text-2xl mt-2 text-red-600 font-bold">27 Eylül 2025</p>
@@ -568,7 +586,7 @@
     <script>
     (() => {
         'use strict';
-        const COUNTDOWN_DATE = "";  // Geri sayım kapalı
+        const COUNTDOWN_DATE = ""; // Geri sayım kapalı
         const leafSVG = `<svg viewBox="0 0 100 140" class="w-full h-full" preserveAspectRatio="xMidYMid meet"><path class="leaf-outer" d="M50 10 C30 15, 20 35, 18 55 C16 75, 25 95, 35 115 C45 130, 48 135, 50 138 C52 135, 55 130, 65 115 C75 95, 84 75, 82 55 C80 35, 70 15, 50 10 Z" /><path class="leaf-inner" d="M50 15 C33 20, 25 38, 23 55 C21 72, 28 88, 36 108 C44 125, 48 132, 50 135 C52 132, 56 125, 64 108 C72 88, 79 72, 77 55 C75 38, 67 20, 50 15 Z" /><path d="M50 15 Q50 70 48 135" stroke="#fff" stroke-width="2.5" opacity="0.5" fill="none"/><path d="M50 15 Q35 40 28 48 M50 55 Q32 65 25 75 M50 80 Q30 90 23 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/><path d="M50 15 Q65 40 72 48 M50 55 Q68 65 75 75 M50 80 Q70 90 77 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/><path d="M25 50 Q23 48 25 46 M30 70 Q28 68 30 66 M35 90 Q33 88 35 86 M75 50 Q77 48 75 46 M70 70 Q72 68 70 66 M65 90 Q67 88 65 86" stroke="#fff" stroke-width="1" opacity="0.3" fill="none"/></svg>`;
         const leafColors = ['autumn-1','autumn-2','autumn-3','autumn-4','autumn-5','autumn-6','autumn-7','autumn-8','autumn-9','autumn-10'];
         const leafContainer = document.getElementById('falling-leaves-container');
@@ -589,7 +607,7 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const img = entry.target;
-                    const src = img.datasource;
+                    const src = img.dataset.src;
                     if (src) {
                         img.src = src;
                         img.onload = () => img.classList.add('loaded');
@@ -630,13 +648,13 @@
         document.getElementById('image-modal').onclick = e => { if (e.target === e.currentTarget) closeImg(); };
         document.getElementById('close-video-modal').onclick = closeVideo;
         document.getElementById('video-modal').onclick = e => { if (e.target === e.currentTarget) closeVideo(); };
-        document.addEventListener('keydown', e => { 
+        document.addEventListener('keydown', e => {
             if (e.key === 'Escape') { closeImg(); closeVideo(); }
             if (e.key === 'ArrowRight' && !document.getElementById('image-modal').classList.contains('hidden')) nextImg();
             if (e.key === 'ArrowLeft' && !document.getElementById('image-modal').classList.contains('hidden')) prevImg();
         });
         document.getElementById('wish-form')?.addEventListener('submit', ev => { const c = document.getElementById('contact').value.trim(); const err = document.getElementById('contact-error'); if (!c) { ev.preventDefault(); err.classList.remove('hidden'); } else err.classList.add('hidden'); });
-      
+     
         if (COUNTDOWN_DATE) {
             const target = new Date(COUNTDOWN_DATE).getTime();
             const timer = document.getElementById('countdown-timer'); const placeholder = document.getElementById('countdown-placeholder'); const header = document.getElementById('header-countdown');
