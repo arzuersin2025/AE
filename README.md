@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -290,6 +290,38 @@
             border: 1px solid #d1d5db !important;
             backdrop-filter: blur(4px);
         }
+
+        /* YENİ: YAPRAK MESAJ MODALI */
+        #leaf-message {
+            display: none;
+            position: fixed;
+            inset: 0;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 60;
+            pointer-events: none;
+        }
+        #leaf-message.show {
+            display: flex;
+        }
+        .leaf-message-content {
+            animation: leafFloat 15s ease-in-out forwards;
+            opacity: 0;
+            transform: translateY(100px) scale(0.8);
+        }
+        @keyframes leafFloat {
+            0% { opacity: 0; transform: translateY(100px) scale(0.8) rotate(-10deg); }
+            15% { opacity: 1; transform: translateY(0) scale(1) rotate(0deg); }
+            85% { opacity: 1; transform: translateY(0) scale(1) rotate(0deg); }
+            100% { opacity: 0; transform: translateY(-100px) scale(0.8) rotate(10deg); }
+        }
+        .leaf-outline {
+            stroke-dasharray: 1200;
+            stroke-dashoffset: 1200;
+            animation: drawLeaf 2s ease-out forwards;
+        }
+        @keyframes drawLeaf { to { stroke-dashoffset: 0; } }
     </style>
 </head>
 <body class="text-black">
@@ -314,13 +346,11 @@
             </div>
         </div>
     </header>
-
     <section id="main-title-section" class="py-16 text-center">
         <h2 id="main-title" class="font-bold handwriting text-green-600">O Güzel Sonbahar</h2>
         <p class="text-xl md:text-2xl mt-2 text-red-600 font-bold">27 Eylül 2025</p>
         <p class="text-lg mt-1 text-red-600 italic font-bold">Zamanın durduğu an</p>
     </section>
-
     <main class="container mx-auto px-6 pb-12">
         <!-- İLK ADIM -->
         <section class="max-w-3xl mx-auto my-12 text-center">
@@ -338,7 +368,6 @@
             </p>
             <div class="text-4xl text-red-500 mt-8 heartbeat"><i class="fas fa-heart"></i></div>
         </section>
-
         <!-- ŞİİR -->
         <section class="my-16 max-w-3xl mx-auto text-center">
             <h3 id="sonbahar-baslik" class="font-bold text-center text-red-600 mb-6 handwriting font-forte-alternative text-3xl md:text-5xl">Sonbahar</h3>
@@ -356,7 +385,6 @@
             </div>
             <p class="text-right text-red-600 font-semibold-bold mt-6 pr-4 font-forte-alternative poem-signature">- Nazım Hikmet</p>
         </section>
-
         <!-- AŞK ZAMAN ÇİZELGESİ -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Aşk Zaman Çizelgesi</h3>
@@ -384,7 +412,6 @@
                 </div>
             </div>
         </section>
-
         <!-- BÜYÜK GÜNE GERİ SAYIM -->
         <section id="countdown-section" class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 font-forte-alternative">Büyük Güne Geri Sayım</h3>
@@ -401,7 +428,6 @@
                 <div><span id="seconds" class="block text-5xl font-bold text-green-600">00</span><span class="text-sm text-red-600">Saniye</span></div>
             </div>
         </section>
-
         <!-- HAYAL DEFTERİMİZ -->
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center fade-in-on-scroll">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Hayal Defterimiz</h3>
@@ -409,7 +435,6 @@
                 Birlikte kurduğumuz hayaller, geleceğe dair ektiğimiz tohumlar...
             </p>
         </section>
-
         <!-- BİZİM ŞARKIMIZ -->
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center relative overflow-hidden">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Bizim Şarkımız</h3>
@@ -440,7 +465,6 @@
                 </div>
             </div>
         </section>
-
         <!-- SEYAHATLER -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Seyahatlerimiz</h3>
@@ -471,7 +495,6 @@
                 </div>
             </div>
         </section>
-
         <!-- FOTOĞRAF GALERİSİ -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Fotoğraf Galerimiz</h3>
@@ -496,8 +519,7 @@
                 </div>
             </div>
         </section>
-
-        <!-- VİDEO GALERİSİ (SENİN ORİJİNAL + YENİ EKLENENLER) -->
+        <!-- VİDEO GALERİSİ -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Video Galerimiz</h3>
             <p class="text-center text-black font-semibold">Bazı duyguları kelimelerle anlatmak yetmez...</p>
@@ -509,7 +531,6 @@
             </div>
             <div id="video-gallery-wrapper" class="hidden mt-8">
                 <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-1" id="video-grid">
-                    <!-- SENİN ORİJİNAL VİDEON -->
                     <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="wcZOC94zAYw">
                         <img data-src="https://img.youtube.com/vi/wcZOC94zAYw/maxresdefault.jpg" alt="Güldür Güldür" class="w-full h-full object-cover gallery-thumbnail" loading="lazy">
                         <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
@@ -518,8 +539,6 @@
                         <span class="photo-number opacity-0 group-hover:opacity-100">6</span>
                         <div class="photo-note">Güldür Güldür</div>
                     </div>
-
-                    <!-- YENİ EKLENEN 5 VİDEO (ALTTA) -->
                     <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="ChFa2GJ4e4U"><img data-src="https://img.youtube.com/vi/ChFa2GJ4e4U/maxresdefault.jpg" alt="Video 1" class="w-full h-full object-cover gallery-thumbnail" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">5</span><div class="photo-note">Beşiktaş</div></div>
                     <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="aim5II5vYpU"><img data-src="https://img.youtube.com/vi/aim5II5vYpU/maxresdefault.jpg" alt="Video 2" class="w-full h-full object-cover gallery-thumbnail" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">4</span><div class="photo-note">Üsküdar</div></div>
                     <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="uY6ZrwkbLjc"><img data-src="https://img.youtube.com/vi/uY6ZrwkbLjc/maxresdefault.jpg" alt="Video 3" class="w-full h-full object-cover gallery-thumbnail" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">3</span><div class="photo-note">Lunapark</div></div>
@@ -528,7 +547,6 @@
                 </div>
             </div>
         </section>
-
         <!-- TEŞEKKÜR -->
         <section class="my-16 max-w-3xl mx-auto transparent-section">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Teşekkür</h3>
@@ -540,7 +558,6 @@
                 <p class="text-center text-black font-semibold">İyi günde, kötü günde her anımızda yanımızda olan değerli dostlarımıza...</p>
             </div>
         </section>
-
         <!-- DİLEK KUTUSU -->
         <section class="my-16 max-w-3xl mx-auto transparent-section">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Bizim İçin Bir Dilek Bırakın</h3>
@@ -564,15 +581,31 @@
                 </div>
             </form>
         </section>
-    </main>
 
+        <!-- YENİ: YAPRAK MESAJ MODALI -->
+        <div id="leaf-message" class="fixed inset-0 flex items-center justify-center z-50 pointer-events-none hidden">
+            <div class="leaf-message-content relative">
+                <svg viewBox="0 0 300 420" class="w-64 h-96 md:w-80 md:h-[28rem] drop-shadow-2xl">
+                    <path class="leaf-outline" d="M150 30 C90 45, 60 105, 54 165 C48 225, 75 285, 105 345 C135 390, 144 405, 150 411 C156 405, 165 390, 195 345 C225 285, 252 225, 246 165 C240 105, 210 45, 150 30 Z" 
+                          fill="none" stroke="#92400e" stroke-width="6" opacity="0.95"/>
+                    <path class="leaf-inner-line" d="M150 40 Q150 210 144 411" stroke="#92400e" stroke-width="3" opacity="0.7" fill="none"/>
+                    <path class="leaf-vein-left" d="M150 40 Q105 120 84 144 M150 165 Q102 195 75 225 M150 270 Q105 300 84 330" stroke="#92400e" stroke-width="2" opacity="0.5" fill="none"/>
+                    <path class="leaf-vein-right" d="M150 40 Q195 120 216 144 M150 165 Q198 195 225 225 M150 270 Q195 300 216 330" stroke="#92400e" stroke-width="2" opacity="0.5" fill="none"/>
+                </svg>
+                <div class="absolute inset-0 flex items-center justify-center px-8">
+                    <p class="text-[#92400e] font-bold text-lg md:text-2xl text-center leading-tight tracking-wide" style="font-family: 'Dancing Script', cursive;">
+                        Dileğiniz alınmıştır.<br>Teşekkür ederiz.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
     <footer class="text-center py-8 mt-12">
         <p class="text-black flex items-center justify-center space-x-2"><span>Bu hikaye</span><i class="fas fa-infinity text-red-500"></i><span>kadar devam edecek...</span></p>
         <p class="text-black mt-4 flex items-center justify-center gap-5 handwriting text-5xl md:text-6xl font-bold">
             Arzu <i class="fas fa-heart text-red-600 heartbeat text-3xl md:text-4xl"></i> Ersin
         </p>
     </footer>
-
     <!-- MODALLAR -->
     <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
         <span id="close-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
@@ -584,7 +617,6 @@
         <span id="close-video-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
         <div class="aspect-video w-full max-w-4xl"><iframe id="modal-video-iframe" class="w-full h-full" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
     </div>
-
     <script>
     (() => {
         'use strict';
@@ -655,7 +687,30 @@
             if (e.key === 'ArrowRight' && !document.getElementById('image-modal').classList.contains('hidden')) nextImg();
             if (e.key === 'ArrowLeft' && !document.getElementById('image-modal').classList.contains('hidden')) prevImg();
         });
-        document.getElementById('wish-form')?.addEventListener('submit', ev => { const c = document.getElementById('contact').value.trim(); const err = document.getElementById('contact-error'); if (!c) { ev.preventDefault(); err.classList.remove('hidden'); } else err.classList.add('hidden'); });
+
+        // YENİ: YAPRAK MESAJI İLE BİRLİKTE FORM GÖNDERİMİ
+        document.getElementById('wish-form')?.addEventListener('submit', function(ev) {
+            const contact = document.getElementById('contact').value.trim();
+            const error = document.getElementById('contact-error');
+            if (!contact) {
+                ev.preventDefault();
+                error.classList.remove('hidden');
+                return;
+            }
+            error.classList.add('hidden');
+
+            const leafMsg = document.getElementById('leaf-message');
+            const leafContent = leafMsg.querySelector('.leaf-message-content');
+
+            leafMsg.classList.remove('hidden');
+            leafContent.style.animation = 'none';
+            leafContent.offsetHeight; // Reflow
+            leafContent.style.animation = 'leafFloat 15s ease-in-out forwards';
+
+            setTimeout(() => {
+                leafMsg.classList.add('hidden');
+            }, 15000);
+        });
 
         if (COUNTDOWN_DATE) {
             const target = new Date(COUNTDOWN_DATE).getTime();
