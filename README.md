@@ -27,7 +27,6 @@
         }
         @media (max-width: 768px) { #background-leaves-pattern { opacity: 0.9 !important; } }
         #falling-leaves-container { position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: -1; overflow: hidden; }
-
         /* SOL ÜSTTE DANSEDEN YAPRAK FOTOĞRAFI (YENİ EKLENEN TEK ŞEY) */
         #top-left-leaf {
             position: fixed;
@@ -52,7 +51,6 @@
         @media (max-width: 768px) {
             #top-left-leaf { width: 56px; height: 56px; top: 8px; left: 8px; }
         }
-
         h1, h2, h3 { font-family: 'Playfair Display', serif; }
         .handwriting { font-family: 'Dancing Script', cursive; }
         .font-forte-alternative { font-family: 'Dancing Script', cursive; }
@@ -143,47 +141,13 @@
         .transparent-section { background: transparent !important; backdrop-filter: none !important; box-shadow: none !important; border-radius: 0 !important; padding: 2rem 1rem !important; }
         .song-container { position: relative; width: 16rem; height: 16rem; margin: 0 auto; }
         @media (min-width: 768px) { .song-container { width: 20rem; height: 20rem; } }
-        .wish-form-input { background: rgba(255, 255, 255, 0.85) !important; border: 1px solid #d1d5db !important; backdrop-filter: blur(4px); }
-        /* YAPRAK MESAJ MODALI */
-        #leaf-message {
-            position: fixed;
-            inset: 0;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 60;
-            pointer-events: none;
-            display: none;
-        }
-        #leaf-message.show {
-            display: flex;
-        }
-        .leaf-message-content {
-            animation: leafFloat 15s ease-in-out forwards;
-            opacity: 0;
-            transform: translateY(100px) scale(0.8);
-        }
-        @keyframes leafFloat {
-            0% { opacity: 0; transform: translateY(100px) scale(0.8) rotate(-10deg); }
-            15% { opacity: 1; transform: translateY(0) scale(1) rotate(0deg); }
-            85% { opacity: 1; transform: translateY(0) scale(1) rotate(0deg); }
-            100% { opacity: 0; transform: translateY(-100px) scale(0.8) rotate(10deg); }
-        }
-        .leaf-outline {
-            stroke-dasharray: 1200;
-            stroke-dashoffset: 1200;
-            animation: drawLeaf 2s ease-out forwards;
-        }
-        @keyframes drawLeaf { to { stroke-dashoffset: 0; } }
     </style>
 </head>
 <body class="text-black">
-
     <!-- YENİ: SOL ÜST YAPRAK (tıklayınca geri sayıma gidiyor) -->
     <a href="#countdown-section">
         <div id="top-left-leaf" title="Büyük Güne Geri Sayım ❤️"></div>
     </a>
-
     <div id="background-leaves-pattern"></div>
     <div id="falling-leaves-container"></div>
     <header class="py-6 text-center bg-white/70 backdrop-blur-lg sticky top-0 z-20 overflow-hidden">
@@ -390,51 +354,6 @@
                 <p class="text-center text-black font-semibold">İyi günde, kötü günde her anımızda yanımızda olan değerli dostlarımıza...</p>
             </div>
         </section>
-        <!-- DİLEK KUTUSU -->
-        <section class="my-16 max-w-3xl mx-auto transparent-section">
-            <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Bizim İçin Bir Dilek Bırakın</h3>
-            <form id="wish-form" onsubmit="return submitWishForm(event)" class="space-y-4">
-                <input type="hidden" name="_subject" value="Arzu & Ersin Web Sitenizden Yeni Dilek!">
-                <input type="hidden" name="_honey" style="display:none">
-                <input type="hidden" name="_captcha" value="false">
-                <div>
-                    <label for="name" class="block text-sm font-medium text-red-600">Adınız</label>
-                    <input type="text" name="name" id="name" class="mt-1 block w-full px-3 py-2 wish-form-input rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="Adınız ve Soyadınız" required>
-                </div>
-                <div>
-                    <label for="message" class="block text-sm font-medium text-red-600">Dileğiniz</label>
-                    <textarea id="message" name="message" rows="4" class="mt-1 block w-full px-3 py-2 wish-form-input rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="Bizim için güzel bir dilek..." required></textarea>
-                </div>
-                <div class="pt-4 border-t border-slate-200">
-                    <p class="text-sm text-black mb-2 text-center">Size geri dönüş yapabilmemiz için lütfen e-posta ya da telefon bırakın.</p>
-                    <label for="contact" class="block text-sm font-medium text-red-600">E-posta ya da Telefon</label>
-                    <input type="text" name="Iletisim" id="contact" class="mt-1 block w-full px-3 py-2 wish-form-input rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="ornek@mail.com veya 05XX XXX XX XX">
-                    <p id="contact-error" class="text-red-500 text-sm mt-2 text-center hidden">Lütfen e-posta veya telefon girin.</p>
-                </div>
-                <div class="text-center pt-4">
-                    <button type="submit" class="inline-flex justify-center items-center py-2 px-6 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors">
-                        <i class="fas fa-heart mr-2 heartbeat"></i> Dileğini Gönder
-                    </button>
-                </div>
-            </form>
-        </section>
-        <!-- YAPRAK MESAJ MODALI -->
-        <div id="leaf-message" class="fixed inset-0 flex items-center justify-center z-50 pointer-events-none hidden">
-            <div class="leaf-message-content relative">
-                <svg viewBox="0 0 300 420" class="w-64 h-96 md:w-80 md:h-[28rem] drop-shadow-2xl">
-                    <path class="leaf-outline" d="M150 30 C90 45, 60 105, 54 165 C48 225, 75 285, 105 345 C135 390, 144 405, 150 411 C156 405, 165 390, 195 345 C225 285, 252 225, 246 165 C240 105, 210 45, 150 30 Z"
-                          fill="none" stroke="#92400e" stroke-width="6" opacity="0.95"/>
-                    <path d="M150 40 Q150 210 144 411" stroke="#92400e" stroke-width="3" opacity="0.7" fill="none"/>
-                    <path d="M150 40 Q105 120 84 144 M150 165 Q102 195 75 225 M150 270 Q105 300 84 330" stroke="#92400e" stroke-width="2" opacity="0.5" fill="none"/>
-                    <path d="M150 40 Q195 120 216 144 M150 165 Q198 195 225 225 M150 270 Q195 300 216 330" stroke="#92400e" stroke-width="2" opacity="0.5" fill="none"/>
-                </svg>
-                <div class="absolute inset-0 flex items-center justify-center px-8">
-                    <p class="text-[#92400e] font-bold text-lg md:text-2xl text-center leading-tight tracking-wide" style="font-family: 'Dancing Script', cursive;">
-                        Dileğiniz alınmıştır.<br>Teşekkür ederiz.
-                    </p>
-                </div>
-            </div>
-        </div>
     </main>
     <footer class="text-center py-8 mt-12">
         <p class="text-black flex items-center justify-center space-x-2"><span>Bu hikaye</span><i class="fas fa-infinity text-red-500"></i><span>kadar devam edecek...</span></p>
@@ -526,36 +445,6 @@
             if (e.key === 'ArrowRight' && document.getElementById('image-modal').classList.contains('flex')) nextImg();
             if (e.key === 'ArrowLeft' && document.getElementById('image-modal').classList.contains('flex')) prevImg();
         });
-        window.submitWishForm = function(e) {
-            e.preventDefault();
-            const contact = document.getElementById('contact').value.trim();
-            const error = document.getElementById('contact-error');
-            if (!contact) {
-                error.classList.remove('hidden');
-                return false;
-            }
-            error.classList.add('hidden');
-            const form = document.getElementById('wish-form');
-            const formData = new FormData(form);
-            fetch('https://formsubmit.co/arzuersin2025@gmail.com', {
-                method: 'POST',
-                body: formData
-            })
-            .then(res => {
-                if (res.ok) {
-                    const leafMsg = document.getElementById('leaf-message');
-                    const leafContent = leafMsg.querySelector('.leaf-message-content');
-                    leafMsg.classList.add('show');
-                    leafContent.style.animation = 'none';
-                    leafContent.offsetHeight;
-                    leafContent.style.animation = 'leafFloat 15s ease-in-out forwards';
-                    setTimeout(() => leafMsg.classList.remove('show'), 15000);
-                    form.reset();
-                } else throw new Error();
-            })
-            .catch(() => alert('Bir hata oluştu, lütfen tekrar deneyin.'));
-            return false;
-        };
         if (COUNTDOWN_DATE) {
             const target = new Date(COUNTDOWN_DATE).getTime();
             const timer = document.getElementById('countdown-timer');
