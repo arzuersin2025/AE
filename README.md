@@ -338,7 +338,7 @@
                     <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="ChFa2GJ4e4U"><img data-src="https://img.youtube.com/vi/ChFa2GJ4e4U/maxresdefault.jpg" alt="Video 1" class="w-full h-full object-cover gallery-thumbnail" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">5</span><div class="photo-note">Beşiktaş</div></div>
                     <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="aim5II5vYpU"><img data-src="https://img.youtube.com/vi/aim5II5vYpU/maxresdefault.jpg" alt="Video 2" class="w-full h-full object-cover gallery-thumbnail" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">4</span><div class="photo-note">Üsküdar</div></div>
                     <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="uY6ZrwkbLjc"><img data-src="https://img.youtube.com/vi/uY6ZrwkbLjc/maxresdefault.jpg" alt="Video 3" class="w-full h-full object-cover gallery-thumbnail" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">3</span><div class="photo-note">Lunapark</div></div>
-                    <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="19aKq8FtYP8"><img data-src="https://img.youtube.com/vi/19aKq8FtYP8/maxresdefault.jpg" alt="Video 4" class="w-full h-full object-cover gallery and gallery-thumbnail" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">2</span><div class="photo-note">Beşiktaş</div></div>
+                    <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="19aKq8FtYP8"><img data-src="https://img.youtube.com/vi/19aKq8FtYP8/maxresdefault.jpg" alt="Video 4" class="gallery and gallery-thumbnail" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">2</span><div class="photo-note">Beşiktaş</div></div>
                     <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="J466tfX1jzk"><img data-src="https://img.youtube.com/vi/J466tfX1jzk/maxresdefault.jpg" alt="Video 5" class="gallery-thumbnail w-full h-full object-cover" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">1</span><div class="photo-note">Ev</div></div>
                 </div>
             </div>
@@ -352,6 +352,21 @@
             <div class="mt-8 space-y-4">
                 <p class="text-center text-black font-semibold">Bizi biz yapan, sevgileriyle her zaman en büyük destekçimiz olan canımız ailelerimize...</p>
                 <p class="text-center text-black font-semibold">İyi günde, kötü günde her anımızda yanımızda olan değerli dostlarımıza...</p>
+            </div>
+
+            <!-- YENİ: BİZE ULAŞIN (ANİMASYONLU) -->
+            <div class="mt-16 text-center fade-in-on-scroll">
+                <p class="text-lg font-medium text-black mb-6">Bize her zaman ulaşabilirsiniz</p>
+               ántico: <div class="inline-flex items-center gap-5 group cursor-pointer" onclick="window.location.href='mailto:arzuersin2025@gmail.com'">
+                    <div class="relative">
+                        <i class="fas fa-envelope text-5xl text-red-600 group-hover:text-red-700 transition-all duration-500 transform group-hover:scale-125"></i>
+                        <i class="fas fa-heart absolute -top-2 -right-2 text-red-500 text-2xl opacity-0 group-hover:opacity-100 animate-ping"></i>
+                    </div>
+                    <a href="mailto:arzuersin2025@gmail.com" class="text-2xl md:text-3xl font-bold text-green-700 hover:text-green-800 transition-all duration-300 transform group-hover:translate-x-3">
+                        arzuersin2025@gmail.com
+                    </a>
+                </div>
+                <p class="mt-5 text-sm text-gray-700 italic">Tıklayın ve bize yazın, kalplerimiz her zaman açık ❤️</p>
             </div>
         </section>
     </main>
