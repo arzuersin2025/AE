@@ -27,6 +27,32 @@
         }
         @media (max-width: 768px) { #background-leaves-pattern { opacity: 0.9 !important; } }
         #falling-leaves-container { position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: -1; overflow: hidden; }
+
+        /* SOL ÜSTTE DANSEDEN YAPRAK FOTOĞRAFI (YENİ EKLENEN TEK ŞEY) */
+        #top-left-leaf {
+            position: fixed;
+            top: 12px;
+            left: 12px;
+            width: 68px;
+            height: 68px;
+            background: url('https://i.imgur.com/4u0Z2kw.png') center/contain no-repeat;
+            background-size: contain;
+            z-index: 99999;
+            cursor: pointer;
+            transition: transform 0.4s ease;
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+            border-radius: 16px;
+            animation: gentleFloat 7s ease-in-out infinite;
+        }
+        #top-left-leaf:hover { transform: scale(1.35) rotate(12deg); }
+        @keyframes gentleFloat {
+            0%,100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(8deg); }
+        }
+        @media (max-width: 768px) {
+            #top-left-leaf { width: 56px; height: 56px; top: 8px; left: 8px; }
+        }
+
         h1, h2, h3 { font-family: 'Playfair Display', serif; }
         .handwriting { font-family: 'Dancing Script', cursive; }
         .font-forte-alternative { font-family: 'Dancing Script', cursive; }
@@ -118,7 +144,6 @@
         .song-container { position: relative; width: 16rem; height: 16rem; margin: 0 auto; }
         @media (min-width: 768px) { .song-container { width: 20rem; height: 20rem; } }
         .wish-form-input { background: rgba(255, 255, 255, 0.85) !important; border: 1px solid #d1d5db !important; backdrop-filter: blur(4px); }
-
         /* YAPRAK MESAJ MODALI */
         #leaf-message {
             position: fixed;
@@ -153,9 +178,14 @@
     </style>
 </head>
 <body class="text-black">
+
+    <!-- YENİ: SOL ÜST YAPRAK (tıklayınca geri sayıma gidiyor) -->
+    <a href="#countdown-section">
+        <div id="top-left-leaf" title="Büyük Güne Geri Sayım ❤️"></div>
+    </a>
+
     <div id="background-leaves-pattern"></div>
     <div id="falling-leaves-container"></div>
-
     <header class="py-6 text-center bg-white/70 backdrop-blur-lg sticky top-0 z-20 overflow-hidden">
         <div class="relative">
             <a href="#countdown-section" title="Geri Sayım" class="absolute top-1/2 -translate-y-1/2 right-4 text-green-600 hover:text-green-800 transition-colors z-20 text-center">
@@ -175,13 +205,11 @@
             </div>
         </div>
     </header>
-
     <section id="main-title-section" class="py-16 text-center">
         <h2 id="main-title" class="font-bold handwriting text-green-600">O Güzel Sonbahar</h2>
         <p class="text-xl md:text-2xl mt-2 text-red-600 font-bold">27 Eylül 2025</p>
         <p class="text-lg mt-1 text-red-600 italic font-bold">Zamanın durduğu an</p>
     </section>
-
     <main class="container mx-auto px-6 pb-12">
         <!-- İLK ADIM -->
         <section class="max-w-3xl mx-auto my-12 text-center">
@@ -199,7 +227,6 @@
             </p>
             <div class="text-4xl text-red-500 mt-8 heartbeat"><i class="fas fa-heart"></i></div>
         </section>
-
         <!-- ŞİİR -->
         <section class="my-16 max-w-3xl mx-auto text-center">
             <h3 id="sonbahar-baslik" class="font-bold text-center text-red-600 mb-6 handwriting font-forte-alternative text-3xl md:text-5xl">Sonbahar</h3>
@@ -217,7 +244,6 @@
             </div>
             <p class="text-right text-red-600 font-semibold-bold mt-6 pr-4 font-forte-alternative poem-signature">- Nazım Hikmet</p>
         </section>
-
         <!-- AŞK ZAMAN ÇİZELGESİ -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Aşk Zaman Çizelgesi</h3>
@@ -245,7 +271,6 @@
                 </div>
             </div>
         </section>
-
         <!-- BÜYÜK GÜNE GERİ SAYIM -->
         <section id="countdown-section" class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 font-forte-alternative">Büyük Güne Geri Sayım</h3>
@@ -262,7 +287,6 @@
                 <div><span id="seconds" class="block text-5xl font-bold text-green-600">00</span><span class="text-sm text-red-600">Saniye</span></div>
             </div>
         </section>
-
         <!-- HAYAL DEFTERİMİZ -->
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center fade-in-on-scroll">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Hayal Defterimiz</h3>
@@ -270,7 +294,6 @@
                 Birlikte kurduğumuz hayaller, geleceğe dair ektiğimiz tohumlar...
             </p>
         </section>
-
         <!-- BİZİM ŞARKIMIZ -->
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center relative overflow-hidden">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Bizim Şarkımız</h3>
@@ -293,7 +316,6 @@
                 </div>
             </div>
         </section>
-
         <!-- SEYAHATLER -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Seyahatlerimiz</h3>
@@ -312,7 +334,6 @@
                 </div>
             </div>
         </section>
-
         <!-- FOTOĞRAF GALERİSİ -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Fotoğraf Galerimiz</h3>
@@ -337,7 +358,6 @@
                 </div>
             </div>
         </section>
-
         <!-- VİDEO GALERİSİ -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Video Galerimiz</h3>
@@ -354,12 +374,11 @@
                     <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="ChFa2GJ4e4U"><img data-src="https://img.youtube.com/vi/ChFa2GJ4e4U/maxresdefault.jpg" alt="Video 1" class="w-full h-full object-cover gallery-thumbnail" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">5</span><div class="photo-note">Beşiktaş</div></div>
                     <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="aim5II5vYpU"><img data-src="https://img.youtube.com/vi/aim5II5vYpU/maxresdefault.jpg" alt="Video 2" class="w-full h-full object-cover gallery-thumbnail" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">4</span><div class="photo-note">Üsküdar</div></div>
                     <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="uY6ZrwkbLjc"><img data-src="https://img.youtube.com/vi/uY6ZrwkbLjc/maxresdefault.jpg" alt="Video 3" class="w-full h-full object-cover gallery-thumbnail" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">3</span><div class="photo-note">Lunapark</div></div>
-                    <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="19aKq8FtYP8"><img data-src="https://img.youtube.com/vi/19aKq8FtYP8/maxresdefault.jpg" alt="Video 4" class="w-full h-full object-cover gallery-thumbnail" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">2</span><div class="photo-note">Beşiktaş</div></div>
+                    <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="19aKq8FtYP8"><img data-src="https://img.youtube.com/vi/19aKq8FtYP8/maxresdefault.jpg" alt="Video 4" class="w-full h-full object-cover gallery and gallery-thumbnail" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">2</span><div class="photo-note">Beşiktaş</div></div>
                     <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="J466tfX1jzk"><img data-src="https://img.youtube.com/vi/J466tfX1jzk/maxresdefault.jpg" alt="Video 5" class="gallery-thumbnail w-full h-full object-cover" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">1</span><div class="photo-note">Ev</div></div>
                 </div>
             </div>
         </section>
-
         <!-- TEŞEKKÜR -->
         <section class="my-16 max-w-3xl mx-auto transparent-section">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Teşekkür</h3>
@@ -371,7 +390,6 @@
                 <p class="text-center text-black font-semibold">İyi günde, kötü günde her anımızda yanımızda olan değerli dostlarımıza...</p>
             </div>
         </section>
-
         <!-- DİLEK KUTUSU -->
         <section class="my-16 max-w-3xl mx-auto transparent-section">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Bizim İçin Bir Dilek Bırakın</h3>
@@ -379,8 +397,6 @@
                 <input type="hidden" name="_subject" value="Arzu & Ersin Web Sitenizden Yeni Dilek!">
                 <input type="hidden" name="_honey" style="display:none">
                 <input type="hidden" name="_captcha" value="false">
-                <!-- _next kaldırıldı, sayfada kalacağız -->
-
                 <div>
                     <label for="name" class="block text-sm font-medium text-red-600">Adınız</label>
                     <input type="text" name="name" id="name" class="mt-1 block w-full px-3 py-2 wish-form-input rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm" placeholder="Adınız ve Soyadınız" required>
@@ -402,7 +418,6 @@
                 </div>
             </form>
         </section>
-
         <!-- YAPRAK MESAJ MODALI -->
         <div id="leaf-message" class="fixed inset-0 flex items-center justify-center z-50 pointer-events-none hidden">
             <div class="leaf-message-content relative">
@@ -421,14 +436,12 @@
             </div>
         </div>
     </main>
-
     <footer class="text-center py-8 mt-12">
-        <p class="text-black flex items-center justify-center space-x-2"><span>Bu hikaye</span><i class="fas fa-infinity text-red-500"></i><span>kadar devam edecek...</span></i></p>
+        <p class="text-black flex items-center justify-center space-x-2"><span>Bu hikaye</span><i class="fas fa-infinity text-red-500"></i><span>kadar devam edecek...</span></p>
         <p class="text-black mt-4 flex items-center justify-center gap-5 handwriting text-5xl md:text-6xl font-bold">
             Arzu <i class="fas fa-heart text-red-600 heartbeat text-3xl md:text-4xl"></i> Ersin
         </p>
     </footer>
-
     <!-- MODALLAR -->
     <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
         <span id="close-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
@@ -440,7 +453,6 @@
         <span id="close-video-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
         <div class="aspect-video w-full max-w-4xl"><iframe id="modal-video-iframe" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
     </div>
-
     <script>
     (() => {
         'use strict';
@@ -461,8 +473,6 @@
             leaf.innerHTML = leafSVG;
             leafContainer.appendChild(leaf);
         }
-
-        // Lazy load images
         const lazyLoadObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -476,8 +486,6 @@
             });
         }, { rootMargin: '50px' });
         document.querySelectorAll('img[data-src]').forEach(img => lazyLoadObserver.observe(img));
-
-        // Gallery & Video Modal
         let imgs = [], curIdx = 0, videoIds = [], curVideoIdx = 0;
         const refreshImgs = () => { imgs = Array.from(document.querySelectorAll('#gallery-grid img')).map(i => i.src).filter(s => s && !s.includes('svg')); };
         const refreshVideos = () => { videoIds = Array.from(document.querySelectorAll('#video-grid .photo-container')).map(el => el.dataset.youtubeId); };
@@ -487,7 +495,6 @@
         const prevImg = () => { curIdx = (curIdx - 1 + imgs.length) % imgs.length; document.getElementById('modal-image').src = imgs[curIdx]; };
         const openVideo = idx => { refreshVideos(); curVideoIdx = idx; document.getElementById('modal-video-iframe').src = `https://www.youtube.com/embed/${videoIds[curVideoIdx]}?autoplay=1`; document.getElementById('video-modal').classList.replace('hidden','flex'); };
         const closeVideo = () => { document.getElementById('video-modal').classList.replace('flex','hidden'); document.getElementById('modal-video-iframe').src = ''; };
-
         document.getElementById('toggle-gallery-btn').onclick = () => {
             const w = document.getElementById('gallery-wrapper');
             w.classList.toggle('hidden');
@@ -508,7 +515,6 @@
             document.getElementById('video-gallery-toggle-text').textContent = w.classList.contains('hidden') ? 'Video Galerisini Gör' : 'Video Galerisini Gizle';
             if (!w.classList.contains('hidden')) setTimeout(() => document.querySelectorAll('#video-grid .photo-container').forEach((c,i) => c.onclick = () => openVideo(i)), 100);
         };
-
         document.getElementById('close-modal').onclick = closeImg;
         document.getElementById('prev-photo').onclick = e => { e.stopPropagation(); prevImg(); };
         document.getElementById('next-photo').onclick = e => { e.stopPropagation(); nextImg(); };
@@ -520,8 +526,6 @@
             if (e.key === 'ArrowRight' && document.getElementById('image-modal').classList.contains('flex')) nextImg();
             if (e.key === 'ArrowLeft' && document.getElementById('image-modal').classList.contains('flex')) prevImg();
         });
-
-        // DİLEK FORMUNU AJAX İLE GÖNDER (sayfada kalır, teşekkür sayfası açılmaz)
         window.submitWishForm = function(e) {
             e.preventDefault();
             const contact = document.getElementById('contact').value.trim();
@@ -531,10 +535,8 @@
                 return false;
             }
             error.classList.add('hidden');
-
             const form = document.getElementById('wish-form');
             const formData = new FormData(form);
-
             fetch('https://formsubmit.co/arzuersin2025@gmail.com', {
                 method: 'POST',
                 body: formData
@@ -552,11 +554,8 @@
                 } else throw new Error();
             })
             .catch(() => alert('Bir hata oluştu, lütfen tekrar deneyin.'));
-
             return false;
         };
-
-        // Countdown (eğer tarih girersen aktif olur)
         if (COUNTDOWN_DATE) {
             const target = new Date(COUNTDOWN_DATE).getTime();
             const timer = document.getElementById('countdown-timer');
@@ -584,21 +583,16 @@
             update();
             const intv = setInterval(update, 1000);
         }
-
-        // Animasyonlar
         const timelineObserver = new IntersectionObserver((entries) => {
             entries.forEach((e,i) => {
                 if (e.isIntersecting) setTimeout(() => e.target.classList.add('animate'), i * 300);
             });
         }, { threshold: 0.3 });
         document.querySelectorAll('.timeline-item').forEach(item => timelineObserver.observe(item));
-
         const obs = new IntersectionObserver(entries => {
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
         }, { threshold: 0.3 });
         document.querySelectorAll('.fade-in-on-scroll, .travel-folder').forEach(el => obs.observe(el));
-
-        // YouTube Player
         let player, isPlaying = false, userInteracted = false;
         const playBtn = document.getElementById('play-song-btn');
         const playerElement = document.getElementById('youtube-player');
@@ -606,7 +600,6 @@
         const tag = document.createElement('script');
         tag.src = 'https://www.youtube.com/iframe_api';
         document.getElementsByTagName('script')[0].parentNode.insertBefore(tag, document.getElementsByTagName('script')[0]);
-
         window.onYouTubeIframeAPIReady = function() {
             player = new YT.Player('youtube-player', {
                 events: {
@@ -633,7 +626,6 @@
                 }
             });
         };
-
         playBtn.onclick = e => {
             e.stopPropagation();
             if (!player) return;
