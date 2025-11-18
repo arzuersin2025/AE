@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -343,7 +343,7 @@
                 </div>
             </div>
         </section>
-        <!-- TEŞEKKÜR + KÜÇÜK MAİL (tam istediğin gibi) -->
+        <!-- TEŞEKKÜR + YENİ ROMANTİK MAİL YAZISI -->
         <section class="my-16 max-w-3xl mx-auto transparent-section">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Teşekkür</h3>
             <p class="text-center text-black text-lg italic mt-4 font-bold">
@@ -354,12 +354,17 @@
                 <p class="text-center text-black font-semibold">İyi günde, kötü günde her anımızda yanımızda olan değerli dostlarımıza...</p>
             </div>
 
-            <!-- KÜÇÜK VE ORTALI MAİL -->
+            <!-- GÜNCELLENMİŞ ROMANTİK YAZI + MAİL -->
             <div class="mt-16 text-center fade-in-on-scroll">
-                <p class="text-base font-medium text-gray-800 mb-4">Bize her zaman ulaşabilirsiniz</p>
-                <div class="inline-flex items-center gap-3 bg-white/90 px-5 py-3 rounded-full shadow-md border border-pink-100 group">
-                    <i class="fas fa-envelope text-red-600 text-2xl group-hover:text-red-700 transition-all duration-500 transform group-hover:scale-125"></i>
-                    <span class="font-bold text-green-700 text-base md:text-lg select-all group-hover:text-green-800 transition-colors">
+                <p class="text-xl font-medium text-gray-800 mb-6 leading-relaxed">
+                    Kalplerimiz her daim açık,<br>bir selam, bir tebrik ya da güzel bir dilek için<br>bize yazmaktan çekinmeyin ❤️
+                </p>
+                <div class="inline-flex items-center gap-5 bg-white/90 px-8 py-5 rounded-full shadow-xl border-2 border-pink-200 group cursor-pointer">
+                    <div class="relative">
+                        <i class="fas fa-envelope text-5xl text-red-600 group-hover:text-red-700 transition-all duration-500 transform group-hover:scale-125"></i>
+                        <i class="fas fa-heart absolute -top-3 -right-3 text-red-500 text-2xl opacity-0 group-hover:opacity-100 animate-ping"></i>
+                    </div>
+                    <span class="font-bold text-green-700 text-2xl md:text-3xl select-all group-hover:text-green-800 transition-colors">
                         arzuersin2025@gmail.com
                     </span>
                 </div>
