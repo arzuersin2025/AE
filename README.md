@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -308,9 +308,15 @@
             </div>
             <div id="gallery-wrapper" class="hidden mt-8">
                 <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-1" id="gallery-grid">
-                    <!-- galerideki fotoğraflar aynı kaldı -->
                     <div class="photo-container group cursor-pointer"><img data-src="https://i.imgur.com/cDWfV6z.jpg" alt="Güldür Güldür" class="gallery-thumbnail w-full h-full object-cover" loading="lazy"><span class="photo-number opacity-0 group-hover:opacity-100">9</span><div class="photo-note">Güldür Güldür</div></div>
-                    <!-- ... diğer fotoğraflar tamamen aynı ... -->
+                    <div class="photo-container group cursor-pointer"><img data-src="https://i.imgur.com/jlmfKQ6.jpg" alt="Nev Mekan" class="gallery-thumbnail w-full h-full object-cover" loading="lazy"><span class="photo-number opacity-0 group-hover:opacity-100">8</span><div class="photo-note">Nev Mekan</div></div>
+                    <div class="photo-container group cursor-pointer"><img data-src="https://i.imgur.com/EI3PjiL.jpg" alt="Nev Mekan" class="gallery-thumbnail w-full h-full object-cover" loading="lazy"><span class="photo-number opacity-0 group-hover:opacity-100">7</span><div class="photo-note">Nev Mekan</div></div>
+                    <div class="photo-container group cursor-pointer"><img data-src="https://i.imgur.com/wf9Xhs9.jpg" alt="Anı 1" class="gallery-thumbnail w-full h-full object-cover" loading="lazy"><span class="photo-number opacity-0 group-hover:opacity-100">6</span><div class="photo-note">Lunapark Anısı</div></div>
+                    <div class="photo-container group cursor-pointer"><img data-src="https://i.imgur.com/G26zsUc.jpg" alt="Anı 2" class="gallery-thumbnail w-full h-full object-cover" loading="lazy"><span class="photo-number opacity-0 group-hover:opacity-100">5</span><div class="photo-note">Beşiktaş</div></div>
+                    <div class="photo-container group cursor-pointer"><img data-src="https://i.imgur.com/PR2hWYz.jpg" alt="Anı 3" class="gallery-thumbnail w-full h-full object-cover" loading="lazy"><span class="photo-number opacity-0 group-hover:opacity-100">4</span><div class="photo-note">Çamlıca Kahvaltımız</div></div>
+                    <div class="photo-container group cursor-pointer"><img data-src="https://i.imgur.com/40oguJF.jpg" alt="Anı 4" class="gallery-thumbnail w-full h-full object-cover" loading="lazy"><span class="photo-number opacity-0 group-hover:opacity-100">3</span><div class="photo-note">Çamlıca Kahvaltımız</div></div>
+                    <div class="photo-container group cursor-pointer"><img data-src="https://i.imgur.com/KZpZnaa.jpg" alt="Anı 5" class="gallery-thumbnail w-full h-full object-cover" loading="lazy"><span class="photo-number opacity-0 group-hover:opacity-100">2</span><div class="photo-note">Dünya Güzelim</div></div>
+                    <div class="photo-container group cursor-pointer no-note"><img data-src="https://i.imgur.com/WnEibNN.jpg" alt="Anı 6" class="gallery-thumbnail w-full h-full object-cover" loading="lazy"><span class="photo-number opacity-0 group-hover:opacity-100">1</span></div>
                 </div>
             </div>
         </section>
@@ -326,11 +332,16 @@
             </div>
             <div id="video-gallery-wrapper" class="hidden mt-8">
                 <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-1" id="video-grid">
-                    <!-- videolar aynı kaldı -->
+                    <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="wcZOC94zAYw"><img data-src="https://img.youtube.com/vi/wcZOC94zAYw/maxresdefault.jpg" alt="Güldür Güldür" class="w-full h-full object-cover gallery-thumbnail" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">6</span><div class="photo-note">Güldür Güldür</div></div>
+                    <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="ChFa2GJ4e4U"><img data-src="https://img.youtube.com/vi/ChFa2GJ4e4U/maxresdefault.jpg" alt="Video 1" class="w-full h-full object-cover gallery-thumbnail" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">5</span><div class="photo-note">Beşiktaş</div></div>
+                    <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="aim5II5vYpU"><img data-src="https://img.youtube.com/vi/aim5II5vYpU/maxresdefault.jpg" alt="Video 2" class="w-full h-full object-cover gallery-thumbnail" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">4</span><div class="photo-note">Üsküdar</div></div>
+                    <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="uY6ZrwkbLjc"><img data-src="https://img.youtube.com/vi/uY6ZrwkbLjc/maxresdefault.jpg" alt="Video 3" class="w-full h-full object-cover gallery-thumbnail" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">3</span><div class="photo-note">Lunapark</div></div>
+                    <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="19aKq8FtYP8"><img data-src="https://img.youtube.com/vi/19aKq8FtYP8/maxresdefault.jpg" alt="Video 4" class="w-full h-full object-cover gallery-thumbnail" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">2</span><div class="photo-note">Beşiktaş</div></div>
+                    <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="J466tfX1jzk"><img data-src="https://img.youtube.com/vi/J466tfX1jzk/maxresdefault.jpg" alt="Video 5" class="gallery-thumbnail w-full h-full object-cover" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">1</span><div class="photo-note">Ev</div></div>
                 </div>
             </div>
         </section>
-        <!-- TEŞEKKÜR + YENİ ROMANTİK YAZI -->
+        <!-- TEŞEKKÜR + ROMANTİK YAZI + KÜÇÜLTÜLMÜŞ MAİL -->
         <section class="my-16 max-w-3xl mx-auto transparent-section">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Teşekkür</h3>
             <p class="text-center text-black text-lg italic mt-4 font-bold">
@@ -341,17 +352,16 @@
                 <p class="text-center text-black font-semibold">İyi günde, kötü günde her anımızda yanımızda olan değerli dostlarımıza...</p>
             </div>
 
-            <!-- YENİ ROMANTİK YAZI -->
             <div class="mt-16 text-center fade-in-on-scroll">
                 <p class="text-xl md:text-2xl font-medium text-gray-800 mb-6 leading-relaxed handwriting">
                     Bir gülüşünüz, bir selamınız,<br>bizi dünyanın en mutlu çifti yapar...<br>Kalbinizden geçen her güzel sözü bekliyoruz ♡
                 </p>
-                <div class="inline-flex items-center gap-5 bg-white/90 px-8 py-5 rounded-full shadow-xl border-2 border-pink-200 group cursor-pointer">
+                <div class="inline-flex items-center gap-5 bg-white/90 px-7 py-4 rounded-full shadow-xl border-2 border-pink-200 group cursor-pointer">
                     <div class="relative">
-                        <i class="fas fa-envelope text-5xl text-red-600 group-hover:text-red-700 transition-all duration-500 transform group-hover:scale-125"></i>
-                        <i class="fas fa-heart absolute -top-3 -right-3 text-red-500 text-2xl opacity-0 group-hover:opacity-100 animate-ping"></i>
+                        <i class="fas fa-envelope text-4xl text-red-600 group-hover:text-red-700 transition-all duration-500 transform group-hover:scale-125"></i>
+                        <i class="fas fa-heart absolute -top-2 -right-2 text-red-500 text-xl opacity-0 group-hover:opacity-100 animate-ping"></i>
                     </div>
-                    <span class="font-bold text-green-700 text-2xl md:text-3xl select-all group-hover:text-green-800 transition-colors">
+                    <span class="font-bold text-green-700 text-lg md:text-xl select-all group-hover:text-green-800 transition-colors">
                         arzuersin2025@gmail.com
                     </span>
                 </div>
