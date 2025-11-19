@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -351,7 +351,6 @@
                 <p class="text-center text-black font-semibold">Bizi biz yapan, sevgileriyle her zaman en büyük destekçimiz olan canımız ailelerimize...</p>
                 <p class="text-center text-black font-semibold">İyi günde, kötü günde her anımızda yanımızda olan değerli dostlarımıza...</p>
             </div>
-
             <div class="mt-16 text-center fade-in-on-scroll">
                 <!-- YENİ EKlenen KIRMIZI İTALİK YAZI -->
                 <p class="text-red-600 italic text-xl md:text-2xl mb-6 font-medium">
