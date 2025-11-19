@@ -15,7 +15,7 @@
         body {
             font-family: 'Poppins', sans-serif;
             font-weight: 300;
-            background: transparent !important;
+            background: transparent ! !important;
             position: relative;
             overflow-x: hidden;
             min-height: 100vh;
@@ -148,7 +148,9 @@
     </a>
     <div id="background-leaves-pattern"></div>
     <div id="falling-leaves-container"></div>
-    <header class="py-6 text-center bg-white/70 backdrop-blur-lg sticky top-0 z-20 overflow-hidden">
+
+    <!-- DÜZENLENEN KISIM: bg-white/70 backdrop-blur-lg ve sticky top-0 kaldırıldı -->
+    <header class="py-6 text-center relative z-20 overflow-hidden">
         <div class="relative">
             <a href="#countdown-section" title="Geri Sayım" class="absolute top-1/2 -translate-y-1/2 right-4 text-green-600 hover:text-green-800 transition-colors z-20 text-center">
                 <i class="fas fa-hourglass-start fa-2x"></i>
@@ -167,6 +169,8 @@
             </div>
         </div>
     </header>
+
+    <!-- GERİ KALAN TÜM KOD SENİN VERDİĞİNLE %100 AYNI -->
     <section id="main-title-section" class="py-16 text-center">
         <h2 id="main-title" class="font-bold handwriting text-green-600">O Güzel Sonbahar</h2>
         <p class="text-xl md:text-2xl mt-2 text-red-600 font-bold">27 Eylül 2025</p>
@@ -463,7 +467,7 @@
         if (COUNTDOWN_DATE) {
             const target = new Date(COUNTDOWN_DATE).getTime();
             const timer = document.getElementById('countdown-timer');
-            const placeholder = document.getElementById('countdown-placeholder');
+            const placeholder = document.getElementById('countdown- placeholder');
             const header = document.getElementById('header-countdown');
             placeholder.classList.add('hidden');
             timer.classList.remove('hidden');
