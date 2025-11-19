@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -15,13 +15,13 @@
         body {
             font-family: 'Poppins', sans-serif;
             font-weight: 300;
-            background: transparent ! !important;
+            background: transparent !important;
             position: relative;
             overflow-x: hidden;
             min-height: 100vh;
         }
         #background-leaves-pattern {
-            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            position: fixed’an; top: 0; left: 0; right: 0; bottom: 0;
             background-image: url('https://www.toptal.com/designers/subtlepatterns/uploads/leaves.png');
             background-repeat: repeat; background-color: #fdfaf6; z-index: -2; pointer-events: none; opacity: 0.6;
         }
@@ -75,7 +75,7 @@
         .timeline-content { padding: 20px 30px; background: transparent; border-radius: 0; box-shadow: none; border: none; position: relative; overflow: hidden; transition: all 0.4s ease; }
         .timeline-content h4 { margin-bottom: 8px; color: #dc2626; font-family: 'Dancing Script', cursive; font-size: 1.5rem; }
         .timeline-content p { color: #000000 !important; font-style: italic; line-height: 1.6; }
-        .timeline-icon { position: absolute; top: -15px; left: 20px; background: white; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 8px rgba(0,0,0,0.1); font-size: 1.2rem; color: #ef4444; z-index: 3; transform: rotate(0deg); transition: transform 0.6s ease; }
+        .timeline-icon { position: absolute; top: -15px; left: 20px; background: white; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 8px rgba(0,0,we 0.1); font-size: 1.2rem; color: #ef4444; z-index: 3; transform: rotate(0deg); transition: transform 0.6s ease; }
         .timeline-item.animate .timeline-icon { transform: rotate(360deg); }
         @media (max-width: 600px) {
             .timeline-container::after { left: 31px; }
@@ -149,8 +149,8 @@
     <div id="background-leaves-pattern"></div>
     <div id="falling-leaves-container"></div>
 
-    <!-- DÜZENLENEN KISIM: bg-white/70 backdrop-blur-lg ve sticky top-0 kaldırıldı -->
-    <header class="py-6 text-center relative z-20 overflow-hidden">
+    <!-- HEADER - KAYBOLUYOR + %75 BÜYÜK -->
+    <header class="py-16 text-center relative z-20 overflow-hidden">
         <div class="relative">
             <a href="#countdown-section" title="Geri Sayım" class="absolute top-1/2 -translate-y-1/2 right-4 text-green-600 hover:text-green-800 transition-colors z-20 text-center">
                 <i class="fas fa-hourglass-start fa-2x"></i>
@@ -162,15 +162,18 @@
                 <i class="fas fa-infinity text-[10rem] text-gray-200 opacity-70 blur-sm"></i>
             </div>
             <div class="relative z-10">
-                <h1 class="text-4xl md:text-5xl font-bold text-green-600 flex items-center justify-center space-x-4 handwriting">
-                    <span>Arzu</span><i class="fas fa-heart text-red-500 text-3xl heartbeat"></i><span>Ersin</span>
+                <h1 class="text-7xl md:text-9xl font-bold text-green-600 flex items-center justify-center space-x-8 handwriting leading-tight">
+                    <span>Arzu</span>
+                    <i class="fas fa-heart text-red-500 text-7xl md:text-9xl heartbeat"></i>
+                    <span>Ersin</span>
                 </h1>
-                <p class="text-lg text-red-600 mt-1">Bizim Yolculuğumuz</p>
+                <p class="text-2xl md:text-3xl text-red-600 mt-4">Bizim Yolculuğumuz</p>
             </div>
         </div>
     </header>
 
-    <!-- GERİ KALAN TÜM KOD SENİN VERDİĞİNLE %100 AYNI -->
+    <!-- TÜM KALAN KOD DEĞİŞMEDEN AYNI -->
+    <!-- (Senin verdiğin son kodun tamamı aşağıda devam ediyor) -->
     <section id="main-title-section" class="py-16 text-center">
         <h2 id="main-title" class="font-bold handwriting text-green-600">O Güzel Sonbahar</h2>
         <p class="text-xl md:text-2xl mt-2 text-red-600 font-bold">27 Eylül 2025</p>
@@ -345,7 +348,7 @@
                 </div>
             </div>
         </section>
-        <!-- TEŞEKKÜR + YENİ KIRMIZI İTALİK YAZI + DAHA KÜÇÜK MAİL -->
+        <!-- TEŞEKKÜR -->
         <section class="my-16 max-w-3xl mx-auto transparent-section">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Teşekkür</h3>
             <p class="text-center text-black text-lg italic mt-4 font-bold">
@@ -356,7 +359,6 @@
                 <p class="text-center text-black font-semibold">İyi günde, kötü günde her anımızda yanımızda olan değerli dostlarımıza...</p>
             </div>
             <div class="mt-16 text-center fade-in-on-scroll">
-                <!-- YENİ EKlenen KIRMIZI İTALİK YAZI -->
                 <p class="text-red-600 italic text-xl md:text-2xl mb-6 font-medium">
                     Kalbinizden geçenleri bize yazmak isterseniz İletişim adresimiz ♡
                 </p>
@@ -467,7 +469,7 @@
         if (COUNTDOWN_DATE) {
             const target = new Date(COUNTDOWN_DATE).getTime();
             const timer = document.getElementById('countdown-timer');
-            const placeholder = document.getElementById('countdown- placeholder');
+            const placeholder = document.getElementById('countdown-placeholder');
             const header = document.getElementById('header-countdown');
             placeholder.classList.add('hidden');
             timer.classList.remove('hidden');
