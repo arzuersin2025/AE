@@ -86,8 +86,7 @@
         .gallery-thumbnail { transition: transform .3s ease-in-out; background-color: #f3f4f6; background-size: 40px; background-position: center; background-repeat: no-repeat, repeat; }
         .group:hover .gallery-thumbnail { transform: scale(1.1); }
         .photo-note { position: absolute; bottom: 0; left: 0; right: 0; color: white; padding: 0.5rem 0.75rem; font-size: 0.75rem; text-align: center; line-height: 1.2; text-shadow: 1px 1px 3px rgba(0,0,0,0.9); }
-        .photo-number { position: absolute; bottom: 0.5rem; right: 0.75rem; color: white; font-size: 1rem; font-weight: bold; text-shadow: 1px 1px 3px rgba(0,0,0,0.9); opacity: 0; 
-        transition: opacity .3s ease-in-out; }
+        .photo-number { position: absolute; bottom: 0.5rem; right: 0.75rem; color: white; font-size: 1rem; font-weight: bold; text-shadow: 1px 1px 3px rgba(0,0,0,0.9); opacity: 0; transition: opacity .3s ease-in-out; }
         .group:hover .photo-number { opacity: 1; }
         .photo-container.no-note .photo-note { display: none; }
         .travel-folder {
@@ -174,7 +173,7 @@
         <p class="text-lg mt-1 text-red-600 italic font-bold">Zamanın durduğu an</p>
     </section>
     <main class="container mx-auto px-6 pb-12">
-        <!-- TÜM BÖLÜMLER %100 AYNI -->
+        <!-- İLK ADIM -->
         <section class="max-w-3xl mx-auto my-12 text-center">
             <h3 id="ilk-adim-baslik" class="font-bold text-red-600 mb-4">İlk Adım</h3>
             <p class="text-lg leading-relaxed font-medium font-[550] text-black">
@@ -342,7 +341,7 @@
                 </div>
             </div>
         </section>
-        <!-- TEŞEKKÜR + ROMANTİK YAZI + KÜÇÜK VE ORTALI MAİL -->
+        <!-- TEŞEKKÜR + YENİ YAZI + DAHA KÜÇÜK MAİL -->
         <section class="my-16 max-w-3xl mx-auto transparent-section">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Teşekkür</h3>
             <p class="text-center text-black text-lg italic mt-4 font-bold">
@@ -354,16 +353,13 @@
             </div>
 
             <div class="mt-16 text-center fade-in-on-scroll">
-                <p class="text-xl md:text-2xl font-medium text-red-600 mb-6 leading-relaxed handwriting">
-                    Bir gülüşünüz, bir selamınız,<br>bizi dünyanın en mutlu çifti yapar...<br>Kalbinizden geçen her güzel sözü bekliyoruz ♡
-                </p>
                 <div class="flex justify-center">
                     <div class="inline-flex items-center gap-4 bg-white/90 px-6 py-4 rounded-full shadow-lg border-2 border-pink-200 group cursor-pointer">
                         <div class="relative">
                             <i class="fas fa-envelope text-4xl text-red-600 group-hover:text-red-700 transition-all duration-500 transform group-hover:scale-125"></i>
                             <i class="fas fa-heart absolute -top-2 -right-2 text-red-500 text-xl opacity-0 group-hover:opacity-100 animate-ping"></i>
                         </div>
-                        <span class="font-bold text-green-700 text-lg md:text-2xl select-all group-hover:text-green-800 transition-colors">
+                        <span class="font-bold text-green-700 text-base md:text-lg select-all group-hover:text-green-800 transition-colors">
                             arzuersin2025@gmail.com
                         </span>
                     </div>
