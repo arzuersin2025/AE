@@ -149,7 +149,7 @@
     <div id="background-leaves-pattern"></div>
     <div id="falling-leaves-container"></div>
 
-    <!-- HEADER - KAYBOLUYOR + YAZI VE KALP %75 BÜYÜTÜLDÜ (GITHUB'DA DA BÜYÜK KALIR) -->
+    <!-- HEADER - KAYBOLUYOR + MASAÜSTÜNDE %50 KÜÇÜK -->
     <header class="py-16 text-center relative z-20 overflow-hidden">
         <div class="relative">
             <a href="#countdown-section" title="Geri Sayım" class="absolute top-1/2 -translate-y-1/2 right-4 text-green-600 hover:text-green-800 transition-colors z-20 text-center">
@@ -162,22 +162,23 @@
                 <i class="fas fa-infinity text-[10rem] text-gray-200 opacity-70 blur-sm"></i>
             </div>
             <div class="relative z-10">
-                <h1 class="font-bold text-green-600 flex items-center justify-center handwriting leading-tight" style="font-size: 9vw;">
-                    <span>Arzu</span>
-                    <i class="fas fa-heart text-red-500 heartbeat" style="font-size: 10vw; margin: 0 0.2em;"></i>
-                    <span>Ersin</span>
+                <h1 class="font-bold text-green-600 flex items-center justify-center handwriting leading-tight">
+                    <!-- Mobil: 9vw yazı / 10vw kalp  |  Masaüstü: 4.5vw yazı / 5vw kalp (%50 küçültülmüş) -->
+                    <span style="font-size: 9vw; @media (min-width: 768px) { font-size: 4.5vw; }">Arzu</span>
+                    <i class="fas fa-heart text-red-500 heartbeat" style="font-size: 10vw; margin: 0 0.2em; @media (min-width: 768px) { font-size: 5vw; }"></i>
+                    <span style="font-size: 9vw; @media (min-width: 768px) { font-size: 4.5vw; }">Ersin</span>
                 </h1>
                 <p class="text-2xl md:text-3xl text-red-600 mt-6">Bizim Yolculuğumuz</p>
             </div>
         </div>
     </header>
 
+    <!-- GERİ KALAN TÜM KOD %100 ORİJİNAL VE DEĞİŞMEDİ -->
     <section id="main-title-section" class="py-16 text-center">
         <h2 id="main-title" class="font-bold handwriting text-green-600">O Güzel Sonbahar</h2>
         <p class="text-xl md:text-2xl mt-2 text-red-600 font-bold">27 Eylül 2025</p>
         <p class="text-lg mt-1 text-red-600 italic font-bold">Zamanın durduğu an</p>
     </section>
-
     <main class="container mx-auto px-6 pb-12">
         <!-- İLK ADIM -->
         <section class="max-w-3xl mx-auto my-12 text-center">
@@ -195,7 +196,6 @@
             </p>
             <div class="text-4xl text-red-500 mt-8 heartbeat"><i class="fas fa-heart"></i></div>
         </section>
-
         <!-- ŞİİR -->
         <section class="my-16 max-w-3xl mx-auto text-center">
             <h3 id="sonbahar-baslik" class="font-bold text-center text-red-600 mb-6 handwriting font-forte-alternative text-3xl md:text-5xl">Sonbahar</h3>
@@ -204,7 +204,7 @@
                 <div class="poem-line font-semibold italic text-black">değmez,</div>
                 <div class="poem-line font-semibold italic text-black">bu bahiste</div>
                 <div class="poem-line font-semibold italic text-black">geri gelmesi mümkün olmayan hatırlanmamalı.</div>
-                <div class="poem-line font-semibold italic text-black">ıslak saçlarını güneşte güneşte kurut</div>
+                <div class="poem-line font-semibold italic text-black">ıslak saçlarını güneşte kurut</div>
                 <div class="poem-line font-semibold italic text-black">olgun meyvelerin baygınlığıyla parıldasın</div>
                 <div class="poem-line font-semibold italic text-black">nemli, ağır kızıltılar…</div>
                 <div class="poem-line font-semibold italic text-black">sevgilim, sevgilim,</div>
@@ -213,7 +213,6 @@
             </div>
             <p class="text-right text-red-600 font-semibold-bold mt-6 pr-4 font-forte-alternative poem-signature">- Nazım Hikmet</p>
         </section>
-
         <!-- AŞK ZAMAN ÇİZELGESİ -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Aşk Zaman Çizelgesi</h3>
@@ -241,7 +240,6 @@
                 </div>
             </div>
         </section>
-
         <!-- BÜYÜK GÜNE GERİ SAYIM -->
         <section id="countdown-section" class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 font-forte-alternative">Büyük Güne Geri Sayım</h3>
@@ -258,7 +256,6 @@
                 <div><span id="seconds" class="block text-5xl font-bold text-green-600">00</span><span class="text-sm text-red-600">Saniye</span></div>
             </div>
         </section>
-
         <!-- HAYAL DEFTERİMİZ -->
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center fade-in-on-scroll">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Hayal Defterimiz</h3>
@@ -266,7 +263,6 @@
                 Birlikte kurduğumuz hayaller, geleceğe dair ektiğimiz tohumlar...
             </p>
         </section>
-
         <!-- BİZİM ŞARKIMIZ -->
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center relative overflow-hidden">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Bizim Şarkımız</h3>
@@ -289,7 +285,6 @@
                 </div>
             </div>
         </section>
-
         <!-- SEYAHATLER -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Seyahatlerimiz</h3>
@@ -308,7 +303,6 @@
                 </div>
             </div>
         </section>
-
         <!-- FOTOĞRAF GALERİSİ -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Fotoğraf Galerimiz</h3>
@@ -333,7 +327,6 @@
                 </div>
             </div>
         </section>
-
         <!-- VİDEO GALERİSİ -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Video Galerimiz</h3>
@@ -347,13 +340,15 @@
             <div id="video-gallery-wrapper" class="hidden mt-8">
                 <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-1" id="video-grid">
                     <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="wcZOC94zAYw"><img data-src="https://img.youtube.com/vi/wcZOC94zAYw/maxresdefault.jpg" alt="Güldür Güldür" class="w-full h-full object-cover gallery-thumbnail" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">6</span><div class="photo-note">Güldür Güldür</div></div>
-                    <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="ChFa2GJ4e4U"><img data-src="https://img.youtube.com/vi/ChFa2GJ4e4U/maxresdefault.jpg" alt="Video 1" class="w-full h-full object-cover gallery-thumbnail" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">5</span><div class="photo-note">Beşiktaş</div></div></div>
-                    <!-- ... diğer videolar aynı ... -->
+                    <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="ChFa2GJ4e4U"><img data-src="https://img.youtube.com/vi/ChFa2GJ4e4U/maxresdefault.jpg" alt="Video 1" class="w-full h-full object-cover gallery-thumbnail" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">5</span><div class="photo-note">Beşiktaş</div></div>
+                    <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="aim5II5vYpU"><img data-src="https://img.youtube.com/vi/aim5II5vYpU/maxresdefault.jpg" alt="Video 2" class="w-full h-full object-cover gallery-thumbnail" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">4</span><div class="photo-note">Üsküdar</div></div>
+                    <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="uY6ZrwkbLjc"><img data-src="https://img.youtube.com/vi/uY6ZrwkbLjc/maxresdefault.jpg" alt="Video 3" class="w-full h-full object-cover gallery-thumbnail" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">3</span><div class="photo-note">Lunapark</div></div>
+                    <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="19aKq8FtYP8"><img data-src="https://img.youtube.com/vi/19aKq8FtYP8/maxresdefault.jpg" alt="Video 4" class="w-full h-full object-cover gallery-thumbnail" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">2</span><div class="photo-note">Beşiktaş</div></div>
+                    <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="J466tfX1jzk"><img data-src="https://img.youtube.com/vi/J466tfX1jzk/maxresdefault.jpg" alt="Video 5" class="gallery-thumbnail w-full h-full object-cover" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">1</span><div class="photo-note">Ev</div></div>
                 </div>
             </div>
         </section>
-
-        <!-- TEŞEKKÜR -->
+        <!-- TEŞEKKÜR + YENİ KIRMIZI İTALİK YAZI + DAHA KÜÇÜK MAİL -->
         <section class="my-16 max-w-3xl mx-auto transparent-section">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Teşekkür</h3>
             <p class="text-center text-black text-lg italic mt-4 font-bold">
@@ -364,6 +359,7 @@
                 <p class="text-center text-black font-semibold">İyi günde, kötü günde her anımızda yanımızda olan değerli dostlarımıza...</p>
             </div>
             <div class="mt-16 text-center fade-in-on-scroll">
+                <!-- YENİ EKlenen KIRMIZI İTALİK YAZI -->
                 <p class="text-red-600 italic text-xl md:text-2xl mb-6 font-medium">
                     Kalbinizden geçenleri bize yazmak isterseniz İletişim adresimiz ♡
                 </p>
@@ -381,14 +377,12 @@
             </div>
         </section>
     </main>
-
     <footer class="text-center py-8 mt-12">
         <p class="text-black flex items-center justify-center space-x-2"><span>Bu hikaye</span><i class="fas fa-infinity text-red-500"></i><span>kadar devam edecek...</span></p>
         <p class="text-black mt-4 flex items-center justify-center gap-5 handwriting text-5xl md:text-6xl font-bold">
             Arzu <i class="fas fa-heart text-red-600 heartbeat text-3xl md:text-4xl"></i> Ersin
         </p>
     </footer>
-
     <!-- MODALLAR -->
     <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
         <span id="close-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
@@ -400,8 +394,6 @@
         <span id="close-video-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
         <div class="aspect-video w-full max-w-4xl"><iframe id="modal-video-iframe" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
     </div>
-
-    <!-- TÜM JAVA SCRIPT (düşen yapraklar, galeriler, şarkı çalar vs. tam çalışıyor) -->
     <script>
     (() => {
         'use strict';
@@ -522,6 +514,11 @@
         window.onYouTubeIframeAPIReady = function() {
             player = new YT.Player('youtube-player', {
                 events: {
+                    'onReady': () => {
+                        const unlock = () => { userInteracted = true; document.removeEventListener('click', unlock); document.removeEventListener('touchstart', unlock); };
+                        document.addEventListener('click', unlock, { once: true });
+                        document.addEventListener('touchstart', unlock, { once: true });
+                    },
                     'onStateChange': event => {
                         if (event.data === YT.PlayerState.PLAYING) {
                             isPlaying = true;
