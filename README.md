@@ -149,7 +149,7 @@
     <div id="background-leaves-pattern"></div>
     <div id="falling-leaves-container"></div>
 
-    <!-- HEADER - KAYBOLUYOR + MASAÜSTÜNDE %50 KÜÇÜK (INLINE STYLE İLE GARANTİ ÇALIŞIR) -->
+    <!-- HEADER - MOBİL BÜYÜK, MASAÜSTÜ %50 KÜÇÜK -->
     <header class="py-16 text-center relative z-20 overflow-hidden">
         <div class="relative">
             <a href="#countdown-section" title="Geri Sayım" class="absolute top-1/2 -translate-y-1/2 right-4 text-green-600 hover:text-green-800 transition-colors z-20 text-center">
