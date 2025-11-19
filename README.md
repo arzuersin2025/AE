@@ -341,7 +341,7 @@
                 </div>
             </div>
         </section>
-        <!-- TEŞEKKÜR + YENİ YAZI + DAHA KÜÇÜK MAİL -->
+        <!-- TEŞEKKÜR + YENİ KIRMIZI İTALİK YAZI + DAHA KÜÇÜK MAİL -->
         <section class="my-16 max-w-3xl mx-auto transparent-section">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Teşekkür</h3>
             <p class="text-center text-black text-lg italic mt-4 font-bold">
@@ -353,6 +353,10 @@
             </div>
 
             <div class="mt-16 text-center fade-in-on-scroll">
+                <!-- YENİ EKlenen KIRMIZI İTALİK YAZI -->
+                <p class="text-red-600 italic text-xl md:text-2xl mb-6 font-medium">
+                    Kalbinizden geçenleri bize yazmak isterseniz İletişim adresimiz ♡
+                </p>
                 <div class="flex justify-center">
                     <div class="inline-flex items-center gap-4 bg-white/90 px-6 py-4 rounded-full shadow-lg border-2 border-pink-200 group cursor-pointer">
                         <div class="relative">
