@@ -127,7 +127,7 @@
         .travel-folder p { font-weight: 700 !important; font-style: italic; font-size: 0.75rem !important; color: #6b7280 !important; margin: 0 !important; }
         .fade-in-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity .8s cubic-bezier(.25,.46,.45,.94), transform .8s cubic-bezier(.25,.46,.45,.94); }
         .fade-in-on-scroll.visible { opacity: 1; transform: translateY(0); }
-        /* ŞİİR YEŞİL */
+        /* ŞİİR YEŞİL - BOLD KALDIRILDI */
         .poem-container {
             max-width: 90%; margin: 0 auto; padding: 2rem 0; line-height: 1.4; font-size: 1.725rem; font-style: italic; color: #16a34a !important; text-align: center;
         }
@@ -226,16 +226,16 @@
         <section class="my-16 max-w-3xl mx-auto text-center">
             <h3 id="sonbahar-baslik" class="font-bold text-center text-red-600 mb-6 handwriting font-forte-alternative">Sonbahar</h3>
             <div class="poem-container">
-                <div class="poem-line font-semibold italic">Çiçekli badem ağaçlarını unut.</div>
-                <div class="poem-line font-semibold italic">değmez,</div>
-                <div class="poem-line font-semibold italic">bu bahiste</div>
-                <div class="poem-line font-semibold italic">geri gelmesi mümkün olmayan hatırlanmamalı.</div>
-                <div class="poem-line font-semibold italic">ıslak saçlarını güneşte kurut</div>
-                <div class="poem-line font-semibold italic">olgun meyvelerin baygınlığıyla parıldasın</div>
-                <div class="poem-line font-semibold italic">nemli, ağır kızıltılar…</div>
-                <div class="poem-line font-semibold italic">sevgilim, sevgilim,</div>
-                <div class="poem-line font-semibold italic">mevsim</div>
-                <div class="poem-line font-semibold italic">sonbahar…</div>
+                <div class="poem-line italic">Çiçekli badem ağaçlarını unut.</div>
+                <div class="poem-line italic">değmez,</div>
+                <div class="poem-line italic">bu bahiste</div>
+                <div class="poem-line italic">geri gelmesi mümkün olmayan hatırlanmamalı.</div>
+                <div class="poem-line italic">ıslak saçlarını güneşte kurut</div>
+                <div class="poem-line italic">olgun meyvelerin baygınlığıyla parıldasın</div>
+                <div class="poem-line italic">nemli, ağır kızıltılar…</div>
+                <div class="poem-line italic">sevgilim, sevgilim,</div>
+                <div class="poem-line italic">mevsim</div>
+                <div class="poem-line italic">sonbahar…</div>
             </div>
             <p class="text-right text-red-600 font-semibold-bold mt-6 pr-4 font-forte-alternative poem-signature">- Nazım Hikmet</p>
         </section>
@@ -379,7 +379,7 @@
             </div>
             <div class="mt-16 text-center fade-in-on-scroll">
                 <p class="text-red-600 italic text-xl md:text-2xl mb-6 font-medium">
-                    Kalbinizden geçenleri bize yazmak isterseniz İletişim adresimiz ♡
+                    Kalbinizdeki geçenleri bize yazmak isterseniz İletişim adresimiz ♡
                 </p>
                 <div class="flex justify-center">
                     <div class="inline-flex items-center gap-4 bg-white/90 px-6 py-4 rounded-full shadow-lg border-2 border-pink-200 group cursor-pointer">
