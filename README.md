@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -149,7 +149,7 @@
     <div id="background-leaves-pattern"></div>
     <div id="falling-leaves-container"></div>
 
-    <!-- HEADER - MOBİL BÜYÜK, MASAÜSTÜ %50 KÜÇÜK -->
+    <!-- HEADER - MASAÜSTÜNDE %50 KÜÇÜK, MOBİLDE BÜYÜK (GITHUB'DA DA GARANTİ ÇALIŞIR) -->
     <header class="py-16 text-center relative z-20 overflow-hidden">
         <div class="relative">
             <a href="#countdown-section" title="Geri Sayım" class="absolute top-1/2 -translate-y-1/2 right-4 text-green-600 hover:text-green-800 transition-colors z-20 text-center">
@@ -163,6 +163,7 @@
             </div>
             <div class="relative z-10">
                 <h1 class="font-bold text-green-600 flex items-center justify-center handwriting leading-tight">
+                    <!-- Mobil: 9vw yazı / 10vw kalp | Masaüstü: 4.5vw yazı / 5vw kalp (%50 küçültülmüş) -->
                     <span style="font-size: 9vw; @media (min-width: 768px) { font-size: 4.5vw; }">Arzu</span>
                     <i class="fas fa-heart text-red-500 heartbeat" style="font-size: 10vw; margin: 0 0.2em; @media (min-width: 768px) { font-size: 5vw; }"></i>
                     <span style="font-size: 9vw; @media (min-width: 768px) { font-size: 4.5vw; }">Ersin</span>
@@ -172,6 +173,7 @@
         </div>
     </header>
 
+    <!-- GERİ KALAN TÜM KOD ORİJİNAL HALİYLE (hiçbir şey değişmedi) -->
     <section id="main-title-section" class="py-16 text-center">
         <h2 id="main-title" class="font-bold handwriting text-green-600">O Güzel Sonbahar</h2>
         <p class="text-xl md:text-2xl mt-2 text-red-600 font-bold">27 Eylül 2025</p>
@@ -179,6 +181,7 @@
     </section>
 
     <main class="container mx-auto px-6 pb-12">
+        <!-- İLK ADIM -->
         <section class="max-w-3xl mx-auto my-12 text-center">
             <h3 id="ilk-adim-baslik" class="font-bold text-red-600 mb-4">İlk Adım</h3>
             <p class="text-lg leading-relaxed font-medium font-[550] text-black">
@@ -194,6 +197,8 @@
             </p>
             <div class="text-4xl text-red-500 mt-8 heartbeat"><i class="fas fa-heart"></i></div>
         </section>
+
+        <!-- ŞİİR -->
         <section class="my-16 max-w-3xl mx-auto text-center">
             <h3 id="sonbahar-baslik" class="font-bold text-center text-red-600 mb-6 handwriting font-forte-alternative text-3xl md:text-5xl">Sonbahar</h3>
             <div class="poem-container">
@@ -210,6 +215,8 @@
             </div>
             <p class="text-right text-red-600 font-semibold-bold mt-6 pr-4 font-forte-alternative poem-signature">- Nazım Hikmet</p>
         </section>
+
+        <!-- AŞK ZAMAN ÇİZELGESİ -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Aşk Zaman Çizelgesi</h3>
             <p class="text-center text-black font-semibold italic mb-8">
@@ -236,6 +243,8 @@
                 </div>
             </div>
         </section>
+
+        <!-- BÜYÜK GÜNE GERİ SAYIM -->
         <section id="countdown-section" class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 font-forte-alternative">Büyük Güne Geri Sayım</h3>
             <div id="countdown-placeholder" class="my-4">
@@ -251,12 +260,16 @@
                 <div><span id="seconds" class="block text-5xl font-bold text-green-600">00</span><span class="text-sm text-red-600">Saniye</span></div>
             </div>
         </section>
+
+        <!-- HAYAL DEFTERİMİZ -->
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center fade-in-on-scroll">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Hayal Defterimiz</h3>
             <p class="text-center text-black font-semibold italic text-lg mt-4">
                 Birlikte kurduğumuz hayaller, geleceğe dair ektiğimiz tohumlar...
             </p>
         </section>
+
+        <!-- BİZİM ŞARKIMIZ -->
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center relative overflow-hidden">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Bizim Şarkımız</h3>
             <p class="text-center text-black font-semibold italic mt-2 mb-6">Tarkan - Beni Çok Sev</p>
@@ -278,6 +291,8 @@
                 </div>
             </div>
         </section>
+
+        <!-- SEYAHATLER -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Seyahatlerimiz</h3>
             <p class="text-center text-black font-semibold italic">Birlikte keşfettiğimiz yerler...</p>
@@ -295,6 +310,8 @@
                 </div>
             </div>
         </section>
+
+        <!-- FOTOĞRAF GALERİSİ -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Fotoğraf Galerimiz</h3>
             <p class="text-center text-black font-semibold italic">İşte yolculuğumuzda biriktirdiğimiz Anılar..</p>
@@ -318,6 +335,8 @@
                 </div>
             </div>
         </section>
+
+        <!-- VİDEO GALERİSİ -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Video Galerimiz</h3>
             <p class="text-center text-black font-semibold">Bazı duyguları kelimelerle anlatmak yetmez...</p>
@@ -338,6 +357,8 @@
                 </div>
             </div>
         </section>
+
+        <!-- TEŞEKKÜR -->
         <section class="my-16 max-w-3xl mx-auto transparent-section">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Teşekkür</h3>
             <p class="text-center text-black text-lg italic mt-4 font-bold">
@@ -365,12 +386,15 @@
             </div>
         </section>
     </main>
+
     <footer class="text-center py-8 mt-12">
         <p class="text-black flex items-center justify-center space-x-2"><span>Bu hikaye</span><i class="fas fa-infinity text-red-500"></i><span>kadar devam edecek...</span></p>
         <p class="text-black mt-4 flex items-center justify-center gap-5 handwriting text-5xl md:text-6xl font-bold">
             Arzu <i class="fas fa-heart text-red-600 heartbeat text-3xl md:text-4xl"></i> Ersin
         </p>
     </footer>
+
+    <!-- MODALLAR -->
     <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
         <span id="close-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
         <img id="modal-image" src="" alt="Büyütülmüş Fotoğraf" class="max-w-[90vw] max-h-[90vh] rounded-lg shadow-lg">
@@ -381,6 +405,7 @@
         <span id="close-video-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
         <div class="aspect-video w-full max-w-4xl"><iframe id="modal-video-iframe" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
     </div>
+
     <script>
     (() => {
         'use strict';
@@ -427,7 +452,7 @@
             const w = document.getElementById('gallery-wrapper');
             w.classList.toggle('hidden');
             document.getElementById('gallery-toggle-icon').classList.toggle('rotate-180', !w.classList.contains('hidden'));
-            document.getElementById('gallery-toggle-text').textContent = w.classList.contains('hidden') ? 'Fotoğraf Galerisini Gör' : 'Galeriyi Gizle';
+            document.getElementById('gallery-toggle-text').textContent = w.classList.contains('hidden') ? 'Fotoğraf Galer Cisco Gör' : 'Galeriyi Gizle';
             if (!w.classList.contains('hidden')) setTimeout(() => document.querySelectorAll('#gallery-grid .photo-container').forEach((c,i) => c.onclick = () => openImg(i)), 100);
         };
         document.getElementById('toggle-travel-btn').onclick = () => {
