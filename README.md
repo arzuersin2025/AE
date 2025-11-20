@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -27,20 +27,20 @@
         }
         @media (max-width: 768px) { #background-leaves-pattern { opacity: 0.9 !important; } }
         #falling-leaves-container { position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: -1; overflow: hidden; }
+        /* YAPRAK - ARKA PLAN TAMAMEN KALDIRILDI, TÜM ESKİ ÖZELLİKLER AYNI */
         #top-left-leaf {
             position: fixed;
             top: 12px;
             left: 12px;
             width: 68px;
             height: 68px;
-            background: url('https://i.imgur.com/4u0Z2kw.png') center/contain no-repeat;
-            background-size: contain;
             z-index: 99999;
             cursor: pointer;
             transition: transform 0.4s ease;
             filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
             border-radius: 16px;
             animation: gentleFloat 7s ease-in-out infinite;
+            object-fit: contain;
         }
         #top-left-leaf:hover { transform: scale(1.35) rotate(12deg); }
         @keyframes gentleFloat {
@@ -177,7 +177,8 @@
 </head>
 <body class="text-black">
     <a href="#countdown-section">
-        <div id="top-left-leaf" title="Büyük Güne Geri Sayım ❤️"></div>
+        <!-- YAPRAK - PNG OLDU, ARKA PLAN YOK -->
+        <img id="top-left-leaf" src="https://i.imgur.com/4u0Z2kw.png" alt="Büyük Güne Geri Sayım ❤️" title="Büyük Güne Geri Sayım ❤️">
     </a>
     <div id="background-leaves-pattern"></div>
     <div id="falling-leaves-container"></div>
@@ -203,7 +204,7 @@
         </div>
     </header>
     <section id="main-title-section" class="py-16 text-center">
-        <h2 id="main-title" class="font-bold handwriting text-green-600">O Güzel Sonbahar</h2>
+        <h2 id="main-title" class="font-bold handwriting text-green-600">O Güzel Sonbahar günü</h2>
         <p class="text-xl md:text-2xl mt-2 text-red-600 font-bold">27 Eylül 2025</p>
         <p class="text-lg mt-1 text-red-600 italic font-bold">Zamanın durduğu an</p>
     </section>
@@ -379,10 +380,10 @@
             </div>
             <div class="mt-16 text-center fade-in-on-scroll">
                 <p class="text-red-600 italic text-xl md:text-2xl mb-6 font-medium">
-                    Kalbinizdeki geçenleri bize yazmak isterseniz İletişim adresimiz ♡
+                    Kalbinizden geçenleri bize yazmak isterseniz İletişim adresimiz ♡
                 </p>
                 <div class="flex justify-center">
-                    <div class="inline-flex items-center gap-4 bg-white/90 px-6 py-4 rounded-full shadow-lg border-2 border-pink-200 group cursor-pointer">
+                    <div class="inline-flex items-center gap-4 bg-white/90 px-6 px-4 rounded-full shadow-lg border-2 border-pink-200 group cursor-pointer">
                         <div class="relative">
                             <i class="fas fa-envelope text-4xl text-red-600 group-hover:text-red-700 transition-all duration-500 transform group-hover:scale-125"></i>
                             <i class="fas fa-heart absolute -top-2 -right-2 text-red-500 text-xl opacity-0 group-hover:opacity-100 animate-ping"></i>
