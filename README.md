@@ -27,7 +27,7 @@
         }
         @media (max-width: 768px) { #background-leaves-pattern { opacity: 0.9 !important; } }
         #falling-leaves-container { position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: -1; overflow: hidden; }
-        /* YAPRAK - ARKA PLAN TAMAMEN KALDIRILDI, TÜM ESKİ ÖZELLİKLER AYNI */
+        /* YAPRAK - IMG ETİKETİYLE ŞEFFAF ARKA PLAN + TÜM ESKİ EFEKTLER */
         #top-left-leaf {
             position: fixed;
             top: 12px;
@@ -58,11 +58,19 @@
         .heartbeat { animation: heartbeat 1.5s infinite; }
         #main-title { font-size: 3rem !important; line-height: 1.2 !important; }
         @media (min-width: 768px) { #main-title { font-size: 4rem !important; } }
+        /* MOBİLDE TEK SATIR */
+        @media (max-width: 768px) {
+            #main-title {
+                font-size: 2.3rem !important;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
         main h3:not(#ilk-adim-baslik) { font-size: 1.5rem !important; line-height: 1.3 !important; }
         @media (min-width: 768px) { main h3:not(#ilk-adim-baslik) { font-size: 2rem !important; } }
         #ilk-adim-baslik { font-size: 1.5rem !important; line-height: 1.4 !important; }
         @media (min-width: 768px) { #ilk-adim-baslik { font-size: 1.75rem !important; } }
-        /* SONBAHAR BAŞLIĞI BÜYÜK */
         #sonbahar-baslik {
             font-size: 3.5rem !important;
             line-height: 1.1 !important;
@@ -72,23 +80,10 @@
                 font-size: 6rem !important;
             }
         }
-        /* AŞK ZAMAN ÇİZELGESİ GİRİŞ ANIMASYONU */
-        .timeline-title {
-            opacity: 0;
-            transform: translateY(40px);
-            animation: timelineTitleAnim 1.2s ease-out forwards;
-        }
-        @keyframes timelineTitleAnim {
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .timeline-subtitle {
-            opacity: 0;
-            transform: translateY(30px);
-            animation: timelineSubtitleAnim 1.4s ease-out forwards;
-        }
-        @keyframes timelineSubtitleAnim {
-            to { opacity: 1; transform: translateY(0); }
-        }
+        .timeline-title { opacity: 0; transform: translateY(40px); animation: timelineTitleAnim 1.2s ease-out forwards; }
+        @keyframes timelineTitleAnim { to { opacity: 1; transform: translateY(0); } }
+        .timeline-subtitle { opacity: 0; transform: translateY(30px); animation: timelineSubtitleAnim 1.4s ease-out forwards; }
+        @keyframes timelineSubtitleAnim { to { opacity: 1; transform: translateY(0); } }
         .timeline-container { position: relative; max-width: 1200px; margin: 0 auto; padding: 2rem 0; }
         .timeline-container::after {
             content: ''; position: absolute; width: 4px; background: linear-gradient(to bottom, #10b981, #f59e0b, #ef4444);
@@ -127,7 +122,6 @@
         .travel-folder p { font-weight: 700 !important; font-style: italic; font-size: 0.75rem !important; color: #6b7280 !important; margin: 0 !important; }
         .fade-in-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity .8s cubic-bezier(.25,.46,.45,.94), transform .8s cubic-bezier(.25,.46,.45,.94); }
         .fade-in-on-scroll.visible { opacity: 1; transform: translateY(0); }
-        /* ŞİİR YEŞİL - BOLD KALDIRILDI */
         .poem-container {
             max-width: 90%; margin: 0 auto; padding: 2rem 0; line-height: 1.4; font-size: 1.725rem; font-style: italic; color: #16a34a !important; text-align: center;
         }
@@ -177,7 +171,6 @@
 </head>
 <body class="text-black">
     <a href="#countdown-section">
-        <!-- YAPRAK - PNG OLDU, ARKA PLAN YOK -->
         <img id="top-left-leaf" src="https://i.imgur.com/4u0Z2kw.png" alt="Büyük Güne Geri Sayım ❤️" title="Büyük Güne Geri Sayım ❤️">
     </a>
     <div id="background-leaves-pattern"></div>
@@ -240,7 +233,6 @@
             </div>
             <p class="text-right text-red-600 font-semibold-bold mt-6 pr-4 font-forte-alternative poem-signature">- Nazım Hikmet</p>
         </section>
-        <!-- AŞK ZAMAN ÇİZELGESİ + YENİ ANIMASYON -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting timeline-title">Aşk Zaman Çizelgesi</h3>
             <p class="text-center text-black font-semibold italic mb-8 timeline-subtitle">
@@ -267,7 +259,6 @@
                 </div>
             </div>
         </section>
-        <!-- Geri kalan tüm bölümler eksiksiz -->
         <section id="countdown-section" class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 font-forte-alternative">Büyük Güne Geri Sayım</h3>
             <div id="countdown-placeholder" class="my-4">
@@ -383,7 +374,7 @@
                     Kalbinizden geçenleri bize yazmak isterseniz İletişim adresimiz ♡
                 </p>
                 <div class="flex justify-center">
-                    <div class="inline-flex items-center gap-4 bg-white/90 px-6 px-4 rounded-full shadow-lg border-2 border-pink-200 group cursor-pointer">
+                    <div class="inline-flex items-center gap-4 bg-white/90 px-6 py-4 rounded-full shadow-lg border-2 border-pink-200 group cursor-pointer">
                         <div class="relative">
                             <i class="fas fa-envelope text-4xl text-red-600 group-hover:text-red-700 transition-all duration-500 transform group-hover:scale-125"></i>
                             <i class="fas fa-heart absolute -top-2 -right-2 text-red-500 text-xl opacity-0 group-hover:opacity-100 animate-ping"></i>
