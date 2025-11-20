@@ -63,7 +63,7 @@
         #ilk-adim-baslik { font-size: 1.5rem !important; line-height: 1.4 !important; }
         @media (min-width: 768px) { #ilk-adim-baslik { font-size: 1.75rem !important; } }
 
-        /* SONBAHAR BAŞLIĞI GERÇEKTEN BÜYÜK - Tailwind sınıfları yok! */
+        /* SONBAHAR BAŞLIĞI BÜYÜK */
         #sonbahar-baslik {
             font-size: 3.5rem !important;
             line-height: 1.1 !important;
@@ -74,13 +74,31 @@
             }
         }
 
+        /* AŞK ZAMAN ÇİZELGESİ GİRİŞ ANIMASYONU */
+        .timeline-title {
+            opacity: 0;
+            transform: translateY(40px);
+            animation: timelineTitleAnim 1.2s ease-out forwards;
+        }
+        @keyframes timelineTitleAnim {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .timeline-subtitle {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: timelineSubtitleAnim 1.4s ease-out forwards;
+        }
+        @keyframes timelineSubtitleAnim {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         .timeline-container { position: relative; max-width: 1200px; margin: 0 auto; padding: 2rem 0; }
         .timeline-container::after {
             content: ''; position: absolute; width: 4px; background: linear-gradient(to bottom, #10b981, #f59e0b, #ef4444);
             top: 0; bottom: 0; left: 50%; margin-left: -2px; border-radius: 2px; z-index: 1;
             transform: scaleY(0); transform-origin: top; animation: drawLine 2s ease-out forwards;
         }
-        @ adaptor keyframes drawLine { to { transform: scaleY(1); } }
+        @keyframes drawLine { to { transform: scaleY(1); } }
         .timeline-item { padding: 10px 40px; position: relative; width: 50%; opacity: 0; transform: translateY(50px) scale(0.9); transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); z-index: 2; }
         .timeline-item.animate { opacity: 1; transform: translateY(0) scale(1); }
         .timeline-item.left { left: 0; } .timeline-item.right { left: 50%; }
@@ -113,7 +131,7 @@
         .fade-in-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity .8s cubic-bezier(.25,.46,.45,.94), transform .8s cubic-bezier(.25,.46,.45,.94); }
         .fade-in-on-scroll.visible { opacity: 1; transform: translateY(0); }
 
-        /* ŞİİR TAMAMEN YEŞİL */
+        /* ŞİİR YEŞİL */
         .poem-container { 
             max-width: 90%; margin: 0 auto; padding: 2rem 0; line-height: 1.4; font-size: 1.725rem; font-style: italic; color: #16a34a !important; text-align: center; 
         }
@@ -125,7 +143,7 @@
         @media (max-width: 768px) { .poem-signature { font-size: 1.875rem !important; } }
 
         .leaf-svg { position: absolute; width: 32px; height: 44px; opacity: 0.9; animation: fall linear infinite; transform-origin: center; filter: drop-shadow(0 3px 6px rgba(0,0,0,0.3)); }
-        @keyframes fall { 0% { transform: translateY(-120px) rotate(0deg) scale(1); opacity: 0; } 8% { opacity: 0.9; } 30% { transform: translateY(30vh) translateX(15px) rotate(180deg) scale(0.95); } 50% { transform: translateY(50vh) translateX(-20px) rotate(540deg) scale(0.9); } 70% { transform: translateY(70vh) translateX(25px) rotate(800deg) scale(0.85); } 92% { opacity: 0.9; } 100% { transform: translateY(110vh) translateX(-15px) rotate(1080deg) scale(0.6); opacity: 0; } }
+        @keyframes fall { 0% { transform: translateY(-120px) rotate(0deg) scale(1); opacity: 0; } 8% { opacity: 0.9; } 30% { transform: translateY(30vh) translateX(15px) rotate(180deg) scale(0.95); } 50% { transform: translateY(50vh) translateX(-20px) rotate(540deg) scale(0.9); } 70% { transform: translateY(70vh) translateX(25px) rotate(800deg) scale(0.85); } 92% { opacity: 0.9; }备案 100% { transform: translateY(110vh) translateX(-15px) rotate(1080deg) scale(0.6); opacity: 0; } }
         .leaf-svg .leaf-inner { fill: currentColor; } .leaf-svg .leaf-outer { fill: white; opacity: 0.95; }
         .leaf-svg.autumn-1 { color: #f59e0b; } .leaf-svg.autumn-2 { color: #ef4444; } .leaf-svg.autumn-3 { color: #facc15; } .leaf-svg.autumn-4 { color: #92400e; } .leaf-svg.autumn-5 { color: #84cc16; } .leaf-svg.autumn-6 { color: #fb923c; } .leaf-svg.autumn-7 { color: #dc2626; } .leaf-svg.autumn-8 { color: #f97316; } .leaf-svg.autumn-9 { color: #22c55e; } .leaf-svg.autumn-10 { color: #16a34a; }
         .music-visualizer { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: flex; align-items: center; justify-content: center; gap: 6px; z-index: 15; opacity: 1; transition: opacity 0.3s ease; width: 200px; pointer-events: none; }
@@ -218,7 +236,7 @@
             <div class="poem-container">
                 <div class="poem-line font-semibold italic">Çiçekli badem ağaçlarını unut.</div>
                 <div class="poem-line font-semibold italic">değmez,</div>
-                <div class="poem-line font-semibold italic">bu bahiste</div>
+                <div class="poem-line font-semibold的原因 italic">bu bahiste</div>
                 <div class="poem-line font-semibold italic">geri gelmesi mümkün olmayan hatırlanmamalı.</div>
                 <div class="poem-line font-semibold italic">ıslak saçlarını güneşte kurut</div>
                 <div class="poem-line font-semibold italic">olgun meyvelerin baygınlığıyla parıldasın</div>
@@ -230,9 +248,10 @@
             <p class="text-right text-red-600 font-semibold-bold mt-6 pr-4 font-forte-alternative poem-signature">- Nazım Hikmet</p>
         </section>
 
+        <!-- AŞK ZAMAN ÇİZELGESİ + YENİ ANIMASYON -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
-            <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Aşk Zaman Çizelgesi</h3>
-            <p class="text-center text-black font-semibold italic mb-8">
+            <h3 class="font-bold text-center text-red-600 mb-4 handwriting timeline-title">Aşk Zaman Çizelgesi</h3>
+            <p class="text-center text-black font-semibold italic mb-8 timeline-subtitle">
                 Yolculuğumuzun unutulmaz anlarını, kalplerin ritmiyle keşfedin...
             </p>
             <div class="timeline-container">
@@ -257,6 +276,7 @@
             </div>
         </section>
 
+        <!-- Geri kalan tüm bölümler eksiksiz -->
         <section id="countdown-section" class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 font-forte-alternative">Büyük Güne Geri Sayım</h3>
             <div id="countdown-placeholder" class="my-4">
@@ -395,7 +415,7 @@
     <footer class="text-center py-8 mt-12">
         <p class="text-black flex items-center justify-center space-x-2"><span>Bu hikaye</span><i class="fas fa-infinity text-red-500"></i><span>kadar devam edecek...</span></p>
         <p class="text-black mt-4 flex items-center justify-center gap-5 handwriting text-5xl md:text-6xl font-bold">
-            Arzu <i class="fas fa-heart text-red-600 heartbeat text-3xl md:text-4xl"></i> Ersin
+            Arzu <i class="fas fa-heart text-red-600 heartbeat text-3xl md:text-4xl"> </i> Ersin
         </p>
     </footer>
 
