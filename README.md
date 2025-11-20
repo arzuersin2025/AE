@@ -62,6 +62,18 @@
         @media (min-width: 768px) { main h3:not(#ilk-adim-baslik) { font-size: 2rem !important; } }
         #ilk-adim-baslik { font-size: 1.5rem !important; line-height: 1.4 !important; }
         @media (min-width: 768px) { #ilk-adim-baslik { font-size: 1.75rem !important; } }
+
+        /* Sonbahar başlığı %50 büyütüldü + orijinal sınıflar korundu */
+        #sonbahar-baslik { 
+            font-size: 2.25rem !important;   /* 1.5rem × 1.5 */
+            line-height: 1.3 !important; 
+        }
+        @media (min-width: 768px) { 
+            #sonbahar-baslik { 
+                font-size: 3.375rem !important;  /* 2.25rem × 1.5 */
+            } 
+        }
+
         .timeline-container { position: relative; max-width: 1200px; margin: 0 auto; padding: 2rem 0; }
         .timeline-container::after {
             content: ''; position: absolute; width: 4px; background: linear-gradient(to bottom, #10b981, #f59e0b, #ef4444);
@@ -100,33 +112,18 @@
         .travel-folder p { font-weight: 700 !important; font-style: italic; font-size: 0.75rem !important; color: #6b7280 !important; margin: 0 !important; }
         .fade-in-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity .8s cubic-bezier(.25,.46,.45,.94), transform .8s cubic-bezier(.25,.46,.45,.94); }
         .fade-in-on-scroll.visible { opacity: 1; transform: translateY(0); }
-        #sonbahar-baslik { font-size: 1.5rem !important; line-height: 1.3 !important; }
-        @media (min-width: 768px) { #sonbahar-baslik { font-size: 2.25rem !important; } }
-        /* Şiir satır aralıkları daraltıldı – tam alt alta hizalı */
+
+        /* Şiir satır aralıkları çok dar */
         .poem-container { 
-            max-width: 90%; 
-            margin: 0 auto; 
-            padding: 2rem 0; 
-            line-height: 1.4;  /* Satır aralığı çok azaltıldı */
-            font-size: 1.725rem; 
-            font-style: italic; 
-            color: #1f2937; 
-            text-align: center; 
+            max-width: 90%; margin: 0 auto; padding: 2rem 0; line-height: 1.4; font-size: 1.725rem; font-style: italic; color: #1f2937; text-align: center; 
         }
-        .poem-line { 
-            display: block; 
-            margin: 0;      /* Tüm margin sıfırlandı */
-            padding: 0;     /* Padding sıfırlandı */
-        }
+        .poem-line { display: block; margin: 0; padding: 0; }
         @media (max-width: 768px) {
-            .poem-container { 
-                padding: 1.5rem 0 !important; 
-                line-height: 1.3 !important;  /* Mobilde de çok dar */
-                font-size: 1.95rem; 
-            }
+            .poem-container { padding: 1.5rem 0 !important; line-height: 1.3 !important; font-size: 1.95rem; }
         }
         .poem-signature { font-size: 1.5rem !important; line-height: 1.4 !important; }
         @media (max-width: 768px) { .poem-signature { font-size: 1.875rem !important; } }
+
         .leaf-svg { position: absolute; width: 32px; height: 44px; opacity: 0.9; animation: fall linear infinite; transform-origin: center; filter: drop-shadow(0 3px 6px rgba(0,0,0,0.3)); }
         @keyframes fall { 0% { transform: translateY(-120px) rotate(0deg) scale(1); opacity: 0; } 8% { opacity: 0.9; } 30% { transform: translateY(30vh) translateX(15px) rotate(180deg) scale(0.95); } 50% { transform: translateY(50vh) translateX(-20px) rotate(540deg) scale(0.9); } 70% { transform: translateY(70vh) translateX(25px) rotate(800deg) scale(0.85); } 92% { opacity: 0.9; } 100% { transform: translateY(110vh) translateX(-15px) rotate(1080deg) scale(0.6); opacity: 0; } }
         .leaf-svg .leaf-inner { fill: currentColor; } .leaf-svg .leaf-outer { fill: white; opacity: 0.95; }
@@ -157,7 +154,6 @@
         .transparent-section { background: transparent !important; backdrop-filter: none !important; box-shadow: none !important; border-radius: 0 !important; padding: 2rem 1rem !important; }
         .song-container { position: relative; width: 16rem; height: 16rem; margin: 0 auto; }
         @media (min-width: 768px) { .song-container { width: 20rem; height: 20rem; } }
-        /* ARZU & ERSİN YAZILARI %50 BÜYÜTÜLDÜ - KALP AYNI KALDI */
         .header-name { font-size: 9vw; }
         .header-heart { font-size: 10vw; margin: 0 0.2em; }
         @media (min-width: 768px) {
@@ -214,6 +210,7 @@
             </p>
             <div class="text-4xl text-red-500 mt-8 heartbeat"><i class="fas fa-heart"></i></div>
         </section>
+
         <section class="my-16 max-w-3xl mx-auto text-center">
             <h3 id="sonbahar-baslik" class="font-bold text-center text-red-600 mb-6 handwriting font-forte-alternative text-3xl md:text-5xl">Sonbahar</h3>
             <div class="poem-container">
@@ -230,7 +227,7 @@
             </div>
             <p class="text-right text-red-600 font-semibold-bold mt-6 pr-4 font-forte-alternative poem-signature">- Nazım Hikmet</p>
         </section>
-        <!-- Diğer tüm bölümler tamamen aynı kaldı -->
+
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Aşk Zaman Çizelgesi</h3>
             <p class="text-center text-black font-semibold italic mb-8">
@@ -257,6 +254,7 @@
                 </div>
             </div>
         </section>
+
         <section id="countdown-section" class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 font-forte-alternative">Büyük Güne Geri Sayım</h3>
             <div id="countdown-placeholder" class="my-4">
@@ -272,12 +270,14 @@
                 <div><span id="seconds" class="block text-5xl font-bold text-green-600">00</span><span class="text-sm text-red-600">Saniye</span></div>
             </div>
         </section>
+
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center fade-in-on-scroll">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Hayal Defterimiz</h3>
             <p class="text-center text-black font-semibold italic text-lg mt-4">
                 Birlikte kurduğumuz hayaller, geleceğe dair ektiğimiz tohumlar...
             </p>
         </section>
+
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center relative overflow-hidden">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Bizim Şarkımız</h3>
             <p class="text-center text-black font-semibold italic mt-2 mb-6">Tarkan - Beni Çok Sev</p>
@@ -287,8 +287,7 @@
                         title="Tarkan - Beni Çok Sev"
                         frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen>
-                </iframe>
+                        allowfullscreen></iframe>
                 <div id="music-visualizer" class="music-visualizer">
                     <div class="note">♪</div><div class="note">♫</div><div class="note">♪</div><div class="note">♬</div>
                     <div class="note">♪</div><div class="note">♫</div><div class="note">♪</div><div class="note">♬</div>
@@ -299,6 +298,7 @@
                 </div>
             </div>
         </section>
+
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Seyahatlerimiz</h3>
             <p class="text-center text-black font-semibold italic">Birlikte keşfettiğimiz yerler...</p>
@@ -316,7 +316,7 @@
                 </div>
             </div>
         </section>
-        <!-- FOTOĞRAF GALERİSİ -->
+
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Fotoğraf Galerimiz</h3>
             <p class="text-center text-black font-semibold italic">İşte yolculuğumuzda biriktirdiğimiz Anılar..</p>
@@ -340,7 +340,7 @@
                 </div>
             </div>
         </section>
-        <!-- VİDEO GALERİSİ -->
+
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Video Galerimiz</h3>
             <p class="text-center text-black font-semibold">Bazı duyguları kelimelerle anlatmak yetmez...</p>
@@ -361,6 +361,7 @@
                 </div>
             </div>
         </section>
+
         <section class="my-16 max-w-3xl mx-auto transparent-section">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Teşekkür</h3>
             <p class="text-center text-black text-lg italic mt-4 font-bold">
@@ -394,6 +395,7 @@
             Arzu <i class="fas fa-heart text-red-600 heartbeat text-3xl md:text-4xl"></i> Ersin
         </p>
     </footer>
+
     <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
         <span id="close-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
         <img id="modal-image" src="" alt="Büyütülmüş Fotoğraf" class="max-w-[90vw] max-h-[90vh] rounded-lg shadow-lg">
@@ -404,6 +406,7 @@
         <span id="close-video-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
         <div class="aspect-video w-full max-w-4xl"><iframe id="modal-video-iframe" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
     </div>
+
     <script>
     (() => {
         'use strict';
