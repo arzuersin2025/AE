@@ -63,15 +63,15 @@
         #ilk-adim-baslik { font-size: 1.5rem !important; line-height: 1.4 !important; }
         @media (min-width: 768px) { #ilk-adim-baslik { font-size: 1.75rem !important; } }
 
-        /* Sonbahar başlığı %50 büyütüldü + orijinal sınıflar korundu */
-        #sonbahar-baslik { 
-            font-size: 2.25rem !important;   /* 1.5rem × 1.5 */
-            line-height: 1.3 !important; 
+        /* SONBAHAR BAŞLIĞI GERÇEKTEN BÜYÜK - Tailwind sınıfları yok! */
+        #sonbahar-baslik {
+            font-size: 3.5rem !important;
+            line-height: 1.1 !important;
         }
-        @media (min-width: 768px) { 
-            #sonbahar-baslik { 
-                font-size: 3.375rem !important;  /* 2.25rem × 1.5 */
-            } 
+        @media (min-width: 768px) {
+            #sonbahar-baslik {
+                font-size: 6rem !important;
+            }
         }
 
         .timeline-container { position: relative; max-width: 1200px; margin: 0 auto; padding: 2rem 0; }
@@ -80,7 +80,7 @@
             top: 0; bottom: 0; left: 50%; margin-left: -2px; border-radius: 2px; z-index: 1;
             transform: scaleY(0); transform-origin: top; animation: drawLine 2s ease-out forwards;
         }
-        @keyframes drawLine { to { transform: scaleY(1); } }
+        @ adaptor keyframes drawLine { to { transform: scaleY(1); } }
         .timeline-item { padding: 10px 40px; position: relative; width: 50%; opacity: 0; transform: translateY(50px) scale(0.9); transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); z-index: 2; }
         .timeline-item.animate { opacity: 1; transform: translateY(0) scale(1); }
         .timeline-item.left { left: 0; } .timeline-item.right { left: 50%; }
@@ -113,15 +113,15 @@
         .fade-in-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity .8s cubic-bezier(.25,.46,.45,.94), transform .8s cubic-bezier(.25,.46,.45,.94); }
         .fade-in-on-scroll.visible { opacity: 1; transform: translateY(0); }
 
-        /* Şiir satır aralıkları çok dar */
+        /* ŞİİR TAMAMEN YEŞİL */
         .poem-container { 
-            max-width: 90%; margin: 0 auto; padding: 2rem 0; line-height: 1.4; font-size: 1.725rem; font-style: italic; color: #1f2937; text-align: center; 
+            max-width: 90%; margin: 0 auto; padding: 2rem 0; line-height: 1.4; font-size: 1.725rem; font-style: italic; color: #16a34a !important; text-align: center; 
         }
-        .poem-line { display: block; margin: 0; padding: 0; }
+        .poem-line { display: block; margin: 0; padding: 0; color: #16a34a !important; }
         @media (max-width: 768px) {
             .poem-container { padding: 1.5rem 0 !important; line-height: 1.3 !important; font-size: 1.95rem; }
         }
-        .poem-signature { font-size: 1.5rem !important; line-height: 1.4 !important; }
+        .poem-signature { font-size: 1.5rem !important; line-height: 1.4 !important; color: #16a34a !important; }
         @media (max-width: 768px) { .poem-signature { font-size: 1.875rem !important; } }
 
         .leaf-svg { position: absolute; width: 32px; height: 44px; opacity: 0.9; animation: fall linear infinite; transform-origin: center; filter: drop-shadow(0 3px 6px rgba(0,0,0,0.3)); }
@@ -185,15 +185,17 @@
                     <i class="fas fa-heart text-red-500 heartbeat header-heart"></i>
                     <span class="header-name">Ersin</span>
                 </h1>
-                <p class="text-2xl md:text-3xl text-red-600 mt-6">Bizim Yolculuğumuz</p>
+                <p class="text-xl md:text-2xl text-red-600 mt-10">Bizim Yolculuğumuz</p>
             </div>
         </div>
     </header>
+
     <section id="main-title-section" class="py-16 text-center">
         <h2 id="main-title" class="font-bold handwriting text-green-600">O Güzel Sonbahar</h2>
         <p class="text-xl md:text-2xl mt-2 text-red-600 font-bold">27 Eylül 2025</p>
         <p class="text-lg mt-1 text-red-600 italic font-bold">Zamanın durduğu an</p>
     </section>
+
     <main class="container mx-auto px-6 pb-12">
         <section class="max-w-3xl mx-auto my-12 text-center">
             <h3 id="ilk-adim-baslik" class="font-bold text-red-600 mb-4">İlk Adım</h3>
@@ -212,18 +214,18 @@
         </section>
 
         <section class="my-16 max-w-3xl mx-auto text-center">
-            <h3 id="sonbahar-baslik" class="font-bold text-center text-red-600 mb-6 handwriting font-forte-alternative text-3xl md:text-5xl">Sonbahar</h3>
+            <h3 id="sonbahar-baslik" class="font-bold text-center text-red-600 mb-6 handwriting font-forte-alternative">Sonbahar</h3>
             <div class="poem-container">
-                <div class="poem-line font-semibold italic text-black">Çiçekli badem ağaçlarını unut.</div>
-                <div class="poem-line font-semibold italic text-black">değmez,</div>
-                <div class="poem-line font-semibold italic text-black">bu bahiste</div>
-                <div class="poem-line font-semibold italic text-black">geri gelmesi mümkün olmayan hatırlanmamalı.</div>
-                <div class="poem-line font-semibold italic text-black">ıslak saçlarını güneşte kurut</div>
-                <div class="poem-line font-semibold italic text-black">olgun meyvelerin baygınlığıyla parıldasın</div>
-                <div class="poem-line font-semibold italic text-black">nemli, ağır kızıltılar…</div>
-                <div class="poem-line font-semibold italic text-black">sevgilim, sevgilim,</div>
-                <div class="poem-line font-semibold italic text-black">mevsim</div>
-                <div class="poem-line font-semibold italic text-black">sonbahar…</div>
+                <div class="poem-line font-semibold italic">Çiçekli badem ağaçlarını unut.</div>
+                <div class="poem-line font-semibold italic">değmez,</div>
+                <div class="poem-line font-semibold italic">bu bahiste</div>
+                <div class="poem-line font-semibold italic">geri gelmesi mümkün olmayan hatırlanmamalı.</div>
+                <div class="poem-line font-semibold italic">ıslak saçlarını güneşte kurut</div>
+                <div class="poem-line font-semibold italic">olgun meyvelerin baygınlığıyla parıldasın</div>
+                <div class="poem-line font-semibold italic">nemli, ağır kızıltılar…</div>
+                <div class="poem-line font-semibold italic">sevgilim, sevgilim,</div>
+                <div class="poem-line font-semibold italic">mevsim</div>
+                <div class="poem-line font-semibold italic">sonbahar…</div>
             </div>
             <p class="text-right text-red-600 font-semibold-bold mt-6 pr-4 font-forte-alternative poem-signature">- Nazım Hikmet</p>
         </section>
@@ -389,6 +391,7 @@
             </div>
         </section>
     </main>
+
     <footer class="text-center py-8 mt-12">
         <p class="text-black flex items-center justify-center space-x-2"><span>Bu hikaye</span><i class="fas fa-infinity text-red-500"></i><span>kadar devam edecek...</span></p>
         <p class="text-black mt-4 flex items-center justify-center gap-5 handwriting text-5xl md:text-6xl font-bold">
@@ -402,6 +405,7 @@
         <span id="prev-photo" class="absolute top-1/2 left-4 -translate-y-1/2 text-white text-6xl font-bold cursor-pointer hover:text-gray-300 transition-colors select-none">&lt;</span>
         <span id="next-photo" class="absolute top-1/2 right-4 -translate-y-1/2 text-white text-6xl font-bold cursor-pointer hover:text-gray-300 transition-colors select-none">&gt;</span>
     </div>
+
     <div id="video-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
         <span id="close-video-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
         <div class="aspect-video w-full max-w-4xl"><iframe id="modal-video-iframe" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
