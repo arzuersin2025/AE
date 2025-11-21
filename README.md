@@ -27,7 +27,7 @@
         }
         @media (max-width: 768px) { #background-leaves-pattern { opacity: 0.9 !important; } }
         #falling-leaves-container { position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: -1; overflow: hidden; }
-        /* YAPRAK - IMG ETİKETİYLE ŞEFFAF ARKA PLAN + TÜM ESKİ EFEKTLER */
+        /* YAPRAK - IMG ETİKETİYLE ŞEFFAF ARKA PLAN + TÜM ESKİ EFEKTLER (sallanma yok) */
         #top-left-leaf {
             position: fixed;
             top: 12px;
@@ -39,14 +39,9 @@
             transition: transform 0.4s ease;
             filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
             border-radius: 16px;
-            animation: gentleFloat 7s ease-in-out infinite;
             object-fit: contain;
         }
         #top-left-leaf:hover { transform: scale(1.35) rotate(12deg); }
-        @keyframes gentleFloat {
-            0%,100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-10px) rotate(8deg); }
-        }
         @media (max-width: 768px) {
             #top-left-leaf { width: 56px; height: 56px; top: 8px; left: 8px; }
         }
@@ -58,7 +53,6 @@
         .heartbeat { animation: heartbeat 1.5s infinite; }
         #main-title { font-size: 3rem !important; line-height: 1.2 !important; }
         @media (min-width: 768px) { #main-title { font-size: 4rem !important; } }
-        /* MOBİLDE TEK SATIR */
         @media (max-width: 768px) {
             #main-title {
                 font-size: 2.3rem !important;
