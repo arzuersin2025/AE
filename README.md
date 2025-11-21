@@ -27,24 +27,7 @@
         }
         @media (max-width: 768px) { #background-leaves-pattern { opacity: 0.9 !important; } }
         #falling-leaves-container { position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: -1; overflow: hidden; }
-        /* YAPRAK - IMG ETİKETİYLE ŞEFFAF ARKA PLAN + TÜM ESKİ EFEKTLER (sallanma yok) */
-        #top-left-leaf {
-            position: fixed;
-            top: 12px;
-            left: 12px;
-            width: 68px;
-            height: 68px;
-            z-index: 99999;
-            cursor: pointer;
-            transition: transform 0.4s ease;
-            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
-            border-radius: 16px;
-            object-fit: contain;
-        }
-        #top-left-leaf:hover { transform: scale(1.35) rotate(12deg); }
-        @media (max-width: 768px) {
-            #top-left-leaf { width: 56px; height: 56px; top: 8px; left: 8px; }
-        }
+        /* SOL ÜST YAPRAK TAMAMEN KALDIRILDI */
         h1, h2, h3 { font-family: 'Playfair Display', serif; }
         .handwriting { font-family: 'Dancing Script', cursive; }
         .font-forte-alternative { font-family: 'Dancing Script', cursive; }
@@ -164,9 +147,6 @@
     </style>
 </head>
 <body class="text-black">
-    <a href="#countdown-section">
-        <img id="top-left-leaf" src="https://i.imgur.com/4u0Z2kw.png" alt="Büyük Güne Geri Sayım ❤️" title="Büyük Güne Geri Sayım ❤️">
-    </a>
     <div id="background-leaves-pattern"></div>
     <div id="falling-leaves-container"></div>
     <header class="py-16 text-center relative z-20 overflow-hidden">
@@ -330,7 +310,7 @@
                     <div class="photo-container group cursor-pointer"><img data-src="https://i.imgur.com/PR2hWYz.jpg" alt="Aksaray" class="gallery-thumbnail w-full h-full object-cover" loading="lazy"><span class="photo-number opacity-0 group-hover:opacity-100">4</span><div class="photo-note">Aksaray</div></div>
                     <div class="photo-container group cursor-pointer"><img data-src="https://i.imgur.com/40oguJF.jpg" alt="Çamlıca Kahvaltımız" class="gallery-thumbnail w-full h-full object-cover" loading="lazy"><span class="photo-number opacity-0 group-hover:opacity-100">3</span><div class="photo-note">Çamlıca Kahvaltımız</div></div>
                     <div class="photo-container group cursor-pointer"><img data-src="https://i.imgur.com/KZpZnaa.jpg" alt="Dünya Güzelim" class="gallery-thumbnail w-full h-full object-cover" loading="lazy"><span class="photo-number opacity-0 group-hover:opacity-100">2</span><div class="photo-note">Dünya Güzelim</div></div>
-                    <div class="photo-container group cursor-pointer no-note"><img data-src="https://i.imgur.com/WnEibNN.jpg" alt="Aksaray" class="gallery-thumbnail w-full h-full object-cover" loading="lazy"><span class="photo-number opacity-0 group-hover:opacity-100">1</span></div>
+                    <div class="photo-container no-note group cursor-pointer"><img data-src="https://i.imgur.com/WnEibNN.jpg" alt="Aksaray" class="gallery-thumbnail w-full h-full object-cover" loading="lazy"><span class="photo-number opacity-0 group-hover:opacity-100">1</span></div>
                 </div>
             </div>
         </section>
