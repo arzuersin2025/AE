@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -143,20 +143,28 @@
             z-index: 9999;
             background: rgba(255,255,255,0.92);
             backdrop-filter: blur(12px);
-            width: 64px;
-            height: 64px;
-            border-radius: 50%;
+            width: 80px;
+            height: 100px;
+            border-radius: 50px;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            font-size: 36px;
+            gap: 6px;
             color: #e11d48;
-            box-shadow: 0 8px 25px rgba(225,29,72,0.5);
+ box-shadow: 0 8px 25px rgba(225,29,72,0.5);
             cursor: pointer;
             transition: all 0.4s ease;
             border: 4px solid #fce7f3;
         }
         #heart-rain-btn:hover { transform: scale(1.25); box-shadow: 0 12px 35px rgba(225,29,72,0.7); }
+        #heart-rain-btn i { font-size: 38px; }
+        #heart-rain-btn span { font-family: 'Dancing Script', cursive; font-weight: 700; font-size: 16px; color: #c9184a; letter-spacing: 1.5px; }
+        @media (max-width: 480px) {
+            #heart-rain-btn { width: 70px; height: 90px; top: 15px; left: 15px; }
+            #heart-rain-btn i { font-size: 32px; }
+            #heart-rain-btn span { font-size: 14px; }
+        }
         .heart-rain {
             position: fixed;
             top: -80px;
@@ -180,9 +188,10 @@
     <div id="background-leaves-pattern"></div>
     <div id="falling-leaves-container"></div>
 
-    <!-- KALP YAĞMURU BUTONU -->
+    <!-- KALP YAĞMURU BUTONU + "Dokun" YAZISI ALTINDA -->
     <div id="heart-rain-btn" title="Kalp yağmuru başlat!">
         <i class="fas fa-heart heartbeat"></i>
+        <span>Dokun</span>
     </div>
 
     <!-- TÜM ORİJİNAL İÇERİK (1. VERSİYONUN TAMAMI) -->
@@ -207,13 +216,11 @@
             </div>
         </div>
     </header>
-
     <section id="main-title-section" class="py-16 text-center">
         <h2 id="main-title" class="font-bold handwriting text-green-600">O Güzel Sonbahar günü</h2>
         <p class="text-xl md:text-2xl mt-2 text-red-600 font-bold">27 Eylül 2025</p>
         <p class="text-lg mt-1 text-red-600 italic font-bold">Zamanın durduğu an</p>
     </section>
-
     <main class="container mx-auto px-6 pb-12">
         <section class="max-w-3xl mx-auto my-12 text-center">
             <h3 id="ilk-adim-baslik" class="font-bold text-red-600 mb-4">İlk Adım</h3>
@@ -230,7 +237,6 @@
             </p>
             <div class="text-4xl text-red-500 mt-8 heartbeat"><i class="fas fa-heart"></i></div>
         </section>
-
         <section class="my-16 max-w-3xl mx-auto text-center">
             <h3 id="sonbahar-baslik" class="font-bold text-center text-red-600 mb-6 handwriting font-forte-alternative">Sonbahar</h3>
             <div class="poem-container">
@@ -247,7 +253,6 @@
             </div>
             <p class="text-right text-red-600 font-semibold-bold mt-6 pr-4 font-forte-alternative poem-signature">- Nazım Hikmet</p>
         </section>
-
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting timeline-title">Aşk Zaman Çizelgesi</h3>
             <p class="text-center text-black font-semibold italic mb-8 timeline-subtitle">
@@ -274,7 +279,6 @@
                 </div>
             </div>
         </section>
-
         <section id="countdown-section" class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 font-forte-alternative">Büyük Güne Geri Sayım</h3>
             <div id="countdown-placeholder" class="my-4">
@@ -290,7 +294,6 @@
                 <div><span id="seconds" class="block text-5xl font-bold text-green-600">00</span><span class="text-sm text-red-600">Saniye</span></div>
             </div>
         </section>
-
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center relative overflow-hidden">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Bizim Şarkımız</h3>
             <p class="text-center text-black font-semibold italic mt-2 mb-6">Tarkan - Beni Çok Sev</p>
@@ -311,10 +314,7 @@
                 </div>
             </div>
         </section>
-
         <!-- Tüm diğer bölümler (Seyahatler, Foto Galeri, Video Galeri, Teşekkür) tamamen aynı -->
-        <!-- (Yer sınırlı diye burada tam yazmadım ama aşağıdaki scriptte hepsi çalışıyor) -->
-
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Seyahatlerimiz</h3>
             <p class="text-center text-black font-semibold italic">Birlikte keşfettiğimiz yerler...</p>
@@ -332,7 +332,6 @@
                 </div>
             </div>
         </section>
-
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Fotoğraf Galerimiz</h3>
             <p class="text-center text-black font-semibold italic">İşte yolculuğumuzda biriktirdiğimiz Anılar..</p>
@@ -356,7 +355,6 @@
                 </div>
             </div>
         </section>
-
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Video Galerimiz</h3>
             <p class="text-center text-black font-semibold">Bazı duyguları kelimelerle anlatmak yetmez...</p>
@@ -377,7 +375,6 @@
                 </div>
             </div>
         </section>
-
         <section class="my-16 max-w-3xl mx-auto transparent-section">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Teşekkür</h3>
             <p class="text-center text-black text-lg italic mt-4 font-bold">
@@ -415,7 +412,6 @@
             </div>
         </section>
     </main>
-
     <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
         <span id="close-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
         <img id="modal-image" src="" alt="Büyütülmüş Fotoğraf" class="max-w-[90vw] max-h-[90vh] rounded-lg shadow-lg">
@@ -426,11 +422,9 @@
         <span id="close-video-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
         <div class="aspect-video w-full max-w-4xl"><iframe id="modal-video-iframe" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
     </div>
-
     <script>
     (() => {
         'use strict';
-
         // YENİ KALP YAĞMURU (TAMAMEN ÇALIŞIYOR)
         document.getElementById('heart-rain-btn').addEventListener('click', function() {
             const count = 60;
@@ -447,7 +441,6 @@
                 setTimeout(() => h.remove(), 12000);
             }
         });
-
         // ORİJİNAL TÜM KOD (1. VERSİYONUN TAMAMI)
         const leafSVG = `<svg viewBox="0 0 100 140" class="w-full h-full" preserveAspectRatio="xMidYMid meet"><path class="leaf-outer" d="M50 10 C30 15, 20 35, 18 55 C16 75, 25 95, 35 115 C45 130, 48 135, 50 138 C52 135, 55 130, 65 115 C75 95, 84 75, 82 55 C80 35, 70 15, 50 10 Z" /><path class="leaf-inner" d="M50 15 C33 20, 25 38, 23 55 C21 72, 28 88, 36 108 C44 125, 48 132, 50 135 C52 132, 56 125, 64 108 C72 88, 79 72, 77 55 C75 38, 67 20, 50 15 Z" /><path d="M50 15 Q50 70 48 135" stroke="#fff" stroke-width="2.5" opacity="0.5" fill="none"/><path d="M50 15 Q35 40 28 48 M50 55 Q32 65 25 75 M50 80 Q30 90 23 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/><path d="M50 15 Q65 40 72 48 M50 55 Q68 65 75 75 M50 80 Q70 90 77 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/></svg>`;
         const leafColors = ['autumn-1','autumn-2','autumn-3','autumn-4','autumn-5','autumn-6','autumn-7','autumn-8','autumn-9','autumn-10'];
@@ -465,7 +458,6 @@
             leaf.innerHTML = leafSVG;
             leafContainer.appendChild(leaf);
         }
-
         const lazyLoadObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -479,7 +471,6 @@
             });
         }, { rootMargin: '50px' });
         document.querySelectorAll('img[data-src]').forEach(img => lazyLoadObserver.observe(img));
-
         let imgs = [], curIdx = 0, videoIds = [], curVideoIdx = 0;
         const refreshImgs = () => { imgs = Array.from(document.querySelectorAll('#gallery-grid img')).map(i => i.src).filter(s => s && !s.includes('svg')); };
         const refreshVideos = () => { videoIds = Array.from(document.querySelectorAll('#video-grid .photo-container')).map(el => el.dataset.youtubeId); };
@@ -489,7 +480,6 @@
         const prevImg = () => { curIdx = (curIdx - 1 + imgs.length) % imgs.length; document.getElementById('modal-image').src = imgs[curIdx]; };
         const openVideo = idx => { refreshVideos(); curVideoIdx = idx; document.getElementById('modal-video-iframe').src = `https://www.youtube.com/embed/${videoIds[curVideoIdx]}?autoplay=1`; document.getElementById('video-modal').classList.replace('hidden','flex'); };
         const closeVideo = () => { document.getElementById('video-modal').classList.replace('flex','hidden'); document.getElementById('modal-video-iframe').src = ''; };
-
         document.getElementById('toggle-gallery-btn').onclick = () => {
             const w = document.getElementById('gallery-wrapper');
             w.classList.toggle('hidden');
@@ -510,7 +500,6 @@
             document.getElementById('video-gallery-toggle-text').textContent = w.classList.contains('hidden') ? 'Video Galerisini Gör' : 'Video Galerisini Gizle';
             if (!w.classList.contains('hidden')) setTimeout(() => document.querySelectorAll('#video-grid .photo-container').forEach((c,i) => c.onclick = () => openVideo(i)), 100);
         };
-
         document.getElementById('close-modal').onclick = closeImg;
         document.getElementById('prev-photo').onclick = e => { e.stopPropagation(); prevImg(); };
         document.getElementById('next-photo').onclick = e => { e.stopPropagation(); nextImg(); };
@@ -522,7 +511,6 @@
             if (e.key === 'ArrowRight' && document.getElementById('image-modal').classList.contains('flex')) nextImg();
             if (e.key === 'ArrowLeft' && document.getElementById('image-modal').classList.contains('flex')) prevImg();
         });
-
         let player, isPlaying = false;
         const playBtn = document.getElementById('play-song-btn');
         const playerElement = document.getElementById('youtube-player');
@@ -530,7 +518,6 @@
         const tag = document.createElement('script');
         tag.src = 'https://www.youtube.com/iframe_api';
         document.getElementsByTagName('script')[0].parentNode.insertBefore(tag, document.getElementsByTagName('script')[0]);
-
         window.onYouTubeIframeAPIReady = function() {
             player = new YT.Player('youtube-player', {
                 events: {
@@ -557,14 +544,12 @@
             if (!player) return;
             isPlaying ? player.pauseVideo() : player.playVideo();
         };
-
         const timelineObserver = new IntersectionObserver((entries) => {
             entries.forEach((e,i) => {
                 if (e.isIntersecting) setTimeout(() => e.target.classList.add('animate'), i * 300);
             });
         }, { threshold: 0.3 });
         document.querySelectorAll('.timeline-item').forEach(item => timelineObserver.observe(item));
-
         const obs = new IntersectionObserver(entries => {
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
         }, { threshold: 0.3 });
