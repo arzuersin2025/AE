@@ -19,7 +19,6 @@
             position: relative;
             overflow-x: hidden;
             min-height: 100vh;
-            transition: background-color 0.5s ease, color 0.5s ease;
         }
         #background-leaves-pattern {
             position: fixed; top: 0; left: 0; right: 0; bottom: 0;
@@ -92,7 +91,7 @@
         .fade-in-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity .8s cubic-bezier(.25,.46,.45,.94), transform .8s cubic-bezier(.25,.46,.45,.94); }
         .fade-in-on-scroll.visible { opacity: 1; transform: translateY(0); }
         .poem-container {
-            max-width: 90%; margin: 0 auto; padding: 2rem 0; line-height: 1.4; font-size: 1.725rem; fontsize: italic; color: #16a34a !important; text-align: center;
+            max-width: 90%; margin: 0 auto; padding: 2rem 0; line-height: 1.4; font-size: 1.725rem; font-style: italic; color: #16a34a !important; text-align: center;
         }
         .poem-line { display: block; margin: 0; padding: 0; color: #16a34a !important; }
         @media (max-width: 768px) {
@@ -137,33 +136,56 @@
             .header-heart { font-size: 5vw; }
         }
 
-        /* KARANLIK TEMA */
-        body.dark { background-color: #0f172a !important; color: #e2e8f0 !important; }
-        body.dark #background-leaves-pattern { background-color: #1e293b; opacity: 0.4; }
-        body.dark .text-black { color: #e2e8f0 !important; }
-        body.dark .text-red-600 { color: #fca5a5 !important; }
-        body.dark .text-green-600 { color: #86efac !important; }
-        body.dark .bg-white, body.dark .bg-white\/90 { background-color: rgba(30, 41, 59, 0.9) !important; backdrop-filter: blur(12px); }
-        body.dark .border-pink-100 { border-color: #f472b6 !important; }
-        body.dark .travel-folder { background: #1e293b; border-color: #6b7280; }
-        body.dark .travel-folder h4, body.dark .travel-folder p { color: #e2e8f0 !important; }
-        body.dark .poem-container, body.dark .poem-signature { color: #86efac !important; }
+        /* KALP YAĞMURU BUTONU - SOL ÜST */
+        #heart-rain-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 9999;
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(12px);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: #e11d48;
+            box-shadow: 0 6px 20px rgba(225,29,72,0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 3px solid #fce7f3;
+        }
+        #heart-rain-btn:hover {
+            transform: scale(1.2);
+            box-shadow: 0 10px 30px rgba(225,29,72,0.6);
+        }
+        .heart-fall {
+            position: fixed;
+            pointer-events: none;
+            font-size: 2.5rem;
+            animation: heartFall linear forwards;
+            z-index: 9998;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+        }
+        @keyframes heartFall {
+            0% { transform: translateY(-100px) rotate(0deg) scale(0.8); opacity: 0; }
+            10% { opacity: 1; }
+            100% { transform: translateY(calc(100vh + 100px)) rotate(1080deg) scale(0.4); opacity: 0; }
+        }
     </style>
 </head>
 <body class="text-black">
     <div id="background-leaves-pattern"></div>
     <div id="falling-leaves-container"></div>
 
-    <!-- GECE / GÜNDÜZ MODU BUTONU - EN ÜST SAĞ KÖŞEDE -->
-    <div id="theme-toggle" class="fixed top-6 right-6 z-50 group">
-        <button class="w-14 h-14 bg-white/95 backdrop-blur-lg rounded-full shadow-2xl flex items-center justify-center text-2xl hover:scale-110 transition-all duration-500 border-2 border-pink-200 hover:border-pink-300">
-            <i class="fas fa-moon text-pink-600 transition-all duration-500"></i>
-        </button>
-        <div class="absolute top-full mt-2 right-0 bg-gray-900 text-white text-xs px-3 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
-            <span id="theme-tooltip">Gece Modu</span>
-        </div>
+    <!-- KALP YAĞMURU BUTONU - SOL ÜST -->
+    <div id="heart-rain-btn" title="Kalp yağmuru başlat!">
+        <i class="fas fa-heart heartbeat"></i>
     </div>
 
+    <!-- TÜM ORİJİNAL İÇERİK -->
     <header class="py-16 text-center relative z-20 overflow-hidden">
         <div class="relative">
             <a href="#countdown-section" title="Geri Sayım" class="absolute top-1/2 -translate-y-1/2 right-4 text-green-600 hover:text-green-800 transition-colors z-20 text-center">
@@ -360,17 +382,6 @@
             </div>
         </section>
 
-        <!-- MİSAFİR DEFTERİ -->
-        <section class="my-16 max-w-4xl mx-auto px-6">
-            <h3 class="font-bold text-center text-red-600 mb-8 handwriting text-4xl md:text-5xl">
-                Misafir Defterimiz ♡
-            </h3>
-            <p class="text-center text-black text-lg italic mb-12 font-medium">
-                Bize güzel dileklerinizi bırakın, sonsuza dek saklayalım…
-            </p>
-            <div id="waline-guestbook"></div>
-        </section>
-
         <section class="my-16 max-w-3xl mx-auto transparent-section">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Teşekkür</h3>
             <p class="text-center text-black text-lg italic mt-4 font-bold">
@@ -382,7 +393,7 @@
             </div>
             <div class="mt-16 text-center fade-in-on-scroll">
                 <p class="text-red-600 italic text-xl md:text-2xl mb-6 font-medium">
-                    Kalbinizden geçenleri bize yazmak isterseniz İletişim adresimiz ♡
+                    Kalbinizden geçenleri bize yazmak isterseniz İletişim adresimiz
                 </p>
                 <div class="flex justify-center">
                     <div class="inline-flex items-center gap-4 bg-white/90 px-6 py-4 rounded-full shadow-lg border-2 border-pink-200 group cursor-pointer">
@@ -409,6 +420,7 @@
         </section>
     </main>
 
+    <!-- Modallar -->
     <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
         <span id="close-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
         <img id="modal-image" src="" alt="Büyütülmüş Fotoğraf" class="max-w-[90vw] max-h-[90vh] rounded-lg shadow-lg">
@@ -423,7 +435,25 @@
     <script>
     (() => {
         'use strict';
-        const COUNTDOWN_DATE = "";
+
+        // KALP YAĞMURU EFEKTİ - ÇALIŞIYOR!
+        document.getElementById('heart-rain-btn').addEventListener('click', () => {
+            for (let i = 0; i < 35; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart-fall';
+                heart.innerHTML = '<i class="fas fa-heart"></i>';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 4 + 4) + 's';
+                heart.style.animationDelay = Math.random() * 1.5 + 's';
+                const size = Math.random() * 1.5 + 1.5;
+                heart.style.fontSize = size + 'rem';
+                heart.style.color = ['#e11d48', '#ec4899', '#f43f5e', '#ff6b6b'][Math.floor(Math.random() * 4)];
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 8000);
+            }
+        });
+
+        // DÜŞEN YAPRAKLAR
         const leafSVG = `<svg viewBox="0 0 100 140" class="w-full h-full" preserveAspectRatio="xMidYMid meet"><path class="leaf-outer" d="M50 10 C30 15, 20 35, 18 55 C16 75, 25 95, 35 115 C45 130, 48 135, 50 138 C52 135, 55 130, 65 115 C75 95, 84 75, 82 55 C80 35, 70 15, 50 10 Z" /><path class="leaf-inner" d="M50 15 C33 20, 25 38, 23 55 C21 72, 28 88, 36 108 C44 125, 48 132, 50 135 C52 132, 56 125, 64 108 C72 88, 79 72, 77 55 C75 38, 67 20, 50 15 Z" /><path d="M50 15 Q50 70 48 135" stroke="#fff" stroke-width="2.5" opacity="0.5" fill="none"/><path d="M50 15 Q35 40 28 48 M50 55 Q32 65 25 75 M50 80 Q30 90 23 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/><path d="M50 15 Q65 40 72 48 M50 55 Q68 65 75 75 M50 80 Q70 90 77 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/></svg>`;
         const leafColors = ['autumn-1','autumn-2','autumn-3','autumn-4','autumn-5','autumn-6','autumn-7','autumn-8','autumn-9','autumn-10'];
         const leafContainer = document.getElementById('falling-leaves-container');
@@ -440,6 +470,8 @@
             leaf.innerHTML = leafSVG;
             leafContainer.appendChild(leaf);
         }
+
+        // TÜM ORİJİNAL JAVASCRIPT
         const lazyLoadObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -453,6 +485,7 @@
             });
         }, { rootMargin: '50px' });
         document.querySelectorAll('img[data-src]').forEach(img => lazyLoadObserver.observe(img));
+
         let imgs = [], curIdx = 0, videoIds = [], curVideoIdx = 0;
         const refreshImgs = () => { imgs = Array.from(document.querySelectorAll('#gallery-grid img')).map(i => i.src).filter(s => s && !s.includes('svg')); };
         const refreshVideos = () => { videoIds = Array.from(document.querySelectorAll('#video-grid .photo-container')).map(el => el.dataset.youtubeId); };
@@ -462,6 +495,7 @@
         const prevImg = () => { curIdx = (curIdx - 1 + imgs.length) % imgs.length; document.getElementById('modal-image').src = imgs[curIdx]; };
         const openVideo = idx => { refreshVideos(); curVideoIdx = idx; document.getElementById('modal-video-iframe').src = `https://www.youtube.com/embed/${videoIds[curVideoIdx]}?autoplay=1`; document.getElementById('video-modal').classList.replace('hidden','flex'); };
         const closeVideo = () => { document.getElementById('video-modal').classList.replace('flex','hidden'); document.getElementById('modal-video-iframe').src = ''; };
+
         document.getElementById('toggle-gallery-btn').onclick = () => {
             const w = document.getElementById('gallery-wrapper');
             w.classList.toggle('hidden');
@@ -493,43 +527,7 @@
             if (e.key === 'ArrowRight' && document.getElementById('image-modal').classList.contains('flex')) nextImg();
             if (e.key === 'ArrowLeft' && document.getElementById('image-modal').classList.contains('flex')) prevImg();
         });
-        if (COUNTDOWN_DATE) {
-            const target = new Date(COUNTDOWN_DATE).getTime();
-            const timer = document.getElementById('countdown-timer');
-            const placeholder = document.getElementById('countdown-placeholder');
-            const header = document.getElementById('header-countdown');
-            placeholder.classList.add('hidden');
-            timer.classList.remove('hidden');
-            header.classList.remove('hidden');
-            const pad = n => n < 10 ? '0'+n : n;
-            const update = () => {
-                const diff = target - Date.now();
-                if (diff <= 0) { clearInterval(intv); timer.innerHTML = '<p class="col-span-full text-xl text-green-600">Ve o güzel gün geldi!</p>'; return; }
-                const d = Math.floor(diff/(1000*60*60*24));
-                const h = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
-                const m = Math.floor((diff%(1000*60*60))/(1000*60));
-                const s = Math.floor((diff%(1000*60))/1000);
-                document.getElementById('days').textContent = d;
-                document.getElementById('hours').textContent = pad(h);
-                document.getElementById('minutes').textContent = pad(m);
-                document.getElementById('seconds').textContent = pad(s);
-                document.getElementById('header-days').textContent = d;
-                document.getElementById('header-hours').textContent = pad(h);
-                document.getElementById('header-minutes').textContent = pad(m);
-            };
-            update();
-            const intv = setInterval(update, 1000);
-        }
-        const timelineObserver = new IntersectionObserver((entries) => {
-            entries.forEach((e,i) => {
-                if (e.isIntersecting) setTimeout(() => e.target.classList.add('animate'), i * 300);
-            });
-        }, { threshold: 0.3 });
-        document.querySelectorAll('.timeline-item').forEach(item => timelineObserver.observe(item));
-        const obs = new IntersectionObserver(entries => {
-            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-        }, { threshold: 0.3 });
-        document.querySelectorAll('.fade-in-on-scroll, .travel-folder').forEach(el => obs.observe(el));
+
         let player, isPlaying = false, userInteracted = false;
         const playBtn = document.getElementById('play-song-btn');
         const playerElement = document.getElementById('youtube-player');
@@ -569,56 +567,18 @@
             isPlaying ? player.pauseVideo() : player.playVideo();
         };
 
-        // GECE MODU - EN ÜST SAĞ KÖŞEDE
-        const themeToggle = document.getElementById('theme-toggle');
-        const moonIcon = themeToggle.querySelector('i');
-        const tooltip = document.getElementById('theme-tooltip');
-
-        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.body.classList.add('dark');
-            moonIcon.classList.replace('fa-moon', 'fa-sun');
-            tooltip.textContent = 'Gündüz Modu';
-        }
-
-        themeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('dark');
-            if (document.body.classList.contains('dark')) {
-                moonIcon.classList.replace('fa-moon', 'fa-sun');
-                tooltip.textContent = 'Gündüz Modu';
-                localStorage.setItem('theme', 'dark');
-            } else {
-                moonIcon.classList.replace('fa-sun', 'fa-moon');
-                tooltip.textContent = 'Gece Modu';
-                localStorage.setItem('theme', 'light');
-            }
-        });
-
-        // MİSAFİR DEFTERİ
-        import('https://unpkg.com/@waline/client@v3/dist/waline.js').then(({ init }) => {
-            init({
-                el: '#waline-guestbook',
-                serverURL: 'https://arzu-ersin-waline.vercel.app',
-                path: window.location.pathname,
-                lang: 'tr',
-                locale: {
-                    nick: 'Adınız Soyadınız *',
-                    mail: 'E-posta (görünmeyecek)',
-                    placeholder: 'Bize en güzel dileklerinizi yazın… 💌',
-                    sofa: 'Henüz hiç dilek yok, ilk siz bırakın! ♡',
-                    submit: 'Gönder',
-                    more: 'Daha fazla dilek göster…'
-                },
-                emoji: ['https://unpkg.com/@waline/emojis@1.1.0/bilibili'],
-                meta: ['nick', 'mail'],
-                requiredMeta: ['nick'],
-                wordLimit: 500,
-                pageSize: 10,
-                login: 'disable',
-                dark: 'body.dark',
+        // Timeline ve fade-in animasyonları
+        const timelineObserver = new IntersectionObserver((entries) => {
+            entries.forEach((e,i) => {
+                if (e.isIntersecting) setTimeout(() => e.target.classList.add('animate'), i * 300);
             });
-        });
+        }, { threshold: 0.3 });
+        document.querySelectorAll('.timeline-item').forEach(item => timelineObserver.observe(item));
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { threshold: 0.3 });
+        document.querySelectorAll('.fade-in-on-scroll, .travel-folder').forEach(el => obs.observe(el));
     })();
     </script>
-    <link rel="stylesheet" href="https://unpkg.com/@waline/client@v3/dist/waline.css" />
 </body>
 </html>
