@@ -19,6 +19,7 @@
             position: relative;
             overflow-x: hidden;
             min-height: 100vh;
+            transition: background-color 0.5s ease, color 0.5s ease;
         }
         #background-leaves-pattern {
             position: fixed; top: 0; left: 0; right: 0; bottom: 0;
@@ -91,7 +92,7 @@
         .fade-in-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity .8s cubic-bezier(.25,.46,.45,.94), transform .8s cubic-bezier(.25,.46,.45,.94); }
         .fade-in-on-scroll.visible { opacity: 1; transform: translateY(0); }
         .poem-container {
-            max-width: 90%; margin: 0 auto; padding: 2rem 0; line-height: 1.4; font-size: 1.725rem; font-style: italic; color: #16a34a !important; text-align: center;
+            max-width: 90%; margin: 0 auto; padding: 2rem 0; line-height: 1.4; font-size: 1.725rem; fontsize: italic; color: #16a34a !important; text-align: center;
         }
         .poem-line { display: block; margin: 0; padding: 0; color: #16a34a !important; }
         @media (max-width: 768px) {
@@ -103,7 +104,7 @@
         @keyframes fall { 0% { transform: translateY(-120px) rotate(0deg) scale(1); opacity: 0; } 8% { opacity: 0.9; } 30% { transform: translateY(30vh) translateX(15px) rotate(180deg) scale(0.95); } 50% { transform: translateY(50vh) translateX(-20px) rotate(540deg) scale(0.9); } 70% { transform: translateY(70vh) translateX(25px) rotate(800deg) scale(0.85); } 92% { opacity: 0.9; } 100% { transform: translateY(110vh) translateX(-15px) rotate(1080deg) scale(0.6); opacity: 0; } }
         .leaf-svg .leaf-inner { fill: currentColor; } .leaf-svg .leaf-outer { fill: white; opacity: 0.95; }
         .leaf-svg.autumn-1 { color: #f59e0b; } .leaf-svg.autumn-2 { color: #ef4444; } .leaf-svg.autumn-3 { color: #facc15; } .leaf-svg.autumn-4 { color: #92400e; } .leaf-svg.autumn-5 { color: #84cc16; } .leaf-svg.autumn-6 { color: #fb923c; } .leaf-svg.autumn-7 { color: #dc2626; } .leaf-svg.autumn-8 { color: #f97316; } .leaf-svg.autumn-9 { color: #22c55e; } .leaf-svg.autumn-10 { color: #16a34a; }
-        .music-visualizer { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: flex; align-items: center; justify-content: center; gap: 6px; z-index: 15; opacity: opacity: 1; transition: opacity 0.3s ease; width: 200px; pointer-events: none; }
+        .music-visualizer { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: flex; align-items: center; justify-content: center; gap: 6px; z-index: 15; opacity: 1; transition: opacity 0.3s ease; width: 200px; pointer-events: none; }
         .music-visualizer.hidden { opacity: 0 !important; pointer-events: none; }
         .note { font-size: 1.8rem; color: #ef4444; animation: floatNote 1.8s infinite ease-in-out; transform-origin: bottom; }
         .note:nth-child(1) { animation-delay: 0s; }
@@ -111,7 +112,7 @@
         .note:nth-child(3) { animation-delay: 0.4s; }
         .note:nth-child(4) { animation-delay: 0.6s; }
         .note:nth-child(5) { animation-delay: 0.8s; }
-        .note:nth-child(6) { animation-delay: delay: 1s; }
+        .note:nth-child(6) { animation-delay: 1s; }
         .note:nth-child(7) { animation-delay: 1.2s; }
         .note:nth-child(8) { animation-delay: 1.4s; }
         @keyframes floatNote { 0%, 100% { transform: translateY(0) scale(1); opacity: 0.7; } 50% { transform: translateY(-12px) scale(1.3); opacity: 1; } }
@@ -136,12 +137,33 @@
             .header-heart { font-size: 5vw; }
         }
 
-        }
+        /* KARANLIK TEMA */
+        body.dark { background-color: #0f172a !important; color: #e2e8f0 !important; }
+        body.dark #background-leaves-pattern { background-color: #1e293b; opacity: 0.4; }
+        body.dark .text-black { color: #e2e8f0 !important; }
+        body.dark .text-red-600 { color: #fca5a5 !important; }
+        body.dark .text-green-600 { color: #86efac !important; }
+        body.dark .bg-white, body.dark .bg-white\/90 { background-color: rgba(30, 41, 59, 0.9) !important; backdrop-filter: blur(12px); }
+        body.dark .border-pink-100 { border-color: #f472b6 !important; }
+        body.dark .travel-folder { background: #1e293b; border-color: #6b7280; }
+        body.dark .travel-folder h4, body.dark .travel-folder p { color: #e2e8f0 !important; }
+        body.dark .poem-container, body.dark .poem-signature { color: #86efac !important; }
     </style>
 </head>
 <body class="text-black">
     <div id="background-leaves-pattern"></div>
     <div id="falling-leaves-container"></div>
+
+    <!-- GECE / GÜNDÜZ MODU BUTONU - EN ÜST SAĞ KÖŞEDE -->
+    <div id="theme-toggle" class="fixed top-6 right-6 z-50 group">
+        <button class="w-14 h-14 bg-white/95 backdrop-blur-lg rounded-full shadow-2xl flex items-center justify-center text-2xl hover:scale-110 transition-all duration-500 border-2 border-pink-200 hover:border-pink-300">
+            <i class="fas fa-moon text-pink-600 transition-all duration-500"></i>
+        </button>
+        <div class="absolute top-full mt-2 right-0 bg-gray-900 text-white text-xs px-3 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+            <span id="theme-tooltip">Gece Modu</span>
+        </div>
+    </div>
+
     <header class="py-16 text-center relative z-20 overflow-hidden">
         <div class="relative">
             <a href="#countdown-section" title="Geri Sayım" class="absolute top-1/2 -translate-y-1/2 right-4 text-green-600 hover:text-green-800 transition-colors z-20 text-center">
@@ -163,11 +185,13 @@
             </div>
         </div>
     </header>
+
     <section id="main-title-section" class="py-16 text-center">
         <h2 id="main-title" class="font-bold handwriting text-green-600">O Güzel Sonbahar günü</h2>
         <p class="text-xl md:text-2xl mt-2 text-red-600 font-bold">27 Eylül 2025</p>
         <p class="text-lg mt-1 text-red-600 italic font-bold">Zamanın durduğu an</p>
     </section>
+
     <main class="container mx-auto px-6 pb-12">
         <section class="max-w-3xl mx-auto my-12 text-center">
             <h3 id="ilk-adim-baslik" class="font-bold text-red-600 mb-4">İlk Adım</h3>
@@ -184,6 +208,7 @@
             </p>
             <div class="text-4xl text-red-500 mt-8 heartbeat"><i class="fas fa-heart"></i></div>
         </section>
+
         <section class="my-16 max-w-3xl mx-auto text-center">
             <h3 id="sonbahar-baslik" class="font-bold text-center text-red-600 mb-6 handwriting font-forte-alternative">Sonbahar</h3>
             <div class="poem-container">
@@ -200,6 +225,7 @@
             </div>
             <p class="text-right text-red-600 font-semibold-bold mt-6 pr-4 font-forte-alternative poem-signature">- Nazım Hikmet</p>
         </section>
+
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting timeline-title">Aşk Zaman Çizelgesi</h3>
             <p class="text-center text-black font-semibold italic mb-8 timeline-subtitle">
@@ -226,6 +252,7 @@
                 </div>
             </div>
         </section>
+
         <section id="countdown-section" class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 font-forte-alternative">Büyük Güne Geri Sayım</h3>
             <div id="countdown-placeholder" class="my-4">
@@ -241,12 +268,14 @@
                 <div><span id="seconds" class="block text-5xl font-bold text-green-600">00</span><span class="text-sm text-red-600">Saniye</span></div>
             </div>
         </section>
+
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center fade-in-on-scroll">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Hayal Defterimiz</h3>
             <p class="text-center text-black font-semibold italic text-lg mt-4">
                 Birlikte kurduğumuz hayaller, geleceğe dair ektiğimiz tohumlar...
             </p>
         </section>
+
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center relative overflow-hidden">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Bizim Şarkımız</h3>
             <p class="text-center text-black font-semibold italic mt-2 mb-6">Tarkan - Beni Çok Sev</p>
@@ -267,11 +296,12 @@
                 </div>
             </div>
         </section>
+
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Seyahatlerimiz</h3>
             <p class="text-center text-black font-semibold italic">Birlikte keşfettiğimiz yerler...</p>
             <div class="mt-8 text-center">
-                <button id="toggle-travel-btn" class="inline-flex items-center justify-center py-2 px-6 border border border-red-600 shadow-sm text-sm font-medium rounded-md text-red-600 bg-white hover:bg-red-50 transition-colors">
+                <button id="toggle-travel-btn" class="inline-flex items-center justify-center py-2 px-6 border border-red-600 shadow-sm text-sm font-medium rounded-md text-red-600 bg-white hover:bg-red-50 transition-colors">
                     <span id="travel-toggle-text">Seyahatlerimizi Gör</span>
                     <i id="travel-toggle-icon" class="fas fa-chevron-down ml-2 transition-transform"></i>
                 </button>
@@ -284,6 +314,7 @@
                 </div>
             </div>
         </section>
+
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Fotoğraf Galerimiz</h3>
             <p class="text-center text-black font-semibold italic">İşte yolculuğumuzda biriktirdiğimiz Anılar..</p>
@@ -307,6 +338,7 @@
                 </div>
             </div>
         </section>
+
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Video Galerimiz</h3>
             <p class="text-center text-black font-semibold">Bazı duyguları kelimelerle anlatmak yetmez...</p>
@@ -327,6 +359,18 @@
                 </div>
             </div>
         </section>
+
+        <!-- MİSAFİR DEFTERİ -->
+        <section class="my-16 max-w-4xl mx-auto px-6">
+            <h3 class="font-bold text-center text-red-600 mb-8 handwriting text-4xl md:text-5xl">
+                Misafir Defterimiz ♡
+            </h3>
+            <p class="text-center text-black text-lg italic mb-12 font-medium">
+                Bize güzel dileklerinizi bırakın, sonsuza dek saklayalım…
+            </p>
+            <div id="waline-guestbook"></div>
+        </section>
+
         <section class="my-16 max-w-3xl mx-auto transparent-section">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Teşekkür</h3>
             <p class="text-center text-black text-lg italic mt-4 font-bold">
@@ -351,8 +395,6 @@
                         </span>
                     </div>
                 </div>
-
-                <!-- SON DÜZENLEME: MAİL KUTUSUNUN HEMEN ALTINA TAŞINDI VE MOBİLDE TEK SATIR -->
                 <div class="mt-16 text-center">
                     <p class="text-black text-xl md:text-2xl flex items-center justify-center gap-3 whitespace-nowrap">
                         <span>Bu hikaye</span>
@@ -377,6 +419,7 @@
         <span id="close-video-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
         <div class="aspect-video w-full max-w-4xl"><iframe id="modal-video-iframe" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
     </div>
+
     <script>
     (() => {
         'use strict';
@@ -525,7 +568,57 @@
             if (!player) return;
             isPlaying ? player.pauseVideo() : player.playVideo();
         };
+
+        // GECE MODU - EN ÜST SAĞ KÖŞEDE
+        const themeToggle = document.getElementById('theme-toggle');
+        const moonIcon = themeToggle.querySelector('i');
+        const tooltip = document.getElementById('theme-tooltip');
+
+        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.body.classList.add('dark');
+            moonIcon.classList.replace('fa-moon', 'fa-sun');
+            tooltip.textContent = 'Gündüz Modu';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark');
+            if (document.body.classList.contains('dark')) {
+                moonIcon.classList.replace('fa-moon', 'fa-sun');
+                tooltip.textContent = 'Gündüz Modu';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                moonIcon.classList.replace('fa-sun', 'fa-moon');
+                tooltip.textContent = 'Gece Modu';
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // MİSAFİR DEFTERİ
+        import('https://unpkg.com/@waline/client@v3/dist/waline.js').then(({ init }) => {
+            init({
+                el: '#waline-guestbook',
+                serverURL: 'https://arzu-ersin-waline.vercel.app',
+                path: window.location.pathname,
+                lang: 'tr',
+                locale: {
+                    nick: 'Adınız Soyadınız *',
+                    mail: 'E-posta (görünmeyecek)',
+                    placeholder: 'Bize en güzel dileklerinizi yazın… 💌',
+                    sofa: 'Henüz hiç dilek yok, ilk siz bırakın! ♡',
+                    submit: 'Gönder',
+                    more: 'Daha fazla dilek göster…'
+                },
+                emoji: ['https://unpkg.com/@waline/emojis@1.1.0/bilibili'],
+                meta: ['nick', 'mail'],
+                requiredMeta: ['nick'],
+                wordLimit: 500,
+                pageSize: 10,
+                login: 'disable',
+                dark: 'body.dark',
+            });
+        });
     })();
     </script>
+    <link rel="stylesheet" href="https://unpkg.com/@waline/client@v3/dist/waline.css" />
 </body>
 </html>
