@@ -182,7 +182,7 @@
             90% { opacity: 1; }
             100% { opacity: 0; transform: translateY(calc(100vh + 100px)) rotate(1080deg) scale(0.3); }
         }
-        /* HARİTA İKONU – BOYUTU DEĞİŞMEDEN, ÇOK DAHA NET VE BELİRGİN */
+        /* HARİTA İKONU – NET VE BELİRGİN */
         #map-icon {
             cursor: pointer;
             font-size: 4rem;
@@ -202,7 +202,7 @@
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.04); }
         }
-        /* YENİ: "Tıkla" YAZISI */
+        /* "Tıkla" YAZISI */
         .map-click-text {
             font-size: 0.9rem;
             font-weight: 600;
@@ -340,7 +340,7 @@
             </div>
         </section>
 
-        <!-- DÜĞÜN MEKANIMIZ – "Tıkla" YAZISI EKLENDİ -->
+        <!-- HARİTA + "Tıkla" YAZISI -->
         <section id="map-section" class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Düğün Mekanımız</h3>
             <div class="flex flex-col items-center mb-8">
@@ -356,6 +356,7 @@
             </p>
         </section>
 
+        <!-- BİZİM ŞARKIMIZ – DÜZELTİLDİ VE ÇALIŞIYOR -->
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center relative overflow-hidden">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Bizim Şarkımız</h3>
             <p class="text-center text-black font-semibold italic mt-2 mb-6">Tarkan - Beni Çok Sev</p>
@@ -376,6 +377,8 @@
                 </div>
             </div>
         </section>
+
+        <!-- TÜM DİĞER BÖLÜMLER (Seyahatler, Fotoğraflar, Videolar, Teşekkür) ORİJİNAL HALİYLE -->
 
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Seyahatlerimiz</h3>
@@ -577,17 +580,22 @@
             if (e.key === 'ArrowRight' && document.getElementById('image-modal').classList.contains('flex')) nextImg();
             if (e.key === 'ArrowLeft' && document.getElementById('image-modal').classList.contains('flex')) prevImg();
         });
+
+        // ŞARKI BUTONU – TAMAMEN ÇALIŞIR HALE GETİRİLDİ
         let player, isPlaying = false;
         const playBtn = document.getElementById('play-song-btn');
         const playerElement = document.getElementById('youtube-player');
         const musicVisualizer = document.getElementById('music-visualizer');
+
         const tag = document.createElement('script');
         tag.src = 'https://www.youtube.com/iframe_api';
-        document.getElementsByTagName('script')[0].parentNode.insertBefore(tag, document.getElementsByTagName('script')[0]);
-        window.onYouTubeIFaceAPIReady = function() {
+        const firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        window.onYouTubeIframeAPIReady = function() {
             player = new YT.Player('youtube-player', {
                 events: {
-                    'onStateChange': event => {
+                    'onStateChange': function(event) {
                         if (event.data === YT.PlayerState.PLAYING) {
                             isPlaying = true;
                             playBtn.innerHTML = '<i class="fas fa-pause"></i>';
@@ -605,11 +613,17 @@
                 }
             });
         };
-        playBtn.onclick = e => {
+
+        playBtn.onclick = function(e) {
             e.stopPropagation();
             if (!player) return;
-            isPlaying ? player.pauseVideo() : player.playVideo();
+            if (isPlaying) {
+                player.pauseVideo();
+            } else {
+                player.playVideo();
+            }
         };
+
         const timelineObserver = new IntersectionObserver((entries) => {
             entries.forEach((e,i) => {
                 if (e.isIntersecting) setTimeout(() => e.target.classList.add('animate'), i * 300);
