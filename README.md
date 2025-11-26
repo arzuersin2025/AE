@@ -1,4 +1,3 @@
-
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -135,7 +134,6 @@
             .header-name { font-size: 6.75vw; }
             .header-heart { font-size: 5vw; }
         }
-
         /* KALP YAĞMURU BUTONU – ARKA PLAN YOK, DOKUN YAZISI KALBİN TAM ORTASINDA */
         #heart-rain-btn {
             position: fixed;
@@ -173,7 +171,6 @@
             #heart-rain-btn i { font-size: 44px; }
             #heart-rain-btn span { font-size: 16px; }
         }
-
         .heart-rain {
             position: fixed;
             top: -80px;
@@ -196,13 +193,11 @@
 <body class="text-black">
     <div id="background-leaves-pattern"></div>
     <div id="falling-leaves-container"></div>
-
     <!-- KALP YAĞMURU BUTONU – ARKA PLAN YOK -->
     <div id="heart-rain-btn" title="Kalp yağmuru başlat!">
         <i class="fas fa-heart heartbeat"></i>
         <span>Dokun</span>
     </div>
-
     <!-- SENİN VERDİĞİN TAM İÇERİK – HİÇBİR ŞEY EKSİK DEĞİL -->
     <header class="py-16 text-center relative z-20 overflow-hidden">
         <div class="relative">
@@ -285,6 +280,22 @@
                             Yemin ettik birbirimize, Yıldızlar eşliğinde...
                         </p>
                     </div>
+                </div>
+            </div>
+        </section>
+        <section class="my-16 max-w-3xl mx-auto text-center">
+            <h3 class="font-bold text-red-600 mb-6 handwriting">Aramızda Geçen İki Güzel Söz</h3>
+            <div class="max-w-2xl mx-auto space-y-6">
+                <div class="fade-in-on-scroll">
+                    <p class="text-xl md:text-2xl leading-relaxed italic text-green-600 font-medium">
+                        "Bana iyi hissettiriyorsun sen bu zamanda kadar nerelerdeydin ?"
+                    </p>
+                </div>
+                <div class="text-center text-4xl text-red-500 heartbeat mb-4"><i class="fas fa-heart"></i></div>
+                <div class="fade-in-on-scroll">
+                    <p class="text-xl md:text-2xl leading-relaxed italic text-green-600 font-medium">
+                        "Asıl sen neredeydin meğersem çok yakınmışız."
+                    </p>
                 </div>
             </div>
         </section>
@@ -413,7 +424,7 @@
                         <i class="fas fa-infinity text-red-500"></i>
                         <span>kadar devam edecek...</span>
                     </p>
-                    <p class="text-black mt-6 flex items-center justify-center gap-5 handwriting text-5xl md:text-6xl font-bold">
+                    <p class="text-green-600 mt-6 flex items-center justify-center gap-5 handwriting text-5xl md:text-6xl font-bold">
                         Arzu <i class="fas fa-heart text-red-600 heartbeat text-4xl md:text-5xl"></i> Ersin
                     </p>
                 </div>
