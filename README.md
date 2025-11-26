@@ -50,8 +50,7 @@
         @keyframes timelineSubtitleAnim { to { opacity: 1; transform: translateY(0); } }
         .timeline-container { position: relative; max-width: 1200px; margin: 0 auto; padding: 2rem 0; }
         .timeline-container::after {
-            content: '';
-            position: absolute; width: 4px; background: linear-gradient(to bottom, #10b981, #f59e0b, #ef4444);
+            content: ''; position: absolute; width: 4px; background: linear-gradient(to bottom, #10b981, #f59e0b, #ef4444);
             top: 0; bottom: 0; left: 50%; margin-left: -2px; border-radius: 2px; z-index: 1;
             transform: scaleY(0); transform-origin: top; animation: drawLine 2s ease-out forwards;
         }
@@ -183,7 +182,6 @@
             90% { opacity: 1; }
             100% { opacity: 0; transform: translateY(calc(100vh + 100px)) rotate(1080deg) scale(0.3); }
         }
-
         /* HARİTA İKONU – BOYUTU DEĞİŞMEDEN, ÇOK DAHA NET VE BELİRGİN */
         #map-icon {
             cursor: pointer;
@@ -204,6 +202,19 @@
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.04); }
         }
+        /* YENİ: "Tıkla" YAZISI */
+        .map-click-text {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #dc2626;
+            margin-top: 0.5rem;
+            opacity: 0.9;
+            transition: all 0.3s ease;
+        }
+        #map-icon:hover + .map-click-text {
+            opacity: 1;
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 <body class="text-black">
@@ -213,7 +224,6 @@
         <i class="fas fa-heart heartbeat"></i>
         <span>Dokun</span>
     </div>
-
     <header class="py-16 text-center relative z-20 overflow-hidden">
         <div class="relative">
             <a href="#countdown-section" title="Geri Sayım" class="absolute top-1/2 -translate-y-1/2 right-4 text-green-600 hover:text-green-800 transition-colors z-20 text-center">
@@ -235,13 +245,11 @@
             </div>
         </div>
     </header>
-
     <section id="main-title-section" class="py-16 text-center">
         <h2 id="main-title" class="font-bold handwriting text-green-600">O Güzel Sonbahar günü</h2>
         <p class="text-xl md:text-2xl mt-2 text-red-600 font-bold">27 Eylül 2025</p>
         <p class="text-lg mt-1 text-red-600 italic font-bold">Zamanın durduğu an</p>
     </section>
-
     <main class="container mx-auto px-6 pb-12">
         <section class="max-w-3xl mx-auto my-12 text-center">
             <h3 id="ilk-adim-baslik" class="font-bold text-red-600 mb-4">İlk Adım</h3>
@@ -258,7 +266,6 @@
             </p>
             <div class="text-4xl text-red-500 mt-8 heartbeat"><i class="fas fa-heart"></i></div>
         </section>
-
         <section class="my-16 max-w-3xl mx-auto text-center">
             <h3 id="sonbahar-baslik" class="font-bold text-center text-red-600 mb-6 handwriting font-forte-alternative">Sonbahar</h3>
             <div class="poem-container">
@@ -275,7 +282,6 @@
             </div>
             <p class="text-right text-red-600 font-semibold-bold mt-6 pr-4 font-forte-alternative poem-signature">- Nazım Hikmet</p>
         </section>
-
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting timeline-title">Aşk Zaman Çizelgesi</h3>
             <p class="text-center text-black font-semibold italic mb-8 timeline-subtitle">
@@ -302,7 +308,6 @@
                 </div>
             </div>
         </section>
-
         <section class="my-16 max-w-3xl mx-auto text-center">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Aramızda Geçen İki Güzel Söz</h3>
             <div class="max-w-2xl mx-auto space-y-6">
@@ -319,7 +324,6 @@
                 </div>
             </div>
         </section>
-
         <section id="countdown-section" class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 font-forte-alternative">Büyük Güne Geri Sayım</h3>
             <div id="countdown-placeholder" class="my-4">
@@ -336,13 +340,14 @@
             </div>
         </section>
 
-        <!-- DÜĞÜN MEKANIMIZ – YAZI VE İKON İYİLEŞTİRİLDİ -->
+        <!-- DÜĞÜN MEKANIMIZ – "Tıkla" YAZISI EKLENDİ -->
         <section id="map-section" class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Düğün Mekanımız</h3>
-            <div class="flex justify-center mb-8">
+            <div class="flex flex-col items-center mb-8">
                 <a href="https://www.google.com/maps/search/?api=1&query=Üsküdar, İstanbul, Türkiye" target="_blank" id="map-icon" title="Haritayı Aç">
                     <i class="fas fa-map-marker-alt"></i>
                 </a>
+                <div class="map-click-text">Tıkla</div>
             </div>
             <p class="text-center text-black font-semibold italic text-lg mt-4 leading-relaxed px-4">
                 Düğün yerimiz belli olduğunda burası aktif olacak ve<br class="hidden md:block">
@@ -351,7 +356,6 @@
             </p>
         </section>
 
-        <!-- BİZİM ŞARKIMIZ -->
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center relative overflow-hidden">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Bizim Şarkımız</h3>
             <p class="text-center text-black font-semibold italic mt-2 mb-6">Tarkan - Beni Çok Sev</p>
@@ -373,7 +377,6 @@
             </div>
         </section>
 
-        <!-- SEYAHATLER -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Seyahatlerimiz</h3>
             <p class="text-center text-black font-semibold italic">Birlikte keşfettiğimiz yerler...</p>
@@ -392,7 +395,6 @@
             </div>
         </section>
 
-        <!-- FOTOĞRAF GALERİSİ -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Fotoğraf Galerimiz</h3>
             <p class="text-center text-black font-semibold italic">İşte yolculuğumuzda biriktirdiğimiz Anılar..</p>
@@ -417,7 +419,6 @@
             </div>
         </section>
 
-        <!-- VİDEO GALERİSİ -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Video Galerimiz</h3>
             <p class="text-center text-black font-semibold">Bazı duyguları kelimelerle anlatmak yetmez...</p>
@@ -439,7 +440,6 @@
             </div>
         </section>
 
-        <!-- TEŞEKKÜR -->
         <section class="my-16 max-w-3xl mx-auto transparent-section">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Teşekkür</h3>
             <p class="text-center text-black text-lg italic mt-4 font-bold">
@@ -478,7 +478,6 @@
         </section>
     </main>
 
-    <!-- MODALLAR -->
     <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
         <span id="close-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
         <img id="modal-image" src="" alt="Büyütülmüş Fotoğraf" class="max-w-[90vw] max-h-[90vh] rounded-lg shadow-lg">
@@ -491,7 +490,6 @@
         <div class="aspect-video w-full max-w-4xl"><iframe id="modal-video-iframe" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
     </div>
 
-    <!-- TÜM JAVASCRIPT (orijinal haliyle) -->
     <script>
     (() => {
         'use strict';
@@ -586,7 +584,7 @@
         const tag = document.createElement('script');
         tag.src = 'https://www.youtube.com/iframe_api';
         document.getElementsByTagName('script')[0].parentNode.insertBefore(tag, document.getElementsByTagName('script')[0]);
-        window.onYouTubeIframeAPIReady = function() {
+        window.onYouTubeIFaceAPIReady = function() {
             player = new YT.Player('youtube-player', {
                 events: {
                     'onStateChange': event => {
