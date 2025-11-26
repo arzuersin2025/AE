@@ -188,6 +188,9 @@
             90% { opacity: 1; }
             100% { opacity: 0; transform: translateY(calc(100vh + 100px)) rotate(1080deg) scale(0.3); }
         }
+        #map-icon { cursor: pointer; transition: transform 0.3s ease; font-size: 4rem; color: #dc2626; opacity: 0.5; }
+        #map-icon:hover { transform: scale(1.1); opacity: 0.7; }
+        @media (max-width: 768px) { #map-icon { font-size: 3rem; } }
     </style>
 </head>
 <body class="text-black">
@@ -313,6 +316,22 @@
                 <div><span id="minutes" class="block text-5xl font-bold text-green-600">00</span><span class="text-sm text-red-600">Dakika</span></div>
                 <div><span id="seconds" class="block text-5xl font-bold text-green-600">00</span><span class="text-sm text-red-600">Saniye</span></div>
             </div>
+        </section>
+        <section id="map-section" class="my-16 max-w-3xl mx-auto transparent-section text-center">
+            <h3 class="font-bold text-red-600 mb-6 handwriting">Düğün Mekanımız</h3>
+            <p class="text-center text-black font-semibold italic mb-6">Harita ve Yol Tarifi</p>
+            <div class="flex justify-center mb-6">
+                <a href="https://www.google.com/maps/search/?api=1&query=Yıldız, Muallim Naci Cad. & Yalı Çıkmazı No:20, 34347 Beşiktaş/İstanbul, Türkiye" target="_blank" id="map-icon" title="Haritayı Aç">
+                    <i class="fas fa-map-marker-alt"></i>
+                </a>
+            </div>
+            <div class="mt-4">
+                <a href="https://www.google.com/maps/dir/?api=1&destination=Yıldız, Muallim Naci Cad. & Yalı Çıkmazı No:20, 34347 Beşiktaş/İstanbul, Türkiye" target="_blank" class="inline-flex items-center gap-2 bg-red-600 text-white px-6 py-3 rounded-full shadow-lg hover:bg-red-700 transition-colors">
+                    <i class="fas fa-directions"></i>
+                    <span>Yol Tarifi Al</span>
+                </a>
+            </div>
+            <p class="text-sm text-gray-600 mt-2 italic">Mekan güncellendiğinde burası aktif hale gelecek ve tam konuma yönlendirecek.</p>
         </section>
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center relative overflow-hidden">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Bizim Şarkımız</h3>
