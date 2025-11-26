@@ -215,7 +215,6 @@
             opacity: 1;
             transform: translateY(-2px);
         }
-
         /* YENİ: DÜĞÜN DAVETİYESİ İKONU VE MODAL */
         #invitation-icon {
             font-size: 3.8rem;
@@ -228,7 +227,6 @@
         #invitation-icon:hover { transform: scale(1.15); color: #b91c1c; }
         .invitation-click-text { font-size: 0.9rem; font-weight: 600; color: #dc2626; margin-top: 0.5rem; opacity: 0.9; }
         #invitation-icon:hover + .invitation-click-text { opacity: 1; }
-
         #invitation-modal {
             display: none;
             position: fixed;
@@ -395,8 +393,7 @@
                 <span class="text-red-600 text-xl md:text-2xl italic">Sevgilerimizle</span>
             </p>
         </section>
-
-        <!-- YENİ: DÜĞÜN DAVETİYEMİZ -->
+        <!-- DÜĞÜN DAVETİYEMİZ – GERÇEK DAVETİYE GÖSTERİLİYOR -->
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Düğün Davetiyemiz</h3>
             <div class="flex flex-col items-center">
@@ -406,16 +403,16 @@
                 <div class="invitation-click-text">Tıkla</div>
             </div>
             <p class="text-center text-black font-semibold italic text-lg mt-6 leading-relaxed px-4">
-                Davetiyemiz hazır olduğunda burada sizlerle buluşacak<br class="hidden md:block">
-                ve o çok özel günümüzü birlikte kutlayacağız.<br><br>
-                <span class="text-red-600 text-xl md:text-2xl italic">Heyecanla bekliyoruz...</span>
+                Davetiyemiz hazır! Sizler için özenle tasarladık<br class="hidden md:block">
+                ve o çok özel günümüzü birlikte kutlayalım diye sabırsızlanıyoruz.<br><br>
+                <span class="text-red-600 text-xl md:text-2xl italic">Sonsuz sevgimizle...</span>
             </p>
         </section>
 
-        <!-- Davetiye Modal -->
+        <!-- Davetiye Modal – GERÇEK DAVETİYE, BEYAZ EKRAN YOK -->
         <div id="invitation-modal">
             <span id="close-invitation">×</span>
-            <img src="https://via.placeholder.com/800x1200/fef3f2/rose-700?text=Düğün+Davetiyemiz+Hazır+Olduğunda+Burada+Görünecek+%F0%9F%92%8C" alt="Düğün Davetiyesi">
+            <img src="https://i.imgur.com/pkKrbgb.jpeg" alt="Arzu & Ersin Düğün Davetiyesi">
         </div>
 
         <!-- BİZİM ŞARKIMIZ -->
@@ -540,7 +537,6 @@
             </div>
         </section>
     </main>
-
     <!-- FOTOĞRAF VE VİDEO MODALLARI -->
     <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
         <span id="close-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
@@ -552,13 +548,11 @@
         <span id="close-video-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
         <div class="aspect-video w-full max-w-4xl"><iframe id="modal-video-iframe" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
     </div>
-
-    <!-- DAVETİYE MODAL -->
+    <!-- DAVETİYE MODAL – GERÇEK DAVETİYE -->
     <div id="invitation-modal">
         <span id="close-invitation">×</span>
-        <img src="https://via.placeholder.com/800x1200/fef3f2/rose-700?text=Düğün+Davetiyemiz+Hazır+Olduğunda+Burada+Görünecek+%F0%9F%92%8C" alt="Düğün Davetiyesi">
+        <img src="https://i.imgur.com/pkKrbgb.jpeg" alt="Arzu & Ersin Düğün Davetiyesi">
     </div>
-
     <script>
     (() => {
         'use strict';
@@ -646,8 +640,6 @@
             if (e.key === 'ArrowRight' && document.getElementById('image-modal').classList.contains('flex')) nextImg();
             if (e.key === 'ArrowLeft' && document.getElementById('image-modal').classList.contains('flex')) prevImg();
         });
-
-        // ŞARKI BUTONU – ÇALIŞIYOR
         let player, isPlaying = false;
         const playBtn = document.getElementById('play-song-btn');
         const playerElement = document.getElementById('youtube-player');
@@ -686,12 +678,10 @@
                 player.playVideo();
             }
         };
-
-        // YENİ: Davetiye Modal
+        // Davetiye Modal – Gerçek Resim
         const invitationModal = document.getElementById('invitation-modal');
         const invitationIcon = document.getElementById('invitation-icon');
         const closeInvitation = document.getElementById('close-invitation');
-
         invitationIcon.onclick = () => invitationModal.classList.add('show');
         closeInvitation.onclick = () => invitationModal.classList.remove('show');
         invitationModal.onclick = (e) => { if (e.target === invitationModal) invitationModal.classList.remove('show'); };
@@ -700,7 +690,6 @@
                 invitationModal.classList.remove('show');
             }
         });
-
         const timelineObserver = new IntersectionObserver((entries) => {
             entries.forEach((e,i) => {
                 if (e.isIntersecting) setTimeout(() => e.target.classList.add('animate'), i * 300);
