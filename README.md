@@ -319,9 +319,8 @@
         </section>
         <section id="map-section" class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Düğün Mekanımız</h3>
-            <p class="text-center text-black font-semibold italic mb-6">Harita ve Yol Tarifi</p>
             <div class="flex justify-center mb-6">
-                <a href="https://www.google.com/maps/search/?api=1&query=Yıldız, Muallim Naci Cad. & Yalı Çıkmazı No:20, 34347 Beşiktaş/İstanbul, Türkiye" target="_blank" id="map-icon" title="Haritayı Aç">
+                <a href="https://www.google.com/maps/search/?api=1&query=Üsküdar, İstanbul, Türkiye" target="_blank" id="map-icon" title="Haritayı Aç">
                     <i class="fas fa-map-marker-alt"></i>
                 </a>
             </div>
