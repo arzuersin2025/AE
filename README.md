@@ -325,13 +325,7 @@
                     <i class="fas fa-map-marker-alt"></i>
                 </a>
             </div>
-            <div class="mt-4">
-                <a href="https://www.google.com/maps/dir/?api=1&destination=Yıldız, Muallim Naci Cad. & Yalı Çıkmazı No:20, 34347 Beşiktaş/İstanbul, Türkiye" target="_blank" class="inline-flex items-center gap-2 bg-red-600 text-white px-6 py-3 rounded-full shadow-lg hover:bg-red-700 transition-colors">
-                    <i class="fas fa-directions"></i>
-                    <span>Yol Tarifi Al</span>
-                </a>
-            </div>
-            <p class="text-sm text-gray-600 mt-2 italic">Mekan güncellendiğinde burası aktif hale gelecek ve tam konuma yönlendirecek.</p>
+            <p class="text-sm text-gray-600 mt-2 italic">Düğün yerimiz belli olduğunda burası aktif olacak ve doğru konuma sizleri yönlendireceğiz. Sevgilerimizle</p>
         </section>
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center relative overflow-hidden">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Bizim Şarkımız</h3>
