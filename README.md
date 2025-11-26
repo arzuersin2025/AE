@@ -215,6 +215,47 @@
             opacity: 1;
             transform: translateY(-2px);
         }
+
+        /* YENİ: DÜĞÜN DAVETİYESİ İKONU VE MODAL */
+        #invitation-icon {
+            font-size: 3.8rem;
+            color: #dc2626;
+            filter: drop-shadow(0 4px 10px rgba(220, 38, 38, 0.4));
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        @media (max-width: 768px) { #invitation-icon { font-size: 3rem; } }
+        #invitation-icon:hover { transform: scale(1.15); color: #b91c1c; }
+        .invitation-click-text { font-size: 0.9rem; font-weight: 600; color: #dc2626; margin-top: 0.5rem; opacity: 0.9; }
+        #invitation-icon:hover + .invitation-click-text { opacity: 1; }
+
+        #invitation-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.9);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        #invitation-modal.show { display: flex; }
+        #invitation-modal img {
+            max-width: 95vw;
+            max-height: 95vh;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+        }
+        #close-invitation {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 3.5rem;
+            color: white;
+            cursor: pointer;
+            z-index: 10000;
+        }
+        #close-invitation:hover { color: #fca5a5; }
     </style>
 </head>
 <body class="text-black">
@@ -339,7 +380,6 @@
                 <div><span id="seconds" class="block text-5xl font-bold text-green-600">00</span><span class="text-sm text-red-600">Saniye</span></div>
             </div>
         </section>
-
         <!-- HARİTA + "Tıkla" YAZISI -->
         <section id="map-section" class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Düğün Mekanımız</h3>
@@ -356,7 +396,29 @@
             </p>
         </section>
 
-        <!-- BİZİM ŞARKIMIZ – DÜZELTİLDİ VE ÇALIŞIYOR -->
+        <!-- YENİ: DÜĞÜN DAVETİYEMİZ -->
+        <section class="my-16 max-w-3xl mx-auto transparent-section text-center">
+            <h3 class="font-bold text-red-600 mb-6 handwriting">Düğün Davetiyemiz</h3>
+            <div class="flex flex-col items-center">
+                <div id="invitation-icon" title="Davetiyeyi Gör">
+                    <i class="fas fa-envelope-open-text heartbeat"></i>
+                </div>
+                <div class="invitation-click-text">Tıkla</div>
+            </div>
+            <p class="text-center text-black font-semibold italic text-lg mt-6 leading-relaxed px-4">
+                Davetiyemiz hazır olduğunda burada sizlerle buluşacak<br class="hidden md:block">
+                ve o çok özel günümüzü birlikte kutlayacağız.<br><br>
+                <span class="text-red-600 text-xl md:text-2xl italic">Heyecanla bekliyoruz...</span>
+            </p>
+        </section>
+
+        <!-- Davetiye Modal -->
+        <div id="invitation-modal">
+            <span id="close-invitation">×</span>
+            <img src="https://via.placeholder.com/800x1200/fef3f2/rose-700?text=Düğün+Davetiyemiz+Hazır+Olduğunda+Burada+Görünecek+%F0%9F%92%8C" alt="Düğün Davetiyesi">
+        </div>
+
+        <!-- BİZİM ŞARKIMIZ -->
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center relative overflow-hidden">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Bizim Şarkımız</h3>
             <p class="text-center text-black font-semibold italic mt-2 mb-6">Tarkan - Beni Çok Sev</p>
@@ -377,9 +439,7 @@
                 </div>
             </div>
         </section>
-
-        <!-- TÜM DİĞER BÖLÜMLER (Seyahatler, Fotoğraflar, Videolar, Teşekkür) ORİJİNAL HALİYLE -->
-
+        <!-- SEYAHATLER -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Seyahatlerimiz</h3>
             <p class="text-center text-black font-semibold italic">Birlikte keşfettiğimiz yerler...</p>
@@ -397,7 +457,7 @@
                 </div>
             </div>
         </section>
-
+        <!-- FOTOĞRAF GALERİSİ -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Fotoğraf Galerimiz</h3>
             <p class="text-center text-black font-semibold italic">İşte yolculuğumuzda biriktirdiğimiz Anılar..</p>
@@ -421,7 +481,7 @@
                 </div>
             </div>
         </section>
-
+        <!-- VİDEO GALERİSİ -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Video Galerimiz</h3>
             <p class="text-center text-black font-semibold">Bazı duyguları kelimelerle anlatmak yetmez...</p>
@@ -442,7 +502,7 @@
                 </div>
             </div>
         </section>
-
+        <!-- TEŞEKKÜR -->
         <section class="my-16 max-w-3xl mx-auto transparent-section">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Teşekkür</h3>
             <p class="text-center text-black text-lg italic mt-4 font-bold">
@@ -481,16 +541,22 @@
         </section>
     </main>
 
+    <!-- FOTOĞRAF VE VİDEO MODALLARI -->
     <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
         <span id="close-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
         <img id="modal-image" src="" alt="Büyütülmüş Fotoğraf" class="max-w-[90vw] max-h-[90vh] rounded-lg shadow-lg">
         <span id="prev-photo" class="absolute top-1/2 left-4 -translate-y-1/2 text-white text-6xl font-bold cursor-pointer hover:text-gray-300 transition-colors select-none">&lt;</span>
         <span id="next-photo" class="absolute top-1/2 right-4 -translate-y-1/2 text-white text-6xl font-bold cursor-pointer hover:text-gray-300 transition-colors select-none">&gt;</span>
     </div>
-
     <div id="video-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
         <span id="close-video-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
         <div class="aspect-video w-full max-w-4xl"><iframe id="modal-video-iframe" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+    </div>
+
+    <!-- DAVETİYE MODAL -->
+    <div id="invitation-modal">
+        <span id="close-invitation">×</span>
+        <img src="https://via.placeholder.com/800x1200/fef3f2/rose-700?text=Düğün+Davetiyemiz+Hazır+Olduğunda+Burada+Görünecek+%F0%9F%92%8C" alt="Düğün Davetiyesi">
     </div>
 
     <script>
@@ -581,17 +647,15 @@
             if (e.key === 'ArrowLeft' && document.getElementById('image-modal').classList.contains('flex')) prevImg();
         });
 
-        // ŞARKI BUTONU – TAMAMEN ÇALIŞIR HALE GETİRİLDİ
+        // ŞARKI BUTONU – ÇALIŞIYOR
         let player, isPlaying = false;
         const playBtn = document.getElementById('play-song-btn');
         const playerElement = document.getElementById('youtube-player');
         const musicVisualizer = document.getElementById('music-visualizer');
-
         const tag = document.createElement('script');
         tag.src = 'https://www.youtube.com/iframe_api';
         const firstScriptTag = document.getElementsByTagName('script')[0];
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
         window.onYouTubeIframeAPIReady = function() {
             player = new YT.Player('youtube-player', {
                 events: {
@@ -613,7 +677,6 @@
                 }
             });
         };
-
         playBtn.onclick = function(e) {
             e.stopPropagation();
             if (!player) return;
@@ -623,6 +686,20 @@
                 player.playVideo();
             }
         };
+
+        // YENİ: Davetiye Modal
+        const invitationModal = document.getElementById('invitation-modal');
+        const invitationIcon = document.getElementById('invitation-icon');
+        const closeInvitation = document.getElementById('close-invitation');
+
+        invitationIcon.onclick = () => invitationModal.classList.add('show');
+        closeInvitation.onclick = () => invitationModal.classList.remove('show');
+        invitationModal.onclick = (e) => { if (e.target === invitationModal) invitationModal.classList.remove('show'); };
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape' && invitationModal.classList.contains('show')) {
+                invitationModal.classList.remove('show');
+            }
+        });
 
         const timelineObserver = new IntersectionObserver((entries) => {
             entries.forEach((e,i) => {
