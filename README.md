@@ -1,3 +1,4 @@
+
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -49,7 +50,8 @@
         @keyframes timelineSubtitleAnim { to { opacity: 1; transform: translateY(0); } }
         .timeline-container { position: relative; max-width: 1200px; margin: 0 auto; padding: 2rem 0; }
         .timeline-container::after {
-            content: ''; position: absolute; width: 4px; background: linear-gradient(to bottom, #10b981, #f59e0b, #ef4444);
+            content: '';
+            position: absolute; width: 4px; background: linear-gradient(to bottom, #10b981, #f59e0b, #ef4444);
             top: 0; bottom: 0; left: 50%; margin-left: -2px; border-radius: 2px; z-index: 1;
             transform: scaleY(0); transform-origin: top; animation: drawLine 2s ease-out forwards;
         }
@@ -134,7 +136,6 @@
             .header-name { font-size: 6.75vw; }
             .header-heart { font-size: 5vw; }
         }
-        /* KALP YAĞMURU BUTONU – ARKA PLAN YOK, DOKUN YAZISI KALBİN TAM ORTASINDA */
         #heart-rain-btn {
             position: fixed;
             top: 20px;
@@ -148,14 +149,8 @@
             cursor: pointer;
             transition: transform 0.4s ease;
         }
-        #heart-rain-btn:hover {
-            transform: scale(1.35);
-        }
-        #heart-rain-btn i {
-            font-size: 52px;
-            color: #e11d48;
-            filter: drop-shadow(0 4px 12px rgba(225,29,72,0.6));
-        }
+        #heart-rain-btn:hover { transform: scale(1.35); }
+        #heart-rain-btn i { font-size: 52px; color: #e11d48; filter: drop-shadow(0 4px 12px rgba(225,29,72,0.6)); }
         #heart-rain-btn span {
             position: absolute;
             font-family: 'Dancing Script', cursive;
@@ -188,20 +183,37 @@
             90% { opacity: 1; }
             100% { opacity: 0; transform: translateY(calc(100vh + 100px)) rotate(1080deg) scale(0.3); }
         }
-        #map-icon { cursor: pointer; transition: transform 0.3s ease; font-size: 4rem; color: #dc2626; opacity: 0.5; }
-        #map-icon:hover { transform: scale(1.1); opacity: 0.7; }
+
+        /* HARİTA İKONU – BOYUTU DEĞİŞMEDEN, ÇOK DAHA NET VE BELİRGİN */
+        #map-icon {
+            cursor: pointer;
+            font-size: 4rem;
+            color: #dc2626 !important;
+            opacity: 1 !important;
+            filter: drop-shadow(0 4px 10px rgba(220, 38, 38, 0.5));
+            transition: all 0.3s ease;
+            animation: gentlePulse 3s infinite ease-in-out;
+        }
         @media (max-width: 768px) { #map-icon { font-size: 3rem; } }
+        #map-icon:hover {
+            color: #b91c1c !important;
+            transform: scale(1.12);
+            filter: drop-shadow(0 6px 16px rgba(220, 38, 38, 0.7));
+        }
+        @keyframes gentlePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.04); }
+        }
     </style>
 </head>
 <body class="text-black">
     <div id="background-leaves-pattern"></div>
     <div id="falling-leaves-container"></div>
-    <!-- KALP YAĞMURU BUTONU – ARKA PLAN YOK -->
     <div id="heart-rain-btn" title="Kalp yağmuru başlat!">
         <i class="fas fa-heart heartbeat"></i>
         <span>Dokun</span>
     </div>
-    <!-- SENİN VERDİĞİN TAM İÇERİK – HİÇBİR ŞEY EKSİK DEĞİL -->
+
     <header class="py-16 text-center relative z-20 overflow-hidden">
         <div class="relative">
             <a href="#countdown-section" title="Geri Sayım" class="absolute top-1/2 -translate-y-1/2 right-4 text-green-600 hover:text-green-800 transition-colors z-20 text-center">
@@ -223,11 +235,13 @@
             </div>
         </div>
     </header>
+
     <section id="main-title-section" class="py-16 text-center">
         <h2 id="main-title" class="font-bold handwriting text-green-600">O Güzel Sonbahar günü</h2>
         <p class="text-xl md:text-2xl mt-2 text-red-600 font-bold">27 Eylül 2025</p>
         <p class="text-lg mt-1 text-red-600 italic font-bold">Zamanın durduğu an</p>
     </section>
+
     <main class="container mx-auto px-6 pb-12">
         <section class="max-w-3xl mx-auto my-12 text-center">
             <h3 id="ilk-adim-baslik" class="font-bold text-red-600 mb-4">İlk Adım</h3>
@@ -244,6 +258,7 @@
             </p>
             <div class="text-4xl text-red-500 mt-8 heartbeat"><i class="fas fa-heart"></i></div>
         </section>
+
         <section class="my-16 max-w-3xl mx-auto text-center">
             <h3 id="sonbahar-baslik" class="font-bold text-center text-red-600 mb-6 handwriting font-forte-alternative">Sonbahar</h3>
             <div class="poem-container">
@@ -260,6 +275,7 @@
             </div>
             <p class="text-right text-red-600 font-semibold-bold mt-6 pr-4 font-forte-alternative poem-signature">- Nazım Hikmet</p>
         </section>
+
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting timeline-title">Aşk Zaman Çizelgesi</h3>
             <p class="text-center text-black font-semibold italic mb-8 timeline-subtitle">
@@ -286,6 +302,7 @@
                 </div>
             </div>
         </section>
+
         <section class="my-16 max-w-3xl mx-auto text-center">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Aramızda Geçen İki Güzel Söz</h3>
             <div class="max-w-2xl mx-auto space-y-6">
@@ -302,6 +319,7 @@
                 </div>
             </div>
         </section>
+
         <section id="countdown-section" class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 font-forte-alternative">Büyük Güne Geri Sayım</h3>
             <div id="countdown-placeholder" class="my-4">
@@ -317,15 +335,23 @@
                 <div><span id="seconds" class="block text-5xl font-bold text-green-600">00</span><span class="text-sm text-red-600">Saniye</span></div>
             </div>
         </section>
+
+        <!-- DÜĞÜN MEKANIMIZ – YAZI VE İKON İYİLEŞTİRİLDİ -->
         <section id="map-section" class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Düğün Mekanımız</h3>
-            <div class="flex justify-center mb-6">
+            <div class="flex justify-center mb-8">
                 <a href="https://www.google.com/maps/search/?api=1&query=Üsküdar, İstanbul, Türkiye" target="_blank" id="map-icon" title="Haritayı Aç">
                     <i class="fas fa-map-marker-alt"></i>
                 </a>
             </div>
-            <p class="text-sm text-gray-600 mt-2 italic">Düğün yerimiz belli olduğunda burası aktif olacak ve doğru konuma sizleri yönlendireceğiz. Sevgilerimizle</p>
+            <p class="text-center text-black font-semibold italic text-lg mt-4 leading-relaxed px-4">
+                Düğün yerimiz belli olduğunda burası aktif olacak ve<br class="hidden md:block">
+                doğru konuma sizleri yönlendireceğiz.<br><br>
+                <span class="text-red-600 text-xl md:text-2xl italic">Sevgilerimizle</span>
+            </p>
         </section>
+
+        <!-- BİZİM ŞARKIMIZ -->
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center relative overflow-hidden">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Bizim Şarkımız</h3>
             <p class="text-center text-black font-semibold italic mt-2 mb-6">Tarkan - Beni Çok Sev</p>
@@ -346,6 +372,8 @@
                 </div>
             </div>
         </section>
+
+        <!-- SEYAHATLER -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Seyahatlerimiz</h3>
             <p class="text-center text-black font-semibold italic">Birlikte keşfettiğimiz yerler...</p>
@@ -363,6 +391,8 @@
                 </div>
             </div>
         </section>
+
+        <!-- FOTOĞRAF GALERİSİ -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Fotoğraf Galerimiz</h3>
             <p class="text-center text-black font-semibold italic">İşte yolculuğumuzda biriktirdiğimiz Anılar..</p>
@@ -377,7 +407,7 @@
                     <div class="photo-container group cursor-pointer"><img data-src="https://i.imgur.com/cDWfV6z.jpg" alt="Güldür Güldür" class="gallery-thumbnail w-full h-full object-cover" loading="lazy"><span class="photo-number opacity-0 group-hover:opacity-100">9</span><div class="photo-note">Güldür Güldür</div></div>
                     <div class="photo-container group cursor-pointer"><img data-src="https://i.imgur.com/jlmfKQ6.jpg" alt="Nev Mekan" class="gallery-thumbnail w-full h-full object-cover" loading="lazy"><span class="photo-number opacity-0 group-hover:opacity-100">8</span><div class="photo-note">Nev Mekan</div></div>
                     <div class="photo-container group cursor-pointer"><img data-src="https://i.imgur.com/EI3PjiL.jpg" alt="Nev Mekan" class="gallery-thumbnail w-full h-full object-cover" loading="lazy"><span class="photo-number opacity-0 group-hover:opacity-100">7</span><div class="photo-note">Nev Mekan</div></div>
-                    <div class="photo-container group cursor-pointer"><img data-src="https://i.imgur.com/wf9Xhs9.jpg" alt="Lunapark Anısı" class="gallery-thumbnail w-full h-full" loading="lazy"><span class="photo-number opacity-0 group-hover:opacity-100">6</span><div class="photo-note">Lunapark Anısı</div></div>
+                    <div class="photo-container group cursor-pointer"><img data-src="https://i.imgur.com/wf9Xhs9.jpg" alt="Lunapark Anısı" class="gallery-thumbnail w-full h-full object-cover" loading="lazy"><span class="photo-number opacity-0 group-hover:opacity-100">6</span><div class="photo-note">Lunapark Anısı</div></div>
                     <div class="photo-container group cursor-pointer"><img data-src="https://i.imgur.com/G26zsUc.jpg" alt="Beşiktaş" class="gallery-thumbnail w-full h-full object-cover" loading="lazy"><span class="photo-number opacity-0 group-hover:opacity-100">5</span><div class="photo-note">Beşiktaş</div></div>
                     <div class="photo-container group cursor-pointer"><img data-src="https://i.imgur.com/PR2hWYz.jpg" alt="Aksaray" class="gallery-thumbnail w-full h-full object-cover" loading="lazy"><span class="photo-number opacity-0 group-hover:opacity-100">4</span><div class="photo-note">Aksaray</div></div>
                     <div class="photo-container group cursor-pointer"><img data-src="https://i.imgur.com/40oguJF.jpg" alt="Çamlıca Kahvaltımız" class="gallery-thumbnail w-full h-full object-cover" loading="lazy"><span class="photo-number opacity-0 group-hover:opacity-100">3</span><div class="photo-note">Çamlıca Kahvaltımız</div></div>
@@ -386,6 +416,8 @@
                 </div>
             </div>
         </section>
+
+        <!-- VİDEO GALERİSİ -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Video Galerimiz</h3>
             <p class="text-center text-black font-semibold">Bazı duyguları kelimelerle anlatmak yetmez...</p>
@@ -406,6 +438,8 @@
                 </div>
             </div>
         </section>
+
+        <!-- TEŞEKKÜR -->
         <section class="my-16 max-w-3xl mx-auto transparent-section">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Teşekkür</h3>
             <p class="text-center text-black text-lg italic mt-4 font-bold">
@@ -443,16 +477,21 @@
             </div>
         </section>
     </main>
+
+    <!-- MODALLAR -->
     <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
         <span id="close-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
         <img id="modal-image" src="" alt="Büyütülmüş Fotoğraf" class="max-w-[90vw] max-h-[90vh] rounded-lg shadow-lg">
         <span id="prev-photo" class="absolute top-1/2 left-4 -translate-y-1/2 text-white text-6xl font-bold cursor-pointer hover:text-gray-300 transition-colors select-none">&lt;</span>
         <span id="next-photo" class="absolute top-1/2 right-4 -translate-y-1/2 text-white text-6xl font-bold cursor-pointer hover:text-gray-300 transition-colors select-none">&gt;</span>
     </div>
+
     <div id="video-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
         <span id="close-video-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
         <div class="aspect-video w-full max-w-4xl"><iframe id="modal-video-iframe" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
     </div>
+
+    <!-- TÜM JAVASCRIPT (orijinal haliyle) -->
     <script>
     (() => {
         'use strict';
