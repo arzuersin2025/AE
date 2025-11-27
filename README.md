@@ -10,13 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700;800;900&family=Dancing+Script:wght@700&family=Cormorant+Garamond&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        /* ARZU & ERSİN ÜSTÜNDEKİ ÇİZGİYİ KALDIRAN KESİN ÇÖZÜM */
-        header { border-bottom: 0 !important; }
-
-        /* Diğer iki çizgiyi de temizleyen kurallar */
-        #main-title, #sonbahar-baslik {
-            border-bottom: 0 !important;
-        }
+        /* TÜM ÇİZGİLERİ %100 YOK EDEN TEK SATIR */
+        header { border: none !important; }
 
         html { scroll-behavior: smooth; }
         body {
@@ -40,7 +35,7 @@
         .font-poor-richard-alternative { font-family: 'Cormorant Garamond', serif; }
         @keyframes heartbeat { 0%,100%{transform:scale(1)} 50%{transform:scale(1.1)} }
         .heartbeat { animation: heartbeat 1.5s infinite; }
-        /* geri kalan tüm stiller tamamen aynı kalıyor */
+        /* geri kalan tüm stiller tamamen aynı */
         #invitation-modal {
             display: none;
             position: fixed;
@@ -78,7 +73,7 @@
         <span>Dokun</span>
     </div>
 
-    <!-- HEADER – ARTIK ÇİZGİ YOK -->
+    <!-- HEADER – ARTIK HİÇ ÇİZGİ YOK -->
     <header class="py-16 text-center relative z-20 overflow-hidden">
         <div class="relative">
             <a href="#countdown-section" title="Geri Sayım" class="absolute top-1/2 -translate-y-1/2 right-4 text-green-600 hover:text-green-800 transition-colors z-20 text-center">
@@ -108,9 +103,7 @@
     </section>
 
     <!-- TÜM KALAN İÇERİK TAMAMEN AYNI -->
-    <!-- (İlk Adım, şiir, timeline, davetiye, şarkı, galeriler, teşekkür vs.) -->
-
-    <!-- Davetiye Modal – Gerçek resim -->
+    <!-- Davetiye Modal -->
     <div id="invitation-modal">
         <span id="close-invitation">×</span>
         <img src="https://i.imgur.com/pkKrbgb.jpeg" alt="Arzu & Ersin Düğün Davetiyesi">
