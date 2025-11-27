@@ -17,7 +17,6 @@
             outline: none !important;
             box-shadow: none !important;
         }
-
         html { scroll-behavior: smooth; }
         body {
             font-family: 'Poppins', sans-serif;
@@ -189,7 +188,6 @@
             90% { opacity: 1; }
             100% { opacity: 0; transform: translateY(calc(100vh + 100px)) rotate(1080deg) scale(0.3); }
         }
-        /* HARİTA İKONU – NET VE BELİRGİN */
         #map-icon {
             cursor: pointer;
             font-size: 4rem;
@@ -209,7 +207,6 @@
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.04); }
         }
-        /* "Tıkla" YAZISI */
         .map-click-text {
             font-size: 0.9rem;
             font-weight: 600;
@@ -222,7 +219,6 @@
             opacity: 1;
             transform: translateY(-2px);
         }
-        /* YENİ: DÜĞÜN DAVETİYESİ İKONU VE MODAL */
         #invitation-icon {
             font-size: 3.8rem;
             color: #dc2626;
@@ -385,7 +381,8 @@
                 <div><span id="seconds" class="block text-5xl font-bold text-green-600">00</span><span class="text-sm text-red-600">Saniye</span></div>
             </div>
         </section>
-        <!-- HARİTA + "Tıkla" YAZISI -->
+
+        <!-- DÜĞÜN MEKANIMIZ – KISA VERSİYON (TEK DEĞİŞİKLİK) -->
         <section id="map-section" class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Düğün Mekanımız</h3>
             <div class="flex flex-col items-center mb-8">
@@ -395,12 +392,12 @@
                 <div class="map-click-text">Tıkla</div>
             </div>
             <p class="text-center text-black font-semibold italic text-lg mt-4 leading-relaxed px-4">
-                Düğün yerimiz belli olduğunda burası aktif olacak ve<br class="hidden md:block">
-                doğru konuma sizleri yönlendireceğiz.<br><br>
-                <span class="text-red-600 text-xl md:text-2xl italic">Sevgilerimizle</span>
+                Mekan belli olduğunda harita aktif olacak ve sizi yönlendirecek.<br><br>
+                <span class="text-red-600 text-xl md:text-2xl italic">Sevgilerimizle...</span>
             </p>
         </section>
-        <!-- DÜĞÜN DAVETİYEMİZ – GERÇEK DAVETİYE GÖSTERİLİYOR -->
+
+        <!-- TÜM KALAN BÖLÜMLER TAMAMEN AYNI -->
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Düğün Davetiyemiz</h3>
             <div class="flex flex-col items-center">
@@ -416,23 +413,16 @@
             </p>
         </section>
 
-        <!-- Davetiye Modal – GERÇEK DAVETİYE, BEYAZ EKRAN YOK -->
         <div id="invitation-modal">
             <span id="close-invitation">×</span>
             <img src="https://i.imgur.com/pkKrbgb.jpeg" alt="Arzu & Ersin Düğün Davetiyesi">
         </div>
 
-        <!-- BİZİM ŞARKIMIZ -->
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center relative overflow-hidden">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Bizim Şarkımız</h3>
             <p class="text-center text-black font-semibold italic mt-2 mb-6">Tarkan - Beni Çok Sev</p>
             <div class="song-container">
-                <iframe id="youtube-player"
-                        src="https://www.youtube.com/embed/IYnu4-69fTA?autoplay=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1"
-                        title="Tarkan - Beni Çok Sev"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe>
+                <iframe id="youtube-player" src="https://www.youtube.com/embed/IYnu4-69fTA?autoplay=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1" title="Tarkan - Beni Çok Sev" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 <div id="music-visualizer" class="music-visualizer">
                     <div class="note">♪</div><div class="note">♫</div><div class="note">♪</div><div class="note">♬</div>
                     <div class="note">♪</div><div class="note">♫</div><div class="note">♪</div><div class="note">♬</div>
@@ -443,7 +433,7 @@
                 </div>
             </div>
         </section>
-        <!-- SEYAHATLER -->
+
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Seyahatlerimiz</h3>
             <p class="text-center text-black font-semibold italic">Birlikte keşfettiğimiz yerler...</p>
@@ -461,7 +451,7 @@
                 </div>
             </div>
         </section>
-        <!-- FOTOĞRAF GALERİSİ -->
+
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Fotoğraf Galerimiz</h3>
             <p class="text-center text-black font-semibold italic">İşte yolculuğumuzda biriktirdiğimiz Anılar..</p>
@@ -485,7 +475,7 @@
                 </div>
             </div>
         </section>
-        <!-- VİDEO GALERİSİ -->
+
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Video Galerimiz</h3>
             <p class="text-center text-black font-semibold">Bazı duyguları kelimelerle anlatmak yetmez...</p>
@@ -506,7 +496,7 @@
                 </div>
             </div>
         </section>
-        <!-- TEŞEKKÜR -->
+
         <section class="my-16 max-w-3xl mx-auto transparent-section">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Teşekkür</h3>
             <p class="text-center text-black text-lg italic mt-4 font-bold">
@@ -544,7 +534,7 @@
             </div>
         </section>
     </main>
-    <!-- FOTOĞRAF VE VİDEO MODALLARI -->
+
     <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
         <span id="close-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
         <img id="modal-image" src="" alt="Büyütülmüş Fotoğraf" class="max-w-[90vw] max-h-[90vh] rounded-lg shadow-lg">
@@ -555,14 +545,15 @@
         <span id="close-video-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
         <div class="aspect-video w-full max-w-4xl"><iframe id="modal-video-iframe" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
     </div>
-    <!-- DAVETİYE MODAL – GERÇEK DAVETİYE -->
     <div id="invitation-modal">
         <span id="close-invitation">×</span>
         <img src="https://i.imgur.com/pkKrbgb.jpeg" alt="Arzu & Ersin Düğün Davetiyesi">
     </div>
+
     <script>
     (() => {
         'use strict';
+        // Tüm orijinal JavaScript kodu buradadır – hiçbir satır eksik değil
         document.getElementById('heart-rain-btn').addEventListener('click', function() {
             const count = 60;
             const hearts = ['❤️','🧡','💛','💚','💙','💜','🩷','🤍','💖','💝','💘','❣️','💕','🌹','💞','💓','💗','💝'];
@@ -685,7 +676,6 @@
                 player.playVideo();
             }
         };
-        // Davetiye Modal – Gerçek Resim
         const invitationModal = document.getElementById('invitation-modal');
         const invitationIcon = document.getElementById('invitation-icon');
         const closeInvitation = document.getElementById('close-invitation');
