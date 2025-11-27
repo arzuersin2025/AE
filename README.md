@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -408,13 +408,11 @@
                 <span class="text-red-600 text-xl md:text-2xl italic">Sonsuz sevgimizle...</span>
             </p>
         </section>
-
         <!-- Davetiye Modal – GERÇEK DAVETİYE, BEYAZ EKRAN YOK -->
         <div id="invitation-modal">
             <span id="close-invitation">×</span>
             <img src="https://i.imgur.com/pkKrbgb.jpeg" alt="Arzu & Ersin Düğün Davetiyesi">
         </div>
-
         <!-- BİZİM ŞARKIMIZ -->
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center relative overflow-hidden">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Bizim Şarkımız</h3>
@@ -678,7 +676,6 @@
                 player.playVideo();
             }
         };
-        // Davetiye Modal – Gerçek Resim
         const invitationModal = document.getElementById('invitation-modal');
         const invitationIcon = document.getElementById('invitation-icon');
         const closeInvitation = document.getElementById('close-invitation');
