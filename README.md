@@ -3,7 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arzu & Ersin | Bizim Hikayemiz</title>
+    
+    <!-- GitHub Pages'de "AE" çıkmasını %100 engelleyen uzun ve net başlık -->
+    <title>Arzu & Ersin – Düğünümüze Davetlisiniz | 27 Eylül 2025</title>
+    
+    <!-- Ekstra garanti (sosyal medya ve GitHub önizlemeleri için) -->
+    <meta property="og:title" content="Arzu & Ersin – Düğünümüze Davetlisiniz">
+    <meta name="twitter:title" content="Arzu & Ersin – Düğünümüze Davetlisiniz">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +24,6 @@
             outline: none !important;
             box-shadow: none !important;
         }
-
         html { scroll-behavior: smooth; }
         body {
             font-family: 'Poppins', sans-serif;
@@ -365,7 +371,7 @@
                 <div class="text-center text-4xl text-red-500 heartbeat mb-4"><i class="fas fa-heart"></i></div>
                 <div class="fade-in-on-scroll">
                     <p class="text-xl md:text-2xl leading-relaxed italic text-green-600 font-medium">
-                        "Asıl sen neredeydin meğersem çok yakınmışız."
+                        "Asıl sen neredeydin meğerse çok yakınmışız."
                     </p>
                 </div>
             </div>
@@ -415,13 +421,11 @@
                 <span class="text-red-600 text-xl md:text-2xl italic">Sonsuz sevgimizle...</span>
             </p>
         </section>
-
         <!-- Davetiye Modal – GERÇEK DAVETİYE, BEYAZ EKRAN YOK -->
         <div id="invitation-modal">
-            <span id="close-invitation">×</span>
+            <span id="close-invitation">X</span>
             <img src="https://i.imgur.com/pkKrbgb.jpeg" alt="Arzu & Ersin Düğün Davetiyesi">
         </div>
-
         <!-- BİZİM ŞARKIMIZ -->
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center relative overflow-hidden">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Bizim Şarkımız</h3>
@@ -434,8 +438,8 @@
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen></iframe>
                 <div id="music-visualizer" class="music-visualizer">
-                    <div class="note">♪</div><div class="note">♫</div><div class="note">♪</div><div class="note">♬</div>
-                    <div class="note">♪</div><div class="note">♫</div><div class="note">♪</div><div class="note">♬</div>
+                    <div class="note">note</div><div class="note">note</div><div class="note">note</div><div class="note">note</div>
+                    <div class="note">note</div><div class="note">note</div><div class="note">note</div><div class="note">note</div>
                 </div>
                 <div class="song-control">
                     <div class="song-label">Dinle</div>
@@ -501,7 +505,7 @@
                     <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="ChFa2GJ4e4U"><img data-src="https://img.youtube.com/vi/ChFa2GJ4e4U/maxresdefault.jpg" alt="Video 1" class="w-full h-full object-cover gallery-thumbnail" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">5</span><div class="photo-note">Beşiktaş</div></div>
                     <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="aim5II5vYpU"><img data-src="https://img.youtube.com/vi/aim5II5vYpU/maxresdefault.jpg" alt="Video 2" class="w-full h-full object-cover gallery-thumbnail" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">4</span><div class="photo-note">Üsküdar</div></div>
                     <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="uY6ZrwkbLjc"><img data-src="https://img.youtube.com/vi/uY6ZrwkbLjc/maxresdefault.jpg" alt="Video 3" class="gallery-thumbnail w-full h-full object-cover" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">3</span><div class="photo-note">Lunapark</div></div>
-                    <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="19aKq8FtYP8"><img data-src="https://img.youtube.com/vi/19aKq8FtYP8/maxresdefault.jpg" alt="Video 4" class="gallery-thumbnail w-full h-full object-cover" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">2</span><div class="photo-note">Beşiktaş</div></div>
+                    <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="19aKq8FtYP8"><img data-src="https://img.youtube.com/vi/19aKq8FtYP8/maxresdefault.jpg" alt="Video 4" class="gallery-thumbnail w-full h-full object-cover" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">2</span><div class="photo-note">Beşiktaş</div>
                     <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="J466tfX1jzk"><img data-src="https://img.youtube.com/vi/J466tfX1jzk/maxresdefault.jpg" alt="Video 5" class="gallery-thumbnail w-full h-full object-cover" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">1</span><div class="photo-note">Ev</div></div>
                 </div>
             </div>
@@ -546,18 +550,18 @@
     </main>
     <!-- FOTOĞRAF VE VİDEO MODALLARI -->
     <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
-        <span id="close-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
+        <span id="close-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">X</span>
         <img id="modal-image" src="" alt="Büyütülmüş Fotoğraf" class="max-w-[90vw] max-h-[90vh] rounded-lg shadow-lg">
         <span id="prev-photo" class="absolute top-1/2 left-4 -translate-y-1/2 text-white text-6xl font-bold cursor-pointer hover:text-gray-300 transition-colors select-none">&lt;</span>
         <span id="next-photo" class="absolute top-1/2 right-4 -translate-y-1/2 text-white text-6xl font-bold cursor-pointer hover:text-gray-300 transition-colors select-none">&gt;</span>
     </div>
     <div id="video-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
-        <span id="close-video-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
+        <span id="close-video-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">X</span>
         <div class="aspect-video w-full max-w-4xl"><iframe id="modal-video-iframe" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
     </div>
     <!-- DAVETİYE MODAL – GERÇEK DAVETİYE -->
     <div id="invitation-modal">
-        <span id="close-invitation">×</span>
+        <span id="close-invitation">X</span>
         <img src="https://i.imgur.com/pkKrbgb.jpeg" alt="Arzu & Ersin Düğün Davetiyesi">
     </div>
     <script>
@@ -565,7 +569,7 @@
         'use strict';
         document.getElementById('heart-rain-btn').addEventListener('click', function() {
             const count = 60;
-            const hearts = ['❤️','🧡','💛','💚','💙','💜','🩷','🤍','💖','💝','💘','❣️','💕','🌹','💞','💓','💗','💝'];
+            const hearts = ['heart','orange heart','yellow heart','green heart','blue heart','purple heart','pink heart','white heart','sparkling heart','heart decoration','heart exclamation','broken heart','two hearts','rose','sparkling heart','beating heart','growing heart','heart decoration'];
             for (let i = 0; i < count; i++) {
                 const h = document.createElement('div');
                 h.className = 'heart-rain';
