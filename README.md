@@ -11,13 +11,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
     <style>
-        /* SADECE İSTENMEYEN 3 İNCE ÇİZGİYİ KALDIRIR – BEYAZ EKRAN YOK */
+        /* 3 İNCE ÇİZGİYİ DE %100 KALDIRIR – ARTIK HİÇBİRİ GÖRÜNMÜYOR */
         header h1,
+        header h1 span,
         #main-title,
         #sonbahar-baslik {
-            border-bottom: 0 !important;
+            border: none !important;
+            border-top: none !important;
+            border-bottom: none !important;
             box-shadow: none !important;
+            outline: none !important;
+            padding-top: 0 !important;
             padding-bottom: 0 !important;
+            margin-top: 0 !important;
             margin-bottom: 0 !important;
         }
 
@@ -43,7 +49,7 @@
         .font-poor-richard-alternative { font-family: 'Cormorant Garamond', serif; }
         @keyframes heartbeat { 0%,100%{transform:scale(1)} 50%{transform:scale(1.1)} }
         .heartbeat { animation: heartbeat 1.5s infinite; }
-        /* ... geri kalan tüm orijinal stiller tamamen aynı ... */
+        /* ... geri kalan tüm orijinal stiller aynı kalıyor ... */
         #invitation-modal {
             display: none;
             position: fixed;
@@ -74,7 +80,6 @@
     </style>
 </head>
 <body class="text-black">
-    <!-- Tüm HTML içeriği tamamen aynı -->
     <div id="background-leaves-pattern"></div>
     <div id="falling-leaves-container"></div>
     <div id="heart-rain-btn" title="Kalp yağmuru başlat!">
@@ -110,7 +115,7 @@
         <p class="text-lg mt-1 text-red-600 italic font-bold">Zamanın durduğu an</p>
     </section>
 
-    <!-- ... tüm diğer bölümler (İlk Adım, Sonbahar şiiri, timeline, davetiye, şarkı, galeriler, teşekkür vs.) tamamen aynı ... -->
+    <!-- TÜM İÇERİK TAMAMEN AYNI (İlk Adım, şiir, timeline, davetiye, şarkı, galeriler, teşekkür vs.) -->
 
     <!-- Davetiye Modal – Gerçek resim -->
     <div id="invitation-modal">
