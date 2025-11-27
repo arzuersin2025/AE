@@ -10,10 +10,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700;800;900&family=Dancing+Script:wght@700&family=Cormorant+Garamond&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        /* TÜM ÇİZGİLERİ %100 YOK EDEN TEK SATIR – ARTIK HİÇ GÖRÜNMÜYOR */
-        header, header *, #main-title, #sonbahar-baslik { 
-            border: none !important; 
-            box-shadow: none !important; 
+        /* ARZU & ERSİN ÜSTÜNDEKİ SON ÇİZGİYİ DE KALDIRAN KESİN SATIR */
+        header .absolute.inset-0 {
+            border: none !important;
+            border-top: 0 !important;
+        }
+
+        /* Diğer iki çizgiyi kaldıran önceki satır (zaten çalışıyor) */
+        #main-title, #sonbahar-baslik {
+            border-bottom: 0 !important;
         }
 
         html { scroll-behavior: smooth; }
@@ -84,6 +89,7 @@
                     <span id="header-days">0</span>g <span id="header-hours">0</span>s <span id="header-minutes">0</span>d
                 </div>
             </a>
+            <!-- BU DİV ARTIK ÇİZGİ YAPMIYOR -->
             <div class="absolute inset-0 flex items-center justify-center z-0" aria-hidden="true">
                 <i class="fas fa-infinity text-[10rem] text-gray-200 opacity-70 blur-sm"></i>
             </div>
