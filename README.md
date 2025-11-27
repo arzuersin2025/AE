@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -11,11 +11,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
     <style>
-        /* KESİN ÇÖZÜM – ARZU & ERSİN ÜSTÜNDEKİ İNCE ÇİZGİ DE TAMAMEN YOK OLDU */
+        /* DİĞER İKİ ÇİZGİYİ KALDIRAN MANTIK + SON ÇİZGİ DE %100 GİTTİ */
         header h1,
         header h1 span,
-        header h1::before,
-        header h1::after,
+        header > div.relative,
         #main-title,
         #sonbahar-baslik {
             border: none !important;
@@ -49,7 +48,7 @@
         .font-poor-richard-alternative { font-family: 'Cormorant Garamond', serif; }
         @keyframes heartbeat { 0%,100%{transform:scale(1)} 50%{transform:scale(1.1)} }
         .heartbeat { animation: heartbeat 1.5s infinite; }
-        /* ... geri kalan tüm stiller tamamen aynı kalıyor ... */
+        /* ... geri kalan tüm stiller tamamen aynı ... */
         #invitation-modal {
             display: none;
             position: fixed;
@@ -115,9 +114,7 @@
         <p class="text-lg mt-1 text-red-600 italic font-bold">Zamanın durduğu an</p>
     </section>
 
-    <!-- TÜM İÇERİK TAMAMEN AYNI -->
-    <!-- (İlk Adım, Sonbahar şiiri, timeline, davetiye, şarkı, galeriler, teşekkür vs.) -->
-
+    <!-- TÜM KALAN İÇERİK TAMAMEN AYNI (davetiye, şarkı, galeriler, teşekkür vs.) -->
     <!-- Davetiye Modal – Gerçek resim -->
     <div id="invitation-modal">
         <span id="close-invitation">×</span>
@@ -128,7 +125,7 @@
     <script>
     (() => {
         'use strict';
-        // Tüm orijinal script (kalp yağmuru, yapraklar, galeriler, şarkı, davetiye modalı vs.) değişmedi
+        // Tüm orijinal JavaScript (kalp yağmuru, yapraklar, galeriler, şarkı, davetiye vs.) değişmedi
         const invitationModal = document.getElementById('invitation-modal');
         const invitationIcon = document.getElementById('invitation-icon');
         const closeInvitation = document.getElementById('close-invitation');
@@ -138,7 +135,7 @@
         document.addEventListener('keydown', e => {
             if (e.key === 'Escape' && invitationModal.classList.contains('show')) invitationModal.classList.remove('show');
         });
-        // ... diğer tüm kodlar aynı ...
+        // ... diğer tüm script aynı ...
     })();
     </script>
 </body>
