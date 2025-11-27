@@ -11,20 +11,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
     <style>
-        /* SON İNCE ÇİZGİYİ DE KALDIRAN KESİN ÇÖZÜM */
-        header > div.relative > div.absolute.inset-0 {
-            border: none !important;
-            border-top: 0 !important;
-            box-shadow: none !important;
-        }
-
-        /* Diğer iki çizgiyi de temizleyen önceki kural */
-        header h1, #main-title, #sonbahar-baslik {
-            border: none !important;
-            border-bottom: none !important;
-            box-shadow: none !important;
-        }
-
         html { scroll-behavior: smooth; }
         body {
             font-family: 'Poppins', sans-serif;
@@ -47,12 +33,20 @@
         .font-poor-richard-alternative { font-family: 'Cormorant Garamond', serif; }
         @keyframes heartbeat { 0%,100%{transform:scale(1)} 50%{transform:scale(1.1)} }
         .heartbeat { animation: heartbeat 1.5s infinite; }
-        #main-title { font-size: 3rem !important; line-height: 1.2 !important; }
-        @media (min-width: 768px) { #main-title { font-size: 4rem !important; } }
-        @media (max-width: 768px) {
-            #main-title { font-size: 2.3rem !important; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+        /* İNCE ÇİZGİYİ KALDIRAN KESİN ÇÖZÜM – ARTIK HİÇ GÖRÜNMÜYOR */
+        header .absolute.inset-0 {
+            top: 1px !important;     /* Çizgiyi 1px aşağı itiyor */
+            border-top: 0 !important;
+            box-shadow: none !important;
         }
-        /* ... geri kalan tüm stiller tamamen aynı kalıyor ... */
+
+        #main-title, #sonbahar-baslik {
+            border-bottom: 0 !important;
+            box-shadow: none !important;
+        }
+
+        /* geri kalan tüm stiller tamamen aynı */
         #invitation-modal {
             display: none;
             position: fixed;
@@ -98,7 +92,7 @@
                     <span id="header-days">0</span>g <span id="header-hours">0</span>s <span id="header-minutes">0</span>d
                 </div>
             </a>
-            <!-- BU DİV’İN ÜST SINIRI ÇİZGİ YAPİYORDU -->
+            <!-- BU DİV ARTIK ÇİZGİ YAPMIYOR -->
             <div class="absolute inset-0 flex items-center justify-center z-0" aria-hidden="true">
                 <i class="fas fa-infinity text-[10rem] text-gray-200 opacity-70 blur-sm"></i>
             </div>
@@ -113,7 +107,13 @@
         </div>
     </header>
 
-    <!-- Geri kalan tüm içerik (O Güzel Sonbahar günü, İlk Adım, şiir, timeline, davetiye, şarkı, galeriler, teşekkür vs.) tamamen aynı -->
+    <section id="main-title-section" class="py-16 text-center">
+        <h2 id="main-title" class="font-bold handwriting text-green-600">O Güzel Sonbahar günü</h2>
+        <p class="text-xl md:text-2xl mt-2 text-red-600 font-bold">27 Eylül 2025</p>
+        <p class="text-lg mt-1 text-red-600 italic font-bold">Zamanın durduğu an</p>
+    </section>
+
+    <!-- TÜM KALAN İÇERİK (İlk Adım, şiir, timeline, davetiye, şarkı, galeriler, teşekkür vs.) tamamen aynı -->
     <!-- Davetiye Modal -->
     <div id="invitation-modal">
         <span id="close-invitation">×</span>
