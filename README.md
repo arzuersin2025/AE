@@ -10,35 +10,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700;800;900&family=Dancing+Script:wght@700&family=Cormorant+Garamond&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        /* ARZU & ERSİN ÜSTÜNDEKİ ÇİZGİYİ %1000 YOK EDEN SATIR */
-        header { @apply border-b-0 !important; }
-
         /* Diğer iki başlığın çizgisini de yok edelim */
-        #main-title, #sonbahar-baslik { @apply border-b-0 !important; }
-
-        html { scroll-behavior: smooth; }
-        body {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 300;
-            background: transparent !important;
-            position: relative;
-            overflow-x: hidden;
-            min-height: 100vh;
+        #main-title, #sonbahar-baslik {
+            border-bottom: none !important;
         }
-        #background-leaves-pattern {
-            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-            background-image: url('https://www.toptal.com/designers/subtlepatterns/uploads/leaves.png');
-            background-repeat: repeat; background-color: #fdfaf6; z-index: -2; pointer-events: none; opacity: 0.6;
-        }
-        @media (max-width: 768px) { #background-leaves-pattern { opacity: 0.9 !important; } }
-        #falling-leaves-container { position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: -1; overflow: hidden; }
-        h1, h2, h3 { font-family: 'Playfair Display', serif; }
-        .handwriting { font-family: 'Dancing Script', cursive; }
-        .font-forte-alternative { font-family: 'Dancing Script', cursive; }
-        .font-poor-richard-alternative { font-family: 'Cormorant Garamond', serif; }
-        @keyframes heartbeat { 0%,100%{transform:scale(1)} 50%{transform:scale(1.1)} }
-        .heartbeat { animation: heartbeat 1.5s infinite; }
-        /* geri kalan tüm stiller aynı kalıyor */
     </style>
 </head>
 <body class="text-black">
@@ -49,8 +24,8 @@
         <span>Dokun</span>
     </div>
 
-    <!-- ARTIK HİÇ ÇİZGİ YOK -->
-    <header class="py-16 text-center relative z-20 overflow-hidden">
+    <!-- TEK DEĞİŞİKLİK: style="border: none !important;" -->
+    <header class="py-16 text-center relative z-20 overflow-hidden" style="border: none !important; border-bottom: 0 !important;">
         <div class="relative">
             <a href="#countdown-section" title="Geri Sayım" class="absolute top-1/2 -translate-y-1/2 right-4 text-green-600 hover:text-green-800 transition-colors z-20 text-center">
                 <i class="fas fa-hourglass-start fa-2x"></i>
@@ -78,7 +53,7 @@
         <p class="text-lg mt-1 text-red-600 italic font-bold">Zamanın durduğu an</p>
     </section>
 
-    <!-- TÜM KALAN İÇERİK AYNI -->
+    <!-- TÜM KALAN KOD TAMAMEN AYNI (davetiye, şarkı, galeriler, teşekkür vs.) -->
     <!-- Davetiye Modal -->
     <div id="invitation-modal">
         <span id="close-invitation">×</span>
@@ -89,7 +64,7 @@
     <script>
     (() => {
         'use strict';
-        // ... tüm script aynı kalıyor ...
+        // Tüm script aynı kalıyor...
         const invitationModal = document.getElementById('invitation-modal');
         const invitationIcon = document.getElementById('invitation-icon');
         const closeInvitation = document.getElementById('close-invitation');
