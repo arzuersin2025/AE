@@ -10,8 +10,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700;800;900&family=Dancing+Script:wght@700&family=Cormorant+Garamond&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        /* TÜM ÇİZGİLERİ %100 YOK EDEN TEK SATIR */
-        header { border: none !important; }
+        /* TÜM ÇİZGİLERİ %100 YOK EDEN TEK SATIR – ARTIK HİÇ GÖRÜNMÜYOR */
+        header, header *, #main-title, #sonbahar-baslik { 
+            border: none !important; 
+            box-shadow: none !important; 
+        }
 
         html { scroll-behavior: smooth; }
         body {
@@ -73,7 +76,6 @@
         <span>Dokun</span>
     </div>
 
-    <!-- HEADER – ARTIK HİÇ ÇİZGİ YOK -->
     <header class="py-16 text-center relative z-20 overflow-hidden">
         <div class="relative">
             <a href="#countdown-section" title="Geri Sayım" class="absolute top-1/2 -translate-y-1/2 right-4 text-green-600 hover:text-green-800 transition-colors z-20 text-center">
