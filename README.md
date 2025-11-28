@@ -457,6 +457,12 @@
             </div>
             <div id="gallery-wrapper" class="hidden mt-8">
                 <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-1" id="gallery-grid">
+                    <!-- Sadece 1 fotoğraf eklendi: Üsküdar (10. sırada) -->
+                    <div class="photo-container group cursor-pointer">
+                        <img data-src="https://i.imgur.com/8Vu50Vx.jpg" alt="Üsküdar" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
+                        <span class="photo-number opacity-0 group-hover:opacity-100">10</span>
+                        <div class="photo-note">Üsküdar</div>
+                    </div>
                     <div class="photo-container group cursor-pointer"><img data-src="https://i.imgur.com/cDWfV6z.jpg" alt="Güldür Güldür" class="gallery-thumbnail w-full h-full object-cover" loading="lazy"><span class="photo-number opacity-0 group-hover:opacity-100">9</span><div class="photo-note">Güldür Güldür</div></div>
                     <div class="photo-container group cursor-pointer"><img data-src="https://i.imgur.com/jlmfKQ6.jpg" alt="Nev Mekan" class="gallery-thumbnail w-full h-full object-cover" loading="lazy"><span class="photo-number opacity-0 group-hover:opacity-100">8</span><div class="photo-note">Nev Mekan</div></div>
                     <div class="photo-container group cursor-pointer"><img data-src="https://i.imgur.com/EI3PjiL.jpg" alt="Nev Mekan" class="gallery-thumbnail w-full h-full object-cover" loading="lazy"><span class="photo-number opacity-0 group-hover:opacity-100">7</span><div class="photo-note">Nev Mekan</div></div>
@@ -588,7 +594,7 @@
         }, { rootMargin: '50px' });
         document.querySelectorAll('img[data-src]').forEach(img => lazyLoadObserver.observe(img));
         let imgs = [], curIdx = 0, videoIds = [], curVideoIdx = 0;
-        const refreshImgs = () => { imgs = Array.from(document.querySelectorAll('#gallery-grid img')).map(i => i.src).filter(s => s && !s.includes('svg')); };
+        const refreshImgs = () => { imgs = Array.from(document.querySelector  ('#gallery-grid img')).map(i => i.src).filter(s => s && !s.includes('svg')); };
         const refreshVideos = () => { videoIds = Array.from(document.querySelectorAll('#video-grid .photo-container')).map(el => el.dataset.youtubeId); };
         const openImg = idx => { refreshImgs(); curIdx = idx; document.getElementById('modal-image').src = imgs[curIdx]; document.getElementById('image-modal').classList.replace('hidden','flex'); };
         const closeImg = () => { document.getElementById('image-modal').classList.replace('flex','hidden'); document.getElementById('modal-image').src = ''; };
