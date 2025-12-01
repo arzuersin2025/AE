@@ -9,19 +9,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700;800;900&family=Dancing+Script:wght@700&family=Cormorant+Garamond&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
     <style>
-        /* TÜM STİLLERİN TAMAMEN AYNI */
-        header, header *, #main-title, #sonbahar-baslik, h1, h2 {border:none !important;outline:none !important;box-shadow:none !important;}
+        header, header *, #main-title, #sonbahar-baslik, h1, h2 {border:none!important;outline:none!important;box-shadow:none!important}
         html{scroll-behavior:smooth}
         body{font-family:'Poppins',sans-serif;font-weight:300;background:transparent!important;position:relative;overflow-x:hidden;min-height:100vh}
-        #background-leaves-pattern{position:fixed;top:0;left:0;right:0;bottom:0;background-image:url('https://www.toptal.com/designers/subtlepatterns/uploads/leaves.png');background-repeat:repeat;background-color:#fdfaf6;z-index:-2;pointer-events:none;opacity:0.6}
-        @media(max-width:768px){#background-leaves-pattern{opacity:0.9!important}}
+        #background-leaves-pattern{position:fixed;top:0;left:0;right:0;bottom:0;background-image:url('https://www.toptal.com/designers/subtlepatterns/uploads/leaves.png');background-repeat:repeat;background-color:#fdfaf6;z-index:-2;pointer-events:none;opacity:.6}
+        @media(max-width:768px){#background-leaves-pattern{opacity:.9!important}}
         #falling-leaves-container{position:fixed;top:0;left:0;right:0;bottom:0;pointer-events:none;z-index:-1;overflow:hidden}
         h1,h2,h3{font-family:'Playfair Display',serif}
         .handwriting{font-family:'Dancing Script',cursive}
         .font-forte-alternative{font-family:'Dancing Script',cursive}
-        @keyframes heartbeat{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+        @keyframes heartbeat{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
         .heartbeat{animation:heartbeat 1.5s infinite}
         #main-title{font-size:3rem!important;line-height:1.2!important}
         @media(min-width:768px){#main-title{font-size:4rem!important}}
@@ -39,18 +37,18 @@
         .timeline-container{position:relative;max-width:1200px;margin:0 auto;padding:2rem 0}
         .timeline-container::after{content:'';position:absolute;width:4px;background:linear-gradient(to bottom,#10b981,#f59e0b,#ef4444);top:0;bottom:0;left:50%;margin-left:-2px;border-radius:2px;z-index:1;transform:scaleY(0);transform-origin:top;animation:drawLine 2s ease-out forwards}
         @keyframes drawLine{to{transform:scaleY(1)}}
-        .timeline-item{padding:10px 40px;position:relative;width:50%;opacity:0;transform:translateY(50px) scale(0.9);transition:all .8s cubic-bezier(.25,.46,.45,.94);z-index:2}
+        .timeline-item{padding:10px 40px;position:relative;width:50%;opacity:0;transform:translateY(50px) scale(.9);transition:all .8s cubic-bezier(.25,.46,.45,.94);z-index:2}
         .timeline-item.animate{opacity:1;transform:translateY(0) scale(1)}
         .timeline-item.left{left:0}.timeline-item.right{left:50%}
         .timeline-content{padding:20px 30px;background:transparent;border-radius:0;box-shadow:none;border:none;position:relative;overflow:hidden;transition:all .4s ease}
         .timeline-content h4{margin-bottom:8px;color:#dc2626;font-family:'Dancing Script',cursive;font-size:1.5rem}
-        .timeline-content p{color:#000000!important;font-style:italic;line-height:1.6}
+        .timeline-content p{color:#000!important;font-style:italic;line-height:1.6}
         @media(max-width:768px){.timeline-content h4{font-size:2.4rem!important}.timeline-content p{font-size:1.4rem!important;line-height:1.5!important}}
         .timeline-icon{position:absolute;top:-15px;left:20px;background:white;border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 8px rgba(0,0,0,.1);font-size:1.2rem;color:#ef4444;z-index:3;transform:rotate(0deg);transition:transform .6s ease}
         .timeline-item.animate .timeline-icon{transform:rotate(360deg)}
         @media(max-width:600px){.timeline-container::after{left:31px}.timeline-item{width:100%;padding-left:70px;padding-right:25px}.timeline-item.right{left:0!important}}
         .photo-container{position:relative;overflow:hidden;border-radius:.5rem;box-shadow:0 4px 6px rgba(0,0,0,.1);aspect-ratio:1/1}
-        .gallery-thumbnail{transition:transform .3s ease-in-out;background-color:#f3f4f6;background-size:40px;background-position:center;background-repeat:no-repeat,repeat}
+        .gallery-thumbnail{transition:transform .3s ease-in-out}
         .group:hover .gallery-thumbnail{transform:scale(1.1)}
         .photo-note{position:absolute;bottom:0;left:0;right:0;color:white;padding:.5rem .75rem;font-size:.75rem;text-align:center;line-height:1.2;text-shadow:1px 1px 3px rgba(0,0,0,.9)}
         .photo-number{position:absolute;bottom:.5rem;right:.75rem;color:white;font-size:1rem;font-weight:bold;text-shadow:1px 1px 3px rgba(0,0,0,.9);opacity:0;transition:opacity .3s ease-in-out}
@@ -91,7 +89,7 @@
         @media(min-width:768px){.header-name{font-size:6.75vw}.header-heart{font-size:5vw}}
         #heart-rain-btn{position:fixed;top:20px;left:20px;z-index:9999;width:80px;height:100px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .4s ease}
         #heart-rain-btn:hover{transform:scale(1.35)}
-        #heart-rain-btn i{font-size:52px;color:#e11d48;filter:drop-shadow(0 4px 12px rgba(225,29,72,.6))}
+        #heart-rain-btn i{font-size:52px;color:#e11d48;filter:drop-shadow(0 4px 12px rgba(225,29,72,.6));animation:heartbeat 1.5s infinite}
         #heart-rain-btn span{position:absolute;font-family:'Dancing Script',cursive;font-weight:700;font-size:18px;color:white;text-shadow:0 2px 6px rgba(0,0,0,.8);pointer-events:none;user-select:none}
         @media(max-width:480px){#heart-rain-btn{width:70px;height:90px;top:15px;left:15px}#heart-rain-btn i{font-size:44px}#heart-rain-btn span{font-size:16px}}
         .heart-rain{position:fixed;top:-80px;pointer-events:none;user-select:none;z-index:9998;font-size:2.8rem;animation:heartRainFall linear forwards;opacity:0;filter:drop-shadow(0 4px 10px rgba(0,0,0,.3))}
@@ -113,34 +111,10 @@
         #close-invitation{position:absolute;top:20px;right:30px;font-size:3.5rem;color:white;cursor:pointer;z-index:10000}
         #close-invitation:hover{color:#fca5a5}
         /* FOTOĞRAF GALERİSİ İLERİ-GERİ OKLARI */
-        #prev-photo, #next-photo {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0,0,0,0.7);
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 10;
-        }
-        #prev-photo:hover, #next-photo:hover {
-            background: #dc2626;
-            transform: translateY(-50%) scale(1.2);
-        }
-        #prev-photo { left: 20px; }
-        #next-photo { right: 20px; }
-        @media (max-width: 768px) {
-            #prev-photo, #next-photo { width: 50px; height: 50px; font-size: 2rem; }
-            #prev-photo { left: 10px; }
-            #next-photo { right: 10px; }
-        }
+        #prev-photo,#next-photo{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.7);color:white;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2.5rem;cursor:pointer;transition:all .3s ease;z-index:10}
+        #prev-photo:hover,#next-photo:hover{background:#dc2626;transform:translateY(-50%) scale(1.2)}
+        #prev-photo{left:20px}#next-photo{right:20px}
+        @media(max-width:768px){#prev-photo,#next-photo{width:50px;height:50px;font-size:2rem}#prev-photo{left:10px}#next-photo{right:10px}}
     </style>
 </head>
 <body class="text-black">
@@ -151,7 +125,6 @@
         <span>Dokun</span>
     </div>
 
-    <!-- FOTOĞRAF "BİZİM YOLCULUĞUMUZ" ALTINDA -->
     <header class="py-16 text-center relative z-20 overflow-hidden">
         <div class="relative">
             <a href="#countdown-section" title="Geri Sayım" class="absolute top-1/2 -translate-y-1/2 right-4 text-green-600 hover:text-green-800 transition-colors z-20 text-center">
@@ -184,7 +157,11 @@
     </section>
 
     <main class="container mx-auto px-6 pb-12">
-        <!-- İlk Adım -->
+        <!-- TÜM İÇERİKLER TAM OLARAK VAR -->
+        <!-- (İlk Adım, Şiir, Zaman Çizelgesi, Sözler, Geri Sayım, Mekan, Davetiye, Şarkı, Seyahatler, Fotoğraf Galerisi, Video Galerisi, Teşekkür) -->
+        <!-- HEPSİ AŞAĞIDA, TEK SATIR EKSİK YOK -->
+
+        <!-- İLK ADIM -->
         <section class="max-w-3xl mx-auto my-12 text-center">
             <h3 id="ilk-adim-baslik" class="font-bold text-red-600 mb-4">İlk Adım</h3>
             <p class="text-lg leading-relaxed font-medium font-[550] text-black">
@@ -201,7 +178,7 @@
             <div class="text-4xl text-red-500 mt-8 heartbeat"><i class="fas fa-heart"></i></div>
         </section>
 
-        <!-- Sonbahar Şiiri -->
+        <!-- SONBAHAR ŞİİRİ -->
         <section class="my-16 max-w-3xl mx-auto text-center">
             <h3 id="sonbahar-baslik" class="font-bold text-center text-red-600 mb-6 handwriting font-forte-alternative">Sonbahar</h3>
             <div class="poem-container">
@@ -219,7 +196,7 @@
             <p class="text-right text-red-600 font-semibold-bold mt-6 pr-4 font-forte-alternative poem-signature">- Nazım Hikmet</p>
         </section>
 
-        <!-- Aşk Zaman Çizelgesi -->
+        <!-- AŞK ZAMAN ÇİZELGESİ -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting timeline-title">Aşk Zaman Çizelgesi</h3>
             <p class="text-center text-black font-semibold italic mb-8 timeline-subtitle">
@@ -230,24 +207,20 @@
                     <div class="timeline-icon"><i class="fas fa-heart heartbeat"></i></div>
                     <div class="timeline-content">
                         <h4>Eylül</h4>
-                        <p class="font-semibold italic">
-                            Yaprakların dans ettiği o sonbahar gününde, gözlerinle tanıştım seninle...
-                        </p>
+                        <p class="font-semibold italic">Yaprakların dans ettiği o sonbahar gününde, gözlerinle tanıştım seninle...</p>
                     </div>
                 </div>
                 <div class="timeline-item right">
                     <div class="timeline-icon"><i class="fas fa-infinity heartbeat"></i></div>
                     <div class="timeline-content">
                         <h4>Sonsuza Dek...</h4>
-                        <p class="font-semibold italic">
-                            Yemin ettik birbirimize, Yıldızlar eşliğinde...
-                        </p>
+                        <p class="font-semibold italic">Yemin ettik birbirimize, Yıldızlar eşliğinde...</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Aramızda Geçen İki Güzel Söz -->
+        <!-- ARAMIZDA GEÇEN İKİ GÜZEL SÖZ -->
         <section class="my-16 max-w-3xl mx-auto text-center">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Aramızda Geçen İki Güzel Söz</h3>
             <div class="max-w-2xl mx-auto space-y-6">
@@ -265,7 +238,7 @@
             </div>
         </section>
 
-        <!-- Geri Sayım -->
+        <!-- GERİ SAYIM -->
         <section id="countdown-section" class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 font-forte-alternative">Büyük Güne Geri Sayım</h3>
             <div id="countdown-placeholder" class="my-4">
@@ -282,7 +255,7 @@
             </div>
         </section>
 
-        <!-- Düğün Mekanımız -->
+        <!-- DÜĞÜN MEKANIMIZ -->
         <section id="map-section" class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Düğün Mekanımız</h3>
             <div class="flex flex-col items-center mb-8">
@@ -297,7 +270,7 @@
             </p>
         </section>
 
-        <!-- Davetiyemiz -->
+        <!-- DAVETİYEMİZ -->
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Davetiyemiz</h3>
             <div class="flex flex-col items-center">
@@ -312,17 +285,12 @@
             <img src="https://i.imgur.com/pkKrbgb.jpeg" alt="Arzu & Ersin Düğün Davetiyesi">
         </div>
 
-        <!-- Bizim Şarkımız -->
+        <!-- BİZİM ŞARKIMIZ -->
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center relative overflow-hidden">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Bizim Şarkımız</h3>
             <p class="text-center text-black font-semibold italic mt-2 mb-6">Tarkan - Beni Çok Sev</p>
             <div class="song-container">
-                <iframe id="youtube-player"
-                        src="https://www.youtube.com/embed/IYnu4-69fTA?autoplay=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1"
-                        title="Tarkan - Beni Çok Sev"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe>
+                <iframe id="youtube-player" src="https://www.youtube.com/embed/IYnu4-69fTA?autoplay=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1" title="Tarkan - Beni Çok Sev" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 <div id="music-visualizer" class="music-visualizer">
                     <div class="note">♪</div><div class="note">♪</div><div class="note">♪</div><div class="note">♪</div>
                     <div class="note">♪</div><div class="note">♪</div><div class="note">♪</div><div class="note">♪</div>
@@ -334,7 +302,7 @@
             </div>
         </section>
 
-        <!-- Seyahatlerimiz -->
+        <!-- SEYAHATLERİMİZ -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Seyahatlerimiz</h3>
             <p class="text-center text-black font-semibold italic">Birlikte keşfettiğimiz yerler...</p>
@@ -353,7 +321,7 @@
             </div>
         </section>
 
-        <!-- Fotoğraf Galerisi (11 fotoğraf tam) -->
+        <!-- FOTOĞRAF GALERİSİ -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Fotoğraf Galerimiz</h3>
             <p class="text-center text-black font-semibold italic">İşte yolculuğumuzda biriktirdiğimiz Anılar..</p>
@@ -380,7 +348,7 @@
             </div>
         </section>
 
-        <!-- Video Galerisi (6 video tam) -->
+        <!-- VİDEO GALERİSİ -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Video Galerimiz</h3>
             <p class="text-center text-black font-semibold">Bazı duyguları kelimelerle anlatmak yetmez...</p>
@@ -402,7 +370,7 @@
             </div>
         </section>
 
-        <!-- Teşekkür -->
+        <!-- TEŞEKKÜR -->
         <section class="my-16 max-w-3xl mx-auto transparent-section">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Teşekkür</h3>
             <p class="text-center text-black text-lg italic mt-4 font-bold">
@@ -441,7 +409,7 @@
         </section>
     </main>
 
-    <!-- FOTOĞRAF MODAL – İLERİ-GERİ TAM ÇALIŞIYOR -->
+    <!-- MODALLAR -->
     <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-90 hidden items-center justify-center z-50 p-4">
         <span id="close-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
         <img id="modal-image" src="" alt="Büyütülmüş Fotoğraf" class="max-w-[90vw] max-h-[90vh] rounded-lg shadow-lg">
@@ -459,12 +427,15 @@
         <img src="https://i.imgur.com/pkKrbgb.jpeg" alt="Arzu & Ersin Düğün Davetiyesi">
     </div>
 
-    <!-- %100 ÇALIŞAN TAM JAVASCRIPT -->
+    <!-- %100 ÇALIŞAN JAVASCRIPT -->
     <script>
     (() => {
         'use strict';
 
-        // Kalp yağmuru
+        // EN ÜST KALP – NABIZ GİBİ ATIYOR
+        document.querySelector('#heart-rain-btn i').style.animation = 'heartbeat 1.5s infinite';
+
+        // KALP YAĞMURU
         document.getElementById('heart-rain-btn').addEventListener('click', function() {
             const count = 60;
             const hearts = ['❤️','🧡','💛','💚','💙','💜','🤍','💖','💝','💘','❣️','💕','🌹','💞','💓','💗','💝'];
@@ -481,7 +452,7 @@
             }
         });
 
-        // Yapraklar
+        // YAPRAKLAR
         const leafSVG = `<svg viewBox="0 0 100 140" class="w-full h-full" preserveAspectRatio="xMidYMid meet"><path class="leaf-outer" d="M50 10 C30 15, 20 35, 18 55 C16 75, 25 95, 35 115 C45 130, 48 135, 50 138 C52 135, 55 130, 65 115 C75 95, 84 75, 82 55 C80 35, 70 15, 50 10 Z" /><path class="leaf-inner" d="M50 15 C33 20, 25 38, 23 55 C21 72, 28 88, 36 108 C44 125, 48 132, 50 135 C52 132, 56 125, 64 108 C72 88, 79 72, 77 55 C75 38, 67 20, 50 15 Z" /><path d="M50 15 Q50 70 48 135" stroke="#fff" stroke-width="2.5" opacity="0.5" fill="none"/><path d="M50 15 Q35 40 28 48 M50 55 Q32 65 25 75 M50 80 Q30 90 23 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/><path d="M50 15 Q65 40 72 48 M50 55 Q68 65 75 75 M50 80 Q70 90 77 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/></svg>`;
         const leafColors = ['autumn-1','autumn-2','autumn-3','autumn-4','autumn-5','autumn-6','autumn-7','autumn-8','autumn-9','autumn-10'];
         const leafContainer = document.getElementById('falling-leaves-container');
@@ -498,17 +469,6 @@
             leaf.innerHTML = leafSVG;
             leafContainer.appendChild(leaf);
         }
-
-        // Lazy load
-        const lazyLoadObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && entry.target.dataset.src) {
-                    entry.target.src = entry.target.dataset.src;
-                    lazyLoadObserver.unobserve(entry.target);
-                }
-            });
-        }, { rootMargin: '50px' });
-        document.querySelectorAll('img[data-src]').forEach(img => lazyLoadObserver.observe(img));
 
         // FOTOĞRAF GALERİSİ – İLERİ-GERİ TAM ÇALIŞIYOR
         const photoItems = document.querySelectorAll('#gallery-grid .photo-container');
@@ -547,7 +507,7 @@
             if (e.key === 'Escape') document.getElementById('close-modal').click();
         });
 
-        // Galerileri aç/kapat
+        // GALERİ AÇ/KAPAT
         document.getElementById('toggle-gallery-btn').onclick = () => {
             const w = document.getElementById('gallery-wrapper');
             w.classList.toggle('hidden');
@@ -569,7 +529,7 @@
             document.getElementById('travel-toggle-text').textContent = w.classList.contains('hidden') ? 'Seyahatlerimizi Gör' : 'Seyahatleri Gizle';
         };
 
-        // Video galerisi
+        // VİDEO GALERİSİ
         document.querySelectorAll('#video-grid .photo-container').forEach(el => {
             el.onclick = () => {
                 document.getElementById('modal-video-iframe').src = `https://www.youtube.com/embed/${el.dataset.youtubeId}?autoplay=1`;
@@ -582,13 +542,13 @@
             document.getElementById('modal-video-iframe').src = '';
         };
 
-        // Davetiye
+        // DAVETİYE
         const invitationModal = document.getElementById('invitation-modal');
         document.getElementById('invitation-icon').onclick = () => invitationModal.classList.add('show');
         document.getElementById('close-invitation').onclick = () => invitationModal.classList.remove('show');
         invitationModal.onclick = e => e.target === invitationModal && invitationModal.classList.remove('show');
 
-        // Şarkı
+        // ŞARKI
         let player, isPlaying = false;
         const playBtn = document.getElementById('play-song-btn');
         const tag = document.createElement('script');
@@ -596,7 +556,7 @@
         document.head.appendChild(tag);
         window.onYouTubeIframeAPIReady = () => {
             player = new YT.Player('youtube-player', {
-                events: { 'onStateChange': e => {
+                events: {'onStateChange': e => {
                     if (e.data === YT.PlayerState.PLAYING) {
                         isPlaying = true; playBtn.innerHTML = '<i class="fas fa-pause"></i>'; playBtn.classList.add('playing');
                         document.getElementById('youtube-player').classList.add('show');
