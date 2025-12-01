@@ -381,7 +381,7 @@
                 <div><span id="seconds" class="block text-5xl font-bold text-green-600">00</span><span class="text-sm text-red-600">Saniye</span></div>
             </div>
         </section>
-        <!-- DÜĞÜN MEKANIMIZ – KISA VERSİYON -->
+        <!-- DÜĞÜN MEKANIMIZ -->
         <section id="map-section" class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Düğün Mekanımız</h3>
             <div class="flex flex-col items-center mb-8">
@@ -395,9 +395,10 @@
                 <span class="text-red-600 text-xl md:text-2xl italic">Sevgilerimizle...</span>
             </p>
         </section>
-        <!-- DÜĞÜN DAVETİYEMİZ – SADECE İKON VE "Tıkla" (METİN KALDIRILDI) -->
+
+        <!-- DAVETİYEMİZ (tek değişiklik burada) -->
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center">
-            <h3 class="font-bold text-red-600 mb-6 handwriting">Düğün Davetiyemiz</h3>
+            <h3 class="font-bold text-red-600 mb-6 handwriting">Davetiyemiz</h3>
             <div class="flex flex-col items-center">
                 <div id="invitation-icon" title="Davetiyeyi Gör">
                     <i class="fas fa-envelope-open-text heartbeat"></i>
@@ -405,10 +406,13 @@
                 <div class="invitation-click-text">Tıkla</div>
             </div>
         </section>
+
         <div id="invitation-modal">
             <span id="close-invitation">X</span>
             <img src="https://i.imgur.com/pkKrbgb.jpeg" alt="Arzu & Ersin Düğün Davetiyesi">
         </div>
+
+        <!-- BİZİM ŞARKIMIZ -->
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center relative overflow-hidden">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Bizim Şarkımız</h3>
             <p class="text-center text-black font-semibold italic mt-2 mb-6">Tarkan - Beni Çok Sev</p>
@@ -420,8 +424,8 @@
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen></iframe>
                 <div id="music-visualizer" class="music-visualizer">
-                    <div class="note">♪</div><div class="note">♫</div><div class="note">♪</div><div class="note">♬</div>
-                    <div class="note">♪</div><div class="note">♫</div><div class="note">♪</div><div class="note">♬</div>
+                    <div class="note">♪</div><div class="note">♪</div><div class="note">♪</div><div class="note">♪</div>
+                    <div class="note">♪</div><div class="note">♪</div><div class="note">♪</div><div class="note">♪</div>
                 </div>
                 <div class="song-control">
                     <div class="song-label">Dinle</div>
@@ -429,7 +433,8 @@
                 </div>
             </div>
         </section>
-        <!-- SEYAHATLERİMİZ – ŞİMDİ %100 ÇALIŞIYOR -->
+
+        <!-- SEYAHATLERİMİZ -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Seyahatlerimiz</h3>
             <p class="text-center text-black font-semibold italic">Birlikte keşfettiğimiz yerler...</p>
@@ -447,7 +452,8 @@
                 </div>
             </div>
         </section>
-        <!-- FOTOĞRAF GALERİSİ -->
+
+        <!-- FOTOĞRAF GALERİSİ (tam hali) -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Fotoğraf Galerimiz</h3>
             <p class="text-center text-black font-semibold italic">İşte yolculuğumuzda biriktirdiğimiz Anılar..</p>
@@ -481,7 +487,8 @@
                 </div>
             </div>
         </section>
-        <!-- Video Galerisi ve diğer bölümler tamamen aynı -->
+
+        <!-- VİDEO GALERİSİ (tam hali) -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Video Galerimiz</h3>
             <p class="text-center text-black font-semibold">Bazı duyguları kelimelerle anlatmak yetmez...</p>
@@ -502,6 +509,8 @@
                 </div>
             </div>
         </section>
+
+        <!-- TEŞEKKÜR -->
         <section class="my-16 max-w-3xl mx-auto transparent-section">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Teşekkür</h3>
             <p class="text-center text-black text-lg italic mt-4 font-bold">
@@ -539,27 +548,29 @@
             </div>
         </section>
     </main>
+
+    <!-- Modallar -->
     <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
         <span id="close-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
         <img id="modal-image" src="" alt="Büyütülmüş Fotoğraf" class="max-w-[90vw] max-h-[90vh] rounded-lg shadow-lg">
         <span id="prev-photo" class="absolute top-1/2 left-4 -translate-y-1/2 text-white text-6xl font-bold cursor-pointer hover:text-gray-300 transition-colors select-none">&lt;</span>
         <span id="next-photo" class="absolute top-1/2 right-4 -translate-y-1/2 text-white text-6xl font-bold cursor-pointer hover:text-gray-300 transition-colors select-none">&gt;</span>
     </div>
+
     <div id="video-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
         <span id="close-video-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
         <div class="aspect-video w-full max-w-4xl"><iframe id="modal-video-iframe" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
     </div>
+
     <div id="invitation-modal">
         <span id="close-invitation">×</span>
         <img src="https://i.imgur.com/pkKrbgb.jpeg" alt="Arzu & Ersin Düğün Davetiyesi">
     </div>
 
-    <!-- %100 ÇALIŞAN SON JAVASCRIPT - SEYAHATLER BUTONU DA DÜZELTİLDİ -->
+    <!-- %100 ÇALIŞAN TAM JAVASCRIPT -->
     <script>
     (() => {
         'use strict';
-
-        // Kalp yağmuru, yapraklar, lazy load... (hepsi aynı)
         document.getElementById('heart-rain-btn').addEventListener('click', function() {
             const count = 60;
             const hearts = ['❤️','🧡','💛','💚','💙','💜','🩷','🤍','💖','💝','💘','❣️','💕','🌹','💞','💓','💗','💝'];
@@ -603,7 +614,6 @@
         }, { rootMargin: '50px' });
         document.querySelectorAll('img[data-src]').forEach(img => lazyLoadObserver.observe(img));
 
-        // FOTOĞRAF GALERİSİ
         let photoUrls = [];
         let currentPhotoIndex = 0;
         const buildPhotoArray = () => {
@@ -642,7 +652,6 @@
             }
         };
 
-        // SEYAHATLER - ŞİMDİ ÇALIŞIYOR
         document.getElementById('toggle-travel-btn').onclick = () => {
             const wrapper = document.getElementById('travel-wrapper');
             wrapper.classList.toggle('hidden');
@@ -650,7 +659,6 @@
             document.getElementById('travel-toggle-text').textContent = wrapper.classList.contains('hidden') ? 'Seyahatlerimizi Gör' : 'Seyahatleri Gizle';
         };
 
-        // VİDEO GALERİSİ
         document.getElementById('toggle-video-gallery-btn').onclick = () => {
             const wrapper = document.getElementById('video-gallery-wrapper');
             wrapper.classList.toggle('hidden');
@@ -672,22 +680,22 @@
             document.getElementById('video-modal').classList.replace('flex', 'hidden');
             document.getElementById('modal-video-iframe').src = '';
         };
+
         document.getElementById('video-modal').onclick = e => {
             if (e.target === e.currentTarget) document.getElementById('close-video-modal').click();
         };
 
-        // Fotoğraf modal
         document.getElementById('close-modal').onclick = closePhoto;
         document.getElementById('prev-photo').onclick = e => { e.stopPropagation(); prevPhoto(); };
         document.getElementById('next-photo').onclick = e => { e.stopPropagation(); nextPhoto(); };
         document.getElementById('image-modal').onclick = e => { if (e.target === e.currentTarget) closePhoto(); };
+
         document.addEventListener('keydown', e => {
             if (e.key === 'Escape') { closePhoto(); if (document.getElementById('video-modal').classList.contains('flex')) document.getElementById('close-video-modal').click(); }
             if (e.key === 'ArrowRight' && document.getElementById('image-modal').classList.contains('flex')) nextPhoto();
             if (e.key === 'ArrowLeft' && document.getElementById('image-modal').classList.contains('flex')) prevPhoto();
         });
 
-        // Müzik, davetiye, timeline, fade-in... hepsi aynı
         let player, isPlaying = false;
         const playBtn = document.getElementById('play-song-btn');
         const playerElement = document.getElementById('youtube-player');
@@ -695,7 +703,6 @@
         const tag = document.createElement('script');
         tag.src = 'https://www.youtube.com/iframe_api';
         document.getElementsByTagName('script')[0].parentNode.insertBefore(tag, document.getElementsByTagName('script')[0]);
-
         window.onYouTubeIframeAPIReady = function() {
             player = new YT.Player('youtube-player', {
                 events: { 'onStateChange': e => {
