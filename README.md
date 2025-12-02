@@ -262,6 +262,26 @@
             max-height: 90vh;
             transition: transform 0.1s ease-out;
         }
+        #bg-music-control {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        #bg-music-control:hover {
+            transform: scale(1.2);
+        }
+        #bg-music-control i {
+            font-size: 2rem;
+            color: #dc2626;
+            filter: drop-shadow(0 2px 4px rgba(220, 38, 38, 0.3));
+        }
+        @media (max-width: 480px) {
+            #bg-music-control { top: 15px; right: 15px; }
+            #bg-music-control i { font-size: 1.5rem; }
+        }
     </style>
 </head>
 <body class="text-black">
@@ -271,6 +291,13 @@
         <i class="fas fa-heart heartbeat"></i>
         <span>Dokun</span>
     </div>
+    <div id="bg-music-control" title="Arka plan müziği">
+        <i class="fas fa-volume-up" id="bg-icon"></i>
+    </div>
+    <audio id="bg-music" loop preload="auto">
+        <source src="https://www.dropbox.com/s/zajxvxm7idg45n0/0003.%20Romantic%20Piano%20-%20AShamaluevMusic.mp3?dl=1" type="audio/mpeg">
+        Tarayıcınız bu ses dosyasını desteklemiyor.
+    </audio>
     <header class="py-16 text-center relative z-20 overflow-hidden">
         <div class="relative">
             <div class="absolute inset-0 flex items-center justify-center z-0" aria-hidden="true">
@@ -559,6 +586,22 @@
     <script>
     (() => {
         'use strict';
+        // Background music setup
+        const bgMusic = document.getElementById('bg-music');
+        const bgIcon = document.getElementById('bg-icon');
+        let isBgEnabled = true;
+        bgMusic.volume = 0.1;
+        bgMusic.play().catch(e => console.log('Autoplay prevented: ', e));
+        document.getElementById('bg-music-control').addEventListener('click', () => {
+            isBgEnabled = !isBgEnabled;
+            if (isBgEnabled) {
+                bgMusic.play();
+                bgIcon.className = 'fas fa-volume-up';
+            } else {
+                bgMusic.pause();
+                bgIcon.className = 'fas fa-volume-mute';
+            }
+        });
         document.getElementById('heart-rain-btn').addEventListener('click', function() {
             const count = 60;
             const hearts = ['❤️','🧡','💛','💚','💙','💜','🤍','💖','💝','💘','❣️','💕','🌹','💞','💓','💗','💝'];
@@ -771,9 +814,15 @@
                     if (e.data === YT.PlayerState.PLAYING) {
                         isPlaying = true; playBtn.innerHTML = '<i class="fas fa-pause"></i>'; playBtn.classList.add('playing');
                         playerElement.classList.add('show'); musicVisualizer.classList.add('hidden');
+                        // Pause background music
+                        bgMusic.pause();
                     } else {
                         isPlaying = false; playBtn.innerHTML = '<i class="fas fa-play"></i>'; playBtn.classList.remove('playing');
                         playerElement.classList.remove('show'); musicVisualizer.classList.remove('hidden');
+                        // Resume background music if enabled
+                        if (isBgEnabled) {
+                            bgMusic.play();
+                        }
                     }
                 }}
             });
