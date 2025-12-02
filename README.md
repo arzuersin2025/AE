@@ -1,4 +1,3 @@
-
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -268,12 +267,6 @@
     </div>
     <header class="py-16 text-center relative z-20 overflow-hidden">
         <div class="relative">
-            <a href="#countdown-section" title="Geri Sayım" class="absolute top-1/2 -translate-y-1/2 right-4 text-green-600 hover:text-green-800 transition-colors z-20 text-center">
-                <i class="fas fa-hourglass-start fa-2x"></i>
-                <div id="header-countdown" class="hidden text-[10px] font-semibold tracking-tight leading-tight mt-1">
-                    <span id="header-days">0</span>g <span id="header-hours">0</span>s <span id="header-minutes">0</span>d
-                </div>
-            </a>
             <div class="absolute inset-0 flex items-center justify-center z-0" aria-hidden="true">
                 <i class="fas fa-infinity text-[10rem] text-gray-200 opacity-70 blur-sm"></i>
             </div>
@@ -395,7 +388,6 @@
                 <span class="text-red-600 text-xl md:text-2xl italic">Sevgilerimizle...</span>
             </p>
         </section>
-
         <!-- DAVETİYEMİZ (tek değişiklik burada) -->
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Davetiyemiz</h3>
@@ -406,12 +398,10 @@
                 <div class="invitation-click-text">Tıkla</div>
             </div>
         </section>
-
         <div id="invitation-modal">
             <span id="close-invitation">X</span>
             <img src="https://i.imgur.com/pkKrbgb.jpeg" alt="Arzu & Ersin Düğün Davetiyesi">
         </div>
-
         <!-- BİZİM ŞARKIMIZ -->
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center relative overflow-hidden">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Bizim Şarkımız</h3>
@@ -433,7 +423,6 @@
                 </div>
             </div>
         </section>
-
         <!-- SEYAHATLERİMİZ -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Seyahatlerimiz</h3>
@@ -452,7 +441,6 @@
                 </div>
             </div>
         </section>
-
         <!-- FOTOĞRAF GALERİSİ (tam hali) -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Fotoğraf Galerimiz</h3>
@@ -487,7 +475,6 @@
                 </div>
             </div>
         </section>
-
         <!-- VİDEO GALERİSİ (tam hali) -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Video Galerimiz</h3>
@@ -509,7 +496,6 @@
                 </div>
             </div>
         </section>
-
         <!-- TEŞEKKÜR -->
         <section class="my-16 max-w-3xl mx-auto transparent-section">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Teşekkür</h3>
@@ -548,7 +534,6 @@
             </div>
         </section>
     </main>
-
     <!-- Modallar -->
     <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
         <span id="close-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
@@ -556,17 +541,14 @@
         <span id="prev-photo" class="absolute top-1/2 left-4 -translate-y-1/2 text-white text-6xl font-bold cursor-pointer hover:text-gray-300 transition-colors select-none">&lt;</span>
         <span id="next-photo" class="absolute top-1/2 right-4 -translate-y-1/2 text-white text-6xl font-bold cursor-pointer hover:text-gray-300 transition-colors select-none">&gt;</span>
     </div>
-
     <div id="video-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
         <span id="close-video-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
         <div class="aspect-video w-full max-w-4xl"><iframe id="modal-video-iframe" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
     </div>
-
     <div id="invitation-modal">
         <span id="close-invitation">×</span>
         <img src="https://i.imgur.com/pkKrbgb.jpeg" alt="Arzu & Ersin Düğün Davetiyesi">
     </div>
-
     <!-- %100 ÇALIŞAN TAM JAVASCRIPT -->
     <script>
     (() => {
@@ -586,7 +568,6 @@
                 setTimeout(() => h.remove(), 12000);
             }
         });
-
         const leafSVG = `<svg viewBox="0 0 100 140" class="w-full h-full" preserveAspectRatio="xMidYMid meet"><path class="leaf-outer" d="M50 10 C30 15, 20 35, 18 55 C16 75, 25 95, 35 115 C45 130, 48 135, 50 138 C52 135, 55 130, 65 115 C75 95, 84 75, 82 55 C80 35, 70 15, 50 10 Z" /><path class="leaf-inner" d="M50 15 C33 20, 25 38, 23 55 C21 72, 28 88, 36 108 C44 125, 48 132, 50 135 C52 132, 56 125, 64 108 C72 88, 79 72, 77 55 C75 38, 67 20, 50 15 Z" /><path d="M50 15 Q50 70 48 135" stroke="#fff" stroke-width="2.5" opacity="0.5" fill="none"/><path d="M50 15 Q35 40 28 48 M50 55 Q32 65 25 75 M50 80 Q30 90 23 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/><path d="M50 15 Q65 40 72 48 M50 55 Q68 65 75 75 M50 80 Q70 90 77 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/></svg>`;
         const leafColors = ['autumn-1','autumn-2','autumn-3','autumn-4','autumn-5','autumn-6','autumn-7','autumn-8','autumn-9','autumn-10'];
         const leafContainer = document.getElementById('falling-leaves-container');
@@ -603,7 +584,6 @@
             leaf.innerHTML = leafSVG;
             leafContainer.appendChild(leaf);
         }
-
         const lazyLoadObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting && entry.target.dataset.src) {
@@ -613,7 +593,6 @@
             });
         }, { rootMargin: '50px' });
         document.querySelectorAll('img[data-src]').forEach(img => lazyLoadObserver.observe(img));
-
         let photoUrls = [];
         let currentPhotoIndex = 0;
         const buildPhotoArray = () => {
@@ -637,7 +616,6 @@
             currentPhotoIndex = (currentPhotoIndex - 1 + photoUrls.length) % photoUrls.length;
             document.getElementById('modal-image').src = photoUrls[currentPhotoIndex];
         };
-
         document.getElementById('toggle-gallery-btn').onclick = () => {
             const wrapper = document.getElementById('gallery-wrapper');
             wrapper.classList.toggle('hidden');
@@ -651,14 +629,12 @@
                 }, 100);
             }
         };
-
         document.getElementById('toggle-travel-btn').onclick = () => {
             const wrapper = document.getElementById('travel-wrapper');
             wrapper.classList.toggle('hidden');
             document.getElementById('travel-toggle-icon').classList.toggle('rotate-180', !wrapper.classList.contains('hidden'));
             document.getElementById('travel-toggle-text').textContent = wrapper.classList.contains('hidden') ? 'Seyahatlerimizi Gör' : 'Seyahatleri Gizle';
         };
-
         document.getElementById('toggle-video-gallery-btn').onclick = () => {
             const wrapper = document.getElementById('video-gallery-wrapper');
             wrapper.classList.toggle('hidden');
@@ -675,27 +651,22 @@
                 }, 100);
             }
         };
-
         document.getElementById('close-video-modal').onclick = () => {
             document.getElementById('video-modal').classList.replace('flex', 'hidden');
             document.getElementById('modal-video-iframe').src = '';
         };
-
         document.getElementById('video-modal').onclick = e => {
             if (e.target === e.currentTarget) document.getElementById('close-video-modal').click();
         };
-
         document.getElementById('close-modal').onclick = closePhoto;
         document.getElementById('prev-photo').onclick = e => { e.stopPropagation(); prevPhoto(); };
         document.getElementById('next-photo').onclick = e => { e.stopPropagation(); nextPhoto(); };
         document.getElementById('image-modal').onclick = e => { if (e.target === e.currentTarget) closePhoto(); };
-
         document.addEventListener('keydown', e => {
             if (e.key === 'Escape') { closePhoto(); if (document.getElementById('video-modal').classList.contains('flex')) document.getElementById('close-video-modal').click(); }
             if (e.key === 'ArrowRight' && document.getElementById('image-modal').classList.contains('flex')) nextPhoto();
             if (e.key === 'ArrowLeft' && document.getElementById('image-modal').classList.contains('flex')) prevPhoto();
         });
-
         let player, isPlaying = false;
         const playBtn = document.getElementById('play-song-btn');
         const playerElement = document.getElementById('youtube-player');
@@ -717,17 +688,14 @@
             });
         };
         playBtn.onclick = e => { e.stopPropagation(); player && (isPlaying ? player.pauseVideo() : player.playVideo()); };
-
         const invitationModal = document.getElementById('invitation-modal');
         document.getElementById('invitation-icon').onclick = () => invitationModal.classList.add('show');
         document.getElementById('close-invitation').onclick = () => invitationModal.classList.remove('show');
         invitationModal.onclick = e => { if (e.target === invitationModal) invitationModal.classList.remove('show'); };
-
         const timelineObserver = new IntersectionObserver((entries) => {
             entries.forEach((e,i) => { if (e.isIntersecting) setTimeout(() => e.target.classList.add('animate'), i * 300); });
         }, { threshold: 0.3 });
         document.querySelectorAll('.timeline-item').forEach(item => timelineObserver.observe(item));
-
         const fadeObserver = new IntersectionObserver(entries => {
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
         }, { threshold: 0.3 });
