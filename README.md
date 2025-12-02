@@ -681,7 +681,7 @@
                 e.preventDefault();
                 const newDistance = getDistance(e.touches[0], e.touches[1]);
                 const factor = newDistance / initialDistance;
-                scale = Math.max(1, Math.min(initialScale * factor, 5)); // Limit scale to 1-5
+                scale = Math.max(0.1, initialScale * factor); // Sınırsız büyütme/küçültme, min 0.1
                 updateTransform();
                 isPanning = false;
             } else if (e.touches.length === 1 && isPanning) {
