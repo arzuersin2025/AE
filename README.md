@@ -102,7 +102,7 @@
         @media (max-width: 768px) {
             .poem-container { padding: 1.5rem 0 !important; line-height: 1.3 !important; font-size: 1.95rem; }
         }
-        .poem-signature { font-size: 1.5rem !important; line-height: 1.4 !important; color: #16a34a !important; }
+        .poem-signature { font-size: 1.5rem !important; line-height: 1.4 !important; color: #dc2626 !important; }
         @media (max-width: 768px) { .poem-signature { font-size: 1.875rem !important; } }
         .leaf-svg { position: absolute; width: 32px; height: 44px; opacity: 0.9; animation: fall linear infinite; transform-origin: center; filter: drop-shadow(0 3px 6px rgba(0,0,0,0.3)); }
         @keyframes fall { 0% { transform: translateY(-120px) rotate(0deg) scale(1); opacity: 0; } 8% { opacity: 0.9; } 30% { transform: translateY(30vh) translateX(15px) rotate(180deg) scale(0.95); } 50% { transform: translateY(50vh) translateX(-20px) rotate(540deg) scale(0.9); } 70% { transform: translateY(70vh) translateX(25px) rotate(800deg) scale(0.85); } 92% { opacity: 0.9; } 100% { transform: translateY(110vh) translateX(-15px) rotate(1080deg) scale(0.6); opacity: 0; } }
