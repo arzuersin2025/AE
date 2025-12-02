@@ -134,7 +134,7 @@
         .transparent-section { background: transparent !important; backdrop-filter: none !important; box-shadow: none !important; border-radius: 0 !important; padding: 2rem 1rem !important; }
         .song-container { position: relative; width: 16rem; height: 16rem; margin: 0 auto; }
         @media (min-width: 768px) { .song-container { width: 20rem; height: 20rem; } }
-        .header-name { font-size: 9vw; }
+        .header-name { font-size: 11.7vw; }
         .header-heart { font-size: 10vw; margin: 0 0.2em; }
         @media (min-width: 768px) {
             .header-name { font-size: 6.75vw; }
