@@ -606,9 +606,12 @@
         let translateY = 0;
         let initialDistance = 0;
         let initialScale = 1;
-        let initialX = 0;
-        let initialY = 0;
+        let startClientX = 0;
+        let startClientY = 0;
+        let startTranslateX = 0;
+        let startTranslateY = 0;
         let isPanning = false;
+        const sensitivity = 0.5; // Hareket hassasiyeti için çarpan (daha düşük = daha yavaş ve hassas)
         const modal = document.getElementById('image-modal');
         const modalImage = document.getElementById('modal-image');
         const updateTransform = () => {
@@ -671,8 +674,10 @@
                 initialScale = scale;
                 isPanning = false;
             } else if (e.touches.length === 1 && scale > 1) {
-                initialX = e.touches[0].clientX - translateX;
-                initialY = e.touches[0].clientY - translateY;
+                startClientX = e.touches[0].clientX;
+                startClientY = e.touches[0].clientY;
+                startTranslateX = translateX;
+                startTranslateY = translateY;
                 isPanning = true;
             }
         });
@@ -686,8 +691,10 @@
                 isPanning = false;
             } else if (e.touches.length === 1 && isPanning) {
                 e.preventDefault();
-                translateX = e.touches[0].clientX - initialX;
-                translateY = e.touches[0].clientY - initialY;
+                const deltaX = (e.touches[0].clientX - startClientX) * sensitivity;
+                const deltaY = (e.touches[0].clientY - startClientY) * sensitivity;
+                translateX = startTranslateX + deltaX;
+                translateY = startTranslateY + deltaY;
                 updateTransform();
             }
         });
