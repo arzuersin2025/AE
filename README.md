@@ -602,10 +602,18 @@
         let photoUrls = [];
         let currentPhotoIndex = 0;
         let scale = 1;
+        let translateX = 0;
+        let translateY = 0;
         let initialDistance = 0;
         let initialScale = 1;
+        let initialX = 0;
+        let initialY = 0;
+        let isPanning = false;
         const modal = document.getElementById('image-modal');
         const modalImage = document.getElementById('modal-image');
+        const updateTransform = () => {
+            modalImage.style.transform = `scale(${scale}) translate(${translateX}px, ${translateY}px)`;
+        };
         const buildPhotoArray = () => {
             photoUrls = Array.from(document.querySelectorAll('#gallery-grid img[data-src]')).map(img => img.dataset.src);
         };
@@ -619,14 +627,20 @@
             currentPhotoIndex = index;
             modalImage.src = photoUrls[currentPhotoIndex];
             scale = 1;
+            translateX = 0;
+            translateY = 0;
             initialScale = 1;
-            modalImage.style.transform = 'scale(1)';
+            isPanning = false;
+            updateTransform();
             modal.classList.replace('hidden', 'flex');
         };
         const closePhoto = () => {
             scale = 1;
+            translateX = 0;
+            translateY = 0;
             initialScale = 1;
-            modalImage.style.transform = 'scale(1)';
+            isPanning = false;
+            updateTransform();
             modal.classList.replace('flex', 'hidden');
             modalImage.src = '';
         };
@@ -634,21 +648,32 @@
             currentPhotoIndex = (currentPhotoIndex + 1) % photoUrls.length;
             modalImage.src = photoUrls[currentPhotoIndex];
             scale = 1;
+            translateX = 0;
+            translateY = 0;
             initialScale = 1;
-            modalImage.style.transform = 'scale(1)';
+            isPanning = false;
+            updateTransform();
         };
         const prevPhoto = () => {
             currentPhotoIndex = (currentPhotoIndex - 1 + photoUrls.length) % photoUrls.length;
             modalImage.src = photoUrls[currentPhotoIndex];
             scale = 1;
+            translateX = 0;
+            translateY = 0;
             initialScale = 1;
-            modalImage.style.transform = 'scale(1)';
+            isPanning = false;
+            updateTransform();
         };
         modal.addEventListener('touchstart', (e) => {
             if (e.touches.length === 2) {
                 e.preventDefault();
                 initialDistance = getDistance(e.touches[0], e.touches[1]);
                 initialScale = scale;
+                isPanning = false;
+            } else if (e.touches.length === 1 && scale > 1) {
+                initialX = e.touches[0].clientX - translateX;
+                initialY = e.touches[0].clientY - translateY;
+                isPanning = true;
             }
         });
         modal.addEventListener('touchmove', (e) => {
@@ -656,8 +681,23 @@
                 e.preventDefault();
                 const newDistance = getDistance(e.touches[0], e.touches[1]);
                 const factor = newDistance / initialDistance;
-                scale = initialScale * factor;
-                modalImage.style.transform = `scale(${scale})`;
+                scale = Math.max(1, Math.min(initialScale * factor, 5)); // Limit scale to 1-5
+                updateTransform();
+                isPanning = false;
+            } else if (e.touches.length === 1 && isPanning) {
+                e.preventDefault();
+                translateX = e.touches[0].clientX - initialX;
+                translateY = e.touches[0].clientY - initialY;
+                updateTransform();
+            }
+        });
+        modal.addEventListener('touchend', (e) => {
+            isPanning = false;
+            // Optional: Reset pan if scale is low
+            if (scale <= 1.1) {
+                translateX = 0;
+                translateY = 0;
+                updateTransform();
             }
         });
         document.getElementById('toggle-gallery-btn').onclick = () => {
