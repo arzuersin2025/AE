@@ -256,6 +256,12 @@
             z-index: 10000;
         }
         #close-invitation:hover { color: #fca5a5; }
+        #modal-image {
+            transform-origin: center center;
+            max-width: 90vw;
+            max-height: 90vh;
+            transition: transform 0.1s ease-out;
+        }
     </style>
 </head>
 <body class="text-black">
@@ -595,27 +601,65 @@
         document.querySelectorAll('img[data-src]').forEach(img => lazyLoadObserver.observe(img));
         let photoUrls = [];
         let currentPhotoIndex = 0;
+        let scale = 1;
+        let initialDistance = 0;
+        let initialScale = 1;
+        const modal = document.getElementById('image-modal');
+        const modalImage = document.getElementById('modal-image');
         const buildPhotoArray = () => {
             photoUrls = Array.from(document.querySelectorAll('#gallery-grid img[data-src]')).map(img => img.dataset.src);
+        };
+        const getDistance = (touch1, touch2) => {
+            const dx = touch1.clientX - touch2.clientX;
+            const dy = touch1.clientY - touch2.clientY;
+            return Math.sqrt(dx * dx + dy * dy);
         };
         const openPhoto = (index) => {
             buildPhotoArray();
             currentPhotoIndex = index;
-            document.getElementById('modal-image').src = photoUrls[currentPhotoIndex];
-            document.getElementById('image-modal').classList.replace('hidden', 'flex');
+            modalImage.src = photoUrls[currentPhotoIndex];
+            scale = 1;
+            initialScale = 1;
+            modalImage.style.transform = 'scale(1)';
+            modal.classList.replace('hidden', 'flex');
         };
         const closePhoto = () => {
-            document.getElementById('image-modal').classList.replace('flex', 'hidden');
-            document.getElementById('modal-image').src = '';
+            scale = 1;
+            initialScale = 1;
+            modalImage.style.transform = 'scale(1)';
+            modal.classList.replace('flex', 'hidden');
+            modalImage.src = '';
         };
         const nextPhoto = () => {
             currentPhotoIndex = (currentPhotoIndex + 1) % photoUrls.length;
-            document.getElementById('modal-image').src = photoUrls[currentPhotoIndex];
+            modalImage.src = photoUrls[currentPhotoIndex];
+            scale = 1;
+            initialScale = 1;
+            modalImage.style.transform = 'scale(1)';
         };
         const prevPhoto = () => {
             currentPhotoIndex = (currentPhotoIndex - 1 + photoUrls.length) % photoUrls.length;
-            document.getElementById('modal-image').src = photoUrls[currentPhotoIndex];
+            modalImage.src = photoUrls[currentPhotoIndex];
+            scale = 1;
+            initialScale = 1;
+            modalImage.style.transform = 'scale(1)';
         };
+        modal.addEventListener('touchstart', (e) => {
+            if (e.touches.length === 2) {
+                e.preventDefault();
+                initialDistance = getDistance(e.touches[0], e.touches[1]);
+                initialScale = scale;
+            }
+        });
+        modal.addEventListener('touchmove', (e) => {
+            if (e.touches.length === 2) {
+                e.preventDefault();
+                const newDistance = getDistance(e.touches[0], e.touches[1]);
+                const factor = newDistance / initialDistance;
+                scale = initialScale * factor;
+                modalImage.style.transform = `scale(${scale})`;
+            }
+        });
         document.getElementById('toggle-gallery-btn').onclick = () => {
             const wrapper = document.getElementById('gallery-wrapper');
             wrapper.classList.toggle('hidden');
@@ -661,7 +705,7 @@
         document.getElementById('close-modal').onclick = closePhoto;
         document.getElementById('prev-photo').onclick = e => { e.stopPropagation(); prevPhoto(); };
         document.getElementById('next-photo').onclick = e => { e.stopPropagation(); nextPhoto(); };
-        document.getElementById('image-modal').onclick = e => { if (e.target === e.currentTarget) closePhoto(); };
+        modal.onclick = e => { if (e.target === modal) closePhoto(); };
         document.addEventListener('keydown', e => {
             if (e.key === 'Escape') { closePhoto(); if (document.getElementById('video-modal').classList.contains('flex')) document.getElementById('close-video-modal').click(); }
             if (e.key === 'ArrowRight' && document.getElementById('image-modal').classList.contains('flex')) nextPhoto();
