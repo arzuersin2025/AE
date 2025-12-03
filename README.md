@@ -263,10 +263,10 @@
             transition: transform 0.1s ease-out;
         }
         #bg-music-control {
-            position: fixed;
+            position: absolute;
             top: 20px;
             right: 20px;
-            z-index: 9999;
+            z-index: 30;
             cursor: pointer;
             transition: transform 0.3s ease;
         }
@@ -291,15 +291,15 @@
         <i class="fas fa-heart heartbeat"></i>
         <span>Dokun</span>
     </div>
-    <div id="bg-music-control" title="Arka plan müziği">
-        <i class="fas fa-volume-up" id="bg-icon"></i>
-    </div>
     <audio id="bg-music" loop preload="auto">
         <source src="https://www.dropbox.com/s/zajxvxm7idg45n0/0003.%20Romantic%20Piano%20-%20AShamaluevMusic.mp3?dl=1" type="audio/mpeg">
         Tarayıcınız bu ses dosyasını desteklemiyor.
     </audio>
     <header class="py-16 text-center relative z-20 overflow-hidden">
         <div class="relative">
+            <div id="bg-music-control" title="Arka plan müziği">
+                <i class="fas fa-volume-up" id="bg-icon"></i>
+            </div>
             <div class="absolute inset-0 flex items-center justify-center z-0" aria-hidden="true">
                 <i class="fas fa-infinity text-[10rem] text-gray-200 opacity-70 blur-sm"></i>
             </div>
