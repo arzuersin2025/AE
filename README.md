@@ -1,4 +1,3 @@
-
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -64,7 +63,7 @@
         .timeline-item { padding: 10px 40px; position: relative; width: 50%; opacity: 0; transform: translateY(50px) scale(0.9); transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); z-index: 2; }
         .timeline-item.animate { opacity: 1; transform: translateY(0) scale(1); }
         .timeline-item.left { left: 0; } .timeline-item.right { left: 50%; }
-        .timeline-content { padding: 20px 30px; background: transparent; border-radius: 0; box-shadow: none; border: none; position: relative; overflow: hidden; transition: all 0.4s ease; }
+        .timeline-content { padding: 20px 30px; background: transparent; border-radius: 0; box-shadow: none; border: none; position: relative; overflow: hidden; transition, transition: all 0.4s ease; }
         .timeline-content h4 { margin-bottom: 8px; color: #dc2626; font-family: 'Dancing Script', cursive; font-size: 1.5rem; }
         .timeline-content p { color: #000000 !important; font-style: italic; line-height: 1.6; }
         @media (max-width: 768px) {
@@ -586,7 +585,6 @@
         'use strict';
         const bgIcon = document.getElementById('bg-icon');
         let isBgEnabled = true;
-
         document.getElementById('bg-music-control').addEventListener('click', () => {
             isBgEnabled = !isBgEnabled;
             if (isBgEnabled && bgPlayer) {
@@ -599,7 +597,6 @@
                 bgIcon.className = 'fas fa-volume-mute';
             }
         });
-
         document.getElementById('heart-rain-btn').addEventListener('click', function() {
             const count = 60;
             const hearts = ['❤️','🧡','💛','💚','💙','💜','💖','💝','💘','❣️','💕','🌹','💞','💓','💗','💝'];
@@ -615,7 +612,6 @@
                 setTimeout(() => h.remove(), 12000);
             }
         });
-
         const leafSVG = `<svg viewBox="0 0 100 140" class="w-full h-full" preserveAspectRatio="xMidYMid meet"><path class="leaf-outer" d="M50 10 C30 15, 20 35, 18 55 C16 75, 25 95, 35 115 C45 130, 48 135, 50 138 C52 135, 55 130, 65 115 C75 95, 84 75, 82 55 C80 35, 70 15, 50 10 Z" /><path class="leaf-inner" d="M50 15 C33 20, 25 38, 23 55 C21 72, 28 88, 36 108 C44 125, 48 132, 50 135 C52 132, 56 125, 64 108 C72 88, 79 72, 77 55 C75 38, 67 20, 50 15 Z" /><path d="M50 15 Q50 70 48 135" stroke="#fff" stroke-width="2.5" opacity="0.5" fill="none"/><path d="M50 15 Q35 40 28 48 M50 55 Q32 65 25 75 M50 80 Q30 90 23 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/><path d="M50 15 Q65 40 72 48 M50 55 Q68 65 75 75 M50 80 Q70 90 77 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/></svg>`;
         const leafColors = ['autumn-1','autumn-2','autumn-3','autumn-4','autumn-5','autumn-6','autumn-7','autumn-8','autumn-9','autumn-10'];
         const leafContainer = document.getElementById('falling-leaves-container');
@@ -632,7 +628,6 @@
             leaf.innerHTML = leafSVG;
             leafContainer.appendChild(leaf);
         }
-
         const lazyLoadObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting && entry.target.dataset.src) {
@@ -642,7 +637,6 @@
             });
         }, { rootMargin: '50px' });
         document.querySelectorAll('img[data-src]').forEach(img => lazyLoadObserver.observe(img));
-
         let photoUrls = [];
         let currentPhotoIndex = 0;
         let scale = 1;
@@ -801,16 +795,13 @@
             if (e.key === 'ArrowRight' && document.getElementById('image-modal').classList.contains('flex')) nextPhoto();
             if (e.key === 'ArrowLeft' && document.getElementById('image-modal').classList.contains('flex')) prevPhoto();
         });
-
         let player, bgPlayer, isPlaying = false;
         const playBtn = document.getElementById('play-song-btn');
         const playerElement = document.getElementById('youtube-player');
         const musicVisualizer = document.getElementById('music-visualizer');
-
         const tag = document.createElement('script');
         tag.src = 'https://www.youtube.com/iframe_api';
         document.getElementsByTagName('script')[0].parentNode.insertBefore(tag, document.getElementsByTagName('script')[0]);
-
         window.onYouTubeIframeAPIReady = function() {
             // ARKA PLAN MÜZİĞİ - SAYFA AÇILIR AÇILMAZ OTOMATİK ÇALIR (KESİNLİKLE!)
             bgPlayer = new YT.Player('bg-youtube-player', {
@@ -834,7 +825,6 @@
                         event.target.setVolume(35);
                         event.target.unMute();
                         event.target.playVideo();
-
                         const unlock = () => {
                             event.target.setVolume(70);
                             document.body.removeEventListener('click', unlock);
@@ -850,7 +840,6 @@
                     }
                 }
             });
-
             player = new YT.Player('youtube-player', {
                 events: {
                     'onStateChange': e => {
@@ -873,19 +862,15 @@
                 }
             });
         };
-
         playBtn.onclick = e => { e.stopPropagation(); player && (isPlaying ? player.pauseVideo() : player.playVideo()); };
-
         const invitationModal = document.getElementById('invitation-modal');
         document.getElementById('invitation-icon').onclick = () => invitationModal.classList.add('show');
         document.getElementById('close-invitation').onclick = () => invitationModal.classList.remove('show');
         invitationModal.onclick = e => { if (e.target === invitationModal) invitationModal.classList.remove('show'); };
-
         const timelineObserver = new IntersectionObserver((entries) => {
             entries.forEach((e,i) => { if (e.isIntersecting) setTimeout(() => e.target.classList.add('animate'), i * 300); });
         }, { threshold: 0.3 });
         document.querySelectorAll('.timeline-item').forEach(item => timelineObserver.observe(item));
-
         const fadeObserver = new IntersectionObserver(entries => {
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
         }, { threshold: 0.3 });
