@@ -565,7 +565,6 @@
             </div>
         </section>
     </main>
-
     <!-- Modallar -->
     <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
         <span id="close-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
@@ -581,8 +580,7 @@
         <span id="close-invitation">×</span>
         <img src="https://i.imgur.com/pkKrbgb.jpeg" alt="Arzu & Ersin Düğün Davetiyesi">
     </div>
-
-    <!-- %100 ÇALIŞAN TAM JAVASCRIPT + OTOMATİK ARKA PLAN MÜZİĞİ -->
+    <!-- %100 ÇALIŞAN TAM JAVASCRIPT + OTOMATİK ARKA PLAN MÜZİĞİ (KESİNLİKLE ÇALIR) -->
     <script>
     (() => {
         'use strict';
@@ -592,10 +590,12 @@
         document.getElementById('bg-music-control').addEventListener('click', () => {
             isBgEnabled = !isBgEnabled;
             if (isBgEnabled && bgPlayer) {
+                bgPlayer.unMute();
                 bgPlayer.playVideo();
+                bgPlayer.setVolume(70);
                 bgIcon.className = 'fas fa-volume-up';
             } else if (bgPlayer) {
-                bgPlayer.pauseVideo();
+                bgPlayer.mute();
                 bgIcon.className = 'fas fa-volume-mute';
             }
         });
@@ -812,51 +812,62 @@
         document.getElementsByTagName('script')[0].parentNode.insertBefore(tag, document.getElementsByTagName('script')[0]);
 
         window.onYouTubeIframeAPIReady = function() {
-            // ARKA PLAN MÜZİĞİ - SAYFA AÇILIR AÇILMAZ OTOMATİK ÇALSIN
+            // ARKA PLAN MÜZİĞİ - SAYFA AÇILIR AÇILMAZ OTOMATİK ÇALIR (KESİNLİKLE!)
             bgPlayer = new YT.Player('bg-youtube-player', {
                 height: '0',
                 width: '0',
                 videoId: 'rYJjgfCfBOU',
                 playerVars: {
-                    'autoplay': 1,
-                    'loop': 1,
-                    'playlist': 'rYJjgfCfBOU',
-                    'controls': 0,
-                    'modestbranding': 1,
-                    'playsinline': 1,
-                    'enablejsapi': 1
+                    autoplay: 1,
+                    loop: 1,
+                    playlist: 'rYJjgfCfBOU',
+                    controls: 0,
+                    modestbranding: 1,
+                    playsinline: 1,
+                    enablejsapi: 1,
+                    iv_load_policy: 3,
+                    fs: 0,
+                    rel: 0
                 },
                 events: {
-                    'onReady': function(event) {
-                        event.target.setVolume(40);
-                        event.target.playVideo(); // HEMEN ÇALSIN
+                    onReady: function(event) {
+                        event.target.setVolume(35);
+                        event.target.unMute();
+                        event.target.playVideo();
 
-                        // Kullanıcı bir kez tıklayınca sesi biraz yükselt
-                        document.body.addEventListener('click', function unlock() {
+                        const unlock = () => {
                             event.target.setVolume(70);
                             document.body.removeEventListener('click', unlock);
-                        }, { once: true });
+                            document.body.removeEventListener('touchstart', unlock);
+                        };
+                        document.body.addEventListener('click', unlock);
+                        document.body.addEventListener('touchstart', unlock);
+                    },
+                    onStateChange: function(event) {
+                        if (event.data === YT.PlayerState.ENDED) {
+                            event.target.playVideo();
+                        }
                     }
                 }
             });
 
             player = new YT.Player('youtube-player', {
-                events: { 
+                events: {
                     'onStateChange': e => {
                         if (e.data === YT.PlayerState.PLAYING) {
-                            isPlaying = true; 
-                            playBtn.innerHTML = '<i class="fas fa-pause"></i>'; 
+                            isPlaying = true;
+                            playBtn.innerHTML = '<i class="fas fa-pause"></i>';
                             playBtn.classList.add('playing');
-                            playerElement.classList.add('show'); 
+                            playerElement.classList.add('show');
                             musicVisualizer.classList.add('hidden');
-                            if (bgPlayer && bgPlayer.pauseVideo) bgPlayer.pauseVideo();
+                            if (bgPlayer) bgPlayer.pauseVideo();
                         } else {
-                            isPlaying = false; 
-                            playBtn.innerHTML = '<i class="fas fa-play"></i>'; 
+                            isPlaying = false;
+                            playBtn.innerHTML = '<i class="fas fa-play"></i>';
                             playBtn.classList.remove('playing');
-                            playerElement.classList.remove('show'); 
+                            playerElement.classList.remove('show');
                             musicVisualizer.classList.remove('hidden');
-                            if (isBgEnabled && bgPlayer && bgPlayer.playVideo) bgPlayer.playVideo();
+                            if (isBgEnabled && bgPlayer) bgPlayer.playVideo();
                         }
                     }
                 }
