@@ -1,3 +1,4 @@
+
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -418,7 +419,7 @@
                 <span class="text-red-600 text-xl md:text-2xl italic">Sevgilerimizle...</span>
             </p>
         </section>
-        <!-- DAVETİYEMİZ (tek değişiklik burada) -->
+        <!-- DAVETİYEMİZ -->
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Davetiyemiz</h3>
             <div class="flex flex-col items-center">
@@ -471,7 +472,7 @@
                 </div>
             </div>
         </section>
-        <!-- FOTOĞRAF GALERİSİ (tam hali) -->
+        <!-- FOTOĞRAF GALERİSİ -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Fotoğraf Galerimiz</h3>
             <p class="text-center text-black font-semibold italic">İşte yolculuğumuzda biriktirdiğimiz Anılar..</p>
@@ -505,7 +506,7 @@
                 </div>
             </div>
         </section>
-        <!-- VİDEO GALERİSİ (tam hali) -->
+        <!-- VİDEO GALERİSİ -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Video Galerimiz</h3>
             <p class="text-center text-black font-semibold">Bazı duyguları kelimelerle anlatmak yetmez...</p>
@@ -564,6 +565,7 @@
             </div>
         </section>
     </main>
+
     <!-- Modallar -->
     <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
         <span id="close-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
@@ -579,22 +581,25 @@
         <span id="close-invitation">×</span>
         <img src="https://i.imgur.com/pkKrbgb.jpeg" alt="Arzu & Ersin Düğün Davetiyesi">
     </div>
-    <!-- %100 ÇALIŞAN TAM JAVASCRIPT -->
+
+    <!-- %100 ÇALIŞAN TAM JAVASCRIPT + OTOMATİK ARKA PLAN MÜZİĞİ -->
     <script>
     (() => {
         'use strict';
         const bgIcon = document.getElementById('bg-icon');
         let isBgEnabled = true;
+
         document.getElementById('bg-music-control').addEventListener('click', () => {
             isBgEnabled = !isBgEnabled;
-            if (isBgEnabled) {
-                if (bgPlayer && bgPlayer.playVideo) bgPlayer.playVideo();
+            if (isBgEnabled && bgPlayer) {
+                bgPlayer.playVideo();
                 bgIcon.className = 'fas fa-volume-up';
-            } else {
-                if (bgPlayer && bgPlayer.pauseVideo) bgPlayer.pauseVideo();
+            } else if (bgPlayer) {
+                bgPlayer.pauseVideo();
                 bgIcon.className = 'fas fa-volume-mute';
             }
         });
+
         document.getElementById('heart-rain-btn').addEventListener('click', function() {
             const count = 60;
             const hearts = ['❤️','🧡','💛','💚','💙','💜','🤍','💖','💝','💘','❣️','💕','🌹','💞','💓','💗','💝'];
@@ -610,6 +615,7 @@
                 setTimeout(() => h.remove(), 12000);
             }
         });
+
         const leafSVG = `<svg viewBox="0 0 100 140" class="w-full h-full" preserveAspectRatio="xMidYMid meet"><path class="leaf-outer" d="M50 10 C30 15, 20 35, 18 55 C16 75, 25 95, 35 115 C45 130, 48 135, 50 138 C52 135, 55 130, 65 115 C75 95, 84 75, 82 55 C80 35, 70 15, 50 10 Z" /><path class="leaf-inner" d="M50 15 C33 20, 25 38, 23 55 C21 72, 28 88, 36 108 C44 125, 48 132, 50 135 C52 132, 56 125, 64 108 C72 88, 79 72, 77 55 C75 38, 67 20, 50 15 Z" /><path d="M50 15 Q50 70 48 135" stroke="#fff" stroke-width="2.5" opacity="0.5" fill="none"/><path d="M50 15 Q35 40 28 48 M50 55 Q32 65 25 75 M50 80 Q30 90 23 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/><path d="M50 15 Q65 40 72 48 M50 55 Q68 65 75 75 M50 80 Q70 90 77 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/></svg>`;
         const leafColors = ['autumn-1','autumn-2','autumn-3','autumn-4','autumn-5','autumn-6','autumn-7','autumn-8','autumn-9','autumn-10'];
         const leafContainer = document.getElementById('falling-leaves-container');
@@ -626,6 +632,7 @@
             leaf.innerHTML = leafSVG;
             leafContainer.appendChild(leaf);
         }
+
         const lazyLoadObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting && entry.target.dataset.src) {
@@ -635,6 +642,7 @@
             });
         }, { rootMargin: '50px' });
         document.querySelectorAll('img[data-src]').forEach(img => lazyLoadObserver.observe(img));
+
         let photoUrls = [];
         let currentPhotoIndex = 0;
         let scale = 1;
@@ -647,7 +655,7 @@
         let startTranslateX = 0;
         let startTranslateY = 0;
         let isPanning = false;
-        const sensitivity = 0.5; // Hareket hassasiyeti için çarpan (daha düşük = daha yavaş ve hassas)
+        const sensitivity = 0.5;
         const modal = document.getElementById('image-modal');
         const modalImage = document.getElementById('modal-image');
         const updateTransform = () => {
@@ -722,7 +730,7 @@
                 e.preventDefault();
                 const newDistance = getDistance(e.touches[0], e.touches[1]);
                 const factor = newDistance / initialDistance;
-                scale = Math.max(0.1, initialScale * factor); // Sınırsız büyütme/küçültme, min 0.1
+                scale = Math.max(0.1, initialScale * factor);
                 updateTransform();
                 isPanning = false;
             } else if (e.touches.length === 1 && isPanning) {
@@ -736,7 +744,6 @@
         });
         modal.addEventListener('touchend', (e) => {
             isPanning = false;
-            // Optional: Reset pan if scale is low
             if (scale <= 1.1) {
                 translateX = 0;
                 translateY = 0;
@@ -794,15 +801,18 @@
             if (e.key === 'ArrowRight' && document.getElementById('image-modal').classList.contains('flex')) nextPhoto();
             if (e.key === 'ArrowLeft' && document.getElementById('image-modal').classList.contains('flex')) prevPhoto();
         });
+
         let player, bgPlayer, isPlaying = false;
         const playBtn = document.getElementById('play-song-btn');
         const playerElement = document.getElementById('youtube-player');
         const musicVisualizer = document.getElementById('music-visualizer');
+
         const tag = document.createElement('script');
         tag.src = 'https://www.youtube.com/iframe_api';
         document.getElementsByTagName('script')[0].parentNode.insertBefore(tag, document.getElementsByTagName('script')[0]);
+
         window.onYouTubeIframeAPIReady = function() {
-            // Background player for Ey Aşk
+            // ARKA PLAN MÜZİĞİ - SAYFA AÇILIR AÇILMAZ OTOMATİK ÇALSIN
             bgPlayer = new YT.Player('bg-youtube-player', {
                 height: '0',
                 width: '0',
@@ -818,38 +828,53 @@
                 },
                 events: {
                     'onReady': function(event) {
-                        if (isBgEnabled) {
-                            event.target.playVideo();
+                        event.target.setVolume(40);
+                        event.target.playVideo(); // HEMEN ÇALSIN
+
+                        // Kullanıcı bir kez tıklayınca sesi biraz yükselt
+                        document.body.addEventListener('click', function unlock() {
+                            event.target.setVolume(70);
+                            document.body.removeEventListener('click', unlock);
+                        }, { once: true });
+                    }
+                }
+            });
+
+            player = new YT.Player('youtube-player', {
+                events: { 
+                    'onStateChange': e => {
+                        if (e.data === YT.PlayerState.PLAYING) {
+                            isPlaying = true; 
+                            playBtn.innerHTML = '<i class="fas fa-pause"></i>'; 
+                            playBtn.classList.add('playing');
+                            playerElement.classList.add('show'); 
+                            musicVisualizer.classList.add('hidden');
+                            if (bgPlayer && bgPlayer.pauseVideo) bgPlayer.pauseVideo();
+                        } else {
+                            isPlaying = false; 
+                            playBtn.innerHTML = '<i class="fas fa-play"></i>'; 
+                            playBtn.classList.remove('playing');
+                            playerElement.classList.remove('show'); 
+                            musicVisualizer.classList.remove('hidden');
+                            if (isBgEnabled && bgPlayer && bgPlayer.playVideo) bgPlayer.playVideo();
                         }
                     }
                 }
             });
-            // Song player
-            player = new YT.Player('youtube-player', {
-                events: { 'onStateChange': e => {
-                    if (e.data === YT.PlayerState.PLAYING) {
-                        isPlaying = true; playBtn.innerHTML = '<i class="fas fa-pause"></i>'; playBtn.classList.add('playing');
-                        playerElement.classList.add('show'); musicVisualizer.classList.add('hidden');
-                        // Pause background music
-                        if (bgPlayer && bgPlayer.pauseVideo) bgPlayer.pauseVideo();
-                    } else {
-                        isPlaying = false; playBtn.innerHTML = '<i class="fas fa-play"></i>'; playBtn.classList.remove('playing');
-                        playerElement.classList.remove('show'); musicVisualizer.classList.remove('hidden');
-                        // Resume background music if enabled
-                        if (isBgEnabled && bgPlayer && bgPlayer.playVideo) bgPlayer.playVideo();
-                    }
-                }}
-            });
         };
+
         playBtn.onclick = e => { e.stopPropagation(); player && (isPlaying ? player.pauseVideo() : player.playVideo()); };
+
         const invitationModal = document.getElementById('invitation-modal');
         document.getElementById('invitation-icon').onclick = () => invitationModal.classList.add('show');
         document.getElementById('close-invitation').onclick = () => invitationModal.classList.remove('show');
         invitationModal.onclick = e => { if (e.target === invitationModal) invitationModal.classList.remove('show'); };
+
         const timelineObserver = new IntersectionObserver((entries) => {
             entries.forEach((e,i) => { if (e.isIntersecting) setTimeout(() => e.target.classList.add('animate'), i * 300); });
         }, { threshold: 0.3 });
         document.querySelectorAll('.timeline-item').forEach(item => timelineObserver.observe(item));
+
         const fadeObserver = new IntersectionObserver(entries => {
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
         }, { threshold: 0.3 });
