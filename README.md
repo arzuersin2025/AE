@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -63,7 +64,7 @@
         .timeline-item { padding: 10px 40px; position: relative; width: 50%; opacity: 0; transform: translateY(50px) scale(0.9); transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); z-index: 2; }
         .timeline-item.animate { opacity: 1; transform: translateY(0) scale(1); }
         .timeline-item.left { left: 0; } .timeline-item.right { left: 50%; }
-        .timeline-content { padding: 20px 30px; background: transparent; border-radius: 0; box-shadow: none; border: none; position: relative; overflow: hidden; transition, transition: all 0.4s ease; }
+        .timeline-content { padding: 20px 30px; background: transparent; border-radius: 0; box-shadow: none; border: none; position: relative; overflow: hidden; transition: all 0.4s ease; }
         .timeline-content h4 { margin-bottom: 8px; color: #dc2626; font-family: 'Dancing Script', cursive; font-size: 1.5rem; }
         .timeline-content p { color: #000000 !important; font-style: italic; line-height: 1.6; }
         @media (max-width: 768px) {
@@ -518,7 +519,7 @@
             <div id="video-gallery-wrapper" class="hidden mt-8">
                 <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-1" id="video-grid">
                     <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="wcZOC94zAYw"><img data-src="https://img.youtube.com/vi/wcZOC94zAYw/maxresdefault.jpg" alt="Güldür Güldür" class="w-full h-full object-cover gallery-thumbnail" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">6</span><div class="photo-note">Güldür Güldür</div></div>
-                    <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="ChFa2GJ4e4U"><img data-src="https://img.youtube.com/vi/ChFa2GJ4e4U/maxresdefault.jpg" alt="Video 1" class="w-full h-full object-cover gallery-thumbnail" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">5</span><div class="photo-note">Beşiktaş</div></div>
+                    <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="ChFa2GJ4e4U"><img data-src="https://img.youtube.com/vi/ChFa2GJ4e4U/maxresdefault.jpg" alt="Video 1" class="gallery-thumbnail w-full h-full object-cover" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">5</span><div class="photo-note">Beşiktaş</div></div>
                     <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="aim5II5vYpU"><img data-src="https://img.youtube.com/vi/aim5II5vYpU/maxresdefault.jpg" alt="Video 2" class="gallery-thumbnail w-full h-full object-cover" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">4</span><div class="photo-note">Üsküdar</div></div>
                     <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="uY6ZrwkbLjc"><img data-src="https://img.youtube.com/vi/uY6ZrwkbLjc/maxresdefault.jpg" alt="Video 3" class="gallery-thumbnail w-full h-full object-cover" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">3</span><div class="photo-note">Lunapark</div></div>
                     <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="19aKq8FtYP8"><img data-src="https://img.youtube.com/vi/19aKq8FtYP8/maxresdefault.jpg" alt="Video 4" class="gallery-thumbnail w-full h-full object-cover" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">2</span><div class="photo-note">Beşiktaş</div></div>
@@ -567,7 +568,7 @@
     <!-- Modallar -->
     <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
         <span id="close-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
-        <img id="modal-image" src="" alt="Büyütülmüş Fotoğraf" class="max-w-[90vw] max-h-[90vh] rounded-lg shadow-lg">
+        <img id="modal-image" src="" alt="Büyütülmüş Fotoğraf" class="max-w-[90vw] max-h-[90vh] rounded-lg shadow-lg object-contain">
         <span id="prev-photo" class="absolute top-1/2 left-4 -translate-y-1/2 text-white text-6xl font-bold cursor-pointer hover:text-gray-300 transition-colors select-none">&lt;</span>
         <span id="next-photo" class="absolute top-1/2 right-4 -translate-y-1/2 text-white text-6xl font-bold cursor-pointer hover:text-gray-300 transition-colors select-none">&gt;</span>
     </div>
@@ -579,239 +580,44 @@
         <span id="close-invitation">×</span>
         <img src="https://i.imgur.com/pkKrbgb.jpeg" alt="Arzu & Ersin Düğün Davetiyesi">
     </div>
-    <!-- %100 ÇALIŞAN TAM JAVASCRIPT + OTOMATİK ARKA PLAN MÜZİĞİ (KESİNLİKLE ÇALIR) -->
+    <!-- YENİ JAVASCRIPT – 5 ŞARKI SIRALI OLARAK ÇALACAK -->
     <script>
     (() => {
         'use strict';
-        const bgIcon = document.getElementById('bg-icon');
+        // ARKA PLAN MÜZİK LİSTESİ – VERDİĞİN SIRAYA GÖRE (1 → 2 → 3 → 4 → 5 → tekrar 1)
+        const bgPlaylist = [
+            'rYJjgfCfBOU', // 1 - Sezen Aksu
+            'NudUovOABjQ', // 2 - Mustafa Ceceli
+            'Rcq0LqEx3-E', // 3 - Ferhat Göçer
+            'mTZRQltuHRc', // 4 - İrem Derici
+            'aYDgvuuVNQQ' // 5 - Koray Avcı
+        ];
+        let currentBgIndex = 0;
+        let bgPlayer;
         let isBgEnabled = true;
+        const bgIcon = document.getElementById('bg-icon');
         document.getElementById('bg-music-control').addEventListener('click', () => {
             isBgEnabled = !isBgEnabled;
             if (isBgEnabled && bgPlayer) {
                 bgPlayer.unMute();
                 bgPlayer.playVideo();
-                bgPlayer.setVolume(70);
                 bgIcon.className = 'fas fa-volume-up';
             } else if (bgPlayer) {
                 bgPlayer.mute();
                 bgIcon.className = 'fas fa-volume-mute';
             }
         });
-        document.getElementById('heart-rain-btn').addEventListener('click', function() {
-            const count = 60;
-            const hearts = ['❤️','🧡','💛','💚','💙','💜','💖','💝','💘','❣️','💕','🌹','💞','💓','💗','💝'];
-            for (let i = 0; i < count; i++) {
-                const h = document.createElement('div');
-                h.className = 'heart-rain';
-                h.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
-                h.style.left = Math.random() * 100 + 'vw';
-                h.style.animationDuration = (Math.random() * 4 + 4) + 's';
-                h.style.animationDelay = Math.random() * 1.5 + 's';
-                h.style.fontSize = (Math.random() * 30 + 20) + 'px';
-                document.body.appendChild(h);
-                setTimeout(() => h.remove(), 12000);
-            }
-        });
-        const leafSVG = `<svg viewBox="0 0 100 140" class="w-full h-full" preserveAspectRatio="xMidYMid meet"><path class="leaf-outer" d="M50 10 C30 15, 20 35, 18 55 C16 75, 25 95, 35 115 C45 130, 48 135, 50 138 C52 135, 55 130, 65 115 C75 95, 84 75, 82 55 C80 35, 70 15, 50 10 Z" /><path class="leaf-inner" d="M50 15 C33 20, 25 38, 23 55 C21 72, 28 88, 36 108 C44 125, 48 132, 50 135 C52 132, 56 125, 64 108 C72 88, 79 72, 77 55 C75 38, 67 20, 50 15 Z" /><path d="M50 15 Q50 70 48 135" stroke="#fff" stroke-width="2.5" opacity="0.5" fill="none"/><path d="M50 15 Q35 40 28 48 M50 55 Q32 65 25 75 M50 80 Q30 90 23 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/><path d="M50 15 Q65 40 72 48 M50 55 Q68 65 75 75 M50 80 Q70 90 77 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/></svg>`;
-        const leafColors = ['autumn-1','autumn-2','autumn-3','autumn-4','autumn-5','autumn-6','autumn-7','autumn-8','autumn-9','autumn-10'];
-        const leafContainer = document.getElementById('falling-leaves-container');
-        for (let i = 0; i < 7; i++) {
-            const leaf = document.createElement('div');
-            const colorClass = leafColors[Math.floor(Math.random() * leafColors.length)];
-            leaf.className = `leaf-svg ${colorClass}`;
-            leaf.style.left = Math.random() * 100 + 'vw';
-            const scale = 0.5 + 0.9 * Math.random();
-            leaf.style.transform = `scale(${scale}) rotate(${Math.random() * 360}deg)`;
-            const duration = 18 + Math.random() * 12;
-            leaf.style.animationDuration = duration + 's';
-            leaf.style.animationDelay = Math.random() * 10 + 's';
-            leaf.innerHTML = leafSVG;
-            leafContainer.appendChild(leaf);
-        }
-        const lazyLoadObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && entry.target.dataset.src) {
-                    entry.target.src = entry.target.dataset.src;
-                    lazyLoadObserver.unobserve(entry.target);
-                }
-            });
-        }, { rootMargin: '50px' });
-        document.querySelectorAll('img[data-src]').forEach(img => lazyLoadObserver.observe(img));
-        let photoUrls = [];
-        let currentPhotoIndex = 0;
-        let scale = 1;
-        let translateX = 0;
-        let translateY = 0;
-        let initialDistance = 0;
-        let initialScale = 1;
-        let startClientX = 0;
-        let startClientY = 0;
-        let startTranslateX = 0;
-        let startTranslateY = 0;
-        let isPanning = false;
-        const sensitivity = 0.5;
-        const modal = document.getElementById('image-modal');
-        const modalImage = document.getElementById('modal-image');
-        const updateTransform = () => {
-            modalImage.style.transform = `scale(${scale}) translate(${translateX}px, ${translateY}px)`;
-        };
-        const buildPhotoArray = () => {
-            photoUrls = Array.from(document.querySelectorAll('#gallery-grid img[data-src]')).map(img => img.dataset.src);
-        };
-        const getDistance = (touch1, touch2) => {
-            const dx = touch1.clientX - touch2.clientX;
-            const dy = touch1.clientY - touch2.clientY;
-            return Math.sqrt(dx * dx + dy * dy);
-        };
-        const openPhoto = (index) => {
-            buildPhotoArray();
-            currentPhotoIndex = index;
-            modalImage.src = photoUrls[currentPhotoIndex];
-            scale = 1;
-            translateX = 0;
-            translateY = 0;
-            initialScale = 1;
-            isPanning = false;
-            updateTransform();
-            modal.classList.replace('hidden', 'flex');
-        };
-        const closePhoto = () => {
-            scale = 1;
-            translateX = 0;
-            translateY = 0;
-            initialScale = 1;
-            isPanning = false;
-            updateTransform();
-            modal.classList.replace('flex', 'hidden');
-            modalImage.src = '';
-        };
-        const nextPhoto = () => {
-            currentPhotoIndex = (currentPhotoIndex + 1) % photoUrls.length;
-            modalImage.src = photoUrls[currentPhotoIndex];
-            scale = 1;
-            translateX = 0;
-            translateY = 0;
-            initialScale = 1;
-            isPanning = false;
-            updateTransform();
-        };
-        const prevPhoto = () => {
-            currentPhotoIndex = (currentPhotoIndex - 1 + photoUrls.length) % photoUrls.length;
-            modalImage.src = photoUrls[currentPhotoIndex];
-            scale = 1;
-            translateX = 0;
-            translateY = 0;
-            initialScale = 1;
-            isPanning = false;
-            updateTransform();
-        };
-        modal.addEventListener('touchstart', (e) => {
-            if (e.touches.length === 2) {
-                e.preventDefault();
-                initialDistance = getDistance(e.touches[0], e.touches[1]);
-                initialScale = scale;
-                isPanning = false;
-            } else if (e.touches.length === 1 && scale > 1) {
-                startClientX = e.touches[0].clientX;
-                startClientY = e.touches[0].clientY;
-                startTranslateX = translateX;
-                startTranslateY = translateY;
-                isPanning = true;
-            }
-        });
-        modal.addEventListener('touchmove', (e) => {
-            if (e.touches.length === 2) {
-                e.preventDefault();
-                const newDistance = getDistance(e.touches[0], e.touches[1]);
-                const factor = newDistance / initialDistance;
-                scale = Math.max(0.1, initialScale * factor);
-                updateTransform();
-                isPanning = false;
-            } else if (e.touches.length === 1 && isPanning) {
-                e.preventDefault();
-                const deltaX = (e.touches[0].clientX - startClientX) * sensitivity;
-                const deltaY = (e.touches[0].clientY - startClientY) * sensitivity;
-                translateX = startTranslateX + deltaX;
-                translateY = startTranslateY + deltaY;
-                updateTransform();
-            }
-        });
-        modal.addEventListener('touchend', (e) => {
-            isPanning = false;
-            if (scale <= 1.1) {
-                translateX = 0;
-                translateY = 0;
-                updateTransform();
-            }
-        });
-        document.getElementById('toggle-gallery-btn').onclick = () => {
-            const wrapper = document.getElementById('gallery-wrapper');
-            wrapper.classList.toggle('hidden');
-            document.getElementById('gallery-toggle-icon').classList.toggle('rotate-180', !wrapper.classList.contains('hidden'));
-            document.getElementById('gallery-toggle-text').textContent = wrapper.classList.contains('hidden') ? 'Fotoğraf Galerisini Gör' : 'Galeriyi Gizle';
-            if (!wrapper.classList.contains('hidden')) {
-                setTimeout(() => {
-                    document.querySelectorAll('#gallery-grid .photo-container').forEach((el, i) => {
-                        el.onclick = () => openPhoto(i);
-                    });
-                }, 100);
-            }
-        };
-        document.getElementById('toggle-travel-btn').onclick = () => {
-            const wrapper = document.getElementById('travel-wrapper');
-            wrapper.classList.toggle('hidden');
-            document.getElementById('travel-toggle-icon').classList.toggle('rotate-180', !wrapper.classList.contains('hidden'));
-            document.getElementById('travel-toggle-text').textContent = wrapper.classList.contains('hidden') ? 'Seyahatlerimizi Gör' : 'Seyahatleri Gizle';
-        };
-        document.getElementById('toggle-video-gallery-btn').onclick = () => {
-            const wrapper = document.getElementById('video-gallery-wrapper');
-            wrapper.classList.toggle('hidden');
-            document.getElementById('video-gallery-toggle-icon').classList.toggle('rotate-180', !wrapper.classList.contains('hidden'));
-            document.getElementById('video-gallery-toggle-text').textContent = wrapper.classList.contains('hidden') ? 'Video Galerisini Gör' : 'Video Galerisini Gizle';
-            if (!wrapper.classList.contains('hidden')) {
-                setTimeout(() => {
-                    document.querySelectorAll('#video-grid .photo-container').forEach(el => {
-                        el.onclick = () => {
-                            document.getElementById('modal-video-iframe').src = `https://www.youtube.com/embed/${el.dataset.youtubeId}?autoplay=1`;
-                            document.getElementById('video-modal').classList.replace('hidden', 'flex');
-                        };
-                    });
-                }, 100);
-            }
-        };
-        document.getElementById('close-video-modal').onclick = () => {
-            document.getElementById('video-modal').classList.replace('flex', 'hidden');
-            document.getElementById('modal-video-iframe').src = '';
-        };
-        document.getElementById('video-modal').onclick = e => {
-            if (e.target === e.currentTarget) document.getElementById('close-video-modal').click();
-        };
-        document.getElementById('close-modal').onclick = closePhoto;
-        document.getElementById('prev-photo').onclick = e => { e.stopPropagation(); prevPhoto(); };
-        document.getElementById('next-photo').onclick = e => { e.stopPropagation(); nextPhoto(); };
-        modal.onclick = e => { if (e.target === modal) closePhoto(); };
-        document.addEventListener('keydown', e => {
-            if (e.key === 'Escape') { closePhoto(); if (document.getElementById('video-modal').classList.contains('flex')) document.getElementById('close-video-modal').click(); }
-            if (e.key === 'ArrowRight' && document.getElementById('image-modal').classList.contains('flex')) nextPhoto();
-            if (e.key === 'ArrowLeft' && document.getElementById('image-modal').classList.contains('flex')) prevPhoto();
-        });
-        let player, bgPlayer, isPlaying = false;
-        const playBtn = document.getElementById('play-song-btn');
-        const playerElement = document.getElementById('youtube-player');
-        const musicVisualizer = document.getElementById('music-visualizer');
         const tag = document.createElement('script');
         tag.src = 'https://www.youtube.com/iframe_api';
         document.getElementsByTagName('script')[0].parentNode.insertBefore(tag, document.getElementsByTagName('script')[0]);
         window.onYouTubeIframeAPIReady = function() {
-            // ARKA PLAN MÜZİĞİ - SAYFA AÇILIR AÇILMAZ OTOMATİK ÇALIR (KESİNLİKLE!)
             bgPlayer = new YT.Player('bg-youtube-player', {
                 height: '0',
                 width: '0',
-                videoId: 'rYJjgfCfBOU',
+                videoId: bgPlaylist[currentBgIndex],
                 playerVars: {
                     autoplay: 1,
-                    loop: 1,
-                    playlist: 'rYJjgfCfBOU',
+                    loop: 0,
                     controls: 0,
                     modestbranding: 1,
                     playsinline: 1,
@@ -831,18 +637,128 @@
                             document.body.removeEventListener('touchstart', unlock);
                         };
                         document.body.addEventListener('click', unlock);
-                        document.body.addEventListener('touchstart', unlock);
+                        document.body.removeEventListener('touchstart', unlock);
                     },
                     onStateChange: function(event) {
                         if (event.data === YT.PlayerState.ENDED) {
-                            event.target.playVideo();
+                            currentBgIndex = (currentBgIndex + 1) % bgPlaylist.length;
+                            bgPlayer.loadVideoById(bgPlaylist[currentBgIndex]);
+                            if (isBgEnabled) bgPlayer.playVideo();
                         }
                     }
                 }
             });
+        };
+        // KALP YAĞMURU
+        document.getElementById('heart-rain-btn').addEventListener('click', function() {
+            const count = 60;
+            const hearts = ['❤️','🧡','💛','💚','💙','💜','💖','💝','💘','❣️','💕','🌹','💞','💓','💗','💝'];
+            for (let i = 0; i < count; i++) {
+                const h = document.createElement('div');
+                h.className = 'heart-rain';
+                h.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+                h.style.left = Math.random() * 100 + 'vw';
+                h.style.animationDuration = (Math.random() * 4 + 4) + 's';
+                h.style.animationDelay = Math.random() * 1.5 + 's';
+                h.style.fontSize = (Math.random() * 30 + 20) + 'px';
+                document.body.appendChild(h);
+                setTimeout(() => h.remove(), 12000);
+            }
+        });
+        // DÜŞEN YAPRAKLAR
+        const leafSVG = `<svg viewBox="0 0 100 140" class="w-full h-full" preserveAspectRatio="xMidYMid meet"><path class="leaf-outer" d="M50 10 C30 15, 20 35, 18 55 C16 75, 25 95, 35 115 C45 130, 48 135, 50 138 C52 135, 55 130, 65 115 C75 95, 84 75, 82 55 C80 35, 70 15, 50 10 Z" /><path class="leaf-inner" d="M50 15 C33 20, 25 38, 23 55 C21 72, 28 88, 36 108 C44 125, 48 132, 50 135 C52 132, 56 125, 64 108 C72 88, 79 72, 77 55 C75 38, 67 20, 50 15 Z" /><path d="M50 15 Q50 70 48 135" stroke="#fff" stroke-width="2.5" opacity="0.5" fill="none"/><path d="M50 15 Q35 40 28 48 M50 55 Q32 65 25 75 M50 80 Q30 90 23 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/><path d="M50 15 Q65 40 72 48 M50 55 Q68 65 75 75 M50 80 Q70 90 77 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/></svg>`;
+        const leafColors = ['autumn-1','autumn-2','autumn-3','autumn-4','autumn-5','autumn-6','autumn-7','autumn-8','autumn-9','autumn-10'];
+        const leafContainer = document.getElementById('falling-leaves-container');
+        for (let i = 0; i < 7; i++) {
+            const leaf = document.createElement('div');
+            const colorClass = leafColors[Math.floor(Math.random() * leafColors.length)];
+            leaf.className = `leaf-svg ${colorClass}`;
+            leaf.style.left = Math.random() * 100 + 'vw';
+            const scale = 0.5 + 0.9 * Math.random();
+            leaf.style.transform = `scale(${scale}) rotate(${Math.random() * 360}deg)`;
+            const duration = 18 + Math.random() * 12;
+            leaf.style.animationDuration = duration + 's';
+            leaf.style.animationDelay = Math.random() * 10 + 's';
+            leaf.innerHTML = leafSVG;
+            leafContainer.appendChild(leaf);
+        }
+        // LAZY LOAD
+        const lazyLoadObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && entry.target.dataset.src) {
+                    entry.target.src = entry.target.dataset.src;
+                    lazyLoadObserver.unobserve(entry.target);
+                }
+            });
+        }, { rootMargin: '50px' });
+        document.querySelectorAll('img[data-src]').forEach(img => lazyLoadObserver.observe(img));
+        // FOTOĞRAF MODAL - TAMAMEN ÇALIŞIR HALE GETİRİLDİ
+        let photoUrls = [];
+        let currentPhotoIndex = 0;
+        const modal = document.getElementById('image-modal');
+        const modalImage = document.getElementById('modal-image');
+        const buildPhotoArray = () => {
+            photoUrls = Array.from(document.querySelectorAll('#gallery-grid img[data-src]')).map(img => img.dataset.src);
+        };
+        const openPhoto = (index) => {
+            buildPhotoArray();
+            currentPhotoIndex = index;
+            modalImage.src = photoUrls[index];
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        };
+        const closePhoto = () => {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            modalImage.src = '';
+            document.body.style.overflow = '';
+        };
+        const nextPhoto = () => {
+            currentPhotoIndex = (currentPhotoIndex + 1) % photoUrls.length;
+            modalImage.src = photoUrls[currentPhotoIndex];
+        };
+        const prevPhoto = () => {
+            currentPhotoIndex = (currentPhotoIndex - 1 + photoUrls.length) % photoUrls.length;
+            modalImage.src = photoUrls[currentPhotoIndex];
+        };
+        document.getElementById('toggle-gallery-btn').onclick = () => {
+            const wrapper = document.getElementById('gallery-wrapper');
+            wrapper.classList.toggle('hidden');
+            document.getElementById('gallery-toggle-icon').classList.toggle('rotate-180', !wrapper.classList.contains('hidden'));
+            document.getElementById('gallery-toggle-text').textContent = wrapper.classList.contains('hidden') ? 'Fotoğraf Galerisini Gör' : 'Galeriyi Gizle';
+            if (!wrapper.classList.contains('hidden')) {
+                setTimeout(() => {
+                    document.querySelectorAll('#gallery-grid .photo-container').forEach((el, i) => {
+                        el.onclick = () => openPhoto(i);
+                    });
+                }, 100);
+            }
+        };
+        document.getElementById('close-modal').onclick = closePhoto;
+        document.getElementById('prev-photo').onclick = e => { e.stopPropagation(); prevPhoto(); };
+        document.getElementById('next-photo').onclick = e => { e.stopPropagation(); nextPhoto(); };
+        modal.onclick = e => { if (e.target === modal) closePhoto(); };
+        document.addEventListener('keydown', e => {
+            if (modal.classList.contains('flex')) {
+                if (e.key === 'Escape') closePhoto();
+                if (e.key === 'ArrowRight') nextPhoto();
+                if (e.key === 'ArrowLeft') prevPhoto();
+            }
+        });
+        // BİZİM ŞARKIMIZ PLAYER
+        let player, isPlaying = false;
+        const playBtn = document.getElementById('play-song-btn');
+        const playerElement = document.getElementById('youtube-player');
+        const musicVisualizer = document.getElementById('music-visualizer');
+        window.onYouTubeIframeAPIReady = window.onYouTubeIframeAPIReady || function() {}; // çakışmayı önle
+        const playerTag = document.createElement('script');
+        playerTag.src = 'https://www.youtube.com/iframe_api';
+        document.body.appendChild(playerTag);
+        window.onYouTubeIframeAPIReady = function() {
             player = new YT.Player('youtube-player', {
                 events: {
-                    'onStateChange': e => {
+                    onStateChange: e => {
                         if (e.data === YT.PlayerState.PLAYING) {
                             isPlaying = true;
                             playBtn.innerHTML = '<i class="fas fa-pause"></i>';
@@ -863,18 +779,48 @@
             });
         };
         playBtn.onclick = e => { e.stopPropagation(); player && (isPlaying ? player.pauseVideo() : player.playVideo()); };
+        // DAVETİYE MODAL
         const invitationModal = document.getElementById('invitation-modal');
         document.getElementById('invitation-icon').onclick = () => invitationModal.classList.add('show');
         document.getElementById('close-invitation').onclick = () => invitationModal.classList.remove('show');
-        invitationModal.onclick = e => { if (e.target === invitationModal) invitationModal.classList.remove('show'); };
+        invitationModal.onclick = e => e.target === invitationModal && invitationModal.classList.remove('show');
+        // ANİMASYONLAR
         const timelineObserver = new IntersectionObserver((entries) => {
-            entries.forEach((e,i) => { if (e.isIntersecting) setTimeout(() => e.target.classList.add('animate'), i * 300); });
+            entries.forEach((e,i) => e.isIntersecting && setTimeout(() => e.target.classList.add('animate'), i * 300));
         }, { threshold: 0.3 });
         document.querySelectorAll('.timeline-item').forEach(item => timelineObserver.observe(item));
         const fadeObserver = new IntersectionObserver(entries => {
-            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+            entries.forEach(entry => entry.isIntersecting && entry.target.classList.add('visible'));
         }, { threshold: 0.3 });
         document.querySelectorAll('.fade-in-on-scroll, .travel-folder').forEach(el => fadeObserver.observe(el));
+        // SEYAHAT ve VİDEO GALERİ TOGGLE
+        document.getElementById('toggle-travel-btn').onclick = () => {
+            const w = document.getElementById('travel-wrapper');
+            w.classList.toggle('hidden');
+            document.getElementById('travel-toggle-icon').classList.toggle('rotate-180', !w.classList.contains('hidden'));
+            document.getElementById('travel-toggle-text').textContent = w.classList.contains('hidden') ? 'Seyahatlerimizi Gör' : 'Seyahatleri Gizle';
+        };
+        document.getElementById('toggle-video-gallery-btn').onclick = () => {
+            const w = document.getElementById('video-gallery-wrapper');
+            w.classList.toggle('hidden');
+            document.getElementById('video-gallery-toggle-icon').classList.toggle('rotate-180', !w.classList.contains('hidden'));
+            document.getElementById('video-gallery-toggle-text').textContent = w.classList.contains('hidden') ? 'Video Galerisini Gör' : 'Video Galerisini Gizle';
+            if (!w.classList.contains('hidden')) {
+                setTimeout(() => {
+                    document.querySelectorAll('#video-grid .photo-container').forEach(el => {
+                        el.onclick = () => {
+                            document.getElementById('modal-video-iframe').src = `https://www.youtube.com/embed/${el.dataset.youtubeId}?autoplay=1`;
+                            document.getElementById('video-modal').classList.replace('hidden', 'flex');
+                        };
+                    });
+                }, 100);
+            }
+        };
+        document.getElementById('close-video-modal').onclick = () => {
+            document.getElementById('video-modal').classList.replace('flex', 'hidden');
+            document.getElementById('modal-video-iframe').src = '';
+        };
+        document.getElementById('video-modal').onclick = e => e.target === e.currentTarget && document.getElementById('close-video-modal').click();
     })();
     </script>
 </body>
