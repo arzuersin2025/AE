@@ -406,7 +406,7 @@
             </div>
         </section>
 
-        <!-- DÜĞÜN MEKANIMIZ – EN GÜNCEL HALİ -->
+        <!-- DÜĞÜN MEKANIMIZ -->
         <section id="map-section" class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Düğün Mekanımız</h3>
             <div class="flex flex-col items-center mb-8">
@@ -541,16 +541,12 @@
             </div>
         </section>
 
-        <!-- TEŞEKKÜR -->
+        <!-- TEŞEKKÜR – İSTENEN SATIRLAR KALDIRILDI -->
         <section class="my-16 max-w-3xl mx-auto transparent-section">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Teşekkür</h3>
             <p class="text-center text-black text-lg italic mt-4 font-bold">
                 Bu mutlu yolculuğumuzda yanımızda olan herkese sonsuz teşekkürler.
             </p>
-            <div class="mt-8 space-y-4">
-                <p class="text-center text-black font-semibold">Bizi biz yapan, sevgileriyle her zaman en büyük destekçimiz olan canımız ailelerimize...</p>
-                <p class="text-center text-black font-semibold">İyi günde, kötü günde her anımızda yanımızda olan değerli dostlarımıza...</p>
-            </div>
             <div class="mt-16 text-center fade-in-on-scroll">
                 <p class="text-red-600 italic text-xl md:text-2xl mb-6 font-medium">
                     Kalbinizden geçenleri bize yazmak isterseniz İletişim adresimiz
