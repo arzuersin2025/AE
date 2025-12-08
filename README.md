@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -406,7 +406,7 @@
             </div>
         </section>
 
-        <!-- DÜĞÜN MEKANIMIZ (GÜNCELLENMİŞ) -->
+        <!-- DÜĞÜN MEKANIMIZ – EN GÜNCEL HALİ -->
         <section id="map-section" class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Düğün Mekanımız</h3>
             <div class="flex flex-col items-center mb-8">
@@ -416,7 +416,7 @@
                 <div class="map-click-text">Tıkla</div>
             </div>
             <p class="text-center text-black font-semibold italic text-lg mt-6 leading-relaxed px-6 max-w-2xl mx-auto">
-                Seninle aynı yerde nefes aldığım yer 💛
+                Seninle sonsuzluğa adım attığımız yer
             </p>
         </section>
 
@@ -434,7 +434,7 @@
                     Bu sadece bir davetiye değil;<br>
                     kalbimizin sana yazdığı aşk mektubu.<br><br>
                     <span class="text-red-600 text-xl">Tıklayıp gülümsediğinde,<br>
-                    o gülümseme bizim olacak.</span> ❤️
+                    o gülümseme bizim olacak.</span>
                 </p>
             </div>
         </section>
