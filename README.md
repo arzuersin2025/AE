@@ -431,10 +431,7 @@
             </div>
             <div class="mt-6 max-w-2xl mx-auto">
                 <p class="text-center text-black font-semibold italic text-lg leading-relaxed px-6">
-                    Bu sadece bir davetiye değil;<br>
-                    kalbimizin sana yazdığı aşk mektubu.<br><br>
-                    <span class="text-red-600 text-xl">Tıklayıp gülümsediğinde,<br>
-                    o gülümseme bizim olacak.</span>
+                    Bu bir davetiye değil, size yazdığımız bir mutluluk mektubu
                 </p>
             </div>
         </section>
@@ -541,7 +538,7 @@
             </div>
         </section>
 
-        <!-- TEŞEKKÜR – EN SADE HALİ -->
+        <!-- TEŞEKKÜR -->
         <section class="my-16 max-w-3xl mx-auto transparent-section">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Teşekkür</h3>
             <p class="text-center text-black text-lg italic mt-4 font-bold">
@@ -588,7 +585,7 @@
         <div class="aspect-video w-full max-w-4xl"><iframe id="modal-video-iframe" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
     </div>
 
-    <!-- JAVASCRIPT – HİÇ DOKUNULMADI -->
+    <!-- %100 ÇALIŞAN TAM JAVASCRIPT + OTOMATİK ARKA PLAN MÜZİĞİ -->
     <script>
     (() => {
         'use strict';
