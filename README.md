@@ -1,4 +1,3 @@
-
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -379,7 +378,7 @@
             <div class="max-w-2xl mx-auto space-y-6">
                 <div class="fade-in-on-scroll">
                     <p class="text-xl md:text-2xl leading-relaxed italic text-green-600 font-medium">
-                        "Bana iyi hissettiriyorsun sen bu zamanda kadar nerelerdeydin ?"
+                        "Bana iyi hissettiriyorsun sen bu zamana kadar nerelerdeydin ?"
                     </p>
                 </div>
                 <div class="text-center text-4xl text-red-500 heartbeat mb-4"><i class="fas fa-heart"></i></div>
@@ -405,7 +404,6 @@
                 <div><span id="seconds" class="block text-5xl font-bold text-green-600">00</span><span class="text-sm text-red-600">Saniye</span></div>
             </div>
         </section>
-
         <!-- DÜĞÜN MEKANIMIZ -->
         <section id="map-section" class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Düğün Mekanımız</h3>
@@ -419,7 +417,6 @@
                 Seninle sonsuzluğa adım attığımız yer
             </p>
         </section>
-
         <!-- DAVETİYEMİZ -->
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Davetiyemiz</h3>
@@ -439,7 +436,6 @@
             <span id="close-invitation">X</span>
             <img src="https://i.imgur.com/pkKrbgb.jpeg" alt="Arzu & Ersin Düğün Davetiyesi">
         </div>
-
         <!-- BİZİM ŞARKIMIZ -->
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center relative overflow-hidden">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Bizim Şarkımız</h3>
@@ -461,7 +457,6 @@
                 </div>
             </div>
         </section>
-
         <!-- SEYAHATLERİMİZ -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Seyahatlerimiz</h3>
@@ -480,13 +475,12 @@
                 </div>
             </div>
         </section>
-
         <!-- FOTOĞRAF GALERİSİ -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Fotoğraf Galerimiz</h3>
             <p class="text-center text-black font-semibold italic">İşte yolculuğumuzda biriktirdiğimiz Anılar..</p>
             <div class="mt-8 text-center">
-                <button id="toggle-gallery-btn" class="inline-flex items-center justify-center py-2 px-6 border border-red-600 shadow-sm text-sm font-medium rounded-md text-red-600 bg-white hover:bg-red-50 transition-colors">
+                <button id="toggle-gallery-btn" class="inline-flex items-center justify-center py-2 px-6 border border border-red-600 shadow-sm text-sm font-medium rounded-md text-red-600 bg-white hover:bg-red-50 transition-colors">
                     <span id="gallery-toggle-text">Fotoğraf Galerisini Gör</span>
                     <i id="gallery-toggle-icon" class="fas fa-chevron-down ml-2 transition-transform"></i>
                 </button>
@@ -515,7 +509,6 @@
                 </div>
             </div>
         </section>
-
         <!-- VİDEO GALERİSİ -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Video Galerimiz</h3>
@@ -537,7 +530,6 @@
                 </div>
             </div>
         </section>
-
         <!-- TEŞEKKÜR -->
         <section class="my-16 max-w-3xl mx-auto transparent-section">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Teşekkür</h3>
@@ -572,7 +564,6 @@
             </div>
         </section>
     </main>
-
     <!-- Modallar -->
     <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
         <span id="close-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
@@ -584,8 +575,7 @@
         <span id="close-video-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
         <div class="aspect-video w-full max-w-4xl"><iframe id="modal-video-iframe" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
     </div>
-
-    <!-- %100 ÇALIŞAN TAM JAVASCRIPT + OTOMATİK ARKA PLAN MÜZİĞİ -->
+    <!-- %100 ÇALIŞAN TAM JAVASCRIPT + OTOMATİK ARKA PLAN MÜZİĞİ + MASAÜSTÜ ZOOM & PAN -->
     <script>
     (() => {
         'use strict';
@@ -605,7 +595,7 @@
         });
         document.getElementById('heart-rain-btn').addEventListener('click', function() {
             const count = 60;
-            const hearts = ['❤️','🧡','💛','💚','💙','💜','💖','💝','💘','❣️','💕','🌹','💞','💓','💗','💝'];
+            const hearts = ['❤️','🧡','💛','💚','💙','💜','💖','💝','💘','Heart','💕','Rose','💞','💓','💗','💝'];
             for (let i = 0; i < count; i++) {
                 const h = document.createElement('div');
                 h.className = 'heart-rain';
@@ -865,6 +855,67 @@
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
         }, { threshold: 0.3 });
         document.querySelectorAll('.fade-in-on-scroll, .travel-folder').forEach(el => fadeObserver.observe(el));
+
+        // MASAÜSTÜ MOUSE TEKERLEĞİ + SÜRÜKLEME (ZOOM & PAN) - %100 ÇALIŞIR
+        if (window.innerWidth > 768 && !('ontouchstart' in window)) {
+            let currentScale = 1;
+            let currentTranslateX = 0;
+            let currentTranslateY = 0;
+            let isDragging = false;
+            let startX, startY;
+
+            const applyTransform = () => {
+                modalImage.style.transform = `translate(${currentTranslateX}px, ${currentTranslateY}px) scale(${currentScale})`;
+            };
+
+            modal.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const delta = e.deltaY > 0 ? 0.9 : 1.1;
+                currentScale = Math.min(Math.max(0.5, currentScale * delta), 8);
+                applyTransform();
+            });
+
+            modalImage.addEventListener('mousedown', (e) => {
+                if (currentScale <= 1) return;
+                e.preventDefault();
+                isDragging = true;
+                startX = e.clientX - currentTranslateX;
+                startY = e.clientY - currentTranslateY;
+                modalImage.style.cursor = 'grabbing';
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                e.preventDefault();
+                currentTranslateX = e.clientX - startX;
+                currentTranslateY = e.clientY - startY;
+                applyTransform();
+            });
+
+            document.addEventListener('mouseup', () => {
+                isDragging = false;
+                modalImage.style.cursor = currentScale > 1 ? 'grab' : 'default';
+            });
+
+            const originalOpenPhoto = openPhoto;
+            openPhoto = function(index) {
+                originalOpenPhoto(index);
+                currentScale = 1;
+                currentTranslateX = 0;
+                currentTranslateY = 0;
+                modalImage.style.cursor = 'default';
+                applyTransform();
+            };
+
+            const originalClosePhoto = closePhoto;
+            closePhoto = function() {
+                originalClosePhoto();
+                currentScale = 1;
+                currentTranslateX = 0;
+                currentTranslateY = 0;
+                applyTransform();
+            };
+        }
     })();
     </script>
 </body>
