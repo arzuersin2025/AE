@@ -1,4 +1,3 @@
-
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -75,7 +74,7 @@
         .timeline-item.animate .timeline-icon { transform: rotate(360deg); }
         @media (max-width: 600px) {
             .timeline-container::after { left: 31px; }
-            .timeline-item { widthفران width: 100%; padding-left: 70px; padding-right: 25px; }
+            .timeline-item { width: 100%; padding-left: 70px; padding-right: 25px; }
             .timeline-item.right { left: 0 !important; }
         }
         .photo-container { position: relative; overflow: hidden; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); aspect-ratio: 1/1; }
@@ -332,10 +331,8 @@
             </p>
             <div class="text-4xl text-red-500 mt-8 heartbeat"><i class="fas fa-heart"></i></div>
         </section>
-
-        <!-- SONBAHAR YAZISI ARTIK TAM İSTEDİĞİN GİBİ DEV GİBİ -->
         <section class="my-16 max-w-3xl mx-auto text-center">
-            <h3 id="sonbahar-baslik" class="font-bold text-center text-red-600 mb-6 handwriting font-forte-alternative" style="font-size: 8rem !important; line-height: 1 !important;">Sonbahar</h3>
+            <h3 id="sonbahar-baslik" class="font-bold text-center text-red-600 mb-6 handwriting font-forte-alternative">Sonbahar</h3>
             <div class="poem-container">
                 <div class="poem-line italic">Çiçekli badem ağaçlarını unut.</div>
                 <div class="poem-line italic">değmez,</div>
@@ -350,10 +347,6 @@
             </div>
             <p class="text-right text-red-600 font-semibold-bold mt-6 pr-4 font-forte-alternative poem-signature">- Nazım Hikmet</p>
         </section>
-
-        <!-- GERİ KALAN TÜM KOD %100 AYNI -->
-        <!-- (Devamını senin verdiğinle birebir aynı şekilde yazıyorum) -->
-
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting timeline-title">Aşk Zaman Çizelgesi</h3>
             <p class="text-center text-black font-semibold italic mb-8 timeline-subtitle">
@@ -411,6 +404,7 @@
                 <div><span id="seconds" class="block text-5xl font-bold text-green-600">00</span><span class="text-sm text-red-600">Saniye</span></div>
             </div>
         </section>
+        <!-- DÜĞÜN MEKANIMIZ -->
         <section id="map-section" class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Düğün Mekanımız</h3>
             <div class="flex flex-col items-center mb-8">
@@ -420,9 +414,10 @@
                 <div class="map-click-text">Tıkla</div>
             </div>
             <p class="text-center text-black font-semibold italic text-lg mt-6 leading-relaxed px-6 max-w-2xl mx-auto">
-                Seninle sonsuzluğa adım attığımız yer
+                Seninle sonsuzluğa adım attığımız yer 💙
             </p>
         </section>
+        <!-- DAVETİYEMİZ -->
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Davetiyemiz</h3>
             <div class="flex flex-col items-center">
@@ -433,7 +428,7 @@
             </div>
             <div class="mt-6 max-w-2xl mx-auto">
                 <p class="text-center text-black font-semibold italic text-lg leading-relaxed px-6">
-                    Bu bir davetiye değil, size yazdığımız bir mutluluk mektubu
+                    Bu bir davetiye değil, size yazdığımız bir mutluluk mektubu 💚
                 </p>
             </div>
         </section>
@@ -441,6 +436,7 @@
             <span id="close-invitation">X</span>
             <img src="https://i.imgur.com/pkKrbgb.jpeg" alt="Arzu & Ersin Düğün Davetiyesi">
         </div>
+        <!-- BİZİM ŞARKIMIZ -->
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center relative overflow-hidden">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Bizim Şarkımız</h3>
             <p class="text-center text-black font-semibold italic mt-2 mb-6">Tarkan - Beni Çok Sev</p>
@@ -461,6 +457,7 @@
                 </div>
             </div>
         </section>
+        <!-- SEYAHATLERİMİZ -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Seyahatlerimiz</h3>
             <p class="text-center text-black font-semibold italic">Birlikte keşfettiğimiz yerler...</p>
@@ -478,11 +475,12 @@
                 </div>
             </div>
         </section>
+        <!-- FOTOĞRAF GALERİSİ -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Fotoğraf Galerimiz</h3>
             <p class="text-center text-black font-semibold italic">İşte yolculuğumuzda biriktirdiğimiz Anılar..</p>
             <div class="mt-8 text-center">
-                <button id="toggle-gallery-btn" class="inline-flex items-center justify-center py-2 px-6 border border-red-600 shadow-sm text-sm font-medium rounded-md text-red-600 bg-white hover:bg-red-50 transition-colors">
+                <button id="toggle-gallery-btn" class="inline-flex items-center justify-center py-2 px-6 border border border-red-600 shadow-sm text-sm font-medium rounded-md text-red-600 bg-white hover:bg-red-50 transition-colors">
                     <span id="gallery-toggle-text">Fotoğraf Galerisini Gör</span>
                     <i id="gallery-toggle-icon" class="fas fa-chevron-down ml-2 transition-transform"></i>
                 </button>
@@ -511,6 +509,7 @@
                 </div>
             </div>
         </section>
+        <!-- VİDEO GALERİSİ -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Video Galerimiz</h3>
             <p class="text-center text-black font-semibold">Bazı duyguları kelimelerle anlatmak yetmez...</p>
@@ -531,10 +530,11 @@
                 </div>
             </div>
         </section>
+        <!-- TEŞEKKÜR -->
         <section class="my-16 max-w-3xl mx-auto transparent-section">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Teşekkür</h3>
             <p class="text-center text-black text-lg italic mt-4 font-bold">
-                Bu mutlu yolculuğumuzda yanımızda olan herkese sonsuz teşekkürler
+                Bu mutlu yolculuğumuzda yanımızda olan herkese sonsuz teşekkürler 
             </p>
             <div class="mt-16 text-center fade-in-on-scroll">
                 <p class="text-red-600 italic text-xl md:text-2xl mb-6 font-medium">
@@ -564,6 +564,7 @@
             </div>
         </section>
     </main>
+    <!-- Modallar -->
     <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
         <span id="close-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
         <img id="modal-image" src="" alt="Büyütülmüş Fotoğraf" class="max-w-[90vw] max-h-[90vh] rounded-lg shadow-lg">
@@ -574,6 +575,7 @@
         <span id="close-video-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
         <div class="aspect-video w-full max-w-4xl"><iframe id="modal-video-iframe" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
     </div>
+    <!-- %100 ÇALIŞAN TAM JAVASCRIPT + OTOMATİK ARKA PLAN MÜZİĞİ + MASAÜSTÜ ZOOM & PAN -->
     <script>
     (() => {
         'use strict';
@@ -853,21 +855,26 @@
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
         }, { threshold: 0.3 });
         document.querySelectorAll('.fade-in-on-scroll, .travel-folder').forEach(el => fadeObserver.observe(el));
+
+        // MASAÜSTÜ MOUSE TEKERLEĞİ + SÜRÜKLEME (ZOOM & PAN) - %100 ÇALIŞIR
         if (window.innerWidth > 768 && !('ontouchstart' in window)) {
             let currentScale = 1;
             let currentTranslateX = 0;
             let currentTranslateY = 0;
             let isDragging = false;
             let startX, startY;
+
             const applyTransform = () => {
                 modalImage.style.transform = `translate(${currentTranslateX}px, ${currentTranslateY}px) scale(${currentScale})`;
             };
+
             modal.addEventListener('wheel', (e) => {
                 e.preventDefault();
                 const delta = e.deltaY > 0 ? 0.9 : 1.1;
                 currentScale = Math.min(Math.max(0.5, currentScale * delta), 8);
                 applyTransform();
             });
+
             modalImage.addEventListener('mousedown', (e) => {
                 if (currentScale <= 1) return;
                 e.preventDefault();
@@ -876,6 +883,7 @@
                 startY = e.clientY - currentTranslateY;
                 modalImage.style.cursor = 'grabbing';
             });
+
             document.addEventListener('mousemove', (e) => {
                 if (!isDragging) return;
                 e.preventDefault();
@@ -883,10 +891,12 @@
                 currentTranslateY = e.clientY - startY;
                 applyTransform();
             });
+
             document.addEventListener('mouseup', () => {
                 isDragging = false;
                 modalImage.style.cursor = currentScale > 1 ? 'grab' : 'default';
             });
+
             const originalOpenPhoto = openPhoto;
             openPhoto = function(index) {
                 originalOpenPhoto(index);
@@ -896,6 +906,7 @@
                 modalImage.style.cursor = 'default';
                 applyTransform();
             };
+
             const originalClosePhoto = closePhoto;
             closePhoto = function() {
                 originalClosePhoto();
