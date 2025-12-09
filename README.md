@@ -531,7 +531,7 @@
             </div>
         </section>
         <!-- TEŞEKKÜR -->
-        <section class="my-32 max-w-3xl mx-auto transparent-section">
+        <section class="my-16 max-w-6xl mx-auto transparent-section">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Teşekkür</h3>
             <p class="text-center text-black text-lg italic mt-4 font-bold">
                 Bu mutlu yolculuğumuzda yanımızda olan herkese sonsuz teşekkürler 
