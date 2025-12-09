@@ -414,7 +414,7 @@
                 <div class="map-click-text">Tıkla</div>
             </div>
             <p class="text-center text-black font-semibold italic text-lg mt-6 leading-relaxed px-6 max-w-2xl mx-auto">
-                Seninle sonsuzluğa adım attığımız yer
+                Seninle sonsuzluğa adım attığımız yer 💙
             </p>
         </section>
         <!-- DAVETİYEMİZ -->
@@ -428,7 +428,7 @@
             </div>
             <div class="mt-6 max-w-2xl mx-auto">
                 <p class="text-center text-black font-semibold italic text-lg leading-relaxed px-6">
-                    Bu bir davetiye değil, size yazdığımız bir mutluluk mektubu
+                    Bu bir davetiye değil, size yazdığımız bir mutluluk mektubu 💚
                 </p>
             </div>
         </section>
@@ -531,10 +531,10 @@
             </div>
         </section>
         <!-- TEŞEKKÜR -->
-        <section class="my-16 max-w-3xl mx-auto transparent-section">
+        <section class="my-32 max-w-3xl mx-auto transparent-section">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Teşekkür</h3>
             <p class="text-center text-black text-lg italic mt-4 font-bold">
-                Bu mutlu yolculuğumuzda yanımızda olan herkese sonsuz teşekkürler.
+                Bu mutlu yolculuğumuzda yanımızda olan herkese sonsuz teşekkürler 
             </p>
             <div class="mt-16 text-center fade-in-on-scroll">
                 <p class="text-red-600 italic text-xl md:text-2xl mb-6 font-medium">
