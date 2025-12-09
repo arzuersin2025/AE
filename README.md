@@ -595,7 +595,7 @@
         });
         document.getElementById('heart-rain-btn').addEventListener('click', function() {
             const count = 60;
-            const hearts = ['❤️','🧡','💛','💚','💙','💜','💖','💝','💘','Heart','💕','Rose','💞','💓','💗','💝'];
+            const hearts = ['❤️','🧡','💛','💚','💙','💜','💖','💝','💘','💕','💞','💓','💗','💝'];
             for (let i = 0; i < count; i++) {
                 const h = document.createElement('div');
                 h.className = 'heart-rain';
