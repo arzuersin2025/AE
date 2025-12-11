@@ -61,7 +61,7 @@
         }
         @keyframes drawLine { to { transform: scaleY(1); } }
         .timeline-item { padding: 10px 40px; position: relative; width: 50%; opacity: 0; transform: translateY(50px) scale(0.9); transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); z-index: 2; }
-        .timeline-item.animate { opacity: 1; transform: translateY(0) scale(1); }
+        .timeline-item.animate { opacity: 1; transform: translateY(0) scale(scale(1)); }
         .timeline-item.left { left: 0; } .timeline-item.right { left: 50%; }
         .timeline-content { padding: 20px 30px; background: transparent; border-radius: 0; box-shadow: none; border: none; position: relative; overflow: hidden; transition: all 0.4s ease; }
         .timeline-content h4 { margin-bottom: 8px; color: #dc2626; font-family: 'Dancing Script', cursive; font-size: 1.5rem; }
@@ -282,6 +282,32 @@
             #bg-music-control { top: 15px; right: 15px; }
             #bg-music-control i { font-size: 1.5rem; }
         }
+
+        /* MOBİL İÇİN AŞK ZAMAN ÇİZELGESİ YAZI BÜYÜTME */
+        @media (max-width: 768px) {
+            .timeline-title {
+                font-size: 2.4rem !important;
+            }
+            .timeline-subtitle {
+                font-size: 1.35rem !important;
+                line-height: 1.5 !important;
+                padding: 0 1rem;
+            }
+            .timeline-content h4 {
+                font-size: 2.6rem !important;
+                line-height: 1.2 !important;
+            }
+            .timeline-content p {
+                font-size: 1.5rem !important;
+                line-height: 1.6 !important;
+                padding: 0 1rem;
+            }
+            .timeline-icon {
+                width: 50px !important;
+                height: 50px !important;
+                font-size: 1.5rem !important;
+            }
+        }
     </style>
 </head>
 <body class="text-black">
@@ -384,7 +410,7 @@
                 <div class="text-center text-4xl text-red-500 heartbeat mb-4"><i class="fas fa-heart"></i></div>
                 <div class="fade-in-on-scroll">
                     <p class="text-xl md:text-2xl leading-relaxed italic text-green-600 font-medium">
-                        "Asıl sen neredeydin meğersem çok yakınmışız."
+                        "Asıl sen neredeydin meğer çok yakınmışız."
                     </p>
                 </div>
             </div>
@@ -414,7 +440,7 @@
                 <div class="map-click-text">Tıkla</div>
             </div>
             <p class="text-center text-black font-semibold italic text-lg mt-6 leading-relaxed px-6 max-w-2xl mx-auto">
-                Seninle sonsuzluğa adım attığımız yer 💙
+                Seninle sonsuzluğa adım attığımız yer
             </p>
         </section>
         <!-- DAVETİYEMİZ -->
@@ -428,7 +454,7 @@
             </div>
             <div class="mt-6 max-w-2xl mx-auto">
                 <p class="text-center text-black font-semibold italic text-lg leading-relaxed px-6">
-                    Bu bir davetiye değil, size yazdığımız bir mutluluk mektubu 💚
+                    Bu bir davetiye değil, size yazdığımız bir mutluluk mektubu
                 </p>
             </div>
         </section>
@@ -480,7 +506,7 @@
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Fotoğraf Galerimiz</h3>
             <p class="text-center text-black font-semibold italic">İşte yolculuğumuzda biriktirdiğimiz Anılar..</p>
             <div class="mt-8 text-center">
-                <button id="toggle-gallery-btn" class="inline-flex items-center justify-center py-2 px-6 border border border-red-600 shadow-sm text-sm font-medium rounded-md text-red-600 bg-white hover:bg-red-50 transition-colors">
+                <button id="toggle-gallery-btn" class="inline-flex items-center justify-center py-2 px-6 border border-red-600 shadow-sm text-sm font-medium rounded-md text-red-600 bg-white hover:bg-red-50 transition-colors">
                     <span id="gallery-toggle-text">Fotoğraf Galerisini Gör</span>
                     <i id="gallery-toggle-icon" class="fas fa-chevron-down ml-2 transition-transform"></i>
                 </button>
@@ -534,7 +560,7 @@
         <section class="my-16 max-w-3xl mx-auto transparent-section">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Teşekkür</h3>
             <p class="text-center text-black text-lg italic mt-4 font-bold">
-                Bu mutlu yolculuğumuzda yanımızda olan herkese sonsuz teşekkürler 
+                Bu mutlu yolculuğumuzda yanımızda olan herkese sonsuz teşekkürler
             </p>
             <div class="mt-16 text-center fade-in-on-scroll">
                 <p class="text-red-600 italic text-xl md:text-2xl mb-6 font-medium">
@@ -855,7 +881,6 @@
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
         }, { threshold: 0.3 });
         document.querySelectorAll('.fade-in-on-scroll, .travel-folder').forEach(el => fadeObserver.observe(el));
-
         // MASAÜSTÜ MOUSE TEKERLEĞİ + SÜRÜKLEME (ZOOM & PAN) - %100 ÇALIŞIR
         if (window.innerWidth > 768 && !('ontouchstart' in window)) {
             let currentScale = 1;
@@ -863,18 +888,15 @@
             let currentTranslateY = 0;
             let isDragging = false;
             let startX, startY;
-
             const applyTransform = () => {
                 modalImage.style.transform = `translate(${currentTranslateX}px, ${currentTranslateY}px) scale(${currentScale})`;
             };
-
             modal.addEventListener('wheel', (e) => {
                 e.preventDefault();
                 const delta = e.deltaY > 0 ? 0.9 : 1.1;
                 currentScale = Math.min(Math.max(0.5, currentScale * delta), 8);
                 applyTransform();
             });
-
             modalImage.addEventListener('mousedown', (e) => {
                 if (currentScale <= 1) return;
                 e.preventDefault();
@@ -883,7 +905,6 @@
                 startY = e.clientY - currentTranslateY;
                 modalImage.style.cursor = 'grabbing';
             });
-
             document.addEventListener('mousemove', (e) => {
                 if (!isDragging) return;
                 e.preventDefault();
@@ -891,12 +912,10 @@
                 currentTranslateY = e.clientY - startY;
                 applyTransform();
             });
-
             document.addEventListener('mouseup', () => {
                 isDragging = false;
                 modalImage.style.cursor = currentScale > 1 ? 'grab' : 'default';
             });
-
             const originalOpenPhoto = openPhoto;
             openPhoto = function(index) {
                 originalOpenPhoto(index);
@@ -906,7 +925,6 @@
                 modalImage.style.cursor = 'default';
                 applyTransform();
             };
-
             const originalClosePhoto = closePhoto;
             closePhoto = function() {
                 originalClosePhoto();
