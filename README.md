@@ -818,7 +818,11 @@
                     },
                     onStateChange: function(event) {
                         if (event.data === YT.PlayerState.ENDED) {
-                            event.target.loadVideoById('NudUovOABjQ');
+                            const playlist = ['NudUovOABjQ', 'Rcq0LqEx3-E', 'rYJjgfCfBOU'];
+                            const currentId = event.target.getVideoData().video_id;
+                            let nextIndex = playlist.indexOf(currentId) + 1;
+                            if (nextIndex >= playlist.length) nextIndex = 0;
+                            event.target.loadVideoById(playlist[nextIndex]);
                             event.target.playVideo();
                         }
                     }
