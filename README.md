@@ -818,7 +818,7 @@
                     },
                     onStateChange: function(event) {
                         if (event.data === YT.PlayerState.ENDED) {
-                            const playlist = ['NudUovOABjQ', 'Rcq0LqEx3-E', 'rYJjgfCfBOU'];
+                            const playlist = ['NudUovOABjQ', 'Rcq0LqEx3-E', 'mTZRQltuHRc', 'aYDgvuuVNQQ', 'rYJjgfCfBOU'];
                             const currentId = event.target.getVideoData().video_id;
                             let nextIndex = playlist.indexOf(currentId) + 1;
                             if (nextIndex >= playlist.length) nextIndex = 0;
