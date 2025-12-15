@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -802,7 +802,7 @@
         window.onYouTubeIframeAPIReady = function() {
             bgPlayer = new YT.Player('bg-youtube-player', {
                 height: '0', width: '0', videoId: 'rYJjgfCfBOU',
-                playerVars: { autoplay: 1, loop: 1, playlist: 'NudUovOABjQ', controls: 0, modestbranding: 1, playsinline: 1, enablejsapi: 1, iv_load_policy: 3, fs: 0, rel: 0 },
+                playerVars: { autoplay: 1, controls: 0, modestbranding: 1, playsinline: 1, enablejsapi: 1, iv_load_policy: 3, fs: 0, rel: 0 },
                 events: {
                     onReady: function(event) {
                         event.target.setVolume(35);
@@ -819,6 +819,7 @@
                     onStateChange: function(event) {
                         if (event.data === YT.PlayerState.ENDED) {
                             event.target.loadVideoById('NudUovOABjQ');
+                            event.target.playVideo();
                         }
                     }
                 }
