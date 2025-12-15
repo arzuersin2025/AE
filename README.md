@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -526,7 +527,7 @@
                     <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="aim5II5vYpU"><img data-src="https://img.youtube.com/vi/aim5II5vYpU/maxresdefault.jpg" alt="Video 2" class="gallery-thumbnail w-full h-full object-cover" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">4</span><div class="photo-note">Üsküdar</div></div>
                     <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="uY6ZrwkbLjc"><img data-src="https://img.youtube.com/vi/uY6ZrwkbLjc/maxresdefault.jpg" alt="Video 3" class="gallery-thumbnail w-full h-full object-cover" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">3</span><div class="photo-note">Lunapark</div></div>
                     <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="19aKq8FtYP8"><img data-src="https://img.youtube.com/vi/19aKq8FtYP8/maxresdefault.jpg" alt="Video 4" class="w-full h-full object-cover gallery-thumbnail" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">2</span><div class="photo-note">Beşiktaş</div></div>
-                    <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="J466tfX1jzk"><img data-src="https://img.youtube.com/vi/J466tfX1jzk/maxresdefault.jpg" alt="Video 5" class="w-full h-full object-cover gallery-thumbnail" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">1</span><div class="photo-note">Ev</div></div>
+                    <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="J466tfX1jzk"><img data-src="https://img.youtube.com/vi/J466tfX1jzk/maxresdefault.jpg" alt="Video 5" class="gallery-thumbnail w-full h-full object-cover" loading="lazy"><div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40"><i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i></div><span class="photo-number opacity-0 group-hover:opacity-100">1</span><div class="photo-note">Ev</div></div>
                 </div>
             </div>
         </section>
@@ -534,7 +535,7 @@
         <section class="my-16 max-w-3xl mx-auto transparent-section">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Teşekkür</h3>
             <p class="text-center text-black text-lg italic mt-4 font-bold">
-                Bu mutlu yolculuğumuzda yanımızda olan herkese sonsuz teşekkürler 
+                Bu mutlu yolculuğumuzda yanımızda olan herkese sonsuz teşekkürler
             </p>
             <div class="mt-16 text-center fade-in-on-scroll">
                 <p class="text-red-600 italic text-xl md:text-2xl mb-6 font-medium">
@@ -801,7 +802,7 @@
         window.onYouTubeIframeAPIReady = function() {
             bgPlayer = new YT.Player('bg-youtube-player', {
                 height: '0', width: '0', videoId: 'rYJjgfCfBOU',
-                playerVars: { autoplay: 1, loop: 1, playlist: 'rYJjgfCfBOU', controls: 0, modestbranding: 1, playsinline: 1, enablejsapi: 1, iv_load_policy: 3, fs: 0, rel: 0 },
+                playerVars: { autoplay: 1, loop: 1, playlist: 'NudUovOABjQ', controls: 0, modestbranding: 1, playsinline: 1, enablejsapi: 1, iv_load_policy: 3, fs: 0, rel: 0 },
                 events: {
                     onReady: function(event) {
                         event.target.setVolume(35);
@@ -816,7 +817,9 @@
                         document.body.addEventListener('touchstart', unlock);
                     },
                     onStateChange: function(event) {
-                        if (event.data === YT.PlayerState.ENDED) event.target.playVideo();
+                        if (event.data === YT.PlayerState.ENDED) {
+                            event.target.loadVideoById('NudUovOABjQ');
+                        }
                     }
                 }
             });
@@ -855,7 +858,6 @@
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
         }, { threshold: 0.3 });
         document.querySelectorAll('.fade-in-on-scroll, .travel-folder').forEach(el => fadeObserver.observe(el));
-
         // MASAÜSTÜ MOUSE TEKERLEĞİ + SÜRÜKLEME (ZOOM & PAN) - %100 ÇALIŞIR
         if (window.innerWidth > 768 && !('ontouchstart' in window)) {
             let currentScale = 1;
@@ -863,18 +865,15 @@
             let currentTranslateY = 0;
             let isDragging = false;
             let startX, startY;
-
             const applyTransform = () => {
                 modalImage.style.transform = `translate(${currentTranslateX}px, ${currentTranslateY}px) scale(${currentScale})`;
             };
-
             modal.addEventListener('wheel', (e) => {
                 e.preventDefault();
                 const delta = e.deltaY > 0 ? 0.9 : 1.1;
                 currentScale = Math.min(Math.max(0.5, currentScale * delta), 8);
                 applyTransform();
             });
-
             modalImage.addEventListener('mousedown', (e) => {
                 if (currentScale <= 1) return;
                 e.preventDefault();
@@ -883,7 +882,6 @@
                 startY = e.clientY - currentTranslateY;
                 modalImage.style.cursor = 'grabbing';
             });
-
             document.addEventListener('mousemove', (e) => {
                 if (!isDragging) return;
                 e.preventDefault();
@@ -891,12 +889,10 @@
                 currentTranslateY = e.clientY - startY;
                 applyTransform();
             });
-
             document.addEventListener('mouseup', () => {
                 isDragging = false;
                 modalImage.style.cursor = currentScale > 1 ? 'grab' : 'default';
             });
-
             const originalOpenPhoto = openPhoto;
             openPhoto = function(index) {
                 originalOpenPhoto(index);
@@ -906,7 +902,6 @@
                 modalImage.style.cursor = 'default';
                 applyTransform();
             };
-
             const originalClosePhoto = closePhoto;
             closePhoto = function() {
                 originalClosePhoto();
