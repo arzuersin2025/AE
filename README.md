@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -304,7 +304,7 @@
             <div class="relative z-10">
                 <h1 class="font-bold text-green-600 flex items-center justify-center handwriting leading-tight">
                     <span class="header-name">Arzu</span>
-                    <i class="fas fa-infinity text-red-600 heartbeat header-heart"></i>
+                    <i class="fas fa-heart text-red-500 heartbeat header-heart"></i>
                     <span class="header-name">Ersin</span>
                 </h1>
                 <p class="text-xl md:text-2xl text-red-600 mt-10">Bizim Yolculuğumuz</p>
@@ -379,7 +379,7 @@
             <div class="max-w-2xl mx-auto space-y-6">
                 <div class="fade-in-on-scroll">
                     <p class="text-xl md:text-2xl leading-relaxed italic text-green-600 font-medium">
-                        " Bana iyi hissettiriyorsun sen bu zamana kadar nerelerdeydin "
+                        "Bana iyi hissettiriyorsun sen bu zamana kadar nerelerdeydin ?"
                     </p>
                 </div>
                 <div class="text-center text-4xl text-red-500 heartbeat mb-4"><i class="fas fa-heart"></i></div>
@@ -495,7 +495,7 @@
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/PTYXm1S.jpg" alt="Nakkaştepe Millet Bahçesi" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">13</span>
-                        <div class="photo-note">Nakkaştepe </div>
+                        <div class="photo-note">Nakkaştepe Millet Bahçesi</div>
                     </div>
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/Q6ZF31K.jpg" alt="Katibim" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
@@ -568,8 +568,8 @@
                 </div>
                 <div class="mt-16 text-center">
                     <p class="text-black text-xl md:text-2xl leading-relaxed text-center max-w-4xl mx-auto italic font-medium">
-                        “ Yaprakların dansında buluştuk,<br>
-                        yıldızların ışığında sonsuza dek yürüyeceğiz Sevgilim ”
+                        “Yaprakların dansında buluştuk,<br>
+                        yıldızların ışığında sonsuza dek yürüyeceğiz Sevgilim ∞”
                     </p>
                     <p class="text-green-600 mt-6 flex items-center justify-center gap-5 handwriting text-5xl md:text-6xl font-bold">
                         Arzu <i class="fas fa-infinity text-red-600 heartbeat text-4xl md:text-5xl"></i> Ersin
