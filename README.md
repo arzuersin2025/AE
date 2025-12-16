@@ -6,7 +6,7 @@
     <title>Arzu & Ersin | Bizim Hikayemiz</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700;800;900&family=Dancing+Script:wght@700&family=Cormorant+Garamond&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
@@ -379,13 +379,13 @@
             <div class="max-w-2xl mx-auto space-y-6">
                 <div class="fade-in-on-scroll">
                     <p class="text-xl md:text-2xl leading-relaxed italic text-green-600 font-medium">
-                        "Bana iyi hissettiriyorsun sen bu zamana kadar nerelerdeydin"
+                        "Bana iyi hissettiriyorsun sen bu zamana kadar nerelerdeydin ?"
                     </p>
                 </div>
                 <div class="text-center text-4xl text-red-500 heartbeat mb-4"><i class="fas fa-heart"></i></div>
                 <div class="fade-in-on-scroll">
                     <p class="text-xl md:text-2xl leading-relaxed italic text-green-600 font-medium">
-                        "Asıl sen neredeydin meğersem çok yakınmışız"
+                        "Asıl sen neredeydin meğersem çok yakınmışız."
                     </p>
                 </div>
             </div>
@@ -481,7 +481,7 @@
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Fotoğraf Galerimiz</h3>
             <p class="text-center text-black font-semibold italic">İşte yolculuğumuzda biriktirdiğimiz Anılar..</p>
             <div class="mt-8 text-center">
-                <button id="toggle-gallery-btn" class="inline-flex items-center justify-center py-2 px-6 border border border-red-600 shadow-sm text-sm font-medium rounded-md text-red-600 bg-white hover:bg-red-50 transition-colors">
+                <button id="toggle-gallery-btn" class="inline-flex items-center justify-center py-2 px-6 border border-red-600 shadow-sm text-sm font-medium rounded-md text-red-600 bg-white hover:bg-red-50 transition-colors">
                     <span id="gallery-toggle-text">Fotoğraf Galerisini Gör</span>
                     <i id="gallery-toggle-icon" class="fas fa-chevron-down ml-2 transition-transform"></i>
                 </button>
@@ -568,13 +568,12 @@
                     </div>
                 </div>
                 <div class="mt-16 text-center">
-                    <p class="text-black text-xl md:text-2xl flex items-center justify-center gap-3 whitespace-nowrap">
-                        <span>Bu hikaye</span>
-                        <i class="fas fa-infinity text-red-500"></i>
-                        <span>kadar devam edecek...</span>
+                    <p class="text-black text-xl md:text-2xl leading-relaxed text-center max-w-4xl mx-auto italic font-medium">
+                        “Yaprakların dansında buluştuk,<br>
+                        yıldızların ışığında sonsuza dek yürüyeceğiz Sevgilim ∞”
                     </p>
                     <p class="text-green-600 mt-6 flex items-center justify-center gap-5 handwriting text-5xl md:text-6xl font-bold">
-                        Arzu <i class="fas fa-heart text-red-600 heartbeat text-4xl md:text-5xl"></i> Ersin
+                        Arzu <i class="fas fa-infinity text-red-600 heartbeat text-4xl md:text-5xl"></i> Ersin
                     </p>
                 </div>
             </div>
@@ -878,7 +877,6 @@
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
         }, { threshold: 0.3 });
         document.querySelectorAll('.fade-in-on-scroll, .travel-folder').forEach(el => fadeObserver.observe(el));
-        // MASAÜSTÜ MOUSE TEKERLEĞİ + SÜRÜKLEME (ZOOM & PAN) - %100 ÇALIŞIR
         if (window.innerWidth > 768 && !('ontouchstart' in window)) {
             let currentScale = 1;
             let currentTranslateX = 0;
