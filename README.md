@@ -50,52 +50,6 @@
         @media (min-width: 768px) { #ilk-adim-baslik { font-size: 1.75rem !important; } }
         #sonbahar-baslik { font-size: 3.5rem !important; line-height: 1.1 !important; }
         @media (min-width: 768px) { #sonbahar-baslik { font-size: 6rem !important; } }
-        .timeline-title { opacity: 0; transform: translateY(40px); animation: timelineTitleAnim 1.2s ease-out forwards; }
-        @keyframes timelineTitleAnim { to { opacity: 1; transform: translateY(0); } }
-        .timeline-subtitle { opacity: 0; transform: translateY(30px); animation: timelineSubtitleAnim 1.4s ease-out forwards; }
-        @keyframes timelineSubtitleAnim { to { opacity: 1; transform: translateY(0); } }
-        .timeline-container { position: relative; max-width: 1200px; margin: 0 auto; padding: 2rem 0; }
-        .timeline-container::after {
-            content: ''; position: absolute; width: 4px; background: linear-gradient(to bottom, #10b981, #f59e0b, #ef4444);
-            top: 0; bottom: 0; left: 50%; margin-left: -2px; border-radius: 2px; z-index: 1;
-            transform: scaleY(0); transform-origin: top; animation: drawLine 2s ease-out forwards;
-        }
-        @keyframes drawLine { to { transform: scaleY(1); } }
-        .timeline-item { padding: 10px 40px; position: relative; width: 50%; opacity: 0; transform: translateY(50px) scale(0.9); transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); z-index: 2; }
-        .timeline-item.animate { opacity: 1; transform: translateY(0) scale(1); }
-        .timeline-item.left { left: 0; } .timeline-item.right { left: 50%; }
-        .timeline-content { padding: 20px 30px; background: transparent; border-radius: 0; box-shadow: none; border: none; position: relative; overflow: hidden; transition: all 0.4s ease; }
-        .timeline-content h4 { margin-bottom: 8px; color: #dc2626; font-family: 'Dancing Script', cursive; font-size: 1.5rem; }
-        .timeline-content p { color: #000000 !important; font-style: italic; line-height: 1.6; }
-        @media (max-width: 768px) {
-            .timeline-content h4 { font-size: 2.4rem !important; }
-            .timeline-content p { font-size: 1.4rem !important; line-height: 1.5 !important; }
-        }
-        .timeline-icon { position: absolute; top: -15px; left: 20px; background: white; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 8px rgba(0,0,0,0.1); font-size: 1.2rem; color: #ef4444; z-index: 3; transform: rotate(0deg); transition: transform 0.6s ease; }
-        .timeline-item.animate .timeline-icon { transform: rotate(360deg); }
-        @media (max-width: 600px) {
-            .timeline-container::after { left: 31px; }
-            .timeline-item { width: 100%; padding-left: 70px; padding-right: 25px; }
-            .timeline-item.right { left: 0 !important; }
-        }
-        .photo-container { position: relative; overflow: hidden; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); aspect-ratio: 1/1; }
-        .gallery-thumbnail { transition: transform .3s ease-in-out; background-color: #f3f4f6; background-size: 40px; background-position: center; background-repeat: no-repeat, repeat; }
-        .group:hover .gallery-thumbnail { transform: scale(1.1); }
-        .photo-note { position: absolute; bottom: 0; left: 0; right: 0; color: white; padding: 0.5rem 0.75rem; font-size: 0.75rem; text-align: center; line-height: 1.2; text-shadow: 1px 1px 3px rgba(0,0,0,0.9); }
-        .photo-number { position: absolute; bottom: 0.5rem; right: 0.75rem; color: white; font-size: 1rem; font-weight: bold; text-shadow: 1px 1px 3px rgba(0,0,0,0.9); opacity: 0; transition: opacity .3s ease-in-out; }
-        .group:hover .photo-number { opacity: 1; }
-        .photo-container.no-note .photo-note { display: none; }
-        .travel-folder {
-            position: relative; overflow: hidden; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            aspect-ratio: 1/1; background: #f0fdf4; border: 1px solid #a7f3d0;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            padding: 0.75rem; text-align: center; transition: transform .2s ease-in-out, box-shadow .2s ease-in-out;
-        }
-        .travel-folder:hover { transform: translateY(-5px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
-        .travel-folder h4 { font-weight: 700 !important; font-size: 0.875rem !important; line-height: 1.3 !important; margin: 0.5rem 0 0.25rem 0 !important; color: #1f2937 !important; }
-        .travel-folder p { font-weight: 700 !important; font-style: italic; font-size: 0.75rem !important; color: #6b7280 !important; margin: 0 !important; }
-        .fade-in-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity .8s cubic-bezier(.25,.46,.45,.94), transform .8s cubic-bezier(.25,.46,.45,.94); }
-        .fade-in-on-scroll.visible { opacity: 1; transform: translateY(0); }
         .poem-container {
             max-width: 90%; margin: 0 auto; padding: 2rem 0; line-height: 1.4; font-size: 1.725rem; font-style: italic; color: #16a34a !important; text-align: center;
         }
@@ -283,6 +237,24 @@
             #bg-music-control { top: 15px; right: 15px; }
             #bg-music-control i { font-size: 1.5rem; }
         }
+        .fade-in-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity .8s cubic-bezier(.25,.46,.45,.94), transform .8s cubic-bezier(.25,.46,.45,.94); }
+        .fade-in-on-scroll.visible { opacity: 1; transform: translateY(0); }
+        .photo-container { position: relative; overflow: hidden; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); aspect-ratio: 1/1; }
+        .gallery-thumbnail { transition: transform .3s ease-in-out; }
+        .group:hover .gallery-thumbnail { transform: scale(1.1); }
+        .photo-note { position: absolute; bottom: 0; left: 0; right: 0; color: white; padding: 0.5rem 0.75rem; font-size: 0.75rem; text-align: center; line-height: 1.2; text-shadow: 1px 1px 3px rgba(0,0,0,0.9); }
+        .photo-number { position: absolute; bottom: 0.5rem; right: 0.75rem; color: white; font-size: 1rem; font-weight: bold; text-shadow: 1px 1px 3px rgba(0,0,0,0.9); opacity: 0; transition: opacity .3s ease-in-out; }
+        .group:hover .photo-number { opacity: 1; }
+        .photo-container.no-note .photo-note { display: none; }
+        .travel-folder {
+            position: relative; overflow: hidden; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            aspect-ratio: 1/1; background: #f0fdf4; border: 1px solid #a7f3d0;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            padding: 0.75rem; text-align: center; transition: transform .2s ease-in-out, box-shadow .2s ease-in-out;
+        }
+        .travel-folder:hover { transform: translateY(-5px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
+        .travel-folder h4 { font-weight: 700 !important; font-size: 0.875rem !important; line-height: 1.3 !important; margin: 0.5rem 0 0.25rem 0 !important; color: #1f2937 !important; }
+        .travel-folder p { font-weight: 700 !important; font-style: italic; font-size: 0.75rem !important; color: #6b7280 !important; margin: 0 !important; }
     </style>
 </head>
 <body class="text-black">
@@ -348,44 +320,18 @@
             </div>
             <p class="text-right text-red-600 font-semibold-bold mt-6 pr-4 font-forte-alternative poem-signature">- Nazım Hikmet</p>
         </section>
-        <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
-            <h3 class="font-bold text-center text-red-600 mb-4 handwriting timeline-title">Aşk Zaman Çizelgesi</h3>
-            <p class="text-center text-black font-semibold italic mb-8 timeline-subtitle">
-                Yolculuğumuzun unutulmaz anlarını, kalplerin ritmiyle keşfedin...
-            </p>
-            <div class="timeline-container">
-                <div class="timeline-item left">
-                    <div class="timeline-icon"><i class="fas fa-heart heartbeat"></i></div>
-                    <div class="timeline-content">
-                        <h4>Eylül</h4>
-                        <p class="font-semibold italic">
-                            Yaprakların dans ettiği o sonbahar gününde, gözlerinle tanıştım seninle...
-                        </p>
-                    </div>
-                </div>
-                <div class="timeline-item right">
-                    <div class="timeline-icon"><i class="fas fa-infinity heartbeat"></i></div>
-                    <div class="timeline-content">
-                        <h4>Sonsuza Dek...</h4>
-                        <p class="font-semibold italic">
-                            Yemin ettik birbirimize, Yıldızlar eşliğinde...
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
         <section class="my-16 max-w-3xl mx-auto text-center">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Aramızda Geçen İki Güzel Söz</h3>
             <div class="max-w-2xl mx-auto space-y-6">
                 <div class="fade-in-on-scroll">
                     <p class="text-xl md:text-2xl leading-relaxed italic text-green-600 font-medium">
-                        "Bana iyi hissettiriyorsun sen bu zamana kadar nerelerdeydin ?"
+                        " Bana iyi hissettiriyorsun sen bu zamana kadar nerelerdeydin "
                     </p>
                 </div>
                 <div class="text-center text-4xl text-red-500 heartbeat mb-4"><i class="fas fa-heart"></i></div>
                 <div class="fade-in-on-scroll">
                     <p class="text-xl md:text-2xl leading-relaxed italic text-green-600 font-medium">
-                        "Asıl sen neredeydin meğersem çok yakınmışız."
+                        " Asıl sen neredeydin meğersem çok yakınmışız "
                     </p>
                 </div>
             </div>
@@ -568,8 +514,8 @@
                 </div>
                 <div class="mt-16 text-center">
                     <p class="text-black text-xl md:text-2xl leading-relaxed text-center max-w-4xl mx-auto italic font-medium">
-                        “Yaprakların dansında buluştuk,<br>
-                        yıldızların ışığında sonsuza dek yürüyeceğiz Sevgilim ∞”
+                        “ Yaprakların dansında buluştuk,<br>
+                        yıldızların ışığında sonsuza dek yürüyeceğiz Sevgilim ”
                     </p>
                     <p class="text-green-600 mt-6 flex items-center justify-center gap-5 handwriting text-5xl md:text-6xl font-bold">
                         Arzu <i class="fas fa-infinity text-red-600 heartbeat text-4xl md:text-5xl"></i> Ersin
@@ -866,10 +812,6 @@
         document.getElementById('invitation-icon').onclick = () => invitationModal.classList.add('show');
         document.getElementById('close-invitation').onclick = () => invitationModal.classList.remove('show');
         invitationModal.onclick = e => { if (e.target === invitationModal) invitationModal.classList.remove('show'); };
-        const timelineObserver = new IntersectionObserver((entries) => {
-            entries.forEach((e,i) => { if (e.isIntersecting) setTimeout(() => e.target.classList.add('animate'), i * 300); });
-        }, { threshold: 0.3 });
-        document.querySelectorAll('.timeline-item').forEach(item => timelineObserver.observe(item));
         const fadeObserver = new IntersectionObserver(entries => {
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
         }, { threshold: 0.3 });
