@@ -26,12 +26,22 @@
             overflow-x: hidden;
             min-height: 100vh;
         }
+        /* Arka plan yaprak deseni – bu sefer gerçekten belirgin hafif kırmızımsı beyaz */
         #background-leaves-pattern {
             position: fixed; top: 0; left: 0; right: 0; bottom: 0;
             background-image: url('https://www.toptal.com/designers/subtlepatterns/uploads/leaves.png');
-            background-repeat: repeat; background-color: #fdfaf6; z-index: -2; pointer-events: none; opacity: 0.6;
+            background-repeat: repeat; 
+            background-color: #fef2f2; /* Çok zarif, modern ve belirgin hafif kırmızımsı beyaz (rose-50 tonu) */
+            z-index: -2; 
+            pointer-events: none; 
+            opacity: 0.85; /* Yaprakları daha net göstermek için biraz artırdım */
         }
-        @media (max-width: 768px) { #background-leaves-pattern { opacity: 0.9 !important; } }
+        @media (max-width: 768px) { 
+            #background-leaves-pattern { 
+                opacity: 0.95 !important; 
+                background-color: #fee2e2; /* Mobilde biraz daha yoğun hafif kırmızı ton */
+            } 
+        }
         #falling-leaves-container { position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: -1; overflow: hidden; }
         h1, h2, h3 { font-family: 'Playfair Display', serif; }
         .handwriting { font-family: 'Dancing Script', cursive; }
