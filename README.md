@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -549,8 +549,8 @@
         <!-- TEŞEKKÜR -->
         <section class="my-16 max-w-3xl mx-auto transparent-section">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Teşekkür</h3>
-            <p class="text-center text-black text-lg italic mt-4 font-bold">
-                Bu mutlu yolculuğumuzda yanımızda olan herkese sonsuz teşekkürler
+            <p class="text-center text-black text-xl md:text-2xl leading-relaxed max-w-4xl mx-auto italic font-medium mt-4">
+                Bu mutlu yolculuğumuzda yanımızda olan herkese sonsuz teşekkür ederiz
             </p>
             <div class="mt-16 text-center fade-in-on-scroll">
                 <p class="text-red-600 italic text-xl md:text-2xl mb-6 font-medium">
@@ -569,8 +569,8 @@
                 </div>
                 <div class="mt-16 text-center">
                     <p class="text-black text-xl md:text-2xl leading-relaxed text-center max-w-4xl mx-auto italic font-medium">
-                        “Yaprakların dansında buluştuk,<br>
-                        yıldızların ışığında sonsuza dek yürüyeceğiz Sevgilim ∞”
+                        “ Yaprakların dansında buluştuk,<br>
+                        yıldızların ışığında sonsuza dek yürüyeceğiz Sevgilim ”
                     </p>
                     <p class="text-green-600 mt-6 flex items-center justify-center gap-5 handwriting text-5xl md:text-6xl font-bold">
                         Arzu <i class="fas fa-infinity text-red-600 heartbeat text-4xl md:text-5xl"></i> Ersin
