@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -759,19 +759,19 @@
         window.onYouTubeIframeAPIReady = function() {
             bgPlayer = new YT.Player('bg-youtube-player', {
                 height: '0', width: '0', videoId: 'rYJjgfCfBOU',
-                playerVars: { autoplay: 1, controls: 0, modestbranding: 1, playsinline: 1, enablejsapi: 1, iv_load_policy: 3, fs: 0, rel: 0 },
+                playerVars: { autoplay: 0, controls: 0, modestbranding: 1, playsinline: 1, enablejsapi: 1, iv_load_policy: 3, fs: 0, rel: 0 },
                 events: {
                     onReady: function(event) {
-                        event.target.setVolume(35);
-                        event.target.unMute();
+                        event.target.mute();
                         event.target.playVideo();
-                        const unlock = () => {
+                        const unlockAndPlay = () => {
+                            event.target.unMute();
                             event.target.setVolume(70);
-                            document.body.removeEventListener('click', unlock);
-                            document.body.removeEventListener('touchstart', unlock);
+                            document.body.removeEventListener('click', unlockAndPlay);
+                            document.body.removeEventListener('touchstart', unlockAndPlay);
                         };
-                        document.body.addEventListener('click', unlock);
-                        document.body.addEventListener('touchstart', unlock);
+                        document.body.addEventListener('click', unlockAndPlay);
+                        document.body.addEventListener('touchstart', unlockAndPlay);
                     },
                     onStateChange: function(event) {
                         if (event.data === YT.PlayerState.ENDED) {
@@ -780,7 +780,6 @@
                             let nextIndex = playlist.indexOf(currentId) + 1;
                             if (nextIndex >= playlist.length) nextIndex = 0;
                             event.target.loadVideoById(playlist[nextIndex]);
-                            event.target.playVideo();
                         }
                     }
                 }
