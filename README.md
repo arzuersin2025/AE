@@ -323,14 +323,14 @@
         <section class="my-16 max-w-3xl mx-auto text-center">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Aramızda Geçen İki Güzel Söz</h3>
             <div class="max-w-2xl mx-auto space-y-6">
-                <div class="fade-in-on-scroll">
-                    <p class="text-xl md:text-2xl leading-relaxed italic text-green-600 font-medium">
+                <div>
+                    <p class="text-xl md:text-2xl leading-relaxed italic text-blue-600 font-medium">
                         " Bana iyi hissettiriyorsun sen bu zamana kadar nerelerdeydin "
                     </p>
                 </div>
                 <div class="text-center text-4xl text-red-500 heartbeat mb-4"><i class="fas fa-heart"></i></div>
-                <div class="fade-in-on-scroll">
-                    <p class="text-xl md:text-2xl leading-relaxed italic text-green-600 font-medium">
+                <div>
+                    <p class="text-xl md:text-2xl leading-relaxed italic text-blue-600 font-medium">
                         " Asıl sen neredeydin meğersem çok yakınmışız "
                     </p>
                 </div>
@@ -497,7 +497,7 @@
             <p class="text-center text-black text-xl md:text-2xl leading-relaxed max-w-4xl mx-auto italic font-medium mt-4">
                 Bu mutlu yolculuğumuzda yanımızda olan herkese sonsuz teşekkürler
             </p>
-            <div class="mt-16 text-center fade-in-on-scroll">
+            <div class="mt-16 text-center">
                 <p class="text-red-600 italic text-xl md:text-2xl mb-6 font-medium">
                     İletişim adresimiz
                 </p>
@@ -814,7 +814,7 @@
         const fadeObserver = new IntersectionObserver(entries => {
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
         }, { threshold: 0.3 });
-        document.querySelectorAll('.fade-in-on-scroll, .travel-folder').forEach(el => fadeObserver.observe(el));
+        document.querySelectorAll('.travel-folder').forEach(el => fadeObserver.observe(el));
         if (window.innerWidth > 768 && !('ontouchstart' in window)) {
             let currentScale = 1;
             let currentTranslateX = 0;
