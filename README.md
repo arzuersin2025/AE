@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -775,7 +775,7 @@
                     },
                     onStateChange: function(event) {
                         if (event.data === YT.PlayerState.ENDED) {
-                            const playlist = ['NudUovOABjQ', 'ZeS7Fjk2sKk', 'mTZRQltuHRc', 'fn0TjVY6Y1w', 'Rcq0LqEx3-E'];
+                            const playlist = ['NudUovOABjQ', 'ZeS7Fjk2sKk', 'fn0TjVY6Y1w', 'Rcq0LqEx3-E'];
                             const currentId = event.target.getVideoData().video_id;
                             let nextIndex = playlist.indexOf(currentId) + 1;
                             if (nextIndex >= playlist.length) nextIndex = 0;
