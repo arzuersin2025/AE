@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
     <style>
-        /* TÜM ÇİZGİLERİ %100 YOK EDER – ARTIK HİÇ GELMEYECEK */
         header, header *, #main-title, #sonbahar-baslik, h1, h2 {
             border: none !important;
             outline: none !important;
@@ -33,6 +32,7 @@
         }
         @media (max-width: 768px) { #background-leaves-pattern { opacity: 0.9 !important; } }
         #falling-leaves-container { position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: -1; overflow: hidden; }
+        #falling-hearts-container { position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: -1; overflow: hidden; }
         h1, h2, h3 { font-family: 'Playfair Display', serif; }
         .handwriting { font-family: 'Dancing Script', cursive; }
         .font-forte-alternative { font-family: 'Dancing Script', cursive; }
@@ -63,6 +63,19 @@
         @keyframes fall { 0% { transform: translateY(-120px) rotate(0deg) scale(1); opacity: 0; } 8% { opacity: 0.9; } 30% { transform: translateY(30vh) translateX(15px) rotate(180deg) scale(0.95); } 50% { transform: translateY(50vh) translateX(-20px) rotate(540deg) scale(0.9); } 70% { transform: translateY(70vh) translateX(25px) rotate(800deg) scale(0.85); } 92% { opacity: 0.9; } 100% { transform: translateY(110vh) translateX(-15px) rotate(1080deg) scale(0.6); opacity: 0; } }
         .leaf-svg .leaf-inner { fill: currentColor; } .leaf-svg .leaf-outer { fill: white; opacity: 0.95; }
         .leaf-svg.autumn-1 { color: #f59e0b; } .leaf-svg.autumn-2 { color: #ef4444; } .leaf-svg.autumn-3 { color: #facc15; } .leaf-svg.autumn-4 { color: #92400e; } .leaf-svg.autumn-5 { color: #84cc16; } .leaf-svg.autumn-6 { color: #fb923c; } .leaf-svg.autumn-7 { color: #dc2626; } .leaf-svg.autumn-8 { color: #f97316; } .leaf-svg.autumn-9 { color: #22c55e; } .leaf-svg.autumn-10 { color: #16a34a; }
+        .falling-heart {
+            position: absolute;
+            font-size: 2rem;
+            pointer-events: none;
+            animation: heartFall linear infinite;
+            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3));
+        }
+        @keyframes heartFall {
+            0% { opacity: 0; transform: translateY(-150px) rotate(0deg) scale(0.8); }
+            5% { opacity: 1; }
+            95% { opacity: 1; }
+            100% { opacity: 0; transform: translateY(calc(100vh + 150px)) rotate(1080deg) scale(0.4); }
+        }
         .music-visualizer { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: flex; align-items: center; justify-content: center; gap: 6px; z-index: 15; opacity: 1; transition: opacity 0.3s ease; width: 200px; pointer-events: none; }
         .music-visualizer.hidden { opacity: 0 !important; pointer-events: none; }
         .note { font-size: 1.8rem; color: #ef4444; animation: floatNote 1.8s infinite ease-in-out; transform-origin: bottom; }
@@ -94,53 +107,6 @@
         @media (min-width: 768px) {
             .header-name { font-size: 6.75vw; }
             .header-heart { font-size: 5vw; }
-        }
-        #heart-rain-btn {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            z-index: 9999;
-            width: 80px;
-            height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: transform 0.4s ease;
-        }
-        #heart-rain-btn:hover { transform: scale(1.35); }
-        #heart-rain-btn i { font-size: 52px; color: #e11d48; filter: drop-shadow(0 4px 12px rgba(225,29,72,0.6)); }
-        #heart-rain-btn span {
-            position: absolute;
-            font-family: 'Dancing Script', cursive;
-            font-weight: 700;
-            font-size: 18px;
-            color: white;
-            text-shadow: 0 2px 6px rgba(0,0,0,0.8);
-            pointer-events: none;
-            user-select: none;
-        }
-        @media (max-width: 480px) {
-            #heart-rain-btn { width: 70px; height: 90px; top: 15px; left: 15px; }
-            #heart-rain-btn i { font-size: 44px; }
-            #heart-rain-btn span { font-size: 16px; }
-        }
-        .heart-rain {
-            position: fixed;
-            top: -80px;
-            pointer-events: none;
-            user-select: none;
-            z-index: 9998;
-            font-size: 2.8rem;
-            animation: heartRainFall linear forwards;
-            opacity: 0;
-            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3));
-        }
-        @keyframes heartRainFall {
-            0% { opacity: 0; transform: translateY(-100px) rotate(0deg) scale(0.6); }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { opacity: 0; transform: translateY(calc(100vh + 100px)) rotate(1080deg) scale(0.3); }
         }
         #map-icon {
             cursor: pointer;
@@ -260,11 +226,9 @@
 <body class="text-black">
     <div id="background-leaves-pattern"></div>
     <div id="falling-leaves-container"></div>
+    <div id="falling-hearts-container"></div>
     <div id="bg-youtube-player" style="position:fixed; top:-100%; left:0; width:1px; height:1px; opacity:0; pointer-events:none;"></div>
-    <div id="heart-rain-btn" title="Kalp yağmuru başlat!">
-        <i class="fas fa-heart heartbeat"></i>
-        <span>Dokun</span>
-    </div>
+
     <header class="py-16 text-center relative z-20 overflow-hidden">
         <div class="relative">
             <div id="bg-music-control" title="Arka plan müziği">
@@ -288,7 +252,7 @@
         <p class="text-xl md:text-2xl mt-2 text-red-600 font-bold">27 Eylül 2025</p>
         <p class="text-lg mt-1 text-red-600 italic font-bold">Zamanın durduğu an</p>
     </section>
-    <main class="container mx-auto px-6 pb-12">
+    <main class="container mx-auto px-6 pb-12 relative z-20">
         <section class="max-w-3xl mx-auto my-12 text-center">
             <h3 id="ilk-adim-baslik" class="font-bold text-red-600 mb-4">İlk Adım</h3>
             <p class="text-lg leading-relaxed font-medium font-[550] text-black">
@@ -497,7 +461,7 @@
             <p class="text-center text-black text-xl md:text-2xl leading-relaxed max-w-4xl mx-auto italic font-medium mt-4">
                 Bu mutlu yolculuğumuzda yanımızda olan herkese sonsuz teşekkürler
             </p>
-            <div class="mt-16 text-center">
+            <div class="mt-16 text-center fade-in-on-scroll">
                 <p class="text-red-600 italic text-xl md:text-2xl mb-6 font-medium">
                     İletişim adresimiz
                 </p>
@@ -551,25 +515,24 @@
                 bgIcon.className = 'fas fa-volume-mute';
             }
         });
-        document.getElementById('heart-rain-btn').addEventListener('click', function() {
-            const count = 60;
-            const hearts = ['❤️','🧡','💛','💚','💙','💜','💖','💝','💘','💕','💞','💓','💗','💝'];
-            for (let i = 0; i < count; i++) {
-                const h = document.createElement('div');
-                h.className = 'heart-rain';
-                h.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
-                h.style.left = Math.random() * 100 + 'vw';
-                h.style.animationDuration = (Math.random() * 4 + 4) + 's';
-                h.style.animationDelay = Math.random() * 1.5 + 's';
-                h.style.fontSize = (Math.random() * 30 + 20) + 'px';
-                document.body.appendChild(h);
-                setTimeout(() => h.remove(), 12000);
-            }
-        });
+        const hearts = ['❤️','🧡','💛','💚','💜'];
+        const heartContainer = document.getElementById('falling-hearts-container');
+        for (let i = 0; i < 5; i++) {
+            const heart = document.createElement('div');
+            heart.className = 'falling-heart';
+            heart.innerHTML = hearts[i];
+            heart.style.left = (10 + i * 20) + '%';
+            const duration = 20 + i * 3;
+            heart.style.animationDuration = duration + 's';
+            heart.style.animationDelay = i * 4 + 's';
+            const size = 1.8 + Math.random() * 0.8;
+            heart.style.fontSize = size + 'rem';
+            heartContainer.appendChild(heart);
+        }
         const leafSVG = `<svg viewBox="0 0 100 140" class="w-full h-full" preserveAspectRatio="xMidYMid meet"><path class="leaf-outer" d="M50 10 C30 15, 20 35, 18 55 C16 75, 25 95, 35 115 C45 130, 48 135, 50 138 C52 135, 55 130, 65 115 C75 95, 84 75, 82 55 C80 35, 70 15, 50 10 Z" /><path class="leaf-inner" d="M50 15 C33 20, 25 38, 23 55 C21 72, 28 88, 36 108 C44 125, 48 132, 50 135 C52 132, 56 125, 64 108 C72 88, 79 72, 77 55 C75 38, 67 20, 50 15 Z" /><path d="M50 15 Q50 70 48 135" stroke="#fff" stroke-width="2.5" opacity="0.5" fill="none"/><path d="M50 15 Q35 40 28 48 M50 55 Q32 65 25 75 M50 80 Q30 90 23 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/><path d="M50 15 Q65 40 72 48 M50 55 Q68 65 75 75 M50 80 Q70 90 77 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/></svg>`;
         const leafColors = ['autumn-1','autumn-2','autumn-3','autumn-4','autumn-5','autumn-6','autumn-7','autumn-8','autumn-9','autumn-10'];
         const leafContainer = document.getElementById('falling-leaves-container');
-        for (let i = 0; i < 7; i++) {
+        for (let i = 0; i < 4; i++) {
             const leaf = document.createElement('div');
             const colorClass = leafColors[Math.floor(Math.random() * leafColors.length)];
             leaf.className = `leaf-svg ${colorClass}`;
@@ -578,7 +541,7 @@
             leaf.style.transform = `scale(${scale}) rotate(${Math.random() * 360}deg)`;
             const duration = 18 + Math.random() * 12;
             leaf.style.animationDuration = duration + 's';
-            leaf.style.animationDelay = Math.random() * 10 + 's';
+            leaf.style.animationDelay = Math.random() * 20 + 's';
             leaf.innerHTML = leafSVG;
             leafContainer.appendChild(leaf);
         }
@@ -814,7 +777,7 @@
         const fadeObserver = new IntersectionObserver(entries => {
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
         }, { threshold: 0.3 });
-        document.querySelectorAll('.travel-folder').forEach(el => fadeObserver.observe(el));
+        document.querySelectorAll('.fade-in-on-scroll, .travel-folder').forEach(el => fadeObserver.observe(el));
         if (window.innerWidth > 768 && !('ontouchstart' in window)) {
             let currentScale = 1;
             let currentTranslateX = 0;
