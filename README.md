@@ -228,7 +228,6 @@
     <div id="falling-leaves-container"></div>
     <div id="falling-hearts-container"></div>
     <div id="bg-youtube-player" style="position:fixed; top:-100%; left:0; width:1px; height:1px; opacity:0; pointer-events:none;"></div>
-
     <header class="py-16 text-center relative z-20 overflow-hidden">
         <div class="relative">
             <div id="bg-music-control" title="Arka plan müziği">
@@ -304,7 +303,7 @@
             <h3 class="font-bold text-red-600 mb-6 font-forte-alternative">Büyük Güne Geri Sayım</h3>
             <div id="countdown-placeholder" class="my-4">
                 <div class="text-8xl text-red-500 heartbeat"><i class="fas fa-infinity"></i></div>
-                <p class="text-center text-black font-semibold italic text-lg mt-4">
+                <p class="text-center font-semibold italic text-lg mt-4 text-orange-600">
                     Sonsuzluğa giden yolculuğumuzun tarihi belli olduğunda...
                 </p>
             </div>
@@ -323,7 +322,7 @@
                 </a>
                 <div class="map-click-text">Tıkla</div>
             </div>
-            <p class="text-center text-black font-semibold italic text-lg mt-6 leading-relaxed px-6 max-w-2xl mx-auto">
+            <p class="text-center font-semibold italic text-lg mt-6 leading-relaxed px-6 max-w-2xl mx-auto text-purple-600">
                 Seninle sonsuzluğa adım attığımız yer 💙
             </p>
         </section>
@@ -336,7 +335,7 @@
                 <div class="invitation-click-text">Tıkla</div>
             </div>
             <div class="mt-6 max-w-2xl mx-auto">
-                <p class="text-center text-black font-semibold italic text-lg leading-relaxed px-6">
+                <p class="text-center font-semibold italic text-lg leading-relaxed px-6 text-amber-900">
                     Bu bir davetiye değil, size yazdığımız bir mutluluk mektubu 💚
                 </p>
             </div>
@@ -347,7 +346,9 @@
         </div>
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center relative overflow-hidden">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Bizim Şarkımız</h3>
-            <p class="text-center text-black font-semibold italic mt-2 mb-6">Tarkan - Beni Çok Sev</p>
+            <p class="text-center font-semibold italic mt-2 mb-6 text-purple-600">
+                Tarkan - Beni Çok Sev
+            </p>
             <div class="song-container">
                 <iframe id="youtube-player"
                         src="https://www.youtube.com/embed/IYnu4-69fTA?autoplay=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1"
@@ -367,7 +368,7 @@
         </section>
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Seyahatlerimiz</h3>
-            <p class="text-center text-black text-xl md:text-2xl leading-relaxed max-w-4xl mx-auto italic font-medium">
+            <p class="text-center text-green-600 text-xl md:text-2xl leading-relaxed max-w-4xl mx-auto italic font-medium">
                 Birlikte keşfettiğimiz yerler...
             </p>
             <div class="mt-8 text-center">
@@ -386,7 +387,7 @@
         </section>
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Fotoğraf Galerimiz</h3>
-            <p class="text-center text-black text-xl md:text-2xl leading-relaxed max-w-4xl mx-auto italic font-medium">
+            <p class="text-center text-purple-600 text-xl md:text-2xl leading-relaxed max-w-4xl mx-auto italic font-medium">
                 İşte yolculuğumuzda biriktirdiğimiz Anılar..
             </p>
             <div class="mt-8 text-center">
@@ -436,7 +437,7 @@
         </section>
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Video Galerimiz</h3>
-            <p class="text-center text-black text-xl md:text-2xl leading-relaxed max-w-4xl mx-auto italic font-medium">
+            <p class="text-center text-yellow-300 text-xl md:text-2xl leading-relaxed max-w-4xl mx-auto italic font-medium">
                 Bazı duyguları kelimelerle anlatmak yetmez...
             </p>
             <div class="mt-8 text-center">
@@ -458,7 +459,7 @@
         </section>
         <section class="my-16 max-w-3xl mx-auto transparent-section">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Teşekkür</h3>
-            <p class="text-center text-black text-xl md:text-2xl leading-relaxed max-w-4xl mx-auto italic font-medium mt-4">
+            <p class="text-center text-blue-600 text-xl md:text-2xl leading-relaxed max-w-4xl mx-auto italic font-medium mt-4">
                 Bu mutlu yolculuğumuzda yanımızda olan herkese sonsuz teşekkürler
             </p>
             <div class="mt-16 text-center fade-in-on-scroll">
