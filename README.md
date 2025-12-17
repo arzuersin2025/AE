@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -404,9 +404,9 @@
                         <div class="photo-note">Bostancı</div>
                     </div>
                     <div class="photo-container group cursor-pointer">
-                        <img data-src="https://i.imgur.com/PTYXm1S.jpg" alt="Nakkaştepe Millet Bahçesi" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
+                        <img data-src="https://i.imgur.com/PTYXm1S.jpg" alt="Nakkaştepe" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">13</span>
-                        <div class="photo-note">Nakkaştepe Millet Bahçesi</div>
+                        <div class="photo-note">Nakkaştepe </div>
                     </div>
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/Q6ZF31K.jpg" alt="Katibim" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
@@ -437,7 +437,7 @@
         </section>
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Video Galerimiz</h3>
-            <p class="text-center text-yellow-300 text-xl md:text-2xl leading-relaxed max-w-4xl mx-auto italic font-medium">
+            <p class="text-center text-green-600 text-xl md:text-2xl leading-relaxed max-w-4xl mx-auto italic font-medium">
                 Bazı duyguları kelimelerle anlatmak yetmez...
             </p>
             <div class="mt-8 text-center">
