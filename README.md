@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -48,8 +48,10 @@
         @media (min-width: 768px) { main h3:not(#ilk-adim-baslik) { font-size: 2rem !important; } }
         #ilk-adim-baslik { font-size: 1.5rem !important; line-height: 1.4 !important; }
         @media (min-width: 768px) { #ilk-adim-baslik { font-size: 1.75rem !important; } }
-        #sonbahar-baslik { font-size: 3.5rem !important; line-height: 1.1 !important; }
-        @media (min-width: 768px) { #sonbahar-baslik { font-size: 6rem !important; } }
+        /* Sonbahar başlığını iyice büyüttüm – artık çok daha dikkat çekici */
+        #sonbahar-baslik { font-size: 5rem !important; line-height: 1.1 !important; }
+        @media (min-width: 768px) { #sonbahar-baslik { font-size: 8rem !important; } }
+        @media (max-width: 768px) { #sonbahar-baslik { font-size: 4.5rem !important; } }
         .poem-container {
             max-width: 90%; margin: 0 auto; padding: 2rem 0; line-height: 1.4; font-size: 1.725rem; font-style: italic; color: #16a34a !important; text-align: center;
         }
