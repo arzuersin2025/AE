@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -48,10 +48,21 @@
         @media (min-width: 768px) { main h3:not(#ilk-adim-baslik) { font-size: 2rem !important; } }
         #ilk-adim-baslik { font-size: 1.5rem !important; line-height: 1.4 !important; }
         @media (min-width: 768px) { #ilk-adim-baslik { font-size: 1.75rem !important; } }
-        /* Sonbahar başlığını iyice büyüttüm – artık çok daha dikkat çekici */
-        #sonbahar-baslik { font-size: 5rem !important; line-height: 1.1 !important; }
-        @media (min-width: 768px) { #sonbahar-baslik { font-size: 8rem !important; } }
-        @media (max-width: 768px) { #sonbahar-baslik { font-size: 4.5rem !important; } }
+        /* Sonbahar başlığı – bu sefer inline style ile %100 garanti büyük olacak */
+        #sonbahar-baslik {
+            font-size: 5rem !important;
+            line-height: 1.1 !important;
+        }
+        @media (min-width: 768px) {
+            #sonbahar-baslik {
+                font-size: 8rem !important;
+            }
+        }
+        @media (max-width: 768px) {
+            #sonbahar-baslik {
+                font-size: 4.5rem !important;
+            }
+        }
         .poem-container {
             max-width: 90%; margin: 0 auto; padding: 2rem 0; line-height: 1.4; font-size: 1.725rem; font-style: italic; color: #16a34a !important; text-align: center;
         }
@@ -270,7 +281,17 @@
             <div class="text-4xl text-red-500 mt-8 heartbeat"><i class="fas fa-heart"></i></div>
         </section>
         <section class="my-16 max-w-3xl mx-auto text-center">
-            <h3 id="sonbahar-baslik" class="font-bold text-center text-red-600 mb-6 handwriting font-forte-alternative">Sonbahar</h3>
+            <!-- INLINE STYLE EKLEDİM – BU SEFER KESİN BÜYÜK KALACAK -->
+            <h3 id="sonbahar-baslik" class="font-bold text-center text-red-600 mb-6 handwriting font-forte-alternative" style="font-size: 8rem !important; line-height: 1.1 !important;">
+                Sonbahar
+            </h3>
+            <style>
+                @media (max-width: 768px) {
+                    #sonbahar-baslik {
+                        font-size: 4.5rem !important;
+                    }
+                }
+            </style>
             <div class="poem-container">
                 <div class="poem-line italic">Çiçekli badem ağaçlarını unut.</div>
                 <div class="poem-line italic">değmez,</div>
