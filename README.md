@@ -48,10 +48,11 @@
         @media (min-width: 768px) { main h3:not(#ilk-adim-baslik) { font-size: 2rem !important; } }
         #ilk-adim-baslik { font-size: 1.5rem !important; line-height: 1.4 !important; }
         @media (min-width: 768px) { #ilk-adim-baslik { font-size: 1.75rem !important; } }
-        /* Sonbahar başlığı – bu sefer inline style ile %100 garanti büyük olacak */
+        /* Sonbahar başlığı – mobilde tek satırda ve istediğin boyutta */
         #sonbahar-baslik {
             font-size: 5rem !important;
             line-height: 1.1 !important;
+            white-space: nowrap !important;
         }
         @media (min-width: 768px) {
             #sonbahar-baslik {
@@ -281,17 +282,7 @@
             <div class="text-4xl text-red-500 mt-8 heartbeat"><i class="fas fa-heart"></i></div>
         </section>
         <section class="my-16 max-w-3xl mx-auto text-center">
-            <!-- INLINE STYLE EKLEDİM – BU SEFER KESİN BÜYÜK KALACAK -->
-            <h3 id="sonbahar-baslik" class="font-bold text-center text-red-600 mb-6 handwriting font-forte-alternative" style="font-size: 8rem !important; line-height: 1.1 !important;">
-                Sonbahar
-            </h3>
-            <style>
-                @media (max-width: 768px) {
-                    #sonbahar-baslik {
-                        font-size: 4.5rem !important;
-                    }
-                }
-            </style>
+            <h3 id="sonbahar-baslik" class="font-bold text-center text-red-600 mb-6 handwriting font-forte-alternative">Sonbahar</h3>
             <div class="poem-container">
                 <div class="poem-line italic">Çiçekli badem ağaçlarını unut.</div>
                 <div class="poem-line italic">değmez,</div>
