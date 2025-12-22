@@ -722,7 +722,7 @@
             isPanning = false;
             updateTransform();
         };
-        // Yeni özellik: Çift tıklama ile orijinal boyuta dön
+        // Çift tıklama ile orijinal boyuta dön (desktop)
         modalImage.addEventListener('dblclick', (e) => {
             e.preventDefault();
             scale = 1;
@@ -730,7 +730,7 @@
             translateY = 0;
             updateTransform();
         });
-        // Çift dokunma (mobil)
+        // Mobil: Çift dokunma ile orijinal boyuta dön
         let lastTouchEnd = 0;
         modalImage.addEventListener('touchend', (e) => {
             const now = new Date().getTime();
@@ -742,6 +742,9 @@
                 updateTransform();
             }
             lastTouchEnd = now;
+
+            // Parmak kaldırıldığında zoom ve konum korunur
+            isPanning = false;
         });
         modal.addEventListener('touchstart', (e) => {
             if (e.touches.length === 2) {
@@ -771,14 +774,6 @@
                 const deltaY = (e.touches[0].clientY - startClientY) * sensitivity;
                 translateX = startTranslateX + deltaX;
                 translateY = startTranslateY + deltaY;
-                updateTransform();
-            }
-        });
-        modal.addEventListener('touchend', (e) => {
-            isPanning = false;
-            if (scale <= 1.1) {
-                translateX = 0;
-                translateY = 0;
                 updateTransform();
             }
         });
