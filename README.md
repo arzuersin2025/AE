@@ -1,3 +1,4 @@
+
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -36,7 +37,7 @@
         .handwriting { font-family: 'Dancing Script', cursive; }
         .font-forte-alternative { font-family: 'Dancing Script', cursive; }
         .font-poor-richard-alternative { font-family: 'Cormorant Garamond', serif; }
-        @keyframes heartbeat { 0%,100%{transform:scale(1)} 50%{transform:scale(1.1)} }
+        @keyframes heartbeat { 0%,100%{transform:scale(1)} 50%{transform:scale(1.15)} }
         .heartbeat { animation: heartbeat 1.5s infinite; }
         #main-title { font-size: 3rem !important; line-height: 1.2 !important; }
         @media (min-width: 768px) { #main-title { font-size: 4rem !important; } }
@@ -102,10 +103,8 @@
         .song-container { position: relative; width: 16rem; height: 16rem; margin: 0 auto; }
         @media (min-width: 768px) { .song-container { width: 20rem; height: 20rem; } }
         .header-name { font-size: 11.7vw; }
-        .header-heart { font-size: 10vw; margin: 0 0.2em; }
         @media (min-width: 768px) {
             .header-name { font-size: 6.75vw; }
-            .header-heart { font-size: 5vw; }
         }
         #map-icon {
             cursor: pointer;
@@ -220,6 +219,49 @@
         .travel-folder:hover { transform: translateY(-5px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
         .travel-folder h4 { font-weight: 700 !important; font-size: 0.875rem !important; line-height: 1.3 !important; margin: 0.5rem 0 0.25rem 0 !important; color: #1f2937 !important; }
         .travel-folder p { font-weight: 700 !important; font-style: italic; font-size: 0.75rem !important; color: #6b7280 !important; margin: 0 !important; }
+
+        /* İkili kalp – sabit, kırmızı kalbin yarısı sarı kalbin arkasında, siyah kenarlı */
+        .interlocked-hearts {
+            position: relative;
+            display: inline-block;
+            width: 14vw;
+            height: 10vw;
+            margin: 0 1em;
+        }
+        .heart-yellow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 10vw;
+            color: #facc15;
+            -webkit-text-stroke: 3px black;
+            paint-order: stroke fill;
+            z-index: 2;
+        }
+        .heart-red {
+            position: absolute;
+            top: 0;
+            left: 45%;
+            font-size: 10vw;
+            color: #dc2626;
+            -webkit-text-stroke: 3px black;
+            paint-order: stroke fill;
+            z-index: 1;
+        }
+        @media (min-width: 768px) {
+            .interlocked-hearts {
+                width: 8vw;
+                height: 5vw;
+                margin: 0 1.5em;
+            }
+            .heart-yellow, .heart-red {
+                font-size: 5vw;
+                -webkit-text-stroke: 2px black;
+            }
+            .heart-red {
+                left: 50%;
+            }
+        }
     </style>
 </head>
 <body class="text-black">
@@ -239,7 +281,10 @@
             <div class="relative z-10">
                 <h1 class="font-bold text-green-600 flex items-center justify-center handwriting leading-tight">
                     <span class="header-name">Arzu</span>
-                    <i class="fas fa-heart text-red-500 heartbeat header-heart"></i>
+                    <span class="interlocked-hearts">
+                        <i class="fa-solid fa-heart heart-yellow"></i>
+                        <i class="fa-solid fa-heart heart-red"></i>
+                    </span>
                     <span class="header-name">Ersin</span>
                 </h1>
                 <p class="text-xl md:text-2xl text-red-600 mt-10">Bizim Yolculuğumuz</p>
