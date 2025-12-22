@@ -48,7 +48,6 @@
         @media (min-width: 768px) { main h3:not(#ilk-adim-baslik) { font-size: 2rem !important; } }
         #ilk-adim-baslik { font-size: 1.5rem !important; line-height: 1.4 !important; }
         @media (min-width: 768px) { #ilk-adim-baslik { font-size: 1.75rem !important; } }
-        /* Sonbahar başlığı – mobilde tek satırda */
         #sonbahar-baslik {
             font-size: 5rem !important;
             line-height: 1.1 !important;
@@ -74,7 +73,15 @@
         .poem-signature { font-size: 1.5rem !important; line-height: 1.4 !important; color: #dc2626 !important; }
         @media (max-width: 768px) { .poem-signature { font-size: 1.875rem !important; } }
         .leaf-svg { position: absolute; width: 32px; height: 44px; opacity: 0.9; animation: fall linear infinite; transform-origin: center; filter: drop-shadow(0 3px 6px rgba(0,0,0,0.3)); }
-        @keyframes fall { 0% { transform: translateY(-120px) rotate(0deg) scale(1); opacity: 0; } 8% { opacity: 0.9; } 30% { transform: translateY(30vh) translateX(15px) rotate(180deg) scale(0.95); } 50% { transform: translateY(50vh) translateX(-20px) rotate(540deg) scale(0.9); } 70% { transform: translateY(70vh) translateX(25px) rotate(800deg) scale(0.85); } 92% { opacity: 0.9; } 100% { transform: translateY(110vh) translateX(-15px) rotate(1080deg) scale(0.6); opacity: 0; } }
+        @keyframes fall { 
+            0% { transform: translateY(-120px) rotate(0deg) scale(1); opacity: 0; } 
+            8% { opacity: 0.9; } 
+            30% { transform: translateY(30vh) translateX(15px) rotate(180deg) scale(0.95); } 
+            50% { transform: translateY(50vh) translateX(-20px) rotate(540deg) scale(0.9); } 
+            70% { transform: translateY(70vh) translateX(25px) rotate(800deg) scale(0.85); } 
+            92% { opacity: 0.9; } 
+            100% { transform: translateY(110vh) translateX(-15px) rotate(1080deg) scale(0.6); opacity: 0; } 
+        }
         .leaf-svg .leaf-inner { fill: currentColor; } .leaf-svg .leaf-outer { fill: white; opacity: 0.95; }
         .leaf-svg.autumn-1 { color: #f59e0b; } .leaf-svg.autumn-2 { color: #ef4444; } .leaf-svg.autumn-3 { color: #facc15; } .leaf-svg.autumn-4 { color: #92400e; } .leaf-svg.autumn-5 { color: #84cc16; } .leaf-svg.autumn-6 { color: #fb923c; } .leaf-svg.autumn-7 { color: #dc2626; } .leaf-svg.autumn-8 { color: #f97316; } .leaf-svg.autumn-9 { color: #22c55e; } .leaf-svg.autumn-10 { color: #16a34a; }
         .falling-heart {
@@ -506,7 +513,7 @@
                         <div class="photo-note">Güldür Güldür</div>
                     </div>
                     <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="ChFa2GJ4e4U">
-                        <img data-src="https://img.youtube.com/vi/ChFa2GJ4e4U/maxresdefault.jpg" alt="Video 1" class="w-full h-full object-cover gallery-thumbnail" loading="lazy">
+                        <img data-src="https://img.youtube.com/vi/ChFa2GJ4e4U/maxresdefault.jpg" alt="Beşiktaş" class="w-full h-full object-cover gallery-thumbnail" loading="lazy">
                         <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
                             <i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i>
                         </div>
@@ -514,7 +521,7 @@
                         <div class="photo-note">Beşiktaş</div>
                     </div>
                     <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="aim5II5vYpU">
-                        <img data-src="https://img.youtube.com/vi/aim5II5vYpU/maxresdefault.jpg" alt="Video 2" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
+                        <img data-src="https://img.youtube.com/vi/aim5II5vYpU/maxresdefault.jpg" alt="Üsküdar" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
                             <i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i>
                         </div>
@@ -522,7 +529,7 @@
                         <div class="photo-note">Üsküdar</div>
                     </div>
                     <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="uY6ZrwkbLjc">
-                        <img data-src="https://img.youtube.com/vi/uY6ZrwkbLjc/maxresdefault.jpg" alt="Video 3" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
+                        <img data-src="https://img.youtube.com/vi/uY6ZrwkbLjc/maxresdefault.jpg" alt="Lunapark" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
                             <i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i>
                         </div>
@@ -530,7 +537,7 @@
                         <div class="photo-note">Lunapark</div>
                     </div>
                     <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="19aKq8FtYP8">
-                        <img data-src="https://img.youtube.com/vi/19aKq8FtYP8/maxresdefault.jpg" alt="Video 4" class="w-full h-full object-cover gallery-thumbnail" loading="lazy">
+                        <img data-src="https://img.youtube.com/vi/19aKq8FtYP8/maxresdefault.jpg" alt="Beşiktaş" class="w-full h-full object-cover gallery-thumbnail" loading="lazy">
                         <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
                             <i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i>
                         </div>
@@ -538,7 +545,7 @@
                         <div class="photo-note">Beşiktaş</div>
                     </div>
                     <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="J466tfX1jzk">
-                        <img data-src="https://img.youtube.com/vi/J466tfX1jzk/maxresdefault.jpg" alt="Video 5" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
+                        <img data-src="https://img.youtube.com/vi/J466tfX1jzk/maxresdefault.jpg" alt="Ev" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
                             <i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i>
                         </div>
@@ -606,33 +613,33 @@
                 bgIcon.className = 'fas fa-volume-mute';
             }
         });
-        const hearts = ['❤️','🧡','💛','💚','💜'];
+        // KALPLER – 3 adet, yavaş
+        const hearts = ['❤️','🧡','💛'];
         const heartContainer = document.getElementById('falling-hearts-container');
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 3; i++) {
             const heart = document.createElement('div');
             heart.className = 'falling-heart';
             heart.innerHTML = hearts[i];
-            heart.style.left = (10 + i * 20) + '%';
-            const duration = 20 + i * 3;
-            heart.style.animationDuration = duration + 's';
-            heart.style.animationDelay = i * 4 + 's';
-            const size = 1.8 + Math.random() * 0.8;
-            heart.style.fontSize = size + 'rem';
+            heart.style.left = (15 + i * 35) + '%';
+            heart.style.animationDuration = (35 + i * 5) + 's';
+            heart.style.animationDelay = i * 10 + 's';
+            heart.style.fontSize = (1.8 + Math.random() * 0.6) + 'rem';
             heartContainer.appendChild(heart);
         }
+        // YAPRAKLAR – 3 adet, yavaş
         const leafSVG = `<svg viewBox="0 0 100 140" class="w-full h-full" preserveAspectRatio="xMidYMid meet"><path class="leaf-outer" d="M50 10 C30 15, 20 35, 18 55 C16 75, 25 95, 35 115 C45 130, 48 135, 50 138 C52 135, 55 130, 65 115 C75 95, 84 75, 82 55 C80 35, 70 15, 50 10 Z" /><path class="leaf-inner" d="M50 15 C33 20, 25 38, 23 55 C21 72, 28 88, 36 108 C44 125, 48 132, 50 135 C52 132, 56 125, 64 108 C72 88, 79 72, 77 55 C75 38, 67 20, 50 15 Z" /><path d="M50 15 Q50 70 48 135" stroke="#fff" stroke-width="2.5" opacity="0.5" fill="none"/><path d="M50 15 Q35 40 28 48 M50 55 Q32 65 25 75 M50 80 Q30 90 23 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/><path d="M50 15 Q65 40 72 48 M50 55 Q68 65 75 75 M50 80 Q70 90 77 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/></svg>`;
         const leafColors = ['autumn-1','autumn-2','autumn-3','autumn-4','autumn-5','autumn-6','autumn-7','autumn-8','autumn-9','autumn-10'];
         const leafContainer = document.getElementById('falling-leaves-container');
-        for (let i = 0; i < 4; i++) {
+        for (let i = 0; i < 3; i++) {
             const leaf = document.createElement('div');
             const colorClass = leafColors[Math.floor(Math.random() * leafColors.length)];
             leaf.className = `leaf-svg ${colorClass}`;
             leaf.style.left = Math.random() * 100 + 'vw';
-            const scale = 0.5 + 0.9 * Math.random();
+            const scale = 0.6 + 0.7 * Math.random();
             leaf.style.transform = `scale(${scale}) rotate(${Math.random() * 360}deg)`;
-            const duration = 18 + Math.random() * 12;
+            const duration = 40 + Math.random() * 15;
             leaf.style.animationDuration = duration + 's';
-            leaf.style.animationDelay = Math.random() * 20 + 's';
+            leaf.style.animationDelay = Math.random() * 30 + 's';
             leaf.innerHTML = leafSVG;
             leafContainer.appendChild(leaf);
         }
