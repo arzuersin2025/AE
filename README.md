@@ -73,14 +73,14 @@
         .poem-signature { font-size: 1.5rem !important; line-height: 1.4 !important; color: #dc2626 !important; }
         @media (max-width: 768px) { .poem-signature { font-size: 1.875rem !important; } }
         .leaf-svg { position: absolute; width: 32px; height: 44px; opacity: 0.9; animation: fall linear infinite; transform-origin: center; filter: drop-shadow(0 3px 6px rgba(0,0,0,0.3)); }
-        @keyframes fall { 
-            0% { transform: translateY(-120px) rotate(0deg) scale(1); opacity: 0; } 
-            8% { opacity: 0.9; } 
-            30% { transform: translateY(30vh) translateX(15px) rotate(180deg) scale(0.95); } 
-            50% { transform: translateY(50vh) translateX(-20px) rotate(540deg) scale(0.9); } 
-            70% { transform: translateY(70vh) translateX(25px) rotate(800deg) scale(0.85); } 
-            92% { opacity: 0.9; } 
-            100% { transform: translateY(110vh) translateX(-15px) rotate(1080deg) scale(0.6); opacity: 0; } 
+        @keyframes fall {
+            0% { transform: translateY(-120px) rotate(0deg) scale(1); opacity: 0; }
+            8% { opacity: 0.9; }
+            30% { transform: translateY(30vh) translateX(15px) rotate(180deg) scale(0.95); }
+            50% { transform: translateY(50vh) translateX(-20px) rotate(540deg) scale(0.9); }
+            70% { transform: translateY(70vh) translateX(25px) rotate(800deg) scale(0.85); }
+            92% { opacity: 0.9; }
+            100% { transform: translateY(110vh) translateX(-15px) rotate(1080deg) scale(0.6); opacity: 0; }
         }
         .leaf-svg .leaf-inner { fill: currentColor; } .leaf-svg .leaf-outer { fill: white; opacity: 0.95; }
         .leaf-svg.autumn-1 { color: #f59e0b; } .leaf-svg.autumn-2 { color: #ef4444; } .leaf-svg.autumn-3 { color: #facc15; } .leaf-svg.autumn-4 { color: #92400e; } .leaf-svg.autumn-5 { color: #84cc16; } .leaf-svg.autumn-6 { color: #fb923c; } .leaf-svg.autumn-7 { color: #dc2626; } .leaf-svg.autumn-8 { color: #f97316; } .leaf-svg.autumn-9 { color: #22c55e; } .leaf-svg.autumn-10 { color: #16a34a; }
@@ -202,7 +202,11 @@
             transform-origin: center center;
             max-width: 90vw;
             max-height: 90vh;
-            transition: transform 0.1s ease-out;
+            transition: transform 0.3s ease-out;
+            cursor: zoom-in;
+        }
+        #modal-image.zoomed {
+            cursor: zoom-out;
         }
         #bg-music-control {
             position: absolute;
@@ -613,7 +617,6 @@
                 bgIcon.className = 'fas fa-volume-mute';
             }
         });
-        // KALPLER – 3 adet, yavaş
         const hearts = ['❤️','🧡','💛'];
         const heartContainer = document.getElementById('falling-hearts-container');
         for (let i = 0; i < 3; i++) {
@@ -626,7 +629,6 @@
             heart.style.fontSize = (1.8 + Math.random() * 0.6) + 'rem';
             heartContainer.appendChild(heart);
         }
-        // YAPRAKLAR – 3 adet, yavaş
         const leafSVG = `<svg viewBox="0 0 100 140" class="w-full h-full" preserveAspectRatio="xMidYMid meet"><path class="leaf-outer" d="M50 10 C30 15, 20 35, 18 55 C16 75, 25 95, 35 115 C45 130, 48 135, 50 138 C52 135, 55 130, 65 115 C75 95, 84 75, 82 55 C80 35, 70 15, 50 10 Z" /><path class="leaf-inner" d="M50 15 C33 20, 25 38, 23 55 C21 72, 28 88, 36 108 C44 125, 48 132, 50 135 C52 132, 56 125, 64 108 C72 88, 79 72, 77 55 C75 38, 67 20, 50 15 Z" /><path d="M50 15 Q50 70 48 135" stroke="#fff" stroke-width="2.5" opacity="0.5" fill="none"/><path d="M50 15 Q35 40 28 48 M50 55 Q32 65 25 75 M50 80 Q30 90 23 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/><path d="M50 15 Q65 40 72 48 M50 55 Q68 65 75 75 M50 80 Q70 90 77 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/></svg>`;
         const leafColors = ['autumn-1','autumn-2','autumn-3','autumn-4','autumn-5','autumn-6','autumn-7','autumn-8','autumn-9','autumn-10'];
         const leafContainer = document.getElementById('falling-leaves-container');
@@ -720,6 +722,27 @@
             isPanning = false;
             updateTransform();
         };
+        // Yeni özellik: Çift tıklama ile orijinal boyuta dön
+        modalImage.addEventListener('dblclick', (e) => {
+            e.preventDefault();
+            scale = 1;
+            translateX = 0;
+            translateY = 0;
+            updateTransform();
+        });
+        // Çift dokunma (mobil)
+        let lastTouchEnd = 0;
+        modalImage.addEventListener('touchend', (e) => {
+            const now = new Date().getTime();
+            if (now - lastTouchEnd <= 300) {
+                e.preventDefault();
+                scale = 1;
+                translateX = 0;
+                translateY = 0;
+                updateTransform();
+            }
+            lastTouchEnd = now;
+        });
         modal.addEventListener('touchstart', (e) => {
             if (e.touches.length === 2) {
                 e.preventDefault();
