@@ -181,7 +181,7 @@
             max-height: 90vh;
             transition: transform 0.1s ease-out;
         }
-        /* Ses ikonu mobilde yukarı taşındı */
+        /* Ses ikonu mobilde çok daha yukarı taşındı */
         #bg-music-control {
             position: absolute;
             top: 20px;
@@ -200,20 +200,20 @@
         }
         @media (max-width: 768px) {
             #bg-music-control {
-                top: 8px;
+                top: 4px;
                 right: 8px;
             }
             #bg-music-control i {
-                font-size: 1.8rem;
+                font-size: 1.7rem;
             }
         }
         @media (max-width: 480px) {
             #bg-music-control {
-                top: 6px;
+                top: 2px;
                 right: 6px;
             }
             #bg-music-control i {
-                font-size: 1.6rem;
+                font-size: 1.5rem;
             }
         }
         .fade-in-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity .8s cubic-bezier(.25,.46,.45,.94), transform .8s cubic-bezier(.25,.46,.45,.94); }
