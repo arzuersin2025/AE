@@ -181,7 +181,7 @@
             max-height: 90vh;
             transition: transform 0.1s ease-out;
         }
-        /* Kulaklık ikonu + küçük çarpı (ikonun iç kısmında) */
+        /* Kulaklık ikonu + küçük çarpı + "Tıkla" hemen altında + kalın açıklama yazısı */
         #bg-music-control {
             margin-top: 2.5rem;
             text-align: center;
@@ -221,13 +221,20 @@
         #mute-overlay.visible {
             opacity: 1;
         }
+        #bg-click-text {
+            display: block;
+            margin-top: 0.4rem;
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #dc2626;
+        }
         #bg-music-text {
             display: block;
-            margin-top: 0.75rem;
+            margin-top: 0.6rem;
             font-size: 0.875rem;
             color: #dc2626;
-            font-style: italic;
-            opacity: 0.9;
+            font-weight: bold;
+            opacity: 0.95;
         }
         @media (max-width: 768px) {
             #bg-music-control {
@@ -241,9 +248,13 @@
                 width: 1.5rem;
                 height: 1.5rem;
             }
+            #bg-click-text {
+                margin-top: 0.3rem;
+                font-size: 0.85rem;
+            }
             #bg-music-text {
+                margin-top: 0.5rem;
                 font-size: 0.8rem;
-                margin-top: 0.6rem;
             }
         }
         @media (max-width: 480px) {
@@ -257,6 +268,10 @@
                 font-size: 1rem;
                 width: 1.4rem;
                 height: 1.4rem;
+            }
+            #bg-click-text {
+                margin-top: 0.2rem;
+                font-size: 0.8rem;
             }
             #bg-music-text {
                 font-size: 0.75rem;
@@ -349,6 +364,7 @@
                         <i class="fas fa-times"></i>
                     </div>
                 </div>
+                <span id="bg-click-text">Tıkla</span>
                 <span id="bg-music-text">Sitemizi incelerken bizim sevdiğimiz müzikleri dinleyebilirsiniz ♪</span>
             </div>
         </div>
