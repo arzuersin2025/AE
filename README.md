@@ -220,7 +220,7 @@
         .travel-folder h4 { font-weight: 700 !important; font-size: 0.875rem !important; line-height: 1.3 !important; margin: 0.5rem 0 0.25rem 0 !important; color: #1f2937 !important; }
         .travel-folder p { font-weight: 700 !important; font-style: italic; font-size: 0.75rem !important; color: #6b7280 !important; margin: 0 !important; }
 
-        /* İkili kalp – sabit, kırmızı kalbin yarısı sarı kalbin arkasında, siyah kenarlı */
+        /* İkili kalp – sarı önde, açık yeşil arkada, sabit, siyah kenarlı */
         .interlocked-hearts {
             position: relative;
             display: inline-block;
@@ -238,12 +238,12 @@
             paint-order: stroke fill;
             z-index: 2;
         }
-        .heart-red {
+        .heart-green {
             position: absolute;
             top: 0;
             left: 45%;
             font-size: 10vw;
-            color: #dc2626;
+            color: #86efac;
             -webkit-text-stroke: 3px black;
             paint-order: stroke fill;
             z-index: 1;
@@ -254,11 +254,11 @@
                 height: 5vw;
                 margin: 0 1.5em;
             }
-            .heart-yellow, .heart-red {
+            .heart-yellow, .heart-green {
                 font-size: 5vw;
                 -webkit-text-stroke: 2px black;
             }
-            .heart-red {
+            .heart-green {
                 left: 50%;
             }
         }
@@ -275,15 +275,13 @@
             <div id="bg-music-control" title="Arka plan müziği">
                 <i class="fas fa-volume-up" id="bg-icon"></i>
             </div>
-            <div class="absolute inset-0 flex items-center justify-center z-0" aria-hidden="true">
-                <i class="fas fa-infinity text-[10rem] text-gray-200 opacity-70 blur-sm"></i>
-            </div>
+            <!-- Sonsuzluk ikonu kaldırıldı -->
             <div class="relative z-10">
-                <h1 class="font-bold text-green-600 flex items-center justify-center handwriting leading-tight">
+                <h1 class="font-bold text-red-600 flex items-center justify-center handwriting leading-tight">
                     <span class="header-name">Arzu</span>
                     <span class="interlocked-hearts">
                         <i class="fa-solid fa-heart heart-yellow"></i>
-                        <i class="fa-solid fa-heart heart-red"></i>
+                        <i class="fa-solid fa-heart heart-green"></i>
                     </span>
                     <span class="header-name">Ersin</span>
                 </h1>
@@ -559,16 +557,17 @@
                 bgIcon.className = 'fas fa-volume-mute';
             }
         });
+        // Düşen kalp sayısı 5 → 3, düşüş süresi 20-23s → 30-40s (daha yavaş)
         const hearts = ['❤️','🧡','💛','💚','💜'];
         const heartContainer = document.getElementById('falling-hearts-container');
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 3; i++) {
             const heart = document.createElement('div');
             heart.className = 'falling-heart';
             heart.innerHTML = hearts[i];
-            heart.style.left = (10 + i * 20) + '%';
-            const duration = 20 + i * 3;
+            heart.style.left = (20 + i * 30) + '%';
+            const duration = 30 + i * 5; // 30-40 saniye
             heart.style.animationDuration = duration + 's';
-            heart.style.animationDelay = i * 4 + 's';
+            heart.style.animationDelay = i * 10 + 's';
             const size = 1.8 + Math.random() * 0.8;
             heart.style.fontSize = size + 'rem';
             heartContainer.appendChild(heart);
@@ -576,16 +575,16 @@
         const leafSVG = `<svg viewBox="0 0 100 140" class="w-full h-full" preserveAspectRatio="xMidYMid meet"><path class="leaf-outer" d="M50 10 C30 15, 20 35, 18 55 C16 75, 25 95, 35 115 C45 130, 48 135, 50 138 C52 135, 55 130, 65 115 C75 95, 84 75, 82 55 C80 35, 70 15, 50 10 Z" /><path class="leaf-inner" d="M50 15 C33 20, 25 38, 23 55 C21 72, 28 88, 36 108 C44 125, 48 132, 50 135 C52 132, 56 125, 64 108 C72 88, 79 72, 77 55 C75 38, 67 20, 50 15 Z" /><path d="M50 15 Q50 70 48 135" stroke="#fff" stroke-width="2.5" opacity="0.5" fill="none"/><path d="M50 15 Q35 40 28 48 M50 55 Q32 65 25 75 M50 80 Q30 90 23 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/><path d="M50 15 Q65 40 72 48 M50 55 Q68 65 75 75 M50 80 Q70 90 77 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/></svg>`;
         const leafColors = ['autumn-1','autumn-2','autumn-3','autumn-4','autumn-5','autumn-6','autumn-7','autumn-8','autumn-9','autumn-10'];
         const leafContainer = document.getElementById('falling-leaves-container');
-        for (let i = 0; i < 4; i++) {
+        for (let i = 0; i < 2; i++) { // 4 → 2 yaprak
             const leaf = document.createElement('div');
             const colorClass = leafColors[Math.floor(Math.random() * leafColors.length)];
             leaf.className = `leaf-svg ${colorClass}`;
             leaf.style.left = Math.random() * 100 + 'vw';
             const scale = 0.5 + 0.9 * Math.random();
             leaf.style.transform = `scale(${scale}) rotate(${Math.random() * 360}deg)`;
-            const duration = 18 + Math.random() * 12;
+            const duration = 30 + Math.random() * 15; // 30-45 saniye
             leaf.style.animationDuration = duration + 's';
-            leaf.style.animationDelay = Math.random() * 20 + 's';
+            leaf.style.animationDelay = Math.random() * 30 + 's';
             leaf.innerHTML = leafSVG;
             leafContainer.appendChild(leaf);
         }
