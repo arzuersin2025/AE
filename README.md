@@ -181,11 +181,27 @@
             max-height: 90vh;
             transition: transform 0.1s ease-out;
         }
-        /* Müzik kontrol alanı – tooltip ile */
+        /* Müzik kontrol alanı – tooltip ile + boşluk azaltıldı */
+        header {
+            padding-bottom: 1rem !important;
+        }
         #bg-music-control {
-            margin-top: 2.5rem;
+            margin-top: 1rem;
             text-align: center;
             cursor: pointer;
+        }
+        @media (max-width: 768px) {
+            header {
+                padding-bottom: 0.5rem !important;
+            }
+            #bg-music-control {
+                margin-top: 0.8rem;
+            }
+        }
+        @media (max-width: 480px) {
+            #bg-music-control {
+                margin-top: 0.6rem;
+            }
         }
         #bg-music-icon-wrapper {
             position: relative;
@@ -257,9 +273,6 @@
             font-size: 1.2rem;
         }
         @media (max-width: 768px) {
-            #bg-music-control {
-                margin-top: 2rem;
-            }
             #bg-icon {
                 font-size: 2.3rem;
             }
@@ -279,9 +292,6 @@
             }
         }
         @media (max-width: 480px) {
-            #bg-music-control {
-                margin-top: 1.8rem;
-            }
             #bg-icon {
                 font-size: 2.1rem;
             }
@@ -394,7 +404,7 @@
         </div>
     </header>
 
-    <section id="main-title-section" class="py-16 text-center">
+    <section id="main-title-section" class="py-8 text-center">
         <h2 id="main-title" class="font-bold handwriting text-green-600">O Güzel Sonbahar günü</h2>
         <p class="text-xl md:text-2xl mt-2 text-red-600 font-bold">27 Eylül 2025</p>
         <p class="text-lg mt-1 text-red-600 italic font-bold">Zamanın durduğu an</p>
