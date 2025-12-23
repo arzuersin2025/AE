@@ -181,7 +181,7 @@
             max-height: 90vh;
             transition: transform 0.1s ease-out;
         }
-        /* Ses ikonu "Bizim Yolculuğumuz" yazısının altında, normal akışta ortalanmış */
+        /* Ses ikonu ve açıklama yazısı */
         #bg-music-control {
             margin-top: 2.5rem;
             text-align: center;
@@ -196,12 +196,24 @@
         #bg-music-control i:hover {
             transform: scale(1.2);
         }
+        #bg-music-text {
+            display: block;
+            margin-top: 0.75rem;
+            font-size: 0.875rem;
+            color: #dc2626;
+            font-style: italic;
+            opacity: 0.9;
+        }
         @media (max-width: 768px) {
             #bg-music-control {
                 margin-top: 2rem;
             }
             #bg-music-control i {
                 font-size: 2.3rem;
+            }
+            #bg-music-text {
+                font-size: 0.8rem;
+                margin-top: 0.6rem;
             }
         }
         @media (max-width: 480px) {
@@ -210,6 +222,9 @@
             }
             #bg-music-control i {
                 font-size: 2.1rem;
+            }
+            #bg-music-text {
+                font-size: 0.75rem;
             }
         }
         .fade-in-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity .8s cubic-bezier(.25,.46,.45,.94), transform .8s cubic-bezier(.25,.46,.45,.94); }
@@ -230,8 +245,6 @@
         .travel-folder:hover { transform: translateY(-5px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
         .travel-folder h4 { font-weight: 700 !important; font-size: 0.875rem !important; line-height: 1.3 !important; margin: 0.5rem 0 0.25rem 0 !important; color: #1f2937 !important; }
         .travel-folder p { font-weight: 700 !important; font-style: italic; font-size: 0.75rem !important; color: #6b7280 !important; margin: 0 !important; }
-
-        /* İkili kalp – sarı önde, açık yeşil arkada, siyah kenarlı */
         .interlocked-hearts {
             position: relative;
             display: inline-block;
@@ -296,6 +309,7 @@
             </div>
             <div id="bg-music-control" title="Arka plan müziği">
                 <i class="fas fa-volume-up" id="bg-icon"></i>
+                <span id="bg-music-text">Sitemizi incelerken bizim sevdiğimiz müzikleri dinleyebilirsiniz ♪</span>
             </div>
         </div>
     </header>
