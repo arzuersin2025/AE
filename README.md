@@ -181,10 +181,11 @@
             max-height: 90vh;
             transition: transform 0.1s ease-out;
         }
-        /* Kulaklık ikonu + küçük çarpı + "Tıkla" hemen altında + kalın açıklama yazısı */
+        /* Müzik kontrol alanı – tooltip ile */
         #bg-music-control {
             margin-top: 2.5rem;
             text-align: center;
+            cursor: pointer;
         }
         #bg-music-icon-wrapper {
             position: relative;
@@ -194,7 +195,6 @@
             font-size: 2.5rem;
             color: #dc2626;
             filter: drop-shadow(0 2px 4px rgba(220, 38, 38, 0.3));
-            cursor: pointer;
             transition: transform 0.3s ease;
         }
         #bg-music-control:hover #bg-icon {
@@ -228,13 +228,33 @@
             font-weight: bold;
             color: #dc2626;
         }
-        #bg-music-text {
-            display: block;
-            margin-top: 0.6rem;
+        #bg-music-tooltip {
+            margin-top: 0.8rem;
+            padding: 0.75rem 1rem;
+            background: rgba(220, 38, 38, 0.1);
+            border: 2px solid #dc2626;
+            border-radius: 12px;
+            max-width: 280px;
+            margin-left: auto;
+            margin-right: auto;
             font-size: 0.875rem;
-            color: #dc2626;
             font-weight: bold;
-            opacity: 0.95;
+            color: #dc2626;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.15);
+        }
+        #bg-music-tooltip.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        #bg-music-tooltip::before {
+            content: '♪';
+            margin-right: 0.5rem;
+            font-size: 1.2rem;
         }
         @media (max-width: 768px) {
             #bg-music-control {
@@ -252,9 +272,10 @@
                 margin-top: 0.3rem;
                 font-size: 0.85rem;
             }
-            #bg-music-text {
-                margin-top: 0.5rem;
+            #bg-music-tooltip {
+                padding: 0.6rem 0.9rem;
                 font-size: 0.8rem;
+                max-width: 260px;
             }
         }
         @media (max-width: 480px) {
@@ -273,8 +294,9 @@
                 margin-top: 0.2rem;
                 font-size: 0.8rem;
             }
-            #bg-music-text {
+            #bg-music-tooltip {
                 font-size: 0.75rem;
+                max-width: 240px;
             }
         }
         .fade-in-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity .8s cubic-bezier(.25,.46,.45,.94), transform .8s cubic-bezier(.25,.46,.45,.94); }
@@ -365,7 +387,9 @@
                     </div>
                 </div>
                 <span id="bg-click-text">Tıkla</span>
-                <span id="bg-music-text">Sitemizi incelerken bizim sevdiğimiz müzikleri dinleyebilirsiniz ♪</span>
+                <div id="bg-music-tooltip">
+                    Sitemizi incelerken bizim sevdiğimiz müzikleri dinleyebilirsiniz ♪
+                </div>
             </div>
         </div>
     </header>
@@ -718,9 +742,13 @@
         'use strict';
         const bgControl = document.getElementById('bg-music-control');
         const muteOverlay = document.getElementById('mute-overlay');
+        const tooltip = document.getElementById('bg-music-tooltip');
         let isBgEnabled = true;
+        let tooltipVisible = false;
 
-        bgControl.addEventListener('click', () => {
+        bgControl.addEventListener('click', (e) => {
+            if (e.target.closest('#bg-music-tooltip')) return;
+
             isBgEnabled = !isBgEnabled;
 
             if (isBgEnabled && bgPlayer) {
@@ -732,7 +760,25 @@
                 bgPlayer.mute();
                 muteOverlay.classList.add('visible');
             }
+
+            showTooltipTemporarily();
         });
+
+        tooltip.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+
+        function showTooltipTemporarily() {
+            tooltip.classList.add('visible');
+            tooltipVisible = true;
+
+            setTimeout(() => {
+                if (tooltipVisible) {
+                    tooltip.classList.remove('visible');
+                    tooltipVisible = false;
+                }
+            }, 4000);
+        }
 
         const hearts = ['❤️','🧡','💛','💚','💜'];
         const heartContainer = document.getElementById('falling-hearts-container');
