@@ -181,20 +181,42 @@
             max-height: 90vh;
             transition: transform 0.1s ease-out;
         }
-        /* Ses ikonu ve açıklama yazısı */
+        /* Kulaklık ikonu + çarpı overlay + yazı */
         #bg-music-control {
             margin-top: 2.5rem;
             text-align: center;
         }
-        #bg-music-control i {
+        #bg-music-icon-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+        #bg-icon {
             font-size: 2.5rem;
             color: #dc2626;
             filter: drop-shadow(0 2px 4px rgba(220, 38, 38, 0.3));
             cursor: pointer;
             transition: transform 0.3s ease;
         }
-        #bg-music-control i:hover {
+        #bg-music-control:hover #bg-icon {
             transform: scale(1.2);
+        }
+        #mute-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.8rem;
+            color: #b91c1c;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+        #mute-overlay.visible {
+            opacity: 1;
         }
         #bg-music-text {
             display: block;
@@ -208,8 +230,11 @@
             #bg-music-control {
                 margin-top: 2rem;
             }
-            #bg-music-control i {
+            #bg-icon {
                 font-size: 2.3rem;
+            }
+            #mute-overlay {
+                font-size: 3.4rem;
             }
             #bg-music-text {
                 font-size: 0.8rem;
@@ -220,8 +245,11 @@
             #bg-music-control {
                 margin-top: 1.8rem;
             }
-            #bg-music-control i {
+            #bg-icon {
                 font-size: 2.1rem;
+            }
+            #mute-overlay {
+                font-size: 3rem;
             }
             #bg-music-text {
                 font-size: 0.75rem;
@@ -308,7 +336,12 @@
                 <p class="text-xl md:text-2xl text-red-600 mt-10">Bizim Yolculuğumuz</p>
             </div>
             <div id="bg-music-control" title="Arka plan müziği">
-                <i class="fas fa-volume-up" id="bg-icon"></i>
+                <div id="bg-music-icon-wrapper">
+                    <i class="fas fa-headphones" id="bg-icon"></i>
+                    <div id="mute-overlay">
+                        <i class="fas fa-ban"></i>
+                    </div>
+                </div>
                 <span id="bg-music-text">Sitemizi incelerken bizim sevdiğimiz müzikleri dinleyebilirsiniz ♪</span>
             </div>
         </div>
@@ -583,20 +616,24 @@
     <script>
     (() => {
         'use strict';
-        const bgIcon = document.getElementById('bg-icon');
+        const bgControl = document.getElementById('bg-music-control');
+        const muteOverlay = document.getElementById('mute-overlay');
         let isBgEnabled = true;
-        document.getElementById('bg-music-control').addEventListener('click', () => {
+
+        bgControl.addEventListener('click', () => {
             isBgEnabled = !isBgEnabled;
+
             if (isBgEnabled && bgPlayer) {
                 bgPlayer.unMute();
                 bgPlayer.playVideo();
                 bgPlayer.setVolume(70);
-                bgIcon.className = 'fas fa-volume-up';
+                muteOverlay.classList.remove('visible');
             } else if (bgPlayer) {
                 bgPlayer.mute();
-                bgIcon.className = 'fas fa-volume-mute';
+                muteOverlay.classList.add('visible');
             }
         });
+
         const hearts = ['❤️','🧡','💛','💚','💜'];
         const heartContainer = document.getElementById('falling-hearts-container');
         for (let i = 0; i < 3; i++) {
