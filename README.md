@@ -181,6 +181,7 @@
             max-height: 90vh;
             transition: transform 0.1s ease-out;
         }
+        /* Ses ikonu mobilde yukarı taşındı */
         #bg-music-control {
             position: absolute;
             top: 20px;
@@ -197,9 +198,23 @@
             color: #dc2626;
             filter: drop-shadow(0 2px 4px rgba(220, 38, 38, 0.3));
         }
+        @media (max-width: 768px) {
+            #bg-music-control {
+                top: 8px;
+                right: 8px;
+            }
+            #bg-music-control i {
+                font-size: 1.8rem;
+            }
+        }
         @media (max-width: 480px) {
-            #bg-music-control { top: 15px; right: 15px; }
-            #bg-music-control i { font-size: 1.5rem; }
+            #bg-music-control {
+                top: 6px;
+                right: 6px;
+            }
+            #bg-music-control i {
+                font-size: 1.6rem;
+            }
         }
         .fade-in-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity .8s cubic-bezier(.25,.46,.45,.94), transform .8s cubic-bezier(.25,.46,.45,.94); }
         .fade-in-on-scroll.visible { opacity: 1; transform: translateY(0); }
@@ -557,7 +572,6 @@
                 bgIcon.className = 'fas fa-volume-mute';
             }
         });
-        // Düşen kalp sayısı 5 → 3, düşüş süresi 20-23s → 30-40s (daha yavaş)
         const hearts = ['❤️','🧡','💛','💚','💜'];
         const heartContainer = document.getElementById('falling-hearts-container');
         for (let i = 0; i < 3; i++) {
@@ -565,7 +579,7 @@
             heart.className = 'falling-heart';
             heart.innerHTML = hearts[i];
             heart.style.left = (20 + i * 30) + '%';
-            const duration = 30 + i * 5; // 30-40 saniye
+            const duration = 30 + i * 5;
             heart.style.animationDuration = duration + 's';
             heart.style.animationDelay = i * 10 + 's';
             const size = 1.8 + Math.random() * 0.8;
@@ -575,14 +589,14 @@
         const leafSVG = `<svg viewBox="0 0 100 140" class="w-full h-full" preserveAspectRatio="xMidYMid meet"><path class="leaf-outer" d="M50 10 C30 15, 20 35, 18 55 C16 75, 25 95, 35 115 C45 130, 48 135, 50 138 C52 135, 55 130, 65 115 C75 95, 84 75, 82 55 C80 35, 70 15, 50 10 Z" /><path class="leaf-inner" d="M50 15 C33 20, 25 38, 23 55 C21 72, 28 88, 36 108 C44 125, 48 132, 50 135 C52 132, 56 125, 64 108 C72 88, 79 72, 77 55 C75 38, 67 20, 50 15 Z" /><path d="M50 15 Q50 70 48 135" stroke="#fff" stroke-width="2.5" opacity="0.5" fill="none"/><path d="M50 15 Q35 40 28 48 M50 55 Q32 65 25 75 M50 80 Q30 90 23 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/><path d="M50 15 Q65 40 72 48 M50 55 Q68 65 75 75 M50 80 Q70 90 77 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/></svg>`;
         const leafColors = ['autumn-1','autumn-2','autumn-3','autumn-4','autumn-5','autumn-6','autumn-7','autumn-8','autumn-9','autumn-10'];
         const leafContainer = document.getElementById('falling-leaves-container');
-        for (let i = 0; i < 2; i++) { // 4 → 2 yaprak
+        for (let i = 0; i < 2; i++) {
             const leaf = document.createElement('div');
             const colorClass = leafColors[Math.floor(Math.random() * leafColors.length)];
             leaf.className = `leaf-svg ${colorClass}`;
             leaf.style.left = Math.random() * 100 + 'vw';
             const scale = 0.5 + 0.9 * Math.random();
             leaf.style.transform = `scale(${scale}) rotate(${Math.random() * 360}deg)`;
-            const duration = 30 + Math.random() * 15; // 30-45 saniye
+            const duration = 30 + Math.random() * 15;
             leaf.style.animationDuration = duration + 's';
             leaf.style.animationDelay = Math.random() * 30 + 's';
             leaf.innerHTML = leafSVG;
