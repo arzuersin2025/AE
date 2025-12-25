@@ -181,7 +181,6 @@
             max-height: 90vh;
             transition: transform 0.1s ease-out;
         }
-        /* Müzik kontrol alanı – tooltip ile + boşluk azaltıldı */
         header {
             padding-bottom: 1rem !important;
         }
@@ -359,6 +358,25 @@
                 left: 50%;
             }
         }
+        /* Özel renk ayarları */
+        #countdown-placeholder p {
+            color: #e91e63 !important;
+        }
+        #map-section p {
+            color: #556b2f !important;
+        }
+        .invitation-description p {
+            color: #2563eb !important;
+        }
+        .photo-gallery-description p {
+            color: #6b8e23 !important;
+        }
+        .video-gallery-description p {
+            color: #9333ea !important;
+        }
+        .thank-you-message p {
+            color: #06b6d4 !important;
+        }
     </style>
 </head>
 <body class="text-black">
@@ -396,7 +414,6 @@
     <section id="main-title-section" class="py-8 text-center">
         <h2 id="main-title" class="font-bold handwriting text-green-600">O Güzel Sonbahar günü</h2>
         <p class="text-xl md:text-2xl mt-2 text-red-600 font-bold">27 Eylül 2025</p>
-        <p class="text-lg mt-1 text-red-600 italic font-bold">Zamanın durduğu an</p>
     </section>
     <main class="container mx-auto px-6 pb-12 relative z-20">
         <section class="max-w-3xl mx-auto my-12 text-center">
@@ -450,7 +467,7 @@
             <h3 class="font-bold text-red-600 mb-6 font-forte-alternative">Büyük Güne Geri Sayım</h3>
             <div id="countdown-placeholder" class="my-4">
                 <div class="text-8xl text-red-500 heartbeat"><i class="fas fa-infinity"></i></div>
-                <p class="text-center text-black font-semibold italic text-lg mt-4">
+                <p class="text-center font-semibold italic text-lg mt-4">
                     Sonsuzluğa giden yolculuğumuzun tarihi belli olduğunda...
                 </p>
             </div>
@@ -469,7 +486,7 @@
                 </a>
                 <div class="map-click-text">Tıkla</div>
             </div>
-            <p class="text-center text-black font-semibold italic text-lg mt-6 leading-relaxed px-6 max-w-2xl mx-auto">
+            <p class="text-center font-semibold italic text-lg mt-6 leading-relaxed px-6 max-w-2xl mx-auto">
                 Seninle sonsuzluğa adım attığımız yer 💙
             </p>
         </section>
@@ -481,8 +498,8 @@
                 </div>
                 <div class="invitation-click-text">Tıkla</div>
             </div>
-            <div class="mt-6 max-w-2xl mx-auto">
-                <p class="text-center text-black font-semibold italic text-lg leading-relaxed px-6">
+            <div class="mt-6 max-w-2xl mx-auto invitation-description">
+                <p class="text-center font-semibold italic text-lg leading-relaxed px-6">
                     Bu bir davetiye değil, size yazdığımız bir mutluluk mektubu 💚
                 </p>
             </div>
@@ -513,9 +530,11 @@
         </section>
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Fotoğraf Galerimiz</h3>
-            <p class="text-center text-black text-xl md:text-2xl leading-relaxed max-w-4xl mx-auto italic font-medium">
-                İşte yolculuğumuzda biriktirdiğimiz Anılar..
-            </p>
+            <div class="photo-gallery-description">
+                <p class="text-center text-xl md:text-2xl leading-relaxed max-w-4xl mx-auto italic font-medium">
+                    İşte yolculuğumuzda biriktirdiğimiz Anılar..
+                </p>
+            </div>
             <div class="mt-8 text-center">
                 <button id="toggle-gallery-btn" class="inline-flex items-center justify-center py-2 px-6 border border-red-600 shadow-sm text-sm font-medium rounded-md text-red-600 bg-white hover:bg-red-50 transition-colors">
                     <span id="gallery-toggle-text">Fotoğraf Galerisini Gör</span>
@@ -598,9 +617,11 @@
         </section>
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Video Galerimiz</h3>
-            <p class="text-center text-black text-xl md:text-2xl leading-relaxed max-w-4xl mx-auto italic font-medium">
-                Bazı duyguları kelimelerle anlatmak yetmez...
-            </p>
+            <div class="video-gallery-description">
+                <p class="text-center text-xl md:text-2xl leading-relaxed max-w-4xl mx-auto italic font-medium">
+                    Bazı duyguları kelimelerle anlatmak yetmez...
+                </p>
+            </div>
             <div class="mt-8 text-center">
                 <button id="toggle-video-gallery-btn" class="inline-flex items-center justify-center py-2 px-6 border border-red-600 shadow-sm text-sm font-medium rounded-md text-red-600 bg-white hover:bg-red-50 transition-colors">
                     <span id="video-gallery-toggle-text">Video Galerisini Gör</span>
@@ -662,9 +683,11 @@
         </section>
         <section class="my-16 max-w-3xl mx-auto transparent-section">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Teşekkür</h3>
-            <p class="text-center text-black text-xl md:text-2xl leading-relaxed max-w-4xl mx-auto italic font-medium mt-4">
-                Bu mutlu yolculuğumuzda yanımızda olan herkese sonsuz teşekkürler
-            </p>
+            <div class="thank-you-message">
+                <p class="text-center text-xl md:text-2xl leading-relaxed max-w-4xl mx-auto italic font-medium mt-4">
+                    Bu mutlu yolculuğumuzda yanımızda olan herkese sonsuz teşekkür ederiz
+                </p>
+            </div>
             <div class="mt-16 text-center">
                 <p class="text-red-600 italic text-xl md:text-2xl mb-6 font-medium">
                     İletişim adresimiz
