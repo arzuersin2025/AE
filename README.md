@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -57,7 +57,7 @@
         @media (max-width: 768px) {
             .poem-container { padding: 1.5rem 0 !important; line-height: 1.3 !important; font-size: 1.95rem; }
         }
-        .poem-signature { font-size: 1.5rem !important; line-height: 1.4 !important; color: #dc2626 !important; }
+        .poem-signature { font-size: 1.5rem !important; line-height: 1.4 !important; color: #16a34a !important; }
         @media (max-width: 768px) { .poem-signature { font-size: 1.875rem !important; } }
         .leaf-svg { position: absolute; width: 32px; height: 44px; opacity: 0.9; animation: fall linear infinite; transform-origin: center; filter: drop-shadow(0 3px 6px rgba(0,0,0,0.3)); }
         @keyframes fall { 0% { transform: translateY(-120px) rotate(0deg) scale(1); opacity: 0; } 8% { opacity: 0.9; } 30% { transform: translateY(30vh) translateX(15px) rotate(180deg) scale(0.95); } 50% { transform: translateY(50vh) translateX(-20px) rotate(540deg) scale(0.9); } 70% { transform: translateY(70vh) translateX(25px) rotate(800deg) scale(0.85); } 92% { opacity: 0.9; } 100% { transform: translateY(110vh) translateX(-15px) rotate(1080deg) scale(0.6); opacity: 0; } }
@@ -415,7 +415,7 @@
             <div class="text-4xl text-red-500 mt-8 heartbeat"><i class="fas fa-heart"></i></div>
         </section>
         <section class="my-16 max-w-3xl mx-auto text-center">
-            <h3 id="sonbahar-baslik" class="font-bold text-center text-red-600 mb-6 handwriting font-forte-alternative">Sonbahar</h3>
+            <h3 id="sonbahar-baslik" class="font-bold text-center text-red-600 mb-6 handwriting font-forte-alternative">Sonbahar şiiri</h3>
             <div class="poem-container">
                 <div class="poem-line italic">Çiçekli badem ağaçlarını unut.</div>
                 <div class="poem-line italic">değmez,</div>
@@ -428,7 +428,7 @@
                 <div class="poem-line italic">mevsim</div>
                 <div class="poem-line italic">sonbahar…</div>
             </div>
-            <p class="text-right text-red-600 font-semibold-bold mt-6 pr-4 font-forte-alternative poem-signature">- Nazım Hikmet</p>
+            <p class="text-right text-green-600 font-semibold-bold mt-6 pr-4 font-forte-alternative poem-signature">- Nazım Hikmet</p>
         </section>
         <section class="my-16 max-w-3xl mx-auto text-center">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Aramızda Geçen İki Güzel Söz</h3>
@@ -530,9 +530,9 @@
                         <div class="photo-note">Bostancı</div>
                     </div>
                     <div class="photo-container group cursor-pointer">
-                        <img data-src="https://i.imgur.com/PTYXm1S.jpg" alt="Nakkaştepe Millet Bahçesi" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
+                        <img data-src="https://i.imgur.com/PTYXm1S.jpg" alt="Nakkaştepe" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">13</span>
-                        <div class="photo-note">Nakkaştepe Millet Bahçesi</div>
+                        <div class="photo-note">Nakkaştepe</div>
                     </div>
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/Q6ZF31K.jpg" alt="Katibim" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
@@ -665,17 +665,16 @@
             <p class="text-center text-black text-xl md:text-2xl leading-relaxed max-w-4xl mx-auto italic font-medium mt-4">
                 Bu mutlu yolculuğumuzda yanımızda olan herkese sonsuz teşekkürler
             </p>
-            <div class="mt-16 text-center fade-in-on-scroll">
+            <div class="mt-16 text-center">
                 <p class="text-red-600 italic text-xl md:text-2xl mb-6 font-medium">
                     İletişim adresimiz
                 </p>
                 <div class="flex justify-center">
-                    <div class="inline-flex items-center gap-4 bg-white/90 px-6 py-4 rounded-full shadow-lg border-2 border-pink-200 group cursor-pointer">
-                        <div class="relative">
-                            <i class="fas fa-envelope text-4xl text-red-600 group-hover:text-red-700 transition-all duration-500 transform group-hover:scale-125"></i>
-                            <i class="fas fa-heart absolute -top-2 -right-2 text-red-500 text-xl opacity-0 group-hover:opacity-100 animate-ping"></i>
+                    <div class="inline-flex items-center gap-4 bg-white/90 px-6 py-4 rounded-full shadow-lg border-2 border-pink-200">
+                        <div>
+                            <i class="fas fa-envelope text-4xl text-red-600"></i>
                         </div>
-                        <span class="font-bold text-green-700 text-base md:text-lg select-all group-hover:text-green-800 transition-colors">
+                        <span class="font-bold text-green-700 text-base md:text-lg select-all">
                             arzuersin2025@gmail.com
                         </span>
                     </div>
