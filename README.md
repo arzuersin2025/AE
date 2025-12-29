@@ -543,19 +543,16 @@
             </div>
             <div id="gallery-wrapper" class="hidden mt-8">
                 <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-1" id="gallery-grid">
-                    <!-- 16 numaralı fotoğraf (en yeni) -->
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/dy7O9vT.jpeg" alt="Katibim" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">16</span>
                         <div class="photo-note">Katibim</div>
                     </div>
-                    <!-- 17 numaralı fotoğraf hemen yanında -->
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/HiXIafs.jpeg" alt="Katibim" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">17</span>
                         <div class="photo-note">Katibim</div>
                     </div>
-                    <!-- Diğer fotoğraflar -->
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/wepNFEy.jpeg" alt="Öğretmenler Günü" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">15</span>
@@ -730,6 +727,20 @@
                     </p>
                 </div>
             </div>
+        </section>
+
+        <!-- QR Kod - Minimal, galerideki gibi, yazı var -->
+        <section class="my-12 pb-20 text-center">
+            <div class="photo-container group cursor-pointer inline-block">
+                <img src="https://i.imgur.com/En3i0jP.jpeg" 
+                     alt="Arzu & Ersin QR Kod" 
+                     class="gallery-thumbnail w-full h-full object-cover" 
+                     loading="lazy"
+                     style="width: 160px; height: 160px;">
+            </div>
+            <p class="mt-6 text-lg font-medium text-red-600 handwriting">
+                Web Sitemizin adresi 💕
+            </p>
         </section>
     </main>
     <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
