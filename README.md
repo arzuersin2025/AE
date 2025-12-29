@@ -358,25 +358,12 @@
                 left: 50%;
             }
         }
-        /* Özel renk ayarları */
-        #countdown-placeholder p {
-            color: #e91e63 !important;
-        }
-        #map-section p {
-            color: #556b2f !important;
-        }
-        .invitation-description p {
-            color: #2563eb !important;
-        }
-        .photo-gallery-description p {
-            color: #6b8e23 !important;
-        }
-        .video-gallery-description p {
-            color: #9333ea !important;
-        }
-        .thank-you-message p {
-            color: #06b6d4 !important;
-        }
+        #countdown-placeholder p { color: #e91e63 !important; }
+        #map-section p { color: #556b2f !important; }
+        .invitation-description p { color: #2563eb !important; }
+        .photo-gallery-description p { color: #6b8e23 !important; }
+        .video-gallery-description p { color: #9333ea !important; }
+        .thank-you-message p { color: #06b6d4 !important; }
     </style>
 </head>
 <body class="text-black">
@@ -728,10 +715,8 @@
                 </div>
             </div>
         </section>
-
-        <!-- QR Kod - Minimal, galerideki gibi, yazı var -->
         <section class="my-12 pb-20 text-center">
-            <div class="photo-container group cursor-pointer inline-block">
+            <div class="photo-container group cursor-pointer inline-block" id="qr-container">
                 <img src="https://i.imgur.com/En3i0jP.jpeg" 
                      alt="Arzu & Ersin QR Kod" 
                      class="gallery-thumbnail w-full h-full object-cover" 
@@ -934,7 +919,7 @@
                 updateTransform();
             }
         });
-        document.getElementById('toggle-gallery-btn').onclick = () => {
+        document.getElementById('toggle-gallery-btn').addEventListener('click', () => {
             const wrapper = document.getElementById('gallery-wrapper');
             wrapper.classList.toggle('hidden');
             document.getElementById('gallery-toggle-icon').classList.toggle('rotate-180', !wrapper.classList.contains('hidden'));
@@ -942,12 +927,12 @@
             if (!wrapper.classList.contains('hidden')) {
                 setTimeout(() => {
                     document.querySelectorAll('#gallery-grid .photo-container').forEach((el, i) => {
-                        el.onclick = () => openPhoto(i);
+                        el.addEventListener('click', () => openPhoto(i));
                     });
                 }, 100);
             }
-        };
-        document.getElementById('toggle-video-gallery-btn').onclick = () => {
+        });
+        document.getElementById('toggle-video-gallery-btn').addEventListener('click', () => {
             const wrapper = document.getElementById('video-gallery-wrapper');
             wrapper.classList.toggle('hidden');
             document.getElementById('video-gallery-toggle-icon').classList.toggle('rotate-180', !wrapper.classList.contains('hidden'));
@@ -955,25 +940,25 @@
             if (!wrapper.classList.contains('hidden')) {
                 setTimeout(() => {
                     document.querySelectorAll('#video-grid .photo-container').forEach(el => {
-                        el.onclick = () => {
+                        el.addEventListener('click', () => {
                             document.getElementById('modal-video-iframe').src = `https://www.youtube.com/embed/${el.dataset.youtubeId}?autoplay=1`;
                             document.getElementById('video-modal').classList.replace('hidden', 'flex');
-                        };
+                        });
                     });
                 }, 100);
             }
-        };
-        document.getElementById('close-video-modal').onclick = () => {
+        });
+        document.getElementById('close-video-modal').addEventListener('click', () => {
             document.getElementById('video-modal').classList.replace('flex', 'hidden');
             document.getElementById('modal-video-iframe').src = '';
-        };
-        document.getElementById('video-modal').onclick = e => {
+        });
+        document.getElementById('video-modal').addEventListener('click', e => {
             if (e.target === e.currentTarget) document.getElementById('close-video-modal').click();
-        };
-        document.getElementById('close-modal').onclick = closePhoto;
-        document.getElementById('prev-photo').onclick = e => { e.stopPropagation(); prevPhoto(); };
-        document.getElementById('next-photo').onclick = e => { e.stopPropagation(); nextPhoto(); };
-        modal.onclick = e => { if (e.target === modal) closePhoto(); };
+        });
+        document.getElementById('close-modal').addEventListener('click', closePhoto);
+        document.getElementById('prev-photo').addEventListener('click', e => { e.stopPropagation(); prevPhoto(); });
+        document.getElementById('next-photo').addEventListener('click', e => { e.stopPropagation(); nextPhoto(); });
+        modal.addEventListener('click', e => { if (e.target === modal) closePhoto(); });
         document.addEventListener('keydown', e => {
             if (e.key === 'Escape') { closePhoto(); if (document.getElementById('video-modal').classList.contains('flex')) document.getElementById('close-video-modal').click(); }
             if (e.key === 'ArrowRight' && document.getElementById('image-modal').classList.contains('flex')) nextPhoto();
@@ -985,7 +970,7 @@
         const musicVisualizer = document.getElementById('music-visualizer');
         const tag = document.createElement('script');
         tag.src = 'https://www.youtube.com/iframe_api';
-        document.getElementsByTagName('script')[0].parentNode.insertBefore(tag, document.getElementsByTagName('script')[0]);
+        document.head.appendChild(tag);
         window.onYouTubeIframeAPIReady = function() {
             bgPlayer = new YT.Player('bg-youtube-player', {
                 height: '0', width: '0', videoId: 'rYJjgfCfBOU',
@@ -1036,11 +1021,11 @@
                 }
             });
         };
-        playBtn.onclick = e => { e.stopPropagation(); player && (isPlaying ? player.pauseVideo() : player.playVideo()); };
+        playBtn.addEventListener('click', e => { e.stopPropagation(); player && (isPlaying ? player.pauseVideo() : player.playVideo()); });
         const invitationModal = document.getElementById('invitation-modal');
-        document.getElementById('invitation-icon').onclick = () => invitationModal.classList.add('show');
-        document.getElementById('close-invitation').onclick = () => invitationModal.classList.remove('show');
-        invitationModal.onclick = e => { if (e.target === invitationModal) invitationModal.classList.remove('show'); };
+        document.getElementById('invitation-icon').addEventListener('click', () => invitationModal.classList.add('show'));
+        document.getElementById('close-invitation').addEventListener('click', () => invitationModal.classList.remove('show'));
+        invitationModal.addEventListener('click', e => { if (e.target === invitationModal) invitationModal.classList.remove('show'); });
         const fadeObserver = new IntersectionObserver(entries => {
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
         }, { threshold: 0.3 });
@@ -1097,6 +1082,45 @@
                 applyTransform();
             };
         }
+
+        // QR Kod üzerine tıklandığında paylaşım/indirme özelliği
+        const qrContainer = document.getElementById('qr-container');
+        const qrImageUrl = 'https://i.imgur.com/En3i0jP.jpeg';
+        const siteTitle = 'Arzu & Ersin - Bizim Hikayemiz';
+        const siteUrl = window.location.href;
+
+        qrContainer.addEventListener('click', async (e) => {
+            e.stopPropagation(); // Fotoğraf modalının açılmasını engelle
+
+            if (navigator.share) {
+                // Mobil cihazlarda native paylaşım
+                try {
+                    await navigator.share({
+                        title: siteTitle,
+                        text: 'Arzu ve Ersin\'in özel web sitesini ziyaret edin 💕',
+                        url: siteUrl
+                    });
+                } catch (err) {
+                    console.log('Paylaşım iptal edildi veya hata oluştu');
+                }
+            } else {
+                // Masaüstü veya eski tarayıcılarda fallback: resim indir + link kopyala
+                const a = document.createElement('a');
+                a.href = qrImageUrl;
+                a.download = 'ArzuErsin_QR_Kod.png';
+                a.click();
+
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(siteUrl).then(() => {
+                        alert('QR kod indirildi ve site adresi panoya kopyalandı! 💕');
+                    }).catch(() => {
+                        alert('QR kod indirildi. Site adresi: ' + siteUrl);
+                    });
+                } else {
+                    alert('QR kod indirildi. Site adresi: ' + siteUrl);
+                }
+            }
+        });
     })();
     </script>
 </body>
