@@ -377,7 +377,6 @@
         .thank-you-message p {
             color: #06b6d4 !important;
         }
-
         /* Sayfa sonundaki fazla boşluğu kaldırmak için eklenen stil */
         main {
             padding-bottom: 0 !important;
@@ -737,10 +736,10 @@
                 </div>
             </div>
         </section>
-        <!-- QR Kod - Minimal, galerideki gibi, yazı var -->
+        <!-- Yeni QR Kod Bölümü -->
         <section class="my-12 pb-20 text-center">
             <div class="photo-container group cursor-pointer inline-block">
-              <img src="https://i.imgur.com/En3i0jP.jpeg"  
+              <img src="https://i.imgur.com/BBOeGdM.jpeg"
                      alt="Arzu & Ersin QR Kod"
                      class="gallery-thumbnail w-full h-full object-cover"
                      loading="lazy"
