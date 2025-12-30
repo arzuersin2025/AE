@@ -736,10 +736,10 @@
                 </div>
             </div>
         </section>
-        <!-- Yeni QR Kod Bölümü -->
+        <!-- Eski QR Kod Bölümü (bir önceki versiyon) -->
         <section class="my-12 pb-20 text-center">
             <div class="photo-container group cursor-pointer inline-block">
-              <img src="https://i.imgur.com/BBOeGdM.jpeg"
+              <img src="https://i.imgur.com/En3i0jP.jpeg"
                      alt="Arzu & Ersin QR Kod"
                      class="gallery-thumbnail w-full h-full object-cover"
                      loading="lazy"
