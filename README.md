@@ -740,7 +740,7 @@
         <!-- QR Kod - Minimal, galerideki gibi, yazı var -->
         <section class="my-12 pb-20 text-center">
             <div class="photo-container group cursor-pointer inline-block">
-                
+              <img src="https://i.imgur.com/En3i0jP.jpeg"  
                      alt="Arzu & Ersin QR Kod"
                      class="gallery-thumbnail w-full h-full object-cover"
                      loading="lazy"
