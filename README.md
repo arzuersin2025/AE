@@ -377,7 +377,7 @@
         .thank-you-message p {
             color: #06b6d4 !important;
         }
-        /* Sayfa sonundaki fazla boşluğu kaldırmak için eklenen stil */
+        /* Sayfa sonundaki fazla boşluğu kaldırmak için */
         main {
             padding-bottom: 0 !important;
         }
@@ -385,7 +385,7 @@
             padding-bottom: 2rem !important;
             margin-bottom: 0 !important;
         }
-        /* En alttaki QR kod için hover animasyonu tamamen kaldırıldı */
+        /* QR kod için hover animasyonu tamamen kapalı */
         #footer-qr .gallery-thumbnail {
             transition: none !important;
         }
@@ -743,20 +743,17 @@
                 </div>
             </div>
         </section>
-        <!-- En alttaki QR Kod (HD indirme + animasyon kaldırıldı) -->
+        <!-- En alttaki QR Kod (sade hali, hover yok, buton yok) -->
         <section class="my-12 pb-20 text-center">
             <div id="footer-qr" class="photo-container inline-block">
-                <a href="https://i.imgur.com/3K8xVm0.jpeg" download="Arzu_Ersin_Dugun_QR_Kod_HD.png">
-                    <img src="https://i.imgur.com/3K8xVm0.jpeg"
-                         alt="Arzu & Ersin QR Kod - Tıkla HD olarak indir"
-                         class="gallery-thumbnail w-full h-full object-cover rounded-lg shadow-lg"
-                         loading="lazy"
-                         style="width: 160px; height: 160px;">
-                </a>
+                <img src="https://i.imgur.com/3K8xVm0.jpeg"
+                     alt="Arzu & Ersin QR Kod"
+                     class="gallery-thumbnail w-full h-full object-cover rounded-lg shadow-lg"
+                     loading="lazy"
+                     style="width: 160px; height: 160px;">
             </div>
             <p class="mt-6 text-lg font-medium text-red-600 handwriting">
-                Web Sitemizin adresi 💕<br>
-                <span class="text-sm block mt-2 text-gray-700">Tıklayarak HD QR kod indirebilirsiniz</span>
+                Web Sitemizin adresi 💕
             </p>
         </section>
     </main>
