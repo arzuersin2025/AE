@@ -385,7 +385,7 @@
             padding-bottom: 2rem !important;
             margin-bottom: 0 !important;
         }
-        /* QR kod için hover animasyonu tamamen kapalı */
+        /* En alttaki QR kod için hover animasyonu tamamen kapalı */
         #footer-qr .gallery-thumbnail {
             transition: none !important;
         }
@@ -743,11 +743,11 @@
                 </div>
             </div>
         </section>
-        <!-- En alttaki QR Kod (sade hali, hover yok, buton yok) -->
+        <!-- En alttaki yeni resim (ufak kare şeklinde, eski QR kod tarzında) -->
         <section class="my-12 pb-20 text-center">
             <div id="footer-qr" class="photo-container inline-block">
-                <img src="https://i.imgur.com/3K8xVm0.jpeg"
-                     alt="Arzu & Ersin QR Kod"
+                <img src="https://i.imgur.com/gFSwQX6.jpeg"
+                     alt="Arzu & Ersin"
                      class="gallery-thumbnail w-full h-full object-cover rounded-lg shadow-lg"
                      loading="lazy"
                      style="width: 160px; height: 160px;">
