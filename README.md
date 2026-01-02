@@ -10,6 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700;800;900&family=Dancing+Script:wght@700&family=Cormorant+Garamond&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
+    <!-- Konfeti kütüphanesi -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
     <style>
         header, header *, #main-title, #sonbahar-baslik, h1, h2 {
             border: none !important;
@@ -743,7 +745,6 @@
                 </div>
             </div>
         </section>
-        <!-- En alttaki yeni QR kod (değiştirildi) -->
         <section class="my-12 pb-20 text-center">
             <div id="footer-qr" class="photo-container inline-block">
                 <img src="https://i.imgur.com/j4i19v0.jpeg"
@@ -1111,6 +1112,44 @@
                 applyTransform();
             };
         }
+
+        // KONFETİ EFEKTİ - 5 saniye süren, daha yoğun ve stabil çalışan versiyon
+        function launchConfetti() {
+            var duration = 5 * 1000;
+            var end = Date.now() + duration;
+
+            const colors = ['#f59e0b', '#ef4444', '#facc15', '#92400e', '#84cc16', '#dc2626', '#fb923c', '#ff69b4', '#16a34a', '#ffd700', '#ff69b4', '#00ff00'];
+
+            (function frame() {
+                confetti({
+                    particleCount: 7,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0, y: 0.5 },
+                    colors: colors,
+                    gravity: 0.8,
+                    scalar: 1.2
+                });
+                confetti({
+                    particleCount: 7,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1, y: 0.5 },
+                    colors: colors,
+                    gravity: 0.8,
+                    scalar: 1.2
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            }());
+        }
+
+        // Sayfa yüklendikten 500ms sonra başlat (daha stabil)
+        window.addEventListener('load', () => {
+            setTimeout(launchConfetti, 500);
+        });
     })();
     </script>
 </body>
