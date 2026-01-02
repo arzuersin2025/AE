@@ -743,11 +743,11 @@
                 </div>
             </div>
         </section>
-        <!-- En alttaki yeni resim (ufak kare şeklinde, eski QR kod tarzında) -->
+        <!-- En alttaki yeni QR kod (değiştirildi) -->
         <section class="my-12 pb-20 text-center">
             <div id="footer-qr" class="photo-container inline-block">
-                <img src="https://i.imgur.com/gFSwQX6.jpeg"
-                     alt="Arzu & Ersin"
+                <img src="https://i.imgur.com/j4i19v0.jpeg"
+                     alt="Arzu & Ersin QR Kod"
                      class="gallery-thumbnail w-full h-full object-cover rounded-lg shadow-lg"
                      loading="lazy"
                      style="width: 160px; height: 160px;">
