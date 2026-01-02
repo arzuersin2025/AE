@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700;800;900&family=Dancing+Script:wght@700&family=Cormorant+Garamond&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
-    <!-- Konfeti kütüphanesi - defer ile güvenli yükleme -->
+    <!-- Konfeti kütüphanesi -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js" defer></script>
     <style>
         header, header *, #main-title, #sonbahar-baslik, h1, h2 {
@@ -360,7 +360,6 @@
                 left: 50%;
             }
         }
-        /* Özel renk ayarları */
         #countdown-placeholder p {
             color: #e91e63 !important;
         }
@@ -379,7 +378,6 @@
         .thank-you-message p {
             color: #06b6d4 !important;
         }
-        /* Sayfa sonundaki fazla boşluğu kaldırmak için */
         main {
             padding-bottom: 0 !important;
         }
@@ -387,7 +385,6 @@
             padding-bottom: 2rem !important;
             margin-bottom: 0 !important;
         }
-        /* En alttaki QR kod için hover animasyonu tamamen kapalı */
         #footer-qr .gallery-thumbnail {
             transition: none !important;
         }
@@ -1112,42 +1109,44 @@
                 applyTransform();
             };
         }
-
-        // KONFETİ EFEKTİ - %100 çalışan, 5 saniye süren versiyon
-        window.onload = function() {
-            setTimeout(function() {
-                var duration = 5 * 1000;
-                var end = Date.now() + duration;
-
-                const colors = ['#f59e0b', '#ef4444', '#facc15', '#92400e', '#84cc16', '#dc2626', '#fb923c', '#ff69b4', '#16a34a', '#ffd700', '#ff69b4', '#00ff00', '#ff4500'];
-
-                (function frame() {
-                    confetti({
-                        particleCount: 8,
-                        angle: 60,
-                        spread: 60,
-                        origin: { x: 0, y: 0.5 },
-                        colors: colors,
-                        gravity: 0.9,
-                        scalar: 1.3
-                    });
-                    confetti({
-                        particleCount: 8,
-                        angle: 120,
-                        spread: 60,
-                        origin: { x: 1, y: 0.5 },
-                        colors: colors,
-                        gravity: 0.9,
-                        scalar: 1.3
-                    });
-
-                    if (Date.now() < end) {
-                        requestAnimationFrame(frame);
-                    }
-                }());
-            }, 300);
-        };
     })();
+    </script>
+
+    <!-- KONFETİ EFEKTİ - Ayrı ve bağımsız, çakışma yok -->
+    <script defer>
+    document.addEventListener('DOMContentLoaded', () => {
+        setTimeout(() => {
+            var duration = 5 * 1000;
+            var end = Date.now() + duration;
+
+            const colors = ['#f59e0b', '#ef4444', '#facc15', '#92400e', '#84cc16', '#dc2626', '#fb923c', '#ff69b4', '#16a34a', '#ffd700', '#ff4500', '#00ff00'];
+
+            (function frame() {
+                confetti({
+                    particleCount: 8,
+                    angle: 60,
+                    spread: 60,
+                    origin: { x: 0, y: 0.5 },
+                    colors: colors,
+                    gravity: 0.9,
+                    scalar: 1.3
+                });
+                confetti({
+                    particleCount: 8,
+                    angle: 120,
+                    spread: 60,
+                    origin: { x: 1, y: 0.5 },
+                    colors: colors,
+                    gravity: 0.9,
+                    scalar: 1.3
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            }());
+        }, 500);
+    });
     </script>
 </body>
 </html>
