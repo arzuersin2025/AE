@@ -1112,33 +1112,33 @@
     })();
     </script>
 
-    <!-- KONFETİ EFEKTİ - Ayrı ve bağımsız, çakışma yok -->
+    <!-- KONFETİ EFEKTİ - 2 saniye, daha hafif yoğunluk -->
     <script defer>
     document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
-            var duration = 5 * 1000;
+            var duration = 2 * 1000; // 2 saniye
             var end = Date.now() + duration;
 
-            const colors = ['#f59e0b', '#ef4444', '#facc15', '#92400e', '#84cc16', '#dc2626', '#fb923c', '#ff69b4', '#16a34a', '#ffd700', '#ff4500', '#00ff00'];
+            const colors = ['#f59e0b', '#ef4444', '#facc15', '#92400e', '#84cc16', '#dc2626', '#fb923c', '#ff69b4', '#16a34a', '#ffd700'];
 
             (function frame() {
                 confetti({
-                    particleCount: 8,
+                    particleCount: 5,
                     angle: 60,
-                    spread: 60,
+                    spread: 55,
                     origin: { x: 0, y: 0.5 },
                     colors: colors,
-                    gravity: 0.9,
-                    scalar: 1.3
+                    gravity: 0.8,
+                    scalar: 1.1
                 });
                 confetti({
-                    particleCount: 8,
+                    particleCount: 5,
                     angle: 120,
-                    spread: 60,
+                    spread: 55,
                     origin: { x: 1, y: 0.5 },
                     colors: colors,
-                    gravity: 0.9,
-                    scalar: 1.3
+                    gravity: 0.8,
+                    scalar: 1.1
                 });
 
                 if (Date.now() < end) {
