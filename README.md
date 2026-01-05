@@ -391,12 +391,168 @@
         #footer-qr:hover .gallery-thumbnail {
             transform: none !important;
         }
+        /* Mevsim Animasyonları */
+        #autumn-leaves-container, #autumn-hearts-container, #snow-container, #petal-container, #summer-container {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .autumn-leaf {
+            position: absolute;
+            width: 32px;
+            height: 44px;
+            opacity: 0.9;
+            animation: fall linear infinite;
+            transform-origin: center;
+            filter: drop-shadow(0 3px 6px rgba(0,0,0,0.3));
+        }
+        .autumn-leaf .leaf-inner { fill: var(--leaf-color); }
+        .autumn-leaf .leaf-outer { fill: white; opacity: 0.95; }
+        .autumn-heart {
+            position: absolute;
+            font-size: 2rem;
+            pointer-events: none;
+            animation: heartFall linear infinite;
+            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3));
+        }
+        .snowflake {
+            position: absolute;
+            top: -20px;
+            font-size: 2em;
+            pointer-events: none;
+            animation: snowFall linear infinite;
+            opacity: 0.9;
+            text-shadow: 0 0 8px rgba(0,0,0,0.5);
+        }
+        .petal {
+            position: absolute;
+            top: -30px;
+            font-size: 2em;
+            pointer-events: none;
+            animation: petalFall linear infinite;
+            opacity: 0.9;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+        .sparkle {
+            position: absolute;
+            top: -20px;
+            color: #ffd700;
+            font-size: 1.5em;
+            pointer-events: none;
+            animation: sparkleFall linear infinite;
+            opacity: 0.8;
+            text-shadow: 0 0 10px #ffd700;
+        }
+        @keyframes snowFall {
+            0% { transform: translateY(-20px) translateX(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.9; }
+            100% { transform: translateY(calc(100vh + 50px)) translateX(var(--drift)) rotate(360deg); opacity: 0; }
+        }
+        @keyframes petalFall {
+            0% { transform: translateY(-30px) translateX(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.9; }
+            100% { transform: translateY(calc(100vh + 50px)) translateX(var(--petal-drift)) rotate(720deg); opacity: 0; }
+        }
+        @keyframes sparkleFall {
+            0% { transform: translateY(-20px) translateX(0) scale(0.5); opacity: 0; }
+            10% { opacity: 0.8; }
+            100% { transform: translateY(calc(100vh + 50px)) translateX(var(--sparkle-drift)) scale(1.2); opacity: 0; }
+        }
+        /* Footer bölümü ve mevsim değiştirici */
+        #footer-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+            padding: 2rem 1rem;
+            position: relative;
+        }
+        #qr-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #theme-toggle-wrapper {
+            display: flex;
+            flex-direction: row;
+            gap: 1.5rem;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .theme-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: fit-content;
+        }
+        .theme-button {
+            background: rgba(220, 38, 38, 0.9);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        .theme-button:hover {
+            transform: scale(1.1);
+            background: #dc2626;
+        }
+        .theme-button.active {
+            background: #16a34a;
+            transform: scale(1.2);
+            box-shadow: 0 0 20px rgba(22, 163, 74, 0.6);
+        }
+        .theme-label {
+            margin-top: 8px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #dc2626;
+            text-align: center;
+        }
+        #site-address {
+            margin-top: 1rem;
+            font-size: 1.125rem;
+            font-weight: 500;
+            color: #dc2626;
+            text-align: center;
+        }
+        #season-info {
+            margin-top: 1rem;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #dc2626;
+            text-align: center;
+            max-width: 90%;
+        }
+        @media (max-width: 768px) {
+            #theme-toggle-wrapper {
+                gap: 1rem;
+            }
+            #season-info {
+                font-size: 0.95rem;
+            }
+        }
     </style>
 </head>
 <body class="text-black">
     <div id="background-leaves-pattern"></div>
     <div id="falling-leaves-container"></div>
     <div id="falling-hearts-container"></div>
+    <div id="autumn-leaves-container"></div>
+    <div id="autumn-hearts-container"></div>
+    <div id="snow-container"></div>
+    <div id="petal-container"></div>
+    <div id="summer-container"></div>
     <div id="bg-youtube-player" style="position:fixed; top:-100%; left:0; width:1px; height:1px; opacity:0; pointer-events:none;"></div>
     <header class="py-16 text-center relative z-20 overflow-hidden">
         <div class="relative">
@@ -559,12 +715,12 @@
                 <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-1" id="gallery-grid">
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/dy7O9vT.jpeg" alt="Katibim" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
-                        <span class="photo-number opacity-0 group-hover:opacity-100">16</span>
+                        <span class="photo-number opacity-0 group-hover:opacity-100">17</span>
                         <div class="photo-note">Katibim</div>
                     </div>
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/HiXIafs.jpeg" alt="Katibim" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
-                        <span class="photo-number opacity-0 group-hover:opacity-100">17</span>
+                        <span class="photo-number opacity-0 group-hover:opacity-100">16</span>
                         <div class="photo-note">Katibim</div>
                     </div>
                     <div class="photo-container group cursor-pointer">
@@ -742,16 +898,39 @@
                 </div>
             </div>
         </section>
-        <section class="my-12 pb-20 text-center">
-            <div id="footer-qr" class="photo-container inline-block">
-                <img src="https://i.imgur.com/j4i19v0.jpeg"
-                     alt="Arzu & Ersin QR Kod"
-                     class="gallery-thumbnail w-full h-full object-cover rounded-lg shadow-lg"
-                     loading="lazy"
-                     style="width: 160px; height: 160px;">
+        <section id="footer-section" class="my-12 text-center">
+            <div id="qr-wrapper">
+                <div id="footer-qr" class="photo-container inline-block">
+                    <img src="https://i.imgur.com/j4i19v0.jpeg"
+                         alt="Arzu & Ersin QR Kod"
+                         class="gallery-thumbnail w-full h-full object-cover rounded-lg shadow-lg"
+                         loading="lazy"
+                         style="width: 160px; height: 160px;">
+                </div>
+                <p id="site-address" class="handwriting">
+                    Web Sitemizin adresi 💕
+                </p>
             </div>
-            <p class="mt-6 text-lg font-medium text-red-600 handwriting">
-                Web Sitemizin adresi 💕
+            <div id="theme-toggle-wrapper">
+                <div class="theme-item">
+                    <div class="theme-button" data-theme="autumn">🍂</div>
+                    <div class="theme-label">Sonbahar</div>
+                </div>
+                <div class="theme-item">
+                    <div class="theme-button" data-theme="winter">❄️</div>
+                    <div class="theme-label">Kış</div>
+                </div>
+                <div class="theme-item">
+                    <div class="theme-button" data-theme="spring">🌸</div>
+                    <div class="theme-label">İlkbahar</div>
+                </div>
+                <div class="theme-item">
+                    <div class="theme-button" data-theme="summer">☀️</div>
+                    <div class="theme-label">Yaz</div>
+                </div>
+            </div>
+            <p id="season-info">
+                Sitemizi incelerken mevsimlere tıklayarak farklı animasyonları görebilirsiniz 😊
             </p>
         </section>
     </main>
@@ -1111,16 +1290,12 @@
         }
     })();
     </script>
-
-    <!-- KONFETİ EFEKTİ - 2 saniye, daha hafif yoğunluk -->
     <script defer>
     document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
-            var duration = 2 * 1000; // 2 saniye
+            var duration = 2 * 1000;
             var end = Date.now() + duration;
-
             const colors = ['#f59e0b', '#ef4444', '#facc15', '#92400e', '#84cc16', '#dc2626', '#fb923c', '#ff69b4', '#16a34a', '#ffd700'];
-
             (function frame() {
                 confetti({
                     particleCount: 5,
@@ -1140,13 +1315,147 @@
                     gravity: 0.8,
                     scalar: 1.1
                 });
-
                 if (Date.now() < end) {
                     requestAnimationFrame(frame);
                 }
             }());
         }, 500);
     });
+    </script>
+    <script>
+    const themes = ['autumn', 'winter', 'spring', 'summer'];
+
+    const autumnLeavesContainer = document.getElementById('autumn-leaves-container');
+    const autumnHeartsContainer = document.getElementById('autumn-hearts-container');
+    const snowContainer = document.getElementById('snow-container');
+    const petalContainer = document.getElementById('petal-container');
+    const summerContainer = document.getElementById('summer-container');
+    const themeButtons = document.querySelectorAll('.theme-button');
+
+    const leafSVG = `<svg viewBox="0 0 100 140" class="w-full h-full" preserveAspectRatio="xMidYMid meet"><path class="leaf-outer" d="M50 10 C30 15, 20 35, 18 55 C16 75, 25 95, 35 115 C45 130, 48 135, 50 138 C52 135, 55 130, 65 115 C75 95, 84 75, 82 55 C80 35, 70 15, 50 10 Z" /><path class="leaf-inner" d="M50 15 C33 20, 25 38, 23 55 C21 72, 28 88, 36 108 C44 125, 48 132, 50 135 C52 132, 56 125, 64 108 C72 88, 79 72, 77 55 C75 38, 67 20, 50 15 Z" /><path d="M50 15 Q50 70 48 135" stroke="#fff" stroke-width="2.5" opacity="0.5" fill="none"/><path d="M50 15 Q35 40 28 48 M50 55 Q32 65 25 75 M50 80 Q30 90 23 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/><path d="M50 15 Q65 40 72 48 M50 55 Q68 65 75 75 M50 80 Q70 90 77 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/></svg>`;
+
+    function createAutumnLeaves() {
+        autumnLeavesContainer.innerHTML = '';
+        const colors = ['#f59e0b', '#ef4444', '#facc15', '#92400e', '#84cc16', '#fb923c', '#dc2626', '#f97316', '#22c55e', '#16a34a'];
+        const positions = [20, 50, 80];
+        for (let i = 0; i < 3; i++) {
+            const leaf = document.createElement('div');
+            leaf.className = 'autumn-leaf';
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            leaf.style.setProperty('--leaf-color', color);
+            leaf.style.left = positions[i] + '%';
+            const scale = 0.7 + Math.random() * 0.4;
+            leaf.style.transform = `scale(${scale}) rotate(${Math.random() * 360}deg)`;
+            const duration = 35 + i * 5;
+            leaf.style.animationDuration = duration + 's';
+            leaf.style.animationDelay = i * 8 + 's';
+            leaf.innerHTML = leafSVG;
+            autumnLeavesContainer.appendChild(leaf);
+        }
+    }
+    function createAutumnHearts() {
+        autumnHeartsContainer.innerHTML = '';
+        const hearts = ['❤️','🧡','💛'];
+        const positions = [15, 50, 85];
+        for (let i = 0; i < 3; i++) {
+            const heart = document.createElement('div');
+            heart.className = 'autumn-heart';
+            heart.innerHTML = hearts[i];
+            heart.style.left = positions[i] + '%';
+            const duration = 35 + i * 5;
+            heart.style.animationDuration = duration + 's';
+            heart.style.animationDelay = i * 10 + 's';
+            const size = 2 + Math.random() * 0.5;
+            heart.style.fontSize = size + 'rem';
+            autumnHeartsContainer.appendChild(heart);
+        }
+    }
+    function createSnowflakes() {
+        snowContainer.innerHTML = '';
+        const snowflakeColors = ['#a5f3fc', '#67e8f9', '#22d3ee'];
+        const snowflakeEmojis = ['❄️', '❅', '❆'];
+        const positions = [20, 50, 80];
+        for (let i = 0; i < 3; i++) {
+            const flake = document.createElement('div');
+            flake.className = 'snowflake';
+            flake.innerHTML = snowflakeEmojis[i];
+            flake.style.color = snowflakeColors[i];
+            flake.style.left = positions[i] + '%';
+            flake.style.animationDuration = 20 + i * 5 + 's';
+            flake.style.animationDelay = i * 6 + 's';
+            flake.style.fontSize = (2 + i * 0.5) + 'em';
+            flake.style.setProperty('--drift', (i % 2 === 0 ? 150 : -150) + 'px');
+            snowContainer.appendChild(flake);
+        }
+    }
+    function createPetals() {
+        petalContainer.innerHTML = '';
+        const petals = ['🌸','🌺','🌷'];
+        const positions = [25, 50, 75];
+        for (let i = 0; i < 3; i++) {
+            const petal = document.createElement('div');
+            petal.className = 'petal';
+            petal.innerHTML = petals[i];
+            petal.style.left = positions[i] + '%';
+            petal.style.animationDuration = 25 + i * 5 + 's';
+            petal.style.animationDelay = i * 7 + 's';
+            petal.style.fontSize = (2.2 + i * 0.3) + 'em';
+            petal.style.setProperty('--petal-drift', (Math.random() * 300 - 150) + 'px');
+            petalContainer.appendChild(petal);
+        }
+    }
+    function createSparkles() {
+        summerContainer.innerHTML = '';
+        const sparkles = ['✨','⭐','☀️'];
+        const positions = [30, 50, 70];
+        for (let i = 0; i < 3; i++) {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.innerHTML = sparkles[i];
+            sparkle.style.left = positions[i] + '%';
+            sparkle.style.animationDuration = 20 + i * 5 + 's';
+            sparkle.style.animationDelay = i * 6 + 's';
+            sparkle.style.fontSize = (1.8 + i * 0.4) + 'em';
+            sparkle.style.setProperty('--sparkle-drift', (Math.random() * 200 - 100) + 'px');
+            summerContainer.appendChild(sparkle);
+        }
+    }
+
+    function clearAllAnimations() {
+        autumnLeavesContainer.innerHTML = '';
+        autumnHeartsContainer.innerHTML = '';
+        snowContainer.innerHTML = '';
+        petalContainer.innerHTML = '';
+        summerContainer.innerHTML = '';
+    }
+
+    function applyTheme(theme) {
+        clearAllAnimations();
+        themeButtons.forEach(btn => btn.classList.remove('active'));
+
+        const activeBtn = document.querySelector(`.theme-button[data-theme="${theme}"]`);
+        if (activeBtn) activeBtn.classList.add('active');
+
+        if (theme === 'autumn') {
+            createAutumnLeaves();
+            createAutumnHearts();
+        } else if (theme === 'winter') {
+            createSnowflakes();
+        } else if (theme === 'spring') {
+            createPetals();
+        } else if (theme === 'summer') {
+            createSparkles();
+        }
+    }
+
+    themeButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const theme = button.dataset.theme;
+            applyTheme(theme);
+        });
+    });
+
+    applyTheme('autumn');
     </script>
 </body>
 </html>
