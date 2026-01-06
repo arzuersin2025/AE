@@ -10,6 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700;800;900&family=Dancing+Script:wght@700&family=Cormorant+Garamond&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
+    <!-- Konfeti kütüphanesi -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js" defer></script>
     <style>
         header, header *, #main-title, #sonbahar-baslik, h1, h2 {
             border: none !important;
@@ -358,7 +360,6 @@
                 left: 50%;
             }
         }
-        /* Özel renk ayarları */
         #countdown-placeholder p {
             color: #e91e63 !important;
         }
@@ -377,7 +378,6 @@
         .thank-you-message p {
             color: #06b6d4 !important;
         }
-        /* Sayfa sonundaki fazla boşluğu kaldırmak için */
         main {
             padding-bottom: 0 !important;
         }
@@ -385,12 +385,31 @@
             padding-bottom: 2rem !important;
             margin-bottom: 0 !important;
         }
-        /* En alttaki QR kod için hover animasyonu tamamen kapalı */
         #footer-qr .gallery-thumbnail {
             transition: none !important;
         }
         #footer-qr:hover .gallery-thumbnail {
             transform: none !important;
+        }
+        #footer-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+            padding: 2rem 1rem;
+            position: relative;
+        }
+        #qr-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #site-address {
+            margin-top: 1rem;
+            font-size: 1.125rem;
+            font-weight: 500;
+            color: #dc2626;
+            text-align: center;
         }
     </style>
 </head>
@@ -560,12 +579,12 @@
                 <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-1" id="gallery-grid">
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/dy7O9vT.jpeg" alt="Katibim" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
-                        <span class="photo-number opacity-0 group-hover:opacity-100">16</span>
+                        <span class="photo-number opacity-0 group-hover:opacity-100">17</span>
                         <div class="photo-note">Katibim</div>
                     </div>
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/HiXIafs.jpeg" alt="Katibim" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
-                        <span class="photo-number opacity-0 group-hover:opacity-100">17</span>
+                        <span class="photo-number opacity-0 group-hover:opacity-100">16</span>
                         <div class="photo-note">Katibim</div>
                     </div>
                     <div class="photo-container group cursor-pointer">
@@ -743,18 +762,19 @@
                 </div>
             </div>
         </section>
-        <!-- En alttaki yeni QR kod (değiştirildi) -->
-        <section class="my-12 pb-20 text-center">
-            <div id="footer-qr" class="photo-container inline-block">
-                <img src="https://i.imgur.com/j4i19v0.jpeg"
-                     alt="Arzu & Ersin QR Kod"
-                     class="gallery-thumbnail w-full h-full object-cover rounded-lg shadow-lg"
-                     loading="lazy"
-                     style="width: 160px; height: 160px;">
+        <section id="footer-section" class="my-12 text-center">
+            <div id="qr-wrapper">
+                <div id="footer-qr" class="photo-container inline-block">
+                    <img src="https://i.imgur.com/j4i19v0.jpeg"
+                         alt="Arzu & Ersin QR Kod"
+                         class="gallery-thumbnail w-full h-full object-cover rounded-lg shadow-lg"
+                         loading="lazy"
+                         style="width: 160px; height: 160px;">
+                </div>
+                <p id="site-address" class="handwriting">
+                    Web Sitemizin adresi 💕
+                </p>
             </div>
-            <p class="mt-6 text-lg font-medium text-red-600 handwriting">
-                Web Sitemizin adresi 💕
-            </p>
         </section>
     </main>
     <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
@@ -789,9 +809,7 @@
             }
             showTooltipTemporarily();
         });
-        tooltip.addEventListener('click', (e) => {
-            e.stopPropagation();
-        });
+        tooltip.addEventListener('click', (e) => e.stopPropagation());
         function showTooltipTemporarily() {
             tooltip.classList.add('visible');
             tooltipVisible = true;
@@ -948,25 +966,35 @@
                 updateTransform();
             }
         });
-        document.getElementById('toggle-gallery-btn').onclick = () => {
+        document.getElementById('toggle-gallery-btn').addEventListener('click', () => {
             const wrapper = document.getElementById('gallery-wrapper');
             wrapper.classList.toggle('hidden');
-            document.getElementById('gallery-toggle-icon').classList.toggle('rotate-180', !wrapper.classList.contains('hidden'));
-            document.getElementById('gallery-toggle-text').textContent = wrapper.classList.contains('hidden') ? 'Fotoğraf Galerisini Gör' : 'Galeriyi Gizle';
-            if (!wrapper.classList.contains('hidden')) {
+            const icon = document.getElementById('gallery-toggle-icon');
+            const text = document.getElementById('gallery-toggle-text');
+            if (wrapper.classList.contains('hidden')) {
+                text.textContent = 'Fotoğraf Galerisini Gör';
+                icon.classList.remove('rotate-180');
+            } else {
+                text.textContent = 'Galeriyi Gizle';
+                icon.classList.add('rotate-180');
                 setTimeout(() => {
                     document.querySelectorAll('#gallery-grid .photo-container').forEach((el, i) => {
                         el.onclick = () => openPhoto(i);
                     });
                 }, 100);
             }
-        };
-        document.getElementById('toggle-video-gallery-btn').onclick = () => {
+        });
+        document.getElementById('toggle-video-gallery-btn').addEventListener('click', () => {
             const wrapper = document.getElementById('video-gallery-wrapper');
             wrapper.classList.toggle('hidden');
-            document.getElementById('video-gallery-toggle-icon').classList.toggle('rotate-180', !wrapper.classList.contains('hidden'));
-            document.getElementById('video-gallery-toggle-text').textContent = wrapper.classList.contains('hidden') ? 'Video Galerisini Gör' : 'Video Galerisini Gizle';
-            if (!wrapper.classList.contains('hidden')) {
+            const icon = document.getElementById('video-gallery-toggle-icon');
+            const text = document.getElementById('video-gallery-toggle-text');
+            if (wrapper.classList.contains('hidden')) {
+                text.textContent = 'Video Galerisini Gör';
+                icon.classList.remove('rotate-180');
+            } else {
+                text.textContent = 'Video Galerisini Gizle';
+                icon.classList.add('rotate-180');
                 setTimeout(() => {
                     document.querySelectorAll('#video-grid .photo-container').forEach(el => {
                         el.onclick = () => {
@@ -976,7 +1004,7 @@
                     });
                 }, 100);
             }
-        };
+        });
         document.getElementById('close-video-modal').onclick = () => {
             document.getElementById('video-modal').classList.replace('flex', 'hidden');
             document.getElementById('modal-video-iframe').src = '';
@@ -1112,6 +1140,38 @@
             };
         }
     })();
+    </script>
+    <script defer>
+    document.addEventListener('DOMContentLoaded', () => {
+        setTimeout(() => {
+            var duration = 2 * 1000;
+            var end = Date.now() + duration;
+            const colors = ['#f59e0b', '#ef4444', '#facc15', '#92400e', '#84cc16', '#dc2626', '#fb923c', '#ff69b4', '#16a34a', '#ffd700'];
+            (function frame() {
+                confetti({
+                    particleCount: 5,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0, y: 0.5 },
+                    colors: colors,
+                    gravity: 0.8,
+                    scalar: 1.1
+                });
+                confetti({
+                    particleCount: 5,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1, y: 0.5 },
+                    colors: colors,
+                    gravity: 0.8,
+                    scalar: 1.1
+                });
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            }());
+        }, 500);
+    });
     </script>
 </body>
 </html>
