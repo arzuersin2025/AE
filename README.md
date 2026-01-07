@@ -592,94 +592,119 @@
             </div>
             <div id="gallery-wrapper" class="hidden mt-8">
                 <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-1" id="gallery-grid">
-                    <!-- Yeni eklenen Katibim Cafe fotoğrafı - en başta, numara 18 -->
+                    <!-- 18 - Katibim Cafe (en başta) -->
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/D0I0h6C.jpeg" alt="Katibim Cafe" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">18</span>
                         <div class="photo-note">Katibim Cafe</div>
                     </div>
 
-                    <!-- Orijinal fotoğraflar -->
+                    <!-- 17 -->
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/dy7O9vT.jpeg" alt="Katibim" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">17</span>
                         <div class="photo-note">Katibim</div>
                     </div>
+
+                    <!-- 16 -->
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/HiXIafs.jpeg" alt="Katibim" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">16</span>
                         <div class="photo-note">Katibim</div>
                     </div>
-                    <div class="photo-container group cursor-pointer">
-                        <img data-src="https://i.imgur.com/wepNFEy.jpeg" alt="Öğretmenler Günü" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
-                        <span class="photo-number opacity-0 group-hover:opacity-100">15</span>
-                        <div class="photo-note">Öğretmenler Günü</div>
-                    </div>
+
+                    <!-- 14 - Bostancı (Öğretmenler Günü kaldırıldı) -->
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/QXWb1oI.jpg" alt="Bostancı" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">14</span>
                         <div class="photo-note">Bostancı</div>
                     </div>
+
+                    <!-- 13 -->
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/PTYXm1S.jpg" alt="Nakkaştepe" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">13</span>
                         <div class="photo-note">Nakkaştepe</div>
                     </div>
+
+                    <!-- 12 -->
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/Q6ZF31K.jpg" alt="Katibim" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">12</span>
                         <div class="photo-note">Katibim</div>
                     </div>
+
+                    <!-- 11 -->
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/3yhwIIm.jpg" alt="Üsküdar" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">11</span>
                         <div class="photo-note">Üsküdar</div>
                     </div>
+
+                    <!-- 10 -->
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/8Vu50Vx.jpg" alt="Üsküdar" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">10</span>
                         <div class="photo-note">Üsküdar</div>
                     </div>
+
+                    <!-- 9 -->
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/cDWfV6z.jpg" alt="Güldür Güldür" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">9</span>
                         <div class="photo-note">Güldür Güldür</div>
                     </div>
+
+                    <!-- 8 -->
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/jlmfKQ6.jpg" alt="Nev Mekan" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">8</span>
                         <div class="photo-note">Nev Mekan</div>
                     </div>
+
+                    <!-- 7 -->
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/EI3PjiL.jpg" alt="Nev Mekan" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">7</span>
                         <div class="photo-note">Nev Mekan</div>
                     </div>
+
+                    <!-- 6 -->
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/wf9Xhs9.jpg" alt="Lunapark Anısı" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">6</span>
                         <div class="photo-note">Lunapark Anısı</div>
                     </div>
+
+                    <!-- 5 -->
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/G26zsUc.jpg" alt="Beşiktaş" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">5</span>
                         <div class="photo-note">Beşiktaş</div>
                     </div>
+
+                    <!-- 4 -->
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/PR2hWYz.jpg" alt="Aksaray" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">4</span>
                         <div class="photo-note">Aksaray</div>
                     </div>
+
+                    <!-- 3 -->
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/40oguJF.jpg" alt="Çamlıca Kahvaltımız" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">3</span>
                         <div class="photo-note">Çamlıca Kahvaltımız</div>
                     </div>
+
+                    <!-- 2 -->
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/KZpZnaa.jpg" alt="Dünya Güzelim" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">2</span>
                         <div class="photo-note">Dünya Güzelim</div>
                     </div>
+
+                    <!-- 1 -->
                     <div class="photo-container no-note group cursor-pointer">
                         <img data-src="https://i.imgur.com/WnEibNN.jpg" alt="Aksaray" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">1</span>
@@ -687,6 +712,7 @@
                 </div>
             </div>
         </section>
+        <!-- Video Galerisi ve diğer bölümler aynı kaldı (değişiklik yok) -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Video Galerimiz</h3>
             <div class="video-gallery-description">
@@ -702,6 +728,7 @@
             </div>
             <div id="video-gallery-wrapper" class="hidden mt-8">
                 <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-1" id="video-grid">
+                    <!-- Video galerisi aynı kaldı -->
                     <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="wcZOC94zAYw">
                         <img data-src="https://img.youtube.com/vi/wcZOC94zAYw/maxresdefault.jpg" alt="Güldür Güldür" class="w-full h-full object-cover gallery-thumbnail" loading="lazy">
                         <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
