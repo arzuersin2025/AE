@@ -592,6 +592,14 @@
             </div>
             <div id="gallery-wrapper" class="hidden mt-8">
                 <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-1" id="gallery-grid">
+                    <!-- Yeni eklenen Katibim Cafe fotoğrafı - en başta, numara 18 -->
+                    <div class="photo-container group cursor-pointer">
+                        <img data-src="https://i.imgur.com/D0I0h6C.jpeg" alt="Katibim Cafe" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
+                        <span class="photo-number opacity-0 group-hover:opacity-100">18</span>
+                        <div class="photo-note">Katibim Cafe</div>
+                    </div>
+
+                    <!-- Orijinal fotoğraflar -->
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/dy7O9vT.jpeg" alt="Katibim" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">17</span>
@@ -696,7 +704,7 @@
                 <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-1" id="video-grid">
                     <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="wcZOC94zAYw">
                         <img data-src="https://img.youtube.com/vi/wcZOC94zAYw/maxresdefault.jpg" alt="Güldür Güldür" class="w-full h-full object-cover gallery-thumbnail" loading="lazy">
-                        <div class="absolute inset-0 flex items-center justify-content: center bg-black bg-opacity-40">
+                        <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
                             <i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i>
                         </div>
                         <span class="photo-number opacity-0 group-hover:opacity-100">6</span>
@@ -865,7 +873,7 @@
             leaf.innerHTML = leafSVG;
             leafContainer.appendChild(leaf);
         }
-        const flowers = ['🌸', '🌺', '🌻', '🌼'];
+        const flowers = ['🌸', '🌹', '🌺', '🌻', '🌼', '💮', '🏵️', '🌷'];
         const flowerContainer = document.getElementById('falling-flowers-container');
         for (let i = 0; i < 5; i++) {
             const flower = document.createElement('div');
