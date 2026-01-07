@@ -900,7 +900,7 @@
             leaf.innerHTML = leafSVG;
             leafContainer.appendChild(leaf);
         }
-        const flowers = ['🌸', '🌹', '🌺', '🌻', '🌼', '💮', '🏵️', '🌷'];
+        const flowers = ['🌸', '🌺', '🌻', '🌼'];
         const flowerContainer = document.getElementById('falling-flowers-container');
         for (let i = 0; i < 5; i++) {
             const flower = document.createElement('div');
