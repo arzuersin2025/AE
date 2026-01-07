@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -35,6 +35,7 @@
         @media (max-width: 768px) { #background-leaves-pattern { opacity: 0.9 !important; } }
         #falling-leaves-container { position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: -1; overflow: hidden; }
         #falling-hearts-container { position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: -1; overflow: hidden; }
+        #falling-flowers-container { position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: -1; overflow: hidden; }
         h1, h2, h3 { font-family: 'Playfair Display', serif; }
         .handwriting { font-family: 'Dancing Script', cursive; }
         .font-forte-alternative { font-family: 'Dancing Script', cursive; }
@@ -77,6 +78,19 @@
             5% { opacity: 1; }
             95% { opacity: 1; }
             100% { opacity: 0; transform: translateY(calc(100vh + 150px)) rotate(1080deg) scale(0.4); }
+        }
+        .falling-flower {
+            position: absolute;
+            font-size: 2.2rem;
+            pointer-events: none;
+            animation: flowerFall linear infinite;
+            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3));
+        }
+        @keyframes flowerFall {
+            0% { opacity: 0; transform: translateY(-150px) rotate(0deg) scale(0.8); }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { opacity: 0; transform: translateY(calc(100vh + 150px)) rotate(1440deg) scale(0.5); }
         }
         .music-visualizer { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: flex; align-items: center; justify-content: center; gap: 6px; z-index: 15; opacity: 1; transition: opacity 0.3s ease; width: 200px; pointer-events: none; }
         .music-visualizer.hidden { opacity: 0 !important; pointer-events: none; }
@@ -417,6 +431,7 @@
     <div id="background-leaves-pattern"></div>
     <div id="falling-leaves-container"></div>
     <div id="falling-hearts-container"></div>
+    <div id="falling-flowers-container"></div>
     <div id="bg-youtube-player" style="position:fixed; top:-100%; left:0; width:1px; height:1px; opacity:0; pointer-events:none;"></div>
     <header class="py-16 text-center relative z-20 overflow-hidden">
         <div class="relative">
@@ -681,7 +696,7 @@
                 <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-1" id="video-grid">
                     <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="wcZOC94zAYw">
                         <img data-src="https://img.youtube.com/vi/wcZOC94zAYw/maxresdefault.jpg" alt="Güldür Güldür" class="w-full h-full object-cover gallery-thumbnail" loading="lazy">
-                        <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
+                        <div class="absolute inset-0 flex items-center justify-content: center bg-black bg-opacity-40">
                             <i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i>
                         </div>
                         <span class="photo-number opacity-0 group-hover:opacity-100">6</span>
@@ -849,6 +864,20 @@
             leaf.style.animationDelay = Math.random() * 30 + 's';
             leaf.innerHTML = leafSVG;
             leafContainer.appendChild(leaf);
+        }
+        const flowers = ['🌸', '🌺', '🌻', '🌼'];
+        const flowerContainer = document.getElementById('falling-flowers-container');
+        for (let i = 0; i < 5; i++) {
+            const flower = document.createElement('div');
+            flower.className = 'falling-flower';
+            flower.innerHTML = flowers[Math.floor(Math.random() * flowers.length)];
+            flower.style.left = Math.random() * 100 + 'vw';
+            const duration = 25 + Math.random() * 20;
+            flower.style.animationDuration = duration + 's';
+            flower.style.animationDelay = Math.random() * 15 + 's';
+            const size = 1.6 + Math.random() * 1.0;
+            flower.style.fontSize = size + 'rem';
+            flowerContainer.appendChild(flower);
         }
         const lazyLoadObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
