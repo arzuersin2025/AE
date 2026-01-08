@@ -789,7 +789,7 @@
                          style="width: 160px; height: 160px;">
                 </div>
                 <p id="site-address" class="handwriting">
-                    Web Sitemizin adresi 💕
+                    Web Sitemizin adresi ♡
                 </p>
             </div>
         </section>
