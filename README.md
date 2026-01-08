@@ -180,6 +180,8 @@
             max-height: 95vh;
             border-radius: 12px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            transform-origin: center center;
+            transition: transform 0.1s ease-out;
         }
         #close-invitation {
             position: absolute;
@@ -555,7 +557,7 @@
         </section>
         <div id="invitation-modal">
             <span id="close-invitation">X</span>
-            <img src="https://i.imgur.com/pkKrbgb.jpeg" alt="Arzu & Ersin Düğün Davetiyesi">
+            <img id="invitation-image" src="https://i.imgur.com/2nywEc1.jpeg" alt="Arzu & Ersin Düğün Davetiyesi">
         </div>
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center relative overflow-hidden">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Bizim Şarkımız</h3>
@@ -592,119 +594,86 @@
             </div>
             <div id="gallery-wrapper" class="hidden mt-8">
                 <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-1" id="gallery-grid">
-                    <!-- 18 - Katibim Cafe (en başta) -->
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/D0I0h6C.jpeg" alt="Katibim Cafe" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">18</span>
                         <div class="photo-note">Katibim Cafe</div>
                     </div>
-
-                    <!-- 17 -->
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/dy7O9vT.jpeg" alt="Katibim" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">17</span>
                         <div class="photo-note">Katibim</div>
                     </div>
-
-                    <!-- 16 -->
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/HiXIafs.jpeg" alt="Katibim" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">16</span>
                         <div class="photo-note">Katibim</div>
                     </div>
-
-                    <!-- 14 - Bostancı (Öğretmenler Günü kaldırıldı) -->
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/QXWb1oI.jpg" alt="Bostancı" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">14</span>
                         <div class="photo-note">Bostancı</div>
                     </div>
-
-                    <!-- 13 -->
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/PTYXm1S.jpg" alt="Nakkaştepe" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">13</span>
                         <div class="photo-note">Nakkaştepe</div>
                     </div>
-
-                    <!-- 12 -->
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/Q6ZF31K.jpg" alt="Katibim" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">12</span>
                         <div class="photo-note">Katibim</div>
                     </div>
-
-                    <!-- 11 -->
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/3yhwIIm.jpg" alt="Üsküdar" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">11</span>
                         <div class="photo-note">Üsküdar</div>
                     </div>
-
-                    <!-- 10 -->
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/8Vu50Vx.jpg" alt="Üsküdar" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">10</span>
                         <div class="photo-note">Üsküdar</div>
                     </div>
-
-                    <!-- 9 -->
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/cDWfV6z.jpg" alt="Güldür Güldür" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">9</span>
                         <div class="photo-note">Güldür Güldür</div>
                     </div>
-
-                    <!-- 8 -->
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/jlmfKQ6.jpg" alt="Nev Mekan" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">8</span>
                         <div class="photo-note">Nev Mekan</div>
                     </div>
-
-                    <!-- 7 -->
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/EI3PjiL.jpg" alt="Nev Mekan" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">7</span>
                         <div class="photo-note">Nev Mekan</div>
                     </div>
-
-                    <!-- 6 -->
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/wf9Xhs9.jpg" alt="Lunapark Anısı" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">6</span>
                         <div class="photo-note">Lunapark Anısı</div>
                     </div>
-
-                    <!-- 5 -->
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/G26zsUc.jpg" alt="Beşiktaş" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">5</span>
                         <div class="photo-note">Beşiktaş</div>
                     </div>
-
-                    <!-- 4 -->
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/PR2hWYz.jpg" alt="Aksaray" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">4</span>
                         <div class="photo-note">Aksaray</div>
                     </div>
-
-                    <!-- 3 -->
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/40oguJF.jpg" alt="Çamlıca Kahvaltımız" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">3</span>
                         <div class="photo-note">Çamlıca Kahvaltımız</div>
                     </div>
-
-                    <!-- 2 -->
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/KZpZnaa.jpg" alt="Dünya Güzelim" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">2</span>
                         <div class="photo-note">Dünya Güzelim</div>
                     </div>
-
-                    <!-- 1 -->
                     <div class="photo-container no-note group cursor-pointer">
                         <img data-src="https://i.imgur.com/WnEibNN.jpg" alt="Aksaray" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">1</span>
@@ -712,7 +681,6 @@
                 </div>
             </div>
         </section>
-        <!-- Video Galerisi ve diğer bölümler aynı kaldı (değişiklik yok) -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Video Galerimiz</h3>
             <div class="video-gallery-description">
@@ -728,7 +696,6 @@
             </div>
             <div id="video-gallery-wrapper" class="hidden mt-8">
                 <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-1" id="video-grid">
-                    <!-- Video galerisi aynı kaldı -->
                     <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="wcZOC94zAYw">
                         <img data-src="https://img.youtube.com/vi/wcZOC94zAYw/maxresdefault.jpg" alt="Güldür Güldür" class="w-full h-full object-cover gallery-thumbnail" loading="lazy">
                         <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
@@ -822,7 +789,7 @@
                          style="width: 160px; height: 160px;">
                 </div>
                 <p id="site-address" class="handwriting">
-                    Web Sitemizin adresi ♡
+                    Web Sitemizin adresi 💕
                 </p>
             </div>
         </section>
@@ -1144,9 +1111,119 @@
         };
         playBtn.onclick = e => { e.stopPropagation(); player && (isPlaying ? player.pauseVideo() : player.playVideo()); };
         const invitationModal = document.getElementById('invitation-modal');
-        document.getElementById('invitation-icon').onclick = () => invitationModal.classList.add('show');
-        document.getElementById('close-invitation').onclick = () => invitationModal.classList.remove('show');
-        invitationModal.onclick = e => { if (e.target === invitationModal) invitationModal.classList.remove('show'); };
+        const invitationImage = document.getElementById('invitation-image');
+        let invitationScale = 1;
+        let invitationTranslateX = 0;
+        let invitationTranslateY = 0;
+        let invitationInitialDistance = 0;
+        let invitationInitialScale = 1;
+        let invitationStartClientX = 0;
+        let invitationStartClientY = 0;
+        let invitationStartTranslateX = 0;
+        let invitationStartTranslateY = 0;
+        let invitationIsPanning = false;
+        const invitationSensitivity = 0.5;
+        const updateInvitationTransform = () => {
+            invitationImage.style.transform = `scale(${invitationScale}) translate(${invitationTranslateX}px, ${invitationTranslateY}px)`;
+        };
+        const resetInvitation = () => {
+            invitationScale = 1;
+            invitationTranslateX = 0;
+            invitationTranslateY = 0;
+            updateInvitationTransform();
+        };
+        invitationModal.addEventListener('touchstart', (e) => {
+            if (e.touches.length === 2) {
+                e.preventDefault();
+                invitationInitialDistance = getDistance(e.touches[0], e.touches[1]);
+                invitationInitialScale = invitationScale;
+                invitationIsPanning = false;
+            } else if (e.touches.length === 1 && invitationScale > 1) {
+                invitationStartClientX = e.touches[0].clientX;
+                invitationStartClientY = e.touches[0].clientY;
+                invitationStartTranslateX = invitationTranslateX;
+                invitationStartTranslateY = invitationTranslateY;
+                invitationIsPanning = true;
+            }
+        });
+        invitationModal.addEventListener('touchmove', (e) => {
+            if (e.touches.length === 2) {
+                e.preventDefault();
+                const newDistance = getDistance(e.touches[0], e.touches[1]);
+                const factor = newDistance / invitationInitialDistance;
+                invitationScale = Math.max(0.5, invitationInitialScale * factor);
+                updateInvitationTransform();
+                invitationIsPanning = false;
+            } else if (e.touches.length === 1 && invitationIsPanning) {
+                e.preventDefault();
+                const deltaX = (e.touches[0].clientX - invitationStartClientX) * invitationSensitivity;
+                const deltaY = (e.touches[0].clientY - invitationStartClientY) * invitationSensitivity;
+                invitationTranslateX = invitationStartTranslateX + deltaX;
+                invitationTranslateY = invitationStartTranslateY + deltaY;
+                updateInvitationTransform();
+            }
+        });
+        invitationModal.addEventListener('touchend', () => {
+            invitationIsPanning = false;
+            if (invitationScale <= 1.1) {
+                resetInvitation();
+            }
+        });
+        if (window.innerWidth > 768 && !('ontouchstart' in window)) {
+            let invitationCurrentScale = 1;
+            let invitationCurrentTranslateX = 0;
+            let invitationCurrentTranslateY = 0;
+            let invitationIsDragging = false;
+            let invitationStartX, invitationStartY;
+            const applyInvitationTransform = () => {
+                invitationImage.style.transform = `translate(${invitationCurrentTranslateX}px, ${invitationCurrentTranslateY}px) scale(${invitationCurrentScale})`;
+            };
+            invitationModal.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const delta = e.deltaY > 0 ? 0.9 : 1.1;
+                invitationCurrentScale = Math.min(Math.max(0.5, invitationCurrentScale * delta), 8);
+                applyInvitationTransform();
+            });
+            invitationImage.addEventListener('mousedown', (e) => {
+                if (invitationCurrentScale <= 1) return;
+                e.preventDefault();
+                invitationIsDragging = true;
+                invitationStartX = e.clientX - invitationCurrentTranslateX;
+                invitationStartY = e.clientY - invitationCurrentTranslateY;
+                invitationImage.style.cursor = 'grabbing';
+            });
+            document.addEventListener('mousemove', (e) => {
+                if (!invitationIsDragging) return;
+                e.preventDefault();
+                invitationCurrentTranslateX = e.clientX - invitationStartX;
+                invitationCurrentTranslateY = e.clientY - invitationStartY;
+                applyInvitationTransform();
+            });
+            document.addEventListener('mouseup', () => {
+                invitationIsDragging = false;
+                invitationImage.style.cursor = invitationCurrentScale > 1 ? 'grab' : 'default';
+            });
+        }
+        document.getElementById('invitation-icon').onclick = () => {
+            invitationModal.classList.add('show');
+            resetInvitation();
+            if (window.innerWidth > 768 && !('ontouchstart' in window)) {
+                invitationCurrentScale = 1;
+                invitationCurrentTranslateX = 0;
+                invitationCurrentTranslateY = 0;
+                applyInvitationTransform();
+            }
+        };
+        document.getElementById('close-invitation').onclick = () => {
+            invitationModal.classList.remove('show');
+            resetInvitation();
+        };
+        invitationModal.onclick = e => {
+            if (e.target === invitationModal) {
+                invitationModal.classList.remove('show');
+                resetInvitation();
+            }
+        };
         const fadeObserver = new IntersectionObserver(entries => {
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
         }, { threshold: 0.3 });
