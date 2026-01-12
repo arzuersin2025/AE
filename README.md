@@ -877,7 +877,6 @@
             }, 4000);
         }
 
-        // Falling elements (hearts, leaves, flowers) - aynı kaldı
         const hearts = ['💛'];
         const heartContainer = document.getElementById('falling-hearts-container');
         for (let i = 0; i < 2; i++) {
@@ -1129,18 +1128,18 @@
 
         window.onYouTubeIframeAPIReady = function() {
             bgPlayer = new YT.Player('bg-youtube-player', {
-                height: '0', 
-                width: '0', 
+                height: '0',
+                width: '0',
                 videoId: 'rYJjgfCfBOU',
-                playerVars: { 
-                    autoplay: 0, 
-                    controls: 0, 
-                    modestbranding: 1, 
-                    playsinline: 1, 
-                    enablejsapi: 1, 
-                    iv_load_policy: 3, 
-                    fs: 0, 
-                    rel: 0 
+                playerVars: {
+                    autoplay: 0,
+                    controls: 0,
+                    modestbranding: 1,
+                    playsinline: 1,
+                    enablejsapi: 1,
+                    iv_load_policy: 3,
+                    fs: 0,
+                    rel: 0
                 },
                 events: {
                     onReady: function(event) {
@@ -1177,7 +1176,7 @@
                             playerElement.classList.add('show');
                             musicVisualizer.classList.add('hidden');
 
-                            // ARKA PLAN MÜZİĞİNİ DURAKLAT (1 numaralı çözüm)
+                            // *** DÜZELTME BURADA: Arka plan müziği Tarkan çalarken duraklat ***
                             if (bgPlayer) bgPlayer.pauseVideo();
                         } else {
                             isPlaying = false;
@@ -1186,7 +1185,7 @@
                             playerElement.classList.remove('show');
                             musicVisualizer.classList.remove('hidden');
 
-                            // ARKA PLAN MÜZİĞİNİ TEKRAR BAŞLAT
+                            // *** DÜZELTME BURADA: Tarkan durunca arka plan devam etsin ***
                             if (isBgEnabled && bgPlayer) bgPlayer.playVideo();
                         }
                     }
@@ -1194,8 +1193,8 @@
             });
         };
 
-        playBtn.onclick = e => { 
-            e.stopPropagation(); 
+        playBtn.onclick = e => {
+            e.stopPropagation();
             if (player) {
                 if (isPlaying) {
                     player.pauseVideo();
