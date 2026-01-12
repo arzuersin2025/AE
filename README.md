@@ -338,28 +338,30 @@
         .photo-number { position: absolute; bottom: 0.5rem; right: 0.75rem; color: white; font-size: 1rem; font-weight: bold; text-shadow: 1px 1px 3px rgba(0,0,0,0.9); opacity: 0; transition: opacity .3s ease-in-out; }
         .group:hover .photo-number { opacity: 1; }
         .photo-container.no-note .photo-note { display: none; }
-        /* Fotoğraf Galerisini Gör - Kırmızı */
+        /* Fotoğraf Galerisini Gör - Daha şeffaf açık kırmızı */
         #toggle-gallery-btn {
-            background: #dc2626;
+            background: rgba(220, 38, 38, 0.5);
             color: white !important;
-            border: 1px solid #b91c1c;
+            border: 1px solid rgba(185, 28, 28, 0.4);
             transition: all 0.2s ease;
+            backdrop-filter: blur(4px);
         }
         #toggle-gallery-btn:hover {
-            background: #b91c1c;
-            border-color: #991b1b;
+            background: rgba(185, 28, 28, 0.65);
+            border-color: rgba(153, 27, 27, 0.5);
             transform: translateY(-1px);
         }
-        /* Video Galerisini Gör - Aynı kırmızı */
+        /* Video Galerisini Gör - Aynı şeffaf açık kırmızı */
         #toggle-video-gallery-btn {
-            background: #dc2626;
+            background: rgba(220, 38, 38, 0.5);
             color: white !important;
-            border: 1px solid #b91c1c;
+            border: 1px solid rgba(185, 28, 28, 0.4);
             transition: all 0.2s ease;
+            backdrop-filter: blur(4px);
         }
         #toggle-video-gallery-btn:hover {
-            background: #b91c1c;
-            border-color: #991b1b;
+            background: rgba(185, 28, 28, 0.65);
+            border-color: rgba(153, 27, 27, 0.5);
             transform: translateY(-1px);
         }
         .interlocked-hearts {
@@ -832,6 +834,7 @@
         <span id="close-video-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
         <div class="aspect-video w-full max-w-4xl"><iframe id="modal-video-iframe" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
     </div>
+
     <script>
     (() => {
         'use strict';
