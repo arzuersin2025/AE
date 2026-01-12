@@ -338,7 +338,7 @@
         .photo-number { position: absolute; bottom: 0.5rem; right: 0.75rem; color: white; font-size: 1rem; font-weight: bold; text-shadow: 1px 1px 3px rgba(0,0,0,0.9); opacity: 0; transition: opacity .3s ease-in-out; }
         .group:hover .photo-number { opacity: 1; }
         .photo-container.no-note .photo-note { display: none; }
-        /* Fotoğraf Galerisini Gör - Daha şeffaf açık kırmızı + yazı ve ikon siyah */
+        /* Fotoğraf Galerisini Gör - Daha şeffaf açık kırmızı */
         #toggle-gallery-btn {
             background: rgba(220, 38, 38, 0.5);
             color: #000000 !important;
@@ -351,7 +351,7 @@
             border-color: rgba(153, 27, 27, 0.5);
             transform: translateY(-1px);
         }
-        /* Video Galerisini Gör - Aynı ayar */
+        /* Video Galerisini Gör - Aynı şeffaf açık kırmızı */
         #toggle-video-gallery-btn {
             background: rgba(220, 38, 38, 0.5);
             color: #000000 !important;
@@ -364,7 +364,7 @@
             border-color: rgba(153, 27, 27, 0.5);
             transform: translateY(-1px);
         }
-        /* Buton içindeki ok ikonunu da siyah yap */
+        /* Buton içindeki ikon da siyah */
         #toggle-gallery-btn i,
         #toggle-video-gallery-btn i {
             color: #000000 !important;
@@ -839,6 +839,7 @@
         <span id="close-video-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
         <div class="aspect-video w-full max-w-4xl"><iframe id="modal-video-iframe" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
     </div>
+
     <script>
     (() => {
         'use strict';
@@ -847,6 +848,7 @@
         const tooltip = document.getElementById('bg-music-tooltip');
         let isBgEnabled = true;
         let tooltipVisible = false;
+
         bgControl.addEventListener('click', (e) => {
             if (e.target.closest('#bg-music-tooltip')) return;
             isBgEnabled = !isBgEnabled;
@@ -861,7 +863,9 @@
             }
             showTooltipTemporarily();
         });
+
         tooltip.addEventListener('click', (e) => e.stopPropagation());
+
         function showTooltipTemporarily() {
             tooltip.classList.add('visible');
             tooltipVisible = true;
@@ -872,6 +876,8 @@
                 }
             }, 4000);
         }
+
+        // Falling elements (hearts, leaves, flowers) - aynı kaldı
         const hearts = ['💛'];
         const heartContainer = document.getElementById('falling-hearts-container');
         for (let i = 0; i < 2; i++) {
@@ -886,6 +892,7 @@
             heart.style.fontSize = size + 'rem';
             heartContainer.appendChild(heart);
         }
+
         const leafSVG = `<svg viewBox="0 0 100 140" class="w-full h-full" preserveAspectRatio="xMidYMid meet"><path class="leaf-outer" d="M50 10 C30 15, 20 35, 18 55 C16 75, 25 95, 35 115 C45 130, 48 135, 50 138 C52 135, 55 130, 65 115 C75 95, 84 75, 82 55 C80 35, 70 15, 50 10 Z" /><path class="leaf-inner" d="M50 15 C33 20, 25 38, 23 55 C21 72, 28 88, 36 108 C44 125, 48 132, 50 135 C52 132, 56 125, 64 108 C72 88, 79 72, 77 55 C75 38, 67 20, 50 15 Z" /><path d="M50 15 Q50 70 48 135" stroke="#fff" stroke-width="2.5" opacity="0.5" fill="none"/><path d="M50 15 Q35 40 28 48 M50 55 Q32 65 25 75 M50 80 Q30 90 23 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/><path d="M50 15 Q65 40 72 48 M50 55 Q68 65 75 75 M50 80 Q70 90 77 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/></svg>`;
         const leafColors = ['autumn-1','autumn-2','autumn-3','autumn-4','autumn-5','autumn-6','autumn-7','autumn-8','autumn-9','autumn-10'];
         const leafContainer = document.getElementById('falling-leaves-container');
@@ -902,6 +909,7 @@
             leaf.innerHTML = leafSVG;
             leafContainer.appendChild(leaf);
         }
+
         const flowers = ['🌸', '🌻'];
         const flowerContainer = document.getElementById('falling-flowers-container');
         for (let i = 0; i < 2; i++) {
@@ -916,6 +924,7 @@
             flower.style.fontSize = size + 'rem';
             flowerContainer.appendChild(flower);
         }
+
         const lazyLoadObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting && entry.target.dataset.src) {
@@ -925,6 +934,7 @@
             });
         }, { rootMargin: '50px' });
         document.querySelectorAll('img[data-src]').forEach(img => lazyLoadObserver.observe(img));
+
         let photoUrls = [];
         let currentPhotoIndex = 0;
         let scale = 1;
@@ -938,19 +948,24 @@
         let startTranslateY = 0;
         let isPanning = false;
         const sensitivity = 0.5;
+
         const modal = document.getElementById('image-modal');
         const modalImage = document.getElementById('modal-image');
+
         const updateTransform = () => {
             modalImage.style.transform = `scale(${scale}) translate(${translateX}px, ${translateY}px)`;
         };
+
         const buildPhotoArray = () => {
             photoUrls = Array.from(document.querySelectorAll('#gallery-grid img[data-src]')).map(img => img.dataset.src);
         };
+
         const getDistance = (touch1, touch2) => {
             const dx = touch1.clientX - touch2.clientX;
             const dy = touch1.clientY - touch2.clientY;
             return Math.sqrt(dx * dx + dy * dy);
         };
+
         const openPhoto = (index) => {
             buildPhotoArray();
             currentPhotoIndex = index;
@@ -963,6 +978,7 @@
             updateTransform();
             modal.classList.replace('hidden', 'flex');
         };
+
         const closePhoto = () => {
             scale = 1;
             translateX = 0;
@@ -973,6 +989,7 @@
             modal.classList.replace('flex', 'hidden');
             modalImage.src = '';
         };
+
         const nextPhoto = () => {
             currentPhotoIndex = (currentPhotoIndex + 1) % photoUrls.length;
             modalImage.src = photoUrls[currentPhotoIndex];
@@ -983,6 +1000,7 @@
             isPanning = false;
             updateTransform();
         };
+
         const prevPhoto = () => {
             currentPhotoIndex = (currentPhotoIndex - 1 + photoUrls.length) % photoUrls.length;
             modalImage.src = photoUrls[currentPhotoIndex];
@@ -993,6 +1011,7 @@
             isPanning = false;
             updateTransform();
         };
+
         modal.addEventListener('touchstart', (e) => {
             if (e.touches.length === 2) {
                 e.preventDefault();
@@ -1007,6 +1026,7 @@
                 isPanning = true;
             }
         });
+
         modal.addEventListener('touchmove', (e) => {
             if (e.touches.length === 2) {
                 e.preventDefault();
@@ -1024,6 +1044,7 @@
                 updateTransform();
             }
         });
+
         modal.addEventListener('touchend', (e) => {
             isPanning = false;
             if (scale <= 1.1) {
@@ -1032,6 +1053,7 @@
                 updateTransform();
             }
         });
+
         document.getElementById('toggle-gallery-btn').addEventListener('click', () => {
             const wrapper = document.getElementById('gallery-wrapper');
             wrapper.classList.toggle('hidden');
@@ -1050,6 +1072,7 @@
                 }, 100);
             }
         });
+
         document.getElementById('toggle-video-gallery-btn').addEventListener('click', () => {
             const wrapper = document.getElementById('video-gallery-wrapper');
             wrapper.classList.toggle('hidden');
@@ -1071,33 +1094,54 @@
                 }, 100);
             }
         });
+
         document.getElementById('close-video-modal').onclick = () => {
             document.getElementById('video-modal').classList.replace('flex', 'hidden');
             document.getElementById('modal-video-iframe').src = '';
         };
+
         document.getElementById('video-modal').onclick = e => {
             if (e.target === e.currentTarget) document.getElementById('close-video-modal').click();
         };
+
         document.getElementById('close-modal').onclick = closePhoto;
         document.getElementById('prev-photo').onclick = e => { e.stopPropagation(); prevPhoto(); };
         document.getElementById('next-photo').onclick = e => { e.stopPropagation(); nextPhoto(); };
         modal.onclick = e => { if (e.target === modal) closePhoto(); };
+
         document.addEventListener('keydown', e => {
-            if (e.key === 'Escape') { closePhoto(); if (document.getElementById('video-modal').classList.contains('flex')) document.getElementById('close-video-modal').click(); }
+            if (e.key === 'Escape') { 
+                closePhoto(); 
+                if (document.getElementById('video-modal').classList.contains('flex')) document.getElementById('close-video-modal').click(); 
+            }
             if (e.key === 'ArrowRight' && document.getElementById('image-modal').classList.contains('flex')) nextPhoto();
             if (e.key === 'ArrowLeft' && document.getElementById('image-modal').classList.contains('flex')) prevPhoto();
         });
+
         let player, bgPlayer, isPlaying = false;
         const playBtn = document.getElementById('play-song-btn');
         const playerElement = document.getElementById('youtube-player');
         const musicVisualizer = document.getElementById('music-visualizer');
+
         const tag = document.createElement('script');
         tag.src = 'https://www.youtube.com/iframe_api';
         document.getElementsByTagName('script')[0].parentNode.insertBefore(tag, document.getElementsByTagName('script')[0]);
+
         window.onYouTubeIframeAPIReady = function() {
             bgPlayer = new YT.Player('bg-youtube-player', {
-                height: '0', width: '0', videoId: 'rYJjgfCfBOU',
-                playerVars: { autoplay: 0, controls: 0, modestbranding: 1, playsinline: 1, enablejsapi: 1, iv_load_policy: 3, fs: 0, rel: 0 },
+                height: '0', 
+                width: '0', 
+                videoId: 'rYJjgfCfBOU',
+                playerVars: { 
+                    autoplay: 0, 
+                    controls: 0, 
+                    modestbranding: 1, 
+                    playsinline: 1, 
+                    enablejsapi: 1, 
+                    iv_load_policy: 3, 
+                    fs: 0, 
+                    rel: 0 
+                },
                 events: {
                     onReady: function(event) {
                         event.target.mute();
@@ -1122,6 +1166,7 @@
                     }
                 }
             });
+
             player = new YT.Player('youtube-player', {
                 events: {
                     'onStateChange': e => {
@@ -1131,6 +1176,8 @@
                             playBtn.classList.add('playing');
                             playerElement.classList.add('show');
                             musicVisualizer.classList.add('hidden');
+
+                            // ARKA PLAN MÜZİĞİNİ DURAKLAT (1 numaralı çözüm)
                             if (bgPlayer) bgPlayer.pauseVideo();
                         } else {
                             isPlaying = false;
@@ -1138,13 +1185,26 @@
                             playBtn.classList.remove('playing');
                             playerElement.classList.remove('show');
                             musicVisualizer.classList.remove('hidden');
+
+                            // ARKA PLAN MÜZİĞİNİ TEKRAR BAŞLAT
                             if (isBgEnabled && bgPlayer) bgPlayer.playVideo();
                         }
                     }
                 }
             });
         };
-        playBtn.onclick = e => { e.stopPropagation(); player && (isPlaying ? player.pauseVideo() : player.playVideo()); };
+
+        playBtn.onclick = e => { 
+            e.stopPropagation(); 
+            if (player) {
+                if (isPlaying) {
+                    player.pauseVideo();
+                } else {
+                    player.playVideo();
+                }
+            }
+        };
+
         const invitationModal = document.getElementById('invitation-modal');
         const invitationImage = document.getElementById('invitation-image');
         let invitationScale = 1;
@@ -1158,15 +1218,18 @@
         let invitationStartTranslateY = 0;
         let invitationIsPanning = false;
         const invitationSensitivity = 0.5;
+
         const updateInvitationTransform = () => {
             invitationImage.style.transform = `scale(${invitationScale}) translate(${invitationTranslateX}px, ${invitationTranslateY}px)`;
         };
+
         const resetInvitation = () => {
             invitationScale = 1;
             invitationTranslateX = 0;
             invitationTranslateY = 0;
             updateInvitationTransform();
         };
+
         invitationModal.addEventListener('touchstart', (e) => {
             if (e.touches.length === 2) {
                 e.preventDefault();
@@ -1181,6 +1244,7 @@
                 invitationIsPanning = true;
             }
         });
+
         invitationModal.addEventListener('touchmove', (e) => {
             if (e.touches.length === 2) {
                 e.preventDefault();
@@ -1198,12 +1262,14 @@
                 updateInvitationTransform();
             }
         });
+
         invitationModal.addEventListener('touchend', () => {
             invitationIsPanning = false;
             if (invitationScale <= 1.1) {
                 resetInvitation();
             }
         });
+
         if (window.innerWidth > 768 && !('ontouchstart' in window)) {
             let invitationCurrentScale = 1;
             let invitationCurrentTranslateX = 0;
@@ -1239,6 +1305,7 @@
                 invitationImage.style.cursor = invitationCurrentScale > 1 ? 'grab' : 'default';
             });
         }
+
         document.getElementById('invitation-icon').onclick = () => {
             invitationModal.classList.add('show');
             resetInvitation();
@@ -1249,20 +1316,25 @@
                 applyInvitationTransform();
             }
         };
+
         document.getElementById('close-invitation').onclick = () => {
             invitationModal.classList.remove('show');
             resetInvitation();
         };
+
         invitationModal.onclick = e => {
             if (e.target === invitationModal) {
                 invitationModal.classList.remove('show');
                 resetInvitation();
             }
         };
+
         const fadeObserver = new IntersectionObserver(entries => {
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
         }, { threshold: 0.3 });
+
         document.querySelectorAll('.fade-in-on-scroll').forEach(el => fadeObserver.observe(el));
+
         if (window.innerWidth > 768 && !('ontouchstart' in window)) {
             let currentScale = 1;
             let currentTranslateX = 0;
