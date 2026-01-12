@@ -118,7 +118,10 @@
         .transparent-section { background: transparent !important; backdrop-filter: none !important; box-shadow: none !important; border-radius: 0 !important; padding: 2rem 1rem !important; }
         .song-container { position: relative; width: 16rem; height: 16rem; margin: 0 auto; }
         @media (min-width: 768px) { .song-container { width: 20rem; height: 20rem; } }
-        .header-name { font-size: 11.7vw; }
+        .header-name {
+            font-size: 11.7vw;
+            color: #16a34a !important;
+        }
         @media (min-width: 768px) {
             .header-name { font-size: 6.75vw; }
         }
@@ -357,7 +360,7 @@
             top: 0;
             left: 45%;
             font-size: 10vw;
-            color: #86efac;
+            color: #dc2626;                     /* DEĞİŞİKLİK BURADA - Yeşilden kırmızıya */
             -webkit-text-stroke: 3px black;
             paint-order: stroke fill;
             z-index: 1;
@@ -374,6 +377,7 @@
             }
             .heart-green {
                 left: 50%;
+                color: #dc2626;                     /* DEĞİŞİKLİK BURADA DA - Küçük ekranda da kırmızı */
             }
         }
         #countdown-placeholder p {
@@ -438,7 +442,7 @@
     <header class="py-16 text-center relative z-20 overflow-hidden">
         <div class="relative">
             <div class="relative z-10">
-                <h1 class="font-bold text-red-600 flex items-center justify-center handwriting leading-tight">
+                <h1 class="font-bold flex items-center justify-center handwriting leading-tight">
                     <span class="header-name">Arzu</span>
                     <span class="interlocked-hearts">
                         <i class="fa-solid fa-heart heart-yellow"></i>
@@ -804,7 +808,6 @@
         <span id="close-video-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
         <div class="aspect-video w-full max-w-4xl"><iframe id="modal-video-iframe" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
     </div>
-
     <script>
     (() => {
         'use strict';
@@ -838,7 +841,7 @@
                 }
             }, 4000);
         }
-        const hearts = ['💛']; // Sadece küçük sarı kalp kaldı
+        const hearts = ['💛'];
         const heartContainer = document.getElementById('falling-hearts-container');
         for (let i = 0; i < 2; i++) {
             const heart = document.createElement('div');
