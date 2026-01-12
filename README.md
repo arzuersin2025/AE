@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -338,28 +338,28 @@
         .photo-number { position: absolute; bottom: 0.5rem; right: 0.75rem; color: white; font-size: 1rem; font-weight: bold; text-shadow: 1px 1px 3px rgba(0,0,0,0.9); opacity: 0; transition: opacity .3s ease-in-out; }
         .group:hover .photo-number { opacity: 1; }
         .photo-container.no-note .photo-note { display: none; }
-        /* Fotoğraf Galerisini Gör - Pembe */
+        /* Fotoğraf Galerisini Gör - Kırmızı */
         #toggle-gallery-btn {
-            background: #ec4899;
+            background: #dc2626;
             color: white !important;
-            border: 1px solid #db2777;
+            border: 1px solid #b91c1c;
             transition: all 0.2s ease;
         }
         #toggle-gallery-btn:hover {
-            background: #db2777;
-            border-color: #be185d;
+            background: #b91c1c;
+            border-color: #991b1b;
             transform: translateY(-1px);
         }
-        /* Video Galerisini Gör - Aynı pembe */
+        /* Video Galerisini Gör - Aynı kırmızı */
         #toggle-video-gallery-btn {
-            background: #ec4899;
+            background: #dc2626;
             color: white !important;
-            border: 1px solid #db2777;
+            border: 1px solid #b91c1c;
             transition: all 0.2s ease;
         }
         #toggle-video-gallery-btn:hover {
-            background: #db2777;
-            border-color: #be185d;
+            background: #b91c1c;
+            border-color: #991b1b;
             transform: translateY(-1px);
         }
         .interlocked-hearts {
