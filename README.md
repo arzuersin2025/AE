@@ -1,4 +1,3 @@
-
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -837,6 +836,11 @@
                 }
             }, 4000);
         }
+
+        // ──────────────────────────────────────────────
+        // YAVAŞLATILMIŞ DÜŞEN EFEKTLER (sadece süreler değiştirildi)
+        // ──────────────────────────────────────────────
+
         const hearts = ['❤️','🧡','💛','💚','💜'];
         const heartContainer = document.getElementById('falling-hearts-container');
         for (let i = 0; i < 3; i++) {
@@ -844,13 +848,14 @@
             heart.className = 'falling-heart';
             heart.innerHTML = hearts[i];
             heart.style.left = (20 + i * 30) + '%';
-            const duration = 30 + i * 5;
+            const duration = 55 + i * 10;          // ← YAVAŞLATILDI (eskiden 30+5 idi)
             heart.style.animationDuration = duration + 's';
-            heart.style.animationDelay = i * 10 + 's';
+            heart.style.animationDelay = i * 15 + 's';  // biraz daha gecikmeli başlasın
             const size = 1.8 + Math.random() * 0.8;
             heart.style.fontSize = size + 'rem';
             heartContainer.appendChild(heart);
         }
+
         const leafSVG = `<svg viewBox="0 0 100 140" class="w-full h-full" preserveAspectRatio="xMidYMid meet"><path class="leaf-outer" d="M50 10 C30 15, 20 35, 18 55 C16 75, 25 95, 35 115 C45 130, 48 135, 50 138 C52 135, 55 130, 65 115 C75 95, 84 75, 82 55 C80 35, 70 15, 50 10 Z" /><path class="leaf-inner" d="M50 15 C33 20, 25 38, 23 55 C21 72, 28 88, 36 108 C44 125, 48 132, 50 135 C52 132, 56 125, 64 108 C72 88, 79 72, 77 55 C75 38, 67 20, 50 15 Z" /><path d="M50 15 Q50 70 48 135" stroke="#fff" stroke-width="2.5" opacity="0.5" fill="none"/><path d="M50 15 Q35 40 28 48 M50 55 Q32 65 25 75 M50 80 Q30 90 23 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/><path d="M50 15 Q65 40 72 48 M50 55 Q68 65 75 75 M50 80 Q70 90 77 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/></svg>`;
         const leafColors = ['autumn-1','autumn-2','autumn-3','autumn-4','autumn-5','autumn-6','autumn-7','autumn-8','autumn-9','autumn-10'];
         const leafContainer = document.getElementById('falling-leaves-container');
@@ -861,12 +866,13 @@
             leaf.style.left = Math.random() * 100 + 'vw';
             const scale = 0.5 + 0.9 * Math.random();
             leaf.style.transform = `scale(${scale}) rotate(${Math.random() * 360}deg)`;
-            const duration = 30 + Math.random() * 15;
+            const duration = 60 + Math.random() * 25;   // ← YAVAŞLATILDI (eskiden 30+15 idi)
             leaf.style.animationDuration = duration + 's';
-            leaf.style.animationDelay = Math.random() * 30 + 's';
+            leaf.style.animationDelay = Math.random() * 40 + 's';  // daha geç başlasın
             leaf.innerHTML = leafSVG;
             leafContainer.appendChild(leaf);
         }
+
         const flowers = ['🌸', '🌺', '🌻', '🌼'];
         const flowerContainer = document.getElementById('falling-flowers-container');
         for (let i = 0; i < 5; i++) {
@@ -874,13 +880,15 @@
             flower.className = 'falling-flower';
             flower.innerHTML = flowers[Math.floor(Math.random() * flowers.length)];
             flower.style.left = Math.random() * 100 + 'vw';
-            const duration = 25 + Math.random() * 20;
+            const duration = 50 + Math.random() * 30;   // ← YAVAŞLATILDI (eskiden 25+20 idi)
             flower.style.animationDuration = duration + 's';
-            flower.style.animationDelay = Math.random() * 15 + 's';
+            flower.style.animationDelay = Math.random() * 35 + 's';
             const size = 1.6 + Math.random() * 1.0;
             flower.style.fontSize = size + 'rem';
             flowerContainer.appendChild(flower);
         }
+
+        // Aşağıdaki tüm kod tamamen senin orijinal kodunla aynı kaldı
         const lazyLoadObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting && entry.target.dataset.src) {
