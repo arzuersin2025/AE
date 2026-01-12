@@ -836,24 +836,26 @@
                 }
             }, 4000);
         }
-        const hearts = ['❤️','🧡','💛','💚','💜'];
+        // Düşen kalpler - 2 tane: sarı ve kırmızı
+        const hearts = ['💛', '❤️'];
         const heartContainer = document.getElementById('falling-hearts-container');
-        for (let i = 0; i < 1; i++) {  // ← SAYI AZALTILDI: 3 → 1
+        for (let i = 0; i < 2; i++) {
             const heart = document.createElement('div');
             heart.className = 'falling-heart';
             heart.innerHTML = hearts[i];
-            heart.style.left = '50%';  // ortalanmış daha güzel durur
+            heart.style.left = (30 + i * 40) + '%';
             const duration = 55 + i * 10;
             heart.style.animationDuration = duration + 's';
             heart.style.animationDelay = i * 15 + 's';
-            const size = 1.8 + Math.random() * 0.8;
+            const size = 2.0 + Math.random() * 0.8;
             heart.style.fontSize = size + 'rem';
             heartContainer.appendChild(heart);
         }
+        // Düşen yaprak - 1 tane
         const leafSVG = `<svg viewBox="0 0 100 140" class="w-full h-full" preserveAspectRatio="xMidYMid meet"><path class="leaf-outer" d="M50 10 C30 15, 20 35, 18 55 C16 75, 25 95, 35 115 C45 130, 48 135, 50 138 C52 135, 55 130, 65 115 C75 95, 84 75, 82 55 C80 35, 70 15, 50 10 Z" /><path class="leaf-inner" d="M50 15 C33 20, 25 38, 23 55 C21 72, 28 88, 36 108 C44 125, 48 132, 50 135 C52 132, 56 125, 64 108 C72 88, 79 72, 77 55 C75 38, 67 20, 50 15 Z" /><path d="M50 15 Q50 70 48 135" stroke="#fff" stroke-width="2.5" opacity="0.5" fill="none"/><path d="M50 15 Q35 40 28 48 M50 55 Q32 65 25 75 M50 80 Q30 90 23 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/><path d="M50 15 Q65 40 72 48 M50 55 Q68 65 75 75 M50 80 Q70 90 77 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/></svg>`;
         const leafColors = ['autumn-1','autumn-2','autumn-3','autumn-4','autumn-5','autumn-6','autumn-7','autumn-8','autumn-9','autumn-10'];
         const leafContainer = document.getElementById('falling-leaves-container');
-        for (let i = 0; i < 1; i++) {  // ← SAYI AZALTILDI: 2 → 1
+        for (let i = 0; i < 1; i++) {
             const leaf = document.createElement('div');
             const colorClass = leafColors[Math.floor(Math.random() * leafColors.length)];
             leaf.className = `leaf-svg ${colorClass}`;
@@ -866,13 +868,14 @@
             leaf.innerHTML = leafSVG;
             leafContainer.appendChild(leaf);
         }
-        const flowers = ['🌸', '🌺', '🌻', '🌼'];
+        // Düşen çiçekler - 2 tane
+        const flowers = ['🌸', '🌻'];
         const flowerContainer = document.getElementById('falling-flowers-container');
-        for (let i = 0; i < 2; i++) {  // ← SAYI AZALTILDI: 5 → 2
+        for (let i = 0; i < 2; i++) {
             const flower = document.createElement('div');
             flower.className = 'falling-flower';
-            flower.innerHTML = flowers[Math.floor(Math.random() * flowers.length)];
-            flower.style.left = (30 + i * 40) + '%';
+            flower.innerHTML = flowers[i];
+            flower.style.left = (35 + i * 30) + '%';
             const duration = 50 + Math.random() * 30;
             flower.style.animationDuration = duration + 's';
             flower.style.animationDelay = Math.random() * 35 + 's';
