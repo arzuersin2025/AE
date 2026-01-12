@@ -338,28 +338,28 @@
         .photo-number { position: absolute; bottom: 0.5rem; right: 0.75rem; color: white; font-size: 1rem; font-weight: bold; text-shadow: 1px 1px 3px rgba(0,0,0,0.9); opacity: 0; transition: opacity .3s ease-in-out; }
         .group:hover .photo-number { opacity: 1; }
         .photo-container.no-note .photo-note { display: none; }
-        /* Güncellenmiş buton - KAPALI / KOYU GRİ (Fotoğraf galerisi) */
+        /* Fotoğraf Galerisini Gör - Pembe */
         #toggle-gallery-btn {
-            background: #6b7280;
+            background: #ec4899;
             color: white !important;
-            border: 1px solid #4b5563;
+            border: 1px solid #db2777;
             transition: all 0.2s ease;
         }
         #toggle-gallery-btn:hover {
-            background: #4b5563;
-            border-color: #374151;
+            background: #db2777;
+            border-color: #be185d;
             transform: translateY(-1px);
         }
-        /* Video galerisi için de aynı koyu gri stil */
+        /* Video Galerisini Gör - Aynı pembe */
         #toggle-video-gallery-btn {
-            background: #6b7280;
+            background: #ec4899;
             color: white !important;
-            border: 1px solid #4b5563;
+            border: 1px solid #db2777;
             transition: all 0.2s ease;
         }
         #toggle-video-gallery-btn:hover {
-            background: #4b5563;
-            border-color: #374151;
+            background: #db2777;
+            border-color: #be185d;
             transform: translateY(-1px);
         }
         .interlocked-hearts {
