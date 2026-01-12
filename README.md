@@ -338,6 +338,30 @@
         .photo-number { position: absolute; bottom: 0.5rem; right: 0.75rem; color: white; font-size: 1rem; font-weight: bold; text-shadow: 1px 1px 3px rgba(0,0,0,0.9); opacity: 0; transition: opacity .3s ease-in-out; }
         .group:hover .photo-number { opacity: 1; }
         .photo-container.no-note .photo-note { display: none; }
+        /* Güncellenmiş buton - KAPALI / KOYU GRİ (Fotoğraf galerisi) */
+        #toggle-gallery-btn {
+            background: #6b7280;
+            color: white !important;
+            border: 1px solid #4b5563;
+            transition: all 0.2s ease;
+        }
+        #toggle-gallery-btn:hover {
+            background: #4b5563;
+            border-color: #374151;
+            transform: translateY(-1px);
+        }
+        /* Video galerisi için de aynı koyu gri stil */
+        #toggle-video-gallery-btn {
+            background: #6b7280;
+            color: white !important;
+            border: 1px solid #4b5563;
+            transition: all 0.2s ease;
+        }
+        #toggle-video-gallery-btn:hover {
+            background: #4b5563;
+            border-color: #374151;
+            transform: translateY(-1px);
+        }
         .interlocked-hearts {
             position: relative;
             display: inline-block;
@@ -360,7 +384,7 @@
             top: 0;
             left: 45%;
             font-size: 10vw;
-            color: #dc2626;                     /* DEĞİŞİKLİK BURADA - Yeşilden kırmızıya */
+            color: #dc2626;
             -webkit-text-stroke: 3px black;
             paint-order: stroke fill;
             z-index: 1;
@@ -377,7 +401,7 @@
             }
             .heart-green {
                 left: 50%;
-                color: #dc2626;                     /* DEĞİŞİKLİK BURADA DA - Küçük ekranda da kırmızı */
+                color: #dc2626;
             }
         }
         #countdown-placeholder p {
@@ -591,7 +615,7 @@
                 </p>
             </div>
             <div class="mt-8 text-center">
-                <button id="toggle-gallery-btn" class="inline-flex items-center justify-center py-2 px-6 border border-red-600 shadow-sm text-sm font-medium rounded-md text-red-600 bg-white hover:bg-red-50 transition-colors">
+                <button id="toggle-gallery-btn" class="inline-flex items-center justify-center py-2 px-6 shadow-sm text-sm font-medium rounded-md transition-colors">
                     <span id="gallery-toggle-text">Fotoğraf Galerisini Gör</span>
                     <i id="gallery-toggle-icon" class="fas fa-chevron-down ml-2 transition-transform"></i>
                 </button>
@@ -693,7 +717,7 @@
                 </p>
             </div>
             <div class="mt-8 text-center">
-                <button id="toggle-video-gallery-btn" class="inline-flex items-center justify-center py-2 px-6 border border-red-600 shadow-sm text-sm font-medium rounded-md text-red-600 bg-white hover:bg-red-50 transition-colors">
+                <button id="toggle-video-gallery-btn" class="inline-flex items-center justify-center py-2 px-6 shadow-sm text-sm font-medium rounded-md transition-colors">
                     <span id="video-gallery-toggle-text">Video Galerisini Gör</span>
                     <i id="video-gallery-toggle-icon" class="fas fa-chevron-down ml-2 transition-transform"></i>
                 </button>
