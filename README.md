@@ -205,130 +205,6 @@
         header {
             padding-bottom: 1rem !important;
         }
-        #bg-music-control {
-            margin-top: 1rem;
-            text-align: center;
-            cursor: pointer;
-        }
-        @media (max-width: 768px) {
-            header {
-                padding-bottom: 0.5rem !important;
-            }
-            #bg-music-control {
-                margin-top: 0.8rem;
-            }
-        }
-        @media (max-width: 480px) {
-            #bg-music-control {
-                margin-top: 0.6rem;
-            }
-        }
-        #bg-music-icon-wrapper {
-            position: relative;
-            display: inline-block;
-        }
-        #bg-icon {
-            font-size: 2.5rem;
-            color: #dc2626;
-            filter: drop-shadow(0 2px 4px rgba(220, 38, 38, 0.3));
-            transition: transform 0.3s ease;
-        }
-        #bg-music-control:hover #bg-icon {
-            transform: scale(1.2);
-        }
-        #mute-overlay {
-            position: absolute;
-            top: 60%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 1.2rem;
-            color: #b91c1c;
-            background: white;
-            border-radius: 50%;
-            width: 1.6rem;
-            height: 1.6rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.4s ease;
-        }
-        #mute-overlay.visible {
-            opacity: 1;
-        }
-        #bg-click-text {
-            display: block;
-            margin-top: 0.4rem;
-            font-size: 0.9rem;
-            font-weight: bold;
-            color: #dc2626;
-        }
-        #bg-music-tooltip {
-            margin-top: 0.8rem;
-            padding: 0.75rem 1rem;
-            background: rgba(220, 38, 38, 0.1);
-            border: 2px solid #dc2626;
-            border-radius: 12px;
-            max-width: 280px;
-            margin-left: auto;
-            margin-right: auto;
-            font-size: 0.875rem;
-            font-weight: bold;
-            color: #dc2626;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
-            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.15);
-        }
-        #bg-music-tooltip.visible {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        #bg-music-tooltip::before {
-            content: '♪';
-            margin-right: 0.5rem;
-            font-size: 1.2rem;
-        }
-        @media (max-width: 768px) {
-            #bg-icon {
-                font-size: 2.3rem;
-            }
-            #mute-overlay {
-                font-size: 1.1rem;
-                width: 1.5rem;
-                height: 1.5rem;
-            }
-            #bg-click-text {
-                margin-top: 0.3rem;
-                font-size: 0.85rem;
-            }
-            #bg-music-tooltip {
-                padding: 0.6rem 0.9rem;
-                font-size: 0.8rem;
-                max-width: 260px;
-            }
-        }
-        @media (max-width: 480px) {
-            #bg-icon {
-                font-size: 2.1rem;
-            }
-            #mute-overlay {
-                font-size: 1rem;
-                width: 1.4rem;
-                height: 1.4rem;
-            }
-            #bg-click-text {
-                margin-top: 0.2rem;
-                font-size: 0.8rem;
-            }
-            #bg-music-tooltip {
-                font-size: 0.75rem;
-                max-width: 240px;
-            }
-        }
         .fade-in-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity .8s cubic-bezier(.25,.46,.45,.94), transform .8s cubic-bezier(.25,.46,.45,.94); }
         .fade-in-on-scroll.visible { opacity: 1; transform: translateY(0); }
         .photo-container { position: relative; overflow: hidden; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); aspect-ratio: 1/1; }
@@ -338,7 +214,6 @@
         .photo-number { position: absolute; bottom: 0.5rem; right: 0.75rem; color: white; font-size: 1rem; font-weight: bold; text-shadow: 1px 1px 3px rgba(0,0,0,0.9); opacity: 0; transition: opacity .3s ease-in-out; }
         .group:hover .photo-number { opacity: 1; }
         .photo-container.no-note .photo-note { display: none; }
-        /* Fotoğraf Galerisini Gör - Daha şeffaf açık kırmızı */
         #toggle-gallery-btn {
             background: rgba(220, 38, 38, 0.5);
             color: #000000 !important;
@@ -351,7 +226,6 @@
             border-color: rgba(153, 27, 27, 0.5);
             transform: translateY(-1px);
         }
-        /* Video Galerisini Gör - Aynı şeffaf açık kırmızı */
         #toggle-video-gallery-btn {
             background: rgba(220, 38, 38, 0.5);
             color: #000000 !important;
@@ -364,7 +238,6 @@
             border-color: rgba(153, 27, 27, 0.5);
             transform: translateY(-1px);
         }
-        /* Buton içindeki ikon da siyah */
         #toggle-gallery-btn i,
         #toggle-video-gallery-btn i {
             color: #000000 !important;
@@ -469,7 +342,7 @@
     <div id="falling-leaves-container"></div>
     <div id="falling-hearts-container"></div>
     <div id="falling-flowers-container"></div>
-    <div id="bg-youtube-player" style="position:fixed; top:-100%; left:0; width:1px; height:1px; opacity:0; pointer-events:none;"></div>
+
     <header class="py-16 text-center relative z-20 overflow-hidden">
         <div class="relative">
             <div class="relative z-10">
@@ -483,24 +356,14 @@
                 </h1>
                 <p class="text-xl md:text-2xl text-red-600 mt-10">Bizim Yolculuğumuz</p>
             </div>
-            <div id="bg-music-control" title="Arka plan müziği">
-                <div id="bg-music-icon-wrapper">
-                    <i class="fas fa-headphones" id="bg-icon"></i>
-                    <div id="mute-overlay">
-                        <i class="fas fa-times"></i>
-                    </div>
-                </div>
-                <span id="bg-click-text">Tıkla</span>
-                <div id="bg-music-tooltip">
-                    Sitemizi incelerken bizim sevdiğimiz müzikleri dinleyebilirsiniz ♪
-                </div>
-            </div>
         </div>
     </header>
+
     <section id="main-title-section" class="py-8 text-center">
         <h2 id="main-title" class="font-bold handwriting text-green-600">O Güzel Sonbahar günü</h2>
         <p class="text-xl md:text-2xl mt-2 text-red-600 font-bold">27 Eylül 2025</p>
     </section>
+
     <main class="container mx-auto px-6 pb-12 relative z-20">
         <section class="max-w-3xl mx-auto my-12 text-center">
             <h3 id="ilk-adim-baslik" class="font-bold text-red-600 mb-4">İlk Adım</h3>
@@ -517,6 +380,7 @@
             </p>
             <div class="text-4xl text-red-500 mt-8 heartbeat"><i class="fas fa-heart"></i></div>
         </section>
+
         <section class="my-16 max-w-3xl mx-auto text-center">
             <h3 id="sonbahar-baslik" class="font-bold text-center text-red-600 mb-6 handwriting font-forte-alternative">Sonbahar şiiri</h3>
             <div class="poem-container">
@@ -533,6 +397,7 @@
             </div>
             <p class="text-right text-green-600 font-semibold-bold mt-6 pr-4 font-forte-alternative poem-signature">- Nazım Hikmet</p>
         </section>
+
         <section class="my-16 max-w-3xl mx-auto text-center">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Aramızda Geçen İki Güzel Söz</h3>
             <div class="max-w-2xl mx-auto space-y-6">
@@ -549,6 +414,7 @@
                 </div>
             </div>
         </section>
+
         <section id="countdown-section" class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 font-forte-alternative">Büyük Güne Geri Sayım</h3>
             <div id="countdown-placeholder" class="my-4">
@@ -564,6 +430,7 @@
                 <div><span id="seconds" class="block text-5xl font-bold text-green-600">00</span><span class="text-sm text-red-600">Saniye</span></div>
             </div>
         </section>
+
         <section id="map-section" class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Düğün Mekanımız</h3>
             <div class="flex flex-col items-center mb-8">
@@ -576,6 +443,7 @@
                 Seninle sonsuzluğa adım attığımız yer 💙
             </p>
         </section>
+
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Davetiyemiz</h3>
             <div class="flex flex-col items-center">
@@ -590,10 +458,12 @@
                 </p>
             </div>
         </section>
+
         <div id="invitation-modal">
             <span id="close-invitation">X</span>
             <img id="invitation-image" src="https://i.imgur.com/2nywEc1.jpeg" alt="Arzu & Ersin Düğün Davetiyesi">
         </div>
+
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center relative overflow-hidden">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Bizim Şarkımız</h3>
             <p class="text-center text-black font-semibold italic mt-2 mb-6">Tarkan - Beni Çok Sev</p>
@@ -614,6 +484,7 @@
                 </div>
             </div>
         </section>
+
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Fotoğraf Galerimiz</h3>
             <div class="photo-gallery-description">
@@ -716,6 +587,7 @@
                 </div>
             </div>
         </section>
+
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Video Galerimiz</h3>
             <div class="video-gallery-description">
@@ -782,6 +654,7 @@
                 </div>
             </div>
         </section>
+
         <section class="my-16 max-w-3xl mx-auto transparent-section">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Teşekkür</h3>
             <div class="thank-you-message">
@@ -814,6 +687,7 @@
                 </div>
             </div>
         </section>
+
         <section id="footer-section" class="my-12 text-center">
             <div id="qr-wrapper">
                 <div id="footer-qr" class="photo-container inline-block">
@@ -829,12 +703,14 @@
             </div>
         </section>
     </main>
+
     <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
         <span id="close-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
         <img id="modal-image" src="" alt="Büyütülmüş Fotoğraf" class="max-w-[90vw] max-h-[90vh] rounded-lg shadow-lg">
         <span id="prev-photo" class="absolute top-1/2 left-4 -translate-y-1/2 text-white text-6xl font-bold cursor-pointer hover:text-gray-300 transition-colors select-none"><</span>
         <span id="next-photo" class="absolute top-1/2 right-4 -translate-y-1/2 text-white text-6xl font-bold cursor-pointer hover:text-gray-300 transition-colors select-none">></span>
     </div>
+
     <div id="video-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
         <span id="close-video-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
         <div class="aspect-video w-full max-w-4xl"><iframe id="modal-video-iframe" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
@@ -843,39 +719,6 @@
     <script>
     (() => {
         'use strict';
-        const bgControl = document.getElementById('bg-music-control');
-        const muteOverlay = document.getElementById('mute-overlay');
-        const tooltip = document.getElementById('bg-music-tooltip');
-        let isBgEnabled = true;
-        let tooltipVisible = false;
-
-        bgControl.addEventListener('click', (e) => {
-            if (e.target.closest('#bg-music-tooltip')) return;
-            isBgEnabled = !isBgEnabled;
-            if (isBgEnabled && bgPlayer) {
-                bgPlayer.unMute();
-                bgPlayer.playVideo();
-                bgPlayer.setVolume(70);
-                muteOverlay.classList.remove('visible');
-            } else if (bgPlayer) {
-                bgPlayer.mute();
-                muteOverlay.classList.add('visible');
-            }
-            showTooltipTemporarily();
-        });
-
-        tooltip.addEventListener('click', (e) => e.stopPropagation());
-
-        function showTooltipTemporarily() {
-            tooltip.classList.add('visible');
-            tooltipVisible = true;
-            setTimeout(() => {
-                if (tooltipVisible) {
-                    tooltip.classList.remove('visible');
-                    tooltipVisible = false;
-                }
-            }, 4000);
-        }
 
         const hearts = ['💛'];
         const heartContainer = document.getElementById('falling-hearts-container');
@@ -1109,15 +952,15 @@
         modal.onclick = e => { if (e.target === modal) closePhoto(); };
 
         document.addEventListener('keydown', e => {
-            if (e.key === 'Escape') { 
-                closePhoto(); 
-                if (document.getElementById('video-modal').classList.contains('flex')) document.getElementById('close-video-modal').click(); 
+            if (e.key === 'Escape') {
+                closePhoto();
+                if (document.getElementById('video-modal').classList.contains('flex')) document.getElementById('close-video-modal').click();
             }
             if (e.key === 'ArrowRight' && document.getElementById('image-modal').classList.contains('flex')) nextPhoto();
             if (e.key === 'ArrowLeft' && document.getElementById('image-modal').classList.contains('flex')) prevPhoto();
         });
 
-        let player, bgPlayer, isPlaying = false;
+        let player, isPlaying = false;
         const playBtn = document.getElementById('play-song-btn');
         const playerElement = document.getElementById('youtube-player');
         const musicVisualizer = document.getElementById('music-visualizer');
@@ -1127,45 +970,6 @@
         document.getElementsByTagName('script')[0].parentNode.insertBefore(tag, document.getElementsByTagName('script')[0]);
 
         window.onYouTubeIframeAPIReady = function() {
-            bgPlayer = new YT.Player('bg-youtube-player', {
-                height: '0',
-                width: '0',
-                videoId: 'rYJjgfCfBOU',
-                playerVars: {
-                    autoplay: 0,
-                    controls: 0,
-                    modestbranding: 1,
-                    playsinline: 1,
-                    enablejsapi: 1,
-                    iv_load_policy: 3,
-                    fs: 0,
-                    rel: 0
-                },
-                events: {
-                    onReady: function(event) {
-                        event.target.mute();
-                        event.target.playVideo();
-                        const unlockAndPlay = () => {
-                            event.target.unMute();
-                            event.target.setVolume(70);
-                            document.body.removeEventListener('click', unlockAndPlay);
-                            document.body.removeEventListener('touchstart', unlockAndPlay);
-                        };
-                        document.body.addEventListener('click', unlockAndPlay);
-                        document.body.addEventListener('touchstart', unlockAndPlay);
-                    },
-                    onStateChange: function(event) {
-                        if (event.data === YT.PlayerState.ENDED) {
-                            const playlist = ['rYJjgfCfBOU', 'ZeS7Fjk2sKk', 'mTZRQltuHRc', 'fn0TjVY6Y1w', 'Rcq0LqEx3-E'];
-                            const currentId = event.target.getVideoData().video_id;
-                            let nextIndex = playlist.indexOf(currentId) + 1;
-                            if (nextIndex >= playlist.length) nextIndex = 0;
-                            event.target.loadVideoById(playlist[nextIndex]);
-                        }
-                    }
-                }
-            });
-
             player = new YT.Player('youtube-player', {
                 events: {
                     'onStateChange': e => {
@@ -1175,18 +979,12 @@
                             playBtn.classList.add('playing');
                             playerElement.classList.add('show');
                             musicVisualizer.classList.add('hidden');
-
-                            // *** DÜZELTME BURADA: Arka plan müziği Tarkan çalarken duraklat ***
-                            if (bgPlayer) bgPlayer.pauseVideo();
                         } else {
                             isPlaying = false;
                             playBtn.innerHTML = '<i class="fas fa-play"></i>';
                             playBtn.classList.remove('playing');
                             playerElement.classList.remove('show');
                             musicVisualizer.classList.remove('hidden');
-
-                            // *** DÜZELTME BURADA: Tarkan durunca arka plan devam etsin ***
-                            if (isBgEnabled && bgPlayer) bgPlayer.playVideo();
                         }
                     }
                 }
@@ -1388,6 +1186,7 @@
         }
     })();
     </script>
+
     <script defer>
     document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
