@@ -10,9 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700;800;900&family=Dancing+Script:wght@700&family=Cormorant+Garamond&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
+    <!-- Konfeti kütüphanesi -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js" defer></script>
-    <script src="https://www.youtube.com/iframe_api"></script>
-
     <style>
         header, header *, #main-title, #sonbahar-baslik, h1, h2 {
             border: none !important;
@@ -339,6 +338,7 @@
         .photo-number { position: absolute; bottom: 0.5rem; right: 0.75rem; color: white; font-size: 1rem; font-weight: bold; text-shadow: 1px 1px 3px rgba(0,0,0,0.9); opacity: 0; transition: opacity .3s ease-in-out; }
         .group:hover .photo-number { opacity: 1; }
         .photo-container.no-note .photo-note { display: none; }
+        /* Fotoğraf Galerisini Gör - Daha şeffaf açık kırmızı */
         #toggle-gallery-btn {
             background: rgba(220, 38, 38, 0.5);
             color: #000000 !important;
@@ -351,6 +351,7 @@
             border-color: rgba(153, 27, 27, 0.5);
             transform: translateY(-1px);
         }
+        /* Video Galerisini Gör - Aynı şeffaf açık kırmızı */
         #toggle-video-gallery-btn {
             background: rgba(220, 38, 38, 0.5);
             color: #000000 !important;
@@ -363,6 +364,7 @@
             border-color: rgba(153, 27, 27, 0.5);
             transform: translateY(-1px);
         }
+        /* Buton içindeki ikon da siyah */
         #toggle-gallery-btn i,
         #toggle-video-gallery-btn i {
             color: #000000 !important;
@@ -463,13 +465,11 @@
     </style>
 </head>
 <body class="text-black">
-
     <div id="background-leaves-pattern"></div>
     <div id="falling-leaves-container"></div>
     <div id="falling-hearts-container"></div>
     <div id="falling-flowers-container"></div>
-    <div id="bg-youtube-player" style="position:fixed;top:-9999px;left:0;width:1px;height:1px;opacity:0;pointer-events:none;"></div>
-
+    <div id="bg-youtube-player" style="position:fixed; top:-100%; left:0; width:1px; height:1px; opacity:0; pointer-events:none;"></div>
     <header class="py-16 text-center relative z-20 overflow-hidden">
         <div class="relative">
             <div class="relative z-10">
@@ -497,14 +497,11 @@
             </div>
         </div>
     </header>
-
     <section id="main-title-section" class="py-8 text-center">
         <h2 id="main-title" class="font-bold handwriting text-green-600">O Güzel Sonbahar günü</h2>
         <p class="text-xl md:text-2xl mt-2 text-red-600 font-bold">27 Eylül 2025</p>
     </section>
-
     <main class="container mx-auto px-6 pb-12 relative z-20">
-        <!-- İlk Adım -->
         <section class="max-w-3xl mx-auto my-12 text-center">
             <h3 id="ilk-adim-baslik" class="font-bold text-red-600 mb-4">İlk Adım</h3>
             <p class="text-lg leading-relaxed font-medium font-[550] text-black">
@@ -520,8 +517,6 @@
             </p>
             <div class="text-4xl text-red-500 mt-8 heartbeat"><i class="fas fa-heart"></i></div>
         </section>
-
-        <!-- Sonbahar şiiri -->
         <section class="my-16 max-w-3xl mx-auto text-center">
             <h3 id="sonbahar-baslik" class="font-bold text-center text-red-600 mb-6 handwriting font-forte-alternative">Sonbahar şiiri</h3>
             <div class="poem-container">
@@ -538,8 +533,6 @@
             </div>
             <p class="text-right text-green-600 font-semibold-bold mt-6 pr-4 font-forte-alternative poem-signature">- Nazım Hikmet</p>
         </section>
-
-        <!-- Güzel sözler -->
         <section class="my-16 max-w-3xl mx-auto text-center">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Aramızda Geçen İki Güzel Söz</h3>
             <div class="max-w-2xl mx-auto space-y-6">
@@ -556,8 +549,6 @@
                 </div>
             </div>
         </section>
-
-        <!-- Geri sayım -->
         <section id="countdown-section" class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 font-forte-alternative">Büyük Güne Geri Sayım</h3>
             <div id="countdown-placeholder" class="my-4">
@@ -573,8 +564,6 @@
                 <div><span id="seconds" class="block text-5xl font-bold text-green-600">00</span><span class="text-sm text-red-600">Saniye</span></div>
             </div>
         </section>
-
-        <!-- Harita -->
         <section id="map-section" class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Düğün Mekanımız</h3>
             <div class="flex flex-col items-center mb-8">
@@ -587,8 +576,6 @@
                 Seninle sonsuzluğa adım attığımız yer 💙
             </p>
         </section>
-
-        <!-- Davetiye -->
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Davetiyemiz</h3>
             <div class="flex flex-col items-center">
@@ -603,18 +590,20 @@
                 </p>
             </div>
         </section>
-
         <div id="invitation-modal">
             <span id="close-invitation">X</span>
             <img id="invitation-image" src="https://i.imgur.com/2nywEc1.jpeg" alt="Arzu & Ersin Düğün Davetiyesi">
         </div>
-
-        <!-- Bizim Şarkımız -->
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center relative overflow-hidden">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Bizim Şarkımız</h3>
             <p class="text-center text-black font-semibold italic mt-2 mb-6">Tarkan - Beni Çok Sev</p>
-            <div class="song-container relative mx-auto" style="width:20rem;height:20rem;">
-                <div id="youtube-player" class="absolute inset-0 w-full h-full rounded-full"></div>
+            <div class="song-container">
+                <iframe id="youtube-player"
+                        src="https://www.youtube.com/embed/IYnu4-69fTA?autoplay=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1"
+                        title="Tarkan - Beni Çok Sev"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
                 <div id="music-visualizer" class="music-visualizer">
                     <div class="note">♪</div><div class="note">♪</div><div class="note">♪</div><div class="note">♪</div>
                     <div class="note">♪</div><div class="note">♪</div><div class="note">♪</div><div class="note">♪</div>
@@ -625,8 +614,6 @@
                 </div>
             </div>
         </section>
-
-        <!-- Fotoğraf Galerisi (tüm fotoğraflar eksiksiz) -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Fotoğraf Galerimiz</h3>
             <div class="photo-gallery-description">
@@ -729,8 +716,6 @@
                 </div>
             </div>
         </section>
-
-        <!-- Video Galerisi -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Video Galerimiz</h3>
             <div class="video-gallery-description">
@@ -779,7 +764,7 @@
                         <div class="photo-note">Lunapark</div>
                     </div>
                     <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="19aKq8FtYP8">
-                        <img data-src="https://img.youtube.com/vi/19aKq8FtYP8/maxresdefault.jpg" alt="Beşiktaş" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
+                        <img data-src="https://img.youtube.com/vi/19aKq8FtYP8/maxresdefault.jpg" alt="Beşiktaş" class="w-full h-full object-cover gallery-thumbnail" loading="lazy">
                         <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
                             <i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i>
                         </div>
@@ -797,8 +782,6 @@
                 </div>
             </div>
         </section>
-
-        <!-- Teşekkür -->
         <section class="my-16 max-w-3xl mx-auto transparent-section">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Teşekkür</h3>
             <div class="thank-you-message">
@@ -831,8 +814,6 @@
                 </div>
             </div>
         </section>
-
-        <!-- Footer QR -->
         <section id="footer-section" class="my-12 text-center">
             <div id="qr-wrapper">
                 <div id="footer-qr" class="photo-container inline-block">
@@ -848,16 +829,12 @@
             </div>
         </section>
     </main>
-
-    <!-- Fotoğraf Modal -->
     <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
         <span id="close-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
         <img id="modal-image" src="" alt="Büyütülmüş Fotoğraf" class="max-w-[90vw] max-h-[90vh] rounded-lg shadow-lg">
         <span id="prev-photo" class="absolute top-1/2 left-4 -translate-y-1/2 text-white text-6xl font-bold cursor-pointer hover:text-gray-300 transition-colors select-none"><</span>
         <span id="next-photo" class="absolute top-1/2 right-4 -translate-y-1/2 text-white text-6xl font-bold cursor-pointer hover:text-gray-300 transition-colors select-none">></span>
     </div>
-
-    <!-- Video Modal -->
     <div id="video-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
         <span id="close-video-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
         <div class="aspect-video w-full max-w-4xl"><iframe id="modal-video-iframe" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
@@ -866,8 +843,6 @@
     <script>
     (() => {
         'use strict';
-
-        // Arka plan müzik kontrolü (ses açma/kapama)
         const bgControl = document.getElementById('bg-music-control');
         const muteOverlay = document.getElementById('mute-overlay');
         const tooltip = document.getElementById('bg-music-tooltip');
@@ -902,7 +877,6 @@
             }, 4000);
         }
 
-        // Falling elements (hearts, leaves, flowers) - tam aynı
         const hearts = ['💛'];
         const heartContainer = document.getElementById('falling-hearts-container');
         for (let i = 0; i < 2; i++) {
@@ -950,7 +924,6 @@
             flowerContainer.appendChild(flower);
         }
 
-        // Lazy load observer
         const lazyLoadObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting && entry.target.dataset.src) {
@@ -961,7 +934,6 @@
         }, { rootMargin: '50px' });
         document.querySelectorAll('img[data-src]').forEach(img => lazyLoadObserver.observe(img));
 
-        // Fotoğraf modal (zoom, pinch, drag)
         let photoUrls = [];
         let currentPhotoIndex = 0;
         let scale = 1;
@@ -1145,14 +1117,16 @@
             if (e.key === 'ArrowLeft' && document.getElementById('image-modal').classList.contains('flex')) prevPhoto();
         });
 
-        // Müzik player'ları (en kritik kısım)
         let player, bgPlayer, isPlaying = false;
         const playBtn = document.getElementById('play-song-btn');
         const playerElement = document.getElementById('youtube-player');
         const musicVisualizer = document.getElementById('music-visualizer');
 
+        const tag = document.createElement('script');
+        tag.src = 'https://www.youtube.com/iframe_api';
+        document.getElementsByTagName('script')[0].parentNode.insertBefore(tag, document.getElementsByTagName('script')[0]);
+
         window.onYouTubeIframeAPIReady = function() {
-            // Arka plan playlist - sesli çalışıyor
             bgPlayer = new YT.Player('bg-youtube-player', {
                 height: '0',
                 width: '0',
@@ -1169,18 +1143,16 @@
                 },
                 events: {
                     onReady: function(event) {
-                        event.target.unMute(); // İlk başta sessiz (mobil kısıtlaması için)
+                        event.target.mute();
                         event.target.playVideo();
-
-                        // Kullanıcı etkileşimiyle ses açılır
-                        const unlock = () => {
+                        const unlockAndPlay = () => {
                             event.target.unMute();
                             event.target.setVolume(70);
-                            document.body.removeEventListener('touchstart', unlock);
-                            document.body.removeEventListener('click', unlock);
+                            document.body.removeEventListener('click', unlockAndPlay);
+                            document.body.removeEventListener('touchstart', unlockAndPlay);
                         };
-                        document.body.addEventListener('touchstart', unlock);
-                        document.body.addEventListener('click', unlock);
+                        document.body.addEventListener('click', unlockAndPlay);
+                        document.body.addEventListener('touchstart', unlockAndPlay);
                     },
                     onStateChange: function(event) {
                         if (event.data === YT.PlayerState.ENDED) {
@@ -1194,20 +1166,9 @@
                 }
             });
 
-            // Tarkan player
             player = new YT.Player('youtube-player', {
-                height: '100%',
-                width: '100%',
-                videoId: 'IYnu4-69fTA',
-                playerVars: {
-                    autoplay: 0,
-                    controls: 1,
-                    modestbranding: 1,
-                    playsinline: 1,
-                    rel: 0
-                },
                 events: {
-                    onStateChange: e => {
+                    'onStateChange': e => {
                         if (e.data === YT.PlayerState.PLAYING) {
                             isPlaying = true;
                             playBtn.innerHTML = '<i class="fas fa-pause"></i>';
@@ -1215,7 +1176,7 @@
                             playerElement.classList.add('show');
                             musicVisualizer.classList.add('hidden');
 
-                            // Arka planı duraklat (ses çakışması olmasın)
+                            // *** DÜZELTME BURADA: Arka plan müziği Tarkan çalarken duraklat ***
                             if (bgPlayer) bgPlayer.pauseVideo();
                         } else {
                             isPlaying = false;
@@ -1224,7 +1185,7 @@
                             playerElement.classList.remove('show');
                             musicVisualizer.classList.remove('hidden');
 
-                            // Arka plan devam etsin
+                            // *** DÜZELTME BURADA: Tarkan durunca arka plan devam etsin ***
                             if (isBgEnabled && bgPlayer) bgPlayer.playVideo();
                         }
                     }
@@ -1243,7 +1204,6 @@
             }
         };
 
-        // Davetiye modalı
         const invitationModal = document.getElementById('invitation-modal');
         const invitationImage = document.getElementById('invitation-image');
         let invitationScale = 1;
@@ -1309,9 +1269,51 @@
             }
         });
 
+        if (window.innerWidth > 768 && !('ontouchstart' in window)) {
+            let invitationCurrentScale = 1;
+            let invitationCurrentTranslateX = 0;
+            let invitationCurrentTranslateY = 0;
+            let invitationIsDragging = false;
+            let invitationStartX, invitationStartY;
+            const applyInvitationTransform = () => {
+                invitationImage.style.transform = `translate(${invitationCurrentTranslateX}px, ${invitationCurrentTranslateY}px) scale(${invitationCurrentScale})`;
+            };
+            invitationModal.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const delta = e.deltaY > 0 ? 0.9 : 1.1;
+                invitationCurrentScale = Math.min(Math.max(0.5, invitationCurrentScale * delta), 8);
+                applyInvitationTransform();
+            });
+            invitationImage.addEventListener('mousedown', (e) => {
+                if (invitationCurrentScale <= 1) return;
+                e.preventDefault();
+                invitationIsDragging = true;
+                invitationStartX = e.clientX - invitationCurrentTranslateX;
+                invitationStartY = e.clientY - invitationCurrentTranslateY;
+                invitationImage.style.cursor = 'grabbing';
+            });
+            document.addEventListener('mousemove', (e) => {
+                if (!invitationIsDragging) return;
+                e.preventDefault();
+                invitationCurrentTranslateX = e.clientX - invitationStartX;
+                invitationCurrentTranslateY = e.clientY - invitationStartY;
+                applyInvitationTransform();
+            });
+            document.addEventListener('mouseup', () => {
+                invitationIsDragging = false;
+                invitationImage.style.cursor = invitationCurrentScale > 1 ? 'grab' : 'default';
+            });
+        }
+
         document.getElementById('invitation-icon').onclick = () => {
             invitationModal.classList.add('show');
             resetInvitation();
+            if (window.innerWidth > 768 && !('ontouchstart' in window)) {
+                invitationCurrentScale = 1;
+                invitationCurrentTranslateX = 0;
+                invitationCurrentTranslateY = 0;
+                applyInvitationTransform();
+            }
         };
 
         document.getElementById('close-invitation').onclick = () => {
@@ -1326,16 +1328,66 @@
             }
         };
 
-        // Fade-in on scroll
         const fadeObserver = new IntersectionObserver(entries => {
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
         }, { threshold: 0.3 });
 
         document.querySelectorAll('.fade-in-on-scroll').forEach(el => fadeObserver.observe(el));
 
+        if (window.innerWidth > 768 && !('ontouchstart' in window)) {
+            let currentScale = 1;
+            let currentTranslateX = 0;
+            let currentTranslateY = 0;
+            let isDragging = false;
+            let startX, startY;
+            const applyTransform = () => {
+                modalImage.style.transform = `translate(${currentTranslateX}px, ${currentTranslateY}px) scale(${currentScale})`;
+            };
+            modal.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const delta = e.deltaY > 0 ? 0.9 : 1.1;
+                currentScale = Math.min(Math.max(0.5, currentScale * delta), 8);
+                applyTransform();
+            });
+            modalImage.addEventListener('mousedown', (e) => {
+                if (currentScale <= 1) return;
+                e.preventDefault();
+                isDragging = true;
+                startX = e.clientX - currentTranslateX;
+                startY = e.clientY - currentTranslateY;
+                modalImage.style.cursor = 'grabbing';
+            });
+            document.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                e.preventDefault();
+                currentTranslateX = e.clientX - startX;
+                currentTranslateY = e.clientY - startY;
+                applyTransform();
+            });
+            document.addEventListener('mouseup', () => {
+                isDragging = false;
+                modalImage.style.cursor = currentScale > 1 ? 'grab' : 'default';
+            });
+            const originalOpenPhoto = openPhoto;
+            openPhoto = function(index) {
+                originalOpenPhoto(index);
+                currentScale = 1;
+                currentTranslateX = 0;
+                currentTranslateY = 0;
+                modalImage.style.cursor = 'default';
+                applyTransform();
+            };
+            const originalClosePhoto = closePhoto;
+            closePhoto = function() {
+                originalClosePhoto();
+                currentScale = 1;
+                currentTranslateX = 0;
+                currentTranslateY = 0;
+                applyTransform();
+            };
+        }
     })();
     </script>
-
     <script defer>
     document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
