@@ -10,8 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700;800;900&family=Dancing+Script:wght@700&family=Cormorant+Garamond&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
-    <!-- Konfeti kütüphanesi -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js" defer></script>
+
     <style>
         header, header *, #main-title, #sonbahar-baslik, h1, h2 {
             border: none !important;
@@ -39,14 +39,11 @@
         h1, h2, h3 { font-family: 'Playfair Display', serif; }
         .handwriting { font-family: 'Dancing Script', cursive; }
         .font-forte-alternative { font-family: 'Dancing Script', cursive; }
-        .font-poor-richard-alternative { font-family: 'Cormorant Garamond', serif; }
         @keyframes heartbeat { 0%,100%{transform:scale(1)} 50%{transform:scale(1.15)} }
         .heartbeat { animation: heartbeat 1.5s infinite; }
         #main-title { font-size: 3rem !important; line-height: 1.2 !important; }
         @media (min-width: 768px) { #main-title { font-size: 4rem !important; } }
-        @media (max-width: 768px) {
-            #main-title { font-size: 2.3rem !important; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        }
+        @media (max-width: 768px) { #main-title { font-size: 2.3rem !important; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } }
         main h3:not(#ilk-adim-baslik) { font-size: 1.5rem !important; line-height: 1.3 !important; }
         @media (min-width: 768px) { main h3:not(#ilk-adim-baslik) { font-size: 2rem !important; } }
         #ilk-adim-baslik { font-size: 1.5rem !important; line-height: 1.4 !important; }
@@ -63,9 +60,27 @@
         .poem-signature { font-size: 1.5rem !important; line-height: 1.4 !important; color: #16a34a !important; }
         @media (max-width: 768px) { .poem-signature { font-size: 1.875rem !important; } }
         .leaf-svg { position: absolute; width: 32px; height: 44px; opacity: 0.9; animation: fall linear infinite; transform-origin: center; filter: drop-shadow(0 3px 6px rgba(0,0,0,0.3)); }
-        @keyframes fall { 0% { transform: translateY(-120px) rotate(0deg) scale(1); opacity: 0; } 8% { opacity: 0.9; } 30% { transform: translateY(30vh) translateX(15px) rotate(180deg) scale(0.95); } 50% { transform: translateY(50vh) translateX(-20px) rotate(540deg) scale(0.9); } 70% { transform: translateY(70vh) translateX(25px) rotate(800deg) scale(0.85); } 92% { opacity: 0.9; } 100% { transform: translateY(110vh) translateX(-15px) rotate(1080deg) scale(0.6); opacity: 0; } }
-        .leaf-svg .leaf-inner { fill: currentColor; } .leaf-svg .leaf-outer { fill: white; opacity: 0.95; }
-        .leaf-svg.autumn-1 { color: #f59e0b; } .leaf-svg.autumn-2 { color: #ef4444; } .leaf-svg.autumn-3 { color: #facc15; } .leaf-svg.autumn-4 { color: #92400e; } .leaf-svg.autumn-5 { color: #84cc16; } .leaf-svg.autumn-6 { color: #fb923c; } .leaf-svg.autumn-7 { color: #dc2626; } .leaf-svg.autumn-8 { color: #f97316; } .leaf-svg.autumn-9 { color: #22c55e; } .leaf-svg.autumn-10 { color: #16a34a; }
+        @keyframes fall {
+            0% { transform: translateY(-120px) rotate(0deg) scale(1); opacity: 0; }
+            8% { opacity: 0.9; }
+            30% { transform: translateY(30vh) translateX(15px) rotate(180deg) scale(0.95); }
+            50% { transform: translateY(50vh) translateX(-20px) rotate(540deg) scale(0.9); }
+            70% { transform: translateY(70vh) translateX(25px) rotate(800deg) scale(0.85); }
+            92% { opacity: 0.9; }
+            100% { transform: translateY(110vh) translateX(-15px) rotate(1080deg) scale(0.6); opacity: 0; }
+        }
+        .leaf-svg .leaf-inner { fill: currentColor; }
+        .leaf-svg .leaf-outer { fill: white; opacity: 0.95; }
+        .leaf-svg.autumn-1 { color: #f59e0b; }
+        .leaf-svg.autumn-2 { color: #ef4444; }
+        .leaf-svg.autumn-3 { color: #facc15; }
+        .leaf-svg.autumn-4 { color: #92400e; }
+        .leaf-svg.autumn-5 { color: #84cc16; }
+        .leaf-svg.autumn-6 { color: #fb923c; }
+        .leaf-svg.autumn-7 { color: #dc2626; }
+        .leaf-svg.autumn-8 { color: #f97316; }
+        .leaf-svg.autumn-9 { color: #22c55e; }
+        .leaf-svg.autumn-10 { color: #16a34a; }
         .falling-heart {
             position: absolute;
             font-size: 2rem;
@@ -92,7 +107,11 @@
             90% { opacity: 1; }
             100% { opacity: 0; transform: translateY(calc(100vh + 150px)) rotate(1440deg) scale(0.5); }
         }
-        .music-visualizer { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: flex; align-items: center; justify-content: center; gap: 6px; z-index: 15; opacity: 1; transition: opacity 0.3s ease; width: 200px; pointer-events: none; }
+        .music-visualizer {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            display: flex; align-items: center; justify-content: center; gap: 6px;
+            z-index: 15; opacity: 1; transition: opacity 0.3s ease; width: 200px; pointer-events: none;
+        }
         .music-visualizer.hidden { opacity: 0 !important; pointer-events: none; }
         .note { font-size: 1.8rem; color: #ef4444; animation: floatNote 1.8s infinite ease-in-out; transform-origin: bottom; }
         .note:nth-child(1) { animation-delay: 0s; }
@@ -104,13 +123,14 @@
         .note:nth-child(7) { animation-delay: 1.2s; }
         .note:nth-child(8) { animation-delay: 1.4s; }
         @keyframes floatNote { 0%, 100% { transform: translateY(0) scale(1); opacity: 0.7; } 50% { transform: translateY(-12px) scale(1.3); opacity: 1; } }
-        @media (max-width: 768px) {
-            .music-visualizer { gap: 4px; width: 160px; }
-            .note { font-size: 1.5rem; }
-        }
+        @media (max-width: 768px) { .music-visualizer { gap: 4px; width: 160px; } .note { font-size: 1.5rem; } }
         .song-control { position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; z-index: 20; }
         .song-label { font-size: 0.65rem; font-weight: 600; color: #dc2626; line-height: 1; letter-spacing: 0.5px; text-transform: uppercase; white-space: nowrap; margin-bottom: 0.5rem; text-shadow: 0 1px 2px rgba(0,0,0,0.1); }
-        #play-song-btn { width: 44px; height: 44px; background: rgba(239, 68, 68, 0.95); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; box-shadow: 0 6px 16px rgba(0,0,0,0.35); cursor: pointer; transition: all 0.3s ease; }
+        #play-song-btn {
+            width: 44px; height: 44px; background: rgba(239, 68, 68, 0.95); color: white;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.35); cursor: pointer; transition: all 0.3s ease;
+        }
         #play-song-btn:hover { background: #dc2626; transform: scale(1.15); box-shadow: 0 8px 20px rgba(220, 38, 38, 0.45); }
         #play-song-btn.playing { background: #16a34a; }
         #youtube-player { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: 50%; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
@@ -118,93 +138,39 @@
         .transparent-section { background: transparent !important; backdrop-filter: none !important; box-shadow: none !important; border-radius: 0 !important; padding: 2rem 1rem !important; }
         .song-container { position: relative; width: 16rem; height: 16rem; margin: 0 auto; }
         @media (min-width: 768px) { .song-container { width: 20rem; height: 20rem; } }
-        .header-name {
-            font-size: 11.7vw;
-            color: #16a34a !important;
-        }
-        @media (min-width: 768px) {
-            .header-name { font-size: 6.75vw; }
-        }
+        .header-name { font-size: 11.7vw; color: #16a34a !important; }
+        @media (min-width: 768px) { .header-name { font-size: 6.75vw; } }
         #map-icon {
-            cursor: pointer;
-            font-size: 4rem;
-            color: #dc2626 !important;
-            opacity: 1 !important;
-            filter: drop-shadow(0 4px 10px rgba(220, 38, 38, 0.5));
-            transition: all 0.3s ease;
+            cursor: pointer; font-size: 4rem; color: #dc2626 !important; opacity: 1 !important;
+            filter: drop-shadow(0 4px 10px rgba(220, 38, 38, 0.5)); transition: all 0.3s ease;
             animation: gentlePulse 3s infinite ease-in-out;
         }
         @media (max-width: 768px) { #map-icon { font-size: 3rem; } }
-        #map-icon:hover {
-            color: #b91c1c !important;
-            transform: scale(1.12);
-            filter: drop-shadow(0 6px 16px rgba(220, 38, 38, 0.7));
-        }
-        @keyframes gentlePulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.04); }
-        }
-        .map-click-text {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: #dc2626;
-            margin-top: 0.5rem;
-            opacity: 0.9;
-            transition: all 0.3s ease;
-        }
-        #map-icon:hover + .map-click-text {
-            opacity: 1;
-            transform: translateY(-2px);
-        }
+        #map-icon:hover { color: #b91c1c !important; transform: scale(1.12); filter: drop-shadow(0 6px 16px rgba(220, 38, 38, 0.7)); }
+        @keyframes gentlePulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.04); } }
+        .map-click-text { font-size: 0.9rem; font-weight: 600; color: #dc2626; margin-top: 0.5rem; opacity: 0.9; transition: all 0.3s ease; }
+        #map-icon:hover + .map-click-text { opacity: 1; transform: translateY(-2px); }
         #invitation-icon {
-            font-size: 3.8rem;
-            color: #dc2626;
-            filter: drop-shadow(0 4px 10px rgba(220, 38, 38, 0.4));
-            transition: all 0.3s ease;
-            cursor: pointer;
+            font-size: 3.8rem; color: #dc2626; filter: drop-shadow(0 4px 10px rgba(220, 38, 38, 0.4));
+            transition: all 0.3s ease; cursor: pointer;
         }
         @media (max-width: 768px) { #invitation-icon { font-size: 3rem; } }
         #invitation-icon:hover { transform: scale(1.15); color: #b91c1c; }
         .invitation-click-text { font-size: 0.9rem; font-weight: 600; color: #dc2626; margin-top: 0.5rem; opacity: 0.9; }
         #invitation-icon:hover + .invitation-click-text { opacity: 1; }
         #invitation-modal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.9);
-            z-index: 9999;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
+            display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 9999;
+            align-items: center; justify-content: center; padding: 1rem;
         }
         #invitation-modal.show { display: flex; }
         #invitation-modal img {
-            max-width: 95vw;
-            max-height: 95vh;
-            border-radius: 12px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-            transform-origin: center center;
-            transition: transform 0.1s ease-out;
+            max-width: 95vw; max-height: 95vh; border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            transform-origin: center center; transition: transform 0.1s ease-out;
         }
         #close-invitation {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            font-size: 3.5rem;
-            color: white;
-            cursor: pointer;
-            z-index: 10000;
+            position: absolute; top: 20px; right: 30px; font-size: 3.5rem; color: white; cursor: pointer; z-index: 10000;
         }
         #close-invitation:hover { color: #fca5a5; }
-        #modal-image {
-            transform-origin: center center;
-            max-width: 90vw;
-            max-height: 90vh;
-            transition: transform 0.1s ease-out;
-        }
-        header {
-            padding-bottom: 1rem !important;
-        }
         .fade-in-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity .8s cubic-bezier(.25,.46,.45,.94), transform .8s cubic-bezier(.25,.46,.45,.94); }
         .fade-in-on-scroll.visible { opacity: 1; transform: translateY(0); }
         .photo-container { position: relative; overflow: hidden; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); aspect-ratio: 1/1; }
@@ -214,127 +180,19 @@
         .photo-number { position: absolute; bottom: 0.5rem; right: 0.75rem; color: white; font-size: 1rem; font-weight: bold; text-shadow: 1px 1px 3px rgba(0,0,0,0.9); opacity: 0; transition: opacity .3s ease-in-out; }
         .group:hover .photo-number { opacity: 1; }
         .photo-container.no-note .photo-note { display: none; }
-        #toggle-gallery-btn {
-            background: rgba(220, 38, 38, 0.5);
-            color: #000000 !important;
-            border: 1px solid rgba(185, 28, 28, 0.4);
-            transition: all 0.2s ease;
-            backdrop-filter: blur(4px);
+        #toggle-gallery-btn, #toggle-video-gallery-btn {
+            background: rgba(220, 38, 38, 0.5); color: #000000 !important; border: 1px solid rgba(185, 28, 28, 0.4);
+            transition: all 0.2s ease; backdrop-filter: blur(4px);
         }
-        #toggle-gallery-btn:hover {
-            background: rgba(185, 28, 28, 0.65);
-            border-color: rgba(153, 27, 27, 0.5);
-            transform: translateY(-1px);
+        #toggle-gallery-btn:hover, #toggle-video-gallery-btn:hover {
+            background: rgba(185, 28, 28, 0.65); border-color: rgba(153, 27, 27, 0.5); transform: translateY(-1px);
         }
-        #toggle-video-gallery-btn {
-            background: rgba(220, 38, 38, 0.5);
-            color: #000000 !important;
-            border: 1px solid rgba(185, 28, 28, 0.4);
-            transition: all 0.2s ease;
-            backdrop-filter: blur(4px);
-        }
-        #toggle-video-gallery-btn:hover {
-            background: rgba(185, 28, 28, 0.65);
-            border-color: rgba(153, 27, 27, 0.5);
-            transform: translateY(-1px);
-        }
-        #toggle-gallery-btn i,
-        #toggle-video-gallery-btn i {
-            color: #000000 !important;
-        }
-        .interlocked-hearts {
-            position: relative;
-            display: inline-block;
-            width: 14vw;
-            height: 10vw;
-            margin: 0 1em;
-        }
-        .heart-yellow {
-            position: absolute;
-            top: 0;
-            left: 0;
-            font-size: 10vw;
-            color: #facc15;
-            -webkit-text-stroke: 3px black;
-            paint-order: stroke fill;
-            z-index: 2;
-        }
-        .heart-green {
-            position: absolute;
-            top: 0;
-            left: 45%;
-            font-size: 10vw;
-            color: #dc2626;
-            -webkit-text-stroke: 3px black;
-            paint-order: stroke fill;
-            z-index: 1;
-        }
-        @media (min-width: 768px) {
-            .interlocked-hearts {
-                width: 8vw;
-                height: 5vw;
-                margin: 0 1.5em;
-            }
-            .heart-yellow, .heart-green {
-                font-size: 5vw;
-                -webkit-text-stroke: 2px black;
-            }
-            .heart-green {
-                left: 50%;
-                color: #dc2626;
-            }
-        }
-        #countdown-placeholder p {
-            color: #e91e63 !important;
-        }
-        #map-section p {
-            color: #556b2f !important;
-        }
-        .invitation-description p {
-            color: #2563eb !important;
-        }
-        .photo-gallery-description p {
-            color: #6b8e23 !important;
-        }
-        .video-gallery-description p {
-            color: #9333ea !important;
-        }
-        .thank-you-message p {
-            color: #06b6d4 !important;
-        }
-        main {
-            padding-bottom: 0 !important;
-        }
-        section:last-of-type {
-            padding-bottom: 2rem !important;
-            margin-bottom: 0 !important;
-        }
-        #footer-qr .gallery-thumbnail {
-            transition: none !important;
-        }
-        #footer-qr:hover .gallery-thumbnail {
-            transform: none !important;
-        }
-        #footer-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 2rem;
-            padding: 2rem 1rem;
-            position: relative;
-        }
-        #qr-wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        #site-address {
-            margin-top: 1rem;
-            font-size: 1.125rem;
-            font-weight: 500;
-            color: #dc2626;
-            text-align: center;
-        }
+        #toggle-gallery-btn i, #toggle-video-gallery-btn i { color: #000000 !important; }
+        main { padding-bottom: 0 !important; }
+        section:last-of-type { padding-bottom: 2rem !important; margin-bottom: 0 !important; }
+        #footer-section { display: flex; flex-direction: column; align-items: center; gap: 2rem; padding: 2rem 1rem; position: relative; }
+        #qr-wrapper { display: flex; flex-direction: column; align-items: center; }
+        #site-address { margin-top: 1rem; font-size: 1.125rem; font-weight: 500; color: #dc2626; text-align: center; }
     </style>
 </head>
 <body class="text-black">
@@ -348,9 +206,8 @@
             <div class="relative z-10">
                 <h1 class="font-bold flex items-center justify-center handwriting leading-tight">
                     <span class="header-name">Arzu</span>
-                    <span class="interlocked-hearts">
-                        <i class="fa-solid fa-heart heart-yellow"></i>
-                        <i class="fa-solid fa-heart heart-green"></i>
+                    <span class="mx-8 md:mx-12">
+                        <i class="fa-solid fa-heart text-5xl md:text-7xl text-red-600 heartbeat"></i>
                     </span>
                     <span class="header-name">Ersin</span>
                 </h1>
@@ -401,17 +258,9 @@
         <section class="my-16 max-w-3xl mx-auto text-center">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Aramızda Geçen İki Güzel Söz</h3>
             <div class="max-w-2xl mx-auto space-y-6">
-                <div>
-                    <p class="text-xl md:text-2xl leading-relaxed italic text-blue-600 font-medium">
-                        " Bana iyi hissettiriyorsun sen bu zamana kadar nerelerdeydin "
-                    </p>
-                </div>
+                <p class="text-xl md:text-2xl leading-relaxed italic text-blue-600 font-medium">" Bana iyi hissettiriyorsun sen bu zamana kadar nerelerdeydin "</p>
                 <div class="text-center text-4xl text-red-500 heartbeat mb-4"><i class="fas fa-heart"></i></div>
-                <div>
-                    <p class="text-xl md:text-2xl leading-relaxed italic text-blue-600 font-medium">
-                        " Asıl sen neredeydin meğersem çok yakınmışız "
-                    </p>
-                </div>
+                <p class="text-xl md:text-2xl leading-relaxed italic text-blue-600 font-medium">" Asıl sen neredeydin meğersem çok yakınmışız "</p>
             </div>
         </section>
 
@@ -419,15 +268,7 @@
             <h3 class="font-bold text-red-600 mb-6 font-forte-alternative">Büyük Güne Geri Sayım</h3>
             <div id="countdown-placeholder" class="my-4">
                 <div class="text-8xl text-red-500 heartbeat"><i class="fas fa-infinity"></i></div>
-                <p class="text-center font-semibold italic text-lg mt-4">
-                    Sonsuzluğa giden yolculuğumuzun tarihi belli olduğunda...
-                </p>
-            </div>
-            <div id="countdown-timer" class="hidden grid grid-cols-4 gap-4 text-center">
-                <div><span id="days" class="block text-5xl font-bold text-green-600">0</span><span class="text-sm text-red-600">Gün</span></div>
-                <div><span id="hours" class="block text-5xl font-bold text-green-600">00</span><span class="text-sm text-red-600">Saat</span></div>
-                <div><span id="minutes" class="block text-5xl font-bold text-green-600">00</span><span class="text-sm text-red-600">Dakika</span></div>
-                <div><span id="seconds" class="block text-5xl font-bold text-green-600">00</span><span class="text-sm text-red-600">Saniye</span></div>
+                <p class="text-center font-semibold italic text-lg mt-4">Sonsuzluğa giden yolculuğumuzun tarihi belli olduğunda...</p>
             </div>
         </section>
 
@@ -439,9 +280,7 @@
                 </a>
                 <div class="map-click-text">Tıkla</div>
             </div>
-            <p class="text-center font-semibold italic text-lg mt-6 leading-relaxed px-6 max-w-2xl mx-auto">
-                Seninle sonsuzluğa adım attığımız yer 💙
-            </p>
+            <p class="text-center font-semibold italic text-lg mt-6 leading-relaxed px-6 max-w-2xl mx-auto">Seninle sonsuzluğa adım attığımız yer 💙</p>
         </section>
 
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center">
@@ -453,9 +292,7 @@
                 <div class="invitation-click-text">Tıkla</div>
             </div>
             <div class="mt-6 max-w-2xl mx-auto invitation-description">
-                <p class="text-center font-semibold italic text-lg leading-relaxed px-6">
-                    Bu bir davetiye değil, size yazdığımız bir mutluluk mektubu 💚
-                </p>
+                <p class="text-center font-semibold italic text-lg leading-relaxed px-6">Bu bir davetiye değil, size yazdığımız bir mutluluk mektubu 💚</p>
             </div>
         </section>
 
@@ -468,12 +305,7 @@
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Bizim Şarkımız</h3>
             <p class="text-center text-black font-semibold italic mt-2 mb-6">Tarkan - Beni Çok Sev</p>
             <div class="song-container">
-                <iframe id="youtube-player"
-                        src="https://www.youtube.com/embed/IYnu4-69fTA?autoplay=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1"
-                        title="Tarkan - Beni Çok Sev"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe>
+                <iframe id="youtube-player" src="https://www.youtube.com/embed/IYnu4-69fTA?autoplay=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1" title="Tarkan - Beni Çok Sev" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 <div id="music-visualizer" class="music-visualizer">
                     <div class="note">♪</div><div class="note">♪</div><div class="note">♪</div><div class="note">♪</div>
                     <div class="note">♪</div><div class="note">♪</div><div class="note">♪</div><div class="note">♪</div>
@@ -1067,51 +899,9 @@
             }
         });
 
-        if (window.innerWidth > 768 && !('ontouchstart' in window)) {
-            let invitationCurrentScale = 1;
-            let invitationCurrentTranslateX = 0;
-            let invitationCurrentTranslateY = 0;
-            let invitationIsDragging = false;
-            let invitationStartX, invitationStartY;
-            const applyInvitationTransform = () => {
-                invitationImage.style.transform = `translate(${invitationCurrentTranslateX}px, ${invitationCurrentTranslateY}px) scale(${invitationCurrentScale})`;
-            };
-            invitationModal.addEventListener('wheel', (e) => {
-                e.preventDefault();
-                const delta = e.deltaY > 0 ? 0.9 : 1.1;
-                invitationCurrentScale = Math.min(Math.max(0.5, invitationCurrentScale * delta), 8);
-                applyInvitationTransform();
-            });
-            invitationImage.addEventListener('mousedown', (e) => {
-                if (invitationCurrentScale <= 1) return;
-                e.preventDefault();
-                invitationIsDragging = true;
-                invitationStartX = e.clientX - invitationCurrentTranslateX;
-                invitationStartY = e.clientY - invitationCurrentTranslateY;
-                invitationImage.style.cursor = 'grabbing';
-            });
-            document.addEventListener('mousemove', (e) => {
-                if (!invitationIsDragging) return;
-                e.preventDefault();
-                invitationCurrentTranslateX = e.clientX - invitationStartX;
-                invitationCurrentTranslateY = e.clientY - invitationStartY;
-                applyInvitationTransform();
-            });
-            document.addEventListener('mouseup', () => {
-                invitationIsDragging = false;
-                invitationImage.style.cursor = invitationCurrentScale > 1 ? 'grab' : 'default';
-            });
-        }
-
         document.getElementById('invitation-icon').onclick = () => {
             invitationModal.classList.add('show');
             resetInvitation();
-            if (window.innerWidth > 768 && !('ontouchstart' in window)) {
-                invitationCurrentScale = 1;
-                invitationCurrentTranslateX = 0;
-                invitationCurrentTranslateY = 0;
-                applyInvitationTransform();
-            }
         };
 
         document.getElementById('close-invitation').onclick = () => {
@@ -1131,59 +921,6 @@
         }, { threshold: 0.3 });
 
         document.querySelectorAll('.fade-in-on-scroll').forEach(el => fadeObserver.observe(el));
-
-        if (window.innerWidth > 768 && !('ontouchstart' in window)) {
-            let currentScale = 1;
-            let currentTranslateX = 0;
-            let currentTranslateY = 0;
-            let isDragging = false;
-            let startX, startY;
-            const applyTransform = () => {
-                modalImage.style.transform = `translate(${currentTranslateX}px, ${currentTranslateY}px) scale(${currentScale})`;
-            };
-            modal.addEventListener('wheel', (e) => {
-                e.preventDefault();
-                const delta = e.deltaY > 0 ? 0.9 : 1.1;
-                currentScale = Math.min(Math.max(0.5, currentScale * delta), 8);
-                applyTransform();
-            });
-            modalImage.addEventListener('mousedown', (e) => {
-                if (currentScale <= 1) return;
-                e.preventDefault();
-                isDragging = true;
-                startX = e.clientX - currentTranslateX;
-                startY = e.clientY - currentTranslateY;
-                modalImage.style.cursor = 'grabbing';
-            });
-            document.addEventListener('mousemove', (e) => {
-                if (!isDragging) return;
-                e.preventDefault();
-                currentTranslateX = e.clientX - startX;
-                currentTranslateY = e.clientY - startY;
-                applyTransform();
-            });
-            document.addEventListener('mouseup', () => {
-                isDragging = false;
-                modalImage.style.cursor = currentScale > 1 ? 'grab' : 'default';
-            });
-            const originalOpenPhoto = openPhoto;
-            openPhoto = function(index) {
-                originalOpenPhoto(index);
-                currentScale = 1;
-                currentTranslateX = 0;
-                currentTranslateY = 0;
-                modalImage.style.cursor = 'default';
-                applyTransform();
-            };
-            const originalClosePhoto = closePhoto;
-            closePhoto = function() {
-                originalClosePhoto();
-                currentScale = 1;
-                currentTranslateX = 0;
-                currentTranslateY = 0;
-                applyTransform();
-            };
-        }
     })();
     </script>
 
