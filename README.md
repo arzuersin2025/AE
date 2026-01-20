@@ -194,9 +194,7 @@
         #qr-wrapper { display: flex; flex-direction: column; align-items: center; }
         #site-address { margin-top: 1rem; font-size: 1.125rem; font-weight: 500; color: #dc2626; text-align: center; }
 
-        /* ──────────────────────────────────────────────── */
-        /* Zoom için stil (orijinal haliyle aynı) */
-        /* ──────────────────────────────────────────────── */
+        /* Zoom için stil */
         #modal-image {
             transition: transform 0.15s ease-out;
             cursor: zoom-in;
@@ -645,7 +643,7 @@
         const modalImage = document.getElementById('modal-image');
 
         const updateTransform = () => {
-            modalImage.style.transform = `scale(${scale}) translate(${translateX}px, ${translateY}px)`;
+            modalImage.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
         };
 
         const buildPhotoArray = () => {
@@ -665,7 +663,6 @@
             scale = 1;
             translateX = 0;
             translateY = 0;
-            initialScale = 1;
             isPanning = false;
             modalImage.classList.remove('zoomed');
             updateTransform();
@@ -676,7 +673,6 @@
             scale = 1;
             translateX = 0;
             translateY = 0;
-            initialScale = 1;
             isPanning = false;
             modalImage.classList.remove('zoomed');
             updateTransform();
@@ -690,7 +686,6 @@
             scale = 1;
             translateX = 0;
             translateY = 0;
-            initialScale = 1;
             isPanning = false;
             modalImage.classList.remove('zoomed');
             updateTransform();
@@ -702,7 +697,6 @@
             scale = 1;
             translateX = 0;
             translateY = 0;
-            initialScale = 1;
             isPanning = false;
             modalImage.classList.remove('zoomed');
             updateTransform();
@@ -751,34 +745,30 @@
         });
 
         // ────────────────────────────────────────────────
-        // DÜZELTİLMİŞ VE STABİL MOUSE WHEEL ZOOM
+        // MOUSE WHEEL ZOOM (fare nerede ise o noktadan büyür/küçülür)
         // ────────────────────────────────────────────────
-        const ZOOM_SPEED = 0.00055;   // daha kontrollü ve yavaş
+        const ZOOM_SPEED = 0.00065;
         const MIN_SCALE = 0.6;
-        const MAX_SCALE = 10;
+        const MAX_SCALE = 12;
 
         modal.addEventListener('wheel', (e) => {
             e.preventDefault();
 
-            // deltaY negatif → yukarı → zoom in
-            // deltaY pozitif → aşağı → zoom out
-            const delta = -e.deltaY * ZOOM_SPEED;
-
+            const delta = e.deltaY > 0 ? -ZOOM_SPEED : ZOOM_SPEED;
             const prevScale = scale;
-            scale = Math.max(MIN_SCALE, Math.min(MAX_SCALE, scale * (1 + delta)));
+            scale += delta * 150;
+            scale = Math.max(MIN_SCALE, Math.min(MAX_SCALE, scale));
 
-            // Fare konumuna göre merkezleme (en önemli düzeltme)
-            const rect = modal.getBoundingClientRect();
+            const rect = modalImage.getBoundingClientRect();
             const mouseX = e.clientX - rect.left;
             const mouseY = e.clientY - rect.top;
 
-            // Fareye göre olan relatif mesafe
             const relX = mouseX - translateX;
             const relY = mouseY - translateY;
 
-            // Yeni translate hesapla (fare noktası sabit kalsın)
-            translateX = mouseX - relX * (scale / prevScale);
-            translateY = mouseY - relY * (scale / prevScale);
+            const ratio = scale / prevScale;
+            translateX = mouseX - relX * ratio;
+            translateY = mouseY - relY * ratio;
 
             updateTransform();
 
@@ -793,6 +783,51 @@
                 }
             }
         }, { passive: false });
+
+        // ────────────────────────────────────────────────
+        // FARE İLE SÜRÜKLEME (pan) – istediğin tarafa kaydır
+        // ────────────────────────────────────────────────
+        let panStartX = 0;
+        let panStartY = 0;
+        let panStartTranslateX = 0;
+        let panStartTranslateY = 0;
+
+        modal.addEventListener('mousedown', (e) => {
+            if (scale <= 1.05) return; // zoom yoksa sürükleme yok
+            if (e.button !== 0) return; // sadece sol tıklama
+
+            panStartX = e.clientX;
+            panStartY = e.clientY;
+            panStartTranslateX = translateX;
+            panStartTranslateY = translateY;
+            isPanning = true;
+
+            modalImage.style.cursor = 'grabbing';
+            e.preventDefault();
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            if (!isPanning) return;
+
+            const dx = e.clientX - panStartX;
+            const dy = e.clientY - panStartY;
+
+            translateX = panStartTranslateX + dx;
+            translateY = panStartTranslateY + dy;
+
+            updateTransform();
+        });
+
+        window.addEventListener('mouseup', (e) => {
+            if (isPanning) {
+                isPanning = false;
+                modalImage.style.cursor = scale > 1.08 ? 'grab' : 'zoom-in';
+            }
+        });
+
+        window.addEventListener('mouseleave', () => {
+            isPanning = false;
+        });
 
         document.getElementById('toggle-gallery-btn').addEventListener('click', () => {
             const wrapper = document.getElementById('gallery-wrapper');
