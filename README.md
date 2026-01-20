@@ -166,6 +166,15 @@
         #invitation-modal img {
             max-width: 95vw; max-height: 95vh; border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.6);
             transform-origin: center center; transition: transform 0.1s ease-out;
+            cursor: zoom-in;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+        #invitation-modal img.zoomed {
+            cursor: grab;
+        }
+        #invitation-modal img.zoomed:active {
+            cursor: grabbing;
         }
         #close-invitation {
             position: absolute; top: 20px; right: 30px; font-size: 3.5rem; color: white; cursor: pointer; z-index: 10000;
@@ -193,22 +202,6 @@
         #footer-section { display: flex; flex-direction: column; align-items: center; gap: 2rem; padding: 2rem 1rem; position: relative; }
         #qr-wrapper { display: flex; flex-direction: column; align-items: center; }
         #site-address { margin-top: 1rem; font-size: 1.125rem; font-weight: 500; color: #dc2626; text-align: center; }
-
-        /* Zoom için stil */
-        #modal-image {
-            transition: transform 0.15s ease-out;
-            cursor: zoom-in;
-            max-width: 95vw;
-            max-height: 95vh;
-            user-select: none;
-            -webkit-user-drag: none;
-        }
-        #modal-image.zoomed {
-            cursor: grab;
-        }
-        #modal-image.zoomed:active {
-            cursor: grabbing;
-        }
     </style>
 </head>
 <body class="text-black">
@@ -745,7 +738,7 @@
         });
 
         // ────────────────────────────────────────────────
-        // MOUSE WHEEL ZOOM (fare nerede ise o noktadan büyür/küçülür)
+        // MOUSE WHEEL ZOOM – fotoğraf galerisi için
         // ────────────────────────────────────────────────
         const ZOOM_SPEED = 0.00065;
         const MIN_SCALE = 0.6;
@@ -785,7 +778,7 @@
         }, { passive: false });
 
         // ────────────────────────────────────────────────
-        // FARE İLE SÜRÜKLEME (pan) – istediğin tarafa kaydır
+        // FARE İLE SÜRÜKLEME – fotoğraf galerisi için
         // ────────────────────────────────────────────────
         let panStartX = 0;
         let panStartY = 0;
@@ -793,8 +786,8 @@
         let panStartTranslateY = 0;
 
         modal.addEventListener('mousedown', (e) => {
-            if (scale <= 1.05) return; // zoom yoksa sürükleme yok
-            if (e.button !== 0) return; // sadece sol tıklama
+            if (scale <= 1.05) return;
+            if (e.button !== 0) return;
 
             panStartX = e.clientX;
             panStartY = e.clientY;
@@ -935,31 +928,96 @@
             }
         };
 
-        const invitationModal = document.getElementById('invitation-modal');
-        const invitationImage = document.getElementById('invitation-image');
+        // ────────────────────────────────────────────────
+        // DAVETİYE MODALI İÇİN ZOOM + PAN (SADECE BURAYA EKLENDİ)
+        // ────────────────────────────────────────────────
         let invitationScale = 1;
         let invitationTranslateX = 0;
         let invitationTranslateY = 0;
-        let invitationInitialDistance = 0;
-        let invitationInitialScale = 1;
-        let invitationStartClientX = 0;
-        let invitationStartClientY = 0;
-        let invitationStartTranslateX = 0;
-        let invitationStartTranslateY = 0;
         let invitationIsPanning = false;
-        const invitationSensitivity = 0.5;
+        let invitationPanStartX = 0;
+        let invitationPanStartY = 0;
+        let invitationPanStartTranslateX = 0;
+        let invitationPanStartTranslateY = 0;
+
+        const invitationModal = document.getElementById('invitation-modal');
+        const invitationImage = document.getElementById('invitation-image');
 
         const updateInvitationTransform = () => {
-            invitationImage.style.transform = `scale(${invitationScale}) translate(${invitationTranslateX}px, ${invitationTranslateY}px)`;
+            invitationImage.style.transform = `translate(${invitationTranslateX}px, ${invitationTranslateY}px) scale(${invitationScale})`;
         };
 
-        const resetInvitation = () => {
-            invitationScale = 1;
-            invitationTranslateX = 0;
-            invitationTranslateY = 0;
+        // Fare tekerleği ile zoom
+        invitationModal.addEventListener('wheel', (e) => {
+            e.preventDefault();
+
+            const delta = e.deltaY > 0 ? -0.00065 : 0.00065;
+            const prevScale = invitationScale;
+            invitationScale += delta * 200;
+            invitationScale = Math.max(0.6, Math.min(12, invitationScale));
+
+            const rect = invitationImage.getBoundingClientRect();
+            const mouseX = e.clientX - rect.left;
+            const mouseY = e.clientY - rect.top;
+
+            const relX = mouseX - invitationTranslateX;
+            const relY = mouseY - invitationTranslateY;
+
+            const ratio = invitationScale / prevScale;
+            invitationTranslateX = mouseX - relX * ratio;
+            invitationTranslateY = mouseY - relY * ratio;
+
             updateInvitationTransform();
-        };
 
+            if (invitationScale > 1.08) {
+                invitationImage.classList.add('zoomed');
+            } else {
+                invitationImage.classList.remove('zoomed');
+                if (invitationScale < 1.12) {
+                    invitationTranslateX = 0;
+                    invitationTranslateY = 0;
+                    updateInvitationTransform();
+                }
+            }
+        }, { passive: false });
+
+        // Fare basılı tutup sürükleme
+        invitationModal.addEventListener('mousedown', (e) => {
+            if (invitationScale <= 1.05) return;
+            if (e.button !== 0) return;
+
+            invitationPanStartX = e.clientX;
+            invitationPanStartY = e.clientY;
+            invitationPanStartTranslateX = invitationTranslateX;
+            invitationPanStartTranslateY = invitationTranslateY;
+            invitationIsPanning = true;
+
+            invitationImage.style.cursor = 'grabbing';
+            e.preventDefault();
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            if (!invitationIsPanning) return;
+
+            const dx = e.clientX - invitationPanStartX;
+            const dy = e.clientY - invitationPanStartY;
+
+            invitationTranslateX = invitationPanStartTranslateX + dx;
+            invitationTranslateY = invitationPanStartTranslateY + dy;
+
+            updateInvitationTransform();
+        });
+
+        window.addEventListener('mouseup', () => {
+            invitationIsPanning = false;
+            invitationImage.style.cursor = invitationScale > 1.08 ? 'grab' : 'zoom-in';
+        });
+
+        window.addEventListener('mouseleave', () => {
+            invitationIsPanning = false;
+        });
+
+        // Orijinal dokunmatik zoom (değiştirilmedi)
         invitationModal.addEventListener('touchstart', (e) => {
             if (e.touches.length === 2) {
                 e.preventDefault();
