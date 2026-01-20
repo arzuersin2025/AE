@@ -193,6 +193,24 @@
         #footer-section { display: flex; flex-direction: column; align-items: center; gap: 2rem; padding: 2rem 1rem; position: relative; }
         #qr-wrapper { display: flex; flex-direction: column; align-items: center; }
         #site-address { margin-top: 1rem; font-size: 1.125rem; font-weight: 500; color: #dc2626; text-align: center; }
+
+        /* ──────────────────────────────────────────────── */
+        /* Zoom için stil (orijinal haliyle aynı) */
+        /* ──────────────────────────────────────────────── */
+        #modal-image {
+            transition: transform 0.15s ease-out;
+            cursor: zoom-in;
+            max-width: 95vw;
+            max-height: 95vh;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+        #modal-image.zoomed {
+            cursor: grab;
+        }
+        #modal-image.zoomed:active {
+            cursor: grabbing;
+        }
     </style>
 </head>
 <body class="text-black">
@@ -649,6 +667,7 @@
             translateY = 0;
             initialScale = 1;
             isPanning = false;
+            modalImage.classList.remove('zoomed');
             updateTransform();
             modal.classList.replace('hidden', 'flex');
         };
@@ -659,6 +678,7 @@
             translateY = 0;
             initialScale = 1;
             isPanning = false;
+            modalImage.classList.remove('zoomed');
             updateTransform();
             modal.classList.replace('flex', 'hidden');
             modalImage.src = '';
@@ -672,6 +692,7 @@
             translateY = 0;
             initialScale = 1;
             isPanning = false;
+            modalImage.classList.remove('zoomed');
             updateTransform();
         };
 
@@ -683,6 +704,7 @@
             translateY = 0;
             initialScale = 1;
             isPanning = false;
+            modalImage.classList.remove('zoomed');
             updateTransform();
         };
 
@@ -727,6 +749,50 @@
                 updateTransform();
             }
         });
+
+        // ────────────────────────────────────────────────
+        // DÜZELTİLMİŞ VE STABİL MOUSE WHEEL ZOOM
+        // ────────────────────────────────────────────────
+        const ZOOM_SPEED = 0.00055;   // daha kontrollü ve yavaş
+        const MIN_SCALE = 0.6;
+        const MAX_SCALE = 10;
+
+        modal.addEventListener('wheel', (e) => {
+            e.preventDefault();
+
+            // deltaY negatif → yukarı → zoom in
+            // deltaY pozitif → aşağı → zoom out
+            const delta = -e.deltaY * ZOOM_SPEED;
+
+            const prevScale = scale;
+            scale = Math.max(MIN_SCALE, Math.min(MAX_SCALE, scale * (1 + delta)));
+
+            // Fare konumuna göre merkezleme (en önemli düzeltme)
+            const rect = modal.getBoundingClientRect();
+            const mouseX = e.clientX - rect.left;
+            const mouseY = e.clientY - rect.top;
+
+            // Fareye göre olan relatif mesafe
+            const relX = mouseX - translateX;
+            const relY = mouseY - translateY;
+
+            // Yeni translate hesapla (fare noktası sabit kalsın)
+            translateX = mouseX - relX * (scale / prevScale);
+            translateY = mouseY - relY * (scale / prevScale);
+
+            updateTransform();
+
+            if (scale > 1.08) {
+                modalImage.classList.add('zoomed');
+            } else {
+                modalImage.classList.remove('zoomed');
+                if (scale < 1.12) {
+                    translateX = 0;
+                    translateY = 0;
+                    updateTransform();
+                }
+            }
+        }, { passive: false });
 
         document.getElementById('toggle-gallery-btn').addEventListener('click', () => {
             const wrapper = document.getElementById('gallery-wrapper');
