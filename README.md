@@ -202,22 +202,6 @@
         #footer-section { display: flex; flex-direction: column; align-items: center; gap: 2rem; padding: 2rem 1rem; position: relative; }
         #qr-wrapper { display: flex; flex-direction: column; align-items: center; }
         #site-address { margin-top: 1rem; font-size: 1.125rem; font-weight: 500; color: #dc2626; text-align: center; }
-
-        /* Zoom için stil */
-        #modal-image {
-            transition: transform 0.15s ease-out;
-            cursor: zoom-in;
-            max-width: 95vw;
-            max-height: 95vh;
-            user-select: none;
-            -webkit-user-drag: none;
-        }
-        #modal-image.zoomed {
-            cursor: grab;
-        }
-        #modal-image.zoomed:active {
-            cursor: grabbing;
-        }
     </style>
 </head>
 <body class="text-black">
@@ -754,7 +738,7 @@
         });
 
         // ────────────────────────────────────────────────
-        // MOUSE WHEEL ZOOM – fotoğraf galerisi için (orijinal hali)
+        // MOUSE WHEEL ZOOM
         // ────────────────────────────────────────────────
         const ZOOM_SPEED = 0.00065;
         const MIN_SCALE = 0.6;
@@ -794,7 +778,7 @@
         }, { passive: false });
 
         // ────────────────────────────────────────────────
-        // FARE İLE SÜRÜKLEME – fotoğraf galerisi için (orijinal hali)
+        // FARE İLE SÜRÜKLEME
         // ────────────────────────────────────────────────
         let panStartX = 0;
         let panStartY = 0;
@@ -1010,15 +994,16 @@
         });
 
         // ────────────────────────────────────────────────
-        // DAVETİYE İÇİN DÜZELTİLMİŞ ZOOM – artık kayma yapmaz
+        // DAVETİYE MODALI İÇİN ZOOM + PAN (HASSASİYET AYARLI)
         // ────────────────────────────────────────────────
         invitationModal.addEventListener('wheel', (e) => {
             e.preventDefault();
 
-            const delta = e.deltaY > 0 ? -0.0008 : 0.0008;
+            // Hassasiyet düşürüldü → daha yumuşak ve kontrollü
+            const delta = e.deltaY > 0 ? -0.0004 : 0.0004;  // çok daha yavaş tepki
             const prevScale = invitationScale;
-            invitationScale += delta * 120;  // daha kontrollü hız
-            invitationScale = Math.max(0.6, Math.min(12, invitationScale));
+            invitationScale += delta * 80;  // düşük çarpan → hassasiyet azaldı
+            invitationScale = Math.max(0.5, Math.min(10, invitationScale));  // max zoom 10'a çekildi
 
             const rect = invitationImage.getBoundingClientRect();
             const mouseX = e.clientX - rect.left;
@@ -1037,7 +1022,7 @@
                 invitationImage.classList.add('zoomed');
             } else {
                 invitationImage.classList.remove('zoomed');
-                if (invitationScale < 1.15) {
+                if (invitationScale < 1.2) {  // sıfırlama eşiği genişletildi
                     invitationTranslateX = 0;
                     invitationTranslateY = 0;
                     updateInvitationTransform();
@@ -1045,9 +1030,12 @@
             }
         }, { passive: false });
 
-        // ────────────────────────────────────────────────
-        // DAVETİYE İÇİN FARE SÜRÜKLEME (pan)
-        // ────────────────────────────────────────────────
+        // Fare ile sürükleme (pan) – aynı kaldı
+        let invitationPanStartX = 0;
+        let invitationPanStartY = 0;
+        let invitationPanStartTranslateX = 0;
+        let invitationPanStartTranslateY = 0;
+
         invitationModal.addEventListener('mousedown', (e) => {
             if (invitationScale <= 1.05) return;
             if (e.button !== 0) return;
