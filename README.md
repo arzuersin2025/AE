@@ -339,16 +339,14 @@
     <div id="falling-flowers-container"></div>
     <header class="py-16 text-center relative z-20 overflow-hidden">
         <div class="relative">
-            <div class="relative z-10">
-                <h1 class="font-bold flex items-center justify-center handwriting leading-tight">
-                    <span class="header-name">Arzu</span>
-                    <span class="interlocked-hearts">
-                        <i class="fa-solid fa-heart heart-green"></i>
-                    </span>
-                    <span class="header-name">Ersin</span>
-                </h1>
-                <p class="text-xl md:text-2xl text-red-600 mt-10">Bizim Yolculuğumuz</p>
+            <div class="relative z-10 flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8">
+                <span class="header-name">Arzu</span>
+                <span class="interlocked-hearts">
+                    <i class="fa-solid fa-heart heart-green"></i>
+                </span>
+                <span class="header-name">Ersin</span>
             </div>
+            <p class="text-xl md:text-2xl text-red-600 mt-10">Bizim Yolculuğumuz</p>
         </div>
     </header>
     <section id="main-title-section" class="py-8 text-center">
@@ -398,7 +396,7 @@
                 <div class="text-center text-4xl text-red-500 heartbeat mb-4"><i class="fas fa-heart"></i></div>
                 <div>
                     <p class="text-xl md:text-2xl leading-relaxed italic text-blue-600 font-medium">
-                        " Asıl sen neredeydin meğersem çok yakınmışız "
+                        "Asıl sen neredeydin meğersem çok yakınmışız"
                     </p>
                 </div>
             </div>
