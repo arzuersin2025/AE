@@ -12,7 +12,6 @@
     <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js" defer></script>
     <style>
-        /* Tüm sayfada metin seçimi ve imleç tamamen devre dışı – başlık dahil hiçbir yerde çıkmayacak */
         * {
             -webkit-user-select: none !important;
             -moz-user-select: none !important;
@@ -21,7 +20,6 @@
             outline: none !important;
             -webkit-tap-highlight-color: transparent;
         }
-
         body {
             font-family: 'Poppins', sans-serif;
             font-weight: 300;
@@ -31,45 +29,40 @@
             min-height: 100vh;
             cursor: default !important;
         }
-
-        /* Tıklanabilir elemanlar için imleç korunsun ama metin seçimi olmasın */
-        button, a, #play-song-btn, #toggle-gallery-btn, #map-icon, #invitation-icon, #close-modal, #prev-photo, #next-photo {
+        button, a, #play-song-btn, #toggle-gallery-btn, #toggle-video-gallery-btn, #map-icon, #invitation-icon, #close-modal, #prev-photo, #next-photo, #close-video-modal {
             cursor: pointer !important;
             pointer-events: auto !important;
         }
-
         img {
             -webkit-user-drag: none;
             user-drag: none;
             pointer-events: auto;
         }
-
         #image-modal img {
             cursor: zoom-in;
         }
-
         #image-modal img.zoomed {
             cursor: grab;
         }
-
         #image-modal img.zoomed:active {
             cursor: grabbing;
         }
-
+        #modal-image {
+            transform-origin: 50% 50% !important;
+        }
         header, header *, #main-title, #sonbahar-baslik, h1, h2, h3, p, span, div, section {
             user-select: none !important;
             -webkit-user-select: none !important;
         }
-
         #background-leaves-pattern {
             position: fixed; top: 0; left: 0; right: 0; bottom: 0;
             background-image: url('https://www.toptal.com/designers/subtlepatterns/uploads/leaves.png');
             background-repeat: repeat; background-color: #fdfaf6; z-index: -2; pointer-events: none; opacity: 0.6;
         }
         @media (max-width: 768px) { #background-leaves-pattern { opacity: 0.9 !important; } }
-        #falling-leaves-container { position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: -1; overflow: hidden; }
-        #falling-hearts-container { position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: -1; overflow: hidden; }
-        #falling-flowers-container { position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: -1; overflow: hidden; }
+        #falling-leaves-container, #falling-hearts-container, #falling-flowers-container {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: -1; overflow: hidden;
+        }
         h1, h2, h3 { font-family: 'Playfair Display', serif; }
         .handwriting { font-family: 'Dancing Script', cursive; }
         .font-forte-alternative { font-family: 'Dancing Script', cursive; }
@@ -88,9 +81,7 @@
             max-width: 90%; margin: 0 auto; padding: 2rem 0; line-height: 1.4; font-size: 1.725rem; font-style: italic; color: #16a34a !important; text-align: center;
         }
         .poem-line { display: block; margin: 0; padding: 0; color: #16a34a !important; }
-        @media (max-width: 768px) {
-            .poem-container { padding: 1.5rem 0 !important; line-height: 1.3 !important; font-size: 1.95rem; }
-        }
+        @media (max-width: 768px) { .poem-container { padding: 1.5rem 0 !important; line-height: 1.3 !important; font-size: 1.95rem; } }
         .poem-signature { font-size: 1.5rem !important; line-height: 1.4 !important; color: #16a34a !important; }
         @media (max-width: 768px) { .poem-signature { font-size: 1.875rem !important; } }
         .leaf-svg { position: absolute; width: 32px; height: 44px; opacity: 0.9; animation: fall linear infinite; transform-origin: center; filter: drop-shadow(0 3px 6px rgba(0,0,0,0.3)); }
@@ -115,26 +106,14 @@
         .leaf-svg.autumn-8 { color: #f97316; }
         .leaf-svg.autumn-9 { color: #22c55e; }
         .leaf-svg.autumn-10 { color: #16a34a; }
-        .falling-heart {
-            position: absolute;
-            font-size: 2rem;
-            pointer-events: none;
-            animation: heartFall linear infinite;
-            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3));
-        }
+        .falling-heart { position: absolute; font-size: 2rem; pointer-events: none; animation: heartFall linear infinite; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3)); }
         @keyframes heartFall {
             0% { opacity: 0; transform: translateY(-150px) rotate(0deg) scale(0.8); }
             5% { opacity: 1; }
             95% { opacity: 1; }
             100% { opacity: 0; transform: translateY(calc(100vh + 150px)) rotate(1080deg) scale(0.4); }
         }
-        .falling-flower {
-            position: absolute;
-            font-size: 2.2rem;
-            pointer-events: none;
-            animation: flowerFall linear infinite;
-            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3));
-        }
+        .falling-flower { position: absolute; font-size: 2.2rem; pointer-events: none; animation: flowerFall linear infinite; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3)); }
         @keyframes flowerFall {
             0% { opacity: 0; transform: translateY(-150px) rotate(0deg) scale(0.8); }
             10% { opacity: 1; }
@@ -200,16 +179,10 @@
         #invitation-modal img {
             max-width: 95vw; max-height: 95vh; border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.6);
             transform-origin: center center; transition: transform 0.1s ease-out;
-            cursor: zoom-in;
-            user-select: none;
-            -webkit-user-drag: none;
+            cursor: zoom-in; user-select: none; -webkit-user-drag: none;
         }
-        #invitation-modal img.zoomed {
-            cursor: grab;
-        }
-        #invitation-modal img.zoomed:active {
-            cursor: grabbing;
-        }
+        #invitation-modal img.zoomed { cursor: grab; }
+        #invitation-modal img.zoomed:active { cursor: grabbing; }
         #close-invitation {
             position: absolute; top: 20px; right: 30px; font-size: 3.5rem; color: white; cursor: pointer; z-index: 10000;
         }
@@ -224,13 +197,13 @@
         .group:hover .photo-number { opacity: 1; }
         .photo-container.no-note .photo-note { display: none; }
         #toggle-gallery-btn, #toggle-video-gallery-btn {
-            background: rgba(220, 38, 38, 0.5); color: #000000 !important; border: 1px solid rgba(185, 28, 28, 0.4);
+            background: rgba(220, 38, 38, 0.5); color: #000 !important; border: 1px solid rgba(185, 28, 28, 0.4);
             transition: all 0.2s ease; backdrop-filter: blur(4px);
         }
         #toggle-gallery-btn:hover, #toggle-video-gallery-btn:hover {
             background: rgba(185, 28, 28, 0.65); border-color: rgba(153, 27, 27, 0.5); transform: translateY(-1px);
         }
-        #toggle-gallery-btn i, #toggle-video-gallery-btn i { color: #000000 !important; }
+        #toggle-gallery-btn i, #toggle-video-gallery-btn i { color: #000 !important; }
         main { padding-bottom: 0 !important; }
         section:last-of-type { padding-bottom: 2rem !important; margin-bottom: 0 !important; }
         #footer-section { display: flex; flex-direction: column; align-items: center; gap: 2rem; padding: 2rem 1rem; position: relative; }
@@ -239,6 +212,7 @@
     </style>
 </head>
 <body class="text-black">
+
     <div id="background-leaves-pattern"></div>
     <div id="falling-leaves-container"></div>
     <div id="falling-hearts-container"></div>
@@ -249,9 +223,7 @@
             <div class="relative z-10">
                 <h1 class="font-bold flex items-center justify-center handwriting leading-tight">
                     <span class="header-name">Arzu</span>
-                    <span class="mx-8 md:mx-12">
-                        <i class="fa-solid fa-heart text-5xl md:text-7xl text-red-600 heartbeat"></i>
-                    </span>
+                    <span class="mx-8 md:mx-12"><i class="fa-solid fa-heart text-5xl md:text-7xl text-red-600 heartbeat"></i></span>
                     <span class="header-name">Ersin</span>
                 </h1>
                 <p class="text-xl md:text-2xl text-red-600 mt-10">Bizim Yolculuğumuz</p>
@@ -265,6 +237,7 @@
     </section>
 
     <main class="container mx-auto px-6 pb-12 relative z-20">
+
         <section class="max-w-3xl mx-auto my-12 text-center">
             <h3 id="ilk-adim-baslik" class="font-bold text-red-600 mb-4">İlk Adım</h3>
             <p class="text-lg leading-relaxed font-medium font-[550] text-black">
@@ -360,6 +333,7 @@
             </div>
         </section>
 
+        <!-- Fotoğraf Galerisi (TAM hali - 18 fotoğraf) -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Fotoğraf Galerimiz</h3>
             <div class="photo-gallery-description">
@@ -463,6 +437,7 @@
             </div>
         </section>
 
+        <!-- Video Galerisi -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Video Galerimiz</h3>
             <div class="video-gallery-description">
@@ -538,17 +513,11 @@
                 </p>
             </div>
             <div class="mt-16 text-center">
-                <p class="text-red-600 italic text-xl md:text-2xl mb-6 font-medium">
-                    İletişim adresimiz
-                </p>
+                <p class="text-red-600 italic text-xl md:text-2xl mb-6 font-medium">İletişim adresimiz</p>
                 <div class="flex justify-center">
                     <div class="inline-flex items-center gap-4 bg-white/90 px-6 py-4 rounded-full shadow-lg border-2 border-pink-200">
-                        <div>
-                            <i class="fas fa-envelope text-4xl text-red-600"></i>
-                        </div>
-                        <span class="font-bold text-green-700 text-base md:text-lg select-all">
-                            arzuersin2025@gmail.com
-                        </span>
+                        <div><i class="fas fa-envelope text-4xl text-red-600"></i></div>
+                        <span class="font-bold text-green-700 text-base md:text-lg select-all">arzuersin2025@gmail.com</span>
                     </div>
                 </div>
                 <div class="mt-16 text-center">
@@ -566,17 +535,12 @@
         <section id="footer-section" class="my-12 text-center">
             <div id="qr-wrapper">
                 <div id="footer-qr" class="photo-container inline-block">
-                    <img src="https://i.imgur.com/j4i19v0.jpeg"
-                         alt="Arzu & Ersin QR Kod"
-                         class="gallery-thumbnail w-full h-full object-cover rounded-lg shadow-lg"
-                         loading="lazy"
-                         style="width: 160px; height: 160px;">
+                    <img src="https://i.imgur.com/j4i19v0.jpeg" alt="Arzu & Ersin QR Kod" class="gallery-thumbnail w-full h-full object-cover rounded-lg shadow-lg" loading="lazy" style="width: 160px; height: 160px;">
                 </div>
-                <p id="site-address" class="handwriting">
-                    Web Sitemizin adresi ♡
-                </p>
+                <p id="site-address" class="handwriting">Web Sitemizin adresi ♡</p>
             </div>
         </section>
+
     </main>
 
     <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
@@ -595,7 +559,7 @@
     (() => {
         'use strict';
 
-        // falling hearts, leaves, flowers (orijinal)
+        // Falling elements (hearts, leaves, flowers) - aynı kaldı
         const hearts = ['💛'];
         const heartContainer = document.getElementById('falling-hearts-container');
         for (let i = 0; i < 2; i++) {
@@ -603,11 +567,9 @@
             heart.className = 'falling-heart';
             heart.innerHTML = hearts[0];
             heart.style.left = (30 + i * 40) + '%';
-            const duration = 55 + i * 10;
-            heart.style.animationDuration = duration + 's';
-            heart.style.animationDelay = i * 15 + 's';
-            const size = 2.0 + Math.random() * 0.8;
-            heart.style.fontSize = size + 'rem';
+            heart.style.animationDuration = (55 + i * 10) + 's';
+            heart.style.animationDelay = (i * 15) + 's';
+            heart.style.fontSize = (2.0 + Math.random() * 0.8) + 'rem';
             heartContainer.appendChild(heart);
         }
 
@@ -621,9 +583,8 @@
             leaf.style.left = (30 + i * 40) + '%';
             const scale = 0.5 + 0.9 * Math.random();
             leaf.style.transform = `scale(${scale}) rotate(${Math.random() * 360}deg)`;
-            const duration = 60 + Math.random() * 25;
-            leaf.style.animationDuration = duration + 's';
-            leaf.style.animationDelay = Math.random() * 40 + 's';
+            leaf.style.animationDuration = (60 + Math.random() * 25) + 's';
+            leaf.style.animationDelay = (Math.random() * 40) + 's';
             leaf.innerHTML = leafSVG;
             leafContainer.appendChild(leaf);
         }
@@ -635,15 +596,13 @@
             flower.className = 'falling-flower';
             flower.innerHTML = flowers[i];
             flower.style.left = (35 + i * 30) + '%';
-            const duration = 50 + Math.random() * 30;
-            flower.style.animationDuration = duration + 's';
-            flower.style.animationDelay = Math.random() * 35 + 's';
-            const size = 1.6 + Math.random() * 1.0;
-            flower.style.fontSize = size + 'rem';
+            flower.style.animationDuration = (50 + Math.random() * 30) + 's';
+            flower.style.animationDelay = (Math.random() * 35) + 's';
+            flower.style.fontSize = (1.6 + Math.random() * 1.0) + 'rem';
             flowerContainer.appendChild(flower);
         }
 
-        // lazy load
+        // Lazy load images
         const lazyLoadObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting && entry.target.dataset.src) {
@@ -654,17 +613,14 @@
         }, { rootMargin: '50px' });
         document.querySelectorAll('img[data-src]').forEach(img => lazyLoadObserver.observe(img));
 
-        // fotoğraf galerisi değişkenleri
+        // Fotoğraf modal değişkenleri
         let photoUrls = [];
         let currentPhotoIndex = 0;
         let currentScale = 1;
         let currentTranslateX = 0;
         let currentTranslateY = 0;
-        let pinchStartScale = 1;
-        let pinchStartMidX = 0;
-        let pinchStartMidY = 0;
 
-        const modal = document.getElementById('image-modal');
+        const imageModal = document.getElementById('image-modal');
         const modalImage = document.getElementById('modal-image');
 
         const updateTransform = () => {
@@ -684,7 +640,7 @@
             currentTranslateX = 0;
             currentTranslateY = 0;
             updateTransform();
-            modal.classList.replace('hidden', 'flex');
+            imageModal.classList.replace('hidden', 'flex');
         };
 
         const closePhoto = () => {
@@ -692,7 +648,7 @@
             currentTranslateX = 0;
             currentTranslateY = 0;
             updateTransform();
-            modal.classList.replace('flex', 'hidden');
+            imageModal.classList.replace('flex', 'hidden');
             modalImage.src = '';
         };
 
@@ -714,51 +670,39 @@
             updateTransform();
         };
 
-        // FOTOĞRAF MODALI ZOOM – MERKEZDEN BÜYÜME / KÜÇÜLME
-        modal.addEventListener('touchstart', e => {
+        // Pinch zoom (mobil)
+        let pinchStartScale = 1, pinchStartMidX = 0, pinchStartMidY = 0;
+        imageModal.addEventListener('touchstart', e => {
             if (e.touches.length === 2) {
                 e.preventDefault();
-                const t1 = e.touches[0];
-                const t2 = e.touches[1];
+                const t1 = e.touches[0], t2 = e.touches[1];
                 pinchStartMidX = (t1.clientX + t2.clientX) / 2;
                 pinchStartMidY = (t1.clientY + t2.clientY) / 2;
                 pinchStartScale = currentScale;
             }
         }, { passive: false });
 
-        modal.addEventListener('touchmove', e => {
+        imageModal.addEventListener('touchmove', e => {
             if (e.touches.length === 2) {
                 e.preventDefault();
-                const t1 = e.touches[0];
-                const t2 = e.touches[1];
-
+                const t1 = e.touches[0], t2 = e.touches[1];
                 const midX = (t1.clientX + t2.clientX) / 2;
                 const midY = (t1.clientY + t2.clientY) / 2;
-
                 const distStart = Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY);
-                const distNow   = Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY);
-
+                const distNow = Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY);
                 const scaleFactor = distNow / distStart;
                 const newScale = pinchStartScale * scaleFactor;
-
                 const originX = midX - currentTranslateX;
                 const originY = midY - currentTranslateY;
                 currentTranslateX = midX - originX * (newScale / pinchStartScale);
                 currentTranslateY = midY - originY * (newScale / pinchStartScale);
-
                 currentScale = Math.max(0.6, Math.min(15, newScale));
-
                 updateTransform();
-
-                if (currentScale > 1.08) {
-                    modalImage.classList.add('zoomed');
-                } else {
-                    modalImage.classList.remove('zoomed');
-                }
+                modalImage.classList.toggle('zoomed', currentScale > 1.08);
             }
         }, { passive: false });
 
-        modal.addEventListener('touchend', () => {
+        imageModal.addEventListener('touchend', () => {
             if (currentScale < 1.15) {
                 currentScale = 1;
                 currentTranslateX = 0;
@@ -768,65 +712,48 @@
             }
         });
 
-        // fare tekerleği zoom
+        // Wheel zoom - merkezden
         const ZOOM_SPEED = 0.00065;
         const MIN_SCALE = 0.6;
         const MAX_SCALE = 12;
-        modal.addEventListener('wheel', (e) => {
+        imageModal.addEventListener('wheel', e => {
             e.preventDefault();
             const delta = e.deltaY > 0 ? -ZOOM_SPEED : ZOOM_SPEED;
             const prevScale = currentScale;
             currentScale += delta * 150;
             currentScale = Math.max(MIN_SCALE, Math.min(MAX_SCALE, currentScale));
-            const rect = modalImage.getBoundingClientRect();
-            const mouseX = e.clientX - rect.left;
-            const mouseY = e.clientY - rect.top;
-            const relX = mouseX - currentTranslateX;
-            const relY = mouseY - currentTranslateY;
             const ratio = currentScale / prevScale;
-            currentTranslateX = mouseX - relX * ratio;
-            currentTranslateY = mouseY - relY * ratio;
+            currentTranslateX *= ratio;
+            currentTranslateY *= ratio;
             updateTransform();
-            if (currentScale > 1.08) {
-                modalImage.classList.add('zoomed');
-            } else {
-                modalImage.classList.remove('zoomed');
-                if (currentScale < 1.12) {
-                    currentTranslateX = 0;
-                    currentTranslateY = 0;
-                    updateTransform();
-                }
+            modalImage.classList.toggle('zoomed', currentScale > 1.08);
+            if (currentScale < 1.12) {
+                currentTranslateX = 0;
+                currentTranslateY = 0;
+                updateTransform();
             }
         }, { passive: false });
 
-        // fare ile sürükleme
-        let panStartX = 0;
-        let panStartY = 0;
-        let panStartTranslateX = 0;
-        let panStartTranslateY = 0;
-        modal.addEventListener('mousedown', (e) => {
-            if (currentScale <= 1.05) return;
-            if (e.button !== 0) return;
-            panStartX = e.clientX;
-            panStartY = e.clientY;
-            panStartTranslateX = currentTranslateX;
-            panStartTranslateY = currentTranslateY;
+        // Pan (sürükleme)
+        let panStartX = 0, panStartY = 0, panStartTX = 0, panStartTY = 0;
+        imageModal.addEventListener('mousedown', e => {
+            if (currentScale <= 1.05 || e.button !== 0) return;
+            panStartX = e.clientX; panStartY = e.clientY;
+            panStartTX = currentTranslateX; panStartTY = currentTranslateY;
             modalImage.style.cursor = 'grabbing';
             e.preventDefault();
         });
-        window.addEventListener('mousemove', (e) => {
+        window.addEventListener('mousemove', e => {
             if (e.buttons !== 1) return;
-            const dx = e.clientX - panStartX;
-            const dy = e.clientY - panStartY;
-            currentTranslateX = panStartTranslateX + dx;
-            currentTranslateY = panStartTranslateY + dy;
+            currentTranslateX = panStartTX + (e.clientX - panStartX);
+            currentTranslateY = panStartTY + (e.clientY - panStartY);
             updateTransform();
         });
         window.addEventListener('mouseup', () => {
             modalImage.style.cursor = currentScale > 1.08 ? 'grab' : 'zoom-in';
         });
 
-        // galeri toggle
+        // Fotoğraf galerisi toggle + event bağlama
         document.getElementById('toggle-gallery-btn').addEventListener('click', () => {
             const wrapper = document.getElementById('gallery-wrapper');
             wrapper.classList.toggle('hidden');
@@ -842,33 +769,74 @@
                     document.querySelectorAll('#gallery-grid .photo-container').forEach((el, i) => {
                         el.onclick = () => openPhoto(i);
                     });
-                }, 100);
+                }, 150);  // biraz daha güvenli timeout
             }
         });
 
         document.getElementById('close-modal').onclick = closePhoto;
         document.getElementById('prev-photo').onclick = e => { e.stopPropagation(); prevPhoto(); };
         document.getElementById('next-photo').onclick = e => { e.stopPropagation(); nextPhoto(); };
-        modal.onclick = e => { if (e.target === modal) closePhoto(); };
+        imageModal.onclick = e => { if (e.target === imageModal) closePhoto(); };
 
-        document.addEventListener('keydown', e => {
-            if (e.key === 'Escape') {
-                closePhoto();
-                if (document.getElementById('video-modal').classList.contains('flex')) document.getElementById('close-video-modal').click();
+        // Video galerisi toggle + event bağlama
+        document.getElementById('toggle-video-gallery-btn').addEventListener('click', () => {
+            const wrapper = document.getElementById('video-gallery-wrapper');
+            wrapper.classList.toggle('hidden');
+            const icon = document.getElementById('video-gallery-toggle-icon');
+            const text = document.getElementById('video-gallery-toggle-text');
+            if (wrapper.classList.contains('hidden')) {
+                text.textContent = 'Video Galerisini Gör';
+                icon.classList.remove('rotate-180');
+            } else {
+                text.textContent = 'Galeriyi Gizle';
+                icon.classList.add('rotate-180');
+                setTimeout(() => {
+                    document.querySelectorAll('#video-grid .photo-container').forEach(container => {
+                        container.onclick = () => {
+                            const id = container.dataset.youtubeId;
+                            if (!id) return;
+                            const vm = document.getElementById('video-modal');
+                            const iframe = document.getElementById('modal-video-iframe');
+                            iframe.src = `https://www.youtube.com/embed/${id}?autoplay=1&rel=0&modestbranding=1&playsinline=1`;
+                            vm.classList.replace('hidden', 'flex');
+                        };
+                    });
+                }, 150);
             }
-            if (e.key === 'ArrowRight' && modal.classList.contains('flex')) nextPhoto();
-            if (e.key === 'ArrowLeft' && modal.classList.contains('flex')) prevPhoto();
         });
 
-        // şarkı çalar
+        document.getElementById('close-video-modal').onclick = () => {
+            const vm = document.getElementById('video-modal');
+            document.getElementById('modal-video-iframe').src = '';
+            vm.classList.replace('flex', 'hidden');
+        };
+
+        document.getElementById('video-modal').onclick = e => {
+            if (e.target === document.getElementById('video-modal')) document.getElementById('close-video-modal').click();
+        };
+
+        // Escape tuşu ile kapatma (genişletildi)
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') {
+                if (imageModal.classList.contains('flex')) closePhoto();
+                if (document.getElementById('video-modal').classList.contains('flex')) document.getElementById('close-video-modal').click();
+                if (document.getElementById('invitation-modal').classList.contains('show')) document.getElementById('close-invitation').click();
+            }
+            if (e.key === 'ArrowRight' && imageModal.classList.contains('flex')) nextPhoto();
+            if (e.key === 'ArrowLeft' && imageModal.classList.contains('flex')) prevPhoto();
+        });
+
+        // Şarkı çalar
         let player, isPlaying = false;
         const playBtn = document.getElementById('play-song-btn');
-        const playerElement = document.getElementById('youtube-player');
-        const musicVisualizer = document.getElementById('music-visualizer');
+        const playerEl = document.getElementById('youtube-player');
+        const visualizer = document.getElementById('music-visualizer');
+
         const tag = document.createElement('script');
         tag.src = 'https://www.youtube.com/iframe_api';
-        document.getElementsByTagName('script')[0].parentNode.insertBefore(tag, document.getElementsByTagName('script')[0]);
-        window.onYouTubeIframeAPIReady = function() {
+        document.head.appendChild(tag);
+
+        window.onYouTubeIframeAPIReady = () => {
             player = new YT.Player('youtube-player', {
                 events: {
                     'onStateChange': e => {
@@ -876,95 +844,82 @@
                             isPlaying = true;
                             playBtn.innerHTML = '<i class="fas fa-pause"></i>';
                             playBtn.classList.add('playing');
-                            playerElement.classList.add('show');
-                            musicVisualizer.classList.add('hidden');
+                            playerEl.classList.add('show');
+                            visualizer.classList.add('hidden');
                         } else {
                             isPlaying = false;
                             playBtn.innerHTML = '<i class="fas fa-play"></i>';
                             playBtn.classList.remove('playing');
-                            playerElement.classList.remove('show');
-                            musicVisualizer.classList.remove('hidden');
+                            playerEl.classList.remove('show');
+                            visualizer.classList.remove('hidden');
                         }
                     }
                 }
             });
         };
+
         playBtn.onclick = e => {
             e.stopPropagation();
-            if (player) {
-                if (isPlaying) player.pauseVideo();
-                else player.playVideo();
-            }
+            if (player) isPlaying ? player.pauseVideo() : player.playVideo();
         };
 
-        // davetiye modalı
-        const invitationModal = document.getElementById('invitation-modal');
-        const invitationImage = document.getElementById('invitation-image');
-        let invitationScale = 1;
-        let invitationTranslateX = 0;
-        let invitationTranslateY = 0;
-        const updateInvitationTransform = () => {
-            invitationImage.style.transform = `scale(${invitationScale}) translate(${invitationTranslateX}px, ${invitationTranslateY}px)`;
+        // Davetiye modal
+        const invModal = document.getElementById('invitation-modal');
+        const invImg = document.getElementById('invitation-image');
+        let invScale = 1, invTX = 0, invTY = 0;
+
+        const updateInvTransform = () => {
+            invImg.style.transform = `scale(${invScale}) translate(${invTX}px, ${invTY}px)`;
         };
-        const resetInvitation = () => {
-            invitationScale = 1;
-            invitationTranslateX = 0;
-            invitationTranslateY = 0;
-            updateInvitationTransform();
+
+        const resetInv = () => {
+            invScale = 1; invTX = 0; invTY = 0;
+            updateInvTransform();
         };
+
         document.getElementById('invitation-icon').onclick = () => {
-            invitationModal.classList.add('show');
-            resetInvitation();
+            invModal.classList.add('show');
+            resetInv();
         };
+
         document.getElementById('close-invitation').onclick = () => {
-            invitationModal.classList.remove('show');
-            resetInvitation();
+            invModal.classList.remove('show');
+            resetInv();
         };
-        invitationModal.onclick = e => {
-            if (e.target === invitationModal) {
-                invitationModal.classList.remove('show');
-                resetInvitation();
+
+        invModal.onclick = e => {
+            if (e.target === invModal) {
+                invModal.classList.remove('show');
+                resetInv();
             }
         };
 
+        // Fade-in observer
         const fadeObserver = new IntersectionObserver(entries => {
-            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
         }, { threshold: 0.3 });
+
         document.querySelectorAll('.fade-in-on-scroll').forEach(el => fadeObserver.observe(el));
+
     })();
     </script>
 
     <script defer>
     document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
-            var duration = 2 * 1000;
-            var end = Date.now() + duration;
-            const colors = ['#f59e0b', '#ef4444', '#facc15', '#92400e', '#84cc16', '#dc2626', '#fb923c', '#ff69b4', '#16a34a', '#ffd700'];
+            const duration = 2000;
+            const end = Date.now() + duration;
+            const colors = ['#f59e0b','#ef4444','#facc15','#92400e','#84cc16','#dc2626','#fb923c','#ff69b4','#16a34a','#ffd700'];
             (function frame() {
-                confetti({
-                    particleCount: 5,
-                    angle: 60,
-                    spread: 55,
-                    origin: { x: 0, y: 0.5 },
-                    colors: colors,
-                    gravity: 0.8,
-                    scalar: 1.1
-                });
-                confetti({
-                    particleCount: 5,
-                    angle: 120,
-                    spread: 55,
-                    origin: { x: 1, y: 0.5 },
-                    colors: colors,
-                    gravity: 0.8,
-                    scalar: 1.1
-                });
-                if (Date.now() < end) {
-                    requestAnimationFrame(frame);
-                }
+                confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0, y: 0.5 }, colors, gravity: 0.8, scalar: 1.1 });
+                confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1, y: 0.5 }, colors, gravity: 0.8, scalar: 1.1 });
+                if (Date.now() < end) requestAnimationFrame(frame);
             }());
         }, 500);
     });
     </script>
+
 </body>
 </html>
