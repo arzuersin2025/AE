@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>Arzu & Ersin | Bizim Hikayemiz</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,9 +20,6 @@
             outline: none !important;
             -webkit-tap-highlight-color: transparent;
         }
-        html, body {
-            touch-action: pan-y;  /* Sayfa geneli: sadece dikey kaydırma izinli, pinch zoom kapalı */
-        }
         body {
             font-family: 'Poppins', sans-serif;
             font-weight: 300;
@@ -32,7 +29,7 @@
             min-height: 100vh;
             cursor: default !important;
         }
-        button, a, #play-song-btn, #toggle-gallery-btn, #toggle-video-gallery-btn, #map-icon, #invitation-icon, #close-modal, #prev-photo, #next-photo, #close-video-modal {
+        button, a, #play-song-btn, #toggle-gallery-btn, #toggle-video-gallery-btn, #map-icon, #invitation-icon, #close-modal, #prev-photo, #next-photo, #close-video-modal, #close-invitation {
             cursor: pointer !important;
             pointer-events: auto !important;
         }
@@ -41,21 +38,23 @@
             user-drag: none;
             pointer-events: auto;
         }
-        #image-modal img {
+        #image-modal img, #invitation-modal img {
             cursor: zoom-in;
+            touch-action: pinch-zoom pan-x pan-y !important;
         }
-        #image-modal img.zoomed {
+        #image-modal img.zoomed, #invitation-modal img.zoomed {
             cursor: grab;
+            touch-action: pinch-zoom pan-x pan-y !important;
         }
-        #image-modal img.zoomed:active {
+        #image-modal img.zoomed:active, #invitation-modal img.zoomed:active {
             cursor: grabbing;
         }
-        #modal-image {
+        #modal-image, #invitation-image {
             transform-origin: 50% 50% !important;
+            touch-action: pinch-zoom pan-x pan-y !important;
         }
-        #image-modal,
-        #modal-image {
-            touch-action: pinch-zoom pan-x pan-y !important;  /* Modal ve fotoğrafta pinch zoom AÇIK */
+        #image-modal, #invitation-modal {
+            touch-action: pinch-zoom pan-x pan-y !important;
         }
         header, header *, #main-title, #sonbahar-baslik, h1, h2, h3, p, span, div, section {
             user-select: none !important;
@@ -67,9 +66,9 @@
             background-repeat: repeat; background-color: #fdfaf6; z-index: -2; pointer-events: none; opacity: 0.6;
         }
         @media (max-width: 768px) { #background-leaves-pattern { opacity: 0.9 !important; } }
-        #falling-leaves-container, #falling-hearts-container, #falling-flowers-container {
-            position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: -1; overflow: hidden;
-        }
+        #falling-leaves-container { position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: -1; overflow: hidden; }
+        #falling-hearts-container { position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: -1; overflow: hidden; }
+        #falling-flowers-container { position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: -1; overflow: hidden; }
         h1, h2, h3 { font-family: 'Playfair Display', serif; }
         .handwriting { font-family: 'Dancing Script', cursive; }
         .font-forte-alternative { font-family: 'Dancing Script', cursive; }
@@ -88,7 +87,9 @@
             max-width: 90%; margin: 0 auto; padding: 2rem 0; line-height: 1.4; font-size: 1.725rem; font-style: italic; color: #16a34a !important; text-align: center;
         }
         .poem-line { display: block; margin: 0; padding: 0; color: #16a34a !important; }
-        @media (max-width: 768px) { .poem-container { padding: 1.5rem 0 !important; line-height: 1.3 !important; font-size: 1.95rem; } }
+        @media (max-width: 768px) {
+            .poem-container { padding: 1.5rem 0 !important; line-height: 1.3 !important; font-size: 1.95rem; }
+        }
         .poem-signature { font-size: 1.5rem !important; line-height: 1.4 !important; color: #16a34a !important; }
         @media (max-width: 768px) { .poem-signature { font-size: 1.875rem !important; } }
         .leaf-svg { position: absolute; width: 32px; height: 44px; opacity: 0.9; animation: fall linear infinite; transform-origin: center; filter: drop-shadow(0 3px 6px rgba(0,0,0,0.3)); }
@@ -113,14 +114,26 @@
         .leaf-svg.autumn-8 { color: #f97316; }
         .leaf-svg.autumn-9 { color: #22c55e; }
         .leaf-svg.autumn-10 { color: #16a34a; }
-        .falling-heart { position: absolute; font-size: 2rem; pointer-events: none; animation: heartFall linear infinite; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3)); }
+        .falling-heart {
+            position: absolute;
+            font-size: 2rem;
+            pointer-events: none;
+            animation: heartFall linear infinite;
+            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3));
+        }
         @keyframes heartFall {
             0% { opacity: 0; transform: translateY(-150px) rotate(0deg) scale(0.8); }
             5% { opacity: 1; }
             95% { opacity: 1; }
             100% { opacity: 0; transform: translateY(calc(100vh + 150px)) rotate(1080deg) scale(0.4); }
         }
-        .falling-flower { position: absolute; font-size: 2.2rem; pointer-events: none; animation: flowerFall linear infinite; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3)); }
+        .falling-flower {
+            position: absolute;
+            font-size: 2.2rem;
+            pointer-events: none;
+            animation: flowerFall linear infinite;
+            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3));
+        }
         @keyframes flowerFall {
             0% { opacity: 0; transform: translateY(-150px) rotate(0deg) scale(0.8); }
             10% { opacity: 1; }
@@ -185,11 +198,10 @@
         #invitation-modal.show { display: flex; }
         #invitation-modal img {
             max-width: 95vw; max-height: 95vh; border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-            transform-origin: center center; transition: transform 0.1s ease-out;
-            cursor: zoom-in; user-select: none; -webkit-user-drag: none;
+            transition: transform 0.1s ease-out;
+            user-select: none;
+            -webkit-user-drag: none;
         }
-        #invitation-modal img.zoomed { cursor: grab; }
-        #invitation-modal img.zoomed:active { cursor: grabbing; }
         #close-invitation {
             position: absolute; top: 20px; right: 30px; font-size: 3.5rem; color: white; cursor: pointer; z-index: 10000;
         }
@@ -204,13 +216,13 @@
         .group:hover .photo-number { opacity: 1; }
         .photo-container.no-note .photo-note { display: none; }
         #toggle-gallery-btn, #toggle-video-gallery-btn {
-            background: rgba(220, 38, 38, 0.5); color: #000 !important; border: 1px solid rgba(185, 28, 28, 0.4);
+            background: rgba(220, 38, 38, 0.5); color: #000000 !important; border: 1px solid rgba(185, 28, 28, 0.4);
             transition: all 0.2s ease; backdrop-filter: blur(4px);
         }
         #toggle-gallery-btn:hover, #toggle-video-gallery-btn:hover {
             background: rgba(185, 28, 28, 0.65); border-color: rgba(153, 27, 27, 0.5); transform: translateY(-1px);
         }
-        #toggle-gallery-btn i, #toggle-video-gallery-btn i { color: #000 !important; }
+        #toggle-gallery-btn i, #toggle-video-gallery-btn i { color: #000000 !important; }
         main { padding-bottom: 0 !important; }
         section:last-of-type { padding-bottom: 2rem !important; margin-bottom: 0 !important; }
         #footer-section { display: flex; flex-direction: column; align-items: center; gap: 2rem; padding: 2rem 1rem; position: relative; }
@@ -223,23 +235,29 @@
     <div id="falling-leaves-container"></div>
     <div id="falling-hearts-container"></div>
     <div id="falling-flowers-container"></div>
+
     <header class="py-16 text-center relative z-20 overflow-hidden">
         <div class="relative">
             <div class="relative z-10">
                 <h1 class="font-bold flex items-center justify-center handwriting leading-tight">
                     <span class="header-name">Arzu</span>
-                    <span class="mx-8 md:mx-12"><i class="fa-solid fa-heart text-5xl md:text-7xl text-red-600 heartbeat"></i></span>
+                    <span class="mx-8 md:mx-12">
+                        <i class="fa-solid fa-heart text-5xl md:text-7xl text-red-600 heartbeat"></i>
+                    </span>
                     <span class="header-name">Ersin</span>
                 </h1>
                 <p class="text-xl md:text-2xl text-red-600 mt-10">Bizim Yolculuğumuz</p>
             </div>
         </div>
     </header>
+
     <section id="main-title-section" class="py-8 text-center">
         <h2 id="main-title" class="font-bold handwriting text-green-600">O Güzel Sonbahar günü</h2>
         <p class="text-xl md:text-2xl mt-2 text-red-600 font-bold">27 Eylül 2025</p>
     </section>
+
     <main class="container mx-auto px-6 pb-12 relative z-20">
+
         <section class="max-w-3xl mx-auto my-12 text-center">
             <h3 id="ilk-adim-baslik" class="font-bold text-red-600 mb-4">İlk Adım</h3>
             <p class="text-lg leading-relaxed font-medium font-[550] text-black">
@@ -255,6 +273,7 @@
             </p>
             <div class="text-4xl text-red-500 mt-8 heartbeat"><i class="fas fa-heart"></i></div>
         </section>
+
         <section class="my-16 max-w-3xl mx-auto text-center">
             <h3 id="sonbahar-baslik" class="font-bold text-center text-red-600 mb-6 handwriting font-forte-alternative">Sonbahar şiiri</h3>
             <div class="poem-container">
@@ -271,6 +290,7 @@
             </div>
             <p class="text-right text-green-600 font-semibold-bold mt-6 pr-4 font-forte-alternative poem-signature">- Nazım Hikmet</p>
         </section>
+
         <section class="my-16 max-w-3xl mx-auto text-center">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Aramızda Geçen İki Güzel Söz</h3>
             <div class="max-w-2xl mx-auto space-y-6">
@@ -279,6 +299,7 @@
                 <p class="text-xl md:text-2xl leading-relaxed italic text-blue-600 font-medium">" Asıl sen neredeydin meğersem çok yakınmışız "</p>
             </div>
         </section>
+
         <section id="countdown-section" class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 font-forte-alternative">Büyük Güne Geri Sayım</h3>
             <div id="countdown-placeholder" class="my-4">
@@ -286,6 +307,7 @@
                 <p class="text-center font-semibold italic text-lg mt-4">Sonsuzluğa giden yolculuğumuzun tarihi belli olduğunda...</p>
             </div>
         </section>
+
         <section id="map-section" class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Düğün Mekanımız</h3>
             <div class="flex flex-col items-center mb-8">
@@ -296,6 +318,7 @@
             </div>
             <p class="text-center font-semibold italic text-lg mt-6 leading-relaxed px-6 max-w-2xl mx-auto">Seninle sonsuzluğa adım attığımız yer 💙</p>
         </section>
+
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Davetiyemiz</h3>
             <div class="flex flex-col items-center">
@@ -308,26 +331,13 @@
                 <p class="text-center font-semibold italic text-lg leading-relaxed px-6">Bu bir davetiye değil, size yazdığımız bir mutluluk mektubu 💚</p>
             </div>
         </section>
+
         <div id="invitation-modal">
-            <span id="close-invitation">X</span>
+            <span id="close-invitation">×</span>
             <img id="invitation-image" src="https://i.imgur.com/2nywEc1.jpeg" alt="Arzu & Ersin Düğün Davetiyesi">
         </div>
-        <section class="my-16 max-w-3xl mx-auto transparent-section text-center relative overflow-hidden">
-            <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Bizim Şarkımız</h3>
-            <p class="text-center text-black font-semibold italic mt-2 mb-6">Tarkan - Beni Çok Sev</p>
-            <div class="song-container">
-                <iframe id="youtube-player" src="https://www.youtube.com/embed/IYnu4-69fTA?autoplay=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1" title="Tarkan - Beni Çok Sev" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <div id="music-visualizer" class="music-visualizer">
-                    <div class="note">♪</div><div class="note">♪</div><div class="note">♪</div><div class="note">♪</div>
-                    <div class="note">♪</div><div class="note">♪</div><div class="note">♪</div><div class="note">♪</div>
-                </div>
-                <div class="song-control">
-                    <div class="song-label">Dinle</div>
-                    <button id="play-song-btn" title="Şarkıyı Çal"><i class="fas fa-play"></i></button>
-                </div>
-            </div>
-        </section>
-        <!-- Fotoğraf Galerisi (TAM hali - 18 fotoğraf) -->
+
+        <!-- Fotoğraf Galerisi -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Fotoğraf Galerimiz</h3>
             <div class="photo-gallery-description">
@@ -430,6 +440,7 @@
                 </div>
             </div>
         </section>
+
         <!-- Video Galerisi -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Video Galerimiz</h3>
@@ -497,6 +508,7 @@
                 </div>
             </div>
         </section>
+
         <section class="my-16 max-w-3xl mx-auto transparent-section">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Teşekkür</h3>
             <div class="thank-you-message">
@@ -505,11 +517,17 @@
                 </p>
             </div>
             <div class="mt-16 text-center">
-                <p class="text-red-600 italic text-xl md:text-2xl mb-6 font-medium">İletişim adresimiz</p>
+                <p class="text-red-600 italic text-xl md:text-2xl mb-6 font-medium">
+                    İletişim adresimiz
+                </p>
                 <div class="flex justify-center">
                     <div class="inline-flex items-center gap-4 bg-white/90 px-6 py-4 rounded-full shadow-lg border-2 border-pink-200">
-                        <div><i class="fas fa-envelope text-4xl text-red-600"></i></div>
-                        <span class="font-bold text-green-700 text-base md:text-lg select-all">arzuersin2025@gmail.com</span>
+                        <div>
+                            <i class="fas fa-envelope text-4xl text-red-600"></i>
+                        </div>
+                        <span class="font-bold text-green-700 text-base md:text-lg select-all">
+                            arzuersin2025@gmail.com
+                        </span>
                     </div>
                 </div>
                 <div class="mt-16 text-center">
@@ -523,29 +541,41 @@
                 </div>
             </div>
         </section>
+
         <section id="footer-section" class="my-12 text-center">
             <div id="qr-wrapper">
                 <div id="footer-qr" class="photo-container inline-block">
-                    <img src="https://i.imgur.com/j4i19v0.jpeg" alt="Arzu & Ersin QR Kod" class="gallery-thumbnail w-full h-full object-cover rounded-lg shadow-lg" loading="lazy" style="width: 160px; height: 160px;">
+                    <img src="https://i.imgur.com/j4i19v0.jpeg"
+                         alt="Arzu & Ersin QR Kod"
+                         class="gallery-thumbnail w-full h-full object-cover rounded-lg shadow-lg"
+                         loading="lazy"
+                         style="width: 160px; height: 160px;">
                 </div>
-                <p id="site-address" class="handwriting">Web Sitemizin adresi ♡</p>
+                <p id="site-address" class="handwriting">
+                    Web Sitemizin adresi ♡
+                </p>
             </div>
         </section>
+
     </main>
+
     <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
         <span id="close-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
         <img id="modal-image" src="" alt="Büyütülmüş Fotoğraf" class="max-w-[90vw] max-h-[90vh] rounded-lg shadow-lg">
         <span id="prev-photo" class="absolute top-1/2 left-4 -translate-y-1/2 text-white text-6xl font-bold cursor-pointer hover:text-gray-300 transition-colors select-none"><</span>
         <span id="next-photo" class="absolute top-1/2 right-4 -translate-y-1/2 text-white text-6xl font-bold cursor-pointer hover:text-gray-300 transition-colors select-none">></span>
     </div>
+
     <div id="video-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
         <span id="close-video-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
         <div class="aspect-video w-full max-w-4xl"><iframe id="modal-video-iframe" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
     </div>
+
     <script>
     (() => {
         'use strict';
-        // Falling elements (hearts, leaves, flowers) - aynı kaldı
+
+        // falling hearts, leaves, flowers (orijinal hali)
         const hearts = ['💛'];
         const heartContainer = document.getElementById('falling-hearts-container');
         for (let i = 0; i < 2; i++) {
@@ -553,9 +583,11 @@
             heart.className = 'falling-heart';
             heart.innerHTML = hearts[0];
             heart.style.left = (30 + i * 40) + '%';
-            heart.style.animationDuration = (55 + i * 10) + 's';
-            heart.style.animationDelay = (i * 15) + 's';
-            heart.style.fontSize = (2.0 + Math.random() * 0.8) + 'rem';
+            const duration = 55 + i * 10;
+            heart.style.animationDuration = duration + 's';
+            heart.style.animationDelay = i * 15 + 's';
+            const size = 2.0 + Math.random() * 0.8;
+            heart.style.fontSize = size + 'rem';
             heartContainer.appendChild(heart);
         }
         const leafSVG = `<svg viewBox="0 0 100 140" class="w-full h-full" preserveAspectRatio="xMidYMid meet"><path class="leaf-outer" d="M50 10 C30 15, 20 35, 18 55 C16 75, 25 95, 35 115 C45 130, 48 135, 50 138 C52 135, 55 130, 65 115 C75 95, 84 75, 82 55 C80 35, 70 15, 50 10 Z" /><path class="leaf-inner" d="M50 15 C33 20, 25 38, 23 55 C21 72, 28 88, 36 108 C44 125, 48 132, 50 135 C52 132, 56 125, 64 108 C72 88, 79 72, 77 55 C75 38, 67 20, 50 15 Z" /><path d="M50 15 Q50 70 48 135" stroke="#fff" stroke-width="2.5" opacity="0.5" fill="none"/><path d="M50 15 Q35 40 28 48 M50 55 Q32 65 25 75 M50 80 Q30 90 23 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/><path d="M50 15 Q65 40 72 48 M50 55 Q68 65 75 75 M50 80 Q70 90 77 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/></svg>`;
@@ -568,8 +600,9 @@
             leaf.style.left = (30 + i * 40) + '%';
             const scale = 0.5 + 0.9 * Math.random();
             leaf.style.transform = `scale(${scale}) rotate(${Math.random() * 360}deg)`;
-            leaf.style.animationDuration = (60 + Math.random() * 25) + 's';
-            leaf.style.animationDelay = (Math.random() * 40) + 's';
+            const duration = 60 + Math.random() * 25;
+            leaf.style.animationDuration = duration + 's';
+            leaf.style.animationDelay = Math.random() * 40 + 's';
             leaf.innerHTML = leafSVG;
             leafContainer.appendChild(leaf);
         }
@@ -580,12 +613,15 @@
             flower.className = 'falling-flower';
             flower.innerHTML = flowers[i];
             flower.style.left = (35 + i * 30) + '%';
-            flower.style.animationDuration = (50 + Math.random() * 30) + 's';
-            flower.style.animationDelay = (Math.random() * 35) + 's';
-            flower.style.fontSize = (1.6 + Math.random() * 1.0) + 'rem';
+            const duration = 50 + Math.random() * 30;
+            flower.style.animationDuration = duration + 's';
+            flower.style.animationDelay = Math.random() * 35 + 's';
+            const size = 1.6 + Math.random() * 1.0;
+            flower.style.fontSize = size + 'rem';
             flowerContainer.appendChild(flower);
         }
-        // Lazy load images
+
+        // lazy load
         const lazyLoadObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting && entry.target.dataset.src) {
@@ -595,20 +631,28 @@
             });
         }, { rootMargin: '50px' });
         document.querySelectorAll('img[data-src]').forEach(img => lazyLoadObserver.observe(img));
-        // Fotoğraf modal değişkenleri
+
+        // fotoğraf galerisi değişkenleri
         let photoUrls = [];
         let currentPhotoIndex = 0;
         let currentScale = 1;
         let currentTranslateX = 0;
         let currentTranslateY = 0;
-        const imageModal = document.getElementById('image-modal');
+        let pinchStartScale = 1;
+        let pinchStartMidX = 0;
+        let pinchStartMidY = 0;
+
+        const modal = document.getElementById('image-modal');
         const modalImage = document.getElementById('modal-image');
+
         const updateTransform = () => {
             modalImage.style.transform = `translate(${currentTranslateX}px, ${currentTranslateY}px) scale(${currentScale})`;
         };
+
         const buildPhotoArray = () => {
             photoUrls = Array.from(document.querySelectorAll('#gallery-grid img[data-src]')).map(img => img.dataset.src || '');
         };
+
         const openPhoto = (index) => {
             buildPhotoArray();
             if (index < 0 || index >= photoUrls.length) return;
@@ -618,16 +662,18 @@
             currentTranslateX = 0;
             currentTranslateY = 0;
             updateTransform();
-            imageModal.classList.replace('hidden', 'flex');
+            modal.classList.replace('hidden', 'flex');
         };
+
         const closePhoto = () => {
             currentScale = 1;
             currentTranslateX = 0;
             currentTranslateY = 0;
             updateTransform();
-            imageModal.classList.replace('flex', 'hidden');
+            modal.classList.replace('flex', 'hidden');
             modalImage.src = '';
         };
+
         const nextPhoto = () => {
             currentPhotoIndex = (currentPhotoIndex + 1) % photoUrls.length;
             modalImage.src = photoUrls[currentPhotoIndex];
@@ -636,6 +682,7 @@
             currentTranslateY = 0;
             updateTransform();
         };
+
         const prevPhoto = () => {
             currentPhotoIndex = (currentPhotoIndex - 1 + photoUrls.length) % photoUrls.length;
             modalImage.src = photoUrls[currentPhotoIndex];
@@ -644,23 +691,25 @@
             currentTranslateY = 0;
             updateTransform();
         };
-        // Pinch zoom (mobil) – sayfa zoom kapalıyken modalda çalışsın
-        let pinchStartScale = 1, pinchStartMidX = 0, pinchStartMidY = 0;
-        imageModal.addEventListener('touchstart', e => {
+
+        // fotoğraf modalı pinch zoom (mobil) – preventDefault koşullu
+        modal.addEventListener('touchstart', e => {
             if (e.touches.length === 2) {
-                // 2 parmak → custom zoom hesapla AMA preventDefault YAPMA → doğal pinch de çalışsın
-                const t1 = e.touches[0], t2 = e.touches[1];
+                // 2 parmak → doğal pinch'e izin ver, preventDefault YAPMA
+                const t1 = e.touches[0];
+                const t2 = e.touches[1];
                 pinchStartMidX = (t1.clientX + t2.clientX) / 2;
                 pinchStartMidY = (t1.clientY + t2.clientY) / 2;
                 pinchStartScale = currentScale;
             } else if (e.touches.length === 1 && currentScale > 1.05) {
-                e.preventDefault(); // tek parmak pan için engelle
+                e.preventDefault(); // sadece pan için engelle
             }
         }, { passive: false });
 
-        imageModal.addEventListener('touchmove', e => {
+        modal.addEventListener('touchmove', e => {
             if (e.touches.length === 2) {
-                const t1 = e.touches[0], t2 = e.touches[1];
+                const t1 = e.touches[0];
+                const t2 = e.touches[1];
                 const midX = (t1.clientX + t2.clientX) / 2;
                 const midY = (t1.clientY + t2.clientY) / 2;
                 const distStart = Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY);
@@ -674,13 +723,13 @@
                 currentScale = Math.max(0.6, Math.min(15, newScale));
                 updateTransform();
                 modalImage.classList.toggle('zoomed', currentScale > 1.08);
-                // preventDefault YAPILMADI → tarayıcı doğal pinch zoom da yapabilir
+                // preventDefault YAPILMADI → doğal zoom da çalışır
             } else if (e.touches.length === 1) {
                 e.preventDefault();
             }
         }, { passive: false });
 
-        imageModal.addEventListener('touchend', () => {
+        modal.addEventListener('touchend', () => {
             if (currentScale < 1.15) {
                 currentScale = 1;
                 currentTranslateX = 0;
@@ -689,11 +738,12 @@
                 modalImage.classList.remove('zoomed');
             }
         });
-        // Wheel zoom - merkezden
+
+        // fare tekerleği zoom
         const ZOOM_SPEED = 0.00065;
         const MIN_SCALE = 0.6;
         const MAX_SCALE = 12;
-        imageModal.addEventListener('wheel', e => {
+        modal.addEventListener('wheel', (e) => {
             e.preventDefault();
             const delta = e.deltaY > 0 ? -ZOOM_SPEED : ZOOM_SPEED;
             const prevScale = currentScale;
@@ -710,25 +760,35 @@
                 updateTransform();
             }
         }, { passive: false });
-        // Pan (sürükleme)
-        let panStartX = 0, panStartY = 0, panStartTX = 0, panStartTY = 0;
-        imageModal.addEventListener('mousedown', e => {
-            if (currentScale <= 1.05 || e.button !== 0) return;
-            panStartX = e.clientX; panStartY = e.clientY;
-            panStartTX = currentTranslateX; panStartTY = currentTranslateY;
+
+        // fare sürükleme
+        let panStartX = 0;
+        let panStartY = 0;
+        let panStartTranslateX = 0;
+        let panStartTranslateY = 0;
+        modal.addEventListener('mousedown', (e) => {
+            if (currentScale <= 1.05) return;
+            if (e.button !== 0) return;
+            panStartX = e.clientX;
+            panStartY = e.clientY;
+            panStartTranslateX = currentTranslateX;
+            panStartTranslateY = currentTranslateY;
             modalImage.style.cursor = 'grabbing';
             e.preventDefault();
         });
-        window.addEventListener('mousemove', e => {
+        window.addEventListener('mousemove', (e) => {
             if (e.buttons !== 1) return;
-            currentTranslateX = panStartTX + (e.clientX - panStartX);
-            currentTranslateY = panStartTY + (e.clientY - panStartY);
+            const dx = e.clientX - panStartX;
+            const dy = e.clientY - panStartY;
+            currentTranslateX = panStartTranslateX + dx;
+            currentTranslateY = panStartTranslateY + dy;
             updateTransform();
         });
         window.addEventListener('mouseup', () => {
             modalImage.style.cursor = currentScale > 1.08 ? 'grab' : 'zoom-in';
         });
-        // Fotoğraf galerisi toggle + event bağlama
+
+        // galeri toggle (fotoğraf)
         document.getElementById('toggle-gallery-btn').addEventListener('click', () => {
             const wrapper = document.getElementById('gallery-wrapper');
             wrapper.classList.toggle('hidden');
@@ -744,14 +804,16 @@
                     document.querySelectorAll('#gallery-grid .photo-container').forEach((el, i) => {
                         el.onclick = () => openPhoto(i);
                     });
-                }, 150);  // biraz daha güvenli timeout
+                }, 100);
             }
         });
+
         document.getElementById('close-modal').onclick = closePhoto;
         document.getElementById('prev-photo').onclick = e => { e.stopPropagation(); prevPhoto(); };
         document.getElementById('next-photo').onclick = e => { e.stopPropagation(); nextPhoto(); };
-        imageModal.onclick = e => { if (e.target === imageModal) closePhoto(); };
-        // Video galerisi toggle + event bağlama
+        modal.onclick = e => { if (e.target === modal) closePhoto(); };
+
+        // video galerisi toggle
         document.getElementById('toggle-video-gallery-btn').addEventListener('click', () => {
             const wrapper = document.getElementById('video-gallery-wrapper');
             wrapper.classList.toggle('hidden');
@@ -766,44 +828,43 @@
                 setTimeout(() => {
                     document.querySelectorAll('#video-grid .photo-container').forEach(container => {
                         container.onclick = () => {
-                            const id = container.dataset.youtubeId;
-                            if (!id) return;
-                            const vm = document.getElementById('video-modal');
-                            const iframe = document.getElementById('modal-video-iframe');
-                            iframe.src = `https://www.youtube.com/embed/${id}?autoplay=1&rel=0&modestbranding=1&playsinline=1`;
-                            vm.classList.replace('hidden', 'flex');
+                            const youtubeId = container.getAttribute('data-youtube-id');
+                            if (youtubeId) {
+                                const videoModal = document.getElementById('video-modal');
+                                const iframe = document.getElementById('modal-video-iframe');
+                                iframe.src = `https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0&modestbranding=1&playsinline=1`;
+                                videoModal.classList.replace('hidden', 'flex');
+                            }
                         };
                     });
-                }, 150);
+                }, 100);
             }
         });
+
         document.getElementById('close-video-modal').onclick = () => {
-            const vm = document.getElementById('video-modal');
-            document.getElementById('modal-video-iframe').src = '';
-            vm.classList.replace('flex', 'hidden');
+            const videoModal = document.getElementById('video-modal');
+            const iframe = document.getElementById('modal-video-iframe');
+            iframe.src = '';
+            videoModal.classList.replace('flex', 'hidden');
         };
+
         document.getElementById('video-modal').onclick = e => {
-            if (e.target === document.getElementById('video-modal')) document.getElementById('close-video-modal').click();
-        };
-        // Escape tuşu ile kapatma (genişletildi)
-        document.addEventListener('keydown', e => {
-            if (e.key === 'Escape') {
-                if (imageModal.classList.contains('flex')) closePhoto();
-                if (document.getElementById('video-modal').classList.contains('flex')) document.getElementById('close-video-modal').click();
-                if (document.getElementById('invitation-modal').classList.contains('show')) document.getElementById('close-invitation').click();
+            if (e.target === document.getElementById('video-modal')) {
+                document.getElementById('close-video-modal').click();
             }
-            if (e.key === 'ArrowRight' && imageModal.classList.contains('flex')) nextPhoto();
-            if (e.key === 'ArrowLeft' && imageModal.classList.contains('flex')) prevPhoto();
-        });
-        // Şarkı çalar
+        };
+
+        // şarkı çalar
         let player, isPlaying = false;
         const playBtn = document.getElementById('play-song-btn');
-        const playerEl = document.getElementById('youtube-player');
-        const visualizer = document.getElementById('music-visualizer');
+        const playerElement = document.getElementById('youtube-player');
+        const musicVisualizer = document.getElementById('music-visualizer');
+
         const tag = document.createElement('script');
         tag.src = 'https://www.youtube.com/iframe_api';
-        document.head.appendChild(tag);
-        window.onYouTubeIframeAPIReady = () => {
+        document.getElementsByTagName('script')[0].parentNode.insertBefore(tag, document.getElementsByTagName('script')[0]);
+
+        window.onYouTubeIframeAPIReady = function() {
             player = new YT.Player('youtube-player', {
                 events: {
                     'onStateChange': e => {
@@ -811,67 +872,143 @@
                             isPlaying = true;
                             playBtn.innerHTML = '<i class="fas fa-pause"></i>';
                             playBtn.classList.add('playing');
-                            playerEl.classList.add('show');
-                            visualizer.classList.add('hidden');
+                            playerElement.classList.add('show');
+                            musicVisualizer.classList.add('hidden');
                         } else {
                             isPlaying = false;
                             playBtn.innerHTML = '<i class="fas fa-play"></i>';
                             playBtn.classList.remove('playing');
-                            playerEl.classList.remove('show');
-                            visualizer.classList.remove('hidden');
+                            playerElement.classList.remove('show');
+                            musicVisualizer.classList.remove('hidden');
                         }
                     }
                 }
             });
         };
+
         playBtn.onclick = e => {
             e.stopPropagation();
-            if (player) isPlaying ? player.pauseVideo() : player.playVideo();
-        };
-        // Davetiye modal
-        const invModal = document.getElementById('invitation-modal');
-        const invImg = document.getElementById('invitation-image');
-        let invScale = 1, invTX = 0, invTY = 0;
-        const updateInvTransform = () => {
-            invImg.style.transform = `scale(${invScale}) translate(${invTX}px, ${invTY}px)`;
-        };
-        const resetInv = () => {
-            invScale = 1; invTX = 0; invTY = 0;
-            updateInvTransform();
-        };
-        document.getElementById('invitation-icon').onclick = () => {
-            invModal.classList.add('show');
-            resetInv();
-        };
-        document.getElementById('close-invitation').onclick = () => {
-            invModal.classList.remove('show');
-            resetInv();
-        };
-        invModal.onclick = e => {
-            if (e.target === invModal) {
-                invModal.classList.remove('show');
-                resetInv();
+            if (player) {
+                if (isPlaying) player.pauseVideo();
+                else player.playVideo();
             }
         };
-        // Fade-in observer
-        const fadeObserver = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('visible');
-            });
-        }, { threshold: 0.3 });
-        document.querySelectorAll('.fade-in-on-scroll').forEach(el => fadeObserver.observe(el));
+
+        // DAVETİYE MODALI + ZOOM
+        const invitationModal = document.getElementById('invitation-modal');
+        const invitationImage = document.getElementById('invitation-image');
+
+        let invitationScale = 1;
+        let invitationTranslateX = 0;
+        let invitationTranslateY = 0;
+
+        const updateInvitationTransform = () => {
+            invitationImage.style.transform = `translate(${invitationTranslateX}px, ${invitationTranslateY}px) scale(${invitationScale})`;
+        };
+
+        const resetInvitation = () => {
+            invitationScale = 1;
+            invitationTranslateX = 0;
+            invitationTranslateY = 0;
+            updateInvitationTransform();
+            invitationImage.classList.remove('zoomed');
+        };
+
+        document.getElementById('invitation-icon').addEventListener('click', () => {
+            invitationModal.classList.add('show');
+            resetInvitation();
+        });
+
+        document.getElementById('close-invitation').addEventListener('click', () => {
+            invitationModal.classList.remove('show');
+            resetInvitation();
+        });
+
+        invitationModal.addEventListener('click', e => {
+            if (e.target === invitationModal) {
+                invitationModal.classList.remove('show');
+                resetInvitation();
+            }
+        });
+
+        // Davetiye için pinch zoom (mobil)
+        let invitationPinchStartScale = 1;
+        let invitationPinchStartMidX = 0;
+        let invitationPinchStartMidY = 0;
+
+        invitationModal.addEventListener('touchstart', e => {
+            if (e.touches.length === 2) {
+                const t1 = e.touches[0];
+                const t2 = e.touches[1];
+                invitationPinchStartMidX = (t1.clientX + t2.clientX) / 2;
+                invitationPinchStartMidY = (t1.clientY + t2.clientY) / 2;
+                invitationPinchStartScale = invitationScale;
+            }
+        }, { passive: false });
+
+        invitationModal.addEventListener('touchmove', e => {
+            if (e.touches.length === 2) {
+                const t1 = e.touches[0];
+                const t2 = e.touches[1];
+                const midX = (t1.clientX + t2.clientX) / 2;
+                const midY = (t1.clientY + t2.clientY) / 2;
+                const distStart = Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY);
+                const distNow = Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY);
+                const scaleFactor = distNow / distStart;
+                const newScale = invitationPinchStartScale * scaleFactor;
+                const originX = midX - invitationTranslateX;
+                const originY = midY - invitationTranslateY;
+                invitationTranslateX = midX - originX * (newScale / invitationPinchStartScale);
+                invitationTranslateY = midY - originY * (newScale / invitationPinchStartScale);
+                invitationScale = Math.max(0.6, Math.min(15, newScale));
+                updateInvitationTransform();
+                invitationImage.classList.toggle('zoomed', invitationScale > 1.08);
+            }
+        }, { passive: false });
+
+        invitationModal.addEventListener('touchend', () => {
+            if (invitationScale < 1.15) {
+                invitationScale = 1;
+                invitationTranslateX = 0;
+                invitationTranslateY = 0;
+                updateInvitationTransform();
+                invitationImage.classList.remove('zoomed');
+            }
+        });
+
+        // ... fade-in observer aynı ...
+
     })();
     </script>
+
     <script defer>
     document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
-            const duration = 2000;
-            const end = Date.now() + duration;
-            const colors = ['#f59e0b','#ef4444','#facc15','#92400e','#84cc16','#dc2626','#fb923c','#ff69b4','#16a34a','#ffd700'];
+            var duration = 2 * 1000;
+            var end = Date.now() + duration;
+            const colors = ['#f59e0b', '#ef4444', '#facc15', '#92400e', '#84cc16', '#dc2626', '#fb923c', '#ff69b4', '#16a34a', '#ffd700'];
             (function frame() {
-                confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0, y: 0.5 }, colors, gravity: 0.8, scalar: 1.1 });
-                confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1, y: 0.5 }, colors, gravity: 0.8, scalar: 1.1 });
-                if (Date.now() < end) requestAnimationFrame(frame);
+                confetti({
+                    particleCount: 5,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0, y: 0.5 },
+                    colors: colors,
+                    gravity: 0.8,
+                    scalar: 1.1
+                });
+                confetti({
+                    particleCount: 5,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1, y: 0.5 },
+                    colors: colors,
+                    gravity: 0.8,
+                    scalar: 1.1
+                });
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
             }());
         }, 500);
     });
