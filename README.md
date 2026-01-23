@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -19,6 +19,9 @@
             user-select: none !important;
             outline: none !important;
             -webkit-tap-highlight-color: transparent;
+        }
+        html, body {
+            touch-action: pan-y;  /* Sayfa geneli: sadece dikey kaydırma izinli, pinch zoom kapalı */
         }
         body {
             font-family: 'Poppins', sans-serif;
@@ -50,11 +53,9 @@
         #modal-image {
             transform-origin: 50% 50% !important;
         }
-        #image-modal {
-            touch-action: pinch-zoom pan-x pan-y !important;
-        }
+        #image-modal,
         #modal-image {
-            touch-action: pinch-zoom pan-x pan-y !important;
+            touch-action: pinch-zoom pan-x pan-y !important;  /* Modal ve fotoğrafta pinch zoom AÇIK */
         }
         header, header *, #main-title, #sonbahar-baslik, h1, h2, h3, p, span, div, section {
             user-select: none !important;
@@ -218,12 +219,10 @@
     </style>
 </head>
 <body class="text-black">
-
     <div id="background-leaves-pattern"></div>
     <div id="falling-leaves-container"></div>
     <div id="falling-hearts-container"></div>
     <div id="falling-flowers-container"></div>
-
     <header class="py-16 text-center relative z-20 overflow-hidden">
         <div class="relative">
             <div class="relative z-10">
@@ -236,14 +235,11 @@
             </div>
         </div>
     </header>
-
     <section id="main-title-section" class="py-8 text-center">
         <h2 id="main-title" class="font-bold handwriting text-green-600">O Güzel Sonbahar günü</h2>
         <p class="text-xl md:text-2xl mt-2 text-red-600 font-bold">27 Eylül 2025</p>
     </section>
-
     <main class="container mx-auto px-6 pb-12 relative z-20">
-
         <section class="max-w-3xl mx-auto my-12 text-center">
             <h3 id="ilk-adim-baslik" class="font-bold text-red-600 mb-4">İlk Adım</h3>
             <p class="text-lg leading-relaxed font-medium font-[550] text-black">
@@ -259,7 +255,6 @@
             </p>
             <div class="text-4xl text-red-500 mt-8 heartbeat"><i class="fas fa-heart"></i></div>
         </section>
-
         <section class="my-16 max-w-3xl mx-auto text-center">
             <h3 id="sonbahar-baslik" class="font-bold text-center text-red-600 mb-6 handwriting font-forte-alternative">Sonbahar şiiri</h3>
             <div class="poem-container">
@@ -276,7 +271,6 @@
             </div>
             <p class="text-right text-green-600 font-semibold-bold mt-6 pr-4 font-forte-alternative poem-signature">- Nazım Hikmet</p>
         </section>
-
         <section class="my-16 max-w-3xl mx-auto text-center">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Aramızda Geçen İki Güzel Söz</h3>
             <div class="max-w-2xl mx-auto space-y-6">
@@ -285,7 +279,6 @@
                 <p class="text-xl md:text-2xl leading-relaxed italic text-blue-600 font-medium">" Asıl sen neredeydin meğersem çok yakınmışız "</p>
             </div>
         </section>
-
         <section id="countdown-section" class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 font-forte-alternative">Büyük Güne Geri Sayım</h3>
             <div id="countdown-placeholder" class="my-4">
@@ -293,7 +286,6 @@
                 <p class="text-center font-semibold italic text-lg mt-4">Sonsuzluğa giden yolculuğumuzun tarihi belli olduğunda...</p>
             </div>
         </section>
-
         <section id="map-section" class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Düğün Mekanımız</h3>
             <div class="flex flex-col items-center mb-8">
@@ -304,7 +296,6 @@
             </div>
             <p class="text-center font-semibold italic text-lg mt-6 leading-relaxed px-6 max-w-2xl mx-auto">Seninle sonsuzluğa adım attığımız yer 💙</p>
         </section>
-
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Davetiyemiz</h3>
             <div class="flex flex-col items-center">
@@ -317,12 +308,10 @@
                 <p class="text-center font-semibold italic text-lg leading-relaxed px-6">Bu bir davetiye değil, size yazdığımız bir mutluluk mektubu 💚</p>
             </div>
         </section>
-
         <div id="invitation-modal">
             <span id="close-invitation">X</span>
             <img id="invitation-image" src="https://i.imgur.com/2nywEc1.jpeg" alt="Arzu & Ersin Düğün Davetiyesi">
         </div>
-
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center relative overflow-hidden">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Bizim Şarkımız</h3>
             <p class="text-center text-black font-semibold italic mt-2 mb-6">Tarkan - Beni Çok Sev</p>
@@ -338,7 +327,6 @@
                 </div>
             </div>
         </section>
-
         <!-- Fotoğraf Galerisi (TAM hali - 18 fotoğraf) -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Fotoğraf Galerimiz</h3>
@@ -442,7 +430,6 @@
                 </div>
             </div>
         </section>
-
         <!-- Video Galerisi -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Video Galerimiz</h3>
@@ -510,7 +497,6 @@
                 </div>
             </div>
         </section>
-
         <section class="my-16 max-w-3xl mx-auto transparent-section">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Teşekkür</h3>
             <div class="thank-you-message">
@@ -537,7 +523,6 @@
                 </div>
             </div>
         </section>
-
         <section id="footer-section" class="my-12 text-center">
             <div id="qr-wrapper">
                 <div id="footer-qr" class="photo-container inline-block">
@@ -546,25 +531,20 @@
                 <p id="site-address" class="handwriting">Web Sitemizin adresi ♡</p>
             </div>
         </section>
-
     </main>
-
     <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
         <span id="close-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
         <img id="modal-image" src="" alt="Büyütülmüş Fotoğraf" class="max-w-[90vw] max-h-[90vh] rounded-lg shadow-lg">
         <span id="prev-photo" class="absolute top-1/2 left-4 -translate-y-1/2 text-white text-6xl font-bold cursor-pointer hover:text-gray-300 transition-colors select-none"><</span>
         <span id="next-photo" class="absolute top-1/2 right-4 -translate-y-1/2 text-white text-6xl font-bold cursor-pointer hover:text-gray-300 transition-colors select-none">></span>
     </div>
-
     <div id="video-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
         <span id="close-video-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
         <div class="aspect-video w-full max-w-4xl"><iframe id="modal-video-iframe" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
     </div>
-
     <script>
     (() => {
         'use strict';
-
         // Falling elements (hearts, leaves, flowers) - aynı kaldı
         const hearts = ['💛'];
         const heartContainer = document.getElementById('falling-hearts-container');
@@ -578,7 +558,6 @@
             heart.style.fontSize = (2.0 + Math.random() * 0.8) + 'rem';
             heartContainer.appendChild(heart);
         }
-
         const leafSVG = `<svg viewBox="0 0 100 140" class="w-full h-full" preserveAspectRatio="xMidYMid meet"><path class="leaf-outer" d="M50 10 C30 15, 20 35, 18 55 C16 75, 25 95, 35 115 C45 130, 48 135, 50 138 C52 135, 55 130, 65 115 C75 95, 84 75, 82 55 C80 35, 70 15, 50 10 Z" /><path class="leaf-inner" d="M50 15 C33 20, 25 38, 23 55 C21 72, 28 88, 36 108 C44 125, 48 132, 50 135 C52 132, 56 125, 64 108 C72 88, 79 72, 77 55 C75 38, 67 20, 50 15 Z" /><path d="M50 15 Q50 70 48 135" stroke="#fff" stroke-width="2.5" opacity="0.5" fill="none"/><path d="M50 15 Q35 40 28 48 M50 55 Q32 65 25 75 M50 80 Q30 90 23 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/><path d="M50 15 Q65 40 72 48 M50 55 Q68 65 75 75 M50 80 Q70 90 77 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/></svg>`;
         const leafColors = ['autumn-1','autumn-2','autumn-3','autumn-4','autumn-5','autumn-6','autumn-7','autumn-8','autumn-9','autumn-10'];
         const leafContainer = document.getElementById('falling-leaves-container');
@@ -594,7 +573,6 @@
             leaf.innerHTML = leafSVG;
             leafContainer.appendChild(leaf);
         }
-
         const flowers = ['🌸', '🌻'];
         const flowerContainer = document.getElementById('falling-flowers-container');
         for (let i = 0; i < 2; i++) {
@@ -607,7 +585,6 @@
             flower.style.fontSize = (1.6 + Math.random() * 1.0) + 'rem';
             flowerContainer.appendChild(flower);
         }
-
         // Lazy load images
         const lazyLoadObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -618,25 +595,20 @@
             });
         }, { rootMargin: '50px' });
         document.querySelectorAll('img[data-src]').forEach(img => lazyLoadObserver.observe(img));
-
         // Fotoğraf modal değişkenleri
         let photoUrls = [];
         let currentPhotoIndex = 0;
         let currentScale = 1;
         let currentTranslateX = 0;
         let currentTranslateY = 0;
-
         const imageModal = document.getElementById('image-modal');
         const modalImage = document.getElementById('modal-image');
-
         const updateTransform = () => {
             modalImage.style.transform = `translate(${currentTranslateX}px, ${currentTranslateY}px) scale(${currentScale})`;
         };
-
         const buildPhotoArray = () => {
             photoUrls = Array.from(document.querySelectorAll('#gallery-grid img[data-src]')).map(img => img.dataset.src || '');
         };
-
         const openPhoto = (index) => {
             buildPhotoArray();
             if (index < 0 || index >= photoUrls.length) return;
@@ -648,7 +620,6 @@
             updateTransform();
             imageModal.classList.replace('hidden', 'flex');
         };
-
         const closePhoto = () => {
             currentScale = 1;
             currentTranslateX = 0;
@@ -657,7 +628,6 @@
             imageModal.classList.replace('flex', 'hidden');
             modalImage.src = '';
         };
-
         const nextPhoto = () => {
             currentPhotoIndex = (currentPhotoIndex + 1) % photoUrls.length;
             modalImage.src = photoUrls[currentPhotoIndex];
@@ -666,7 +636,6 @@
             currentTranslateY = 0;
             updateTransform();
         };
-
         const prevPhoto = () => {
             currentPhotoIndex = (currentPhotoIndex - 1 + photoUrls.length) % photoUrls.length;
             modalImage.src = photoUrls[currentPhotoIndex];
@@ -675,22 +644,22 @@
             currentTranslateY = 0;
             updateTransform();
         };
-
-        // Pinch zoom (mobil)
+        // Pinch zoom (mobil) – sayfa zoom kapalıyken modalda çalışsın
         let pinchStartScale = 1, pinchStartMidX = 0, pinchStartMidY = 0;
         imageModal.addEventListener('touchstart', e => {
             if (e.touches.length === 2) {
-                e.preventDefault();
+                // 2 parmak → custom zoom hesapla AMA preventDefault YAPMA → doğal pinch de çalışsın
                 const t1 = e.touches[0], t2 = e.touches[1];
                 pinchStartMidX = (t1.clientX + t2.clientX) / 2;
                 pinchStartMidY = (t1.clientY + t2.clientY) / 2;
                 pinchStartScale = currentScale;
+            } else if (e.touches.length === 1 && currentScale > 1.05) {
+                e.preventDefault(); // tek parmak pan için engelle
             }
         }, { passive: false });
 
         imageModal.addEventListener('touchmove', e => {
             if (e.touches.length === 2) {
-                e.preventDefault();
                 const t1 = e.touches[0], t2 = e.touches[1];
                 const midX = (t1.clientX + t2.clientX) / 2;
                 const midY = (t1.clientY + t2.clientY) / 2;
@@ -705,6 +674,9 @@
                 currentScale = Math.max(0.6, Math.min(15, newScale));
                 updateTransform();
                 modalImage.classList.toggle('zoomed', currentScale > 1.08);
+                // preventDefault YAPILMADI → tarayıcı doğal pinch zoom da yapabilir
+            } else if (e.touches.length === 1) {
+                e.preventDefault();
             }
         }, { passive: false });
 
@@ -717,7 +689,6 @@
                 modalImage.classList.remove('zoomed');
             }
         });
-
         // Wheel zoom - merkezden
         const ZOOM_SPEED = 0.00065;
         const MIN_SCALE = 0.6;
@@ -739,7 +710,6 @@
                 updateTransform();
             }
         }, { passive: false });
-
         // Pan (sürükleme)
         let panStartX = 0, panStartY = 0, panStartTX = 0, panStartTY = 0;
         imageModal.addEventListener('mousedown', e => {
@@ -758,7 +728,6 @@
         window.addEventListener('mouseup', () => {
             modalImage.style.cursor = currentScale > 1.08 ? 'grab' : 'zoom-in';
         });
-
         // Fotoğraf galerisi toggle + event bağlama
         document.getElementById('toggle-gallery-btn').addEventListener('click', () => {
             const wrapper = document.getElementById('gallery-wrapper');
@@ -778,12 +747,10 @@
                 }, 150);  // biraz daha güvenli timeout
             }
         });
-
         document.getElementById('close-modal').onclick = closePhoto;
         document.getElementById('prev-photo').onclick = e => { e.stopPropagation(); prevPhoto(); };
         document.getElementById('next-photo').onclick = e => { e.stopPropagation(); nextPhoto(); };
         imageModal.onclick = e => { if (e.target === imageModal) closePhoto(); };
-
         // Video galerisi toggle + event bağlama
         document.getElementById('toggle-video-gallery-btn').addEventListener('click', () => {
             const wrapper = document.getElementById('video-gallery-wrapper');
@@ -810,17 +777,14 @@
                 }, 150);
             }
         });
-
         document.getElementById('close-video-modal').onclick = () => {
             const vm = document.getElementById('video-modal');
             document.getElementById('modal-video-iframe').src = '';
             vm.classList.replace('flex', 'hidden');
         };
-
         document.getElementById('video-modal').onclick = e => {
             if (e.target === document.getElementById('video-modal')) document.getElementById('close-video-modal').click();
         };
-
         // Escape tuşu ile kapatma (genişletildi)
         document.addEventListener('keydown', e => {
             if (e.key === 'Escape') {
@@ -831,17 +795,14 @@
             if (e.key === 'ArrowRight' && imageModal.classList.contains('flex')) nextPhoto();
             if (e.key === 'ArrowLeft' && imageModal.classList.contains('flex')) prevPhoto();
         });
-
         // Şarkı çalar
         let player, isPlaying = false;
         const playBtn = document.getElementById('play-song-btn');
         const playerEl = document.getElementById('youtube-player');
         const visualizer = document.getElementById('music-visualizer');
-
         const tag = document.createElement('script');
         tag.src = 'https://www.youtube.com/iframe_api';
         document.head.appendChild(tag);
-
         window.onYouTubeIframeAPIReady = () => {
             player = new YT.Player('youtube-player', {
                 events: {
@@ -863,55 +824,44 @@
                 }
             });
         };
-
         playBtn.onclick = e => {
             e.stopPropagation();
             if (player) isPlaying ? player.pauseVideo() : player.playVideo();
         };
-
         // Davetiye modal
         const invModal = document.getElementById('invitation-modal');
         const invImg = document.getElementById('invitation-image');
         let invScale = 1, invTX = 0, invTY = 0;
-
         const updateInvTransform = () => {
             invImg.style.transform = `scale(${invScale}) translate(${invTX}px, ${invTY}px)`;
         };
-
         const resetInv = () => {
             invScale = 1; invTX = 0; invTY = 0;
             updateInvTransform();
         };
-
         document.getElementById('invitation-icon').onclick = () => {
             invModal.classList.add('show');
             resetInv();
         };
-
         document.getElementById('close-invitation').onclick = () => {
             invModal.classList.remove('show');
             resetInv();
         };
-
         invModal.onclick = e => {
             if (e.target === invModal) {
                 invModal.classList.remove('show');
                 resetInv();
             }
         };
-
         // Fade-in observer
         const fadeObserver = new IntersectionObserver(entries => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) entry.target.classList.add('visible');
             });
         }, { threshold: 0.3 });
-
         document.querySelectorAll('.fade-in-on-scroll').forEach(el => fadeObserver.observe(el));
-
     })();
     </script>
-
     <script defer>
     document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
@@ -926,6 +876,5 @@
         }, 500);
     });
     </script>
-
 </body>
 </html>
