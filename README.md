@@ -16,7 +16,6 @@
         .header-name, .handwriting {
             caret-color: transparent !important;
         }
-
         a, button, [role="button"], .cursor-pointer,
         #play-song-btn, #toggle-gallery-btn, #toggle-video-gallery-btn,
         #map-icon, #invitation-icon,
@@ -24,7 +23,6 @@
             caret-color: auto !important;
             cursor: pointer !important;
         }
-
         header, header *, #main-title, #sonbahar-baslik, h1, h2 {
             border: none !important;
             outline: none !important;
@@ -354,7 +352,6 @@
     <div id="falling-leaves-container"></div>
     <div id="falling-hearts-container"></div>
     <div id="falling-flowers-container"></div>
-
     <header class="py-16 text-center relative z-20 overflow-hidden">
         <div class="relative">
             <div class="relative z-10">
@@ -370,12 +367,10 @@
             </div>
         </div>
     </header>
-
     <section id="main-title-section" class="py-8 text-center">
         <h2 id="main-title" class="font-bold handwriting text-green-600">O Güzel Sonbahar günü</h2>
         <p class="text-xl md:text-2xl mt-2 text-red-600 font-bold">27 Eylül 2025</p>
     </section>
-
     <main class="container mx-auto px-6 pb-12 relative z-20">
         <!-- İlk Adım bölümü -->
         <section class="max-w-3xl mx-auto my-12 text-center">
@@ -393,7 +388,6 @@
             </p>
             <div class="text-4xl text-red-500 mt-8 heartbeat"><i class="fas fa-heart"></i></div>
         </section>
-
         <!-- Sonbahar şiiri -->
         <section class="my-16 max-w-3xl mx-auto text-center">
             <h3 id="sonbahar-baslik" class="font-bold text-center text-red-600 mb-6 handwriting font-forte-alternative">Sonbahar şiiri</h3>
@@ -411,7 +405,6 @@
             </div>
             <p class="text-right text-green-600 font-semibold-bold mt-6 pr-4 font-forte-alternative poem-signature">- Nazım Hikmet</p>
         </section>
-
         <!-- İki güzel söz -->
         <section class="my-16 max-w-3xl mx-auto text-center">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Aramızda Geçen İki Güzel Söz</h3>
@@ -429,7 +422,6 @@
                 </div>
             </div>
         </section>
-
         <!-- Geri sayım (placeholder) -->
         <section id="countdown-section" class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 font-forte-alternative">Büyük Güne Geri Sayım</h3>
@@ -440,7 +432,6 @@
                 </p>
             </div>
         </section>
-
         <!-- Düğün mekanı -->
         <section id="map-section" class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Düğün Mekanımız</h3>
@@ -454,13 +445,12 @@
                 Seninle sonsuzluğa adım attığımız yer 💙
             </p>
         </section>
-
         <!-- Davetiye -->
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Davetiyemiz</h3>
             <div class="flex flex-col items-center">
                 <div id="invitation-icon" title="Davetiyeyi Gör">
-                    <i class="fas fa-envelope-open-text heartbeat"></i>
+                    <i class="fas fa-envelope-open-text"></i>
                 </div>
                 <div class="invitation-click-text">Tıkla</div>
             </div>
@@ -470,13 +460,11 @@
                 </p>
             </div>
         </section>
-
         <div id="invitation-modal">
             <span id="close-invitation">X</span>
             <img id="invitation-image" src="https://i.imgur.com/2nywEc1.jpeg" alt="Arzu & Ersin Düğün Davetiyesi">
         </div>
-
-        <!-- Bizim Şarkımız (sadece bu kaldı, arka plan müziği gitti) -->
+        <!-- Bizim Şarkımız -->
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center relative overflow-hidden">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Bizim Şarkımız</h3>
             <p class="text-center text-black font-semibold italic mt-2 mb-6">Tarkan - Beni Çok Sev</p>
@@ -497,7 +485,6 @@
                 </div>
             </div>
         </section>
-
         <!-- Fotoğraf Galerisi -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Fotoğraf Galerimiz</h3>
@@ -601,7 +588,6 @@
                 </div>
             </div>
         </section>
-
         <!-- Video Galerisi -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Video Galerimiz</h3>
@@ -669,7 +655,6 @@
                 </div>
             </div>
         </section>
-
         <!-- Teşekkür -->
         <section class="my-16 max-w-3xl mx-auto transparent-section">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Teşekkür</h3>
@@ -703,7 +688,6 @@
                 </div>
             </div>
         </section>
-
         <!-- QR Footer -->
         <section id="footer-section" class="my-12 text-center">
             <div id="qr-wrapper">
@@ -720,7 +704,6 @@
             </div>
         </section>
     </main>
-
     <!-- Fotoğraf Modal -->
     <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
         <span id="close-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
@@ -728,18 +711,15 @@
         <span id="prev-photo" class="absolute top-1/2 left-4 -translate-y-1/2 text-white text-6xl font-bold cursor-pointer hover:text-gray-300 transition-colors select-none"><</span>
         <span id="next-photo" class="absolute top-1/2 right-4 -translate-y-1/2 text-white text-6xl font-bold cursor-pointer hover:text-gray-300 transition-colors select-none">></span>
     </div>
-
     <!-- Video Modal -->
     <div id="video-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
         <span id="close-video-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
         <div class="aspect-video w-full max-w-4xl"><iframe id="modal-video-iframe" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
     </div>
-
     <script>
     (() => {
         'use strict';
-
-        // Düşen yaprak, kalp, çiçek efektleri (korundu)
+        // Düşen yaprak, kalp, çiçek efektleri
         const hearts = ['💛'];
         const heartContainer = document.getElementById('falling-hearts-container');
         for (let i = 0; i < 2; i++) {
@@ -754,7 +734,6 @@
             heart.style.fontSize = size + 'rem';
             heartContainer.appendChild(heart);
         }
-
         const leafSVG = `<svg viewBox="0 0 100 140" class="w-full h-full" preserveAspectRatio="xMidYMid meet"><path class="leaf-outer" d="M50 10 C30 15, 20 35, 18 55 C16 75, 25 95, 35 115 C45 130, 48 135, 50 138 C52 135, 55 130, 65 115 C75 95, 84 75, 82 55 C80 35, 70 15, 50 10 Z" /><path class="leaf-inner" d="M50 15 C33 20, 25 38, 23 55 C21 72, 28 88, 36 108 C44 125, 48 132, 50 135 C52 132, 56 125, 64 108 C72 88, 79 72, 77 55 C75 38, 67 20, 50 15 Z" /><path d="M50 15 Q50 70 48 135" stroke="#fff" stroke-width="2.5" opacity="0.5" fill="none"/><path d="M50 15 Q35 40 28 48 M50 55 Q32 65 25 75 M50 80 Q30 90 23 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/><path d="M50 15 Q65 40 72 48 M50 55 Q68 65 75 75 M50 80 Q70 90 77 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/></svg>`;
         const leafColors = ['autumn-1','autumn-2','autumn-3','autumn-4','autumn-5','autumn-6','autumn-7','autumn-8','autumn-9','autumn-10'];
         const leafContainer = document.getElementById('falling-leaves-container');
@@ -771,7 +750,6 @@
             leaf.innerHTML = leafSVG;
             leafContainer.appendChild(leaf);
         }
-
         const flowers = ['🌸', '🌻'];
         const flowerContainer = document.getElementById('falling-flowers-container');
         for (let i = 0; i < 2; i++) {
@@ -786,8 +764,7 @@
             flower.style.fontSize = size + 'rem';
             flowerContainer.appendChild(flower);
         }
-
-        // Lazy loading (korundu)
+        // Lazy loading
         const lazyLoadObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting && entry.target.dataset.src) {
@@ -797,8 +774,7 @@
             });
         }, { rootMargin: '50px' });
         document.querySelectorAll('img[data-src]').forEach(img => lazyLoadObserver.observe(img));
-
-        // Fotoğraf modal işlemleri (korundu)
+        // Fotoğraf modal işlemleri
         let photoUrls = [];
         let currentPhotoIndex = 0;
         let scale = 1;
@@ -906,8 +882,7 @@
                 updateTransform();
             }
         });
-
-        // Galeri aç/kapa (korundu)
+        // Galeri aç/kapa
         document.getElementById('toggle-gallery-btn').addEventListener('click', () => {
             const wrapper = document.getElementById('gallery-wrapper');
             wrapper.classList.toggle('hidden');
@@ -926,7 +901,6 @@
                 }, 100);
             }
         });
-
         document.getElementById('toggle-video-gallery-btn').addEventListener('click', () => {
             const wrapper = document.getElementById('video-gallery-wrapper');
             wrapper.classList.toggle('hidden');
@@ -948,7 +922,6 @@
                 }, 100);
             }
         });
-
         document.getElementById('close-video-modal').onclick = () => {
             document.getElementById('video-modal').classList.replace('flex', 'hidden');
             document.getElementById('modal-video-iframe').src = '';
@@ -960,17 +933,15 @@
         document.getElementById('prev-photo').onclick = e => { e.stopPropagation(); prevPhoto(); };
         document.getElementById('next-photo').onclick = e => { e.stopPropagation(); nextPhoto(); };
         modal.onclick = e => { if (e.target === modal) closePhoto(); };
-
         document.addEventListener('keydown', e => {
-            if (e.key === 'Escape') { 
-                closePhoto(); 
-                if (document.getElementById('video-modal').classList.contains('flex')) document.getElementById('close-video-modal').click(); 
+            if (e.key === 'Escape') {
+                closePhoto();
+                if (document.getElementById('video-modal').classList.contains('flex')) document.getElementById('close-video-modal').click();
             }
             if (e.key === 'ArrowRight' && document.getElementById('image-modal').classList.contains('flex')) nextPhoto();
             if (e.key === 'ArrowLeft' && document.getElementById('image-modal').classList.contains('flex')) prevPhoto();
         });
-
-        // Sadece tek şarkı oynatıcı (arka plan playlist kaldırıldı)
+        // Şarkı oynatıcı
         let player, isPlaying = false;
         const playBtn = document.getElementById('play-song-btn');
         const playerElement = document.getElementById('youtube-player');
@@ -978,7 +949,6 @@
         const tag = document.createElement('script');
         tag.src = 'https://www.youtube.com/iframe_api';
         document.getElementsByTagName('script')[0].parentNode.insertBefore(tag, document.getElementsByTagName('script')[0]);
-
         window.onYouTubeIframeAPIReady = function() {
             player = new YT.Player('youtube-player', {
                 events: {
@@ -1000,9 +970,8 @@
                 }
             });
         };
-
-        playBtn.onclick = e => { 
-            e.stopPropagation(); 
+        playBtn.onclick = e => {
+            e.stopPropagation();
             if (player) {
                 if (isPlaying) {
                     player.pauseVideo();
@@ -1011,8 +980,7 @@
                 }
             }
         };
-
-        // Davetiye modal (korundu)
+        // Davetiye modal
         const invitationModal = document.getElementById('invitation-modal');
         const invitationImage = document.getElementById('invitation-image');
         let invitationScale = 1;
@@ -1127,14 +1095,12 @@
                 resetInvitation();
             }
         };
-
-        // Fade-in scroll efekti (korundu)
+        // Fade-in scroll efekti
         const fadeObserver = new IntersectionObserver(entries => {
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
         }, { threshold: 0.3 });
         document.querySelectorAll('.fade-in-on-scroll').forEach(el => fadeObserver.observe(el));
-
-        // Masaüstü zoom desteği (korundu)
+        // Masaüstü zoom desteği
         if (window.innerWidth > 768 && !('ontouchstart' in window)) {
             let currentScale = 1;
             let currentTranslateX = 0;
@@ -1189,7 +1155,6 @@
         }
     })();
     </script>
-
     <script defer>
     document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
