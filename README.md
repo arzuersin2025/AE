@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arzu & Ersin | Bizim Hikayemiz</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -10,16 +10,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700;800;900&family=Dancing+Script:wght@700&family=Cormorant+Garamond&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
+    <!-- Konfeti kütüphanesi -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js" defer></script>
     <style>
-        * {
-            -webkit-user-select: none !important;
-            -moz-user-select: none !important;
-            -ms-user-select: none !important;
-            user-select: none !important;
+        header, header *, #main-title, #sonbahar-baslik, h1, h2 {
+            border: none !important;
             outline: none !important;
-            -webkit-tap-highlight-color: transparent;
+            box-shadow: none !important;
         }
+        html { scroll-behavior: smooth; }
         body {
             font-family: 'Poppins', sans-serif;
             font-weight: 300;
@@ -27,38 +26,6 @@
             position: relative;
             overflow-x: hidden;
             min-height: 100vh;
-            cursor: default !important;
-        }
-        button, a, #play-song-btn, #toggle-gallery-btn, #toggle-video-gallery-btn, #map-icon, #invitation-icon, #close-modal, #prev-photo, #next-photo, #close-video-modal, #close-invitation {
-            cursor: pointer !important;
-            pointer-events: auto !important;
-        }
-        img {
-            -webkit-user-drag: none;
-            user-drag: none;
-            pointer-events: auto;
-        }
-        #image-modal img, #invitation-modal img {
-            cursor: zoom-in;
-            touch-action: pinch-zoom pan-x pan-y !important;
-        }
-        #image-modal img.zoomed, #invitation-modal img.zoomed {
-            cursor: grab;
-            touch-action: pinch-zoom pan-x pan-y !important;
-        }
-        #image-modal img.zoomed:active, #invitation-modal img.zoomed:active {
-            cursor: grabbing;
-        }
-        #modal-image, #invitation-image {
-            transform-origin: 50% 50% !important;
-            touch-action: pinch-zoom pan-x pan-y !important;
-        }
-        #image-modal, #invitation-modal {
-            touch-action: pinch-zoom pan-x pan-y !important;
-        }
-        header, header *, #main-title, #sonbahar-baslik, h1, h2, h3, p, span, div, section {
-            user-select: none !important;
-            -webkit-user-select: none !important;
         }
         #background-leaves-pattern {
             position: fixed; top: 0; left: 0; right: 0; bottom: 0;
@@ -72,11 +39,14 @@
         h1, h2, h3 { font-family: 'Playfair Display', serif; }
         .handwriting { font-family: 'Dancing Script', cursive; }
         .font-forte-alternative { font-family: 'Dancing Script', cursive; }
+        .font-poor-richard-alternative { font-family: 'Cormorant Garamond', serif; }
         @keyframes heartbeat { 0%,100%{transform:scale(1)} 50%{transform:scale(1.15)} }
         .heartbeat { animation: heartbeat 1.5s infinite; }
         #main-title { font-size: 3rem !important; line-height: 1.2 !important; }
         @media (min-width: 768px) { #main-title { font-size: 4rem !important; } }
-        @media (max-width: 768px) { #main-title { font-size: 2.3rem !important; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } }
+        @media (max-width: 768px) {
+            #main-title { font-size: 2.3rem !important; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        }
         main h3:not(#ilk-adim-baslik) { font-size: 1.5rem !important; line-height: 1.3 !important; }
         @media (min-width: 768px) { main h3:not(#ilk-adim-baslik) { font-size: 2rem !important; } }
         #ilk-adim-baslik { font-size: 1.5rem !important; line-height: 1.4 !important; }
@@ -93,27 +63,9 @@
         .poem-signature { font-size: 1.5rem !important; line-height: 1.4 !important; color: #16a34a !important; }
         @media (max-width: 768px) { .poem-signature { font-size: 1.875rem !important; } }
         .leaf-svg { position: absolute; width: 32px; height: 44px; opacity: 0.9; animation: fall linear infinite; transform-origin: center; filter: drop-shadow(0 3px 6px rgba(0,0,0,0.3)); }
-        @keyframes fall {
-            0% { transform: translateY(-120px) rotate(0deg) scale(1); opacity: 0; }
-            8% { opacity: 0.9; }
-            30% { transform: translateY(30vh) translateX(15px) rotate(180deg) scale(0.95); }
-            50% { transform: translateY(50vh) translateX(-20px) rotate(540deg) scale(0.9); }
-            70% { transform: translateY(70vh) translateX(25px) rotate(800deg) scale(0.85); }
-            92% { opacity: 0.9; }
-            100% { transform: translateY(110vh) translateX(-15px) rotate(1080deg) scale(0.6); opacity: 0; }
-        }
-        .leaf-svg .leaf-inner { fill: currentColor; }
-        .leaf-svg .leaf-outer { fill: white; opacity: 0.95; }
-        .leaf-svg.autumn-1 { color: #f59e0b; }
-        .leaf-svg.autumn-2 { color: #ef4444; }
-        .leaf-svg.autumn-3 { color: #facc15; }
-        .leaf-svg.autumn-4 { color: #92400e; }
-        .leaf-svg.autumn-5 { color: #84cc16; }
-        .leaf-svg.autumn-6 { color: #fb923c; }
-        .leaf-svg.autumn-7 { color: #dc2626; }
-        .leaf-svg.autumn-8 { color: #f97316; }
-        .leaf-svg.autumn-9 { color: #22c55e; }
-        .leaf-svg.autumn-10 { color: #16a34a; }
+        @keyframes fall { 0% { transform: translateY(-120px) rotate(0deg) scale(1); opacity: 0; } 8% { opacity: 0.9; } 30% { transform: translateY(30vh) translateX(15px) rotate(180deg) scale(0.95); } 50% { transform: translateY(50vh) translateX(-20px) rotate(540deg) scale(0.9); } 70% { transform: translateY(70vh) translateX(25px) rotate(800deg) scale(0.85); } 92% { opacity: 0.9; } 100% { transform: translateY(110vh) translateX(-15px) rotate(1080deg) scale(0.6); opacity: 0; } }
+        .leaf-svg .leaf-inner { fill: currentColor; } .leaf-svg .leaf-outer { fill: white; opacity: 0.95; }
+        .leaf-svg.autumn-1 { color: #f59e0b; } .leaf-svg.autumn-2 { color: #ef4444; } .leaf-svg.autumn-3 { color: #facc15; } .leaf-svg.autumn-4 { color: #92400e; } .leaf-svg.autumn-5 { color: #84cc16; } .leaf-svg.autumn-6 { color: #fb923c; } .leaf-svg.autumn-7 { color: #dc2626; } .leaf-svg.autumn-8 { color: #f97316; } .leaf-svg.autumn-9 { color: #22c55e; } .leaf-svg.autumn-10 { color: #16a34a; }
         .falling-heart {
             position: absolute;
             font-size: 2rem;
@@ -140,11 +92,7 @@
             90% { opacity: 1; }
             100% { opacity: 0; transform: translateY(calc(100vh + 150px)) rotate(1440deg) scale(0.5); }
         }
-        .music-visualizer {
-            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            display: flex; align-items: center; justify-content: center; gap: 6px;
-            z-index: 15; opacity: 1; transition: opacity 0.3s ease; width: 200px; pointer-events: none;
-        }
+        .music-visualizer { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: flex; align-items: center; justify-content: center; gap: 6px; z-index: 15; opacity: 1; transition: opacity 0.3s ease; width: 200px; pointer-events: none; }
         .music-visualizer.hidden { opacity: 0 !important; pointer-events: none; }
         .note { font-size: 1.8rem; color: #ef4444; animation: floatNote 1.8s infinite ease-in-out; transform-origin: bottom; }
         .note:nth-child(1) { animation-delay: 0s; }
@@ -156,14 +104,13 @@
         .note:nth-child(7) { animation-delay: 1.2s; }
         .note:nth-child(8) { animation-delay: 1.4s; }
         @keyframes floatNote { 0%, 100% { transform: translateY(0) scale(1); opacity: 0.7; } 50% { transform: translateY(-12px) scale(1.3); opacity: 1; } }
-        @media (max-width: 768px) { .music-visualizer { gap: 4px; width: 160px; } .note { font-size: 1.5rem; } }
+        @media (max-width: 768px) {
+            .music-visualizer { gap: 4px; width: 160px; }
+            .note { font-size: 1.5rem; }
+        }
         .song-control { position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; z-index: 20; }
         .song-label { font-size: 0.65rem; font-weight: 600; color: #dc2626; line-height: 1; letter-spacing: 0.5px; text-transform: uppercase; white-space: nowrap; margin-bottom: 0.5rem; text-shadow: 0 1px 2px rgba(0,0,0,0.1); }
-        #play-song-btn {
-            width: 44px; height: 44px; background: rgba(239, 68, 68, 0.95); color: white;
-            border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
-            box-shadow: 0 6px 16px rgba(0,0,0,0.35); cursor: pointer; transition: all 0.3s ease;
-        }
+        #play-song-btn { width: 44px; height: 44px; background: rgba(239, 68, 68, 0.95); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; box-shadow: 0 6px 16px rgba(0,0,0,0.35); cursor: pointer; transition: all 0.3s ease; }
         #play-song-btn:hover { background: #dc2626; transform: scale(1.15); box-shadow: 0 8px 20px rgba(220, 38, 38, 0.45); }
         #play-song-btn.playing { background: #16a34a; }
         #youtube-player { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: 50%; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
@@ -171,41 +118,217 @@
         .transparent-section { background: transparent !important; backdrop-filter: none !important; box-shadow: none !important; border-radius: 0 !important; padding: 2rem 1rem !important; }
         .song-container { position: relative; width: 16rem; height: 16rem; margin: 0 auto; }
         @media (min-width: 768px) { .song-container { width: 20rem; height: 20rem; } }
-        .header-name { font-size: 11.7vw; color: #16a34a !important; }
-        @media (min-width: 768px) { .header-name { font-size: 6.75vw; } }
+        .header-name {
+            font-size: 11.7vw;
+            color: #16a34a !important;
+        }
+        @media (min-width: 768px) {
+            .header-name { font-size: 6.75vw; }
+        }
         #map-icon {
-            cursor: pointer; font-size: 4rem; color: #dc2626 !important; opacity: 1 !important;
-            filter: drop-shadow(0 4px 10px rgba(220, 38, 38, 0.5)); transition: all 0.3s ease;
+            cursor: pointer;
+            font-size: 4rem;
+            color: #dc2626 !important;
+            opacity: 1 !important;
+            filter: drop-shadow(0 4px 10px rgba(220, 38, 38, 0.5));
+            transition: all 0.3s ease;
             animation: gentlePulse 3s infinite ease-in-out;
         }
         @media (max-width: 768px) { #map-icon { font-size: 3rem; } }
-        #map-icon:hover { color: #b91c1c !important; transform: scale(1.12); filter: drop-shadow(0 6px 16px rgba(220, 38, 38, 0.7)); }
-        @keyframes gentlePulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.04); } }
-        .map-click-text { font-size: 0.9rem; font-weight: 600; color: #dc2626; margin-top: 0.5rem; opacity: 0.9; transition: all 0.3s ease; }
-        #map-icon:hover + .map-click-text { opacity: 1; transform: translateY(-2px); }
+        #map-icon:hover {
+            color: #b91c1c !important;
+            transform: scale(1.12);
+            filter: drop-shadow(0 6px 16px rgba(220, 38, 38, 0.7));
+        }
+        @keyframes gentlePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.04); }
+        }
+        .map-click-text {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #dc2626;
+            margin-top: 0.5rem;
+            opacity: 0.9;
+            transition: all 0.3s ease;
+        }
+        #map-icon:hover + .map-click-text {
+            opacity: 1;
+            transform: translateY(-2px);
+        }
         #invitation-icon {
-            font-size: 3.8rem; color: #dc2626; filter: drop-shadow(0 4px 10px rgba(220, 38, 38, 0.4));
-            transition: all 0.3s ease; cursor: pointer;
+            font-size: 3.8rem;
+            color: #dc2626;
+            filter: drop-shadow(0 4px 10px rgba(220, 38, 38, 0.4));
+            transition: all 0.3s ease;
+            cursor: pointer;
         }
         @media (max-width: 768px) { #invitation-icon { font-size: 3rem; } }
         #invitation-icon:hover { transform: scale(1.15); color: #b91c1c; }
         .invitation-click-text { font-size: 0.9rem; font-weight: 600; color: #dc2626; margin-top: 0.5rem; opacity: 0.9; }
         #invitation-icon:hover + .invitation-click-text { opacity: 1; }
         #invitation-modal {
-            display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 9999;
-            align-items: center; justify-content: center; padding: 1rem;
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.9);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
         }
         #invitation-modal.show { display: flex; }
         #invitation-modal img {
-            max-width: 95vw; max-height: 95vh; border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            max-width: 95vw;
+            max-height: 95vh;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            transform-origin: center center;
             transition: transform 0.1s ease-out;
-            user-select: none;
-            -webkit-user-drag: none;
         }
         #close-invitation {
-            position: absolute; top: 20px; right: 30px; font-size: 3.5rem; color: white; cursor: pointer; z-index: 10000;
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 3.5rem;
+            color: white;
+            cursor: pointer;
+            z-index: 10000;
         }
         #close-invitation:hover { color: #fca5a5; }
+        #modal-image {
+            transform-origin: center center;
+            max-width: 90vw;
+            max-height: 90vh;
+            transition: transform 0.1s ease-out;
+        }
+        header {
+            padding-bottom: 1rem !important;
+        }
+        #bg-music-control {
+            margin-top: 1rem;
+            text-align: center;
+            cursor: pointer;
+        }
+        @media (max-width: 768px) {
+            header {
+                padding-bottom: 0.5rem !important;
+            }
+            #bg-music-control {
+                margin-top: 0.8rem;
+            }
+        }
+        @media (max-width: 480px) {
+            #bg-music-control {
+                margin-top: 0.6rem;
+            }
+        }
+        #bg-music-icon-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+        #bg-icon {
+            font-size: 2.5rem;
+            color: #dc2626;
+            filter: drop-shadow(0 2px 4px rgba(220, 38, 38, 0.3));
+            transition: transform 0.3s ease;
+        }
+        #bg-music-control:hover #bg-icon {
+            transform: scale(1.2);
+        }
+        #mute-overlay {
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.2rem;
+            color: #b91c1c;
+            background: white;
+            border-radius: 50%;
+            width: 1.6rem;
+            height: 1.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+        #mute-overlay.visible {
+            opacity: 1;
+        }
+        #bg-click-text {
+            display: block;
+            margin-top: 0.4rem;
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #dc2626;
+        }
+        #bg-music-tooltip {
+            margin-top: 0.8rem;
+            padding: 0.75rem 1rem;
+            background: rgba(220, 38, 38, 0.1);
+            border: 2px solid #dc2626;
+            border-radius: 12px;
+            max-width: 280px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 0.875rem;
+            font-weight: bold;
+            color: #dc2626;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.15);
+        }
+        #bg-music-tooltip.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        #bg-music-tooltip::before {
+            content: '♪';
+            margin-right: 0.5rem;
+            font-size: 1.2rem;
+        }
+        @media (max-width: 768px) {
+            #bg-icon {
+                font-size: 2.3rem;
+            }
+            #mute-overlay {
+                font-size: 1.1rem;
+                width: 1.5rem;
+                height: 1.5rem;
+            }
+            #bg-click-text {
+                margin-top: 0.3rem;
+                font-size: 0.85rem;
+            }
+            #bg-music-tooltip {
+                padding: 0.6rem 0.9rem;
+                font-size: 0.8rem;
+                max-width: 260px;
+            }
+        }
+        @media (max-width: 480px) {
+            #bg-icon {
+                font-size: 2.1rem;
+            }
+            #mute-overlay {
+                font-size: 1rem;
+                width: 1.4rem;
+                height: 1.4rem;
+            }
+            #bg-click-text {
+                margin-top: 0.2rem;
+                font-size: 0.8rem;
+            }
+            #bg-music-tooltip {
+                font-size: 0.75rem;
+                max-width: 240px;
+            }
+        }
         .fade-in-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity .8s cubic-bezier(.25,.46,.45,.94), transform .8s cubic-bezier(.25,.46,.45,.94); }
         .fade-in-on-scroll.visible { opacity: 1; transform: translateY(0); }
         .photo-container { position: relative; overflow: hidden; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); aspect-ratio: 1/1; }
@@ -215,19 +338,130 @@
         .photo-number { position: absolute; bottom: 0.5rem; right: 0.75rem; color: white; font-size: 1rem; font-weight: bold; text-shadow: 1px 1px 3px rgba(0,0,0,0.9); opacity: 0; transition: opacity .3s ease-in-out; }
         .group:hover .photo-number { opacity: 1; }
         .photo-container.no-note .photo-note { display: none; }
-        #toggle-gallery-btn, #toggle-video-gallery-btn {
-            background: rgba(220, 38, 38, 0.5); color: #000000 !important; border: 1px solid rgba(185, 28, 28, 0.4);
-            transition: all 0.2s ease; backdrop-filter: blur(4px);
+        /* Fotoğraf Galerisini Gör - Daha şeffaf açık kırmızı */
+        #toggle-gallery-btn {
+            background: rgba(220, 38, 38, 0.5);
+            color: #000000 !important;
+            border: 1px solid rgba(185, 28, 28, 0.4);
+            transition: all 0.2s ease;
+            backdrop-filter: blur(4px);
         }
-        #toggle-gallery-btn:hover, #toggle-video-gallery-btn:hover {
-            background: rgba(185, 28, 28, 0.65); border-color: rgba(153, 27, 27, 0.5); transform: translateY(-1px);
+        #toggle-gallery-btn:hover {
+            background: rgba(185, 28, 28, 0.65);
+            border-color: rgba(153, 27, 27, 0.5);
+            transform: translateY(-1px);
         }
-        #toggle-gallery-btn i, #toggle-video-gallery-btn i { color: #000000 !important; }
-        main { padding-bottom: 0 !important; }
-        section:last-of-type { padding-bottom: 2rem !important; margin-bottom: 0 !important; }
-        #footer-section { display: flex; flex-direction: column; align-items: center; gap: 2rem; padding: 2rem 1rem; position: relative; }
-        #qr-wrapper { display: flex; flex-direction: column; align-items: center; }
-        #site-address { margin-top: 1rem; font-size: 1.125rem; font-weight: 500; color: #dc2626; text-align: center; }
+        /* Video Galerisini Gör - Aynı şeffaf açık kırmızı */
+        #toggle-video-gallery-btn {
+            background: rgba(220, 38, 38, 0.5);
+            color: #000000 !important;
+            border: 1px solid rgba(185, 28, 28, 0.4);
+            transition: all 0.2s ease;
+            backdrop-filter: blur(4px);
+        }
+        #toggle-video-gallery-btn:hover {
+            background: rgba(185, 28, 28, 0.65);
+            border-color: rgba(153, 27, 27, 0.5);
+            transform: translateY(-1px);
+        }
+        /* Buton içindeki ikon da siyah */
+        #toggle-gallery-btn i,
+        #toggle-video-gallery-btn i {
+            color: #000000 !important;
+        }
+        .interlocked-hearts {
+            position: relative;
+            display: inline-block;
+            width: 14vw;
+            height: 10vw;
+            margin: 0 1em;
+        }
+        .heart-yellow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 10vw;
+            color: #facc15;
+            -webkit-text-stroke: 3px black;
+            paint-order: stroke fill;
+            z-index: 2;
+        }
+        .heart-green {
+            position: absolute;
+            top: 0;
+            left: 45%;
+            font-size: 10vw;
+            color: #dc2626;
+            -webkit-text-stroke: 3px black;
+            paint-order: stroke fill;
+            z-index: 1;
+        }
+        @media (min-width: 768px) {
+            .interlocked-hearts {
+                width: 8vw;
+                height: 5vw;
+                margin: 0 1.5em;
+            }
+            .heart-yellow, .heart-green {
+                font-size: 5vw;
+                -webkit-text-stroke: 2px black;
+            }
+            .heart-green {
+                left: 50%;
+                color: #dc2626;
+            }
+        }
+        #countdown-placeholder p {
+            color: #e91e63 !important;
+        }
+        #map-section p {
+            color: #556b2f !important;
+        }
+        .invitation-description p {
+            color: #2563eb !important;
+        }
+        .photo-gallery-description p {
+            color: #6b8e23 !important;
+        }
+        .video-gallery-description p {
+            color: #9333ea !important;
+        }
+        .thank-you-message p {
+            color: #06b6d4 !important;
+        }
+        main {
+            padding-bottom: 0 !important;
+        }
+        section:last-of-type {
+            padding-bottom: 2rem !important;
+            margin-bottom: 0 !important;
+        }
+        #footer-qr .gallery-thumbnail {
+            transition: none !important;
+        }
+        #footer-qr:hover .gallery-thumbnail {
+            transform: none !important;
+        }
+        #footer-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+            padding: 2rem 1rem;
+            position: relative;
+        }
+        #qr-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #site-address {
+            margin-top: 1rem;
+            font-size: 1.125rem;
+            font-weight: 500;
+            color: #dc2626;
+            text-align: center;
+        }
     </style>
 </head>
 <body class="text-black">
@@ -235,29 +469,39 @@
     <div id="falling-leaves-container"></div>
     <div id="falling-hearts-container"></div>
     <div id="falling-flowers-container"></div>
-
+    <div id="bg-youtube-player" style="position:fixed; top:-100%; left:0; width:1px; height:1px; opacity:0; pointer-events:none;"></div>
     <header class="py-16 text-center relative z-20 overflow-hidden">
         <div class="relative">
             <div class="relative z-10">
                 <h1 class="font-bold flex items-center justify-center handwriting leading-tight">
                     <span class="header-name">Arzu</span>
-                    <span class="mx-8 md:mx-12">
-                        <i class="fa-solid fa-heart text-5xl md:text-7xl text-red-600 heartbeat"></i>
+                    <span class="interlocked-hearts">
+                        <i class="fa-solid fa-heart heart-yellow"></i>
+                        <i class="fa-solid fa-heart heart-green"></i>
                     </span>
                     <span class="header-name">Ersin</span>
                 </h1>
                 <p class="text-xl md:text-2xl text-red-600 mt-10">Bizim Yolculuğumuz</p>
             </div>
+            <div id="bg-music-control" title="Arka plan müziği">
+                <div id="bg-music-icon-wrapper">
+                    <i class="fas fa-headphones" id="bg-icon"></i>
+                    <div id="mute-overlay">
+                        <i class="fas fa-times"></i>
+                    </div>
+                </div>
+                <span id="bg-click-text">Tıkla</span>
+                <div id="bg-music-tooltip">
+                    Sitemizi incelerken bizim sevdiğimiz müzikleri dinleyebilirsiniz ♪
+                </div>
+            </div>
         </div>
     </header>
-
     <section id="main-title-section" class="py-8 text-center">
         <h2 id="main-title" class="font-bold handwriting text-green-600">O Güzel Sonbahar günü</h2>
         <p class="text-xl md:text-2xl mt-2 text-red-600 font-bold">27 Eylül 2025</p>
     </section>
-
     <main class="container mx-auto px-6 pb-12 relative z-20">
-
         <section class="max-w-3xl mx-auto my-12 text-center">
             <h3 id="ilk-adim-baslik" class="font-bold text-red-600 mb-4">İlk Adım</h3>
             <p class="text-lg leading-relaxed font-medium font-[550] text-black">
@@ -273,7 +517,6 @@
             </p>
             <div class="text-4xl text-red-500 mt-8 heartbeat"><i class="fas fa-heart"></i></div>
         </section>
-
         <section class="my-16 max-w-3xl mx-auto text-center">
             <h3 id="sonbahar-baslik" class="font-bold text-center text-red-600 mb-6 handwriting font-forte-alternative">Sonbahar şiiri</h3>
             <div class="poem-container">
@@ -290,24 +533,37 @@
             </div>
             <p class="text-right text-green-600 font-semibold-bold mt-6 pr-4 font-forte-alternative poem-signature">- Nazım Hikmet</p>
         </section>
-
         <section class="my-16 max-w-3xl mx-auto text-center">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Aramızda Geçen İki Güzel Söz</h3>
             <div class="max-w-2xl mx-auto space-y-6">
-                <p class="text-xl md:text-2xl leading-relaxed italic text-blue-600 font-medium">" Bana iyi hissettiriyorsun sen bu zamana kadar nerelerdeydin "</p>
+                <div>
+                    <p class="text-xl md:text-2xl leading-relaxed italic text-blue-600 font-medium">
+                        " Bana iyi hissettiriyorsun sen bu zamana kadar nerelerdeydin "
+                    </p>
+                </div>
                 <div class="text-center text-4xl text-red-500 heartbeat mb-4"><i class="fas fa-heart"></i></div>
-                <p class="text-xl md:text-2xl leading-relaxed italic text-blue-600 font-medium">" Asıl sen neredeydin meğersem çok yakınmışız "</p>
+                <div>
+                    <p class="text-xl md:text-2xl leading-relaxed italic text-blue-600 font-medium">
+                        " Asıl sen neredeydin meğersem çok yakınmışız "
+                    </p>
+                </div>
             </div>
         </section>
-
         <section id="countdown-section" class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 font-forte-alternative">Büyük Güne Geri Sayım</h3>
             <div id="countdown-placeholder" class="my-4">
                 <div class="text-8xl text-red-500 heartbeat"><i class="fas fa-infinity"></i></div>
-                <p class="text-center font-semibold italic text-lg mt-4">Sonsuzluğa giden yolculuğumuzun tarihi belli olduğunda...</p>
+                <p class="text-center font-semibold italic text-lg mt-4">
+                    Sonsuzluğa giden yolculuğumuzun tarihi belli olduğunda...
+                </p>
+            </div>
+            <div id="countdown-timer" class="hidden grid grid-cols-4 gap-4 text-center">
+                <div><span id="days" class="block text-5xl font-bold text-green-600">0</span><span class="text-sm text-red-600">Gün</span></div>
+                <div><span id="hours" class="block text-5xl font-bold text-green-600">00</span><span class="text-sm text-red-600">Saat</span></div>
+                <div><span id="minutes" class="block text-5xl font-bold text-green-600">00</span><span class="text-sm text-red-600">Dakika</span></div>
+                <div><span id="seconds" class="block text-5xl font-bold text-green-600">00</span><span class="text-sm text-red-600">Saniye</span></div>
             </div>
         </section>
-
         <section id="map-section" class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Düğün Mekanımız</h3>
             <div class="flex flex-col items-center mb-8">
@@ -316,9 +572,10 @@
                 </a>
                 <div class="map-click-text">Tıkla</div>
             </div>
-            <p class="text-center font-semibold italic text-lg mt-6 leading-relaxed px-6 max-w-2xl mx-auto">Seninle sonsuzluğa adım attığımız yer 💙</p>
+            <p class="text-center font-semibold italic text-lg mt-6 leading-relaxed px-6 max-w-2xl mx-auto">
+                Seninle sonsuzluğa adım attığımız yer 💙
+            </p>
         </section>
-
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Davetiyemiz</h3>
             <div class="flex flex-col items-center">
@@ -328,16 +585,35 @@
                 <div class="invitation-click-text">Tıkla</div>
             </div>
             <div class="mt-6 max-w-2xl mx-auto invitation-description">
-                <p class="text-center font-semibold italic text-lg leading-relaxed px-6">Bu bir davetiye değil, size yazdığımız bir mutluluk mektubu 💚</p>
+                <p class="text-center font-semibold italic text-lg leading-relaxed px-6">
+                    Bu bir davetiye değil, size yazdığımız bir mutluluk mektubu 💚
+                </p>
             </div>
         </section>
-
         <div id="invitation-modal">
-            <span id="close-invitation">×</span>
+            <span id="close-invitation">X</span>
             <img id="invitation-image" src="https://i.imgur.com/2nywEc1.jpeg" alt="Arzu & Ersin Düğün Davetiyesi">
         </div>
-
-        <!-- Fotoğraf Galerisi -->
+        <section class="my-16 max-w-3xl mx-auto transparent-section text-center relative overflow-hidden">
+            <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Bizim Şarkımız</h3>
+            <p class="text-center text-black font-semibold italic mt-2 mb-6">Tarkan - Beni Çok Sev</p>
+            <div class="song-container">
+                <iframe id="youtube-player"
+                        src="https://www.youtube.com/embed/IYnu4-69fTA?autoplay=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1"
+                        title="Tarkan - Beni Çok Sev"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                <div id="music-visualizer" class="music-visualizer">
+                    <div class="note">♪</div><div class="note">♪</div><div class="note">♪</div><div class="note">♪</div>
+                    <div class="note">♪</div><div class="note">♪</div><div class="note">♪</div><div class="note">♪</div>
+                </div>
+                <div class="song-control">
+                    <div class="song-label">Dinle</div>
+                    <button id="play-song-btn" title="Şarkıyı Çal"><i class="fas fa-play"></i></button>
+                </div>
+            </div>
+        </section>
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Fotoğraf Galerimiz</h3>
             <div class="photo-gallery-description">
@@ -440,8 +716,6 @@
                 </div>
             </div>
         </section>
-
-        <!-- Video Galerisi -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Video Galerimiz</h3>
             <div class="video-gallery-description">
@@ -508,7 +782,6 @@
                 </div>
             </div>
         </section>
-
         <section class="my-16 max-w-3xl mx-auto transparent-section">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Teşekkür</h3>
             <div class="thank-you-message">
@@ -541,7 +814,6 @@
                 </div>
             </div>
         </section>
-
         <section id="footer-section" class="my-12 text-center">
             <div id="qr-wrapper">
                 <div id="footer-qr" class="photo-container inline-block">
@@ -556,16 +828,13 @@
                 </p>
             </div>
         </section>
-
     </main>
-
     <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
         <span id="close-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
         <img id="modal-image" src="" alt="Büyütülmüş Fotoğraf" class="max-w-[90vw] max-h-[90vh] rounded-lg shadow-lg">
         <span id="prev-photo" class="absolute top-1/2 left-4 -translate-y-1/2 text-white text-6xl font-bold cursor-pointer hover:text-gray-300 transition-colors select-none"><</span>
         <span id="next-photo" class="absolute top-1/2 right-4 -translate-y-1/2 text-white text-6xl font-bold cursor-pointer hover:text-gray-300 transition-colors select-none">></span>
     </div>
-
     <div id="video-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
         <span id="close-video-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
         <div class="aspect-video w-full max-w-4xl"><iframe id="modal-video-iframe" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
@@ -574,8 +843,41 @@
     <script>
     (() => {
         'use strict';
+        const bgControl = document.getElementById('bg-music-control');
+        const muteOverlay = document.getElementById('mute-overlay');
+        const tooltip = document.getElementById('bg-music-tooltip');
+        let isBgEnabled = true;
+        let tooltipVisible = false;
 
-        // falling hearts, leaves, flowers (orijinal hali)
+        bgControl.addEventListener('click', (e) => {
+            if (e.target.closest('#bg-music-tooltip')) return;
+            isBgEnabled = !isBgEnabled;
+            if (isBgEnabled && bgPlayer) {
+                bgPlayer.unMute();
+                bgPlayer.playVideo();
+                bgPlayer.setVolume(70);
+                muteOverlay.classList.remove('visible');
+            } else if (bgPlayer) {
+                bgPlayer.mute();
+                muteOverlay.classList.add('visible');
+            }
+            showTooltipTemporarily();
+        });
+
+        tooltip.addEventListener('click', (e) => e.stopPropagation());
+
+        function showTooltipTemporarily() {
+            tooltip.classList.add('visible');
+            tooltipVisible = true;
+            setTimeout(() => {
+                if (tooltipVisible) {
+                    tooltip.classList.remove('visible');
+                    tooltipVisible = false;
+                }
+            }, 4000);
+        }
+
+        // Falling elements (hearts, leaves, flowers) - aynı kaldı
         const hearts = ['💛'];
         const heartContainer = document.getElementById('falling-hearts-container');
         for (let i = 0; i < 2; i++) {
@@ -590,6 +892,7 @@
             heart.style.fontSize = size + 'rem';
             heartContainer.appendChild(heart);
         }
+
         const leafSVG = `<svg viewBox="0 0 100 140" class="w-full h-full" preserveAspectRatio="xMidYMid meet"><path class="leaf-outer" d="M50 10 C30 15, 20 35, 18 55 C16 75, 25 95, 35 115 C45 130, 48 135, 50 138 C52 135, 55 130, 65 115 C75 95, 84 75, 82 55 C80 35, 70 15, 50 10 Z" /><path class="leaf-inner" d="M50 15 C33 20, 25 38, 23 55 C21 72, 28 88, 36 108 C44 125, 48 132, 50 135 C52 132, 56 125, 64 108 C72 88, 79 72, 77 55 C75 38, 67 20, 50 15 Z" /><path d="M50 15 Q50 70 48 135" stroke="#fff" stroke-width="2.5" opacity="0.5" fill="none"/><path d="M50 15 Q35 40 28 48 M50 55 Q32 65 25 75 M50 80 Q30 90 23 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/><path d="M50 15 Q65 40 72 48 M50 55 Q68 65 75 75 M50 80 Q70 90 77 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/></svg>`;
         const leafColors = ['autumn-1','autumn-2','autumn-3','autumn-4','autumn-5','autumn-6','autumn-7','autumn-8','autumn-9','autumn-10'];
         const leafContainer = document.getElementById('falling-leaves-container');
@@ -606,6 +909,7 @@
             leaf.innerHTML = leafSVG;
             leafContainer.appendChild(leaf);
         }
+
         const flowers = ['🌸', '🌻'];
         const flowerContainer = document.getElementById('falling-flowers-container');
         for (let i = 0; i < 2; i++) {
@@ -621,7 +925,6 @@
             flowerContainer.appendChild(flower);
         }
 
-        // lazy load
         const lazyLoadObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting && entry.target.dataset.src) {
@@ -632,43 +935,56 @@
         }, { rootMargin: '50px' });
         document.querySelectorAll('img[data-src]').forEach(img => lazyLoadObserver.observe(img));
 
-        // fotoğraf galerisi değişkenleri
         let photoUrls = [];
         let currentPhotoIndex = 0;
-        let currentScale = 1;
-        let currentTranslateX = 0;
-        let currentTranslateY = 0;
-        let pinchStartScale = 1;
-        let pinchStartMidX = 0;
-        let pinchStartMidY = 0;
+        let scale = 1;
+        let translateX = 0;
+        let translateY = 0;
+        let initialDistance = 0;
+        let initialScale = 1;
+        let startClientX = 0;
+        let startClientY = 0;
+        let startTranslateX = 0;
+        let startTranslateY = 0;
+        let isPanning = false;
+        const sensitivity = 0.5;
 
         const modal = document.getElementById('image-modal');
         const modalImage = document.getElementById('modal-image');
 
         const updateTransform = () => {
-            modalImage.style.transform = `translate(${currentTranslateX}px, ${currentTranslateY}px) scale(${currentScale})`;
+            modalImage.style.transform = `scale(${scale}) translate(${translateX}px, ${translateY}px)`;
         };
 
         const buildPhotoArray = () => {
-            photoUrls = Array.from(document.querySelectorAll('#gallery-grid img[data-src]')).map(img => img.dataset.src || '');
+            photoUrls = Array.from(document.querySelectorAll('#gallery-grid img[data-src]')).map(img => img.dataset.src);
+        };
+
+        const getDistance = (touch1, touch2) => {
+            const dx = touch1.clientX - touch2.clientX;
+            const dy = touch1.clientY - touch2.clientY;
+            return Math.sqrt(dx * dx + dy * dy);
         };
 
         const openPhoto = (index) => {
             buildPhotoArray();
-            if (index < 0 || index >= photoUrls.length) return;
             currentPhotoIndex = index;
             modalImage.src = photoUrls[currentPhotoIndex];
-            currentScale = 1;
-            currentTranslateX = 0;
-            currentTranslateY = 0;
+            scale = 1;
+            translateX = 0;
+            translateY = 0;
+            initialScale = 1;
+            isPanning = false;
             updateTransform();
             modal.classList.replace('hidden', 'flex');
         };
 
         const closePhoto = () => {
-            currentScale = 1;
-            currentTranslateX = 0;
-            currentTranslateY = 0;
+            scale = 1;
+            translateX = 0;
+            translateY = 0;
+            initialScale = 1;
+            isPanning = false;
             updateTransform();
             modal.classList.replace('flex', 'hidden');
             modalImage.src = '';
@@ -677,118 +993,67 @@
         const nextPhoto = () => {
             currentPhotoIndex = (currentPhotoIndex + 1) % photoUrls.length;
             modalImage.src = photoUrls[currentPhotoIndex];
-            currentScale = 1;
-            currentTranslateX = 0;
-            currentTranslateY = 0;
+            scale = 1;
+            translateX = 0;
+            translateY = 0;
+            initialScale = 1;
+            isPanning = false;
             updateTransform();
         };
 
         const prevPhoto = () => {
             currentPhotoIndex = (currentPhotoIndex - 1 + photoUrls.length) % photoUrls.length;
             modalImage.src = photoUrls[currentPhotoIndex];
-            currentScale = 1;
-            currentTranslateX = 0;
-            currentTranslateY = 0;
+            scale = 1;
+            translateX = 0;
+            translateY = 0;
+            initialScale = 1;
+            isPanning = false;
             updateTransform();
         };
 
-        // fotoğraf modalı pinch zoom (mobil) – preventDefault koşullu
-        modal.addEventListener('touchstart', e => {
+        modal.addEventListener('touchstart', (e) => {
             if (e.touches.length === 2) {
-                // 2 parmak → doğal pinch'e izin ver, preventDefault YAPMA
-                const t1 = e.touches[0];
-                const t2 = e.touches[1];
-                pinchStartMidX = (t1.clientX + t2.clientX) / 2;
-                pinchStartMidY = (t1.clientY + t2.clientY) / 2;
-                pinchStartScale = currentScale;
-            } else if (e.touches.length === 1 && currentScale > 1.05) {
-                e.preventDefault(); // sadece pan için engelle
-            }
-        }, { passive: false });
-
-        modal.addEventListener('touchmove', e => {
-            if (e.touches.length === 2) {
-                const t1 = e.touches[0];
-                const t2 = e.touches[1];
-                const midX = (t1.clientX + t2.clientX) / 2;
-                const midY = (t1.clientY + t2.clientY) / 2;
-                const distStart = Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY);
-                const distNow = Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY);
-                const scaleFactor = distNow / distStart;
-                const newScale = pinchStartScale * scaleFactor;
-                const originX = midX - currentTranslateX;
-                const originY = midY - currentTranslateY;
-                currentTranslateX = midX - originX * (newScale / pinchStartScale);
-                currentTranslateY = midY - originY * (newScale / pinchStartScale);
-                currentScale = Math.max(0.6, Math.min(15, newScale));
-                updateTransform();
-                modalImage.classList.toggle('zoomed', currentScale > 1.08);
-                // preventDefault YAPILMADI → doğal zoom da çalışır
-            } else if (e.touches.length === 1) {
                 e.preventDefault();
-            }
-        }, { passive: false });
-
-        modal.addEventListener('touchend', () => {
-            if (currentScale < 1.15) {
-                currentScale = 1;
-                currentTranslateX = 0;
-                currentTranslateY = 0;
-                updateTransform();
-                modalImage.classList.remove('zoomed');
+                initialDistance = getDistance(e.touches[0], e.touches[1]);
+                initialScale = scale;
+                isPanning = false;
+            } else if (e.touches.length === 1 && scale > 1) {
+                startClientX = e.touches[0].clientX;
+                startClientY = e.touches[0].clientY;
+                startTranslateX = translateX;
+                startTranslateY = translateY;
+                isPanning = true;
             }
         });
 
-        // fare tekerleği zoom
-        const ZOOM_SPEED = 0.00065;
-        const MIN_SCALE = 0.6;
-        const MAX_SCALE = 12;
-        modal.addEventListener('wheel', (e) => {
-            e.preventDefault();
-            const delta = e.deltaY > 0 ? -ZOOM_SPEED : ZOOM_SPEED;
-            const prevScale = currentScale;
-            currentScale += delta * 150;
-            currentScale = Math.max(MIN_SCALE, Math.min(MAX_SCALE, currentScale));
-            const ratio = currentScale / prevScale;
-            currentTranslateX *= ratio;
-            currentTranslateY *= ratio;
-            updateTransform();
-            modalImage.classList.toggle('zoomed', currentScale > 1.08);
-            if (currentScale < 1.12) {
-                currentTranslateX = 0;
-                currentTranslateY = 0;
+        modal.addEventListener('touchmove', (e) => {
+            if (e.touches.length === 2) {
+                e.preventDefault();
+                const newDistance = getDistance(e.touches[0], e.touches[1]);
+                const factor = newDistance / initialDistance;
+                scale = Math.max(0.1, initialScale * factor);
+                updateTransform();
+                isPanning = false;
+            } else if (e.touches.length === 1 && isPanning) {
+                e.preventDefault();
+                const deltaX = (e.touches[0].clientX - startClientX) * sensitivity;
+                const deltaY = (e.touches[0].clientY - startClientY) * sensitivity;
+                translateX = startTranslateX + deltaX;
+                translateY = startTranslateY + deltaY;
                 updateTransform();
             }
-        }, { passive: false });
-
-        // fare sürükleme
-        let panStartX = 0;
-        let panStartY = 0;
-        let panStartTranslateX = 0;
-        let panStartTranslateY = 0;
-        modal.addEventListener('mousedown', (e) => {
-            if (currentScale <= 1.05) return;
-            if (e.button !== 0) return;
-            panStartX = e.clientX;
-            panStartY = e.clientY;
-            panStartTranslateX = currentTranslateX;
-            panStartTranslateY = currentTranslateY;
-            modalImage.style.cursor = 'grabbing';
-            e.preventDefault();
-        });
-        window.addEventListener('mousemove', (e) => {
-            if (e.buttons !== 1) return;
-            const dx = e.clientX - panStartX;
-            const dy = e.clientY - panStartY;
-            currentTranslateX = panStartTranslateX + dx;
-            currentTranslateY = panStartTranslateY + dy;
-            updateTransform();
-        });
-        window.addEventListener('mouseup', () => {
-            modalImage.style.cursor = currentScale > 1.08 ? 'grab' : 'zoom-in';
         });
 
-        // galeri toggle (fotoğraf)
+        modal.addEventListener('touchend', (e) => {
+            isPanning = false;
+            if (scale <= 1.1) {
+                translateX = 0;
+                translateY = 0;
+                updateTransform();
+            }
+        });
+
         document.getElementById('toggle-gallery-btn').addEventListener('click', () => {
             const wrapper = document.getElementById('gallery-wrapper');
             wrapper.classList.toggle('hidden');
@@ -808,12 +1073,6 @@
             }
         });
 
-        document.getElementById('close-modal').onclick = closePhoto;
-        document.getElementById('prev-photo').onclick = e => { e.stopPropagation(); prevPhoto(); };
-        document.getElementById('next-photo').onclick = e => { e.stopPropagation(); nextPhoto(); };
-        modal.onclick = e => { if (e.target === modal) closePhoto(); };
-
-        // video galerisi toggle
         document.getElementById('toggle-video-gallery-btn').addEventListener('click', () => {
             const wrapper = document.getElementById('video-gallery-wrapper');
             wrapper.classList.toggle('hidden');
@@ -823,18 +1082,13 @@
                 text.textContent = 'Video Galerisini Gör';
                 icon.classList.remove('rotate-180');
             } else {
-                text.textContent = 'Galeriyi Gizle';
+                text.textContent = 'Video Galerisini Gizle';
                 icon.classList.add('rotate-180');
                 setTimeout(() => {
-                    document.querySelectorAll('#video-grid .photo-container').forEach(container => {
-                        container.onclick = () => {
-                            const youtubeId = container.getAttribute('data-youtube-id');
-                            if (youtubeId) {
-                                const videoModal = document.getElementById('video-modal');
-                                const iframe = document.getElementById('modal-video-iframe');
-                                iframe.src = `https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0&modestbranding=1&playsinline=1`;
-                                videoModal.classList.replace('hidden', 'flex');
-                            }
+                    document.querySelectorAll('#video-grid .photo-container').forEach(el => {
+                        el.onclick = () => {
+                            document.getElementById('modal-video-iframe').src = `https://www.youtube.com/embed/${el.dataset.youtubeId}?autoplay=1`;
+                            document.getElementById('video-modal').classList.replace('hidden', 'flex');
                         };
                     });
                 }, 100);
@@ -842,20 +1096,29 @@
         });
 
         document.getElementById('close-video-modal').onclick = () => {
-            const videoModal = document.getElementById('video-modal');
-            const iframe = document.getElementById('modal-video-iframe');
-            iframe.src = '';
-            videoModal.classList.replace('flex', 'hidden');
+            document.getElementById('video-modal').classList.replace('flex', 'hidden');
+            document.getElementById('modal-video-iframe').src = '';
         };
 
         document.getElementById('video-modal').onclick = e => {
-            if (e.target === document.getElementById('video-modal')) {
-                document.getElementById('close-video-modal').click();
-            }
+            if (e.target === e.currentTarget) document.getElementById('close-video-modal').click();
         };
 
-        // şarkı çalar
-        let player, isPlaying = false;
+        document.getElementById('close-modal').onclick = closePhoto;
+        document.getElementById('prev-photo').onclick = e => { e.stopPropagation(); prevPhoto(); };
+        document.getElementById('next-photo').onclick = e => { e.stopPropagation(); nextPhoto(); };
+        modal.onclick = e => { if (e.target === modal) closePhoto(); };
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') { 
+                closePhoto(); 
+                if (document.getElementById('video-modal').classList.contains('flex')) document.getElementById('close-video-modal').click(); 
+            }
+            if (e.key === 'ArrowRight' && document.getElementById('image-modal').classList.contains('flex')) nextPhoto();
+            if (e.key === 'ArrowLeft' && document.getElementById('image-modal').classList.contains('flex')) prevPhoto();
+        });
+
+        let player, bgPlayer, isPlaying = false;
         const playBtn = document.getElementById('play-song-btn');
         const playerElement = document.getElementById('youtube-player');
         const musicVisualizer = document.getElementById('music-visualizer');
@@ -865,6 +1128,45 @@
         document.getElementsByTagName('script')[0].parentNode.insertBefore(tag, document.getElementsByTagName('script')[0]);
 
         window.onYouTubeIframeAPIReady = function() {
+            bgPlayer = new YT.Player('bg-youtube-player', {
+                height: '0', 
+                width: '0', 
+                videoId: 'rYJjgfCfBOU',
+                playerVars: { 
+                    autoplay: 0, 
+                    controls: 0, 
+                    modestbranding: 1, 
+                    playsinline: 1, 
+                    enablejsapi: 1, 
+                    iv_load_policy: 3, 
+                    fs: 0, 
+                    rel: 0 
+                },
+                events: {
+                    onReady: function(event) {
+                        event.target.mute();
+                        event.target.playVideo();
+                        const unlockAndPlay = () => {
+                            event.target.unMute();
+                            event.target.setVolume(70);
+                            document.body.removeEventListener('click', unlockAndPlay);
+                            document.body.removeEventListener('touchstart', unlockAndPlay);
+                        };
+                        document.body.addEventListener('click', unlockAndPlay);
+                        document.body.addEventListener('touchstart', unlockAndPlay);
+                    },
+                    onStateChange: function(event) {
+                        if (event.data === YT.PlayerState.ENDED) {
+                            const playlist = ['rYJjgfCfBOU', 'ZeS7Fjk2sKk', 'mTZRQltuHRc', 'fn0TjVY6Y1w', 'Rcq0LqEx3-E'];
+                            const currentId = event.target.getVideoData().video_id;
+                            let nextIndex = playlist.indexOf(currentId) + 1;
+                            if (nextIndex >= playlist.length) nextIndex = 0;
+                            event.target.loadVideoById(playlist[nextIndex]);
+                        }
+                    }
+                }
+            });
+
             player = new YT.Player('youtube-player', {
                 events: {
                     'onStateChange': e => {
@@ -874,36 +1176,51 @@
                             playBtn.classList.add('playing');
                             playerElement.classList.add('show');
                             musicVisualizer.classList.add('hidden');
+
+                            // ARKA PLAN MÜZİĞİNİ DURAKLAT (1 numaralı çözüm)
+                            if (bgPlayer) bgPlayer.pauseVideo();
                         } else {
                             isPlaying = false;
                             playBtn.innerHTML = '<i class="fas fa-play"></i>';
                             playBtn.classList.remove('playing');
                             playerElement.classList.remove('show');
                             musicVisualizer.classList.remove('hidden');
+
+                            // ARKA PLAN MÜZİĞİNİ TEKRAR BAŞLAT
+                            if (isBgEnabled && bgPlayer) bgPlayer.playVideo();
                         }
                     }
                 }
             });
         };
 
-        playBtn.onclick = e => {
-            e.stopPropagation();
+        playBtn.onclick = e => { 
+            e.stopPropagation(); 
             if (player) {
-                if (isPlaying) player.pauseVideo();
-                else player.playVideo();
+                if (isPlaying) {
+                    player.pauseVideo();
+                } else {
+                    player.playVideo();
+                }
             }
         };
 
-        // DAVETİYE MODALI + ZOOM
         const invitationModal = document.getElementById('invitation-modal');
         const invitationImage = document.getElementById('invitation-image');
-
         let invitationScale = 1;
         let invitationTranslateX = 0;
         let invitationTranslateY = 0;
+        let invitationInitialDistance = 0;
+        let invitationInitialScale = 1;
+        let invitationStartClientX = 0;
+        let invitationStartClientY = 0;
+        let invitationStartTranslateX = 0;
+        let invitationStartTranslateY = 0;
+        let invitationIsPanning = false;
+        const invitationSensitivity = 0.5;
 
         const updateInvitationTransform = () => {
-            invitationImage.style.transform = `translate(${invitationTranslateX}px, ${invitationTranslateY}px) scale(${invitationScale})`;
+            invitationImage.style.transform = `scale(${invitationScale}) translate(${invitationTranslateX}px, ${invitationTranslateY}px)`;
         };
 
         const resetInvitation = () => {
@@ -911,76 +1228,167 @@
             invitationTranslateX = 0;
             invitationTranslateY = 0;
             updateInvitationTransform();
-            invitationImage.classList.remove('zoomed');
         };
 
-        document.getElementById('invitation-icon').addEventListener('click', () => {
-            invitationModal.classList.add('show');
-            resetInvitation();
+        invitationModal.addEventListener('touchstart', (e) => {
+            if (e.touches.length === 2) {
+                e.preventDefault();
+                invitationInitialDistance = getDistance(e.touches[0], e.touches[1]);
+                invitationInitialScale = invitationScale;
+                invitationIsPanning = false;
+            } else if (e.touches.length === 1 && invitationScale > 1) {
+                invitationStartClientX = e.touches[0].clientX;
+                invitationStartClientY = e.touches[0].clientY;
+                invitationStartTranslateX = invitationTranslateX;
+                invitationStartTranslateY = invitationTranslateY;
+                invitationIsPanning = true;
+            }
         });
 
-        document.getElementById('close-invitation').addEventListener('click', () => {
-            invitationModal.classList.remove('show');
-            resetInvitation();
+        invitationModal.addEventListener('touchmove', (e) => {
+            if (e.touches.length === 2) {
+                e.preventDefault();
+                const newDistance = getDistance(e.touches[0], e.touches[1]);
+                const factor = newDistance / invitationInitialDistance;
+                invitationScale = Math.max(0.5, invitationInitialScale * factor);
+                updateInvitationTransform();
+                invitationIsPanning = false;
+            } else if (e.touches.length === 1 && invitationIsPanning) {
+                e.preventDefault();
+                const deltaX = (e.touches[0].clientX - invitationStartClientX) * invitationSensitivity;
+                const deltaY = (e.touches[0].clientY - invitationStartClientY) * invitationSensitivity;
+                invitationTranslateX = invitationStartTranslateX + deltaX;
+                invitationTranslateY = invitationStartTranslateY + deltaY;
+                updateInvitationTransform();
+            }
         });
 
-        invitationModal.addEventListener('click', e => {
-            if (e.target === invitationModal) {
-                invitationModal.classList.remove('show');
+        invitationModal.addEventListener('touchend', () => {
+            invitationIsPanning = false;
+            if (invitationScale <= 1.1) {
                 resetInvitation();
             }
         });
 
-        // Davetiye için pinch zoom (mobil)
-        let invitationPinchStartScale = 1;
-        let invitationPinchStartMidX = 0;
-        let invitationPinchStartMidY = 0;
+        if (window.innerWidth > 768 && !('ontouchstart' in window)) {
+            let invitationCurrentScale = 1;
+            let invitationCurrentTranslateX = 0;
+            let invitationCurrentTranslateY = 0;
+            let invitationIsDragging = false;
+            let invitationStartX, invitationStartY;
+            const applyInvitationTransform = () => {
+                invitationImage.style.transform = `translate(${invitationCurrentTranslateX}px, ${invitationCurrentTranslateY}px) scale(${invitationCurrentScale})`;
+            };
+            invitationModal.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const delta = e.deltaY > 0 ? 0.9 : 1.1;
+                invitationCurrentScale = Math.min(Math.max(0.5, invitationCurrentScale * delta), 8);
+                applyInvitationTransform();
+            });
+            invitationImage.addEventListener('mousedown', (e) => {
+                if (invitationCurrentScale <= 1) return;
+                e.preventDefault();
+                invitationIsDragging = true;
+                invitationStartX = e.clientX - invitationCurrentTranslateX;
+                invitationStartY = e.clientY - invitationCurrentTranslateY;
+                invitationImage.style.cursor = 'grabbing';
+            });
+            document.addEventListener('mousemove', (e) => {
+                if (!invitationIsDragging) return;
+                e.preventDefault();
+                invitationCurrentTranslateX = e.clientX - invitationStartX;
+                invitationCurrentTranslateY = e.clientY - invitationStartY;
+                applyInvitationTransform();
+            });
+            document.addEventListener('mouseup', () => {
+                invitationIsDragging = false;
+                invitationImage.style.cursor = invitationCurrentScale > 1 ? 'grab' : 'default';
+            });
+        }
 
-        invitationModal.addEventListener('touchstart', e => {
-            if (e.touches.length === 2) {
-                const t1 = e.touches[0];
-                const t2 = e.touches[1];
-                invitationPinchStartMidX = (t1.clientX + t2.clientX) / 2;
-                invitationPinchStartMidY = (t1.clientY + t2.clientY) / 2;
-                invitationPinchStartScale = invitationScale;
+        document.getElementById('invitation-icon').onclick = () => {
+            invitationModal.classList.add('show');
+            resetInvitation();
+            if (window.innerWidth > 768 && !('ontouchstart' in window)) {
+                invitationCurrentScale = 1;
+                invitationCurrentTranslateX = 0;
+                invitationCurrentTranslateY = 0;
+                applyInvitationTransform();
             }
-        }, { passive: false });
+        };
 
-        invitationModal.addEventListener('touchmove', e => {
-            if (e.touches.length === 2) {
-                const t1 = e.touches[0];
-                const t2 = e.touches[1];
-                const midX = (t1.clientX + t2.clientX) / 2;
-                const midY = (t1.clientY + t2.clientY) / 2;
-                const distStart = Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY);
-                const distNow = Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY);
-                const scaleFactor = distNow / distStart;
-                const newScale = invitationPinchStartScale * scaleFactor;
-                const originX = midX - invitationTranslateX;
-                const originY = midY - invitationTranslateY;
-                invitationTranslateX = midX - originX * (newScale / invitationPinchStartScale);
-                invitationTranslateY = midY - originY * (newScale / invitationPinchStartScale);
-                invitationScale = Math.max(0.6, Math.min(15, newScale));
-                updateInvitationTransform();
-                invitationImage.classList.toggle('zoomed', invitationScale > 1.08);
+        document.getElementById('close-invitation').onclick = () => {
+            invitationModal.classList.remove('show');
+            resetInvitation();
+        };
+
+        invitationModal.onclick = e => {
+            if (e.target === invitationModal) {
+                invitationModal.classList.remove('show');
+                resetInvitation();
             }
-        }, { passive: false });
+        };
 
-        invitationModal.addEventListener('touchend', () => {
-            if (invitationScale < 1.15) {
-                invitationScale = 1;
-                invitationTranslateX = 0;
-                invitationTranslateY = 0;
-                updateInvitationTransform();
-                invitationImage.classList.remove('zoomed');
-            }
-        });
+        const fadeObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { threshold: 0.3 });
 
-        // ... fade-in observer aynı ...
+        document.querySelectorAll('.fade-in-on-scroll').forEach(el => fadeObserver.observe(el));
 
+        if (window.innerWidth > 768 && !('ontouchstart' in window)) {
+            let currentScale = 1;
+            let currentTranslateX = 0;
+            let currentTranslateY = 0;
+            let isDragging = false;
+            let startX, startY;
+            const applyTransform = () => {
+                modalImage.style.transform = `translate(${currentTranslateX}px, ${currentTranslateY}px) scale(${currentScale})`;
+            };
+            modal.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const delta = e.deltaY > 0 ? 0.9 : 1.1;
+                currentScale = Math.min(Math.max(0.5, currentScale * delta), 8);
+                applyTransform();
+            });
+            modalImage.addEventListener('mousedown', (e) => {
+                if (currentScale <= 1) return;
+                e.preventDefault();
+                isDragging = true;
+                startX = e.clientX - currentTranslateX;
+                startY = e.clientY - currentTranslateY;
+                modalImage.style.cursor = 'grabbing';
+            });
+            document.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                e.preventDefault();
+                currentTranslateX = e.clientX - startX;
+                currentTranslateY = e.clientY - startY;
+                applyTransform();
+            });
+            document.addEventListener('mouseup', () => {
+                isDragging = false;
+                modalImage.style.cursor = currentScale > 1 ? 'grab' : 'default';
+            });
+            const originalOpenPhoto = openPhoto;
+            openPhoto = function(index) {
+                originalOpenPhoto(index);
+                currentScale = 1;
+                currentTranslateX = 0;
+                currentTranslateY = 0;
+                modalImage.style.cursor = 'default';
+                applyTransform();
+            };
+            const originalClosePhoto = closePhoto;
+            closePhoto = function() {
+                originalClosePhoto();
+                currentScale = 1;
+                currentTranslateX = 0;
+                currentTranslateY = 0;
+                applyTransform();
+            };
+        }
     })();
     </script>
-
     <script defer>
     document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
