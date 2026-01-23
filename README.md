@@ -11,7 +11,6 @@
     <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js" defer></script>
     <style>
-        /* Metin imlecini gizle (önceki isteğin devamı) */
         body, p, h1, h2, h3, span, div, section, .poem-container, .poem-line,
         .header-name, .handwriting {
             caret-color: transparent !important;
@@ -259,20 +258,10 @@
             height: 10vw;
             margin: 0 1em;
         }
-        .heart-yellow {
-            position: absolute;
-            top: 0;
-            left: 0;
-            font-size: 10vw;
-            color: #facc15;
-            -webkit-text-stroke: 3px black;
-            paint-order: stroke fill;
-            z-index: 2;
-        }
         .heart-green {
             position: absolute;
             top: 0;
-            left: 45%;
+            left: 0;
             font-size: 10vw;
             color: #dc2626;
             -webkit-text-stroke: 3px black;
@@ -285,13 +274,9 @@
                 height: 5vw;
                 margin: 0 1.5em;
             }
-            .heart-yellow, .heart-green {
+            .heart-green {
                 font-size: 5vw;
                 -webkit-text-stroke: 2px black;
-            }
-            .heart-green {
-                left: 50%;
-                color: #dc2626;
             }
         }
         #countdown-placeholder p {
@@ -358,7 +343,6 @@
                 <h1 class="font-bold flex items-center justify-center handwriting leading-tight">
                     <span class="header-name">Arzu</span>
                     <span class="interlocked-hearts">
-                        <i class="fa-solid fa-heart heart-yellow"></i>
                         <i class="fa-solid fa-heart heart-green"></i>
                     </span>
                     <span class="header-name">Ersin</span>
@@ -372,7 +356,6 @@
         <p class="text-xl md:text-2xl mt-2 text-red-600 font-bold">27 Eylül 2025</p>
     </section>
     <main class="container mx-auto px-6 pb-12 relative z-20">
-        <!-- İlk Adım bölümü -->
         <section class="max-w-3xl mx-auto my-12 text-center">
             <h3 id="ilk-adim-baslik" class="font-bold text-red-600 mb-4">İlk Adım</h3>
             <p class="text-lg leading-relaxed font-medium font-[550] text-black">
@@ -388,7 +371,6 @@
             </p>
             <div class="text-4xl text-red-500 mt-8 heartbeat"><i class="fas fa-heart"></i></div>
         </section>
-        <!-- Sonbahar şiiri -->
         <section class="my-16 max-w-3xl mx-auto text-center">
             <h3 id="sonbahar-baslik" class="font-bold text-center text-red-600 mb-6 handwriting font-forte-alternative">Sonbahar şiiri</h3>
             <div class="poem-container">
@@ -405,7 +387,6 @@
             </div>
             <p class="text-right text-green-600 font-semibold-bold mt-6 pr-4 font-forte-alternative poem-signature">- Nazım Hikmet</p>
         </section>
-        <!-- İki güzel söz -->
         <section class="my-16 max-w-3xl mx-auto text-center">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Aramızda Geçen İki Güzel Söz</h3>
             <div class="max-w-2xl mx-auto space-y-6">
@@ -422,7 +403,6 @@
                 </div>
             </div>
         </section>
-        <!-- Geri sayım (placeholder) -->
         <section id="countdown-section" class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 font-forte-alternative">Büyük Güne Geri Sayım</h3>
             <div id="countdown-placeholder" class="my-4">
@@ -432,7 +412,6 @@
                 </p>
             </div>
         </section>
-        <!-- Düğün mekanı -->
         <section id="map-section" class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Düğün Mekanımız</h3>
             <div class="flex flex-col items-center mb-8">
@@ -445,12 +424,11 @@
                 Seninle sonsuzluğa adım attığımız yer 💙
             </p>
         </section>
-        <!-- Davetiye -->
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Davetiyemiz</h3>
             <div class="flex flex-col items-center">
                 <div id="invitation-icon" title="Davetiyeyi Gör">
-                    <i class="fas fa-envelope-open-text"></i>
+                    <i class="fas fa-envelope-open-text heartbeat"></i>
                 </div>
                 <div class="invitation-click-text">Tıkla</div>
             </div>
@@ -464,7 +442,6 @@
             <span id="close-invitation">X</span>
             <img id="invitation-image" src="https://i.imgur.com/2nywEc1.jpeg" alt="Arzu & Ersin Düğün Davetiyesi">
         </div>
-        <!-- Bizim Şarkımız -->
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center relative overflow-hidden">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Bizim Şarkımız</h3>
             <p class="text-center text-black font-semibold italic mt-2 mb-6">Tarkan - Beni Çok Sev</p>
@@ -485,7 +462,6 @@
                 </div>
             </div>
         </section>
-        <!-- Fotoğraf Galerisi -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Fotoğraf Galerimiz</h3>
             <div class="photo-gallery-description">
@@ -588,7 +564,6 @@
                 </div>
             </div>
         </section>
-        <!-- Video Galerisi -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Video Galerimiz</h3>
             <div class="video-gallery-description">
@@ -655,7 +630,6 @@
                 </div>
             </div>
         </section>
-        <!-- Teşekkür -->
         <section class="my-16 max-w-3xl mx-auto transparent-section">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Teşekkür</h3>
             <div class="thank-you-message">
@@ -688,7 +662,6 @@
                 </div>
             </div>
         </section>
-        <!-- QR Footer -->
         <section id="footer-section" class="my-12 text-center">
             <div id="qr-wrapper">
                 <div id="footer-qr" class="photo-container inline-block">
@@ -704,14 +677,12 @@
             </div>
         </section>
     </main>
-    <!-- Fotoğraf Modal -->
     <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
         <span id="close-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
         <img id="modal-image" src="" alt="Büyütülmüş Fotoğraf" class="max-w-[90vw] max-h-[90vh] rounded-lg shadow-lg">
         <span id="prev-photo" class="absolute top-1/2 left-4 -translate-y-1/2 text-white text-6xl font-bold cursor-pointer hover:text-gray-300 transition-colors select-none"><</span>
         <span id="next-photo" class="absolute top-1/2 right-4 -translate-y-1/2 text-white text-6xl font-bold cursor-pointer hover:text-gray-300 transition-colors select-none">></span>
     </div>
-    <!-- Video Modal -->
     <div id="video-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
         <span id="close-video-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
         <div class="aspect-video w-full max-w-4xl"><iframe id="modal-video-iframe" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
@@ -719,7 +690,6 @@
     <script>
     (() => {
         'use strict';
-        // Düşen yaprak, kalp, çiçek efektleri
         const hearts = ['💛'];
         const heartContainer = document.getElementById('falling-hearts-container');
         for (let i = 0; i < 2; i++) {
@@ -764,7 +734,6 @@
             flower.style.fontSize = size + 'rem';
             flowerContainer.appendChild(flower);
         }
-        // Lazy loading
         const lazyLoadObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting && entry.target.dataset.src) {
@@ -774,7 +743,6 @@
             });
         }, { rootMargin: '50px' });
         document.querySelectorAll('img[data-src]').forEach(img => lazyLoadObserver.observe(img));
-        // Fotoğraf modal işlemleri
         let photoUrls = [];
         let currentPhotoIndex = 0;
         let scale = 1;
@@ -882,7 +850,6 @@
                 updateTransform();
             }
         });
-        // Galeri aç/kapa
         document.getElementById('toggle-gallery-btn').addEventListener('click', () => {
             const wrapper = document.getElementById('gallery-wrapper');
             wrapper.classList.toggle('hidden');
@@ -941,7 +908,6 @@
             if (e.key === 'ArrowRight' && document.getElementById('image-modal').classList.contains('flex')) nextPhoto();
             if (e.key === 'ArrowLeft' && document.getElementById('image-modal').classList.contains('flex')) prevPhoto();
         });
-        // Şarkı oynatıcı
         let player, isPlaying = false;
         const playBtn = document.getElementById('play-song-btn');
         const playerElement = document.getElementById('youtube-player');
@@ -980,7 +946,6 @@
                 }
             }
         };
-        // Davetiye modal
         const invitationModal = document.getElementById('invitation-modal');
         const invitationImage = document.getElementById('invitation-image');
         let invitationScale = 1;
@@ -1095,12 +1060,10 @@
                 resetInvitation();
             }
         };
-        // Fade-in scroll efekti
         const fadeObserver = new IntersectionObserver(entries => {
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
         }, { threshold: 0.3 });
         document.querySelectorAll('.fade-in-on-scroll').forEach(el => fadeObserver.observe(el));
-        // Masaüstü zoom desteği
         if (window.innerWidth > 768 && !('ontouchstart' in window)) {
             let currentScale = 1;
             let currentTranslateX = 0;
