@@ -12,12 +12,16 @@
     <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js" defer></script>
     <style>
-        header, header *, #main-title, #sonbahar-baslik, h1, h2 {
-            border: none !important;
+        /* Tüm sayfada metin seçimi ve imleç tamamen devre dışı – başlık dahil hiçbir yerde çıkmayacak */
+        * {
+            -webkit-user-select: none !important;
+            -moz-user-select: none !important;
+            -ms-user-select: none !important;
+            user-select: none !important;
             outline: none !important;
-            box-shadow: none !important;
+            -webkit-tap-highlight-color: transparent;
         }
-        html { scroll-behavior: smooth; }
+
         body {
             font-family: 'Poppins', sans-serif;
             font-weight: 300;
@@ -25,7 +29,38 @@
             position: relative;
             overflow-x: hidden;
             min-height: 100vh;
+            cursor: default !important;
         }
+
+        /* Tıklanabilir elemanlar için imleç korunsun ama metin seçimi olmasın */
+        button, a, #play-song-btn, #toggle-gallery-btn, #map-icon, #invitation-icon, #close-modal, #prev-photo, #next-photo {
+            cursor: pointer !important;
+            pointer-events: auto !important;
+        }
+
+        img {
+            -webkit-user-drag: none;
+            user-drag: none;
+            pointer-events: auto;
+        }
+
+        #image-modal img {
+            cursor: zoom-in;
+        }
+
+        #image-modal img.zoomed {
+            cursor: grab;
+        }
+
+        #image-modal img.zoomed:active {
+            cursor: grabbing;
+        }
+
+        header, header *, #main-title, #sonbahar-baslik, h1, h2, h3, p, span, div, section {
+            user-select: none !important;
+            -webkit-user-select: none !important;
+        }
+
         #background-leaves-pattern {
             position: fixed; top: 0; left: 0; right: 0; bottom: 0;
             background-image: url('https://www.toptal.com/designers/subtlepatterns/uploads/leaves.png');
@@ -208,6 +243,7 @@
     <div id="falling-leaves-container"></div>
     <div id="falling-hearts-container"></div>
     <div id="falling-flowers-container"></div>
+
     <header class="py-16 text-center relative z-20 overflow-hidden">
         <div class="relative">
             <div class="relative z-10">
@@ -222,10 +258,12 @@
             </div>
         </div>
     </header>
+
     <section id="main-title-section" class="py-8 text-center">
         <h2 id="main-title" class="font-bold handwriting text-green-600">O Güzel Sonbahar günü</h2>
         <p class="text-xl md:text-2xl mt-2 text-red-600 font-bold">27 Eylül 2025</p>
     </section>
+
     <main class="container mx-auto px-6 pb-12 relative z-20">
         <section class="max-w-3xl mx-auto my-12 text-center">
             <h3 id="ilk-adim-baslik" class="font-bold text-red-600 mb-4">İlk Adım</h3>
@@ -242,6 +280,7 @@
             </p>
             <div class="text-4xl text-red-500 mt-8 heartbeat"><i class="fas fa-heart"></i></div>
         </section>
+
         <section class="my-16 max-w-3xl mx-auto text-center">
             <h3 id="sonbahar-baslik" class="font-bold text-center text-red-600 mb-6 handwriting font-forte-alternative">Sonbahar şiiri</h3>
             <div class="poem-container">
@@ -258,6 +297,7 @@
             </div>
             <p class="text-right text-green-600 font-semibold-bold mt-6 pr-4 font-forte-alternative poem-signature">- Nazım Hikmet</p>
         </section>
+
         <section class="my-16 max-w-3xl mx-auto text-center">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Aramızda Geçen İki Güzel Söz</h3>
             <div class="max-w-2xl mx-auto space-y-6">
@@ -266,6 +306,7 @@
                 <p class="text-xl md:text-2xl leading-relaxed italic text-blue-600 font-medium">" Asıl sen neredeydin meğersem çok yakınmışız "</p>
             </div>
         </section>
+
         <section id="countdown-section" class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 font-forte-alternative">Büyük Güne Geri Sayım</h3>
             <div id="countdown-placeholder" class="my-4">
@@ -273,6 +314,7 @@
                 <p class="text-center font-semibold italic text-lg mt-4">Sonsuzluğa giden yolculuğumuzun tarihi belli olduğunda...</p>
             </div>
         </section>
+
         <section id="map-section" class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Düğün Mekanımız</h3>
             <div class="flex flex-col items-center mb-8">
@@ -283,6 +325,7 @@
             </div>
             <p class="text-center font-semibold italic text-lg mt-6 leading-relaxed px-6 max-w-2xl mx-auto">Seninle sonsuzluğa adım attığımız yer 💙</p>
         </section>
+
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Davetiyemiz</h3>
             <div class="flex flex-col items-center">
@@ -295,10 +338,12 @@
                 <p class="text-center font-semibold italic text-lg leading-relaxed px-6">Bu bir davetiye değil, size yazdığımız bir mutluluk mektubu 💚</p>
             </div>
         </section>
+
         <div id="invitation-modal">
             <span id="close-invitation">X</span>
             <img id="invitation-image" src="https://i.imgur.com/2nywEc1.jpeg" alt="Arzu & Ersin Düğün Davetiyesi">
         </div>
+
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center relative overflow-hidden">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Bizim Şarkımız</h3>
             <p class="text-center text-black font-semibold italic mt-2 mb-6">Tarkan - Beni Çok Sev</p>
@@ -314,6 +359,7 @@
                 </div>
             </div>
         </section>
+
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Fotoğraf Galerimiz</h3>
             <div class="photo-gallery-description">
@@ -416,6 +462,7 @@
                 </div>
             </div>
         </section>
+
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Video Galerimiz</h3>
             <div class="video-gallery-description">
@@ -482,6 +529,7 @@
                 </div>
             </div>
         </section>
+
         <section class="my-16 max-w-3xl mx-auto transparent-section">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Teşekkür</h3>
             <div class="thank-you-message">
@@ -514,6 +562,7 @@
                 </div>
             </div>
         </section>
+
         <section id="footer-section" class="my-12 text-center">
             <div id="qr-wrapper">
                 <div id="footer-qr" class="photo-container inline-block">
@@ -529,19 +578,24 @@
             </div>
         </section>
     </main>
+
     <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
         <span id="close-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
         <img id="modal-image" src="" alt="Büyütülmüş Fotoğraf" class="max-w-[90vw] max-h-[90vh] rounded-lg shadow-lg">
         <span id="prev-photo" class="absolute top-1/2 left-4 -translate-y-1/2 text-white text-6xl font-bold cursor-pointer hover:text-gray-300 transition-colors select-none"><</span>
         <span id="next-photo" class="absolute top-1/2 right-4 -translate-y-1/2 text-white text-6xl font-bold cursor-pointer hover:text-gray-300 transition-colors select-none">></span>
     </div>
+
     <div id="video-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
         <span id="close-video-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
         <div class="aspect-video w-full max-w-4xl"><iframe id="modal-video-iframe" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
     </div>
+
     <script>
     (() => {
         'use strict';
+
+        // falling hearts, leaves, flowers (orijinal)
         const hearts = ['💛'];
         const heartContainer = document.getElementById('falling-hearts-container');
         for (let i = 0; i < 2; i++) {
@@ -556,6 +610,7 @@
             heart.style.fontSize = size + 'rem';
             heartContainer.appendChild(heart);
         }
+
         const leafSVG = `<svg viewBox="0 0 100 140" class="w-full h-full" preserveAspectRatio="xMidYMid meet"><path class="leaf-outer" d="M50 10 C30 15, 20 35, 18 55 C16 75, 25 95, 35 115 C45 130, 48 135, 50 138 C52 135, 55 130, 65 115 C75 95, 84 75, 82 55 C80 35, 70 15, 50 10 Z" /><path class="leaf-inner" d="M50 15 C33 20, 25 38, 23 55 C21 72, 28 88, 36 108 C44 125, 48 132, 50 135 C52 132, 56 125, 64 108 C72 88, 79 72, 77 55 C75 38, 67 20, 50 15 Z" /><path d="M50 15 Q50 70 48 135" stroke="#fff" stroke-width="2.5" opacity="0.5" fill="none"/><path d="M50 15 Q35 40 28 48 M50 55 Q32 65 25 75 M50 80 Q30 90 23 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/><path d="M50 15 Q65 40 72 48 M50 55 Q68 65 75 75 M50 80 Q70 90 77 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/></svg>`;
         const leafColors = ['autumn-1','autumn-2','autumn-3','autumn-4','autumn-5','autumn-6','autumn-7','autumn-8','autumn-9','autumn-10'];
         const leafContainer = document.getElementById('falling-leaves-container');
@@ -572,6 +627,7 @@
             leaf.innerHTML = leafSVG;
             leafContainer.appendChild(leaf);
         }
+
         const flowers = ['🌸', '🌻'];
         const flowerContainer = document.getElementById('falling-flowers-container');
         for (let i = 0; i < 2; i++) {
@@ -586,6 +642,8 @@
             flower.style.fontSize = size + 'rem';
             flowerContainer.appendChild(flower);
         }
+
+        // lazy load
         const lazyLoadObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting && entry.target.dataset.src) {
@@ -595,180 +653,180 @@
             });
         }, { rootMargin: '50px' });
         document.querySelectorAll('img[data-src]').forEach(img => lazyLoadObserver.observe(img));
+
+        // fotoğraf galerisi değişkenleri
         let photoUrls = [];
         let currentPhotoIndex = 0;
-        let scale = 1;
-        let translateX = 0;
-        let translateY = 0;
-        let initialDistance = 0;
-        let initialScale = 1;
-        let startClientX = 0;
-        let startClientY = 0;
-        let startTranslateX = 0;
-        let startTranslateY = 0;
-        let isPanning = false;
-        const sensitivity = 0.5;
+        let currentScale = 1;
+        let currentTranslateX = 0;
+        let currentTranslateY = 0;
+        let pinchStartScale = 1;
+        let pinchStartMidX = 0;
+        let pinchStartMidY = 0;
+
         const modal = document.getElementById('image-modal');
         const modalImage = document.getElementById('modal-image');
+
         const updateTransform = () => {
-            modalImage.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+            modalImage.style.transform = `translate(${currentTranslateX}px, ${currentTranslateY}px) scale(${currentScale})`;
         };
+
         const buildPhotoArray = () => {
-            photoUrls = Array.from(document.querySelectorAll('#gallery-grid img[data-src]')).map(img => img.dataset.src);
+            photoUrls = Array.from(document.querySelectorAll('#gallery-grid img[data-src]')).map(img => img.dataset.src || '');
         };
-        const getDistance = (touch1, touch2) => {
-            const dx = touch1.clientX - touch2.clientX;
-            const dy = touch1.clientY - touch2.clientY;
-            return Math.sqrt(dx * dx + dy * dy);
-        };
+
         const openPhoto = (index) => {
             buildPhotoArray();
+            if (index < 0 || index >= photoUrls.length) return;
             currentPhotoIndex = index;
             modalImage.src = photoUrls[currentPhotoIndex];
-            scale = 1;
-            translateX = 0;
-            translateY = 0;
-            isPanning = false;
-            modalImage.classList.remove('zoomed');
+            currentScale = 1;
+            currentTranslateX = 0;
+            currentTranslateY = 0;
             updateTransform();
             modal.classList.replace('hidden', 'flex');
         };
+
         const closePhoto = () => {
-            scale = 1;
-            translateX = 0;
-            translateY = 0;
-            isPanning = false;
-            modalImage.classList.remove('zoomed');
+            currentScale = 1;
+            currentTranslateX = 0;
+            currentTranslateY = 0;
             updateTransform();
             modal.classList.replace('flex', 'hidden');
             modalImage.src = '';
         };
+
         const nextPhoto = () => {
             currentPhotoIndex = (currentPhotoIndex + 1) % photoUrls.length;
             modalImage.src = photoUrls[currentPhotoIndex];
-            scale = 1;
-            translateX = 0;
-            translateY = 0;
-            isPanning = false;
-            modalImage.classList.remove('zoomed');
+            currentScale = 1;
+            currentTranslateX = 0;
+            currentTranslateY = 0;
             updateTransform();
         };
+
         const prevPhoto = () => {
             currentPhotoIndex = (currentPhotoIndex - 1 + photoUrls.length) % photoUrls.length;
             modalImage.src = photoUrls[currentPhotoIndex];
-            scale = 1;
-            translateX = 0;
-            translateY = 0;
-            isPanning = false;
-            modalImage.classList.remove('zoomed');
+            currentScale = 1;
+            currentTranslateX = 0;
+            currentTranslateY = 0;
             updateTransform();
         };
-        modal.addEventListener('touchstart', (e) => {
+
+        // FOTOĞRAF MODALI ZOOM – MERKEZDEN BÜYÜME / KÜÇÜLME
+        modal.addEventListener('touchstart', e => {
             if (e.touches.length === 2) {
                 e.preventDefault();
-                initialDistance = getDistance(e.touches[0], e.touches[1]);
-                initialScale = scale;
-                isPanning = false;
-            } else if (e.touches.length === 1 && scale > 1) {
-                startClientX = e.touches[0].clientX;
-                startClientY = e.touches[0].clientY;
-                startTranslateX = translateX;
-                startTranslateY = translateY;
-                isPanning = true;
+                const t1 = e.touches[0];
+                const t2 = e.touches[1];
+                pinchStartMidX = (t1.clientX + t2.clientX) / 2;
+                pinchStartMidY = (t1.clientY + t2.clientY) / 2;
+                pinchStartScale = currentScale;
             }
-        });
-        modal.addEventListener('touchmove', (e) => {
+        }, { passive: false });
+
+        modal.addEventListener('touchmove', e => {
             if (e.touches.length === 2) {
                 e.preventDefault();
-                const newDistance = getDistance(e.touches[0], e.touches[1]);
-                const factor = newDistance / initialDistance;
-                scale = Math.max(0.1, initialScale * factor);
+                const t1 = e.touches[0];
+                const t2 = e.touches[1];
+
+                const midX = (t1.clientX + t2.clientX) / 2;
+                const midY = (t1.clientY + t2.clientY) / 2;
+
+                const distStart = Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY);
+                const distNow   = Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY);
+
+                const scaleFactor = distNow / distStart;
+                const newScale = pinchStartScale * scaleFactor;
+
+                const originX = midX - currentTranslateX;
+                const originY = midY - currentTranslateY;
+                currentTranslateX = midX - originX * (newScale / pinchStartScale);
+                currentTranslateY = midY - originY * (newScale / pinchStartScale);
+
+                currentScale = Math.max(0.6, Math.min(15, newScale));
+
                 updateTransform();
-                isPanning = false;
-            } else if (e.touches.length === 1 && isPanning) {
-                e.preventDefault();
-                const deltaX = (e.touches[0].clientX - startClientX) * sensitivity;
-                const deltaY = (e.touches[0].clientY - startClientY) * sensitivity;
-                translateX = startTranslateX + deltaX;
-                translateY = startTranslateY + deltaY;
+
+                if (currentScale > 1.08) {
+                    modalImage.classList.add('zoomed');
+                } else {
+                    modalImage.classList.remove('zoomed');
+                }
+            }
+        }, { passive: false });
+
+        modal.addEventListener('touchend', () => {
+            if (currentScale < 1.15) {
+                currentScale = 1;
+                currentTranslateX = 0;
+                currentTranslateY = 0;
                 updateTransform();
+                modalImage.classList.remove('zoomed');
             }
         });
-        modal.addEventListener('touchend', (e) => {
-            isPanning = false;
-            if (scale <= 1.1) {
-                translateX = 0;
-                translateY = 0;
-                updateTransform();
-            }
-        });
-        // ────────────────────────────────────────────────
-        // MOUSE WHEEL ZOOM
-        // ────────────────────────────────────────────────
+
+        // fare tekerleği zoom
         const ZOOM_SPEED = 0.00065;
         const MIN_SCALE = 0.6;
         const MAX_SCALE = 12;
         modal.addEventListener('wheel', (e) => {
             e.preventDefault();
             const delta = e.deltaY > 0 ? -ZOOM_SPEED : ZOOM_SPEED;
-            const prevScale = scale;
-            scale += delta * 150;
-            scale = Math.max(MIN_SCALE, Math.min(MAX_SCALE, scale));
+            const prevScale = currentScale;
+            currentScale += delta * 150;
+            currentScale = Math.max(MIN_SCALE, Math.min(MAX_SCALE, currentScale));
             const rect = modalImage.getBoundingClientRect();
             const mouseX = e.clientX - rect.left;
             const mouseY = e.clientY - rect.top;
-            const relX = mouseX - translateX;
-            const relY = mouseY - translateY;
-            const ratio = scale / prevScale;
-            translateX = mouseX - relX * ratio;
-            translateY = mouseY - relY * ratio;
+            const relX = mouseX - currentTranslateX;
+            const relY = mouseY - currentTranslateY;
+            const ratio = currentScale / prevScale;
+            currentTranslateX = mouseX - relX * ratio;
+            currentTranslateY = mouseY - relY * ratio;
             updateTransform();
-            if (scale > 1.08) {
+            if (currentScale > 1.08) {
                 modalImage.classList.add('zoomed');
             } else {
                 modalImage.classList.remove('zoomed');
-                if (scale < 1.12) {
-                    translateX = 0;
-                    translateY = 0;
+                if (currentScale < 1.12) {
+                    currentTranslateX = 0;
+                    currentTranslateY = 0;
                     updateTransform();
                 }
             }
         }, { passive: false });
-        // ────────────────────────────────────────────────
-        // FARE İLE SÜRÜKLEME
-        // ────────────────────────────────────────────────
+
+        // fare ile sürükleme
         let panStartX = 0;
         let panStartY = 0;
         let panStartTranslateX = 0;
         let panStartTranslateY = 0;
         modal.addEventListener('mousedown', (e) => {
-            if (scale <= 1.05) return;
+            if (currentScale <= 1.05) return;
             if (e.button !== 0) return;
             panStartX = e.clientX;
             panStartY = e.clientY;
-            panStartTranslateX = translateX;
-            panStartTranslateY = translateY;
-            isPanning = true;
+            panStartTranslateX = currentTranslateX;
+            panStartTranslateY = currentTranslateY;
             modalImage.style.cursor = 'grabbing';
             e.preventDefault();
         });
         window.addEventListener('mousemove', (e) => {
-            if (!isPanning) return;
+            if (e.buttons !== 1) return;
             const dx = e.clientX - panStartX;
             const dy = e.clientY - panStartY;
-            translateX = panStartTranslateX + dx;
-            translateY = panStartTranslateY + dy;
+            currentTranslateX = panStartTranslateX + dx;
+            currentTranslateY = panStartTranslateY + dy;
             updateTransform();
         });
-        window.addEventListener('mouseup', (e) => {
-            if (isPanning) {
-                isPanning = false;
-                modalImage.style.cursor = scale > 1.08 ? 'grab' : 'zoom-in';
-            }
+        window.addEventListener('mouseup', () => {
+            modalImage.style.cursor = currentScale > 1.08 ? 'grab' : 'zoom-in';
         });
-        window.addEventListener('mouseleave', () => {
-            isPanning = false;
-        });
+
+        // galeri toggle
         document.getElementById('toggle-gallery-btn').addEventListener('click', () => {
             const wrapper = document.getElementById('gallery-wrapper');
             wrapper.classList.toggle('hidden');
@@ -787,46 +845,22 @@
                 }, 100);
             }
         });
-        document.getElementById('toggle-video-gallery-btn').addEventListener('click', () => {
-            const wrapper = document.getElementById('video-gallery-wrapper');
-            wrapper.classList.toggle('hidden');
-            const icon = document.getElementById('video-gallery-toggle-icon');
-            const text = document.getElementById('video-gallery-toggle-text');
-            if (wrapper.classList.contains('hidden')) {
-                text.textContent = 'Video Galerisini Gör';
-                icon.classList.remove('rotate-180');
-            } else {
-                text.textContent = 'Video Galerisini Gizle';
-                icon.classList.add('rotate-180');
-                setTimeout(() => {
-                    document.querySelectorAll('#video-grid .photo-container').forEach(el => {
-                        el.onclick = () => {
-                            document.getElementById('modal-video-iframe').src = `https://www.youtube.com/embed/${el.dataset.youtubeId}?autoplay=1`;
-                            document.getElementById('video-modal').classList.replace('hidden', 'flex');
-                        };
-                    });
-                }, 100);
-            }
-        });
-        document.getElementById('close-video-modal').onclick = () => {
-            document.getElementById('video-modal').classList.replace('flex', 'hidden');
-            document.getElementById('modal-video-iframe').src = '';
-        };
-        document.getElementById('video-modal').onclick = e => {
-            if (e.target === e.currentTarget) document.getElementById('close-video-modal').click();
-        };
+
         document.getElementById('close-modal').onclick = closePhoto;
         document.getElementById('prev-photo').onclick = e => { e.stopPropagation(); prevPhoto(); };
         document.getElementById('next-photo').onclick = e => { e.stopPropagation(); nextPhoto(); };
         modal.onclick = e => { if (e.target === modal) closePhoto(); };
+
         document.addEventListener('keydown', e => {
             if (e.key === 'Escape') {
                 closePhoto();
                 if (document.getElementById('video-modal').classList.contains('flex')) document.getElementById('close-video-modal').click();
             }
-            if (e.key === 'ArrowRight' && document.getElementById('image-modal').classList.contains('flex')) nextPhoto();
-            if (e.key === 'ArrowLeft' && document.getElementById('image-modal').classList.contains('flex')) prevPhoto();
+            if (e.key === 'ArrowRight' && modal.classList.contains('flex')) nextPhoto();
+            if (e.key === 'ArrowLeft' && modal.classList.contains('flex')) prevPhoto();
         });
+
+        // şarkı çalar
         let player, isPlaying = false;
         const playBtn = document.getElementById('play-song-btn');
         const playerElement = document.getElementById('youtube-player');
@@ -858,29 +892,17 @@
         playBtn.onclick = e => {
             e.stopPropagation();
             if (player) {
-                if (isPlaying) {
-                    player.pauseVideo();
-                } else {
-                    player.playVideo();
-                }
+                if (isPlaying) player.pauseVideo();
+                else player.playVideo();
             }
         };
-        // ────────────────────────────────────────────────
-        // DAVETİYE MODALI İÇİN GELİŞTİRİLMİŞ MOBİL DOKUNMA ZOOM
-        // ────────────────────────────────────────────────
+
+        // davetiye modalı
         const invitationModal = document.getElementById('invitation-modal');
         const invitationImage = document.getElementById('invitation-image');
         let invitationScale = 1;
         let invitationTranslateX = 0;
         let invitationTranslateY = 0;
-        let invitationInitialDistance = 0;
-        let invitationInitialScale = 1;
-        let invitationStartClientX = 0;
-        let invitationStartClientY = 0;
-        let invitationStartTranslateX = 0;
-        let invitationStartTranslateY = 0;
-        let invitationIsPanning = false;
-        const invitationSensitivity = 0.5;
         const updateInvitationTransform = () => {
             invitationImage.style.transform = `scale(${invitationScale}) translate(${invitationTranslateX}px, ${invitationTranslateY}px)`;
         };
@@ -890,84 +912,6 @@
             invitationTranslateY = 0;
             updateInvitationTransform();
         };
-        invitationModal.addEventListener('touchstart', (e) => {
-            if (e.touches.length === 2) {
-                e.preventDefault();
-                const touch1 = e.touches[0];
-                const touch2 = e.touches[1];
-                invitationInitialDistance = Math.hypot(
-                    touch1.clientX - touch2.clientX,
-                    touch1.clientY - touch2.clientY
-                );
-                invitationInitialScale = invitationScale;
-                // Orta nokta (zoom merkezi)
-                invitationStartClientX = (touch1.clientX + touch2.clientX) / 2;
-                invitationStartClientY = (touch1.clientY + touch2.clientY) / 2;
-                invitationStartTranslateX = invitationTranslateX;
-                invitationStartTranslateY = invitationTranslateY;
-                invitationIsPanning = false;
-            } else if (e.touches.length === 1 && invitationScale > 1.05) {
-                e.preventDefault();
-                invitationStartClientX = e.touches[0].clientX;
-                invitationStartClientY = e.touches[0].clientY;
-                invitationStartTranslateX = invitationTranslateX;
-                invitationStartTranslateY = invitationTranslateY;
-                invitationIsPanning = true;
-            }
-        });
-        invitationModal.addEventListener('touchmove', (e) => {
-            if (e.touches.length === 2) {
-                e.preventDefault();
-                const touch1 = e.touches[0];
-                const touch2 = e.touches[1];
-                const currentDistance = Math.hypot(
-                    touch1.clientX - touch2.clientX,
-                    touch1.clientY - touch2.clientY
-                );
-                // Yeni orta nokta
-                const currentMidX = (touch1.clientX + touch2.clientX) / 2;
-                const currentMidY = (touch1.clientY + touch2.clientY) / 2;
-                // Ölçek hesabı
-                const scaleFactor = currentDistance / invitationInitialDistance;
-                const newScale = invitationInitialScale * scaleFactor;
-                invitationScale = Math.max(0.5, Math.min(15, newScale));
-                // Zoom merkezine göre kaydırma (fotoğraf kaymasın)
-                const deltaScale = invitationScale / invitationInitialScale;
-                invitationTranslateX = invitationStartTranslateX + (currentMidX - invitationStartClientX) * (1 - deltaScale);
-                invitationTranslateY = invitationStartTranslateY + (currentMidY - invitationStartClientY) * (1 - deltaScale);
-                updateInvitationTransform();
-                if (invitationScale > 1.08) {
-                    invitationImage.classList.add('zoomed');
-                } else {
-                    invitationImage.classList.remove('zoomed');
-                }
-            } else if (e.touches.length === 1 && invitationIsPanning) {
-                e.preventDefault();
-                const deltaX = e.touches[0].clientX - invitationStartClientX;
-                const deltaY = e.touches[0].clientY - invitationStartClientY;
-                invitationTranslateX = invitationStartTranslateX + deltaX * 1.3; // mobil için hafif hızlandırılmış
-                invitationTranslateY = invitationStartTranslateY + deltaY * 1.3;
-                // Kenar sınırlandırma (fotoğraf tamamen dışarı taşmasın)
-                const rect = invitationImage.getBoundingClientRect();
-                const container = invitationModal.getBoundingClientRect();
-                const maxX = (rect.width * invitationScale - container.width) / 2;
-                const maxY = (rect.height * invitationScale - container.height) / 2;
-                invitationTranslateX = Math.max(-maxX, Math.min(maxX, invitationTranslateX));
-                invitationTranslateY = Math.max(-maxY, Math.min(maxY, invitationTranslateY));
-                updateInvitationTransform();
-            }
-        });
-        invitationModal.addEventListener('touchend', () => {
-            invitationIsPanning = false;
-            // Zoom çok küçükse otomatik sıfırla
-            if (invitationScale < 1.15) {
-                invitationScale = 1;
-                invitationTranslateX = 0;
-                invitationTranslateY = 0;
-                updateInvitationTransform();
-                invitationImage.classList.remove('zoomed');
-            }
-        });
         document.getElementById('invitation-icon').onclick = () => {
             invitationModal.classList.add('show');
             resetInvitation();
@@ -982,12 +926,14 @@
                 resetInvitation();
             }
         };
+
         const fadeObserver = new IntersectionObserver(entries => {
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
         }, { threshold: 0.3 });
         document.querySelectorAll('.fade-in-on-scroll').forEach(el => fadeObserver.observe(el));
     })();
     </script>
+
     <script defer>
     document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
