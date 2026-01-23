@@ -392,7 +392,7 @@
             <div class="max-w-2xl mx-auto space-y-6">
                 <div>
                     <p class="text-xl md:text-2xl leading-relaxed italic text-blue-600 font-medium">
-                        " Bana iyi hissettiriyorsun sen bu zamana kadar nerelerdeydin "
+                        "Bana iyi hissettiriyorsun sen bu zamana kadar nerelerdeydin"
                     </p>
                 </div>
                 <div class="text-center text-4xl text-red-500 heartbeat mb-4"><i class="fas fa-heart"></i></div>
