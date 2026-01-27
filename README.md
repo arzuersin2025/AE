@@ -1,7 +1,7 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arzu & Ersin | Bizim Hikayemiz</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,7 +43,7 @@
         }
         @media (max-width: 768px) { #background-leaves-pattern { opacity: 0.9 !important; } }
 
-        /* Arka plan fotoğrafı – masaüstü ve mobil için aynı şeffaflık (0.42) */
+        /* Arka plan fotoğrafı – opacity 0.85 (hem mobil hem masaüstü) */
         #background-portrait {
             position: fixed;
             inset: 0;
@@ -52,14 +52,13 @@
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: scroll;
-            opacity: 0.42;
+            opacity: 0.85;
             z-index: -3;
             pointer-events: none;
         }
         @media (max-width: 768px) {
             #background-portrait {
                 background-size: contain;
-                /* opacity: 0.35 kaldırıldı → masaüstüyle aynı şeffaflıkta (0.42) olacak */
             }
         }
 
@@ -498,6 +497,7 @@
             </div>
         </section>
 
+        <!-- FOTOĞRAF GALERİSİ – tam 18 fotoğraf geri yüklendi -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Fotoğraf Galerimiz</h3>
             <div class="photo-gallery-description">
@@ -601,6 +601,7 @@
             </div>
         </section>
 
+        <!-- VİDEO GALERİSİ – tam 6 video geri yüklendi -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Video Galerimiz</h3>
             <div class="video-gallery-description">
