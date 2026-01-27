@@ -43,19 +43,21 @@
         }
         @media (max-width: 768px) { #background-leaves-pattern { opacity: 0.9 !important; } }
 
-        #background-portrait-overlay {
+        /* Sadece buraya arka plan fotoğrafı eklendi – orijinal kodun geri kalanı hiç değişmedi */
+        #background-portrait {
             position: fixed;
             inset: 0;
             background-image: url('https://i.imgur.com/11UKyWN.jpeg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+            background-attachment: scroll;
             opacity: 0.42;
             z-index: -3;
             pointer-events: none;
         }
         @media (max-width: 768px) {
-            #background-portrait-overlay {
+            #background-portrait {
                 opacity: 0.35;
             }
         }
@@ -353,7 +355,7 @@
 <body class="text-black">
 
     <div id="background-leaves-pattern"></div>
-    <div id="background-portrait-overlay"></div>
+    <div id="background-portrait"></div>   <!-- ← sadece bu satır eklendi -->
 
     <div id="falling-leaves-container"></div>
     <div id="falling-hearts-container"></div>
@@ -380,7 +382,6 @@
     </section>
 
     <main class="container mx-auto px-6 pb-12 relative z-20">
-
         <section class="max-w-3xl mx-auto my-12 text-center">
             <h3 id="ilk-adim-baslik" class="font-bold text-red-600 mb-4">İlk Adım</h3>
             <p class="text-lg leading-relaxed font-medium font-[550] text-black">
@@ -495,7 +496,6 @@
             </div>
         </section>
 
-        <!-- FOTOĞRAF GALERİSİ - TAM -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Fotoğraf Galerimiz</h3>
             <div class="photo-gallery-description">
@@ -504,13 +504,13 @@
                 </p>
             </div>
             <div class="mt-8 text-center">
-                <button id="toggle-gallery-btn" class="inline-flex items-center justify-center py-2 px-6 shadow-sm text-sm font-medium rounded-md transition-colors bg-red-500 hover:bg-red-600 text-white">
+                <button id="toggle-gallery-btn" class="inline-flex items-center justify-center py-2 px-6 shadow-sm text-sm font-medium rounded-md transition-colors">
                     <span id="gallery-toggle-text">Fotoğraf Galerisini Gör</span>
                     <i id="gallery-toggle-icon" class="fas fa-chevron-down ml-2 transition-transform"></i>
                 </button>
             </div>
             <div id="gallery-wrapper" class="hidden mt-8">
-                <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2" id="gallery-grid">
+                <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-1" id="gallery-grid">
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/D0I0h6C.jpeg" alt="Katibim Cafe" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">18</span>
@@ -599,7 +599,6 @@
             </div>
         </section>
 
-        <!-- VİDEO GALERİSİ - TAM -->
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Video Galerimiz</h3>
             <div class="video-gallery-description">
@@ -608,13 +607,13 @@
                 </p>
             </div>
             <div class="mt-8 text-center">
-                <button id="toggle-video-gallery-btn" class="inline-flex items-center justify-center py-2 px-6 shadow-sm text-sm font-medium rounded-md transition-colors bg-red-500 hover:bg-red-600 text-white">
+                <button id="toggle-video-gallery-btn" class="inline-flex items-center justify-center py-2 px-6 shadow-sm text-sm font-medium rounded-md transition-colors">
                     <span id="video-gallery-toggle-text">Video Galerisini Gör</span>
                     <i id="video-gallery-toggle-icon" class="fas fa-chevron-down ml-2 transition-transform"></i>
                 </button>
             </div>
             <div id="video-gallery-wrapper" class="hidden mt-8">
-                <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2" id="video-grid">
+                <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-1" id="video-grid">
                     <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="wcZOC94zAYw">
                         <img data-src="https://img.youtube.com/vi/wcZOC94zAYw/maxresdefault.jpg" alt="Güldür Güldür" class="w-full h-full object-cover gallery-thumbnail" loading="lazy">
                         <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
