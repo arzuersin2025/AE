@@ -39,11 +39,12 @@
         #background-leaves-pattern {
             position: fixed; top: 0; left: 0; right: 0; bottom: 0;
             background-image: url('https://www.toptal.com/designers/subtlepatterns/uploads/leaves.png');
-            background-repeat: repeat; background-color: #fdfaf6; z-index: -2; pointer-events: none; opacity: 0.6;
+            background-repeat: repeat; background-color: #fdfaf6; z-index: -4; pointer-events: none; opacity: 0.6;
         }
         @media (max-width: 768px) {
             #background-leaves-pattern {
-                opacity: 0.75 !important;  /* beyaz yapraklar mobilde daha net gözüksün */
+                opacity: 0.75 !important;  /* beyaz yapraklar daha net */
+                z-index: -4 !important;    /* arka plan fotoğrafının altına geçti */
             }
         }
         #background-portrait {
@@ -61,7 +62,7 @@
         @media (max-width: 768px) {
             #background-portrait {
                 background-size: cover;
-                opacity: 0.92 !important;  /* arka plan fotoğrafı mobilde biraz şeffaf olsun */
+                opacity: 0.92 !important;  /* hafif şeffaf */
             }
         }
         #falling-leaves-container { position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: -1; overflow: hidden; }
