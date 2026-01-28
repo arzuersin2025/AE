@@ -39,13 +39,7 @@
         #background-leaves-pattern {
             position: fixed; top: 0; left: 0; right: 0; bottom: 0;
             background-image: url('https://www.toptal.com/designers/subtlepatterns/uploads/leaves.png');
-            background-repeat: repeat; background-color: #fdfaf6; z-index: -4; pointer-events: none; opacity: 0.6;
-        }
-        @media (max-width: 768px) {
-            #background-leaves-pattern {
-                opacity: 0.75 !important;
-                z-index: -4 !important;
-            }
+            background-repeat: repeat; background-color: #fdfaf6; z-index: -4; pointer-events: none; opacity: 0.75;
         }
         #background-portrait {
             position: fixed;
@@ -55,14 +49,18 @@
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: scroll;
-            opacity: 0.95;
+            opacity: 0.80;
             z-index: -3;
             pointer-events: none;
         }
         @media (max-width: 768px) {
             #background-portrait {
                 background-size: cover;
-                opacity: 0.92 !important;
+                opacity: 0.80 !important;
+            }
+            #background-leaves-pattern {
+                opacity: 0.75 !important;
+                z-index: -4 !important;
             }
         }
         #falling-leaves-container { position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: -1; overflow: hidden; }
