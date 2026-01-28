@@ -1,7 +1,7 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arzu & Ersin | Bizim Hikayemiz</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -39,30 +39,9 @@
         #background-leaves-pattern {
             position: fixed; top: 0; left: 0; right: 0; bottom: 0;
             background-image: url('https://www.toptal.com/designers/subtlepatterns/uploads/leaves.png');
-            background-repeat: repeat; background-color: #fdfaf6; z-index: -4; pointer-events: none; opacity: 0.75;
+            background-repeat: repeat; background-color: #fdfaf6; z-index: -2; pointer-events: none; opacity: 0.6;
         }
-        #background-portrait {
-            position: fixed;
-            inset: 0;
-            background-image: url('https://i.imgur.com/11UKyWN.jpeg');
-            background-size: contain;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: scroll;
-            opacity: 0.50;  /* ← daha da şeffaf yapıldı (0.50) */
-            z-index: -3;
-            pointer-events: none;
-        }
-        @media (max-width: 768px) {
-            #background-portrait {
-                background-size: cover;
-                opacity: 0.50 !important;
-            }
-            #background-leaves-pattern {
-                opacity: 0.75 !important;
-                z-index: -4 !important;
-            }
-        }
+        @media (max-width: 768px) { #background-leaves-pattern { opacity: 0.9 !important; } }
         #falling-leaves-container { position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: -1; overflow: hidden; }
         #falling-hearts-container { position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: -1; overflow: hidden; }
         #falling-flowers-container { position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: -1; overflow: hidden; }
@@ -355,7 +334,6 @@
 </head>
 <body class="text-black">
     <div id="background-leaves-pattern"></div>
-    <div id="background-portrait"></div>
     <div id="falling-leaves-container"></div>
     <div id="falling-hearts-container"></div>
     <div id="falling-flowers-container"></div>
