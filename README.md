@@ -43,7 +43,7 @@
         }
         @media (max-width: 768px) {
             #background-leaves-pattern {
-                opacity: 0.2 !important;
+                opacity: 0.75 !important;  /* beyaz yapraklar mobilde daha net gözüksün */
             }
         }
         #background-portrait {
@@ -61,7 +61,7 @@
         @media (max-width: 768px) {
             #background-portrait {
                 background-size: cover;
-                opacity: 1.0 !important;
+                opacity: 0.92 !important;  /* arka plan fotoğrafı mobilde biraz şeffaf olsun */
             }
         }
         #falling-leaves-container { position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: -1; overflow: hidden; }
