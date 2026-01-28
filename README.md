@@ -41,7 +41,6 @@
             background-image: url('https://www.toptal.com/designers/subtlepatterns/uploads/leaves.png');
             background-repeat: repeat; background-color: #fdfaf6; z-index: -2; pointer-events: none; opacity: 0.6;
         }
-        /* Mobil için yaprak deseni çok daha hafif (neredeyse görünmez) */
         @media (max-width: 768px) {
             #background-leaves-pattern {
                 opacity: 0.2 !important;
@@ -61,7 +60,7 @@
         }
         @media (max-width: 768px) {
             #background-portrait {
-                background-size: cover;   /* daha dolu ve net görünüm için */
+                background-size: cover;
                 opacity: 1.0 !important;
             }
         }
