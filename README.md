@@ -49,14 +49,14 @@
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: scroll;
-            opacity: 0.80;
+            opacity: 0.50;  /* ← daha da şeffaf yapıldı (0.50) */
             z-index: -3;
             pointer-events: none;
         }
         @media (max-width: 768px) {
             #background-portrait {
                 background-size: cover;
-                opacity: 0.80 !important;
+                opacity: 0.50 !important;
             }
             #background-leaves-pattern {
                 opacity: 0.75 !important;
