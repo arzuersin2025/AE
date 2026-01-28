@@ -42,8 +42,7 @@
             background-repeat: repeat; background-color: #fdfaf6; z-index: -2; pointer-events: none; opacity: 0.6;
         }
         @media (max-width: 768px) { #background-leaves-pattern { opacity: 0.9 !important; } }
-
-        /* Arka plan fotoğrafı – opacity 0.95 yapıldı (hem mobil hem masaüstü) */
+        /* Arka plan fotoğrafı – mobil için opacity 1.0 yapıldı */
         #background-portrait {
             position: fixed;
             inset: 0;
@@ -59,9 +58,9 @@
         @media (max-width: 768px) {
             #background-portrait {
                 background-size: contain;
+                opacity: 1.0 !important;
             }
         }
-
         #falling-leaves-container { position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: -1; overflow: hidden; }
         #falling-hearts-container { position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: -1; overflow: hidden; }
         #falling-flowers-container { position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: -1; overflow: hidden; }
@@ -353,14 +352,11 @@
     </style>
 </head>
 <body class="text-black">
-
     <div id="background-leaves-pattern"></div>
     <div id="background-portrait"></div>
-
     <div id="falling-leaves-container"></div>
     <div id="falling-hearts-container"></div>
     <div id="falling-flowers-container"></div>
-
     <header class="py-16 text-center relative z-20 overflow-hidden">
         <div class="relative">
             <div class="relative z-10">
@@ -375,14 +371,11 @@
             </div>
         </div>
     </header>
-
     <section id="main-title-section" class="py-8 text-center">
         <h2 id="main-title" class="font-bold handwriting text-green-600">O Güzel Sonbahar günü</h2>
         <p class="text-xl md:text-2xl mt-2 text-red-600 font-bold">27 Eylül 2025</p>
     </section>
-
     <main class="container mx-auto px-6 pb-12 relative z-20">
-
         <section class="max-w-3xl mx-auto my-12 text-center">
             <h3 id="ilk-adim-baslik" class="font-bold text-red-600 mb-4">İlk Adım</h3>
             <p class="text-lg leading-relaxed font-medium font-[550] text-black">
@@ -398,7 +391,6 @@
             </p>
             <div class="text-4xl text-red-500 mt-8 heartbeat"><i class="fas fa-heart"></i></div>
         </section>
-
         <section class="my-16 max-w-3xl mx-auto text-center">
             <h3 id="sonbahar-baslik" class="font-bold text-center text-red-600 mb-6 handwriting font-forte-alternative">Sonbahar şiiri</h3>
             <div class="poem-container">
@@ -415,7 +407,6 @@
             </div>
             <p class="text-right text-green-600 font-semibold-bold mt-6 pr-4 font-forte-alternative poem-signature">- Nazım Hikmet</p>
         </section>
-
         <section class="my-16 max-w-3xl mx-auto text-center">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Aramızda Geçen İki Güzel Söz</h3>
             <div class="max-w-2xl mx-auto space-y-6">
@@ -432,7 +423,6 @@
                 </div>
             </div>
         </section>
-
         <section id="countdown-section" class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 font-forte-alternative">Büyük Güne Geri Sayım</h3>
             <div id="countdown-placeholder" class="my-4">
@@ -442,7 +432,6 @@
                 </p>
             </div>
         </section>
-
         <section id="map-section" class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Düğün Mekanımız</h3>
             <div class="flex flex-col items-center mb-8">
@@ -455,7 +444,6 @@
                 Seninle sonsuzluğa adım attığımız yer 💙
             </p>
         </section>
-
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center">
             <h3 class="font-bold text-red-600 mb-6 handwriting">Davetiyemiz</h3>
             <div class="flex flex-col items-center">
@@ -470,12 +458,10 @@
                 </p>
             </div>
         </section>
-
         <div id="invitation-modal">
             <span id="close-invitation">X</span>
             <img id="invitation-image" src="https://i.imgur.com/2nywEc1.jpeg" alt="Arzu & Ersin Düğün Davetiyesi">
         </div>
-
         <section class="my-16 max-w-3xl mx-auto transparent-section text-center relative overflow-hidden">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Bizim Şarkımız</h3>
             <p class="text-center text-black font-semibold italic mt-2 mb-6">Tarkan - Beni Çok Sev</p>
@@ -496,7 +482,6 @@
                 </div>
             </div>
         </section>
-
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Fotoğraf Galerimiz</h3>
             <div class="photo-gallery-description">
@@ -599,7 +584,6 @@
                 </div>
             </div>
         </section>
-
         <section class="my-16 max-w-5xl mx-auto p-4 md:p-8 text-center">
             <h3 class="font-bold text-center text-red-600 mb-4 handwriting">Video Galerimiz</h3>
             <div class="video-gallery-description">
@@ -666,7 +650,6 @@
                 </div>
             </div>
         </section>
-
         <section class="my-16 max-w-3xl mx-auto transparent-section">
             <h3 class="font-bold text-center text-red-600 mb-6 handwriting">Teşekkür</h3>
             <div class="thank-you-message">
@@ -699,7 +682,6 @@
                 </div>
             </div>
         </section>
-
         <section id="footer-section" class="my-12 text-center">
             <div id="qr-wrapper">
                 <div id="footer-qr" class="photo-container inline-block">
@@ -715,19 +697,16 @@
             </div>
         </section>
     </main>
-
     <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
         <span id="close-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
         <img id="modal-image" src="" alt="Büyütülmüş Fotoğraf" class="max-w-[90vw] max-h-[90vh] rounded-lg shadow-lg">
         <span id="prev-photo" class="absolute top-1/2 left-4 -translate-y-1/2 text-white text-6xl font-bold cursor-pointer hover:text-gray-300 transition-colors select-none"><</span>
         <span id="next-photo" class="absolute top-1/2 right-4 -translate-y-1/2 text-white text-6xl font-bold cursor-pointer hover:text-gray-300 transition-colors select-none">></span>
     </div>
-
     <div id="video-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
         <span id="close-video-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
         <div class="aspect-video w-full max-w-4xl"><iframe id="modal-video-iframe" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
     </div>
-
     <script>
     (() => {
         'use strict';
