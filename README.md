@@ -15,10 +15,14 @@
         .header-name, .handwriting {
             caret-color: transparent !important;
         }
-        /* Kaydırma kilidi sınıfı - arka planın sabit kalmasını sağlar */
+        /* Geliştirilmiş Kaydırma Kilidi - Sitenin sabit kalmasını garanti eder */
         body.no-scroll {
             overflow: hidden !important;
-            height: 100vh;
+            height: 100vh !important;
+            width: 100vw !important;
+            position: fixed !important;
+            top: 0;
+            left: 0;
         }
         a, button, [role="button"], .cursor-pointer,
         #play-song-btn, #toggle-gallery-btn, #toggle-video-gallery-btn,
@@ -190,6 +194,7 @@
             align-items: center;
             justify-content: center;
             padding: 1rem;
+            touch-action: none; /* Mobilde arka plan kaymasını engellemeye yardımcı olur */
         }
         #invitation-modal.show { display: flex; }
         #invitation-modal img {
@@ -250,14 +255,14 @@
         #toggle-video-gallery-btn i {
             color: #000000 !important;
         }
-        /* Kalp kabı için güncel stil - kesilmeyi önler */
+        /* Kalp kabı - Mobil kesilmeyi önlemek için optimize edildi */
         .interlocked-hearts {
             position: relative;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 18vw; 
-            height: 18vw;
+            width: 22vw; 
+            height: 22vw;
             margin: 0 0.5em;
             overflow: visible;
             flex-shrink: 0;
@@ -271,7 +276,7 @@
         .heart-border {
             fill: #dc2626;
             stroke: black;
-            stroke-width: 0.8; /* İnce zarif kontur */
+            stroke-width: 0.6; /* Daha ince siyahlık */
         }
         @media (min-width: 768px) {
             .interlocked-hearts {
@@ -280,7 +285,7 @@
                 margin: 0 1.2em;
             }
             .heart-border {
-                stroke-width: 0.6;
+                stroke-width: 0.4;
             }
         }
         #countdown-placeholder p {
@@ -334,6 +339,10 @@
             color: #dc2626;
             text-align: center;
         }
+        /* Modal Görsel Sabitleme */
+        #image-modal {
+            touch-action: none;
+        }
     </style>
 </head>
 <body class="text-black">
@@ -347,7 +356,7 @@
                 <h1 class="font-bold flex items-center justify-center handwriting leading-tight">
                     <span class="header-name">Arzu</span>
                     <span class="interlocked-hearts heartbeat">
-                        <svg viewBox="-1 -1 34 31.6" class="heart-photo-svg"> 
+                        <svg viewBox="-2 -2 36 33.6" class="heart-photo-svg"> 
                             <defs>
                                 <clipPath id="heart-clip">
                                     <path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"/>
@@ -733,7 +742,7 @@
             }
         };
 
-        // --- Efektler (Kalpler ve Yapraklar) ---
+        // --- Efektler ---
         const heartContainer = document.getElementById('falling-hearts-container');
         if (heartContainer) {
             for (let i = 0; i < 2; i++) {
@@ -764,14 +773,7 @@
             }
         }
 
-        // --- IntersectionObservers ---
-        const safeObserve = (observer, selector) => {
-            const elements = document.querySelectorAll(selector);
-            elements.forEach(el => {
-                if (el instanceof Element) observer.observe(el);
-            });
-        };
-
+        // --- Gözlemciler (IntersectionObservers) ---
         const lazyLoadObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting && entry.target instanceof Element && entry.target.dataset.src) {
@@ -781,17 +783,21 @@
             });
         }, { rootMargin: '50px' });
         
-        safeObserve(lazyLoadObserver, 'img[data-src]');
+        document.querySelectorAll('img[data-src]').forEach(img => {
+            if (img instanceof Element) lazyLoadObserver.observe(img);
+        });
 
         const fadeObserver = new IntersectionObserver(entries => {
             entries.forEach(entry => { 
-                if (entry.isIntersecting && entry.target instanceof Element && entry.target.classList) {
+                if (entry.isIntersecting && entry.target instanceof Element) {
                     entry.target.classList.add('visible'); 
                 }
             });
         }, { threshold: 0.1 });
         
-        safeObserve(fadeObserver, '.fade-in-on-scroll');
+        document.querySelectorAll('.fade-in-on-scroll').forEach(el => {
+            if (el instanceof Element) fadeObserver.observe(el);
+        });
 
         // --- Galeri Mantığı ---
         const modal = document.getElementById('image-modal');
@@ -917,7 +923,7 @@
             }
         });
 
-        // Klavye Navigasyonu
+        // Klavye
         document.addEventListener('keydown', e => {
             if (e.key === 'Escape') {
                 closePhoto();
@@ -927,16 +933,17 @@
                     document.body.classList.remove('no-scroll');
                 }
             }
-            if (modal && modal instanceof Element && modal.classList.contains('flex')) {
+            if (modal && modal.classList.contains('flex')) {
                 if (e.key === 'ArrowRight') document.getElementById('next-photo')?.click();
                 if (e.key === 'ArrowLeft') document.getElementById('prev-photo')?.click();
             }
         });
 
-        // Masaüstü Zoom/Drag
+        // Masaüstü Yakınlaştırma (Wheel) ve Sürükleme (Drag)
+        // wheel event'ini passive: false ile yakalayıp e.preventDefault() yaparak tarayıcı zoom'unu engelliyoruz.
         if (window.innerWidth > 768 && !('ontouchstart' in window)) {
             modal?.addEventListener('wheel', (e) => {
-                e.preventDefault();
+                e.preventDefault(); // Sitenin büyümesini engeller
                 const delta = e.deltaY > 0 ? 0.9 : 1.1;
                 currentScale = Math.min(Math.max(0.5, currentScale * delta), 8);
                 applyTransform();
@@ -952,7 +959,7 @@
             });
 
             invitationModal?.addEventListener('wheel', (e) => {
-                e.preventDefault();
+                e.preventDefault(); // Sitenin büyümesini engeller
                 const delta = e.deltaY > 0 ? 0.9 : 1.1;
                 invitationCurrentScale = Math.min(Math.max(0.5, invitationCurrentScale * delta), 8);
                 applyInvitationTransform();
@@ -996,7 +1003,7 @@
             }
         }, 500);
 
-        // Youtube
+        // YouTube
         const tag = document.createElement('script');
         tag.src = 'https://www.youtube.com/iframe_api';
         const firstScriptTag = document.getElementsByTagName('script')[0];
