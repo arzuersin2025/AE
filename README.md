@@ -723,6 +723,7 @@
     document.addEventListener('DOMContentLoaded', () => {
         'use strict';
         
+        // --- Değişken Tanımlamaları ---
         let invitationCurrentScale = 1;
         let invitationCurrentTranslateX = 0;
         let invitationCurrentTranslateY = 0;
@@ -751,15 +752,7 @@
             document.body.classList.remove('no-scroll');
         };
 
-        // Arka planda genel zoom yapmayı engelleyen JavaScript (Mobile)
-        document.addEventListener('touchstart', (e) => {
-            if (e.touches.length > 1) {
-                // Eğer modal açık değilse, tüm sayfadaki zoom hareketini engelle
-                if (!modal.classList.contains('flex') && !document.getElementById('invitation-modal').classList.contains('show')) {
-                    e.preventDefault();
-                }
-            }
-        }, { passive: false });
+        const clamp = (val, min, max) => Math.max(min, Math.min(max, val));
 
         const applyInvitationTransform = () => {
             const img = document.getElementById('invitation-image');
@@ -770,6 +763,9 @@
 
         const applyTransform = () => {
             if (modalImage && modalImage instanceof Element) {
+                const maxOff = (currentScale - 1) * 200; 
+                currentTranslateX = clamp(currentTranslateX, -maxOff, maxOff);
+                currentTranslateY = clamp(currentTranslateY, -maxOff, maxOff);
                 modalImage.style.transform = `translate(${currentTranslateX}px, ${currentTranslateY}px) scale(${currentScale})`;
             }
         };
@@ -777,37 +773,6 @@
         const getDist = (touches) => {
             return Math.sqrt(Math.pow(touches[0].pageX - touches[1].pageX, 2) + Math.pow(touches[0].pageY - touches[1].pageY, 2));
         };
-
-        // --- Efektler ---
-        const heartContainer = document.getElementById('falling-hearts-container');
-        if (heartContainer) {
-            for (let i = 0; i < 2; i++) {
-                const heart = document.createElement('div');
-                heart.className = 'falling-heart';
-                heart.innerHTML = '💛';
-                heart.style.left = (30 + i * 40) + '%';
-                heart.style.animationDuration = (55 + i * 10) + 's';
-                heart.style.animationDelay = (i * 15) + 's';
-                heart.style.fontSize = (2.0 + Math.random() * 0.8) + 'rem';
-                heartContainer.appendChild(heart);
-            }
-        }
-
-        const leafSVG = `<svg viewBox="0 0 100 140" class="w-full h-full" preserveAspectRatio="xMidYMid meet"><path class="leaf-outer" d="M50 10 C30 15, 20 35, 18 55 C16 75, 25 95, 35 115 C45 130, 48 135, 50 138 C52 135, 55 130, 65 115 C75 95, 84 75, 82 55 C80 35, 70 15, 50 10 Z" /><path class="leaf-inner" d="M50 15 C33 20, 25 38, 23 55 C21 72, 28 88, 36 108 C44 125, 48 132, 50 135 C52 132, 56 125, 64 108 C72 88, 79 72, 77 55 C75 38, 67 20, 50 15 Z" /><path d="M50 15 Q50 70 48 135" stroke="#fff" stroke-width="2.5" opacity="0.5" fill="none"/><path d="M50 15 Q35 40 28 48 M50 55 Q32 65 25 75 M50 80 Q30 90 23 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/><path d="M50 15 Q65 40 72 48 M50 55 Q68 65 75 75 M50 80 Q70 90 77 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/></svg>`;
-        const leafColors = ['autumn-1','autumn-2','autumn-3','autumn-4','autumn-5','autumn-6','autumn-7','autumn-8','autumn-9','autumn-10'];
-        const leafContainer = document.getElementById('falling-leaves-container');
-        if (leafContainer) {
-            for (let i = 0; i < 2; i++) {
-                const leaf = document.createElement('div');
-                const colorClass = leafColors[Math.floor(Math.random() * leafColors.length)];
-                leaf.className = `leaf-svg ${colorClass}`;
-                leaf.style.left = (30 + i * 40) + '%';
-                leaf.style.animationDuration = (60 + Math.random() * 25) + 's';
-                leaf.style.animationDelay = (Math.random() * 40) + 's';
-                leaf.innerHTML = leafSVG;
-                leafContainer.appendChild(leaf);
-            }
-        }
 
         // --- IntersectionObservers ---
         const lazyLoadObserver = new IntersectionObserver((entries) => {
@@ -899,14 +864,16 @@
         }, { passive: false });
 
         modal?.addEventListener('touchmove', (e) => {
-            e.preventDefault(); 
             if (e.touches.length === 2) {
+                e.preventDefault(); 
                 const currentDist = getDist(e.touches);
                 const scaleFactor = currentDist / initialDist;
-                currentScale = Math.min(Math.max(0.5, currentScale * scaleFactor), 8);
+                const nextScale = currentScale * (1 + (scaleFactor - 1) * 0.5);
+                currentScale = clamp(nextScale, 0.8, 10);
                 initialDist = currentDist;
                 applyTransform();
-            } else if (e.touches.length === 1 && isDragging && currentScale > 1) {
+            } else if (e.touches.length === 1 && isDragging && currentScale > 1.05) {
+                e.preventDefault();
                 currentTranslateX = e.touches[0].pageX - startX;
                 currentTranslateY = e.touches[0].pageY - startY;
                 applyTransform();
@@ -917,18 +884,20 @@
             isDragging = false;
         });
 
-        // Desktop Wheel Zoom Engelleme (Genel Site İçin)
-        window.addEventListener('wheel', (e) => {
-            if (e.ctrlKey) {
-                e.preventDefault();
+        // Site Zoom engelleme
+        document.addEventListener('touchstart', (e) => {
+            if (e.touches.length > 1) {
+                if (!modal.classList.contains('flex') && !document.getElementById('invitation-modal').classList.contains('show')) {
+                    e.preventDefault();
+                }
             }
         }, { passive: false });
 
-        // Desktop Modal Zoom (Sadece Modal İçinde)
         modal?.addEventListener('wheel', (e) => {
             e.preventDefault();
-            const delta = e.deltaY > 0 ? 0.9 : 1.1;
-            currentScale = Math.min(Math.max(0.5, currentScale * delta), 8);
+            const zoomSpeed = 0.05;
+            const delta = e.deltaY > 0 ? (1 - zoomSpeed) : (1 + zoomSpeed);
+            currentScale = clamp(currentScale * delta, 0.8, 10);
             applyTransform();
         }, { passive: false });
 
@@ -1020,7 +989,7 @@
 
         // Masaüstü Sürükleme
         modalImage?.addEventListener('mousedown', (e) => {
-            if (currentScale <= 1) return;
+            if (currentScale <= 1.05) return;
             e.preventDefault();
             isDragging = true;
             startX = e.clientX - currentTranslateX;
@@ -1030,7 +999,7 @@
 
         const invImg = document.getElementById('invitation-image');
         invImg?.addEventListener('mousedown', (e) => {
-            if (invitationCurrentScale <= 1) return;
+            if (invitationCurrentScale <= 1.05) return;
             e.preventDefault();
             invitationIsDragging = true;
             invitationStartX = e.clientX - invitationCurrentTranslateX;
@@ -1054,18 +1023,74 @@
         document.addEventListener('mouseup', () => {
             isDragging = false;
             invitationIsDragging = false;
-            if (modalImage && modalImage instanceof Element) modalImage.style.cursor = currentScale > 1 ? 'grab' : 'default';
-            if (invImg && invImg instanceof Element) invImg.style.cursor = invitationCurrentScale > 1 ? 'grab' : 'default';
+            if (modalImage && modalImage instanceof Element) modalImage.style.cursor = currentScale > 1.05 ? 'grab' : 'default';
+            if (invImg && invImg instanceof Element) invImg.style.cursor = invitationCurrentScale > 1.05 ? 'grab' : 'default';
         });
 
-        // Confetti
+        // Konfeti Efekti - Geliştirilmiş ve 3 Saniye Süren
         setTimeout(() => {
             if (typeof confetti === 'function') {
-                confetti({ particleCount: 40, spread: 70, origin: { y: 0.6 } });
+                const duration = 3 * 1000;
+                const end = Date.now() + duration;
+                const colors = ['#f59e0b', '#ef4444', '#facc15', '#92400e', '#84cc16', '#dc2626', '#fb923c', '#ff69b4', '#16a34a', '#ffd700'];
+
+                (function frame() {
+                    // Sol taraftan patlama
+                    confetti({
+                        particleCount: 8,
+                        angle: 60,
+                        spread: 55,
+                        origin: { x: 0, y: 0.6 },
+                        colors: colors
+                    });
+                    // Sağ taraftan patlama
+                    confetti({
+                        particleCount: 8,
+                        angle: 120,
+                        spread: 55,
+                        origin: { x: 1, y: 0.6 },
+                        colors: colors
+                    });
+
+                    if (Date.now() < end) {
+                        requestAnimationFrame(frame);
+                    }
+                }());
             }
         }, 500);
 
-        // Youtube Init
+        // Falling items
+        const heartContainer = document.getElementById('falling-hearts-container');
+        if (heartContainer) {
+            for (let i = 0; i < 2; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'falling-heart';
+                heart.innerHTML = '💛';
+                heart.style.left = (30 + i * 40) + '%';
+                heart.style.animationDuration = (55 + i * 10) + 's';
+                heart.style.animationDelay = (i * 15) + 's';
+                heart.style.fontSize = (2.0 + Math.random() * 0.8) + 'rem';
+                heartContainer.appendChild(heart);
+            }
+        }
+
+        const leafSVG_str = `<svg viewBox="0 0 100 140" class="w-full h-full" preserveAspectRatio="xMidYMid meet"><path style="fill:white;opacity:0.95" d="M50 10 C30 15, 20 35, 18 55 C16 75, 25 95, 35 115 C45 130, 48 135, 50 138 C52 135, 55 130, 65 115 C75 95, 84 75, 82 55 C80 35, 70 15, 50 10 Z" /><path style="fill:currentColor" d="M50 15 C33 20, 25 38, 23 55 C21 72, 28 88, 36 108 C44 125, 48 132, 50 135 C52 132, 56 125, 64 108 C72 88, 79 72, 77 55 C75 38, 67 20, 50 15 Z" /></svg>`;
+        const leafColors = ['autumn-1','autumn-2','autumn-3','autumn-4','autumn-5','autumn-6','autumn-7','autumn-8','autumn-9','autumn-10'];
+        const leafContainer = document.getElementById('falling-leaves-container');
+        if (leafContainer) {
+            for (let i = 0; i < 2; i++) {
+                const leaf = document.createElement('div');
+                const colorClass = leafColors[Math.floor(Math.random() * leafColors.length)];
+                leaf.className = `leaf-svg ${colorClass}`;
+                leaf.style.left = (30 + i * 40) + '%';
+                leaf.style.animationDuration = (60 + Math.random() * 25) + 's';
+                leaf.style.animationDelay = (Math.random() * 40) + 's';
+                leaf.innerHTML = leafSVG_str;
+                leafContainer.appendChild(leaf);
+            }
+        }
+
+        // YouTube API Hazırlığı
         const tag = document.createElement('script');
         tag.src = 'https://www.youtube.com/iframe_api';
         const firstScriptTag = document.getElementsByTagName('script')[0];
