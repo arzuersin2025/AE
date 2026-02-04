@@ -19,14 +19,15 @@
 
         /* Sayfa genelinde zoom ve kaydırma kontrolü */
         html, body {
-            touch-action: pan-x pan-y; /* Sadece kaydırmaya izin ver, zoom'u (pinch) engelle */
+            touch-action: pan-x pan-y;
             -webkit-text-size-adjust: 100%;
         }
 
-        /* Kaydırma Kilidi - Düzeni bozmaz, zıplamayı önler */
-        .no-scroll {
+        /* Kaydırma Kilidi - Zıplamayı önleyen yapı */
+        body.no-scroll {
             overflow: hidden !important;
-            touch-action: none; /* Modal açıkken her şeyi engelle */
+            height: 100% !important;
+            width: 100% !important;
         }
         
         a, button, [role="button"], .cursor-pointer,
@@ -260,7 +261,7 @@
         #toggle-video-gallery-btn i {
             color: #000000 !important;
         }
-        /* Kalp kabı - Mobil kesilmeyi önlemek için optimize edildi */
+        /* Kalp kabı */
         .interlocked-hearts {
             position: relative;
             display: inline-flex;
@@ -344,15 +345,28 @@
             color: #dc2626;
             text-align: center;
         }
-        /* Modal Görsel Sabitleme */
+
+        /* MODAL GÜNCELLEMELERİ - Stabil Zoom İçin */
         #image-modal {
-            touch-action: none; /* Modal üzerinde özel hareket kontrolü */
+            touch-action: none;
             overflow: hidden;
+            background: rgba(0,0,0,0.95);
         }
         #modal-image {
-            transition: transform 0.1s ease-out;
+            /* Akıcılık için sadece transform bazlı hareket */
             will-change: transform;
-            touch-action: none; /* Browser-level pinch zoom engellendi */
+            /* Browser'ın kendi zoom müdahalesini tamamen kesiyoruz */
+            touch-action: none;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            /* Başlangıçta görünürlüğü garanti et */
+            display: block !important; 
+            max-width: 90vw;
+            max-height: 90vh;
+            border-radius: 8px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            /* Zoom sırasında kaybolmayı önlemek için geçişi kısalttım */
+            transition: transform 0.05s linear;
         }
     </style>
 </head>
@@ -709,41 +723,42 @@
             </div>
         </section>
     </main>
-    <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
-        <span id="close-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
-        <img id="modal-image" src="" alt="Büyütülmüş Fotoğraf" class="max-w-[90vw] max-h-[90vh] rounded-lg shadow-lg">
-        <span id="prev-photo" class="absolute top-1/2 left-4 -translate-y-1/2 text-white text-6xl font-bold cursor-pointer hover:text-gray-300 transition-colors select-none"><</span>
-        <span id="next-photo" class="absolute top-1/2 right-4 -translate-y-1/2 text-white text-6xl font-bold cursor-pointer hover:text-gray-300 transition-colors select-none">></span>
+
+    <!-- Photo Modal -->
+    <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-90 hidden items-center justify-center z-50 p-4">
+        <span id="close-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors z-[60]">×</span>
+        <img id="modal-image" src="" alt="Büyütülmüş Fotoğraf">
+        <span id="prev-photo" class="absolute top-1/2 left-4 -translate-y-1/2 text-white text-6xl font-bold cursor-pointer hover:text-gray-300 transition-colors select-none z-[60]"><</span>
+        <span id="next-photo" class="absolute top-1/2 right-4 -translate-y-1/2 text-white text-6xl font-bold cursor-pointer hover:text-gray-300 transition-colors select-none z-[60]">></span>
     </div>
+
     <div id="video-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
         <span id="close-video-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
         <div class="aspect-video w-full max-w-4xl"><iframe id="modal-video-iframe" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
     </div>
+
     <script>
     document.addEventListener('DOMContentLoaded', () => {
         'use strict';
         
-        // --- Değişken Tanımlamaları ---
-        let invitationCurrentScale = 1;
-        let invitationCurrentTranslateX = 0;
-        let invitationCurrentTranslateY = 0;
-        let invitationIsDragging = false;
-        let invitationStartX, invitationStartY;
-
+        // --- STABİL ZOOM MANTIĞI DEĞİŞKENLERİ ---
         let currentScale = 1;
         let currentTranslateX = 0;
         let currentTranslateY = 0;
-        let isDragging = false;
-        let startX, startY;
+        
+        // Touch states
         let initialDist = 0;
-
+        let startX = 0;
+        let startY = 0;
+        let isDragging = false;
+        
         let photoUrls = [];
         let currentPhotoIndex = 0;
 
         const modal = document.getElementById('image-modal');
         const modalImage = document.getElementById('modal-image');
 
-        // Sabit Arka Plan Mantığı (Zıplama yapmaz)
+        // Sabit Arka Plan Mantığı
         const lockScroll = () => {
             document.body.classList.add('no-scroll');
         };
@@ -754,19 +769,15 @@
 
         const clamp = (val, min, max) => Math.max(min, Math.min(max, val));
 
-        const applyInvitationTransform = () => {
-            const img = document.getElementById('invitation-image');
-            if (img && img instanceof Element) {
-                img.style.transform = `translate(${invitationCurrentTranslateX}px, ${invitationCurrentTranslateY}px) scale(${invitationCurrentScale})`;
-            }
-        };
-
+        // Görsele transform uygula - translate3d ile GPU ivmesi
         const applyTransform = () => {
             if (modalImage && modalImage instanceof Element) {
-                const maxOff = (currentScale - 1) * 200; 
+                // Sınırlandırma: Görselin kaybolmasını önler
+                const maxOff = (currentScale - 1) * 300; 
                 currentTranslateX = clamp(currentTranslateX, -maxOff, maxOff);
                 currentTranslateY = clamp(currentTranslateY, -maxOff, maxOff);
-                modalImage.style.transform = `translate(${currentTranslateX}px, ${currentTranslateY}px) scale(${currentScale})`;
+                
+                modalImage.style.transform = `translate3d(${currentTranslateX}px, ${currentTranslateY}px, 0) scale(${currentScale})`;
             }
         };
 
@@ -775,35 +786,34 @@
         };
 
         // --- IntersectionObservers ---
+        const safeObserve = (observer, selector) => {
+            document.querySelectorAll(selector).forEach(el => observer.observe(el));
+        };
+
         const lazyLoadObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting && entry.target instanceof Element && entry.target.dataset.src) {
+                if (entry.isIntersecting && entry.target.dataset.src) {
                     entry.target.src = entry.target.dataset.src;
                     lazyLoadObserver.unobserve(entry.target);
                 }
             });
         }, { rootMargin: '50px' });
         
-        document.querySelectorAll('img[data-src]').forEach(img => {
-            if (img instanceof Element) lazyLoadObserver.observe(img);
-        });
+        document.querySelectorAll('img[data-src]').forEach(img => lazyLoadObserver.observe(img));
 
         const fadeObserver = new IntersectionObserver(entries => {
             entries.forEach(entry => { 
-                if (entry.isIntersecting && entry.target instanceof Element && entry.target.classList) {
-                    entry.target.classList.add('visible'); 
-                }
+                if (entry.isIntersecting) entry.target.classList.add('visible'); 
             });
         }, { threshold: 0.1 });
         
-        document.querySelectorAll('.fade-in-on-scroll').forEach(el => {
-            if (el instanceof Element) fadeObserver.observe(el);
-        });
+        document.querySelectorAll('.fade-in-on-scroll').forEach(el => fadeObserver.observe(el));
 
         // --- Galeri Mantığı ---
         const updateModalPhoto = () => {
-            if (modalImage && modalImage instanceof Element && photoUrls[currentPhotoIndex]) {
+            if (modalImage && photoUrls[currentPhotoIndex]) {
                 modalImage.src = photoUrls[currentPhotoIndex];
+                // Her fotoğraf değişiminde zoom'u sıfırla
                 currentScale = 1;
                 currentTranslateX = 0;
                 currentTranslateY = 0;
@@ -816,18 +826,18 @@
             photoUrls = Array.from(thumbs).map(img => img.dataset.src);
             currentPhotoIndex = index;
             updateModalPhoto();
-            if (modal && modal instanceof Element) {
-                modal.classList.replace('hidden', 'flex');
+            if (modal) {
+                modal.style.display = 'flex';
                 lockScroll();
             }
         };
 
         const closePhoto = () => {
-            if (modal && modal instanceof Element) {
-                modal.classList.replace('flex', 'hidden');
+            if (modal) {
+                modal.style.display = 'none';
                 unlockScroll();
             }
-            if (modalImage && modalImage instanceof Element) modalImage.src = '';
+            if (modalImage) modalImage.src = '';
             currentScale = 1;
             currentTranslateX = 0;
             currentTranslateY = 0;
@@ -835,24 +845,20 @@
 
         document.getElementById('next-photo')?.addEventListener('click', (e) => {
             e.stopPropagation();
-            if (photoUrls.length) {
-                currentPhotoIndex = (currentPhotoIndex + 1) % photoUrls.length;
-                updateModalPhoto();
-            }
+            currentPhotoIndex = (currentPhotoIndex + 1) % photoUrls.length;
+            updateModalPhoto();
         });
 
         document.getElementById('prev-photo')?.addEventListener('click', (e) => {
             e.stopPropagation();
-            if (photoUrls.length) {
-                currentPhotoIndex = (currentPhotoIndex - 1 + photoUrls.length) % photoUrls.length;
-                updateModalPhoto();
-            }
+            currentPhotoIndex = (currentPhotoIndex - 1 + photoUrls.length) % photoUrls.length;
+            updateModalPhoto();
         });
 
         document.getElementById('close-modal')?.addEventListener('click', closePhoto);
         modal?.addEventListener('click', (e) => { if (e.target === modal) closePhoto(); });
 
-        // Mobile Pinch-to-Zoom (Sadece Modal İçinde)
+        // --- YENİLENMİŞ MOBİL DOKUNMATİK ZOOM MANTIĞI ---
         modal?.addEventListener('touchstart', (e) => {
             if (e.touches.length === 2) {
                 initialDist = getDist(e.touches);
@@ -868,11 +874,17 @@
                 e.preventDefault(); 
                 const currentDist = getDist(e.touches);
                 const scaleFactor = currentDist / initialDist;
-                const nextScale = currentScale * (1 + (scaleFactor - 1) * 0.5);
-                currentScale = clamp(nextScale, 0.8, 10);
-                initialDist = currentDist;
-                applyTransform();
-            } else if (e.touches.length === 1 && isDragging && currentScale > 1.05) {
+                
+                // Zoom miktarını kontrol altına al
+                const newScale = clamp(currentScale * scaleFactor, 1, 8);
+                
+                // Eğer ölçek değiştiyse güncelle (Flicker'ı önlemek için min fark kontrolü)
+                if (Math.abs(newScale - currentScale) > 0.001) {
+                    currentScale = newScale;
+                    initialDist = currentDist;
+                    applyTransform();
+                }
+            } else if (e.touches.length === 1 && isDragging && currentScale > 1.01) {
                 e.preventDefault();
                 currentTranslateX = e.touches[0].pageX - startX;
                 currentTranslateY = e.touches[0].pageY - startY;
@@ -884,29 +896,30 @@
             isDragging = false;
         });
 
-        // Site Zoom engelleme
+        // Sayfa genelinde parmakla zoom'u (pinch) engelle (Modal açık değilken)
         document.addEventListener('touchstart', (e) => {
             if (e.touches.length > 1) {
-                if (!modal.classList.contains('flex') && !document.getElementById('invitation-modal').classList.contains('show')) {
+                if (modal.style.display !== 'flex' && !document.getElementById('invitation-modal').classList.contains('show')) {
                     e.preventDefault();
                 }
             }
         }, { passive: false });
 
+        // Masaüstü Zoom (Tekerlek)
         modal?.addEventListener('wheel', (e) => {
             e.preventDefault();
-            const zoomSpeed = 0.05;
+            const zoomSpeed = 0.1;
             const delta = e.deltaY > 0 ? (1 - zoomSpeed) : (1 + zoomSpeed);
-            currentScale = clamp(currentScale * delta, 0.8, 10);
+            currentScale = clamp(currentScale * delta, 1, 10);
             applyTransform();
         }, { passive: false });
 
+        // Toggles (Galeri & Video)
         document.getElementById('toggle-gallery-btn')?.addEventListener('click', function() {
             const wrapper = document.getElementById('gallery-wrapper');
             const icon = document.getElementById('gallery-toggle-icon');
             const text = document.getElementById('gallery-toggle-text');
             if (!wrapper) return;
-
             wrapper.classList.toggle('hidden');
             if (wrapper.classList.contains('hidden')) {
                 if (text) text.textContent = 'Fotoğraf Galerisini Gör';
@@ -925,7 +938,6 @@
             const icon = document.getElementById('video-gallery-toggle-icon');
             const text = document.getElementById('video-gallery-toggle-text');
             if (!wrapper) return;
-
             wrapper.classList.toggle('hidden');
             if (wrapper.classList.contains('hidden')) {
                 if (text) text.textContent = 'Video Galerisini Gör';
@@ -938,7 +950,7 @@
                         const iframe = document.getElementById('modal-video-iframe');
                         if (iframe && el.dataset.youtubeId) {
                             iframe.src = `https://www.youtube.com/embed/${el.dataset.youtubeId}?autoplay=1`;
-                            document.getElementById('video-modal')?.classList.replace('hidden', 'flex');
+                            document.getElementById('video-modal').classList.replace('hidden', 'flex');
                             lockScroll();
                         }
                     };
@@ -953,113 +965,71 @@
             if (iframe) iframe.src = '';
         });
 
-        const invitationModal = document.getElementById('invitation-modal');
+        // Davetiye
         document.getElementById('invitation-icon')?.addEventListener('click', () => {
-            if (invitationModal) {
-                invitationModal.classList.add('show');
+            const invModal = document.getElementById('invitation-modal');
+            if (invModal) {
+                invModal.classList.add('show');
                 lockScroll();
-                invitationCurrentScale = 1;
-                invitationCurrentTranslateX = 0;
-                invitationCurrentTranslateY = 0;
-                applyInvitationTransform();
             }
         });
 
         document.getElementById('close-invitation')?.addEventListener('click', () => {
-            if (invitationModal) {
-                invitationModal.classList.remove('show');
-                unlockScroll();
-            }
+            document.getElementById('invitation-modal')?.classList.remove('show');
+            unlockScroll();
         });
 
+        // Klavye Navigasyonu
         document.addEventListener('keydown', e => {
             if (e.key === 'Escape') {
                 closePhoto();
                 document.getElementById('close-video-modal')?.click();
-                if (invitationModal && invitationModal.classList.contains('show')) {
-                    invitationModal.classList.remove('show');
-                    unlockScroll();
-                }
+                document.getElementById('invitation-modal')?.classList.remove('show');
+                unlockScroll();
             }
-            if (modal && modal.classList.contains('flex')) {
+            if (modal.style.display === 'flex') {
                 if (e.key === 'ArrowRight') document.getElementById('next-photo')?.click();
                 if (e.key === 'ArrowLeft') document.getElementById('prev-photo')?.click();
             }
         });
 
-        // Masaüstü Sürükleme
+        // Masaüstü Drag (Tıklayıp sürükleme)
         modalImage?.addEventListener('mousedown', (e) => {
-            if (currentScale <= 1.05) return;
+            if (currentScale <= 1.01) return;
             e.preventDefault();
             isDragging = true;
             startX = e.clientX - currentTranslateX;
             startY = e.clientY - currentTranslateY;
-            if (modalImage instanceof Element) modalImage.style.cursor = 'grabbing';
-        });
-
-        const invImg = document.getElementById('invitation-image');
-        invImg?.addEventListener('mousedown', (e) => {
-            if (invitationCurrentScale <= 1.05) return;
-            e.preventDefault();
-            invitationIsDragging = true;
-            invitationStartX = e.clientX - invitationCurrentTranslateX;
-            invitationStartY = e.clientY - invitationCurrentTranslateY;
-            if (invImg instanceof Element) invImg.style.cursor = 'grabbing';
+            modalImage.style.cursor = 'grabbing';
         });
 
         document.addEventListener('mousemove', (e) => {
-            if (isDragging) {
+            if (isDragging && currentScale > 1.01) {
                 currentTranslateX = e.clientX - startX;
                 currentTranslateY = e.clientY - startY;
                 applyTransform();
-            }
-            if (invitationIsDragging) {
-                invitationCurrentTranslateX = e.clientX - invitationStartX;
-                invitationCurrentTranslateY = e.clientY - invitationStartY;
-                applyInvitationTransform();
             }
         });
 
         document.addEventListener('mouseup', () => {
             isDragging = false;
-            invitationIsDragging = false;
-            if (modalImage && modalImage instanceof Element) modalImage.style.cursor = currentScale > 1.05 ? 'grab' : 'default';
-            if (invImg && invImg instanceof Element) invImg.style.cursor = invitationCurrentScale > 1.05 ? 'grab' : 'default';
+            if (modalImage) modalImage.style.cursor = currentScale > 1.01 ? 'grab' : 'default';
         });
 
-        // Konfeti Efekti - Geliştirilmiş ve 3 Saniye Süren
+        // Konfeti Efekti - 3 Saniye Süren Yoğun Patlama
         setTimeout(() => {
-            if (typeof confetti === 'function') {
-                const duration = 3 * 1000;
-                const end = Date.now() + duration;
-                const colors = ['#f59e0b', '#ef4444', '#facc15', '#92400e', '#84cc16', '#dc2626', '#fb923c', '#ff69b4', '#16a34a', '#ffd700'];
+            const duration = 3 * 1000;
+            const end = Date.now() + duration;
+            const colors = ['#f59e0b', '#ef4444', '#facc15', '#92400e', '#84cc16', '#dc2626', '#fb923c', '#ff69b4', '#16a34a', '#ffd700'];
 
-                (function frame() {
-                    // Sol taraftan patlama
-                    confetti({
-                        particleCount: 8,
-                        angle: 60,
-                        spread: 55,
-                        origin: { x: 0, y: 0.6 },
-                        colors: colors
-                    });
-                    // Sağ taraftan patlama
-                    confetti({
-                        particleCount: 8,
-                        angle: 120,
-                        spread: 55,
-                        origin: { x: 1, y: 0.6 },
-                        colors: colors
-                    });
-
-                    if (Date.now() < end) {
-                        requestAnimationFrame(frame);
-                    }
-                }());
-            }
+            (function frame() {
+                confetti({ particleCount: 7, angle: 60, spread: 55, origin: { x: 0, y: 0.6 }, colors: colors });
+                confetti({ particleCount: 7, angle: 120, spread: 55, origin: { x: 1, y: 0.6 }, colors: colors });
+                if (Date.now() < end) requestAnimationFrame(frame);
+            }());
         }, 500);
 
-        // Falling items
+        // Falling items (Efektler)
         const heartContainer = document.getElementById('falling-hearts-container');
         if (heartContainer) {
             for (let i = 0; i < 2; i++) {
@@ -1068,7 +1038,6 @@
                 heart.innerHTML = '💛';
                 heart.style.left = (30 + i * 40) + '%';
                 heart.style.animationDuration = (55 + i * 10) + 's';
-                heart.style.animationDelay = (i * 15) + 's';
                 heart.style.fontSize = (2.0 + Math.random() * 0.8) + 'rem';
                 heartContainer.appendChild(heart);
             }
@@ -1084,53 +1053,46 @@
                 leaf.className = `leaf-svg ${colorClass}`;
                 leaf.style.left = (30 + i * 40) + '%';
                 leaf.style.animationDuration = (60 + Math.random() * 25) + 's';
-                leaf.style.animationDelay = (Math.random() * 40) + 's';
                 leaf.innerHTML = leafSVG_str;
                 leafContainer.appendChild(leaf);
             }
         }
 
-        // YouTube API Hazırlığı
+        // Youtube Init
         const tag = document.createElement('script');
         tag.src = 'https://www.youtube.com/iframe_api';
         const firstScriptTag = document.getElementsByTagName('script')[0];
-        if (firstScriptTag && firstScriptTag.parentNode) {
-            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-        }
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
         window.onYouTubeIframeAPIReady = function() {
             const playBtn = document.getElementById('play-song-btn');
             const playerElement = document.getElementById('youtube-player');
             const musicVisualizer = document.getElementById('music-visualizer');
             let isPlaying = false;
-
-            if (!playBtn || !playerElement) return;
-
             const player = new YT.Player('youtube-player', {
                 events: {
                     'onStateChange': e => {
                         if (e.data === YT.PlayerState.PLAYING) {
                             isPlaying = true;
-                            playBtn.innerHTML = '<i class="fas fa-pause"></i>';
-                            playBtn.classList.add('playing');
-                            playerElement.classList.add('show');
+                            if (playBtn) playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                            if (playerElement) playerElement.classList.add('show');
                             if (musicVisualizer) musicVisualizer.classList.add('hidden');
                         } else {
                             isPlaying = false;
-                            playBtn.innerHTML = '<i class="fas fa-play"></i>';
-                            playBtn.classList.remove('playing');
-                            playerElement.classList.remove('show');
+                            if (playBtn) playBtn.innerHTML = '<i class="fas fa-play"></i>';
+                            if (playerElement) playerElement.classList.remove('show');
                             if (musicVisualizer) musicVisualizer.classList.remove('hidden');
                         }
                     }
                 }
             });
-
-            playBtn.onclick = (e) => {
-                e.stopPropagation();
-                if (isPlaying) player.pauseVideo();
-                else player.playVideo();
-            };
+            if (playBtn) {
+                playBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    if (isPlaying) player.pauseVideo();
+                    else player.playVideo();
+                };
+            }
         };
     });
     </script>
