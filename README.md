@@ -19,14 +19,14 @@
 
         /* Sayfa genelinde zoom ve kaydırma kontrolü */
         html, body {
-            touch-action: pan-x pan-y; /* Sadece kaydırmaya izin ver, zoom'u (pinch) engelle */
+            touch-action: pan-x pan-y; /* Sadece kaydırmaya izin ver, genel zoom'u engelle */
             -webkit-text-size-adjust: 100%;
         }
 
         /* Kaydırma Kilidi - Düzeni bozmaz, zıplamayı önler */
         .no-scroll {
             overflow: hidden !important;
-            touch-action: none; /* Modal açıkken her şeyi engelle */
+            touch-action: none; 
         }
         
         a, button, [role="button"], .cursor-pointer,
@@ -260,7 +260,7 @@
         #toggle-video-gallery-btn i {
             color: #000000 !important;
         }
-        /* Kalp kabı - Mobil kesilmeyi önlemek için optimize edildi */
+        /* Kalp kabı */
         .interlocked-hearts {
             position: relative;
             display: inline-flex;
@@ -344,15 +344,17 @@
             color: #dc2626;
             text-align: center;
         }
-        /* Modal Görsel Sabitleme */
+        /* Modal Görsel Sabitleme ve Geliştirilmiş Zoom */
         #image-modal {
-            touch-action: none; /* Modal üzerinde özel hareket kontrolü */
+            touch-action: none;
             overflow: hidden;
+            display: none; /* JS ile yönetilecek */
         }
         #modal-image {
-            transition: transform 0.1s ease-out;
+            transition: transform 0.1s linear; /* Daha hızlı tepki için linear */
             will-change: transform;
-            touch-action: none; /* Browser-level pinch zoom engellendi */
+            touch-action: none;
+            cursor: default;
         }
     </style>
 </head>
@@ -723,6 +725,7 @@
     document.addEventListener('DOMContentLoaded', () => {
         'use strict';
         
+        // --- Değişkenler ---
         let invitationCurrentScale = 1;
         let invitationCurrentTranslateX = 0;
         let invitationCurrentTranslateY = 0;
@@ -742,7 +745,7 @@
         const modal = document.getElementById('image-modal');
         const modalImage = document.getElementById('modal-image');
 
-        // Sabit Arka Plan Mantığı (Zıplama yapmaz)
+        // Sabit Arka Plan Mantığı
         const lockScroll = () => {
             document.body.classList.add('no-scroll');
         };
@@ -751,15 +754,8 @@
             document.body.classList.remove('no-scroll');
         };
 
-        // Arka planda genel zoom yapmayı engelleyen JavaScript (Mobile)
-        document.addEventListener('touchstart', (e) => {
-            if (e.touches.length > 1) {
-                // Eğer modal açık değilse, tüm sayfadaki zoom hareketini engelle
-                if (!modal.classList.contains('flex') && !document.getElementById('invitation-modal').classList.contains('show')) {
-                    e.preventDefault();
-                }
-            }
-        }, { passive: false });
+        // Sınırlandırma (Clamping) Fonksiyonu - Görselin çok uzaklara gitmesini engeller
+        const clamp = (val, min, max) => Math.max(min, Math.min(max, val));
 
         const applyInvitationTransform = () => {
             const img = document.getElementById('invitation-image');
@@ -770,6 +766,11 @@
 
         const applyTransform = () => {
             if (modalImage && modalImage instanceof Element) {
+                // Sınırlandırma mantığı: Ölçek büyüdükçe daha fazla kaydırmaya izin ver
+                const maxOff = (currentScale - 1) * 200; 
+                currentTranslateX = clamp(currentTranslateX, -maxOff, maxOff);
+                currentTranslateY = clamp(currentTranslateY, -maxOff, maxOff);
+                
                 modalImage.style.transform = `translate(${currentTranslateX}px, ${currentTranslateY}px) scale(${currentScale})`;
             }
         };
@@ -809,7 +810,7 @@
             }
         }
 
-        // --- IntersectionObservers ---
+        // --- Gözlemciler ---
         const lazyLoadObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting && entry.target instanceof Element && entry.target.dataset.src) {
@@ -887,7 +888,7 @@
         document.getElementById('close-modal')?.addEventListener('click', closePhoto);
         modal?.addEventListener('click', (e) => { if (e.target === modal) closePhoto(); });
 
-        // Mobile Pinch-to-Zoom (Sadece Modal İçinde)
+        // Mobile Pinch-to-Zoom Geliştirilmiş
         modal?.addEventListener('touchstart', (e) => {
             if (e.touches.length === 2) {
                 initialDist = getDist(e.touches);
@@ -899,14 +900,17 @@
         }, { passive: false });
 
         modal?.addEventListener('touchmove', (e) => {
-            e.preventDefault(); 
             if (e.touches.length === 2) {
+                e.preventDefault();
                 const currentDist = getDist(e.touches);
                 const scaleFactor = currentDist / initialDist;
-                currentScale = Math.min(Math.max(0.5, currentScale * scaleFactor), 8);
+                // Daha stabil bir zoom için ölçeklendirme faktörünü yumuşattım
+                const nextScale = currentScale * (1 + (scaleFactor - 1) * 0.5);
+                currentScale = clamp(nextScale, 0.8, 10);
                 initialDist = currentDist;
                 applyTransform();
-            } else if (e.touches.length === 1 && isDragging && currentScale > 1) {
+            } else if (e.touches.length === 1 && isDragging && currentScale > 1.05) {
+                e.preventDefault();
                 currentTranslateX = e.touches[0].pageX - startX;
                 currentTranslateY = e.touches[0].pageY - startY;
                 applyTransform();
@@ -917,21 +921,25 @@
             isDragging = false;
         });
 
-        // Desktop Wheel Zoom Engelleme (Genel Site İçin)
-        window.addEventListener('wheel', (e) => {
-            if (e.ctrlKey) {
-                e.preventDefault();
+        // Sayfa genelinde parmakla zoom'u (pinch) engelle
+        document.addEventListener('touchstart', (e) => {
+            if (e.touches.length > 1) {
+                if (!modal.classList.contains('flex') && !document.getElementById('invitation-modal').classList.contains('show')) {
+                    e.preventDefault();
+                }
             }
         }, { passive: false });
 
-        // Desktop Modal Zoom (Sadece Modal İçinde)
+        // Desktop Modal Zoom (Daha kararlı)
         modal?.addEventListener('wheel', (e) => {
             e.preventDefault();
-            const delta = e.deltaY > 0 ? 0.9 : 1.1;
-            currentScale = Math.min(Math.max(0.5, currentScale * delta), 8);
+            const zoomSpeed = 0.05;
+            const delta = e.deltaY > 0 ? (1 - zoomSpeed) : (1 + zoomSpeed);
+            currentScale = clamp(currentScale * delta, 0.8, 10);
             applyTransform();
         }, { passive: false });
 
+        // Galeri Gör/Gizle
         document.getElementById('toggle-gallery-btn')?.addEventListener('click', function() {
             const wrapper = document.getElementById('gallery-wrapper');
             const icon = document.getElementById('gallery-toggle-icon');
@@ -951,6 +959,7 @@
             }
         });
 
+        // Video Galerisi
         document.getElementById('toggle-video-gallery-btn')?.addEventListener('click', function() {
             const wrapper = document.getElementById('video-gallery-wrapper');
             const icon = document.getElementById('video-gallery-toggle-icon');
@@ -1003,6 +1012,7 @@
             }
         });
 
+        // Keyboard
         document.addEventListener('keydown', e => {
             if (e.key === 'Escape') {
                 closePhoto();
@@ -1020,7 +1030,7 @@
 
         // Masaüstü Sürükleme
         modalImage?.addEventListener('mousedown', (e) => {
-            if (currentScale <= 1) return;
+            if (currentScale <= 1.05) return;
             e.preventDefault();
             isDragging = true;
             startX = e.clientX - currentTranslateX;
@@ -1030,7 +1040,7 @@
 
         const invImg = document.getElementById('invitation-image');
         invImg?.addEventListener('mousedown', (e) => {
-            if (invitationCurrentScale <= 1) return;
+            if (invitationCurrentScale <= 1.05) return;
             e.preventDefault();
             invitationIsDragging = true;
             invitationStartX = e.clientX - invitationCurrentTranslateX;
@@ -1054,8 +1064,8 @@
         document.addEventListener('mouseup', () => {
             isDragging = false;
             invitationIsDragging = false;
-            if (modalImage && modalImage instanceof Element) modalImage.style.cursor = currentScale > 1 ? 'grab' : 'default';
-            if (invImg && invImg instanceof Element) invImg.style.cursor = invitationCurrentScale > 1 ? 'grab' : 'default';
+            if (modalImage && modalImage instanceof Element) modalImage.style.cursor = currentScale > 1.05 ? 'grab' : 'default';
+            if (invImg && invImg instanceof Element) invImg.style.cursor = invitationCurrentScale > 1.05 ? 'grab' : 'default';
         });
 
         // Confetti
