@@ -15,6 +15,11 @@
         .header-name, .handwriting {
             caret-color: transparent !important;
         }
+        /* Kaydırma kilidi sınıfı */
+        body.no-scroll {
+            overflow: hidden !important;
+            height: 100vh;
+        }
         a, button, [role="button"], .cursor-pointer,
         #play-song-btn, #toggle-gallery-btn, #toggle-video-gallery-btn,
         #map-icon, #invitation-icon,
@@ -245,15 +250,17 @@
         #toggle-video-gallery-btn i {
             color: #000000 !important;
         }
+        /* Kalp kabı için güncel stil - kesilmeyi önler */
         .interlocked-hearts {
             position: relative;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 14vw;
-            height: 14vw;
-            margin: 0 1em;
+            width: 18vw; /* Biraz daha genişlik verildi */
+            height: 16vw;
+            margin: 0 0.5em;
             overflow: visible;
+            flex-shrink: 0;
         }
         .heart-photo-svg {
             width: 100%;
@@ -264,13 +271,13 @@
         .heart-border {
             fill: #dc2626;
             stroke: black;
-            stroke-width: 3;
+            stroke-width: 2.5;
         }
         @media (min-width: 768px) {
             .interlocked-hearts {
-                width: 10vw;
+                width: 12vw;
                 height: 10vw;
-                margin: 0 1.5em;
+                margin: 0 1.2em;
             }
             .heart-border {
                 stroke-width: 2;
@@ -340,7 +347,7 @@
                 <h1 class="font-bold flex items-center justify-center handwriting leading-tight">
                     <span class="header-name">Arzu</span>
                     <span class="interlocked-hearts heartbeat">
-                        <svg viewBox="0 0 32 29.6" class="heart-photo-svg">
+                        <svg viewBox="-2 -2 36 33.6" class="heart-photo-svg"> <!-- Viewbox genişletildi kenar payı için -->
                             <defs>
                                 <clipPath id="heart-clip">
                                     <path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"/>
@@ -757,7 +764,7 @@
             }
         }
 
-        // --- IntersectionObservers (Lazy Load ve Animasyonlar) ---
+        // --- IntersectionObservers ---
         const safeObserve = (observer, selector) => {
             document.querySelectorAll(selector).forEach(el => {
                 if (el && el.nodeType === 1) observer.observe(el);
@@ -803,11 +810,17 @@
             photoUrls = Array.from(document.querySelectorAll('#gallery-grid img[data-src]')).map(img => img.dataset.src);
             currentPhotoIndex = index;
             updateModalPhoto();
-            if (modal) modal.classList.replace('hidden', 'flex');
+            if (modal) {
+                modal.classList.replace('hidden', 'flex');
+                document.body.classList.add('no-scroll'); // Arka plan kaymasını engelle
+            }
         };
 
         const closePhoto = () => {
-            if (modal) modal.classList.replace('flex', 'hidden');
+            if (modal) {
+                modal.classList.replace('flex', 'hidden');
+                document.body.classList.remove('no-scroll'); // Kaydırmayı geri aç
+            }
             if (modalImage) modalImage.src = '';
         };
 
@@ -830,7 +843,6 @@
         document.getElementById('close-modal')?.addEventListener('click', closePhoto);
         modal?.addEventListener('click', (e) => { if (e.target === modal) closePhoto(); });
 
-        // Galeri Gör/Gizle
         document.getElementById('toggle-gallery-btn')?.addEventListener('click', function() {
             const wrapper = document.getElementById('gallery-wrapper');
             const icon = document.getElementById('gallery-toggle-icon');
@@ -850,7 +862,6 @@
             }
         });
 
-        // Video Galerisi Gör/Gizle
         document.getElementById('toggle-video-gallery-btn')?.addEventListener('click', function() {
             const wrapper = document.getElementById('video-gallery-wrapper');
             const icon = document.getElementById('video-gallery-toggle-icon');
@@ -870,6 +881,7 @@
                         if (iframe && el.dataset.youtubeId) {
                             iframe.src = `https://www.youtube.com/embed/${el.dataset.youtubeId}?autoplay=1`;
                             document.getElementById('video-modal')?.classList.replace('hidden', 'flex');
+                            document.body.classList.add('no-scroll');
                         }
                     };
                 });
@@ -878,15 +890,17 @@
 
         document.getElementById('close-video-modal')?.addEventListener('click', () => {
             document.getElementById('video-modal')?.classList.replace('flex', 'hidden');
+            document.body.classList.remove('no-scroll');
             const iframe = document.getElementById('modal-video-iframe');
             if (iframe) iframe.src = '';
         });
 
-        // Davetiye
+        // --- Davetiye Mantığı ---
         const invitationModal = document.getElementById('invitation-modal');
         document.getElementById('invitation-icon')?.addEventListener('click', () => {
             if (invitationModal) {
                 invitationModal.classList.add('show');
+                document.body.classList.add('no-scroll'); // Arka plan kaymasını engelle
                 invitationCurrentScale = 1;
                 invitationCurrentTranslateX = 0;
                 invitationCurrentTranslateY = 0;
@@ -895,7 +909,10 @@
         });
 
         document.getElementById('close-invitation')?.addEventListener('click', () => {
-            if (invitationModal) invitationModal.classList.remove('show');
+            if (invitationModal) {
+                invitationModal.classList.remove('show');
+                document.body.classList.remove('no-scroll');
+            }
         });
 
         // Klavye Navigasyonu
@@ -903,7 +920,10 @@
             if (e.key === 'Escape') {
                 closePhoto();
                 document.getElementById('close-video-modal')?.click();
-                invitationModal?.classList.remove('show');
+                if (invitationModal) {
+                    invitationModal.classList.remove('show');
+                    document.body.classList.remove('no-scroll');
+                }
             }
             if (modal && modal.classList.contains('flex')) {
                 if (e.key === 'ArrowRight') document.getElementById('next-photo')?.click();
@@ -911,7 +931,7 @@
             }
         });
 
-        // Masaüstü Zoom ve Sürükleme
+        // Masaüstü Zoom/Drag
         if (window.innerWidth > 768 && !('ontouchstart' in window)) {
             modal?.addEventListener('wheel', (e) => {
                 e.preventDefault();
@@ -967,22 +987,15 @@
             });
         }
 
-        // Konfeti Efekti
+        // Konfeti
         setTimeout(() => {
-            const duration = 2 * 1000;
-            const end = Date.now() + duration;
             const colors = ['#f59e0b', '#ef4444', '#facc15', '#92400e', '#84cc16', '#dc2626', '#fb923c', '#ff69b4', '#16a34a', '#ffd700'];
-            
-            (function frame() {
-                if (typeof confetti === 'function') {
-                    confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0, y: 0.5 }, colors: colors, gravity: 0.8, scalar: 1.1 });
-                    confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1, y: 0.5 }, colors: colors, gravity: 0.8, scalar: 1.1 });
-                }
-                if (Date.now() < end) requestAnimationFrame(frame);
-            }());
+            if (typeof confetti === 'function') {
+                confetti({ particleCount: 40, spread: 70, origin: { y: 0.6 }, colors: colors });
+            }
         }, 500);
 
-        // YouTube API Hazırlığı
+        // Youtube
         const tag = document.createElement('script');
         tag.src = 'https://www.youtube.com/iframe_api';
         const firstScriptTag = document.getElementsByTagName('script')[0];
