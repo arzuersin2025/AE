@@ -205,12 +205,6 @@
             z-index: 10000;
         }
         #close-invitation:hover { color: #fca5a5; }
-        #modal-image {
-            transform-origin: center center;
-            max-width: 90vw;
-            max-height: 90vh;
-            transition: transform 0.1s ease-out;
-        }
         header {
             padding-bottom: 1rem !important;
         }
@@ -253,30 +247,33 @@
         }
         .interlocked-hearts {
             position: relative;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             width: 14vw;
-            height: 10vw;
+            height: 14vw;
             margin: 0 1em;
+            overflow: visible;
         }
-        .heart-green {
-            position: absolute;
-            top: 0;
-            left: 0;
-            font-size: 10vw;
-            color: #dc2626;
-            -webkit-text-stroke: 3px black;
-            paint-order: stroke fill;
-            z-index: 1;
+        .heart-photo-svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 0 5px rgba(0,0,0,0.3));
+            overflow: visible;
+        }
+        .heart-border {
+            fill: #dc2626;
+            stroke: black;
+            stroke-width: 3;
         }
         @media (min-width: 768px) {
             .interlocked-hearts {
-                width: 8vw;
-                height: 5vw;
+                width: 10vw;
+                height: 10vw;
                 margin: 0 1.5em;
             }
-            .heart-green {
-                font-size: 5vw;
-                -webkit-text-stroke: 2px black;
+            .heart-border {
+                stroke-width: 2;
             }
         }
         #countdown-placeholder p {
@@ -342,8 +339,16 @@
             <div class="relative z-10">
                 <h1 class="font-bold flex items-center justify-center handwriting leading-tight">
                     <span class="header-name">Arzu</span>
-                    <span class="interlocked-hearts">
-                        <i class="fa-solid fa-heart heart-green"></i>
+                    <span class="interlocked-hearts heartbeat">
+                        <svg viewBox="0 0 32 29.6" class="heart-photo-svg">
+                            <defs>
+                                <clipPath id="heart-clip">
+                                    <path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"/>
+                                </clipPath>
+                            </defs>
+                            <path class="heart-border" d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"/>
+                            <image href="https://i.imgur.com/kZSonbm.jpg" x="0" y="0" width="32" height="32" clip-path="url(#heart-clip)" preserveAspectRatio="xMidYMid slice" />
+                        </svg>
                     </span>
                     <span class="header-name">Ersin</span>
                 </h1>
@@ -688,398 +693,234 @@
         <div class="aspect-video w-full max-w-4xl"><iframe id="modal-video-iframe" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
     </div>
     <script>
-    (() => {
+    document.addEventListener('DOMContentLoaded', () => {
         'use strict';
-        const hearts = ['💛'];
+        
+        // --- Değişken Tanımlamaları ---
+        let invitationCurrentScale = 1;
+        let invitationCurrentTranslateX = 0;
+        let invitationCurrentTranslateY = 0;
+        let invitationIsDragging = false;
+        let invitationStartX, invitationStartY;
+
+        let currentScale = 1;
+        let currentTranslateX = 0;
+        let currentTranslateY = 0;
+        let isDragging = false;
+        let startX, startY;
+
+        let photoUrls = [];
+        let currentPhotoIndex = 0;
+
+        const applyInvitationTransform = () => {
+            const img = document.getElementById('invitation-image');
+            if (img && typeof img.style !== 'undefined') {
+                img.style.transform = `translate(${invitationCurrentTranslateX}px, ${invitationCurrentTranslateY}px) scale(${invitationCurrentScale})`;
+            }
+        };
+
+        const applyTransform = () => {
+            const img = document.getElementById('modal-image');
+            if (img && typeof img.style !== 'undefined') {
+                img.style.transform = `translate(${currentTranslateX}px, ${currentTranslateY}px) scale(${currentScale})`;
+            }
+        };
+
+        // --- Efektler (Kalpler ve Yapraklar) ---
         const heartContainer = document.getElementById('falling-hearts-container');
-        for (let i = 0; i < 2; i++) {
-            const heart = document.createElement('div');
-            heart.className = 'falling-heart';
-            heart.innerHTML = hearts[0];
-            heart.style.left = (30 + i * 40) + '%';
-            const duration = 55 + i * 10;
-            heart.style.animationDuration = duration + 's';
-            heart.style.animationDelay = i * 15 + 's';
-            const size = 2.0 + Math.random() * 0.8;
-            heart.style.fontSize = size + 'rem';
-            heartContainer.appendChild(heart);
+        if (heartContainer) {
+            for (let i = 0; i < 2; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'falling-heart';
+                heart.innerHTML = '💛';
+                heart.style.left = (30 + i * 40) + '%';
+                heart.style.animationDuration = (55 + i * 10) + 's';
+                heart.style.animationDelay = (i * 15) + 's';
+                heart.style.fontSize = (2.0 + Math.random() * 0.8) + 'rem';
+                heartContainer.appendChild(heart);
+            }
         }
+
         const leafSVG = `<svg viewBox="0 0 100 140" class="w-full h-full" preserveAspectRatio="xMidYMid meet"><path class="leaf-outer" d="M50 10 C30 15, 20 35, 18 55 C16 75, 25 95, 35 115 C45 130, 48 135, 50 138 C52 135, 55 130, 65 115 C75 95, 84 75, 82 55 C80 35, 70 15, 50 10 Z" /><path class="leaf-inner" d="M50 15 C33 20, 25 38, 23 55 C21 72, 28 88, 36 108 C44 125, 48 132, 50 135 C52 132, 56 125, 64 108 C72 88, 79 72, 77 55 C75 38, 67 20, 50 15 Z" /><path d="M50 15 Q50 70 48 135" stroke="#fff" stroke-width="2.5" opacity="0.5" fill="none"/><path d="M50 15 Q35 40 28 48 M50 55 Q32 65 25 75 M50 80 Q30 90 23 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/><path d="M50 15 Q65 40 72 48 M50 55 Q68 65 75 75 M50 80 Q70 90 77 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/></svg>`;
         const leafColors = ['autumn-1','autumn-2','autumn-3','autumn-4','autumn-5','autumn-6','autumn-7','autumn-8','autumn-9','autumn-10'];
         const leafContainer = document.getElementById('falling-leaves-container');
-        for (let i = 0; i < 2; i++) {
-            const leaf = document.createElement('div');
-            const colorClass = leafColors[Math.floor(Math.random() * leafColors.length)];
-            leaf.className = `leaf-svg ${colorClass}`;
-            leaf.style.left = (30 + i * 40) + '%';
-            const scale = 0.5 + 0.9 * Math.random();
-            leaf.style.transform = `scale(${scale}) rotate(${Math.random() * 360}deg)`;
-            const duration = 60 + Math.random() * 25;
-            leaf.style.animationDuration = duration + 's';
-            leaf.style.animationDelay = Math.random() * 40 + 's';
-            leaf.innerHTML = leafSVG;
-            leafContainer.appendChild(leaf);
+        if (leafContainer) {
+            for (let i = 0; i < 2; i++) {
+                const leaf = document.createElement('div');
+                const colorClass = leafColors[Math.floor(Math.random() * leafColors.length)];
+                leaf.className = `leaf-svg ${colorClass}`;
+                leaf.style.left = (30 + i * 40) + '%';
+                leaf.style.animationDuration = (60 + Math.random() * 25) + 's';
+                leaf.style.animationDelay = (Math.random() * 40) + 's';
+                leaf.innerHTML = leafSVG;
+                leafContainer.appendChild(leaf);
+            }
         }
-        const flowers = ['🌸', '🌻'];
-        const flowerContainer = document.getElementById('falling-flowers-container');
-        for (let i = 0; i < 2; i++) {
-            const flower = document.createElement('div');
-            flower.className = 'falling-flower';
-            flower.innerHTML = flowers[i];
-            flower.style.left = (35 + i * 30) + '%';
-            const duration = 50 + Math.random() * 30;
-            flower.style.animationDuration = duration + 's';
-            flower.style.animationDelay = Math.random() * 35 + 's';
-            const size = 1.6 + Math.random() * 1.0;
-            flower.style.fontSize = size + 'rem';
-            flowerContainer.appendChild(flower);
-        }
+
+        // --- IntersectionObservers (Lazy Load ve Animasyonlar) ---
+        const safeObserve = (observer, selector) => {
+            document.querySelectorAll(selector).forEach(el => {
+                if (el && el.nodeType === 1) observer.observe(el);
+            });
+        };
+
         const lazyLoadObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting && entry.target.dataset.src) {
+                if (entry.isIntersecting && entry.target && entry.target.dataset.src) {
                     entry.target.src = entry.target.dataset.src;
                     lazyLoadObserver.unobserve(entry.target);
                 }
             });
         }, { rootMargin: '50px' });
-        document.querySelectorAll('img[data-src]').forEach(img => lazyLoadObserver.observe(img));
-        let photoUrls = [];
-        let currentPhotoIndex = 0;
-        let scale = 1;
-        let translateX = 0;
-        let translateY = 0;
-        let initialDistance = 0;
-        let initialScale = 1;
-        let startClientX = 0;
-        let startClientY = 0;
-        let startTranslateX = 0;
-        let startTranslateY = 0;
-        let isPanning = false;
-        const sensitivity = 0.5;
+        
+        safeObserve(lazyLoadObserver, 'img[data-src]');
+
+        const fadeObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => { 
+                if (entry.isIntersecting && entry.target && entry.target.classList) {
+                    entry.target.classList.add('visible'); 
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        safeObserve(fadeObserver, '.fade-in-on-scroll');
+
+        // --- Galeri Mantığı ---
         const modal = document.getElementById('image-modal');
         const modalImage = document.getElementById('modal-image');
-        const updateTransform = () => {
-            modalImage.style.transform = `scale(${scale}) translate(${translateX}px, ${translateY}px)`;
+
+        const updateModalPhoto = () => {
+            if (modalImage && photoUrls[currentPhotoIndex]) {
+                modalImage.src = photoUrls[currentPhotoIndex];
+                currentScale = 1;
+                currentTranslateX = 0;
+                currentTranslateY = 0;
+                applyTransform();
+            }
         };
-        const buildPhotoArray = () => {
-            photoUrls = Array.from(document.querySelectorAll('#gallery-grid img[data-src]')).map(img => img.dataset.src);
-        };
-        const getDistance = (touch1, touch2) => {
-            const dx = touch1.clientX - touch2.clientX;
-            const dy = touch1.clientY - touch2.clientY;
-            return Math.sqrt(dx * dx + dy * dy);
-        };
+
         const openPhoto = (index) => {
-            buildPhotoArray();
+            photoUrls = Array.from(document.querySelectorAll('#gallery-grid img[data-src]')).map(img => img.dataset.src);
             currentPhotoIndex = index;
-            modalImage.src = photoUrls[currentPhotoIndex];
-            scale = 1;
-            translateX = 0;
-            translateY = 0;
-            initialScale = 1;
-            isPanning = false;
-            updateTransform();
-            modal.classList.replace('hidden', 'flex');
+            updateModalPhoto();
+            if (modal) modal.classList.replace('hidden', 'flex');
         };
+
         const closePhoto = () => {
-            scale = 1;
-            translateX = 0;
-            translateY = 0;
-            initialScale = 1;
-            isPanning = false;
-            updateTransform();
-            modal.classList.replace('flex', 'hidden');
-            modalImage.src = '';
+            if (modal) modal.classList.replace('flex', 'hidden');
+            if (modalImage) modalImage.src = '';
         };
-        const nextPhoto = () => {
-            currentPhotoIndex = (currentPhotoIndex + 1) % photoUrls.length;
-            modalImage.src = photoUrls[currentPhotoIndex];
-            scale = 1;
-            translateX = 0;
-            translateY = 0;
-            initialScale = 1;
-            isPanning = false;
-            updateTransform();
-        };
-        const prevPhoto = () => {
-            currentPhotoIndex = (currentPhotoIndex - 1 + photoUrls.length) % photoUrls.length;
-            modalImage.src = photoUrls[currentPhotoIndex];
-            scale = 1;
-            translateX = 0;
-            translateY = 0;
-            initialScale = 1;
-            isPanning = false;
-            updateTransform();
-        };
-        modal.addEventListener('touchstart', (e) => {
-            if (e.touches.length === 2) {
-                e.preventDefault();
-                initialDistance = getDistance(e.touches[0], e.touches[1]);
-                initialScale = scale;
-                isPanning = false;
-            } else if (e.touches.length === 1 && scale > 1) {
-                startClientX = e.touches[0].clientX;
-                startClientY = e.touches[0].clientY;
-                startTranslateX = translateX;
-                startTranslateY = translateY;
-                isPanning = true;
+
+        document.getElementById('next-photo')?.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (photoUrls.length) {
+                currentPhotoIndex = (currentPhotoIndex + 1) % photoUrls.length;
+                updateModalPhoto();
             }
         });
-        modal.addEventListener('touchmove', (e) => {
-            if (e.touches.length === 2) {
-                e.preventDefault();
-                const newDistance = getDistance(e.touches[0], e.touches[1]);
-                const factor = newDistance / initialDistance;
-                scale = Math.max(0.1, initialScale * factor);
-                updateTransform();
-                isPanning = false;
-            } else if (e.touches.length === 1 && isPanning) {
-                e.preventDefault();
-                const deltaX = (e.touches[0].clientX - startClientX) * sensitivity;
-                const deltaY = (e.touches[0].clientY - startClientY) * sensitivity;
-                translateX = startTranslateX + deltaX;
-                translateY = startTranslateY + deltaY;
-                updateTransform();
+
+        document.getElementById('prev-photo')?.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (photoUrls.length) {
+                currentPhotoIndex = (currentPhotoIndex - 1 + photoUrls.length) % photoUrls.length;
+                updateModalPhoto();
             }
         });
-        modal.addEventListener('touchend', (e) => {
-            isPanning = false;
-            if (scale <= 1.1) {
-                translateX = 0;
-                translateY = 0;
-                updateTransform();
-            }
-        });
-        document.getElementById('toggle-gallery-btn').addEventListener('click', () => {
+
+        document.getElementById('close-modal')?.addEventListener('click', closePhoto);
+        modal?.addEventListener('click', (e) => { if (e.target === modal) closePhoto(); });
+
+        // Galeri Gör/Gizle
+        document.getElementById('toggle-gallery-btn')?.addEventListener('click', function() {
             const wrapper = document.getElementById('gallery-wrapper');
-            wrapper.classList.toggle('hidden');
             const icon = document.getElementById('gallery-toggle-icon');
             const text = document.getElementById('gallery-toggle-text');
+            if (!wrapper) return;
+
+            wrapper.classList.toggle('hidden');
             if (wrapper.classList.contains('hidden')) {
-                text.textContent = 'Fotoğraf Galerisini Gör';
-                icon.classList.remove('rotate-180');
+                if (text) text.textContent = 'Fotoğraf Galerisini Gör';
+                if (icon) icon.classList.remove('rotate-180');
             } else {
-                text.textContent = 'Galeriyi Gizle';
-                icon.classList.add('rotate-180');
-                setTimeout(() => {
-                    document.querySelectorAll('#gallery-grid .photo-container').forEach((el, i) => {
-                        el.onclick = () => openPhoto(i);
-                    });
-                }, 100);
+                if (text) text.textContent = 'Galeriyi Gizle';
+                if (icon) icon.classList.add('rotate-180');
+                document.querySelectorAll('#gallery-grid .photo-container').forEach((el, i) => {
+                    el.onclick = () => openPhoto(i);
+                });
             }
         });
-        document.getElementById('toggle-video-gallery-btn').addEventListener('click', () => {
+
+        // Video Galerisi Gör/Gizle
+        document.getElementById('toggle-video-gallery-btn')?.addEventListener('click', function() {
             const wrapper = document.getElementById('video-gallery-wrapper');
-            wrapper.classList.toggle('hidden');
             const icon = document.getElementById('video-gallery-toggle-icon');
             const text = document.getElementById('video-gallery-toggle-text');
+            if (!wrapper) return;
+
+            wrapper.classList.toggle('hidden');
             if (wrapper.classList.contains('hidden')) {
-                text.textContent = 'Video Galerisini Gör';
-                icon.classList.remove('rotate-180');
+                if (text) text.textContent = 'Video Galerisini Gör';
+                if (icon) icon.classList.remove('rotate-180');
             } else {
-                text.textContent = 'Video Galerisini Gizle';
-                icon.classList.add('rotate-180');
-                setTimeout(() => {
-                    document.querySelectorAll('#video-grid .photo-container').forEach(el => {
-                        el.onclick = () => {
-                            document.getElementById('modal-video-iframe').src = `https://www.youtube.com/embed/${el.dataset.youtubeId}?autoplay=1`;
-                            document.getElementById('video-modal').classList.replace('hidden', 'flex');
-                        };
-                    });
-                }, 100);
-            }
-        });
-        document.getElementById('close-video-modal').onclick = () => {
-            document.getElementById('video-modal').classList.replace('flex', 'hidden');
-            document.getElementById('modal-video-iframe').src = '';
-        };
-        document.getElementById('video-modal').onclick = e => {
-            if (e.target === e.currentTarget) document.getElementById('close-video-modal').click();
-        };
-        document.getElementById('close-modal').onclick = closePhoto;
-        document.getElementById('prev-photo').onclick = e => { e.stopPropagation(); prevPhoto(); };
-        document.getElementById('next-photo').onclick = e => { e.stopPropagation(); nextPhoto(); };
-        modal.onclick = e => { if (e.target === modal) closePhoto(); };
-        document.addEventListener('keydown', e => {
-            if (e.key === 'Escape') {
-                closePhoto();
-                if (document.getElementById('video-modal').classList.contains('flex')) document.getElementById('close-video-modal').click();
-            }
-            if (e.key === 'ArrowRight' && document.getElementById('image-modal').classList.contains('flex')) nextPhoto();
-            if (e.key === 'ArrowLeft' && document.getElementById('image-modal').classList.contains('flex')) prevPhoto();
-        });
-        let player, isPlaying = false;
-        const playBtn = document.getElementById('play-song-btn');
-        const playerElement = document.getElementById('youtube-player');
-        const musicVisualizer = document.getElementById('music-visualizer');
-        const tag = document.createElement('script');
-        tag.src = 'https://www.youtube.com/iframe_api';
-        document.getElementsByTagName('script')[0].parentNode.insertBefore(tag, document.getElementsByTagName('script')[0]);
-        window.onYouTubeIframeAPIReady = function() {
-            player = new YT.Player('youtube-player', {
-                events: {
-                    'onStateChange': e => {
-                        if (e.data === YT.PlayerState.PLAYING) {
-                            isPlaying = true;
-                            playBtn.innerHTML = '<i class="fas fa-pause"></i>';
-                            playBtn.classList.add('playing');
-                            playerElement.classList.add('show');
-                            musicVisualizer.classList.add('hidden');
-                        } else {
-                            isPlaying = false;
-                            playBtn.innerHTML = '<i class="fas fa-play"></i>';
-                            playBtn.classList.remove('playing');
-                            playerElement.classList.remove('show');
-                            musicVisualizer.classList.remove('hidden');
+                if (text) text.textContent = 'Video Galerisini Gizle';
+                if (icon) icon.classList.add('rotate-180');
+                document.querySelectorAll('#video-grid .photo-container').forEach(el => {
+                    el.onclick = () => {
+                        const iframe = document.getElementById('modal-video-iframe');
+                        if (iframe && el.dataset.youtubeId) {
+                            iframe.src = `https://www.youtube.com/embed/${el.dataset.youtubeId}?autoplay=1`;
+                            document.getElementById('video-modal')?.classList.replace('hidden', 'flex');
                         }
-                    }
-                }
-            });
-        };
-        playBtn.onclick = e => {
-            e.stopPropagation();
-            if (player) {
-                if (isPlaying) {
-                    player.pauseVideo();
-                } else {
-                    player.playVideo();
-                }
+                    };
+                });
             }
-        };
+        });
+
+        document.getElementById('close-video-modal')?.addEventListener('click', () => {
+            document.getElementById('video-modal')?.classList.replace('flex', 'hidden');
+            const iframe = document.getElementById('modal-video-iframe');
+            if (iframe) iframe.src = '';
+        });
+
+        // Davetiye
         const invitationModal = document.getElementById('invitation-modal');
-        const invitationImage = document.getElementById('invitation-image');
-        let invitationScale = 1;
-        let invitationTranslateX = 0;
-        let invitationTranslateY = 0;
-        let invitationInitialDistance = 0;
-        let invitationInitialScale = 1;
-        let invitationStartClientX = 0;
-        let invitationStartClientY = 0;
-        let invitationStartTranslateX = 0;
-        let invitationStartTranslateY = 0;
-        let invitationIsPanning = false;
-        const invitationSensitivity = 0.5;
-        const updateInvitationTransform = () => {
-            invitationImage.style.transform = `scale(${invitationScale}) translate(${invitationTranslateX}px, ${invitationTranslateY}px)`;
-        };
-        const resetInvitation = () => {
-            invitationScale = 1;
-            invitationTranslateX = 0;
-            invitationTranslateY = 0;
-            updateInvitationTransform();
-        };
-        invitationModal.addEventListener('touchstart', (e) => {
-            if (e.touches.length === 2) {
-                e.preventDefault();
-                invitationInitialDistance = getDistance(e.touches[0], e.touches[1]);
-                invitationInitialScale = invitationScale;
-                invitationIsPanning = false;
-            } else if (e.touches.length === 1 && invitationScale > 1) {
-                invitationStartClientX = e.touches[0].clientX;
-                invitationStartClientY = e.touches[0].clientY;
-                invitationStartTranslateX = invitationTranslateX;
-                invitationStartTranslateY = invitationTranslateY;
-                invitationIsPanning = true;
-            }
-        });
-        invitationModal.addEventListener('touchmove', (e) => {
-            if (e.touches.length === 2) {
-                e.preventDefault();
-                const newDistance = getDistance(e.touches[0], e.touches[1]);
-                const factor = newDistance / invitationInitialDistance;
-                invitationScale = Math.max(0.5, invitationInitialScale * factor);
-                updateInvitationTransform();
-                invitationIsPanning = false;
-            } else if (e.touches.length === 1 && invitationIsPanning) {
-                e.preventDefault();
-                const deltaX = (e.touches[0].clientX - invitationStartClientX) * invitationSensitivity;
-                const deltaY = (e.touches[0].clientY - invitationStartClientY) * invitationSensitivity;
-                invitationTranslateX = invitationStartTranslateX + deltaX;
-                invitationTranslateY = invitationStartTranslateY + deltaY;
-                updateInvitationTransform();
-            }
-        });
-        invitationModal.addEventListener('touchend', () => {
-            invitationIsPanning = false;
-            if (invitationScale <= 1.1) {
-                resetInvitation();
-            }
-        });
-        if (window.innerWidth > 768 && !('ontouchstart' in window)) {
-            let invitationCurrentScale = 1;
-            let invitationCurrentTranslateX = 0;
-            let invitationCurrentTranslateY = 0;
-            let invitationIsDragging = false;
-            let invitationStartX, invitationStartY;
-            const applyInvitationTransform = () => {
-                invitationImage.style.transform = `translate(${invitationCurrentTranslateX}px, ${invitationCurrentTranslateY}px) scale(${invitationCurrentScale})`;
-            };
-            invitationModal.addEventListener('wheel', (e) => {
-                e.preventDefault();
-                const delta = e.deltaY > 0 ? 0.9 : 1.1;
-                invitationCurrentScale = Math.min(Math.max(0.5, invitationCurrentScale * delta), 8);
-                applyInvitationTransform();
-            });
-            invitationImage.addEventListener('mousedown', (e) => {
-                if (invitationCurrentScale <= 1) return;
-                e.preventDefault();
-                invitationIsDragging = true;
-                invitationStartX = e.clientX - invitationCurrentTranslateX;
-                invitationStartY = e.clientY - invitationCurrentTranslateY;
-                invitationImage.style.cursor = 'grabbing';
-            });
-            document.addEventListener('mousemove', (e) => {
-                if (!invitationIsDragging) return;
-                e.preventDefault();
-                invitationCurrentTranslateX = e.clientX - invitationStartX;
-                invitationCurrentTranslateY = e.clientY - invitationStartY;
-                applyInvitationTransform();
-            });
-            document.addEventListener('mouseup', () => {
-                invitationIsDragging = false;
-                invitationImage.style.cursor = invitationCurrentScale > 1 ? 'grab' : 'default';
-            });
-        }
-        document.getElementById('invitation-icon').onclick = () => {
-            invitationModal.classList.add('show');
-            resetInvitation();
-            if (window.innerWidth > 768 && !('ontouchstart' in window)) {
+        document.getElementById('invitation-icon')?.addEventListener('click', () => {
+            if (invitationModal) {
+                invitationModal.classList.add('show');
                 invitationCurrentScale = 1;
                 invitationCurrentTranslateX = 0;
                 invitationCurrentTranslateY = 0;
                 applyInvitationTransform();
             }
-        };
-        document.getElementById('close-invitation').onclick = () => {
-            invitationModal.classList.remove('show');
-            resetInvitation();
-        };
-        invitationModal.onclick = e => {
-            if (e.target === invitationModal) {
-                invitationModal.classList.remove('show');
-                resetInvitation();
+        });
+
+        document.getElementById('close-invitation')?.addEventListener('click', () => {
+            if (invitationModal) invitationModal.classList.remove('show');
+        });
+
+        // Klavye Navigasyonu
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') {
+                closePhoto();
+                document.getElementById('close-video-modal')?.click();
+                invitationModal?.classList.remove('show');
             }
-        };
-        const fadeObserver = new IntersectionObserver(entries => {
-            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-        }, { threshold: 0.3 });
-        document.querySelectorAll('.fade-in-on-scroll').forEach(el => fadeObserver.observe(el));
+            if (modal && modal.classList.contains('flex')) {
+                if (e.key === 'ArrowRight') document.getElementById('next-photo')?.click();
+                if (e.key === 'ArrowLeft') document.getElementById('prev-photo')?.click();
+            }
+        });
+
+        // Masaüstü Zoom ve Sürükleme
         if (window.innerWidth > 768 && !('ontouchstart' in window)) {
-            let currentScale = 1;
-            let currentTranslateX = 0;
-            let currentTranslateY = 0;
-            let isDragging = false;
-            let startX, startY;
-            const applyTransform = () => {
-                modalImage.style.transform = `translate(${currentTranslateX}px, ${currentTranslateY}px) scale(${currentScale})`;
-            };
-            modal.addEventListener('wheel', (e) => {
+            modal?.addEventListener('wheel', (e) => {
                 e.preventDefault();
                 const delta = e.deltaY > 0 ? 0.9 : 1.1;
                 currentScale = Math.min(Math.max(0.5, currentScale * delta), 8);
                 applyTransform();
-            });
-            modalImage.addEventListener('mousedown', (e) => {
+            }, { passive: false });
+
+            modalImage?.addEventListener('mousedown', (e) => {
                 if (currentScale <= 1) return;
                 e.preventDefault();
                 isDragging = true;
@@ -1087,67 +928,102 @@
                 startY = e.clientY - currentTranslateY;
                 modalImage.style.cursor = 'grabbing';
             });
-            document.addEventListener('mousemove', (e) => {
-                if (!isDragging) return;
+
+            invitationModal?.addEventListener('wheel', (e) => {
                 e.preventDefault();
-                currentTranslateX = e.clientX - startX;
-                currentTranslateY = e.clientY - startY;
-                applyTransform();
+                const delta = e.deltaY > 0 ? 0.9 : 1.1;
+                invitationCurrentScale = Math.min(Math.max(0.5, invitationCurrentScale * delta), 8);
+                applyInvitationTransform();
+            }, { passive: false });
+
+            const invImg = document.getElementById('invitation-image');
+            invImg?.addEventListener('mousedown', (e) => {
+                if (invitationCurrentScale <= 1) return;
+                e.preventDefault();
+                invitationIsDragging = true;
+                invitationStartX = e.clientX - invitationCurrentTranslateX;
+                invitationStartY = e.clientY - invitationCurrentTranslateY;
+                invImg.style.cursor = 'grabbing';
             });
+
+            document.addEventListener('mousemove', (e) => {
+                if (isDragging) {
+                    currentTranslateX = e.clientX - startX;
+                    currentTranslateY = e.clientY - startY;
+                    applyTransform();
+                }
+                if (invitationIsDragging) {
+                    invitationCurrentTranslateX = e.clientX - invitationStartX;
+                    invitationCurrentTranslateY = e.clientY - invitationStartY;
+                    applyInvitationTransform();
+                }
+            });
+
             document.addEventListener('mouseup', () => {
                 isDragging = false;
-                modalImage.style.cursor = currentScale > 1 ? 'grab' : 'default';
+                invitationIsDragging = false;
+                if (modalImage) modalImage.style.cursor = currentScale > 1 ? 'grab' : 'default';
+                if (invImg) invImg.style.cursor = invitationCurrentScale > 1 ? 'grab' : 'default';
             });
-            const originalOpenPhoto = openPhoto;
-            openPhoto = function(index) {
-                originalOpenPhoto(index);
-                currentScale = 1;
-                currentTranslateX = 0;
-                currentTranslateY = 0;
-                modalImage.style.cursor = 'default';
-                applyTransform();
-            };
-            const originalClosePhoto = closePhoto;
-            closePhoto = function() {
-                originalClosePhoto();
-                currentScale = 1;
-                currentTranslateX = 0;
-                currentTranslateY = 0;
-                applyTransform();
-            };
         }
-    })();
-    </script>
-    <script defer>
-    document.addEventListener('DOMContentLoaded', () => {
+
+        // Konfeti Efekti
         setTimeout(() => {
-            var duration = 2 * 1000;
-            var end = Date.now() + duration;
+            const duration = 2 * 1000;
+            const end = Date.now() + duration;
             const colors = ['#f59e0b', '#ef4444', '#facc15', '#92400e', '#84cc16', '#dc2626', '#fb923c', '#ff69b4', '#16a34a', '#ffd700'];
+            
             (function frame() {
-                confetti({
-                    particleCount: 5,
-                    angle: 60,
-                    spread: 55,
-                    origin: { x: 0, y: 0.5 },
-                    colors: colors,
-                    gravity: 0.8,
-                    scalar: 1.1
-                });
-                confetti({
-                    particleCount: 5,
-                    angle: 120,
-                    spread: 55,
-                    origin: { x: 1, y: 0.5 },
-                    colors: colors,
-                    gravity: 0.8,
-                    scalar: 1.1
-                });
-                if (Date.now() < end) {
-                    requestAnimationFrame(frame);
+                if (typeof confetti === 'function') {
+                    confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0, y: 0.5 }, colors: colors, gravity: 0.8, scalar: 1.1 });
+                    confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1, y: 0.5 }, colors: colors, gravity: 0.8, scalar: 1.1 });
                 }
+                if (Date.now() < end) requestAnimationFrame(frame);
             }());
         }, 500);
+
+        // YouTube API Hazırlığı
+        const tag = document.createElement('script');
+        tag.src = 'https://www.youtube.com/iframe_api';
+        const firstScriptTag = document.getElementsByTagName('script')[0];
+        if (firstScriptTag && firstScriptTag.parentNode) {
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        }
+
+        window.onYouTubeIframeAPIReady = function() {
+            const playBtn = document.getElementById('play-song-btn');
+            const playerElement = document.getElementById('youtube-player');
+            const musicVisualizer = document.getElementById('music-visualizer');
+            let isPlaying = false;
+
+            if (!playBtn || !playerElement) return;
+
+            const player = new YT.Player('youtube-player', {
+                events: {
+                    'onStateChange': e => {
+                        if (e.data === YT.PlayerState.PLAYING) {
+                            isPlaying = true;
+                            playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                            playBtn.classList.add('playing');
+                            playerElement.classList.add('show');
+                            if (musicVisualizer) musicVisualizer.classList.add('hidden');
+                        } else {
+                            isPlaying = false;
+                            playBtn.innerHTML = '<i class="fas fa-play"></i>';
+                            playBtn.classList.remove('playing');
+                            playerElement.classList.remove('show');
+                            if (musicVisualizer) musicVisualizer.classList.remove('hidden');
+                        }
+                    }
+                }
+            });
+
+            playBtn.onclick = (e) => {
+                e.stopPropagation();
+                if (isPlaying) player.pauseVideo();
+                else player.playVideo();
+            };
+        };
     });
     </script>
 </body>
