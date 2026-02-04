@@ -1,7 +1,8 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Viewport ayarları ile sayfa ölçeklendirmesi kısıtlandı -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover">
     <title>Arzu & Ersin | Bizim Hikayemiz</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,11 +16,17 @@
         .header-name, .handwriting {
             caret-color: transparent !important;
         }
-        /* Yeni Kaydırma Kilidi - Düzeni bozmaz, zıplamayı önler */
+
+        /* Sayfa genelinde zoom ve kaydırma kontrolü */
+        html, body {
+            touch-action: pan-x pan-y; /* Sadece kaydırmaya izin ver, zoom'u (pinch) engelle */
+            -webkit-text-size-adjust: 100%;
+        }
+
+        /* Kaydırma Kilidi - Düzeni bozmaz, zıplamayı önler */
         .no-scroll {
             overflow: hidden !important;
-            touch-action: none;
-            -ms-touch-action: none;
+            touch-action: none; /* Modal açıkken her şeyi engelle */
         }
         
         a, button, [role="button"], .cursor-pointer,
@@ -339,12 +346,13 @@
         }
         /* Modal Görsel Sabitleme */
         #image-modal {
-            touch-action: none;
+            touch-action: none; /* Modal üzerinde özel hareket kontrolü */
             overflow: hidden;
         }
         #modal-image {
             transition: transform 0.1s ease-out;
             will-change: transform;
+            touch-action: none; /* Browser-level pinch zoom engellendi */
         }
     </style>
 </head>
@@ -501,7 +509,6 @@
             </div>
             <div id="gallery-wrapper" class="hidden mt-8">
                 <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-1" id="gallery-grid">
-                    <!-- Photo containers start -->
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/D0I0h6C.jpeg" alt="Katibim Cafe" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">18</span>
@@ -737,15 +744,22 @@
 
         // Sabit Arka Plan Mantığı (Zıplama yapmaz)
         const lockScroll = () => {
-            // Sadece overflow hidden kullanıyoruz, position fixed zıplamaya sebep oluyordu
-            document.documentElement.style.overflow = 'hidden';
-            document.body.style.overflow = 'hidden';
+            document.body.classList.add('no-scroll');
         };
 
         const unlockScroll = () => {
-            document.documentElement.style.overflow = '';
-            document.body.style.overflow = '';
+            document.body.classList.remove('no-scroll');
         };
+
+        // Arka planda genel zoom yapmayı engelleyen JavaScript (Mobile)
+        document.addEventListener('touchstart', (e) => {
+            if (e.touches.length > 1) {
+                // Eğer modal açık değilse, tüm sayfadaki zoom hareketini engelle
+                if (!modal.classList.contains('flex') && !document.getElementById('invitation-modal').classList.contains('show')) {
+                    e.preventDefault();
+                }
+            }
+        }, { passive: false });
 
         const applyInvitationTransform = () => {
             const img = document.getElementById('invitation-image');
@@ -873,7 +887,7 @@
         document.getElementById('close-modal')?.addEventListener('click', closePhoto);
         modal?.addEventListener('click', (e) => { if (e.target === modal) closePhoto(); });
 
-        // Mobile Pinch-to-Zoom
+        // Mobile Pinch-to-Zoom (Sadece Modal İçinde)
         modal?.addEventListener('touchstart', (e) => {
             if (e.touches.length === 2) {
                 initialDist = getDist(e.touches);
@@ -885,8 +899,8 @@
         }, { passive: false });
 
         modal?.addEventListener('touchmove', (e) => {
+            e.preventDefault(); 
             if (e.touches.length === 2) {
-                e.preventDefault();
                 const currentDist = getDist(e.touches);
                 const scaleFactor = currentDist / initialDist;
                 currentScale = Math.min(Math.max(0.5, currentScale * scaleFactor), 8);
@@ -903,7 +917,14 @@
             isDragging = false;
         });
 
-        // Desktop Wheel Zoom
+        // Desktop Wheel Zoom Engelleme (Genel Site İçin)
+        window.addEventListener('wheel', (e) => {
+            if (e.ctrlKey) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        // Desktop Modal Zoom (Sadece Modal İçinde)
         modal?.addEventListener('wheel', (e) => {
             e.preventDefault();
             const delta = e.deltaY > 0 ? 0.9 : 1.1;
