@@ -15,15 +15,13 @@
         .header-name, .handwriting {
             caret-color: transparent !important;
         }
-        /* Geliştirilmiş Kaydırma Kilidi - Pozisyon sıfırlanmasını önlemek için */
-        body.no-scroll {
+        /* Yeni Kaydırma Kilidi - Düzeni bozmaz, zıplamayı önler */
+        .no-scroll {
             overflow: hidden !important;
-            height: 100vh !important;
-            width: 100vw !important;
-            position: fixed !important;
-            /* JS ile top değeri dinamik set edilecek */
-            left: 0;
+            touch-action: none;
+            -ms-touch-action: none;
         }
+        
         a, button, [role="button"], .cursor-pointer,
         #play-song-btn, #toggle-gallery-btn, #toggle-video-gallery-btn,
         #map-icon, #invitation-icon,
@@ -503,6 +501,7 @@
             </div>
             <div id="gallery-wrapper" class="hidden mt-8">
                 <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-1" id="gallery-grid">
+                    <!-- Photo containers start -->
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/D0I0h6C.jpeg" alt="Katibim Cafe" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">18</span>
@@ -732,22 +731,20 @@
 
         let photoUrls = [];
         let currentPhotoIndex = 0;
-        let savedScrollY = 0; // Kaydırma pozisyonunu saklamak için
 
         const modal = document.getElementById('image-modal');
         const modalImage = document.getElementById('modal-image');
 
-        // Kaydırma kilitleme ve geri yükleme fonksiyonları
+        // Sabit Arka Plan Mantığı (Zıplama yapmaz)
         const lockScroll = () => {
-            savedScrollY = window.scrollY;
-            document.body.style.top = `-${savedScrollY}px`;
-            document.body.classList.add('no-scroll');
+            // Sadece overflow hidden kullanıyoruz, position fixed zıplamaya sebep oluyordu
+            document.documentElement.style.overflow = 'hidden';
+            document.body.style.overflow = 'hidden';
         };
 
         const unlockScroll = () => {
-            document.body.classList.remove('no-scroll');
-            document.body.style.top = '';
-            window.scrollTo(0, savedScrollY);
+            document.documentElement.style.overflow = '';
+            document.body.style.overflow = '';
         };
 
         const applyInvitationTransform = () => {
@@ -842,14 +839,14 @@
             updateModalPhoto();
             if (modal && modal instanceof Element) {
                 modal.classList.replace('hidden', 'flex');
-                lockScroll(); // Pozisyonu kaydet ve kilitle
+                lockScroll();
             }
         };
 
         const closePhoto = () => {
             if (modal && modal instanceof Element) {
                 modal.classList.replace('flex', 'hidden');
-                unlockScroll(); // Pozisyonu geri yükle
+                unlockScroll();
             }
             if (modalImage && modalImage instanceof Element) modalImage.src = '';
             currentScale = 1;
@@ -888,8 +885,8 @@
         }, { passive: false });
 
         modal?.addEventListener('touchmove', (e) => {
-            e.preventDefault();
             if (e.touches.length === 2) {
+                e.preventDefault();
                 const currentDist = getDist(e.touches);
                 const scaleFactor = currentDist / initialDist;
                 currentScale = Math.min(Math.max(0.5, currentScale * scaleFactor), 8);
@@ -906,6 +903,7 @@
             isDragging = false;
         });
 
+        // Desktop Wheel Zoom
         modal?.addEventListener('wheel', (e) => {
             e.preventDefault();
             const delta = e.deltaY > 0 ? 0.9 : 1.1;
