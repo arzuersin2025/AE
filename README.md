@@ -15,7 +15,7 @@
         .header-name, .handwriting {
             caret-color: transparent !important;
         }
-        /* Kaydırma kilidi sınıfı */
+        /* Kaydırma kilidi sınıfı - arka planın sabit kalmasını sağlar */
         body.no-scroll {
             overflow: hidden !important;
             height: 100vh;
@@ -256,8 +256,8 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 18vw; /* Biraz daha genişlik verildi */
-            height: 16vw;
+            width: 18vw; 
+            height: 18vw;
             margin: 0 0.5em;
             overflow: visible;
             flex-shrink: 0;
@@ -271,16 +271,16 @@
         .heart-border {
             fill: #dc2626;
             stroke: black;
-            stroke-width: 2.5;
+            stroke-width: 0.8; /* İnce zarif kontur */
         }
         @media (min-width: 768px) {
             .interlocked-hearts {
                 width: 12vw;
-                height: 10vw;
+                height: 12vw;
                 margin: 0 1.2em;
             }
             .heart-border {
-                stroke-width: 2;
+                stroke-width: 0.6;
             }
         }
         #countdown-placeholder p {
@@ -347,7 +347,7 @@
                 <h1 class="font-bold flex items-center justify-center handwriting leading-tight">
                     <span class="header-name">Arzu</span>
                     <span class="interlocked-hearts heartbeat">
-                        <svg viewBox="-2 -2 36 33.6" class="heart-photo-svg"> <!-- Viewbox genişletildi kenar payı için -->
+                        <svg viewBox="-1 -1 34 31.6" class="heart-photo-svg"> 
                             <defs>
                                 <clipPath id="heart-clip">
                                     <path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"/>
@@ -721,14 +721,14 @@
 
         const applyInvitationTransform = () => {
             const img = document.getElementById('invitation-image');
-            if (img && typeof img.style !== 'undefined') {
+            if (img && img instanceof Element) {
                 img.style.transform = `translate(${invitationCurrentTranslateX}px, ${invitationCurrentTranslateY}px) scale(${invitationCurrentScale})`;
             }
         };
 
         const applyTransform = () => {
             const img = document.getElementById('modal-image');
-            if (img && typeof img.style !== 'undefined') {
+            if (img && img instanceof Element) {
                 img.style.transform = `translate(${currentTranslateX}px, ${currentTranslateY}px) scale(${currentScale})`;
             }
         };
@@ -766,14 +766,15 @@
 
         // --- IntersectionObservers ---
         const safeObserve = (observer, selector) => {
-            document.querySelectorAll(selector).forEach(el => {
-                if (el && el.nodeType === 1) observer.observe(el);
+            const elements = document.querySelectorAll(selector);
+            elements.forEach(el => {
+                if (el instanceof Element) observer.observe(el);
             });
         };
 
         const lazyLoadObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting && entry.target && entry.target.dataset.src) {
+                if (entry.isIntersecting && entry.target instanceof Element && entry.target.dataset.src) {
                     entry.target.src = entry.target.dataset.src;
                     lazyLoadObserver.unobserve(entry.target);
                 }
@@ -784,7 +785,7 @@
 
         const fadeObserver = new IntersectionObserver(entries => {
             entries.forEach(entry => { 
-                if (entry.isIntersecting && entry.target && entry.target.classList) {
+                if (entry.isIntersecting && entry.target instanceof Element && entry.target.classList) {
                     entry.target.classList.add('visible'); 
                 }
             });
@@ -797,7 +798,7 @@
         const modalImage = document.getElementById('modal-image');
 
         const updateModalPhoto = () => {
-            if (modalImage && photoUrls[currentPhotoIndex]) {
+            if (modalImage && modalImage instanceof Element && photoUrls[currentPhotoIndex]) {
                 modalImage.src = photoUrls[currentPhotoIndex];
                 currentScale = 1;
                 currentTranslateX = 0;
@@ -807,21 +808,22 @@
         };
 
         const openPhoto = (index) => {
-            photoUrls = Array.from(document.querySelectorAll('#gallery-grid img[data-src]')).map(img => img.dataset.src);
+            const thumbs = document.querySelectorAll('#gallery-grid img[data-src]');
+            photoUrls = Array.from(thumbs).map(img => img.dataset.src);
             currentPhotoIndex = index;
             updateModalPhoto();
-            if (modal) {
+            if (modal && modal instanceof Element) {
                 modal.classList.replace('hidden', 'flex');
-                document.body.classList.add('no-scroll'); // Arka plan kaymasını engelle
+                document.body.classList.add('no-scroll'); 
             }
         };
 
         const closePhoto = () => {
-            if (modal) {
+            if (modal && modal instanceof Element) {
                 modal.classList.replace('flex', 'hidden');
-                document.body.classList.remove('no-scroll'); // Kaydırmayı geri aç
+                document.body.classList.remove('no-scroll'); 
             }
-            if (modalImage) modalImage.src = '';
+            if (modalImage && modalImage instanceof Element) modalImage.src = '';
         };
 
         document.getElementById('next-photo')?.addEventListener('click', (e) => {
@@ -900,7 +902,7 @@
         document.getElementById('invitation-icon')?.addEventListener('click', () => {
             if (invitationModal) {
                 invitationModal.classList.add('show');
-                document.body.classList.add('no-scroll'); // Arka plan kaymasını engelle
+                document.body.classList.add('no-scroll'); 
                 invitationCurrentScale = 1;
                 invitationCurrentTranslateX = 0;
                 invitationCurrentTranslateY = 0;
@@ -925,7 +927,7 @@
                     document.body.classList.remove('no-scroll');
                 }
             }
-            if (modal && modal.classList.contains('flex')) {
+            if (modal && modal instanceof Element && modal.classList.contains('flex')) {
                 if (e.key === 'ArrowRight') document.getElementById('next-photo')?.click();
                 if (e.key === 'ArrowLeft') document.getElementById('prev-photo')?.click();
             }
@@ -946,7 +948,7 @@
                 isDragging = true;
                 startX = e.clientX - currentTranslateX;
                 startY = e.clientY - currentTranslateY;
-                modalImage.style.cursor = 'grabbing';
+                if (modalImage instanceof Element) modalImage.style.cursor = 'grabbing';
             });
 
             invitationModal?.addEventListener('wheel', (e) => {
@@ -963,7 +965,7 @@
                 invitationIsDragging = true;
                 invitationStartX = e.clientX - invitationCurrentTranslateX;
                 invitationStartY = e.clientY - invitationCurrentTranslateY;
-                invImg.style.cursor = 'grabbing';
+                if (invImg instanceof Element) invImg.style.cursor = 'grabbing';
             });
 
             document.addEventListener('mousemove', (e) => {
@@ -982,16 +984,15 @@
             document.addEventListener('mouseup', () => {
                 isDragging = false;
                 invitationIsDragging = false;
-                if (modalImage) modalImage.style.cursor = currentScale > 1 ? 'grab' : 'default';
-                if (invImg) invImg.style.cursor = invitationCurrentScale > 1 ? 'grab' : 'default';
+                if (modalImage && modalImage instanceof Element) modalImage.style.cursor = currentScale > 1 ? 'grab' : 'default';
+                if (invImg && invImg instanceof Element) invImg.style.cursor = invitationCurrentScale > 1 ? 'grab' : 'default';
             });
         }
 
         // Konfeti
         setTimeout(() => {
-            const colors = ['#f59e0b', '#ef4444', '#facc15', '#92400e', '#84cc16', '#dc2626', '#fb923c', '#ff69b4', '#16a34a', '#ffd700'];
             if (typeof confetti === 'function') {
-                confetti({ particleCount: 40, spread: 70, origin: { y: 0.6 }, colors: colors });
+                confetti({ particleCount: 40, spread: 70, origin: { y: 0.6 } });
             }
         }, 500);
 
