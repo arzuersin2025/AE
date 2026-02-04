@@ -15,13 +15,13 @@
         .header-name, .handwriting {
             caret-color: transparent !important;
         }
-        /* Sitenin sabit kalması için kaydırma kilidi */
+        /* Geliştirilmiş Kaydırma Kilidi - Pozisyon sıfırlanmasını önlemek için */
         body.no-scroll {
             overflow: hidden !important;
             height: 100vh !important;
             width: 100vw !important;
             position: fixed !important;
-            top: 0;
+            /* JS ile top değeri dinamik set edilecek */
             left: 0;
         }
         a, button, [role="button"], .cursor-pointer,
@@ -503,7 +503,6 @@
             </div>
             <div id="gallery-wrapper" class="hidden mt-8">
                 <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-1" id="gallery-grid">
-                    <!-- Photo containers here -->
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/D0I0h6C.jpeg" alt="Katibim Cafe" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">18</span>
@@ -729,14 +728,27 @@
         let currentTranslateY = 0;
         let isDragging = false;
         let startX, startY;
-
-        let initialDist = 0; // Mobile pinch initial distance
+        let initialDist = 0;
 
         let photoUrls = [];
         let currentPhotoIndex = 0;
+        let savedScrollY = 0; // Kaydırma pozisyonunu saklamak için
 
         const modal = document.getElementById('image-modal');
         const modalImage = document.getElementById('modal-image');
+
+        // Kaydırma kilitleme ve geri yükleme fonksiyonları
+        const lockScroll = () => {
+            savedScrollY = window.scrollY;
+            document.body.style.top = `-${savedScrollY}px`;
+            document.body.classList.add('no-scroll');
+        };
+
+        const unlockScroll = () => {
+            document.body.classList.remove('no-scroll');
+            document.body.style.top = '';
+            window.scrollTo(0, savedScrollY);
+        };
 
         const applyInvitationTransform = () => {
             const img = document.getElementById('invitation-image');
@@ -830,14 +842,14 @@
             updateModalPhoto();
             if (modal && modal instanceof Element) {
                 modal.classList.replace('hidden', 'flex');
-                document.body.classList.add('no-scroll'); 
+                lockScroll(); // Pozisyonu kaydet ve kilitle
             }
         };
 
         const closePhoto = () => {
             if (modal && modal instanceof Element) {
                 modal.classList.replace('flex', 'hidden');
-                document.body.classList.remove('no-scroll'); 
+                unlockScroll(); // Pozisyonu geri yükle
             }
             if (modalImage && modalImage instanceof Element) modalImage.src = '';
             currentScale = 1;
@@ -864,7 +876,7 @@
         document.getElementById('close-modal')?.addEventListener('click', closePhoto);
         modal?.addEventListener('click', (e) => { if (e.target === modal) closePhoto(); });
 
-        // Mobile Pinch-to-Zoom Logic for Gallery Modal
+        // Mobile Pinch-to-Zoom
         modal?.addEventListener('touchstart', (e) => {
             if (e.touches.length === 2) {
                 initialDist = getDist(e.touches);
@@ -876,7 +888,7 @@
         }, { passive: false });
 
         modal?.addEventListener('touchmove', (e) => {
-            e.preventDefault(); // Sitenin hareketini engeller
+            e.preventDefault();
             if (e.touches.length === 2) {
                 const currentDist = getDist(e.touches);
                 const scaleFactor = currentDist / initialDist;
@@ -894,7 +906,6 @@
             isDragging = false;
         });
 
-        // Desktop Zoom (Wheel)
         modal?.addEventListener('wheel', (e) => {
             e.preventDefault();
             const delta = e.deltaY > 0 ? 0.9 : 1.1;
@@ -902,7 +913,6 @@
             applyTransform();
         }, { passive: false });
 
-        // Galeri Gör/Gizle
         document.getElementById('toggle-gallery-btn')?.addEventListener('click', function() {
             const wrapper = document.getElementById('gallery-wrapper');
             const icon = document.getElementById('gallery-toggle-icon');
@@ -922,7 +932,6 @@
             }
         });
 
-        // Video Galerisi
         document.getElementById('toggle-video-gallery-btn')?.addEventListener('click', function() {
             const wrapper = document.getElementById('video-gallery-wrapper');
             const icon = document.getElementById('video-gallery-toggle-icon');
@@ -942,7 +951,7 @@
                         if (iframe && el.dataset.youtubeId) {
                             iframe.src = `https://www.youtube.com/embed/${el.dataset.youtubeId}?autoplay=1`;
                             document.getElementById('video-modal')?.classList.replace('hidden', 'flex');
-                            document.body.classList.add('no-scroll');
+                            lockScroll();
                         }
                     };
                 });
@@ -951,17 +960,16 @@
 
         document.getElementById('close-video-modal')?.addEventListener('click', () => {
             document.getElementById('video-modal')?.classList.replace('flex', 'hidden');
-            document.body.classList.remove('no-scroll');
+            unlockScroll();
             const iframe = document.getElementById('modal-video-iframe');
             if (iframe) iframe.src = '';
         });
 
-        // Davetiye
         const invitationModal = document.getElementById('invitation-modal');
         document.getElementById('invitation-icon')?.addEventListener('click', () => {
             if (invitationModal) {
                 invitationModal.classList.add('show');
-                document.body.classList.add('no-scroll'); 
+                lockScroll();
                 invitationCurrentScale = 1;
                 invitationCurrentTranslateX = 0;
                 invitationCurrentTranslateY = 0;
@@ -972,18 +980,17 @@
         document.getElementById('close-invitation')?.addEventListener('click', () => {
             if (invitationModal) {
                 invitationModal.classList.remove('show');
-                document.body.classList.remove('no-scroll');
+                unlockScroll();
             }
         });
 
-        // Keyboard
         document.addEventListener('keydown', e => {
             if (e.key === 'Escape') {
                 closePhoto();
                 document.getElementById('close-video-modal')?.click();
-                if (invitationModal) {
+                if (invitationModal && invitationModal.classList.contains('show')) {
                     invitationModal.classList.remove('show');
-                    document.body.classList.remove('no-scroll');
+                    unlockScroll();
                 }
             }
             if (modal && modal.classList.contains('flex')) {
@@ -992,7 +999,7 @@
             }
         });
 
-        // Desktop Drag
+        // Masaüstü Sürükleme
         modalImage?.addEventListener('mousedown', (e) => {
             if (currentScale <= 1) return;
             e.preventDefault();
@@ -1002,17 +1009,34 @@
             if (modalImage instanceof Element) modalImage.style.cursor = 'grabbing';
         });
 
+        const invImg = document.getElementById('invitation-image');
+        invImg?.addEventListener('mousedown', (e) => {
+            if (invitationCurrentScale <= 1) return;
+            e.preventDefault();
+            invitationIsDragging = true;
+            invitationStartX = e.clientX - invitationCurrentTranslateX;
+            invitationStartY = e.clientY - invitationCurrentTranslateY;
+            if (invImg instanceof Element) invImg.style.cursor = 'grabbing';
+        });
+
         document.addEventListener('mousemove', (e) => {
             if (isDragging) {
                 currentTranslateX = e.clientX - startX;
                 currentTranslateY = e.clientY - startY;
                 applyTransform();
             }
+            if (invitationIsDragging) {
+                invitationCurrentTranslateX = e.clientX - invitationStartX;
+                invitationCurrentTranslateY = e.clientY - invitationStartY;
+                applyInvitationTransform();
+            }
         });
 
         document.addEventListener('mouseup', () => {
             isDragging = false;
+            invitationIsDragging = false;
             if (modalImage && modalImage instanceof Element) modalImage.style.cursor = currentScale > 1 ? 'grab' : 'default';
+            if (invImg && invImg instanceof Element) invImg.style.cursor = invitationCurrentScale > 1 ? 'grab' : 'default';
         });
 
         // Confetti
