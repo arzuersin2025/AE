@@ -1,8 +1,7 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <!-- Viewport ayarları ile sayfa ölçeklendirmesi kısıtlandı -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Arzu & Ersin | Bizim Hikayemiz</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,18 +15,11 @@
         .header-name, .handwriting {
             caret-color: transparent !important;
         }
-
-        /* Sayfa genelinde zoom ve kaydırma kontrolü */
-        html, body {
-            touch-action: pan-x pan-y;
-            -webkit-text-size-adjust: 100%;
-        }
-
-        /* Kaydırma Kilidi */
+        /* Yeni Kaydırma Kilidi - Düzeni bozmaz, zıplamayı önler */
         .no-scroll {
             overflow: hidden !important;
-            height: 100%;
-            width: 100%;
+            touch-action: none;
+            -ms-touch-action: none;
         }
         
         a, button, [role="button"], .cursor-pointer,
@@ -261,7 +253,7 @@
         #toggle-video-gallery-btn i {
             color: #000000 !important;
         }
-        /* Kalp kabı */
+        /* Kalp kabı - Mobil kesilmeyi önlemek için optimize edildi */
         .interlocked-hearts {
             position: relative;
             display: inline-flex;
@@ -345,17 +337,14 @@
             color: #dc2626;
             text-align: center;
         }
-        /* Modal Görsel Sabitleme ve Geliştirilmiş Zoom */
+        /* Modal Görsel Sabitleme */
         #image-modal {
             touch-action: none;
             overflow: hidden;
-            /* ID specificity sorunu için display kuralı JS tarafından yönetilecek veya class ile ezilecek */
         }
         #modal-image {
-            transition: transform 0.1s linear; 
+            transition: transform 0.1s ease-out;
             will-change: transform;
-            touch-action: none;
-            cursor: default;
         }
     </style>
 </head>
@@ -512,6 +501,7 @@
             </div>
             <div id="gallery-wrapper" class="hidden mt-8">
                 <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-1" id="gallery-grid">
+                    <!-- Photo containers start -->
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/D0I0h6C.jpeg" alt="Katibim Cafe" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">18</span>
@@ -712,25 +702,20 @@
             </div>
         </section>
     </main>
-
-    <!-- Photo Modal -->
     <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
         <span id="close-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
         <img id="modal-image" src="" alt="Büyütülmüş Fotoğraf" class="max-w-[90vw] max-h-[90vh] rounded-lg shadow-lg">
         <span id="prev-photo" class="absolute top-1/2 left-4 -translate-y-1/2 text-white text-6xl font-bold cursor-pointer hover:text-gray-300 transition-colors select-none"><</span>
         <span id="next-photo" class="absolute top-1/2 right-4 -translate-y-1/2 text-white text-6xl font-bold cursor-pointer hover:text-gray-300 transition-colors select-none">></span>
     </div>
-
     <div id="video-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4">
         <span id="close-video-modal" class="absolute top-4 right-6 text-white text-5xl font-bold cursor-pointer hover:text-gray-300 transition-colors">×</span>
         <div class="aspect-video w-full max-w-4xl"><iframe id="modal-video-iframe" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
     </div>
-
     <script>
     document.addEventListener('DOMContentLoaded', () => {
         'use strict';
         
-        // Scope variables
         let invitationCurrentScale = 1;
         let invitationCurrentTranslateX = 0;
         let invitationCurrentTranslateY = 0;
@@ -750,26 +735,27 @@
         const modal = document.getElementById('image-modal');
         const modalImage = document.getElementById('modal-image');
 
+        // Sabit Arka Plan Mantığı (Zıplama yapmaz)
         const lockScroll = () => {
-            document.body.classList.add('no-scroll');
+            // Sadece overflow hidden kullanıyoruz, position fixed zıplamaya sebep oluyordu
+            document.documentElement.style.overflow = 'hidden';
+            document.body.style.overflow = 'hidden';
         };
 
         const unlockScroll = () => {
-            document.body.classList.remove('no-scroll');
+            document.documentElement.style.overflow = '';
+            document.body.style.overflow = '';
         };
-
-        const clamp = (val, min, max) => Math.max(min, Math.min(max, val));
 
         const applyInvitationTransform = () => {
             const img = document.getElementById('invitation-image');
-            if (img) img.style.transform = `translate(${invitationCurrentTranslateX}px, ${invitationCurrentTranslateY}px) scale(${invitationCurrentScale})`;
+            if (img && img instanceof Element) {
+                img.style.transform = `translate(${invitationCurrentTranslateX}px, ${invitationCurrentTranslateY}px) scale(${invitationCurrentScale})`;
+            }
         };
 
         const applyTransform = () => {
-            if (modalImage) {
-                const maxOff = (currentScale - 1) * 200; 
-                currentTranslateX = clamp(currentTranslateX, -maxOff, maxOff);
-                currentTranslateY = clamp(currentTranslateY, -maxOff, maxOff);
+            if (modalImage && modalImage instanceof Element) {
                 modalImage.style.transform = `translate(${currentTranslateX}px, ${currentTranslateY}px) scale(${currentScale})`;
             }
         };
@@ -778,29 +764,66 @@
             return Math.sqrt(Math.pow(touches[0].pageX - touches[1].pageX, 2) + Math.pow(touches[0].pageY - touches[1].pageY, 2));
         };
 
+        // --- Efektler ---
+        const heartContainer = document.getElementById('falling-hearts-container');
+        if (heartContainer) {
+            for (let i = 0; i < 2; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'falling-heart';
+                heart.innerHTML = '💛';
+                heart.style.left = (30 + i * 40) + '%';
+                heart.style.animationDuration = (55 + i * 10) + 's';
+                heart.style.animationDelay = (i * 15) + 's';
+                heart.style.fontSize = (2.0 + Math.random() * 0.8) + 'rem';
+                heartContainer.appendChild(heart);
+            }
+        }
+
+        const leafSVG = `<svg viewBox="0 0 100 140" class="w-full h-full" preserveAspectRatio="xMidYMid meet"><path class="leaf-outer" d="M50 10 C30 15, 20 35, 18 55 C16 75, 25 95, 35 115 C45 130, 48 135, 50 138 C52 135, 55 130, 65 115 C75 95, 84 75, 82 55 C80 35, 70 15, 50 10 Z" /><path class="leaf-inner" d="M50 15 C33 20, 25 38, 23 55 C21 72, 28 88, 36 108 C44 125, 48 132, 50 135 C52 132, 56 125, 64 108 C72 88, 79 72, 77 55 C75 38, 67 20, 50 15 Z" /><path d="M50 15 Q50 70 48 135" stroke="#fff" stroke-width="2.5" opacity="0.5" fill="none"/><path d="M50 15 Q35 40 28 48 M50 55 Q32 65 25 75 M50 80 Q30 90 23 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/><path d="M50 15 Q65 40 72 48 M50 55 Q68 65 75 75 M50 80 Q70 90 77 105" stroke="#fff" stroke-width="1.8" opacity="0.4" fill="none"/></svg>`;
+        const leafColors = ['autumn-1','autumn-2','autumn-3','autumn-4','autumn-5','autumn-6','autumn-7','autumn-8','autumn-9','autumn-10'];
+        const leafContainer = document.getElementById('falling-leaves-container');
+        if (leafContainer) {
+            for (let i = 0; i < 2; i++) {
+                const leaf = document.createElement('div');
+                const colorClass = leafColors[Math.floor(Math.random() * leafColors.length)];
+                leaf.className = `leaf-svg ${colorClass}`;
+                leaf.style.left = (30 + i * 40) + '%';
+                leaf.style.animationDuration = (60 + Math.random() * 25) + 's';
+                leaf.style.animationDelay = (Math.random() * 40) + 's';
+                leaf.innerHTML = leafSVG;
+                leafContainer.appendChild(leaf);
+            }
+        }
+
         // --- IntersectionObservers ---
         const lazyLoadObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting && entry.target.dataset.src) {
+                if (entry.isIntersecting && entry.target instanceof Element && entry.target.dataset.src) {
                     entry.target.src = entry.target.dataset.src;
                     lazyLoadObserver.unobserve(entry.target);
                 }
             });
         }, { rootMargin: '50px' });
         
-        document.querySelectorAll('img[data-src]').forEach(img => lazyLoadObserver.observe(img));
+        document.querySelectorAll('img[data-src]').forEach(img => {
+            if (img instanceof Element) lazyLoadObserver.observe(img);
+        });
 
         const fadeObserver = new IntersectionObserver(entries => {
             entries.forEach(entry => { 
-                if (entry.isIntersecting) entry.target.classList.add('visible'); 
+                if (entry.isIntersecting && entry.target instanceof Element && entry.target.classList) {
+                    entry.target.classList.add('visible'); 
+                }
             });
         }, { threshold: 0.1 });
         
-        document.querySelectorAll('.fade-in-on-scroll').forEach(el => fadeObserver.observe(el));
+        document.querySelectorAll('.fade-in-on-scroll').forEach(el => {
+            if (el instanceof Element) fadeObserver.observe(el);
+        });
 
         // --- Galeri Mantığı ---
         const updateModalPhoto = () => {
-            if (modalImage && photoUrls[currentPhotoIndex]) {
+            if (modalImage && modalImage instanceof Element && photoUrls[currentPhotoIndex]) {
                 modalImage.src = photoUrls[currentPhotoIndex];
                 currentScale = 1;
                 currentTranslateX = 0;
@@ -814,18 +837,18 @@
             photoUrls = Array.from(thumbs).map(img => img.dataset.src);
             currentPhotoIndex = index;
             updateModalPhoto();
-            if (modal) {
-                modal.style.display = 'flex'; // hidden class yerine doğrudan kontrol
+            if (modal && modal instanceof Element) {
+                modal.classList.replace('hidden', 'flex');
                 lockScroll();
             }
         };
 
         const closePhoto = () => {
-            if (modal) {
-                modal.style.display = 'none';
+            if (modal && modal instanceof Element) {
+                modal.classList.replace('flex', 'hidden');
                 unlockScroll();
             }
-            if (modalImage) modalImage.src = '';
+            if (modalImage && modalImage instanceof Element) modalImage.src = '';
             currentScale = 1;
             currentTranslateX = 0;
             currentTranslateY = 0;
@@ -866,12 +889,10 @@
                 e.preventDefault();
                 const currentDist = getDist(e.touches);
                 const scaleFactor = currentDist / initialDist;
-                const nextScale = currentScale * (1 + (scaleFactor - 1) * 0.5);
-                currentScale = clamp(nextScale, 0.8, 10);
+                currentScale = Math.min(Math.max(0.5, currentScale * scaleFactor), 8);
                 initialDist = currentDist;
                 applyTransform();
-            } else if (e.touches.length === 1 && isDragging && currentScale > 1.05) {
-                e.preventDefault();
+            } else if (e.touches.length === 1 && isDragging && currentScale > 1) {
                 currentTranslateX = e.touches[0].pageX - startX;
                 currentTranslateY = e.touches[0].pageY - startY;
                 applyTransform();
@@ -882,24 +903,14 @@
             isDragging = false;
         });
 
-        // Site Zoom engelleme
-        document.addEventListener('touchstart', (e) => {
-            if (e.touches.length > 1) {
-                if (modal.style.display !== 'flex' && !document.getElementById('invitation-modal').classList.contains('show')) {
-                    e.preventDefault();
-                }
-            }
-        }, { passive: false });
-
+        // Desktop Wheel Zoom
         modal?.addEventListener('wheel', (e) => {
             e.preventDefault();
-            const zoomSpeed = 0.05;
-            const delta = e.deltaY > 0 ? (1 - zoomSpeed) : (1 + zoomSpeed);
-            currentScale = clamp(currentScale * delta, 0.8, 10);
+            const delta = e.deltaY > 0 ? 0.9 : 1.1;
+            currentScale = Math.min(Math.max(0.5, currentScale * delta), 8);
             applyTransform();
         }, { passive: false });
 
-        // Toggles
         document.getElementById('toggle-gallery-btn')?.addEventListener('click', function() {
             const wrapper = document.getElementById('gallery-wrapper');
             const icon = document.getElementById('gallery-toggle-icon');
@@ -937,7 +948,7 @@
                         const iframe = document.getElementById('modal-video-iframe');
                         if (iframe && el.dataset.youtubeId) {
                             iframe.src = `https://www.youtube.com/embed/${el.dataset.youtubeId}?autoplay=1`;
-                            document.getElementById('video-modal').classList.replace('hidden', 'flex');
+                            document.getElementById('video-modal')?.classList.replace('hidden', 'flex');
                             lockScroll();
                         }
                     };
@@ -946,13 +957,12 @@
         });
 
         document.getElementById('close-video-modal')?.addEventListener('click', () => {
-            document.getElementById('video-modal').classList.replace('flex', 'hidden');
+            document.getElementById('video-modal')?.classList.replace('flex', 'hidden');
             unlockScroll();
             const iframe = document.getElementById('modal-video-iframe');
             if (iframe) iframe.src = '';
         });
 
-        // Davetiye
         const invitationModal = document.getElementById('invitation-modal');
         document.getElementById('invitation-icon')?.addEventListener('click', () => {
             if (invitationModal) {
@@ -976,25 +986,35 @@
             if (e.key === 'Escape') {
                 closePhoto();
                 document.getElementById('close-video-modal')?.click();
-                if (invitationModal) {
+                if (invitationModal && invitationModal.classList.contains('show')) {
                     invitationModal.classList.remove('show');
                     unlockScroll();
                 }
             }
-            if (modal.style.display === 'flex') {
+            if (modal && modal.classList.contains('flex')) {
                 if (e.key === 'ArrowRight') document.getElementById('next-photo')?.click();
                 if (e.key === 'ArrowLeft') document.getElementById('prev-photo')?.click();
             }
         });
 
-        // Desktop Drag
+        // Masaüstü Sürükleme
         modalImage?.addEventListener('mousedown', (e) => {
-            if (currentScale <= 1.05) return;
+            if (currentScale <= 1) return;
             e.preventDefault();
             isDragging = true;
             startX = e.clientX - currentTranslateX;
             startY = e.clientY - currentTranslateY;
-            modalImage.style.cursor = 'grabbing';
+            if (modalImage instanceof Element) modalImage.style.cursor = 'grabbing';
+        });
+
+        const invImg = document.getElementById('invitation-image');
+        invImg?.addEventListener('mousedown', (e) => {
+            if (invitationCurrentScale <= 1) return;
+            e.preventDefault();
+            invitationIsDragging = true;
+            invitationStartX = e.clientX - invitationCurrentTranslateX;
+            invitationStartY = e.clientY - invitationCurrentTranslateY;
+            if (invImg instanceof Element) invImg.style.cursor = 'grabbing';
         });
 
         document.addEventListener('mousemove', (e) => {
@@ -1003,11 +1023,18 @@
                 currentTranslateY = e.clientY - startY;
                 applyTransform();
             }
+            if (invitationIsDragging) {
+                invitationCurrentTranslateX = e.clientX - invitationStartX;
+                invitationCurrentTranslateY = e.clientY - invitationStartY;
+                applyInvitationTransform();
+            }
         });
 
         document.addEventListener('mouseup', () => {
             isDragging = false;
-            if (modalImage) modalImage.style.cursor = currentScale > 1.05 ? 'grab' : 'default';
+            invitationIsDragging = false;
+            if (modalImage && modalImage instanceof Element) modalImage.style.cursor = currentScale > 1 ? 'grab' : 'default';
+            if (invImg && invImg instanceof Element) invImg.style.cursor = invitationCurrentScale > 1 ? 'grab' : 'default';
         });
 
         // Confetti
@@ -1017,36 +1044,48 @@
             }
         }, 500);
 
-        // Falling items
-        const heartContainer = document.getElementById('falling-hearts-container');
-        if (heartContainer) {
-            for (let i = 0; i < 2; i++) {
-                const heart = document.createElement('div');
-                heart.className = 'falling-heart';
-                heart.innerHTML = '💛';
-                heart.style.left = (30 + i * 40) + '%';
-                heart.style.animationDuration = (55 + i * 10) + 's';
-                heart.style.animationDelay = (i * 15) + 's';
-                heart.style.fontSize = (2.0 + Math.random() * 0.8) + 'rem';
-                heartContainer.appendChild(heart);
-            }
+        // Youtube Init
+        const tag = document.createElement('script');
+        tag.src = 'https://www.youtube.com/iframe_api';
+        const firstScriptTag = document.getElementsByTagName('script')[0];
+        if (firstScriptTag && firstScriptTag.parentNode) {
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
         }
 
-        const leafSVG_str = `<svg viewBox="0 0 100 140" class="w-full h-full" preserveAspectRatio="xMidYMid meet"><path style="fill:white;opacity:0.95" d="M50 10 C30 15, 20 35, 18 55 C16 75, 25 95, 35 115 C45 130, 48 135, 50 138 C52 135, 55 130, 65 115 C75 95, 84 75, 82 55 C80 35, 70 15, 50 10 Z" /><path style="fill:currentColor" d="M50 15 C33 20, 25 38, 23 55 C21 72, 28 88, 36 108 C44 125, 48 132, 50 135 C52 132, 56 125, 64 108 C72 88, 79 72, 77 55 C75 38, 67 20, 50 15 Z" /></svg>`;
-        const leafColors = ['autumn-1','autumn-2','autumn-3','autumn-4','autumn-5','autumn-6','autumn-7','autumn-8','autumn-9','autumn-10'];
-        const leafContainer = document.getElementById('falling-leaves-container');
-        if (leafContainer) {
-            for (let i = 0; i < 2; i++) {
-                const leaf = document.createElement('div');
-                const colorClass = leafColors[Math.floor(Math.random() * leafColors.length)];
-                leaf.className = `leaf-svg ${colorClass}`;
-                leaf.style.left = (30 + i * 40) + '%';
-                leaf.style.animationDuration = (60 + Math.random() * 25) + 's';
-                leaf.style.animationDelay = (Math.random() * 40) + 's';
-                leaf.innerHTML = leafSVG_str;
-                leafContainer.appendChild(leaf);
-            }
-        }
+        window.onYouTubeIframeAPIReady = function() {
+            const playBtn = document.getElementById('play-song-btn');
+            const playerElement = document.getElementById('youtube-player');
+            const musicVisualizer = document.getElementById('music-visualizer');
+            let isPlaying = false;
+
+            if (!playBtn || !playerElement) return;
+
+            const player = new YT.Player('youtube-player', {
+                events: {
+                    'onStateChange': e => {
+                        if (e.data === YT.PlayerState.PLAYING) {
+                            isPlaying = true;
+                            playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                            playBtn.classList.add('playing');
+                            playerElement.classList.add('show');
+                            if (musicVisualizer) musicVisualizer.classList.add('hidden');
+                        } else {
+                            isPlaying = false;
+                            playBtn.innerHTML = '<i class="fas fa-play"></i>';
+                            playBtn.classList.remove('playing');
+                            playerElement.classList.remove('show');
+                            if (musicVisualizer) musicVisualizer.classList.remove('hidden');
+                        }
+                    }
+                }
+            });
+
+            playBtn.onclick = (e) => {
+                e.stopPropagation();
+                if (isPlaying) player.pauseVideo();
+                else player.playVideo();
+            };
+        };
     });
     </script>
 </body>
