@@ -1,7 +1,7 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Arzu & Ersin | Bizim Hikayemiz</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,7 +15,7 @@
         .header-name, .handwriting {
             caret-color: transparent !important;
         }
-        /* Geliştirilmiş Kaydırma Kilidi - Sitenin sabit kalmasını garanti eder */
+        /* Sitenin sabit kalması için kaydırma kilidi */
         body.no-scroll {
             overflow: hidden !important;
             height: 100vh !important;
@@ -194,7 +194,7 @@
             align-items: center;
             justify-content: center;
             padding: 1rem;
-            touch-action: none; /* Mobilde arka plan kaymasını engellemeye yardımcı olur */
+            touch-action: none;
         }
         #invitation-modal.show { display: flex; }
         #invitation-modal img {
@@ -276,7 +276,7 @@
         .heart-border {
             fill: #dc2626;
             stroke: black;
-            stroke-width: 0.6; /* Daha ince siyahlık */
+            stroke-width: 0.6;
         }
         @media (min-width: 768px) {
             .interlocked-hearts {
@@ -342,6 +342,11 @@
         /* Modal Görsel Sabitleme */
         #image-modal {
             touch-action: none;
+            overflow: hidden;
+        }
+        #modal-image {
+            transition: transform 0.1s ease-out;
+            will-change: transform;
         }
     </style>
 </head>
@@ -498,6 +503,7 @@
             </div>
             <div id="gallery-wrapper" class="hidden mt-8">
                 <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-1" id="gallery-grid">
+                    <!-- Photo containers here -->
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/D0I0h6C.jpeg" alt="Katibim Cafe" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">18</span>
@@ -712,7 +718,6 @@
     document.addEventListener('DOMContentLoaded', () => {
         'use strict';
         
-        // --- Değişken Tanımlamaları ---
         let invitationCurrentScale = 1;
         let invitationCurrentTranslateX = 0;
         let invitationCurrentTranslateY = 0;
@@ -725,8 +730,13 @@
         let isDragging = false;
         let startX, startY;
 
+        let initialDist = 0; // Mobile pinch initial distance
+
         let photoUrls = [];
         let currentPhotoIndex = 0;
+
+        const modal = document.getElementById('image-modal');
+        const modalImage = document.getElementById('modal-image');
 
         const applyInvitationTransform = () => {
             const img = document.getElementById('invitation-image');
@@ -736,10 +746,13 @@
         };
 
         const applyTransform = () => {
-            const img = document.getElementById('modal-image');
-            if (img && img instanceof Element) {
-                img.style.transform = `translate(${currentTranslateX}px, ${currentTranslateY}px) scale(${currentScale})`;
+            if (modalImage && modalImage instanceof Element) {
+                modalImage.style.transform = `translate(${currentTranslateX}px, ${currentTranslateY}px) scale(${currentScale})`;
             }
+        };
+
+        const getDist = (touches) => {
+            return Math.sqrt(Math.pow(touches[0].pageX - touches[1].pageX, 2) + Math.pow(touches[0].pageY - touches[1].pageY, 2));
         };
 
         // --- Efektler ---
@@ -773,7 +786,7 @@
             }
         }
 
-        // --- Gözlemciler (IntersectionObservers) ---
+        // --- IntersectionObservers ---
         const lazyLoadObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting && entry.target instanceof Element && entry.target.dataset.src) {
@@ -789,7 +802,7 @@
 
         const fadeObserver = new IntersectionObserver(entries => {
             entries.forEach(entry => { 
-                if (entry.isIntersecting && entry.target instanceof Element) {
+                if (entry.isIntersecting && entry.target instanceof Element && entry.target.classList) {
                     entry.target.classList.add('visible'); 
                 }
             });
@@ -800,9 +813,6 @@
         });
 
         // --- Galeri Mantığı ---
-        const modal = document.getElementById('image-modal');
-        const modalImage = document.getElementById('modal-image');
-
         const updateModalPhoto = () => {
             if (modalImage && modalImage instanceof Element && photoUrls[currentPhotoIndex]) {
                 modalImage.src = photoUrls[currentPhotoIndex];
@@ -830,6 +840,9 @@
                 document.body.classList.remove('no-scroll'); 
             }
             if (modalImage && modalImage instanceof Element) modalImage.src = '';
+            currentScale = 1;
+            currentTranslateX = 0;
+            currentTranslateY = 0;
         };
 
         document.getElementById('next-photo')?.addEventListener('click', (e) => {
@@ -851,6 +864,45 @@
         document.getElementById('close-modal')?.addEventListener('click', closePhoto);
         modal?.addEventListener('click', (e) => { if (e.target === modal) closePhoto(); });
 
+        // Mobile Pinch-to-Zoom Logic for Gallery Modal
+        modal?.addEventListener('touchstart', (e) => {
+            if (e.touches.length === 2) {
+                initialDist = getDist(e.touches);
+            } else if (e.touches.length === 1) {
+                isDragging = true;
+                startX = e.touches[0].pageX - currentTranslateX;
+                startY = e.touches[0].pageY - currentTranslateY;
+            }
+        }, { passive: false });
+
+        modal?.addEventListener('touchmove', (e) => {
+            e.preventDefault(); // Sitenin hareketini engeller
+            if (e.touches.length === 2) {
+                const currentDist = getDist(e.touches);
+                const scaleFactor = currentDist / initialDist;
+                currentScale = Math.min(Math.max(0.5, currentScale * scaleFactor), 8);
+                initialDist = currentDist;
+                applyTransform();
+            } else if (e.touches.length === 1 && isDragging && currentScale > 1) {
+                currentTranslateX = e.touches[0].pageX - startX;
+                currentTranslateY = e.touches[0].pageY - startY;
+                applyTransform();
+            }
+        }, { passive: false });
+
+        modal?.addEventListener('touchend', () => {
+            isDragging = false;
+        });
+
+        // Desktop Zoom (Wheel)
+        modal?.addEventListener('wheel', (e) => {
+            e.preventDefault();
+            const delta = e.deltaY > 0 ? 0.9 : 1.1;
+            currentScale = Math.min(Math.max(0.5, currentScale * delta), 8);
+            applyTransform();
+        }, { passive: false });
+
+        // Galeri Gör/Gizle
         document.getElementById('toggle-gallery-btn')?.addEventListener('click', function() {
             const wrapper = document.getElementById('gallery-wrapper');
             const icon = document.getElementById('gallery-toggle-icon');
@@ -870,6 +922,7 @@
             }
         });
 
+        // Video Galerisi
         document.getElementById('toggle-video-gallery-btn')?.addEventListener('click', function() {
             const wrapper = document.getElementById('video-gallery-wrapper');
             const icon = document.getElementById('video-gallery-toggle-icon');
@@ -903,7 +956,7 @@
             if (iframe) iframe.src = '';
         });
 
-        // --- Davetiye Mantığı ---
+        // Davetiye
         const invitationModal = document.getElementById('invitation-modal');
         document.getElementById('invitation-icon')?.addEventListener('click', () => {
             if (invitationModal) {
@@ -923,7 +976,7 @@
             }
         });
 
-        // Klavye
+        // Keyboard
         document.addEventListener('keydown', e => {
             if (e.key === 'Escape') {
                 closePhoto();
@@ -939,71 +992,37 @@
             }
         });
 
-        // Masaüstü Yakınlaştırma (Wheel) ve Sürükleme (Drag)
-        // wheel event'ini passive: false ile yakalayıp e.preventDefault() yaparak tarayıcı zoom'unu engelliyoruz.
-        if (window.innerWidth > 768 && !('ontouchstart' in window)) {
-            modal?.addEventListener('wheel', (e) => {
-                e.preventDefault(); // Sitenin büyümesini engeller
-                const delta = e.deltaY > 0 ? 0.9 : 1.1;
-                currentScale = Math.min(Math.max(0.5, currentScale * delta), 8);
+        // Desktop Drag
+        modalImage?.addEventListener('mousedown', (e) => {
+            if (currentScale <= 1) return;
+            e.preventDefault();
+            isDragging = true;
+            startX = e.clientX - currentTranslateX;
+            startY = e.clientY - currentTranslateY;
+            if (modalImage instanceof Element) modalImage.style.cursor = 'grabbing';
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (isDragging) {
+                currentTranslateX = e.clientX - startX;
+                currentTranslateY = e.clientY - startY;
                 applyTransform();
-            }, { passive: false });
+            }
+        });
 
-            modalImage?.addEventListener('mousedown', (e) => {
-                if (currentScale <= 1) return;
-                e.preventDefault();
-                isDragging = true;
-                startX = e.clientX - currentTranslateX;
-                startY = e.clientY - currentTranslateY;
-                if (modalImage instanceof Element) modalImage.style.cursor = 'grabbing';
-            });
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+            if (modalImage && modalImage instanceof Element) modalImage.style.cursor = currentScale > 1 ? 'grab' : 'default';
+        });
 
-            invitationModal?.addEventListener('wheel', (e) => {
-                e.preventDefault(); // Sitenin büyümesini engeller
-                const delta = e.deltaY > 0 ? 0.9 : 1.1;
-                invitationCurrentScale = Math.min(Math.max(0.5, invitationCurrentScale * delta), 8);
-                applyInvitationTransform();
-            }, { passive: false });
-
-            const invImg = document.getElementById('invitation-image');
-            invImg?.addEventListener('mousedown', (e) => {
-                if (invitationCurrentScale <= 1) return;
-                e.preventDefault();
-                invitationIsDragging = true;
-                invitationStartX = e.clientX - invitationCurrentTranslateX;
-                invitationStartY = e.clientY - invitationCurrentTranslateY;
-                if (invImg instanceof Element) invImg.style.cursor = 'grabbing';
-            });
-
-            document.addEventListener('mousemove', (e) => {
-                if (isDragging) {
-                    currentTranslateX = e.clientX - startX;
-                    currentTranslateY = e.clientY - startY;
-                    applyTransform();
-                }
-                if (invitationIsDragging) {
-                    invitationCurrentTranslateX = e.clientX - invitationStartX;
-                    invitationCurrentTranslateY = e.clientY - invitationStartY;
-                    applyInvitationTransform();
-                }
-            });
-
-            document.addEventListener('mouseup', () => {
-                isDragging = false;
-                invitationIsDragging = false;
-                if (modalImage && modalImage instanceof Element) modalImage.style.cursor = currentScale > 1 ? 'grab' : 'default';
-                if (invImg && invImg instanceof Element) invImg.style.cursor = invitationCurrentScale > 1 ? 'grab' : 'default';
-            });
-        }
-
-        // Konfeti
+        // Confetti
         setTimeout(() => {
             if (typeof confetti === 'function') {
                 confetti({ particleCount: 40, spread: 70, origin: { y: 0.6 } });
             }
         }, 500);
 
-        // YouTube
+        // Youtube Init
         const tag = document.createElement('script');
         tag.src = 'https://www.youtube.com/iframe_api';
         const firstScriptTag = document.getElementsByTagName('script')[0];
