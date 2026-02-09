@@ -719,7 +719,7 @@
     document.addEventListener('DOMContentLoaded', () => {
         'use strict';
        
-        // Sayfa açılırken kısa süreli konfeti patlaması (en son güncelleme)
+        // Son güncelleme: Sayfa açılırken kısa süreli konfeti patlaması eklendi
         if (typeof confetti === 'function') {
             const colors = ['#f59e0b', '#ef4444', '#facc15', '#92400e', '#84cc16', '#dc2626', '#fb923c', '#ff69b4', '#16a34a', '#ffd700', '#ec4899', '#8b5cf6'];
             confetti({ particleCount: 150, spread: 70, origin: { x: 0.5, y: 0.6 }, colors });
