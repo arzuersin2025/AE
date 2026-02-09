@@ -23,7 +23,7 @@
             -webkit-text-size-adjust: 100%;
         }
 
-        /* Kaydırma Kilidi - Zıplamayı önleyen yapı */
+        /* Kaydırma Kilidi - Pozisyon sıfırlanmasını önlemek için */
         body.no-scroll {
             overflow: hidden !important;
             height: 100% !important;
@@ -353,19 +353,15 @@
             background: rgba(0,0,0,0.95);
         }
         #modal-image {
-            /* Akıcılık için sadece transform bazlı hareket */
             will-change: transform;
-            /* Browser'ın kendi zoom müdahalesini tamamen kesiyoruz */
             touch-action: none;
             backface-visibility: hidden;
             -webkit-backface-visibility: hidden;
-            /* Başlangıçta görünürlüğü garanti et */
             display: block !important; 
             max-width: 90vw;
             max-height: 90vh;
             border-radius: 8px;
             box-shadow: 0 0 30px rgba(0,0,0,0.5);
-            /* Zoom sırasında kaybolmayı önlemek için geçişi kısalttım */
             transition: transform 0.05s linear;
         }
     </style>
@@ -523,6 +519,13 @@
             </div>
             <div id="gallery-wrapper" class="hidden mt-8">
                 <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-1" id="gallery-grid">
+                    <!-- Yeni eklenen fotoğraf: Ailem -->
+                    <div class="photo-container group cursor-pointer">
+                        <img data-src="https://i.imgur.com/2VUe5o3.jpg" alt="Ailem" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
+                        <span class="photo-number opacity-0 group-hover:opacity-100">19</span>
+                        <div class="photo-note">Ailem</div>
+                    </div>
+                    <!-- Mevcut diğer fotoğraflar -->
                     <div class="photo-container group cursor-pointer">
                         <img data-src="https://i.imgur.com/D0I0h6C.jpeg" alt="Katibim Cafe" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
                         <span class="photo-number opacity-0 group-hover:opacity-100">18</span>
@@ -746,7 +749,7 @@
         let currentTranslateX = 0;
         let currentTranslateY = 0;
         
-        // Touch states
+        // Dokunmatik durumları
         let initialDist = 0;
         let startX = 0;
         let startY = 0;
@@ -754,30 +757,45 @@
         
         let photoUrls = [];
         let currentPhotoIndex = 0;
+        let savedScrollY = 0; // Kapatınca geri dönmek için
 
         const modal = document.getElementById('image-modal');
         const modalImage = document.getElementById('modal-image');
 
-        // Sabit Arka Plan Mantığı
+        // Sabit Arka Plan Mantığı (Zıplama yapmaz)
         const lockScroll = () => {
+            savedScrollY = window.scrollY;
+            document.body.style.top = `-${savedScrollY}px`;
             document.body.classList.add('no-scroll');
         };
 
         const unlockScroll = () => {
             document.body.classList.remove('no-scroll');
+            document.body.style.top = '';
+            window.scrollTo(0, savedScrollY);
         };
 
         const clamp = (val, min, max) => Math.max(min, Math.min(max, val));
 
-        // Görsele transform uygula - translate3d ile GPU ivmesi
+        // Görsele transform uygula - GPU ivmesi ile pürüzsüzleştirildi
         const applyTransform = () => {
             if (modalImage && modalImage instanceof Element) {
-                // Sınırlandırma: Görselin kaybolmasını önler
-                const maxOff = (currentScale - 1) * 300; 
-                currentTranslateX = clamp(currentTranslateX, -maxOff, maxOff);
-                currentTranslateY = clamp(currentTranslateY, -maxOff, maxOff);
+                // Sınırlandırma: Görselin kaybolmasını önler (offset değerlerine göre dinamik limit)
+                const imgW = modalImage.offsetWidth;
+                const imgH = modalImage.offsetHeight;
                 
-                modalImage.style.transform = `translate3d(${currentTranslateX}px, ${currentTranslateY}px, 0) scale(${currentScale})`;
+                // Kaydırma sınırlarını ölçeğe göre dinamik hesapla
+                const maxX = Math.max(0, (imgW * currentScale - window.innerWidth) / (2 * currentScale));
+                const maxY = Math.max(0, (imgH * currentScale - window.innerHeight) / (2 * currentScale));
+                
+                currentTranslateX = clamp(currentTranslateX, -maxX, maxX);
+                currentTranslateY = clamp(currentTranslateY, -maxY, maxY);
+                
+                // Round kullanarak alt-piksel titremelerini engelle
+                const tx = Math.round(currentTranslateX * currentScale);
+                const ty = Math.round(currentTranslateY * currentScale);
+                
+                modalImage.style.transform = `translate3d(${tx}px, ${ty}px, 0) scale(${currentScale.toFixed(4)})`;
             }
         };
 
@@ -785,11 +803,7 @@
             return Math.sqrt(Math.pow(touches[0].pageX - touches[1].pageX, 2) + Math.pow(touches[0].pageY - touches[1].pageY, 2));
         };
 
-        // --- IntersectionObservers ---
-        const safeObserve = (observer, selector) => {
-            document.querySelectorAll(selector).forEach(el => observer.observe(el));
-        };
-
+        // --- Gözlemciler (Lazy Load ve Animasyonlar) ---
         const lazyLoadObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting && entry.target.dataset.src) {
@@ -813,7 +827,7 @@
         const updateModalPhoto = () => {
             if (modalImage && photoUrls[currentPhotoIndex]) {
                 modalImage.src = photoUrls[currentPhotoIndex];
-                // Her fotoğraf değişiminde zoom'u sıfırla
+                // Her yeni fotoğrafta zoom sıfırlanır
                 currentScale = 1;
                 currentTranslateX = 0;
                 currentTranslateY = 0;
@@ -822,8 +836,8 @@
         };
 
         const openPhoto = (index) => {
-            const thumbs = document.querySelectorAll('#gallery-grid img[data-src]');
-            photoUrls = Array.from(thumbs).map(img => img.dataset.src);
+            const thumbs = document.querySelectorAll('#gallery-grid img');
+            photoUrls = Array.from(thumbs).map(img => img.dataset.src || img.src);
             currentPhotoIndex = index;
             updateModalPhoto();
             if (modal) {
@@ -843,6 +857,7 @@
             currentTranslateY = 0;
         };
 
+        // Navigasyon Olayları
         document.getElementById('next-photo')?.addEventListener('click', (e) => {
             e.stopPropagation();
             currentPhotoIndex = (currentPhotoIndex + 1) % photoUrls.length;
@@ -858,45 +873,41 @@
         document.getElementById('close-modal')?.addEventListener('click', closePhoto);
         modal?.addEventListener('click', (e) => { if (e.target === modal) closePhoto(); });
 
-        // --- YENİLENMİŞ MOBİL DOKUNMATİK ZOOM MANTIĞI ---
+        // --- MOBİL PINCH-TO-ZOOM VE PAN (Dengeli) ---
         modal?.addEventListener('touchstart', (e) => {
             if (e.touches.length === 2) {
                 initialDist = getDist(e.touches);
+                isDragging = false;
             } else if (e.touches.length === 1) {
                 isDragging = true;
-                startX = e.touches[0].pageX - currentTranslateX;
-                startY = e.touches[0].pageY - currentTranslateY;
+                startX = e.touches[0].pageX - (currentTranslateX * currentScale);
+                startY = e.touches[0].pageY - (currentTranslateY * currentScale);
             }
         }, { passive: false });
 
         modal?.addEventListener('touchmove', (e) => {
+            e.preventDefault(); 
             if (e.touches.length === 2) {
-                e.preventDefault(); 
                 const currentDist = getDist(e.touches);
                 const scaleFactor = currentDist / initialDist;
+                // Daha stabil bir artış için hassasiyeti optimize ettim
+                const nextScale = clamp(currentScale * (1 + (scaleFactor - 1) * 0.4), 1, 8);
                 
-                // Zoom miktarını kontrol altına al
-                const newScale = clamp(currentScale * scaleFactor, 1, 8);
-                
-                // Eğer ölçek değiştiyse güncelle (Flicker'ı önlemek için min fark kontrolü)
-                if (Math.abs(newScale - currentScale) > 0.001) {
-                    currentScale = newScale;
+                if (Math.abs(nextScale - currentScale) > 0.001) {
+                    currentScale = nextScale;
                     initialDist = currentDist;
                     applyTransform();
                 }
-            } else if (e.touches.length === 1 && isDragging && currentScale > 1.01) {
-                e.preventDefault();
-                currentTranslateX = e.touches[0].pageX - startX;
-                currentTranslateY = e.touches[0].pageY - startY;
+            } else if (e.touches.length === 1 && isDragging && currentScale > 1.05) {
+                currentTranslateX = (e.touches[0].pageX - startX) / currentScale;
+                currentTranslateY = (e.touches[0].pageY - startY) / currentScale;
                 applyTransform();
             }
         }, { passive: false });
 
-        modal?.addEventListener('touchend', () => {
-            isDragging = false;
-        });
+        modal?.addEventListener('touchend', () => { isDragging = false; });
 
-        // Sayfa genelinde parmakla zoom'u (pinch) engelle (Modal açık değilken)
+        // Site genelinde parmakla zoom'u (pinch) engelle (Modal hariç)
         document.addEventListener('touchstart', (e) => {
             if (e.touches.length > 1) {
                 if (modal.style.display !== 'flex' && !document.getElementById('invitation-modal').classList.contains('show')) {
@@ -908,13 +919,12 @@
         // Masaüstü Zoom (Tekerlek)
         modal?.addEventListener('wheel', (e) => {
             e.preventDefault();
-            const zoomSpeed = 0.1;
-            const delta = e.deltaY > 0 ? (1 - zoomSpeed) : (1 + zoomSpeed);
+            const delta = e.deltaY > 0 ? 0.92 : 1.08;
             currentScale = clamp(currentScale * delta, 1, 10);
             applyTransform();
         }, { passive: false });
 
-        // Toggles (Galeri & Video)
+        // Toggles
         document.getElementById('toggle-gallery-btn')?.addEventListener('click', function() {
             const wrapper = document.getElementById('gallery-wrapper');
             const icon = document.getElementById('gallery-toggle-icon');
@@ -933,6 +943,7 @@
             }
         });
 
+        // Video Galerisi Toggle
         document.getElementById('toggle-video-gallery-btn')?.addEventListener('click', function() {
             const wrapper = document.getElementById('video-gallery-wrapper');
             const icon = document.getElementById('video-gallery-toggle-icon');
@@ -993,72 +1004,36 @@
             }
         });
 
-        // Masaüstü Drag (Tıklayıp sürükleme)
-        modalImage?.addEventListener('mousedown', (e) => {
-            if (currentScale <= 1.01) return;
-            e.preventDefault();
-            isDragging = true;
-            startX = e.clientX - currentTranslateX;
-            startY = e.clientY - currentTranslateY;
-            modalImage.style.cursor = 'grabbing';
-        });
-
-        document.addEventListener('mousemove', (e) => {
-            if (isDragging && currentScale > 1.01) {
-                currentTranslateX = e.clientX - startX;
-                currentTranslateY = e.clientY - startY;
-                applyTransform();
-            }
-        });
-
-        document.addEventListener('mouseup', () => {
-            isDragging = false;
-            if (modalImage) modalImage.style.cursor = currentScale > 1.01 ? 'grab' : 'default';
-        });
-
         // Konfeti Efekti - 3 Saniye Süren Yoğun Patlama
         setTimeout(() => {
-            const duration = 3 * 1000;
-            const end = Date.now() + duration;
-            const colors = ['#f59e0b', '#ef4444', '#facc15', '#92400e', '#84cc16', '#dc2626', '#fb923c', '#ff69b4', '#16a34a', '#ffd700'];
+            if (typeof confetti === 'function') {
+                const duration = 3 * 1000;
+                const end = Date.now() + duration;
+                const colors = ['#f59e0b', '#ef4444', '#facc15', '#92400e', '#84cc16', '#dc2626', '#fb923c', '#ff69b4', '#16a34a', '#ffd700'];
 
-            (function frame() {
-                confetti({ particleCount: 7, angle: 60, spread: 55, origin: { x: 0, y: 0.6 }, colors: colors });
-                confetti({ particleCount: 7, angle: 120, spread: 55, origin: { x: 1, y: 0.6 }, colors: colors });
-                if (Date.now() < end) requestAnimationFrame(frame);
-            }());
+                (function frame() {
+                    confetti({ particleCount: 7, angle: 60, spread: 55, origin: { x: 0, y: 0.6 }, colors: colors });
+                    confetti({ particleCount: 7, angle: 120, spread: 55, origin: { x: 1, y: 0.6 }, colors: colors });
+                    if (Date.now() < end) requestAnimationFrame(frame);
+                }());
+            }
         }, 500);
 
-        // Falling items (Efektler)
-        const heartContainer = document.getElementById('falling-hearts-container');
-        if (heartContainer) {
+        // Falling hearts
+        const heartCont = document.getElementById('falling-hearts-container');
+        if (heartCont) {
             for (let i = 0; i < 2; i++) {
                 const heart = document.createElement('div');
                 heart.className = 'falling-heart';
                 heart.innerHTML = '💛';
                 heart.style.left = (30 + i * 40) + '%';
                 heart.style.animationDuration = (55 + i * 10) + 's';
-                heart.style.fontSize = (2.0 + Math.random() * 0.8) + 'rem';
-                heartContainer.appendChild(heart);
+                heart.style.fontSize = '2.5rem';
+                heartCont.appendChild(heart);
             }
         }
 
-        const leafSVG_str = `<svg viewBox="0 0 100 140" class="w-full h-full" preserveAspectRatio="xMidYMid meet"><path style="fill:white;opacity:0.95" d="M50 10 C30 15, 20 35, 18 55 C16 75, 25 95, 35 115 C45 130, 48 135, 50 138 C52 135, 55 130, 65 115 C75 95, 84 75, 82 55 C80 35, 70 15, 50 10 Z" /><path style="fill:currentColor" d="M50 15 C33 20, 25 38, 23 55 C21 72, 28 88, 36 108 C44 125, 48 132, 50 135 C52 132, 56 125, 64 108 C72 88, 79 72, 77 55 C75 38, 67 20, 50 15 Z" /></svg>`;
-        const leafColors = ['autumn-1','autumn-2','autumn-3','autumn-4','autumn-5','autumn-6','autumn-7','autumn-8','autumn-9','autumn-10'];
-        const leafContainer = document.getElementById('falling-leaves-container');
-        if (leafContainer) {
-            for (let i = 0; i < 2; i++) {
-                const leaf = document.createElement('div');
-                const colorClass = leafColors[Math.floor(Math.random() * leafColors.length)];
-                leaf.className = `leaf-svg ${colorClass}`;
-                leaf.style.left = (30 + i * 40) + '%';
-                leaf.style.animationDuration = (60 + Math.random() * 25) + 's';
-                leaf.innerHTML = leafSVG_str;
-                leafContainer.appendChild(leaf);
-            }
-        }
-
-        // Youtube Init
+        // YouTube Init
         const tag = document.createElement('script');
         tag.src = 'https://www.youtube.com/iframe_api';
         const firstScriptTag = document.getElementsByTagName('script')[0];
