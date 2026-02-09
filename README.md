@@ -336,13 +336,13 @@
             transform-style: preserve-3d;
             image-rendering: -webkit-optimize-contrast;
             image-rendering: crisp-edges;
-            image-rendering: pixelated; /* Mobilde kararmayı önlemek için ekstra */
+            image-rendering: pixelated;
             display: block !important;
             max-width: 90vw;
             max-height: 90vh;
             border-radius: 8px;
             box-shadow: 0 0 30px rgba(0,0,0,0.5);
-            transition: none !important; /* Tüm geçişler kapalı */
+            transition: none !important;
             cursor: default;
         }
     </style>
@@ -719,6 +719,12 @@
     document.addEventListener('DOMContentLoaded', () => {
         'use strict';
        
+        // Sayfa açılırken kısa süreli konfeti patlaması (en son güncelleme)
+        if (typeof confetti === 'function') {
+            const colors = ['#f59e0b', '#ef4444', '#facc15', '#92400e', '#84cc16', '#dc2626', '#fb923c', '#ff69b4', '#16a34a', '#ffd700', '#ec4899', '#8b5cf6'];
+            confetti({ particleCount: 150, spread: 70, origin: { x: 0.5, y: 0.6 }, colors });
+        }
+       
         let currentScale = 1;
         let currentTranslateX = 0;
         let currentTranslateY = 0;
@@ -833,7 +839,6 @@
         document.getElementById('close-modal')?.addEventListener('click', closePhoto);
         modal?.addEventListener('click', (e) => { if (e.target === modal) closePhoto(); });
         
-        // MOBİL PINCH ZOOM — DAHA HIZLI VE AKICI (damping kaldırıldı, doğrudan çarpım)
         modal?.addEventListener('touchstart', (e) => {
             if (e.touches.length === 2) {
                 initialDist = getDist(e.touches);
@@ -851,8 +856,8 @@
                 const currentDist = getDist(e.touches);
                 if (initialDist > 0) {
                     const scaleFactor = currentDist / initialDist;
-                    currentScale = Math.max(1, Math.min(12, currentScale * scaleFactor)); // Daha hızlı tepki, max 12x
-                    initialDist = currentDist; // Momentum için güncelle
+                    currentScale = Math.max(1, Math.min(12, currentScale * scaleFactor));
+                    initialDist = currentDist;
                     applyTransform();
                 }
             } else if (e.touches.length === 1 && isDragging) {
@@ -862,9 +867,9 @@
             }
         }, { passive: false });
         
-        modal?.addEventListener('touchend', () => { 
+        modal?.addEventListener('touchend', () => {
             isDragging = false;
-            initialDist = 0; // Reset
+            initialDist = 0;
         });
         
         document.addEventListener('touchstart', (e) => {
@@ -875,15 +880,13 @@
             }
         }, { passive: false });
         
-        // WHEEL ZOOM — DAHA HIZLI
         modal?.addEventListener('wheel', (e) => {
             e.preventDefault();
-            const delta = e.deltaY > 0 ? 0.85 : 1.15; // Daha güçlü zoom
+            const delta = e.deltaY > 0 ? 0.85 : 1.15;
             currentScale = Math.max(1, Math.min(12, currentScale * delta));
             applyTransform();
         }, { passive: false });
         
-        // FARE SÜRÜKLEME
         modal?.addEventListener('mousedown', (e) => {
             isMouseDragging = true;
             mouseStartX = e.pageX - currentTranslateX * currentScale;
@@ -909,7 +912,6 @@
             if (currentScale > 1.01) modalImage.style.cursor = 'grab';
         });
         
-        // Çift tıkla reset
         modalImage?.addEventListener('dblclick', () => {
             currentScale = 1;
             currentTranslateX = 0;
@@ -917,7 +919,6 @@
             applyTransform();
         });
         
-        // Galeriler, video, davetiye, konfeti, YouTube vs. aynı kalıyor...
         document.getElementById('toggle-gallery-btn')?.addEventListener('click', function() {
             const wrapper = document.getElementById('gallery-wrapper');
             const icon = document.getElementById('gallery-toggle-icon');
@@ -925,18 +926,83 @@
             if (!wrapper) return;
             wrapper.classList.toggle('hidden');
             if (wrapper.classList.contains('hidden')) {
-                if (text) text.textContent = 'Fotoğraf Galerisini Gör';
-                if (icon) icon.classList.remove('rotate-180');
+                text.textContent = 'Fotoğraf Galerisini Gör';
+                icon.classList.remove('rotate-180');
             } else {
-                if (text) text.textContent = 'Galeriyi Gizle';
-                if (icon) icon.classList.add('rotate-180');
+                text.textContent = 'Galeriyi Gizle';
+                icon.classList.add('rotate-180');
                 document.querySelectorAll('#gallery-grid .photo-container').forEach((el, i) => {
                     el.onclick = () => openPhoto(i);
                 });
             }
         });
         
-        // ... (diğer tüm kod aynı)
+        document.getElementById('toggle-video-gallery-btn')?.addEventListener('click', function() {
+            const wrapper = document.getElementById('video-gallery-wrapper');
+            const icon = document.getElementById('video-gallery-toggle-icon');
+            const text = document.getElementById('video-gallery-toggle-text');
+            if (!wrapper) return;
+            wrapper.classList.toggle('hidden');
+            if (wrapper.classList.contains('hidden')) {
+                text.textContent = 'Video Galerisini Gör';
+                icon.classList.remove('rotate-180');
+            } else {
+                text.textContent = 'Video Galerisini Gizle';
+                icon.classList.add('rotate-180');
+                document.querySelectorAll('#video-grid .photo-container').forEach(el => {
+                    el.onclick = () => {
+                        const iframe = document.getElementById('modal-video-iframe');
+                        if (iframe && el.dataset.youtubeId) {
+                            iframe.src = `https://www.youtube.com/embed/${el.dataset.youtubeId}?autoplay=1`;
+                            document.getElementById('video-modal').classList.replace('hidden', 'flex');
+                            lockScroll();
+                        }
+                    };
+                });
+            }
+        });
+        
+        document.getElementById('close-video-modal')?.addEventListener('click', () => {
+            document.getElementById('video-modal').classList.replace('flex', 'hidden');
+            unlockScroll();
+            const iframe = document.getElementById('modal-video-iframe');
+            if (iframe) iframe.src = '';
+        });
+        
+        document.getElementById('invitation-icon')?.addEventListener('click', () => {
+            document.getElementById('invitation-modal').classList.add('show');
+            lockScroll();
+        });
+        document.getElementById('close-invitation')?.addEventListener('click', () => {
+            document.getElementById('invitation-modal').classList.remove('show');
+            unlockScroll();
+        });
+        
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') {
+                closePhoto();
+                document.getElementById('close-video-modal')?.click();
+                document.getElementById('invitation-modal').classList.remove('show');
+                unlockScroll();
+            }
+            if (modal.style.display === 'flex') {
+                if (e.key === 'ArrowRight') document.getElementById('next-photo')?.click();
+                if (e.key === 'ArrowLeft') document.getElementById('prev-photo')?.click();
+            }
+        });
+        
+        const heartCont = document.getElementById('falling-hearts-container');
+        if (heartCont) {
+            for (let i = 0; i < 2; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'falling-heart';
+                heart.innerHTML = '💛';
+                heart.style.left = (30 + i * 40) + '%';
+                heart.style.animationDuration = (55 + i * 10) + 's';
+                heart.style.fontSize = '2.5rem';
+                heartCont.appendChild(heart);
+            }
+        }
         
         const tag = document.createElement('script');
         tag.src = 'https://www.youtube.com/iframe_api';
@@ -944,7 +1010,34 @@
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
         
         window.onYouTubeIframeAPIReady = function() {
-            // YouTube player kodu aynı...
+            const playBtn = document.getElementById('play-song-btn');
+            const playerElement = document.getElementById('youtube-player');
+            const musicVisualizer = document.getElementById('music-visualizer');
+            let isPlaying = false;
+            const player = new YT.Player('youtube-player', {
+                events: {
+                    'onStateChange': e => {
+                        if (e.data === YT.PlayerState.PLAYING) {
+                            isPlaying = true;
+                            if (playBtn) playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                            if (playerElement) playerElement.classList.add('show');
+                            if (musicVisualizer) musicVisualizer.classList.add('hidden');
+                        } else {
+                            isPlaying = false;
+                            if (playBtn) playBtn.innerHTML = '<i class="fas fa-play"></i>';
+                            if (playerElement) playerElement.classList.remove('show');
+                            if (musicVisualizer) musicVisualizer.classList.remove('hidden');
+                        }
+                    }
+                }
+            });
+            if (playBtn) {
+                playBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    if (isPlaying) player.pauseVideo();
+                    else player.playVideo();
+                };
+            }
         };
     });
     </script>
