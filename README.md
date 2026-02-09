@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -333,12 +333,15 @@
             touch-action: none;
             backface-visibility: hidden;
             -webkit-backface-visibility: hidden;
+            transform-style: preserve-3d;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
             display: block !important;
             max-width: 90vw;
             max-height: 90vh;
             border-radius: 8px;
             box-shadow: 0 0 30px rgba(0,0,0,0.5);
-            transition: transform 0.05s linear;
+            transition: none !important;
             cursor: default;
         }
     </style>
@@ -746,14 +749,14 @@
         };
         
         const applyTransform = () => {
-            if (modalImage && modalImage instanceof Element) {
-                const tx = Math.round(currentTranslateX * currentScale);
-                const ty = Math.round(currentTranslateY * currentScale);
+            if (modalImage) {
+                const tx = currentTranslateX * currentScale;
+                const ty = currentTranslateY * currentScale;
                 
-                modalImage.style.transform = `translate3d(${tx}px, ${ty}px, 0) scale(${currentScale.toFixed(4)})`;
+                modalImage.style.transform = `translate3d(${tx}px, ${ty}px, 0) scale(${currentScale})`;
                 
                 if (currentScale > 1.01) {
-                    modalImage.style.cursor = isMouseDragging ? 'grabbing' : 'grab';
+                    modalImage.style.cursor = isMouseDragging || isDragging ? 'grabbing' : 'grab';
                 } else {
                     modalImage.style.cursor = 'default';
                 }
@@ -789,7 +792,7 @@
                 currentScale = 1;
                 currentTranslateX = 0;
                 currentTranslateY = 0;
-                modalImage.onload = () => applyTransform();
+                modalImage.onload = applyTransform;
             }
         };
         
@@ -835,8 +838,8 @@
                 isDragging = false;
             } else if (e.touches.length === 1) {
                 isDragging = true;
-                startX = e.touches[0].pageX - (currentTranslateX * currentScale);
-                startY = e.touches[0].pageY - (currentTranslateY * currentScale);
+                startX = e.touches[0].pageX - currentTranslateX * currentScale;
+                startY = e.touches[0].pageY - currentTranslateY * currentScale;
             }
         }, { passive: false });
         
@@ -845,13 +848,9 @@
             if (e.touches.length === 2) {
                 const currentDist = getDist(e.touches);
                 const scaleFactor = currentDist / initialDist;
-                const nextScale = Math.max(1, Math.min(10, currentScale * (1 + (scaleFactor - 1) * 0.4)));
-                
-                if (Math.abs(nextScale - currentScale) > 0.001) {
-                    currentScale = nextScale;
-                    initialDist = currentDist;
-                    applyTransform();
-                }
+                currentScale = Math.max(1, Math.min(10, currentScale * scaleFactor));
+                initialDist = currentDist;
+                applyTransform();
             } else if (e.touches.length === 1 && isDragging) {
                 currentTranslateX = (e.touches[0].pageX - startX) / currentScale;
                 currentTranslateY = (e.touches[0].pageY - startY) / currentScale;
@@ -871,15 +870,15 @@
         
         modal?.addEventListener('wheel', (e) => {
             e.preventDefault();
-            const delta = e.deltaY > 0 ? 0.92 : 1.08;
+            const delta = e.deltaY > 0 ? 0.9 : 1.1;
             currentScale = Math.max(1, Math.min(10, currentScale * delta));
             applyTransform();
         }, { passive: false });
         
         modal?.addEventListener('mousedown', (e) => {
             isMouseDragging = true;
-            mouseStartX = e.pageX - (currentTranslateX * currentScale);
-            mouseStartY = e.pageY - (currentTranslateY * currentScale);
+            mouseStartX = e.pageX - currentTranslateX * currentScale;
+            mouseStartY = e.pageY - currentTranslateY * currentScale;
             modalImage.style.cursor = 'grabbing';
         });
         
@@ -892,12 +891,8 @@
         });
         
         document.addEventListener('mouseup', () => {
-            if (isMouseDragging) {
-                isMouseDragging = false;
-                if (currentScale > 1.01) {
-                    modalImage.style.cursor = 'grab';
-                }
-            }
+            isMouseDragging = false;
+            if (currentScale > 1.01) modalImage.style.cursor = 'grab';
         });
         
         modal?.addEventListener('mouseleave', () => {
