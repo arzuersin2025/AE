@@ -25,7 +25,7 @@
             height: 100% !important;
             width: 100% !important;
         }
-       
+      
         a, button, [role="button"], .cursor-pointer,
         #play-song-btn, #toggle-gallery-btn, #toggle-video-gallery-btn,
         #map-icon, #invitation-icon,
@@ -55,7 +55,44 @@
         @media (max-width: 768px) { #background-leaves-pattern { opacity: 0.9 !important; } }
         #falling-leaves-container { position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: -1; overflow: hidden; }
         #falling-hearts-container { position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: -1; overflow: hidden; }
-        #falling-flowers-container { position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: -1; overflow: hidden; }
+
+        /* Yapraklar (daha az ve daha yavaş) */
+        .falling-leaf {
+            position: absolute;
+            font-size: 1.8rem;
+            pointer-events: none;
+            animation: leafFall linear infinite;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+            opacity: 0.8;
+        }
+        @keyframes leafFall {
+            0% { 
+                opacity: 0; 
+                transform: translateY(-100px) rotate(0deg) scale(0.7); 
+            }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { 
+                opacity: 0; 
+                transform: translateY(calc(100vh + 100px)) rotate(900deg) scale(0.4); 
+            }
+        }
+
+        /* Renkli kalpler */
+        .falling-heart {
+            position: absolute;
+            font-size: 2.2rem;
+            pointer-events: none;
+            animation: heartFall linear infinite;
+            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3));
+        }
+        @keyframes heartFall {
+            0% { opacity: 0; transform: translateY(-150px) rotate(0deg) scale(0.8); }
+            5% { opacity: 1; }
+            95% { opacity: 1; }
+            100% { opacity: 0; transform: translateY(calc(100vh + 150px)) rotate(1080deg) scale(0.4); }
+        }
+
         h1, h2, h3 { font-family: 'Playfair Display', serif; }
         .handwriting { font-family: 'Dancing Script', cursive; }
         .font-forte-alternative { font-family: 'Dancing Script', cursive; }
@@ -82,19 +119,6 @@
         }
         .poem-signature { font-size: 1.5rem !important; line-height: 1.4 !important; color: #16a34a !important; }
         @media (max-width: 768px) { .poem-signature { font-size: 1.875rem !important; } }
-        .falling-heart {
-            position: absolute;
-            font-size: 2rem;
-            pointer-events: none;
-            animation: heartFall linear infinite;
-            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3));
-        }
-        @keyframes heartFall {
-            0% { opacity: 0; transform: translateY(-150px) rotate(0deg) scale(0.8); }
-            5% { opacity: 1; }
-            95% { opacity: 1; }
-            100% { opacity: 0; transform: translateY(calc(100vh + 150px)) rotate(1080deg) scale(0.4); }
-        }
         .music-visualizer { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: flex; align-items: center; justify-content: center; gap: 6px; z-index: 15; opacity: 1; transition: opacity 0.3s ease; width: 200px; pointer-events: none; }
         .music-visualizer.hidden { opacity: 0 !important; pointer-events: none; }
         .note { font-size: 1.8rem; color: #ef4444; animation: floatNote 1.8s infinite ease-in-out; transform-origin: bottom; }
@@ -351,7 +375,7 @@
     <div id="background-leaves-pattern"></div>
     <div id="falling-leaves-container"></div>
     <div id="falling-hearts-container"></div>
-    <div id="falling-flowers-container"></div>
+
     <header class="py-16 text-center relative z-20 overflow-hidden">
         <div class="relative">
             <div class="relative z-10">
@@ -718,32 +742,69 @@
     <script>
     document.addEventListener('DOMContentLoaded', () => {
         'use strict';
-       
-        // Son güncelleme: Sayfa açılırken kısa süreli konfeti patlaması eklendi
+      
         if (typeof confetti === 'function') {
             const colors = ['#f59e0b', '#ef4444', '#facc15', '#92400e', '#84cc16', '#dc2626', '#fb923c', '#ff69b4', '#16a34a', '#ffd700', '#ec4899', '#8b5cf6'];
             confetti({ particleCount: 150, spread: 70, origin: { x: 0.5, y: 0.6 }, colors });
         }
-       
+
+        // Yapraklar (daha az: 6 tane, daha yavaş: 40-70 saniye arası)
+        const leavesContainer = document.getElementById('falling-leaves-container');
+        if (leavesContainer) {
+            const leafEmojis = ['🍁', '🍂'];
+            const leafCount = 6; // Sayı azaltıldı
+
+            for (let i = 0; i < leafCount; i++) {
+                const leaf = document.createElement('div');
+                leaf.className = 'falling-leaf';
+                leaf.innerHTML = leafEmojis[Math.floor(Math.random() * leafEmojis.length)];
+
+                leaf.style.left = Math.random() * 100 + '%';
+                leaf.style.animationDuration = (Math.random() * 30 + 40) + 's'; // Daha yavaş
+                leaf.style.animationDelay = Math.random() * 30 + 's';
+                leaf.style.fontSize = (Math.random() * 0.8 + 1.6) + 'rem';
+
+                leavesContainer.appendChild(leaf);
+            }
+        }
+
+        // Renkli kalpler (3 tane, aynı kaldı)
+        const heartCont = document.getElementById('falling-hearts-container');
+        if (heartCont) {
+            const heartEmojis = ['❤️', '💖', '💕', '💗', '💓', '💞', '💘', '🩷', '🧡'];
+
+            for (let i = 0; i < 3; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'falling-heart';
+                heart.innerHTML = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+
+                heart.style.left = (20 + i * 30) + '%';
+                heart.style.animationDuration = (60 + i * 15) + 's';
+                heart.style.fontSize = '2.5rem';
+                heartCont.appendChild(heart);
+            }
+        }
+
+        // Tüm diğer scriptler tamamen aynı
         let currentScale = 1;
         let currentTranslateX = 0;
         let currentTranslateY = 0;
-       
+      
         let initialDist = 0;
         let startX = 0;
         let startY = 0;
         let isDragging = false;
-       
+      
         let isMouseDragging = false;
         let mouseStartX = 0;
         let mouseStartY = 0;
-       
+      
         let photoUrls = [];
         let currentPhotoIndex = 0;
         let savedScrollY = 0;
         const modal = document.getElementById('image-modal');
         const modalImage = document.getElementById('modal-image');
-        
+       
         const lockScroll = () => {
             savedScrollY = window.scrollY;
             document.body.style.top = `-${savedScrollY}px`;
@@ -754,14 +815,14 @@
             document.body.style.top = '';
             window.scrollTo(0, savedScrollY);
         };
-        
+       
         const applyTransform = () => {
             if (modalImage) {
                 const tx = currentTranslateX * currentScale;
                 const ty = currentTranslateY * currentScale;
-                
+               
                 modalImage.style.transform = `translate3d(${tx}px, ${ty}px, 0) scale(${currentScale})`;
-                
+               
                 if (currentScale > 1.01) {
                     modalImage.style.cursor = isMouseDragging || isDragging ? 'grabbing' : 'grab';
                 } else {
@@ -769,11 +830,11 @@
                 }
             }
         };
-        
+       
         const getDist = (touches) => {
             return Math.sqrt(Math.pow(touches[0].pageX - touches[1].pageX, 2) + Math.pow(touches[0].pageY - touches[1].pageY, 2));
         };
-        
+       
         const lazyLoadObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting && entry.target.dataset.src) {
@@ -782,17 +843,17 @@
                 }
             });
         }, { rootMargin: '50px' });
-       
+      
         document.querySelectorAll('img[data-src]').forEach(img => lazyLoadObserver.observe(img));
-        
+       
         const fadeObserver = new IntersectionObserver(entries => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) entry.target.classList.add('visible');
             });
         }, { threshold: 0.1 });
-       
+      
         document.querySelectorAll('.fade-in-on-scroll').forEach(el => fadeObserver.observe(el));
-        
+       
         const updateModalPhoto = () => {
             if (modalImage && photoUrls[currentPhotoIndex]) {
                 modalImage.src = photoUrls[currentPhotoIndex];
@@ -802,7 +863,7 @@
                 modalImage.onload = applyTransform;
             }
         };
-        
+       
         const openPhoto = (index) => {
             const thumbs = document.querySelectorAll('#gallery-grid img');
             photoUrls = Array.from(thumbs).map(img => img.dataset.src || img.src);
@@ -813,7 +874,7 @@
                 lockScroll();
             }
         };
-        
+       
         const closePhoto = () => {
             if (modal) {
                 modal.style.display = 'none';
@@ -825,7 +886,7 @@
             currentTranslateY = 0;
             applyTransform();
         };
-        
+       
         document.getElementById('next-photo')?.addEventListener('click', (e) => {
             e.stopPropagation();
             currentPhotoIndex = (currentPhotoIndex + 1) % photoUrls.length;
@@ -838,7 +899,7 @@
         });
         document.getElementById('close-modal')?.addEventListener('click', closePhoto);
         modal?.addEventListener('click', (e) => { if (e.target === modal) closePhoto(); });
-        
+       
         modal?.addEventListener('touchstart', (e) => {
             if (e.touches.length === 2) {
                 initialDist = getDist(e.touches);
@@ -849,7 +910,7 @@
                 startY = e.touches[0].pageY - currentTranslateY * currentScale;
             }
         }, { passive: false });
-        
+       
         modal?.addEventListener('touchmove', (e) => {
             e.preventDefault();
             if (e.touches.length === 2) {
@@ -866,12 +927,12 @@
                 applyTransform();
             }
         }, { passive: false });
-        
+       
         modal?.addEventListener('touchend', () => {
             isDragging = false;
             initialDist = 0;
         });
-        
+       
         document.addEventListener('touchstart', (e) => {
             if (e.touches.length > 1) {
                 if (modal.style.display !== 'flex' && !document.getElementById('invitation-modal').classList.contains('show')) {
@@ -879,21 +940,21 @@
                 }
             }
         }, { passive: false });
-        
+       
         modal?.addEventListener('wheel', (e) => {
             e.preventDefault();
             const delta = e.deltaY > 0 ? 0.85 : 1.15;
             currentScale = Math.max(1, Math.min(12, currentScale * delta));
             applyTransform();
         }, { passive: false });
-        
+       
         modal?.addEventListener('mousedown', (e) => {
             isMouseDragging = true;
             mouseStartX = e.pageX - currentTranslateX * currentScale;
             mouseStartY = e.pageY - currentTranslateY * currentScale;
             modalImage.style.cursor = 'grabbing';
         });
-        
+       
         document.addEventListener('mousemove', (e) => {
             if (isMouseDragging) {
                 currentTranslateX = (e.pageX - mouseStartX) / currentScale;
@@ -901,24 +962,24 @@
                 applyTransform();
             }
         });
-        
+       
         document.addEventListener('mouseup', () => {
             isMouseDragging = false;
             if (currentScale > 1.01) modalImage.style.cursor = 'grab';
         });
-        
+       
         modal?.addEventListener('mouseleave', () => {
             isMouseDragging = false;
             if (currentScale > 1.01) modalImage.style.cursor = 'grab';
         });
-        
+       
         modalImage?.addEventListener('dblclick', () => {
             currentScale = 1;
             currentTranslateX = 0;
             currentTranslateY = 0;
             applyTransform();
         });
-        
+       
         document.getElementById('toggle-gallery-btn')?.addEventListener('click', function() {
             const wrapper = document.getElementById('gallery-wrapper');
             const icon = document.getElementById('gallery-toggle-icon');
@@ -936,7 +997,7 @@
                 });
             }
         });
-        
+       
         document.getElementById('toggle-video-gallery-btn')?.addEventListener('click', function() {
             const wrapper = document.getElementById('video-gallery-wrapper');
             const icon = document.getElementById('video-gallery-toggle-icon');
@@ -961,14 +1022,14 @@
                 });
             }
         });
-        
+       
         document.getElementById('close-video-modal')?.addEventListener('click', () => {
             document.getElementById('video-modal').classList.replace('flex', 'hidden');
             unlockScroll();
             const iframe = document.getElementById('modal-video-iframe');
             if (iframe) iframe.src = '';
         });
-        
+       
         document.getElementById('invitation-icon')?.addEventListener('click', () => {
             document.getElementById('invitation-modal').classList.add('show');
             lockScroll();
@@ -977,7 +1038,7 @@
             document.getElementById('invitation-modal').classList.remove('show');
             unlockScroll();
         });
-        
+       
         document.addEventListener('keydown', e => {
             if (e.key === 'Escape') {
                 closePhoto();
@@ -990,25 +1051,12 @@
                 if (e.key === 'ArrowLeft') document.getElementById('prev-photo')?.click();
             }
         });
-        
-        const heartCont = document.getElementById('falling-hearts-container');
-        if (heartCont) {
-            for (let i = 0; i < 2; i++) {
-                const heart = document.createElement('div');
-                heart.className = 'falling-heart';
-                heart.innerHTML = '💛';
-                heart.style.left = (30 + i * 40) + '%';
-                heart.style.animationDuration = (55 + i * 10) + 's';
-                heart.style.fontSize = '2.5rem';
-                heartCont.appendChild(heart);
-            }
-        }
-        
+       
         const tag = document.createElement('script');
         tag.src = 'https://www.youtube.com/iframe_api';
         const firstScriptTag = document.getElementsByTagName('script')[0];
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-        
+       
         window.onYouTubeIframeAPIReady = function() {
             const playBtn = document.getElementById('play-song-btn');
             const playerElement = document.getElementById('youtube-player');
