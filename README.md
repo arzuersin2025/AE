@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -56,7 +56,7 @@
         #falling-leaves-container { position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: -1; overflow: hidden; }
         #falling-hearts-container { position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: -1; overflow: hidden; }
 
-        /* Yapraklar (daha az ve daha yavaş) */
+        /* Yapraklar (6 tane, yavaş) */
         .falling-leaf {
             position: absolute;
             font-size: 1.8rem;
@@ -78,10 +78,11 @@
             }
         }
 
-        /* Renkli kalpler */
+        /* SVG Kalpler (sıralı: sarı → kırmızı → yeşil → mavi) */
         .falling-heart {
             position: absolute;
-            font-size: 2.2rem;
+            width: 50px;
+            height: 50px;
             pointer-events: none;
             animation: heartFall linear infinite;
             filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3));
@@ -748,11 +749,11 @@
             confetti({ particleCount: 150, spread: 70, origin: { x: 0.5, y: 0.6 }, colors });
         }
 
-        // Yapraklar (daha az: 6 tane, daha yavaş: 40-70 saniye arası)
+        // Yapraklar (6 tane, yavaş)
         const leavesContainer = document.getElementById('falling-leaves-container');
         if (leavesContainer) {
             const leafEmojis = ['🍁', '🍂'];
-            const leafCount = 6; // Sayı azaltıldı
+            const leafCount = 6;
 
             for (let i = 0; i < leafCount; i++) {
                 const leaf = document.createElement('div');
@@ -760,7 +761,7 @@
                 leaf.innerHTML = leafEmojis[Math.floor(Math.random() * leafEmojis.length)];
 
                 leaf.style.left = Math.random() * 100 + '%';
-                leaf.style.animationDuration = (Math.random() * 30 + 40) + 's'; // Daha yavaş
+                leaf.style.animationDuration = (Math.random() * 30 + 40) + 's';
                 leaf.style.animationDelay = Math.random() * 30 + 's';
                 leaf.style.fontSize = (Math.random() * 0.8 + 1.6) + 'rem';
 
@@ -768,24 +769,27 @@
             }
         }
 
-        // Renkli kalpler (3 tane, aynı kaldı)
+        // Sıralı SVG Kalpler: sarı → kırmızı → yeşil → mavi (4 kalp)
         const heartCont = document.getElementById('falling-hearts-container');
         if (heartCont) {
-            const heartEmojis = ['❤️', '💖', '💕', '💗', '💓', '💘', '🩷', '🧡'];
+            const heartColors = ['#FFD700', '#FF0000', '#00FF00', '#0000FF']; // Sarı, kırmızı, yeşil, mavi
+            const heartSVG = '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="COLOR"/></svg>';
 
-            for (let i = 0; i < 3; i++) {
+            for (let i = 0; i < 4; i++) {
                 const heart = document.createElement('div');
                 heart.className = 'falling-heart';
-                heart.innerHTML = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
 
-                heart.style.left = (20 + i * 30) + '%';
-                heart.style.animationDuration = (60 + i * 15) + 's';
-                heart.style.fontSize = '2.5rem';
+                const color = heartColors[i]; // Sıralı
+                heart.innerHTML = heartSVG.replace('COLOR', color);
+
+                heart.style.left = (10 + i * 25) + '%'; // Daha dengeli dağılım
+                heart.style.animationDuration = (60 + i * 10) + 's';
+
                 heartCont.appendChild(heart);
             }
         }
 
-        // Tüm diğer scriptler tamamen aynı
+        // Tüm diğer scriptler (galeri, modal, şarkı, YouTube API vs.) tamamen aynı
         let currentScale = 1;
         let currentTranslateX = 0;
         let currentTranslateY = 0;
