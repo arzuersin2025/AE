@@ -771,7 +771,7 @@
         // Renkli kalpler (3 tane, aynı kaldı)
         const heartCont = document.getElementById('falling-hearts-container');
         if (heartCont) {
-            const heartEmojis = ['❤️', '💖', '💕', '💗', '💓', '💞', '💘', '🩷', '🧡'];
+            const heartEmojis = ['❤️', '💖', '💕', '💗', '💓', '💘', '🩷', '🧡'];
 
             for (let i = 0; i < 3; i++) {
                 const heart = document.createElement('div');
