@@ -76,20 +76,32 @@
                 transform: translateY(calc(100vh + 100px)) rotate(900deg) scale(0.4);
             }
         }
-        /* SVG Kalpler */
+        /* SVG Kalpler + GLOW EFEKTİ */
         .falling-heart {
             position: absolute;
             width: 32px;
             height: 32px;
             pointer-events: none;
             animation: heartFall linear infinite;
-            filter: drop-shadow(0 3px 8px rgba(0,0,0,0.35));
+            filter: drop-shadow(0 3px 8px rgba(0,0,0,0.35)) drop-shadow(0 0 8px rgba(255,255,255,0.5)) drop-shadow(0 0 12px rgba(220,38,38,0.3));
+            transition: filter 0.4s ease;
+        }
+        .falling-heart:hover {
+            filter: drop-shadow(0 3px 8px rgba(0,0,0,0.35)) drop-shadow(0 0 15px rgba(255,255,255,0.9)) drop-shadow(0 0 20px rgba(220,38,38,0.6));
         }
         @keyframes heartFall {
             0% { opacity: 0; transform: translateY(-150px) rotate(0deg) scale(0.8); }
             5% { opacity: 1; }
             95% { opacity: 1; }
             100% { opacity: 0; transform: translateY(calc(100vh + 150px)) rotate(1080deg) scale(0.4); }
+        }
+        /* Yapraklara da glow efekti */
+        .falling-leaf {
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15)) drop-shadow(0 0 8px rgba(255,255,255,0.4));
+            transition: filter 0.4s ease;
+        }
+        .falling-leaf:hover {
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15)) drop-shadow(0 0 15px rgba(255,255,255,0.8));
         }
         h1, h2, h3 { font-family: 'Playfair Display', serif; }
         .handwriting { font-family: 'Dancing Script', cursive; }
@@ -763,7 +775,7 @@
         // Sıralı SVG Kalpler: sarı → kırmızı → yeşil → açık mavi
         const heartCont = document.getElementById('falling-hearts-container');
         if (heartCont) {
-            const heartColors = ['#FFD700', '#FF0000', '#00FF00', '#7AB8FF']; // ← sadece burası değişti
+            const heartColors = ['#FFD700', '#FF0000', '#00FF00', '#7AB8FF'];
             const heartSVG = '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="COLOR" stroke="#000000" stroke-width="1.1"/></svg>';
             for (let i = 0; i < 4; i++) {
                 const heart = document.createElement('div');
@@ -1020,10 +1032,30 @@
             if (iframe) iframe.src = '';
         });
       
+        // Davetiye ikonuna tıklayınca konfeti efekti + modal açma
         document.getElementById('invitation-icon')?.addEventListener('click', () => {
             document.getElementById('invitation-modal').classList.add('show');
             lockScroll();
+
+            // Konfeti patlat
+            confetti({
+                particleCount: 120,
+                spread: 80,
+                startVelocity: 30,
+                origin: { y: 0.6 },
+                colors: ['#ff0000', '#ff69b4', '#ffd700', '#16a34a', '#7AB8FF']
+            });
+
+            // İkinci dalga (daha güzel durur)
+            setTimeout(() => {
+                confetti({
+                    particleCount: 80,
+                    spread: 60,
+                    origin: { y: 0.7 }
+                });
+            }, 300);
         });
+
         document.getElementById('close-invitation')?.addEventListener('click', () => {
             document.getElementById('invitation-modal').classList.remove('show');
             unlockScroll();
