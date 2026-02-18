@@ -25,7 +25,7 @@
             height: 100% !important;
             width: 100% !important;
         }
-    
+   
         a, button, [role="button"], .cursor-pointer,
         #play-song-btn, #toggle-gallery-btn, #toggle-video-gallery-btn,
         #map-icon, #invitation-icon,
@@ -55,11 +55,10 @@
         @media (max-width: 768px) { #background-leaves-pattern { opacity: 0.9 !important; } }
         #falling-leaves-container { position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: -1; overflow: hidden; }
         #falling-hearts-container { position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: -1; overflow: hidden; }
-        /* Yapraklar (6 tane, yavaş) + GÜÇLÜ GLOW */
         .falling-leaf {
             position: absolute;
             font-size: 1.8rem;
-            pointer-events: auto;           /* ← HOVER ÇALIŞMASI İÇİN ZORUNLU */
+            pointer-events: auto;
             animation: leafFall linear infinite;
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15)) drop-shadow(0 0 10px rgba(255,255,255,0.7));
             transition: filter 0.4s ease, transform 0.4s ease;
@@ -80,20 +79,19 @@
                 transform: translateY(calc(100vh + 100px)) rotate(900deg) scale(0.4);
             }
         }
-        /* SVG Kalpler + GÜÇLÜ GLOW */
         .falling-heart {
             position: absolute;
             width: 32px;
             height: 32px;
-            pointer-events: auto;           /* ← HOVER ÇALIŞMASI İÇİN ZORUNLU */
+            pointer-events: auto;
             animation: heartFall linear infinite;
             filter: drop-shadow(0 3px 8px rgba(0,0,0,0.35)) drop-shadow(0 0 10px rgba(255,255,255,0.8));
             transition: filter 0.4s ease, transform 0.4s ease;
         }
         .falling-heart:hover {
             transform: scale(1.5);
-            filter: drop-shadow(0 6px 14px rgba(0,0,0,0.4)) 
-                    drop-shadow(0 0 22px rgba(255,255,255,1)) 
+            filter: drop-shadow(0 6px 14px rgba(0,0,0,0.4))
+                    drop-shadow(0 0 22px rgba(255,255,255,1))
                     drop-shadow(0 0 30px rgba(220,38,38,0.95));
         }
         @keyframes heartFall {
@@ -148,7 +146,6 @@
         .song-label { font-size: 0.65rem; font-weight: 600; color: #dc2626; line-height: 1; letter-spacing: 0.5px; text-transform: uppercase; white-space: nowrap; margin-bottom: 0.5rem; text-shadow: 0 1px 2px rgba(0,0,0,0.1); }
         #play-song-btn { width: 44px; height: 44px; background: rgba(239, 68, 68, 0.95); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; box-shadow: 0 6px 16px rgba(0,0,0,0.35); cursor: pointer; transition: all 0.3s ease; }
         #play-song-btn:hover { background: #dc2626; transform: scale(1.15); box-shadow: 0 8px 20px rgba(220, 38, 38, 0.45); }
-        #play-song-btn.playing { background: #16a34a; }
         #youtube-player { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: 50%; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
         #youtube-player.show { opacity: 1; pointer-events: auto; }
         .transparent-section { background: transparent !important; backdrop-filter: none !important; box-shadow: none !important; border-radius: 0 !important; padding: 2rem 1rem !important; }
@@ -679,14 +676,6 @@
                         <span class="photo-number opacity-0 group-hover:opacity-100">2</span>
                         <div class="photo-note">Beşiktaş</div>
                     </div>
-                    <div class="photo-container group cursor-pointer aspect-square" data-youtube-id="J466tfX1jzk">
-                        <img data-src="https://img.youtube.com/vi/J466tfX1jzk/maxresdefault.jpg" alt="Ev" class="gallery-thumbnail w-full h-full object-cover" loading="lazy">
-                        <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
-                            <i class="far fa-play-circle text-white text-5xl opacity-80 group-hover:opacity-100 transition-opacity"></i>
-                        </div>
-                        <span class="photo-number opacity-0 group-hover:opacity-100">1</span>
-                        <div class="photo-note">Ev</div>
-                    </div>
                 </div>
             </div>
         </section>
@@ -750,12 +739,11 @@
     <script>
     document.addEventListener('DOMContentLoaded', () => {
         'use strict';
-    
+   
         if (typeof confetti === 'function') {
             const colors = ['#f59e0b', '#ef4444', '#facc15', '#92400e', '#84cc16', '#dc2626', '#fb923c', '#ff69b4', '#16a34a', '#ffd700', '#ec4899', '#8b5cf6'];
             confetti({ particleCount: 150, spread: 70, origin: { x: 0.5, y: 0.6 }, colors });
         }
-        // Yapraklar (6 tane, yavaş)
         const leavesContainer = document.getElementById('falling-leaves-container');
         if (leavesContainer) {
             const leafEmojis = ['🍁', '🍂'];
@@ -771,7 +759,6 @@
                 leavesContainer.appendChild(leaf);
             }
         }
-        // Sıralı SVG Kalpler: sarı → kırmızı → yeşil → açık mavi
         const heartCont = document.getElementById('falling-hearts-container');
         if (heartCont) {
             const heartColors = ['#FFD700', '#FF0000', '#00FF00', '#7AB8FF'];
@@ -789,22 +776,22 @@
         let currentScale = 1;
         let currentTranslateX = 0;
         let currentTranslateY = 0;
-    
+   
         let initialDist = 0;
         let startX = 0;
         let startY = 0;
         let isDragging = false;
-    
+   
         let isMouseDragging = false;
         let mouseStartX = 0;
         let mouseStartY = 0;
-    
+   
         let photoUrls = [];
         let currentPhotoIndex = 0;
         let savedScrollY = 0;
         const modal = document.getElementById('image-modal');
         const modalImage = document.getElementById('modal-image');
-     
+    
         const lockScroll = () => {
             savedScrollY = window.scrollY;
             document.body.style.top = `-${savedScrollY}px`;
@@ -815,14 +802,14 @@
             document.body.style.top = '';
             window.scrollTo(0, savedScrollY);
         };
-     
+    
         const applyTransform = () => {
             if (modalImage) {
                 const tx = currentTranslateX * currentScale;
                 const ty = currentTranslateY * currentScale;
-             
+           
                 modalImage.style.transform = `translate3d(${tx}px, ${ty}px, 0) scale(${currentScale})`;
-             
+            
                 if (currentScale > 1.01) {
                     modalImage.style.cursor = isMouseDragging || isDragging ? 'grabbing' : 'grab';
                 } else {
@@ -830,11 +817,11 @@
                 }
             }
         };
-     
+    
         const getDist = (touches) => {
             return Math.sqrt(Math.pow(touches[0].pageX - touches[1].pageX, 2) + Math.pow(touches[0].pageY - touches[1].pageY, 2));
         };
-     
+    
         const lazyLoadObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting && entry.target.dataset.src) {
@@ -843,17 +830,17 @@
                 }
             });
         }, { rootMargin: '50px' });
-    
+   
         document.querySelectorAll('img[data-src]').forEach(img => lazyLoadObserver.observe(img));
-     
+    
         const fadeObserver = new IntersectionObserver(entries => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) entry.target.classList.add('visible');
             });
         }, { threshold: 0.1 });
-    
+   
         document.querySelectorAll('.fade-in-on-scroll').forEach(el => fadeObserver.observe(el));
-     
+    
         const updateModalPhoto = () => {
             if (modalImage && photoUrls[currentPhotoIndex]) {
                 modalImage.src = photoUrls[currentPhotoIndex];
@@ -863,7 +850,7 @@
                 modalImage.onload = applyTransform;
             }
         };
-     
+    
         const openPhoto = (index) => {
             const thumbs = document.querySelectorAll('#gallery-grid img');
             photoUrls = Array.from(thumbs).map(img => img.dataset.src || img.src);
@@ -874,7 +861,7 @@
                 lockScroll();
             }
         };
-     
+    
         const closePhoto = () => {
             if (modal) {
                 modal.style.display = 'none';
@@ -886,7 +873,7 @@
             currentTranslateY = 0;
             applyTransform();
         };
-     
+    
         document.getElementById('next-photo')?.addEventListener('click', (e) => {
             e.stopPropagation();
             currentPhotoIndex = (currentPhotoIndex + 1) % photoUrls.length;
@@ -899,7 +886,7 @@
         });
         document.getElementById('close-modal')?.addEventListener('click', closePhoto);
         modal?.addEventListener('click', (e) => { if (e.target === modal) closePhoto(); });
-     
+    
         modal?.addEventListener('touchstart', (e) => {
             if (e.touches.length === 2) {
                 initialDist = getDist(e.touches);
@@ -910,7 +897,7 @@
                 startY = e.touches[0].pageY - currentTranslateY * currentScale;
             }
         }, { passive: false });
-     
+    
         modal?.addEventListener('touchmove', (e) => {
             e.preventDefault();
             if (e.touches.length === 2) {
@@ -927,12 +914,12 @@
                 applyTransform();
             }
         }, { passive: false });
-     
+    
         modal?.addEventListener('touchend', () => {
             isDragging = false;
             initialDist = 0;
         });
-     
+    
         document.addEventListener('touchstart', (e) => {
             if (e.touches.length > 1) {
                 if (modal.style.display !== 'flex' && !document.getElementById('invitation-modal').classList.contains('show')) {
@@ -940,21 +927,21 @@
                 }
             }
         }, { passive: false });
-     
+    
         modal?.addEventListener('wheel', (e) => {
             e.preventDefault();
             const delta = e.deltaY > 0 ? 0.85 : 1.15;
             currentScale = Math.max(1, Math.min(12, currentScale * delta));
             applyTransform();
         }, { passive: false });
-     
+    
         modal?.addEventListener('mousedown', (e) => {
             isMouseDragging = true;
             mouseStartX = e.pageX - currentTranslateX * currentScale;
             mouseStartY = e.pageY - currentTranslateY * currentScale;
             modalImage.style.cursor = 'grabbing';
         });
-     
+    
         document.addEventListener('mousemove', (e) => {
             if (isMouseDragging) {
                 currentTranslateX = (e.pageX - mouseStartX) / currentScale;
@@ -962,24 +949,24 @@
                 applyTransform();
             }
         });
-     
+    
         document.addEventListener('mouseup', () => {
             isMouseDragging = false;
             if (currentScale > 1.01) modalImage.style.cursor = 'grab';
         });
-     
+    
         modal?.addEventListener('mouseleave', () => {
             isMouseDragging = false;
             if (currentScale > 1.01) modalImage.style.cursor = 'grab';
         });
-     
+    
         modalImage?.addEventListener('dblclick', () => {
             currentScale = 1;
             currentTranslateX = 0;
             currentTranslateY = 0;
             applyTransform();
         });
-     
+    
         document.getElementById('toggle-gallery-btn')?.addEventListener('click', function() {
             const wrapper = document.getElementById('gallery-wrapper');
             const icon = document.getElementById('gallery-toggle-icon');
@@ -997,7 +984,7 @@
                 });
             }
         });
-     
+    
         document.getElementById('toggle-video-gallery-btn')?.addEventListener('click', function() {
             const wrapper = document.getElementById('video-gallery-wrapper');
             const icon = document.getElementById('video-gallery-toggle-icon');
@@ -1022,20 +1009,18 @@
                 });
             }
         });
-     
+    
         document.getElementById('close-video-modal')?.addEventListener('click', () => {
             document.getElementById('video-modal').classList.replace('flex', 'hidden');
             unlockScroll();
             const iframe = document.getElementById('modal-video-iframe');
             if (iframe) iframe.src = '';
         });
-     
-        // Davetiye ikonuna tıklayınca konfeti efekti + modal açma
+    
         document.getElementById('invitation-icon')?.addEventListener('click', () => {
             document.getElementById('invitation-modal').classList.add('show');
             lockScroll();
 
-            // Güçlü ve romantik konfeti
             confetti({
                 particleCount: 180,
                 spread: 100,
@@ -1058,7 +1043,7 @@
             document.getElementById('invitation-modal').classList.remove('show');
             unlockScroll();
         });
-     
+    
         document.addEventListener('keydown', e => {
             if (e.key === 'Escape') {
                 closePhoto();
@@ -1071,12 +1056,12 @@
                 if (e.key === 'ArrowLeft') document.getElementById('prev-photo')?.click();
             }
         });
-     
+    
         const tag = document.createElement('script');
         tag.src = 'https://www.youtube.com/iframe_api';
         const firstScriptTag = document.getElementsByTagName('script')[0];
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-    
+   
         window.onYouTubeIframeAPIReady = function() {
             const playBtn = document.getElementById('play-song-btn');
             const playerElement = document.getElementById('youtube-player');
